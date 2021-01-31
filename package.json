@@ -1,0 +1,38 @@
+{
+  "name": "react-native-xaml",
+  "title": "React Native Xaml",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "index.js",
+  "files": [
+    "README.md",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asklar/react-native-xaml.git",
+    "baseUrl": "https://github.com/asklar/react-native-xaml"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "asklar",
+    "email": "asklar@microsoft.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.64.0-rc.2 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "0.64.0-rc.2",
+    "react-native-windows": "^0.64.0-preview.8"
+  }
+}
