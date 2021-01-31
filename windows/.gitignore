@@ -31,8 +31,8 @@
 ipch/
 [Oo]bj/
 [Bb]in
-[Dd]ebug*/
-[Rr]elease*/
+**/[Dd]ebug*/
+**/[Rr]elease*/
 Ankh.NoLoad
 
 # Visual C++ cache files
