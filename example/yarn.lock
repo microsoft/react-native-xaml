@@ -5401,7 +5401,7 @@ react-native-windows@0.64.0-preview.8:
     ws "^6.1.4"
 
 react-native-xaml@../:
-  version "0.0.1"
+  version "0.0.2"
 
 react-native@0.64.0-rc.2:
   version "0.64.0-rc.2"

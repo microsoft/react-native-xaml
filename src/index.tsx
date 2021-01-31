@@ -3,4 +3,4 @@ import { XamlControl } from './XamlControl';
 
 const { Xaml } = NativeModules;
 
-export default { Xaml, XamlControl };
+export default { Xaml, XamlControl, XamlControlProps };

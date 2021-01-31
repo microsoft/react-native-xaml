@@ -1,16 +1,10 @@
 import React from "react";
-import { NativeSyntheticEvent, requireNativeComponent, ViewProps } from "react-native";
+import { NativeSyntheticEvent, requireNativeComponent } from "react-native";
+import { XamlControlProps } from './index';
 //import { styles } from "./styles.ts";
 
 let NativeXamlControl = requireNativeComponent<XamlControlProps>("XamlControl");
 
-export interface XamlControlProps extends ViewProps {
-    readonly type: string;
-    readonly text: string;
-    readonly onClick?: (
-        event: NativeSyntheticEvent<undefined>
-      ) => void;
-}
 
 export const XamlControl: React.FC<XamlControlProps> = ({
     type,

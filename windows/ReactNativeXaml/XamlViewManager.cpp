@@ -147,8 +147,8 @@ namespace winrt::ReactNativeXaml {
   };
 
   const std::map<std::string, PropInfo> xamlPropertyMap = {
-    { "width", { MAKE_GET_DP(FrameworkElement::HeightProperty), FromJSType::Double, XamlPropType::Double }},
-    { "height", { MAKE_GET_DP(FrameworkElement::WidthProperty), FromJSType::Double, XamlPropType::Double }},
+    { "width", { MAKE_GET_DP(FrameworkElement::WidthProperty), FromJSType::Double, XamlPropType::Double }},
+    { "height", { MAKE_GET_DP(FrameworkElement::HeightProperty), FromJSType::Double, XamlPropType::Double }},
     { "text", { MAKE_GET_DP(ContentControl::ContentProperty), FromJSType::String, XamlPropType::Object }},
     { "color", { MAKE_GET_DP(Control::ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
     { "backgroundColor", { MAKE_GET_DP(Control::BackgroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
