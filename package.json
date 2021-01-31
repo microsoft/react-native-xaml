@@ -9,7 +9,8 @@
     "index.js"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "windows": "react-native run-windows"
   },
   "repository": {
     "type": "git",
@@ -28,11 +29,11 @@
   "readmeFilename": "README.md",
   "peerDependencies": {
     "react": "^16.8.1",
-    "react-native": ">=0.64.0-rc.2 <1.0.x"
+    "react-native": "0.0.0-c66aa8abc"
   },
   "devDependencies": {
     "react": "^16.9.0",
-    "react-native": "0.64.0-rc.2",
+    "react-native": "0.0.0-c66aa8abc",
     "react-native-windows": "^0.64.0-preview.8"
   }
 }
