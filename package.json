@@ -1,16 +1,14 @@
 {
   "name": "react-native-xaml",
   "title": "React Native Xaml",
-  "version": "1.0.0",
-  "description": "TODO",
+  "version": "0.0.1",
+  "description": "Allows using XAML directly, inside of a React Native Windows app",
   "main": "index.js",
   "files": [
     "README.md",
     "index.js"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "windows": "react-native run-windows"
   },
   "repository": {
     "type": "git",
@@ -18,10 +16,14 @@
     "baseUrl": "https://github.com/asklar/react-native-xaml"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "react-native-windows",
+    "XAML",
+    "WinUI",
+    "UWP"
   ],
   "author": {
-    "name": "asklar",
+    "name": "Alexander Sklar",
     "email": "asklar@microsoft.com"
   },
   "license": "MIT",
