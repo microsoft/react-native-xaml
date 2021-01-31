@@ -63,18 +63,21 @@ namespace winrt::ReactNativeXaml {
     Object
   };
 
-#define MAKE_GET_DP(x) []() { return x(); }
+  template <typename T> bool IsType(IInspectable i) { return i.try_as<T>() != nullptr; }
+
+#define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
   struct PropInfo {
+    std::function<bool(IInspectable)> isType;
     std::function<xaml::DependencyProperty()> xamlPropertyGetter;
     FromJSType jsType;
     XamlPropType xamlType;
 
-    void ClearValue(xaml::DependencyObject o) {
+    void ClearValue(xaml::DependencyObject o) const {
       o.ClearValue(xamlPropertyGetter());
     }
 
-    void SetValue(xaml::DependencyObject o, const JSValue& v) {
+    void SetValue(xaml::DependencyObject o, const JSValue& v) const {
       switch (xamlType) {
       case XamlPropType::Double: {
         auto d = v.AsDouble();
@@ -110,7 +113,7 @@ namespace winrt::ReactNativeXaml {
       }
     }
   private:
-    void SetValue(xaml::DependencyObject o, int v) {
+    void SetValue(xaml::DependencyObject o, int v) const {
       if (xamlType == XamlPropType::Int) {
         o.SetValue(xamlPropertyGetter(), winrt::box_value(v));
       }
@@ -119,19 +122,19 @@ namespace winrt::ReactNativeXaml {
       }
       else { assert(false); }
     }
-    void SetValue(xaml::DependencyObject o, double v) {
+    void SetValue(xaml::DependencyObject o, double v) const {
       if (xamlType == XamlPropType::Double) {
         o.SetValue(xamlPropertyGetter(), winrt::box_value(v));
       }
       else assert(false);
     }
-    void SetValue(xaml::DependencyObject  o, const winrt::hstring& v) {
+    void SetValue(xaml::DependencyObject  o, const winrt::hstring& v) const {
       if (xamlType == XamlPropType::String) {
         o.SetValue(xamlPropertyGetter(), winrt::box_value(v));
       }
       else assert(false);
     }
-    void SetValue(xaml::DependencyObject o, const winrt::IInspectable& v) {
+    void SetValue(xaml::DependencyObject o, const winrt::IInspectable& v) const {
       if (xamlType == XamlPropType::Object) {
         o.SetValue(xamlPropertyGetter(), v);
       }
@@ -144,15 +147,17 @@ namespace winrt::ReactNativeXaml {
 
   const std::map<std::string, std::function<xaml::DependencyObject()>> xamlTypeCreatorMap = {
     { "hyperlinkButton", CREATE_TYPE(HyperlinkButton)},
+    { "textblock", CREATE_TYPE(TextBlock)},
   };
 
-  const std::map<std::string, PropInfo> xamlPropertyMap = {
-    { "width", { MAKE_GET_DP(FrameworkElement::WidthProperty), FromJSType::Double, XamlPropType::Double }},
-    { "height", { MAKE_GET_DP(FrameworkElement::HeightProperty), FromJSType::Double, XamlPropType::Double }},
-    { "text", { MAKE_GET_DP(ContentControl::ContentProperty), FromJSType::String, XamlPropType::Object }},
-    { "color", { MAKE_GET_DP(Control::ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-    { "backgroundColor", { MAKE_GET_DP(Control::BackgroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-
+  const std::multimap<std::string, PropInfo> xamlPropertyMap = {
+    { "width", { MAKE_GET_DP(FrameworkElement, WidthProperty), FromJSType::Double, XamlPropType::Double }},
+    { "height", { MAKE_GET_DP(FrameworkElement, HeightProperty), FromJSType::Double, XamlPropType::Double }},
+    { "text", { MAKE_GET_DP(ContentControl, ContentProperty), FromJSType::String, XamlPropType::Object }},
+    { "text", { MAKE_GET_DP(TextBlock, TextProperty), FromJSType::String, XamlPropType::String }},
+    { "color", { MAKE_GET_DP(Control, ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
+    { "color", { MAKE_GET_DP(TextBlock, ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
+    { "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
   };
 
   void DispatchEvent(IReactContext ctx, IInspectable sender, std::wstring topEvtName) {
@@ -179,6 +184,14 @@ namespace winrt::ReactNativeXaml {
     //}} } }
   };
 
+  const PropInfo* GetProp(const std::string& propertyName, const IInspectable& obj) {
+    auto propRange = xamlPropertyMap.equal_range(propertyName);
+    for (auto prop = propRange.first; prop != propRange.second; ++prop)
+    {
+      if (prop->second.isType(obj)) { return &(prop->second); }
+    }
+    return nullptr;
+  }
 
   void XamlViewManager::UpdateProperties(
     FrameworkElement const& view,
@@ -213,9 +226,12 @@ namespace winrt::ReactNativeXaml {
         auto const& propertyName = pair.first;
         auto const& propertyValue = pair.second;
 
-        if (xamlPropertyMap.count(propertyName) != 0) {
-          auto prop = xamlPropertyMap.at(propertyName);
-          prop.SetValue(control, propertyValue);
+        if (auto prop = GetProp(propertyName, control)) {
+          prop->SetValue(control, propertyValue);
+        }
+        else if (propertyName == "type") {} 
+        else {
+          assert(false && "unknown property");
         }
       }
     }

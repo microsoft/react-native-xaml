@@ -18,7 +18,9 @@ import {
   View,
   requireNativeComponent,
   ViewProps,
-  NativeSyntheticEvent
+  NativeSyntheticEvent,
+  StyleProp,
+  ViewStyle
 } from 'react-native';
 
 import {
@@ -31,25 +33,50 @@ import {
 
 let NativeXamlControl = requireNativeComponent<XamlControlProps>("XamlControl");
 interface XamlControlProps extends ViewProps {
-  type: string;
-  text: string;
+  readonly type: string;
+  text?: string;
   onClick?: (
       event: NativeSyntheticEvent<undefined>
     ) => void;
+  color?: string;
 }
 
 const XamlControl: React.FC<XamlControlProps> = ({
   type,
   text,
   onClick,
-  style
+  style,
+  color
 }) => {
 //    const accessibilityLabel = text;
   return (
       <NativeXamlControl type={type} text={text} style={style}
        onClick={onClick ? onClick : () => {
             console.log("Hi!!"); 
-          }}
+          }} color={color}
+      />
+  );
+};
+
+class HyperlinkButtonProps implements XamlControlProps   { 
+  type: string;
+  text?: string;
+  color?: string;
+  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  style?: StyleProp<ViewStyle>;
+  constructor() { this.type = 'hyperlinkButton'; }
+}
+
+const HyperlinkButton: React.FC<HyperlinkButtonProps> = ({
+  text,
+  onClick,
+  style,
+  color
+}) => {
+//    const accessibilityLabel = text;
+  return (
+      <NativeXamlControl type="hyperlinkButton" text={text} style={style} color={color}
+       onClick={onClick ? onClick : () => {}}
       />
   );
 };
@@ -96,7 +123,6 @@ const App: () => Node = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <XamlControl type="hyperlinkButton" text="Hello World" style={{width:150,height:40,backgroundColor:'red'}} />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -105,6 +131,8 @@ const App: () => Node = () => {
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
+          <HyperlinkButton text="Hello World" style={{width:150,height:40}} onClick={()=>{alert("clicked!");} } />
+          <XamlControl type="textblock" style={{width:150,height:40}} text="textblock" color='red' />
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
