@@ -4,11 +4,6 @@
   "version": "0.0.1",
   "description": "Allows using XAML directly, inside of a React Native Windows app",
   "main": "index.js",
-  "files": [
-    "README.md",
-    "index.js",
-    "windows"
-  ],
   "scripts": {
   },
   "repository": {
