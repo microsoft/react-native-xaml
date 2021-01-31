@@ -16,6 +16,9 @@ import {
   Text,
   useColorScheme,
   View,
+  requireNativeComponent,
+  ViewProps,
+  NativeSyntheticEvent
 } from 'react-native';
 
 import {
@@ -25,6 +28,32 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+// let NativeXamlControl = requireNativeComponent<XamlControlProps>("XamlControl");
+// interface XamlControlProps extends ViewProps {
+//   type: string;
+//   text: string;
+//   onClick?: (
+//       event: NativeSyntheticEvent<undefined>
+//     ) => void;
+// }
+
+// const XamlControl: React.FC<XamlControlProps> = ({
+//   type,
+//   text,
+//   onClick
+// }) => {
+// //    const accessibilityLabel = text;
+//   return (
+//       <NativeXamlControl type={type} style={{height:34,width:34,backgroundColor:"red"}} text={text} 
+//        onClick={onClick ? onClick : () => {
+//             console.log("Hi!!"); 
+//           }}
+//       />
+//   );
+// };
+
+import { XamlControl, XamlControlProps } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -66,6 +95,7 @@ const App: () => Node = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <XamlControl type="hyperlinkButton" text="Hello World" style={{width:50,height:20,backgroundColor:'red'}} />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,

@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "rootDir": "./src",
+      "allowUnreachableCode": false,
+      "allowUnusedLabels": false,
+      "esModuleInterop": true,
+      "importsNotUsedAsValues": "error",
+      "forceConsistentCasingInFileNames": true,
+      "jsx": "react-native",
+      "lib": ["es6"],
+      "allowJs": true,
+      "noEmit": true,
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "noImplicitUseStrict": false,
+      "noStrictGenericChecks": false,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "target": "es6",
+      "types": ["node"],
+      "outDir": "lib",
+      "sourceMap": true
+    },
+    "include": [ "src" ]
+  }
