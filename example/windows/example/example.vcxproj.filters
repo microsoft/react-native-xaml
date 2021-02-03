@@ -49,10 +49,19 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{e48dc53e-40b1-40cb-970a-f89935452892}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JS">
+      <UniqueIdentifier>{2443e9bf-f217-47b5-b226-8ee99297c961}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
     <None Include="packages.config" />
+    <None Include="..\..\App.tsx">
+      <Filter>JS</Filter>
+    </None>
+    <None Include="..\..\index.js">
+      <Filter>JS</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />

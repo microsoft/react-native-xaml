@@ -160,28 +160,30 @@ namespace winrt::ReactNativeXaml {
     { "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
   };
 
-  void DispatchEvent(IReactContext ctx, IInspectable sender, std::wstring topEvtName) {
-    ctx.DispatchEvent(sender.as<xaml::FrameworkElement>(), topEvtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {});
+  void DispatchEvent(winrt::weak_ref<IReactContext> ctx, IInspectable sender, std::wstring topEvtName) {
+    
   }
 
   //ctx.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](auto const& evtDataWriter) noexcept {}); \
 
 #define MAKE_EVENT(evtName, xamlType) { #evtName, { [](IInspectable o, IReactContext reactContext) { \
           if (auto c = o.try_as<xamlType>()) {  \
-            auto ctx = reactContext; \
+            auto ctx = winrt::make_weak(reactContext); \
             c.evtName([ctx] (auto&& sender, auto&& /*args*/) { \
-              DispatchEvent(ctx, sender, L"top" L#evtName);    \
+              if (auto context = ctx.get()) { \
+                context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {}); \
+              } \
             }); \
           } \
         } } }
 
   const std::map<std::string, std::function<void(IInspectable o, IReactContext context)> > xamlEventMap = {
-    MAKE_EVENT(Click, xaml::Controls::Primitives::ButtonBase),
-    //   { "Click", { [](IInspectable o, IReactContext context) {
-    //     if (auto c = o.try_as<xaml::Controls::Primitives::ButtonBase>()) {
-    //       c.Click([context](auto&& sender, auto&& /*args*/) {
-    //         context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L"Click", [](winrt::Microsoft::ReactNative::IJSValueWriter const& eventDataWriter) noexcept {}); });
-    //}} } }
+//    MAKE_EVENT(Click, xaml::Controls::Primitives::ButtonBase),
+       { "Click", { [](IInspectable o, IReactContext context) {
+         if (auto c = o.try_as<xaml::Controls::Primitives::ButtonBase>()) {
+           c.Click([context](auto&& sender, auto&& /*args*/) {
+             context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L"Click", [](winrt::Microsoft::ReactNative::IJSValueWriter const& eventDataWriter) noexcept {}); });
+    }} } }
   };
 
   const PropInfo* GetProp(const std::string& propertyName, const IInspectable& obj) {
