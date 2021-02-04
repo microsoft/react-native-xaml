@@ -16,11 +16,6 @@ import {
   Text,
   useColorScheme,
   View,
-  requireNativeComponent,
-  ViewProps,
-  NativeSyntheticEvent,
-  StyleProp,
-  ViewStyle
 } from 'react-native';
 
 import {
@@ -31,57 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-let NativeXamlControl = requireNativeComponent<XamlControlProps>("XamlControl");
-interface XamlControlProps extends ViewProps {
-  readonly type: string;
-  text?: string;
-  onClick?: (
-      event: NativeSyntheticEvent<undefined>
-    ) => void;
-  color?: string;
-}
-
-const XamlControl: React.FC<XamlControlProps> = ({
-  type,
-  text,
-  onClick,
-  style,
-  color
-}) => {
-//    const accessibilityLabel = text;
-  return (
-      <NativeXamlControl type={type} text={text} style={style}
-       onClick={onClick ? onClick : () => {
-            console.log("Hi!!"); 
-          }} color={color}
-      />
-  );
-};
-
-class HyperlinkButtonProps implements XamlControlProps   { 
-  type: string;
-  text?: string;
-  color?: string;
-  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  style?: StyleProp<ViewStyle>;
-  constructor() { this.type = 'hyperlinkButton'; }
-}
-
-const HyperlinkButton: React.FC<HyperlinkButtonProps> = ({
-  text,
-  onClick,
-  style,
-  color
-}) => {
-//    const accessibilityLabel = text;
-  return (
-      <NativeXamlControl type="hyperlinkButton" text={text} style={style} color={color}
-       onClick={onClick ? onClick : () => {}}
-      />
-  );
-};
-
-// import { XamlControl } from 'react-native-xaml';
+import {HyperlinkButton, TextBlock} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -132,7 +77,7 @@ const App: () => Node = () => {
             screen and then come back to see your edits.
           </Section>
           <HyperlinkButton text="Hello World" style={{width:150,height:40}} onClick={()=>{alert("clicked!");} } />
-          <XamlControl type="textblock" style={{width:150,height:40}} text="textblock" color='red' />
+          <TextBlock style={{width:150,height:40}} text="textblock" color='red' />
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>

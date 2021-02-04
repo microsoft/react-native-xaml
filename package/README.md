@@ -10,8 +10,8 @@
 
 ## Usage
 ```javascript
-import Xaml from 'react-native-xaml';
+import { HyperlinkButton, } from 'react-native-xaml';
 
 // TODO: What to do with the module?
-Xaml;
+<HyperlinkButton text="Hello World" style={{width:150,height:40}} onClick={()=>{alert("clicked!");} } />
 ```

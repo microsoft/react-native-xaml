@@ -1,48 +1,20 @@
 {
-  "name": "react-native-xaml",
-  "title": "React Native Xaml",
-  "version": "0.0.2",
-  "description": "Allows using XAML directly, inside of a React Native Windows app",
-  "main": "lib/commonjs/index.js",
-  "typings": "lib/commonjs/index.d.ts",
+  "name": "react-native-xaml-repo",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "build": "tsc --noEmit"
+    "build": "tsc --project package"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asklar/react-native-xaml.git",
     "baseUrl": "https://github.com/asklar/react-native-xaml"
   },
-  "keywords": [
-    "react-native",
-    "react-native-windows",
-    "XAML",
-    "WinUI",
-    "UWP"
-  ],
-  "author": {
-    "name": "Alexander Sklar",
-    "email": "asklar@microsoft.com"
-  },
   "license": "MIT",
-  "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
-  "peerDependencies": {
-    "react": "^16.8.1",
-    "react-native": "0.0.0-c66aa8abc"
-  },
-  "devDependencies": {
-    "react": "^16.9.0",
-    "react-native": "0.0.0-c66aa8abc",
-    "react-native-windows": "^0.64.0-preview.8",
-    "react-native-typescript-transformer": "*",
-    "typescript": "^4.1.2",
-    "@types/react": "*",
-    "@types/react-native": "*",
-    "@types/jest": "*",
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0"
-
-    
+  "workspaces": {
+    "packages": [
+      "example",
+      "package"
+    ]
   }
 }
