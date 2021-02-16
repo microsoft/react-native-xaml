@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "CppWinRTIncludes.h"
 #include "winrt/Microsoft.ReactNative.h"
+#include "XamlMetadata.h"
 
 // Required to avoid creating unnecessary ContentControls to hold dynamically-typed ui elements
 // https://github.com/microsoft/react-native-windows/pull/7137
@@ -63,6 +64,7 @@ namespace winrt::ReactNativeXaml {
     bool RequiresNativeLayout() noexcept { return true; }
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
+    XamlMetadata xamlMetadata;
   };
 
 }

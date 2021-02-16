@@ -39,19 +39,7 @@ namespace winrt::ReactNativeXaml {
   winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
-    if (XamlMetadata::xamlTypeCreatorMap.count(typeName) != 0) {
-      auto creator = XamlMetadata::xamlTypeCreatorMap.at(typeName);
-      auto e = creator();
-      //e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
-      // Register events
-      std::for_each(XamlMetadata::xamlEventMap.begin(), XamlMetadata::xamlEventMap.end(), [e, context = this->m_reactContext](const auto& entry) {entry.second(e, context); });
-      return e;
-    }
-    else {
-      assert(false && "xaml type not found");
-      VerifyElseCrash(false);
-    }
-
+    return xamlMetadata.Create(typeName, m_reactContext);
   }
 
   // IViewManagerWithNativeProperties
@@ -79,17 +67,9 @@ namespace winrt::ReactNativeXaml {
     if (!e) {
       if (propertyMap.count("type") != 0) {
         const auto typeName = propertyMap["type"].AsString();
-        if (XamlMetadata::xamlTypeCreatorMap.count(typeName) != 0) {
-          auto creator = XamlMetadata::xamlTypeCreatorMap.at(typeName);
-          e = creator();
-          e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
-          // Register events
-          std::for_each(XamlMetadata::xamlEventMap.begin(), XamlMetadata::xamlEventMap.end(), [e, context = ReactContext()](const auto& entry) {entry.second(e, context); });
-          delegating.Content(e);
-        }
-        else {
-          assert(false && "xaml type not found");
-        }
+        e = xamlMetadata.Create(typeName, m_reactContext);
+        e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
+        delegating.Content(e);
       }
       else {
         assert(false && "xaml type not specified");
@@ -102,7 +82,7 @@ namespace winrt::ReactNativeXaml {
         auto const& propertyName = pair.first;
         auto const& propertyValue = pair.second;
 
-        if (auto prop = XamlMetadata::GetProp(propertyName, control)) {
+        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
           prop->SetValue(control, propertyValue);
         }
         else if (propertyName == "type") {} 

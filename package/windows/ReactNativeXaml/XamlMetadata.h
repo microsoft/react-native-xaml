@@ -2,6 +2,7 @@
 #include <pch.h>
 #include <winrt/base.h>
 #include <functional>
+#include <string>
 #include <JSValue.h>
 #include <JSValueReader.h>
 #include <JSValueXaml.h>
@@ -107,8 +108,11 @@ private:
 };
 
 struct XamlMetadata {
-  static const std::map<std::string, std::function<xaml::DependencyObject()>> xamlTypeCreatorMap;
-  static const std::multimap<std::string, PropInfo> xamlPropertyMap;
-  static const std::map<std::string, std::function<void(IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
-  static const PropInfo* GetProp(const std::string& propertyName, const IInspectable& obj);
+  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context);
+  XamlMetadata();
+  const PropInfo* GetProp(const std::string& propertyName, const IInspectable& obj);
+
+  std::map<std::string, std::function<xaml::DependencyObject()>> xamlTypeCreatorMap;
+  std::multimap<std::string, PropInfo> xamlPropertyMap;
+  std::map<std::string, std::function<void(IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
 };
