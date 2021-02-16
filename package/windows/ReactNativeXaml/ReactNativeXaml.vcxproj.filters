@@ -8,12 +8,14 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="ReactPackageProvider.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
+    <ClCompile Include="XamlMetadata.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="ReactNativeModule.h" />
     <ClInclude Include="XamlViewManager.h" />
+    <ClInclude Include="XamlMetadata.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />

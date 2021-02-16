@@ -88,7 +88,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /Zc:lambda </AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
       <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
@@ -115,6 +115,7 @@
     </ClInclude>
     <ClInclude Include="ReactNativeModule.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="XamlMetadata.h" />
     <ClInclude Include="XamlViewManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +126,7 @@
       <DependentUpon>ReactPackageProvider.idl</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="XamlMetadata.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
   </ItemGroup>
   <ItemGroup>
