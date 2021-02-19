@@ -4,11 +4,10 @@
 #include "JSValueReader.h"
 #include "NativeModules.h"
 #include "XamlMetadata.h"
-
+#include <winrt/Windows.UI.Xaml.Core.Direct.h>
+#include <UI.Xaml.Input.h>
 using namespace winrt;
 using namespace Microsoft::ReactNative;
-using namespace Windows::Foundation;
-using namespace Windows::Foundation::Collections;
 using namespace xaml;
 using namespace xaml::Controls;
 
@@ -46,13 +45,35 @@ namespace winrt::ReactNativeXaml {
   IMapView<hstring, ViewManagerPropertyType> XamlViewManager::NativeProps() noexcept {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
-    nativeProps.Insert(L"text", ViewManagerPropertyType::String);
-    nativeProps.Insert(L"color", ViewManagerPropertyType::Color);
-    nativeProps.Insert(L"backgroundColor", ViewManagerPropertyType::Color);
-
+    //nativeProps.Insert(L"text", ViewManagerPropertyType::String);
+    //nativeProps.Insert(L"color", ViewManagerPropertyType::Color);
+    //nativeProps.Insert(L"backgroundColor", ViewManagerPropertyType::Color);
+    for (auto const& entry : xamlMetadata.xamlPropertyMap) {
+      ViewManagerPropertyType type;
+      switch (entry.second.jsType) {
+      case FromJSType::Array:
+        type = ViewManagerPropertyType::Array; break;
+      case FromJSType::Boolean:
+        type = ViewManagerPropertyType::Boolean; break;
+      case FromJSType::Double:
+        type = ViewManagerPropertyType::Number; break;
+      case FromJSType::Int64:
+        type = ViewManagerPropertyType::Number; break;
+      case FromJSType::Null:
+        continue;
+      case FromJSType::SolidColorBrush:
+        type = ViewManagerPropertyType::Color; break;
+      case FromJSType::String:
+        type = ViewManagerPropertyType::String; break;
+      case FromJSType::Object:
+        type = ViewManagerPropertyType::Map; break;
+      }
+      nativeProps.Insert(entry.first, type);
+    }
     return nativeProps.GetView();
   }
 
+  xaml::RoutedEventHandler reh{ nullptr };
 
   void XamlViewManager::UpdateProperties(
     FrameworkElement const& view,
@@ -67,9 +88,44 @@ namespace winrt::ReactNativeXaml {
     if (!e) {
       if (propertyMap.count("type") != 0) {
         const auto typeName = propertyMap["type"].AsString();
-        e = xamlMetadata.Create(typeName, m_reactContext);
-        e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
-        delegating.Content(e);
+        auto xd = xaml::Core::Direct::XamlDirect::GetDefault();
+        auto hlb = xd.CreateInstance(xaml::Core::Direct::XamlTypeIndex::HyperlinkButton);
+//        e = xd.GetObject(hlb);
+        //auto peh = xaml::Input::PointerEventHandler([](auto&&, auto&&) {
+        //  auto x = 0;
+        //  });
+        //auto del = winrt::impl::make_delegate<xaml::RoutedEventHandler>([](auto&&, auto&&) {
+        //  auto x = 0;
+        //  });
+        //auto delBoxed = winrt::box_value(del);
+        //xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, delBoxed, true);
+        xd.SetStringProperty(hlb, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, winrt::to_hstring(L"Hello"));
+
+        reh = RoutedEventHandler([](auto&&, auto&&) { 
+          auto p = 0; 
+          });
+        xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, winrt::box_value(reh), true);
+
+        auto xdParent = xd.GetXamlDirectObject(delegating);
+        xd.SetXamlDirectObjectProperty(xdParent, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, hlb);
+        // auto obj = xd.GetObject(hlb).as<xaml::Controls::HyperlinkButton>();
+        //obj.AddHandler(xaml::UIElement::TappedEvent(), winrt::box_value(RoutedEventHandler([](auto&&, auto&&) {
+
+        //auto teh = xamlMetadata.ActivateInstance(L"Windows.UI.Xaml.Input.TappedEventHandler");
+        //obj.AddHandler(xaml::UIElement::TappedEvent(), winrt::box_value(xaml::Input::TappedEventHandler([](auto&&, auto&&) {
+        //  auto z = 0;
+        //  })), true);
+
+        ///*obj.Click([](auto&, auto&) {
+        //  auto y = 0;
+        //  });
+        //  */
+        //e = obj.as<xaml::UIElement>();
+        //
+        //delegating.Content(e);
+        //e = xamlMetadata.Create(typeName, m_reactContext);
+        //e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
+        //delegating.Content(e);
       }
       else {
         assert(false && "xaml type not specified");
@@ -77,20 +133,20 @@ namespace winrt::ReactNativeXaml {
     }
 #endif
 
-    if (auto control = e.try_as<DependencyObject>()) {
-      for (auto const& pair : propertyMap) {
-        auto const& propertyName = pair.first;
-        auto const& propertyValue = pair.second;
+    //if (auto control = e.try_as<DependencyObject>()) {
+    //  for (auto const& pair : propertyMap) {
+    //    auto const& propertyName = pair.first;
+    //    auto const& propertyValue = pair.second;
 
-        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
-          prop->SetValue(control, propertyValue);
-        }
-        else if (propertyName == "type") {} 
-        else {
-          assert(false && "unknown property");
-        }
-      }
-    }
+    //    if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
+    //      prop->SetValue(control, propertyValue);
+    //    }
+    //    else if (propertyName == "type") {} 
+    //    else {
+    //      assert(false && "unknown property");
+    //    }
+    //  }
+    //}
   }
 
   // IViewManagerWithExportedEventTypeConstants

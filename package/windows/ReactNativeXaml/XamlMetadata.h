@@ -1,11 +1,12 @@
 #pragma once
 #include <pch.h>
-#include <winrt/base.h>
 #include <functional>
 #include <string>
 #include <JSValue.h>
 #include <JSValueReader.h>
 #include <JSValueXaml.h>
+#include <winmd_reader.h>
+
 using namespace xaml;
 using namespace xaml::Controls;
 
@@ -29,10 +30,10 @@ enum class XamlPropType {
   Object
 };
 
-template <typename T> bool IsType(IInspectable i) { return i.try_as<T>() != nullptr; }
+template <typename T> bool IsType(winrt::Windows::Foundation::IInspectable i) { return i.try_as<T>() != nullptr; }
 
 struct PropInfo {
-  std::function<bool(IInspectable)> isType;
+  std::function<bool(winrt::Windows::Foundation::IInspectable)> isType;
   std::function<xaml::DependencyProperty()> xamlPropertyGetter;
   FromJSType jsType;
   XamlPropType xamlType;
@@ -110,9 +111,11 @@ private:
 struct XamlMetadata {
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context);
   XamlMetadata();
-  const PropInfo* GetProp(const std::string& propertyName, const IInspectable& obj);
+  const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj);
+  static winrt::Windows::Foundation::IInspectable ActivateInstance(const winrt::hstring& hstr);
 
   std::map<std::string, std::function<xaml::DependencyObject()>> xamlTypeCreatorMap;
   std::multimap<std::string, PropInfo> xamlPropertyMap;
-  std::map<std::string, std::function<void(IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
+  std::map<std::string, std::function<void(winrt::Windows::Foundation::IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
+  std::unique_ptr<winmd::reader::cache> reader;
 };
