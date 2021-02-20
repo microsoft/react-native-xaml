@@ -33,7 +33,7 @@ enum class XamlPropType {
 
 template <typename T> bool IsType(winrt::Windows::Foundation::IInspectable i) { return i.try_as<T>() != nullptr; }
 
-template <typename T> winrt::IInspectable MakeEnum(const std::string& value);
+template <typename T> winrt::IInspectable MakeEnum(const std::string& value) noexcept;
 
 template<typename T, std::enable_if_t<std::is_enum<T>::value, int> = 0>
 void SetPropValue (xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {

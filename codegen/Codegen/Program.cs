@@ -160,6 +160,7 @@ namespace Codegen
 
         private bool ShouldEmitPropertyMetadata(MrProperty p)
         {
+            if (p.Setter == null) return false;
             bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
             if (!isStatic)
             {
@@ -225,9 +226,9 @@ namespace Codegen
 
         private bool IsFrameworkElementDerived(MrType type)
         {
-            if (type.GetBaseType() == null) return false;
-            var bt = type.GetBaseType().GetFullName();
-            if (bt == "Windows.UI.Xaml.FrameworkElement") return true;
+            var feName = "Windows.UI.Xaml.FrameworkElement";
+            if (type.GetFullName() == feName) return true;
+            else if (type.GetBaseType() == null) return false;
             else return IsFrameworkElementDerived(type.GetBaseType());
         }
 
