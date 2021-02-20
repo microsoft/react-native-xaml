@@ -48,28 +48,7 @@ namespace winrt::ReactNativeXaml {
     //nativeProps.Insert(L"text", ViewManagerPropertyType::String);
     //nativeProps.Insert(L"color", ViewManagerPropertyType::Color);
     //nativeProps.Insert(L"backgroundColor", ViewManagerPropertyType::Color);
-    for (auto const& entry : xamlMetadata.xamlPropertyMap) {
-      ViewManagerPropertyType type;
-      switch (entry.second.jsType) {
-      case FromJSType::Array:
-        type = ViewManagerPropertyType::Array; break;
-      case FromJSType::Boolean:
-        type = ViewManagerPropertyType::Boolean; break;
-      case FromJSType::Double:
-        type = ViewManagerPropertyType::Number; break;
-      case FromJSType::Int64:
-        type = ViewManagerPropertyType::Number; break;
-      case FromJSType::Null:
-        continue;
-      case FromJSType::SolidColorBrush:
-        type = ViewManagerPropertyType::Color; break;
-      case FromJSType::String:
-        type = ViewManagerPropertyType::String; break;
-      case FromJSType::Object:
-        type = ViewManagerPropertyType::Map; break;
-      }
-      nativeProps.Insert(entry.first, type);
-    }
+    xamlMetadata.PopulateNativeProps(nativeProps);
     return nativeProps.GetView();
   }
 
@@ -102,7 +81,7 @@ namespace winrt::ReactNativeXaml {
         xd.SetStringProperty(hlb, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, winrt::to_hstring(L"Hello"));
 
         reh = RoutedEventHandler([](auto&&, auto&&) { 
-          auto p = 0; 
+          //auto p = 0; 
           });
         xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, winrt::box_value(reh), true);
 

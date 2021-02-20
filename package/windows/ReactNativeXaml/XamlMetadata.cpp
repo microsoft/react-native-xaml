@@ -1,12 +1,16 @@
 #include "pch.h"
+#include <roapi.h>
 
 #include "XamlMetadata.h"
 #include <JSValueReader.h>
 #include <filesystem>
 #include <unordered_map>
+#include <Crc32Str.h>
 
 using namespace winrt::Microsoft::ReactNative;
+#ifdef USE_WINMD_READER
 using namespace winmd::reader;
+#endif
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
@@ -21,7 +25,8 @@ using namespace winmd::reader;
           } \
         } } }
 
-#define CREATE_TYPE(T) [](){return T();}
+//#define CREATE_TYPE(T) [](){return T();}
+#ifdef USE_WINMD_READER
 
 std::string getWindowsWinMd() {
   // The root location for Windows SDKs is stored in HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots
@@ -39,13 +44,15 @@ std::string getWindowsWinMd() {
   }
   throw std::string("no winmd found");
 }
+#endif
 
 XamlMetadata::XamlMetadata() {
+#ifdef USE_WINMD_READER
   std::vector<std::string> files = {
     getWindowsWinMd(),
   };
   reader = std::make_unique<cache>(files);
-
+#endif
   xamlEventMap = {
     MAKE_EVENT(Click, xaml::Controls::Primitives::ButtonBase),
     //   { "Click", { [](IInspectable o, IReactContext context) {
@@ -55,20 +62,23 @@ XamlMetadata::XamlMetadata() {
     //}} } }
   };
 
-  xamlPropertyMap = {
-  { "width", { MAKE_GET_DP(FrameworkElement, WidthProperty), FromJSType::Double, XamlPropType::Double }},
-  { "height", { MAKE_GET_DP(FrameworkElement, HeightProperty), FromJSType::Double, XamlPropType::Double }},
-  { "text", { MAKE_GET_DP(ContentControl, ContentProperty), FromJSType::String, XamlPropType::Object }},
-  { "text", { MAKE_GET_DP(TextBlock, TextProperty), FromJSType::String, XamlPropType::String }},
-  { "color", { MAKE_GET_DP(Control, ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-  { "color", { MAKE_GET_DP(TextBlock, ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-  { "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-  };
+  //xamlPropertyMap = {
+  //{ "width", { MAKE_GET_DP(FrameworkElement, WidthProperty), ViewManagerPropertyType::Double, XamlPropType::Double }},
+  //{ "height", { MAKE_GET_DP(FrameworkElement, HeightProperty), ViewManagerPropertyType::Double, XamlPropType::Double }},
+  //{ "text", { MAKE_GET_DP(ContentControl, ContentProperty), ViewManagerPropertyType::String, XamlPropType::Object }},
+  //{ "text", { MAKE_GET_DP(TextBlock, TextProperty), ViewManagerPropertyType::String, XamlPropType::String }},
+  //{ "color", { MAKE_GET_DP(Control, ForegroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
+  //{ "color", { MAKE_GET_DP(TextBlock, ForegroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
+  //{ "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
+  //};
 
-  xamlTypeCreatorMap = {
-  { "hyperlinkButton", CREATE_TYPE(HyperlinkButton)},
-  { "textblock", CREATE_TYPE(TextBlock)},
-  };
+  InitCreatorsMap();
+  InitPropertiesMap();
+
+  //xamlTypeCreatorMap = {
+  //{ "hyperlinkButton", CREATE_TYPE(HyperlinkButton)},
+  //{ "textblock", CREATE_TYPE(TextBlock)},
+  //};
 
 }
 
@@ -76,9 +86,14 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::ActivateInstance(const wi
   winrt::Windows::Foundation::IUnknown unknown{ nullptr };
   auto nhstr = (HSTRING)(winrt::get_abi(hstr));
   auto res = ::RoActivateInstance(nhstr, (::IInspectable**)winrt::put_abi(unknown));
+  if (res != S_OK) {
+
+  }
   auto e = unknown.as<winrt::Windows::Foundation::IInspectable>();
   return e;
 }
+
+#ifdef USE_WINMD_READER
 
 template<typename T>
 std::string MakeName(T t) {
@@ -99,10 +114,11 @@ TypeDef GetBaseClass(const TypeDef& t) {
   }
   return {};
 }
+#endif
 
 // https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.routedevent?view=winrt-19041#events-that-use-a-routedevent-identifier
-#define ROUTED_EVENT(name)  { #name, []() {return xaml::UIElement::name##Event();} }
-std::unordered_map<std::string, std::function<xaml::RoutedEvent ()>> routedEvents = {
+#define ROUTED_EVENT(name)  { #name, xaml::UIElement::name##Event }
+const std::unordered_map<std::string, std::function<xaml::RoutedEvent ()>> routedEvents = {
   ROUTED_EVENT(DoubleTapped),
   ROUTED_EVENT(DragEnter),
   ROUTED_EVENT(DragLeave),
@@ -127,6 +143,8 @@ std::unordered_map<std::string, std::function<xaml::RoutedEvent ()>> routedEvent
   ROUTED_EVENT(RightTapped),
   ROUTED_EVENT(Tapped),
 };
+
+#ifdef USE_WINMD_READER
 
 void AttachEventHandlers(xaml::UIElement uie, TypeDef typeFromMD) {
   for (auto base = typeFromMD; base != TypeDef{}; base = GetBaseClass(base)) {
@@ -153,7 +171,7 @@ void AttachEventHandlers(xaml::UIElement uie, TypeDef typeFromMD) {
   }
 
 }
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) {
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto xamlTypeName = (char)std::toupper(typeName[0]) + typeName.substr(1);
   const std::vector<std::string> projectedNamespaces = {
     "Windows.UI.Xaml",
@@ -195,9 +213,24 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   }
 
 }
+#else
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
+  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
+  if (xamlTypeCreatorMap.count(key) != 0) {
+    auto creator = xamlTypeCreatorMap.at(key);
+    auto e = creator();
+    // Register events
+    std::for_each(xamlEventMap.begin(), xamlEventMap.end(), [e, context](const auto& entry) {entry.second(e, context); });
+    return e;
+  }
+  else {
+    assert(false && "xaml type not found");
+    throw std::invalid_argument("xaml type not found");
+  }
+}
+#endif
 
-
-const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) {
+const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
   auto propRange = xamlPropertyMap.equal_range(propertyName);
   for (auto prop = propRange.first; prop != propRange.second; ++prop)
   {
@@ -206,3 +239,8 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   return nullptr;
 }
 
+void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
+  for (auto const& entry : xamlPropertyMap) {
+    nativeProps.Insert(winrt::to_hstring(entry.first), entry.second.jsType);
+  }
+}
