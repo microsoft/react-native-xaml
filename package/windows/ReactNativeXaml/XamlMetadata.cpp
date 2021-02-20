@@ -72,7 +72,6 @@ XamlMetadata::XamlMetadata() {
   //{ "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
   //};
 
-  InitCreatorsMap();
   InitPropertiesMap();
 
   //xamlTypeCreatorMap = {
@@ -144,91 +143,12 @@ const std::unordered_map<std::string, std::function<xaml::RoutedEvent ()>> route
   ROUTED_EVENT(Tapped),
 };
 
-#ifdef USE_WINMD_READER
-
-void AttachEventHandlers(xaml::UIElement uie, TypeDef typeFromMD) {
-  for (auto base = typeFromMD; base != TypeDef{}; base = GetBaseClass(base)) {
-    auto baseName = MakeName(base);
-    for (const auto& event : base.EventList()) {
-      const auto evtName = event.Name();
-      auto evtType = event.EventType();
-      std::string evtTypeName;
-      if (evtType.type() == TypeDefOrRef::TypeRef) {
-        auto evtTypeRef = evtType.TypeRef();
-        evtTypeName = MakeName(evtTypeRef);
-      }
-      else if (evtType.type() == TypeDefOrRef::TypeDef) {
-        auto evtTypeDef = evtType.TypeDef();
-        evtTypeName = MakeName(evtTypeDef);
-      }
-      if (routedEvents.count(std::string(evtName)) != 0) {
-        winrt::Windows::Foundation::IInspectable handler;
-        auto routedEvent = routedEvents[std::string(evtName)];
-        uie.AddHandler(routedEvent(), handler, true);
-      }
-
-    }
-  }
-
-}
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
-  auto xamlTypeName = (char)std::toupper(typeName[0]) + typeName.substr(1);
-  const std::vector<std::string> projectedNamespaces = {
-    "Windows.UI.Xaml",
-    "Windows.UI.Xaml.Controls",
-    "Windows.UI.Xaml.Controls.Primitives",
-  };
-  TypeDef typeFromMD;
-  for (const auto& ns : projectedNamespaces) {
-    typeFromMD = reader->find(ns, xamlTypeName);
-    if (typeFromMD) break;
-  }
-  
-  if (typeFromMD) {
-    auto name = MakeName(typeFromMD);
-    auto hstr = winrt::to_hstring(name);
-    auto uie = ActivateInstance(hstr).as<xaml::UIElement>();
-
-    AttachEventHandlers(uie, typeFromMD);
-
-  
-
-    //xaml::RoutedEventHandler reh(winrt::impl::make_agile_delegate([](const winrt::Windows::Foundation::IInspectable, const xaml::RoutedEventArgs) {
-    //  auto x = 0;
-    //  }));
-
-    //uie.AddHandler(UIElement::TappedEvent(), reh, true);
-    return uie;
-  }
-  if (xamlTypeCreatorMap.count(typeName) != 0) {
-    auto creator = xamlTypeCreatorMap.at(typeName);
-    auto e = creator();
-    // Register events
-    std::for_each(xamlEventMap.begin(), xamlEventMap.end(), [e, context](const auto& entry) {entry.second(e, context); });
-    return e;
-  }
-  else {
-    assert(false && "xaml type not found");
-    throw std::invalid_argument("xaml type not found");
-  }
-
+  auto e = Create(typeName);
+  // Register events
+  std::for_each(xamlEventMap.begin(), xamlEventMap.end(), [e, context](const auto& entry) {entry.second(e, context); });
+  return e;
 }
-#else
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
-  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
-  if (xamlTypeCreatorMap.count(key) != 0) {
-    auto creator = xamlTypeCreatorMap.at(key);
-    auto e = creator();
-    // Register events
-    std::for_each(xamlEventMap.begin(), xamlEventMap.end(), [e, context](const auto& entry) {entry.second(e, context); });
-    return e;
-  }
-  else {
-    assert(false && "xaml type not found");
-    throw std::invalid_argument("xaml type not found");
-  }
-}
-#endif
 
 const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
   auto propRange = xamlPropertyMap.equal_range(propertyName);

@@ -9,10 +9,18 @@
 #include <winmd_reader.h>
 #endif
 #include <winrt/Windows.Foundation.Collections.h>
+#include <UI.Xaml.Media.h>
 
 using namespace xaml;
 using namespace xaml::Controls;
 using namespace winrt::Microsoft::ReactNative;
+
+namespace winrt::Microsoft::ReactNative {
+  inline void ReadValue(JSValue const& jsValue, xaml::Media::SolidColorBrush& value) noexcept {
+    auto color = XamlHelper::ColorFrom([&jsValue](IJSValueWriter const& writer) noexcept { jsValue.WriteTo(writer); });
+    value = xaml::Media::SolidColorBrush(color);
+  }
+}
 
 enum class XamlPropType {
   Boolean,
@@ -79,7 +87,6 @@ struct XamlMetadata {
 
 private:
   using stringKey = int; // int for crc32, std::string for slow/more-debuggable code
-  mutable std::map<stringKey, std::function<xaml::DependencyObject()>> xamlTypeCreatorMap;
   //mutable std::multimap<std::string, PropInfo> xamlPropertyMap;
   std::unordered_map<std::string, PropInfo> xamlPropertyMap;
   mutable std::map<std::string, std::function<void(winrt::Windows::Foundation::IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
@@ -87,6 +94,6 @@ private:
   std::unique_ptr<winmd::reader::cache> reader;
 #endif
 private:
-  void InitCreatorsMap();
+  winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
   void InitPropertiesMap();
 };

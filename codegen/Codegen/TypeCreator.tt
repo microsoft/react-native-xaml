@@ -15,13 +15,15 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 #include <winrt/<#= ns #>.h>
 <# } #>
 
-void XamlMetadata::InitCreatorsMap() {
-
-  xamlTypeCreatorMap = {
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const {
+  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
+  switch (key) {
 <# foreach (var t in Types.Where(x => !x.IsAbstract)) { #>
-    { COMPILE_TIME_CRC32_STR("<#= Util.ToJsName(t.GetName()) #>"), []() { return <#= Util.GetCppWinRTType(t) #>(); } },
+    case COMPILE_TIME_CRC32_STR("<#= Util.ToJsName(t.GetName()) #>"): { return <#= Util.GetCppWinRTType(t) #>(); }
 <# } #>
-  };
+  
+  }
+  throw std::invalid_argument("xaml type not found");
 }
 
 

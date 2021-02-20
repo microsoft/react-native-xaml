@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
+using System.Reflection;
 
 namespace Codegen
 {
@@ -100,7 +101,7 @@ namespace Codegen
             return publicCtors.Count() != 0;
 
         }
-        private void DumpTypes(string path)
+        private void DumpTypes()
         {
             var context = new MrLoadContext(true);
             context.FakeTypeRequired += (sender, e) =>
@@ -116,8 +117,8 @@ namespace Codegen
             context.FinishLoading();
             var types = windows_winmd.GetAllTypes().Skip(1);
             var fe = types.Where(type => IsFrameworkElementDerived(type));
-
-            var generatedDirPath = @"..\package\windows\ReactNativeXaml\Codegen";
+            var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var generatedDirPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
 
             var creatableTypes = fe.Where(x => hasCtor(x)).ToList();
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
@@ -169,103 +170,94 @@ namespace Codegen
             }
             return false;
         }
-    
-
-    //Dictionary<string, ViewManagerPropertyType> jsTypeMap = new Dictionary<string, FromJSType>()
-    //{
-    //    { "System.String", FromJSType.String },
-    //    { "System.Array", FromJSType.Array },
-    //    { "System.Object", FromJSType.Object },
-    //    { "System.Boolean", FromJSType.Boolean },
-    //    { "System.Int32", FromJSType.Int64 },
-    //    { "System.Int64", FromJSType.Int64 },
-    //    { "System.Double", FromJSType.Double },
-    //    { "System.Single", FromJSType.Double },
-    //    { "Windows.UI.Xaml.Thickness", FromJSType.Thickness },
-    //    { "Windows.UI.Xaml.HorizontalAlignment", FromJSType.String },
-    //    { "Windows.UI.Xaml.VerticalAlignment", FromJSType.String },
-    //    { "Windows.UI.Xaml.Media.Brush", FromJSType.SolidColorBrush },
-    //    { "Windows.UI.Xaml.Media.SolidColorBrush", FromJSType.SolidColorBrush },
-    //    { "Windows.UI.Text.FontWeight", FromJSType.String },
-    //    { "Windows.UI.Text.FontStyle", FromJSType.String },
-    //    { "Windows.UI.Text.FontStretch", FromJSType.String },
-    //    { "Windows.UI.Xaml.Media.FontFamily", FromJSType.String },
-    //    { "Windows.UI.Xaml.Input.KeyboardNavigationMode", FromJSType.String },
-    //    { "Windows.UI.Xaml.Controls.ControlTemplate", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.FocusState", FromJSType.String },
-    //    { "Windows.UI.Xaml.DependencyObject", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.RequiresPointer", FromJSType.String },
-    //    { "Windows.UI.Xaml.ElementSoundMode", FromJSType.String },
-    //    { "System.Uri", FromJSType.String },
-    //    { "Windows.UI.Xaml.CornerRadius", FromJSType.Array },
-    //    { "Windows.UI.Xaml.Controls.BackgroundSizing", FromJSType.String },
-    //    { "Windows.UI.Xaml.Media.Animation.TransitionCollection", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.DataTemplateSelector", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.DataTemplate", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.UIElement", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.AppBarClosedDisplayMode", FromJSType.String },
-    //    { "Windows.UI.Xaml.Controls.Primitives.AppBarTemplateSettings", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.LightDismissOverlayMode", FromJSType.String },
-    //    { "System.Windows.Input.ICommand", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.ClickMode", FromJSType.String },
-    //    { "Windows.UI.Xaml.Controls.Primitives.FlyoutBase", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.IconElement", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.CommandBarLabelPosition", FromJSType.String },
-    //    { "Windows.UI.Xaml.Controls.Primitives.AppBarButtonTemplateSettings", FromJSType.Null }, // NYI
-    //    { "System.Nullable`1", FromJSType.String }, // Nullable<bool> for IsChecked
-    //    { "Windows.UI.Xaml.Controls.Primitives.AppBarToggleButtonTemplateSettings", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.ItemsPanelTemplate", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Controls.StyleSelector", FromJSType.Null }, // NYI
-    //    { "Windows.UI.Xaml.Style", FromJSType.Null },
-    //    { "Windows.UI.Xaml.Controls.GroupStyleSelector", FromJSType.Null },
-    //    { "Windows.Foundation.Collections.IObservableVector`1", FromJSType.Null },
-    //};
 
 
-    private bool IsFrameworkElementDerived(MrType type)
-    {
-        if (type.GetBaseType() == null) return false;
-        var bt = type.GetBaseType().GetFullName();
-        if (bt == "Windows.UI.Xaml.FrameworkElement") return true;
-        else return IsFrameworkElementDerived(type.GetBaseType());
-    }
+        //Dictionary<string, ViewManagerPropertyType> jsTypeMap = new Dictionary<string, FromJSType>()
+        //{
+        //    { "System.String", FromJSType.String },
+        //    { "System.Array", FromJSType.Array },
+        //    { "System.Object", FromJSType.Object },
+        //    { "System.Boolean", FromJSType.Boolean },
+        //    { "System.Int32", FromJSType.Int64 },
+        //    { "System.Int64", FromJSType.Int64 },
+        //    { "System.Double", FromJSType.Double },
+        //    { "System.Single", FromJSType.Double },
+        //    { "Windows.UI.Xaml.Thickness", FromJSType.Thickness },
+        //    { "Windows.UI.Xaml.HorizontalAlignment", FromJSType.String },
+        //    { "Windows.UI.Xaml.VerticalAlignment", FromJSType.String },
+        //    { "Windows.UI.Xaml.Media.Brush", FromJSType.SolidColorBrush },
+        //    { "Windows.UI.Xaml.Media.SolidColorBrush", FromJSType.SolidColorBrush },
+        //    { "Windows.UI.Text.FontWeight", FromJSType.String },
+        //    { "Windows.UI.Text.FontStyle", FromJSType.String },
+        //    { "Windows.UI.Text.FontStretch", FromJSType.String },
+        //    { "Windows.UI.Xaml.Media.FontFamily", FromJSType.String },
+        //    { "Windows.UI.Xaml.Input.KeyboardNavigationMode", FromJSType.String },
+        //    { "Windows.UI.Xaml.Controls.ControlTemplate", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.FocusState", FromJSType.String },
+        //    { "Windows.UI.Xaml.DependencyObject", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.RequiresPointer", FromJSType.String },
+        //    { "Windows.UI.Xaml.ElementSoundMode", FromJSType.String },
+        //    { "System.Uri", FromJSType.String },
+        //    { "Windows.UI.Xaml.CornerRadius", FromJSType.Array },
+        //    { "Windows.UI.Xaml.Controls.BackgroundSizing", FromJSType.String },
+        //    { "Windows.UI.Xaml.Media.Animation.TransitionCollection", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.DataTemplateSelector", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.DataTemplate", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.UIElement", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.AppBarClosedDisplayMode", FromJSType.String },
+        //    { "Windows.UI.Xaml.Controls.Primitives.AppBarTemplateSettings", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.LightDismissOverlayMode", FromJSType.String },
+        //    { "System.Windows.Input.ICommand", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.ClickMode", FromJSType.String },
+        //    { "Windows.UI.Xaml.Controls.Primitives.FlyoutBase", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.IconElement", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.CommandBarLabelPosition", FromJSType.String },
+        //    { "Windows.UI.Xaml.Controls.Primitives.AppBarButtonTemplateSettings", FromJSType.Null }, // NYI
+        //    { "System.Nullable`1", FromJSType.String }, // Nullable<bool> for IsChecked
+        //    { "Windows.UI.Xaml.Controls.Primitives.AppBarToggleButtonTemplateSettings", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.ItemsPanelTemplate", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Controls.StyleSelector", FromJSType.Null }, // NYI
+        //    { "Windows.UI.Xaml.Style", FromJSType.Null },
+        //    { "Windows.UI.Xaml.Controls.GroupStyleSelector", FromJSType.Null },
+        //    { "Windows.Foundation.Collections.IObservableVector`1", FromJSType.Null },
+        //};
 
-    //private static string MapManagedTypeToWinRtType(MrType t)
-    //{
-    //    var map = new Dictionary<string, string> {
-    //        { typeof(Object).FullName, "Windows.Foundation.IInspectable" },
-    //        { "System.Collections.Generic.IList`1",  "Windows.Foundation.Collections.IVector`1" },
-    //        { "System.Collections.Generic.IReadOnlyList`1", "Windows.Foundation.Collections.IVectorView`1" },
-    //        { "System.Collections.Generic.IDictionary`2", "Windows.Foundation.Collections.IMap`2" },
-    //        { "System.Collections.Generic.IReadOnlyDictionary`2", "Windows.Foundation.Collections.IMapView`2" },
-    //    };
 
-    //    if (map.ContainsKey(t.GetFullName()))
-    //    {
-    //        return map[t.GetFullName()];
-    //    }
-    //    if (t.GetNamespace() == "System")
-    //    {
-    //        return t.GetName();
-    //    }
-    //    else
-    //    {
-    //        return t.GetFullName();
-    //    }
-    //}
-
-    static void Main(string[] args)
-    {
-        if (args.Length != 1)
+        private bool IsFrameworkElementDerived(MrType type)
         {
-            Console.WriteLine("Usage: DumpWinMd <assembly.winmd>");
-            Console.WriteLine("Dumps information from a Windows Metadata file onto XML");
+            if (type.GetBaseType() == null) return false;
+            var bt = type.GetBaseType().GetFullName();
+            if (bt == "Windows.UI.Xaml.FrameworkElement") return true;
+            else return IsFrameworkElementDerived(type.GetBaseType());
         }
-        else
-        {
-            new Program().DumpTypes(args[0]);
-        }
-    }
 
+        //private static string MapManagedTypeToWinRtType(MrType t)
+        //{
+        //    var map = new Dictionary<string, string> {
+        //        { typeof(Object).FullName, "Windows.Foundation.IInspectable" },
+        //        { "System.Collections.Generic.IList`1",  "Windows.Foundation.Collections.IVector`1" },
+        //        { "System.Collections.Generic.IReadOnlyList`1", "Windows.Foundation.Collections.IVectorView`1" },
+        //        { "System.Collections.Generic.IDictionary`2", "Windows.Foundation.Collections.IMap`2" },
+        //        { "System.Collections.Generic.IReadOnlyDictionary`2", "Windows.Foundation.Collections.IMapView`2" },
+        //    };
+
+        //    if (map.ContainsKey(t.GetFullName()))
+        //    {
+        //        return map[t.GetFullName()];
+        //    }
+        //    if (t.GetNamespace() == "System")
+        //    {
+        //        return t.GetName();
+        //    }
+        //    else
+        //    {
+        //        return t.GetFullName();
+        //    }
+        //}
+
+        static void Main(string[] args)
+        {
+            new Program().DumpTypes();
+        }
     }
 }

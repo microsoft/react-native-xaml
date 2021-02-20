@@ -67,44 +67,22 @@ namespace winrt::ReactNativeXaml {
     if (!e) {
       if (propertyMap.count("type") != 0) {
         const auto typeName = propertyMap["type"].AsString();
-        auto xd = xaml::Core::Direct::XamlDirect::GetDefault();
-        auto hlb = xd.CreateInstance(xaml::Core::Direct::XamlTypeIndex::HyperlinkButton);
-//        e = xd.GetObject(hlb);
-        //auto peh = xaml::Input::PointerEventHandler([](auto&&, auto&&) {
-        //  auto x = 0;
+        e = xamlMetadata.Create(typeName, m_reactContext);
+
+        //auto xd = xaml::Core::Direct::XamlDirect::GetDefault();
+        //auto hlb = xd.CreateInstance(xaml::Core::Direct::XamlTypeIndex::HyperlinkButton);
+        //e = xd.GetObject(hlb);
+        //xd.SetStringProperty(hlb, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, winrt::to_hstring(L"Hello"));
+
+        //reh = RoutedEventHandler([](auto&&, auto&&) { 
         //  });
-        //auto del = winrt::impl::make_delegate<xaml::RoutedEventHandler>([](auto&&, auto&&) {
-        //  auto x = 0;
-        //  });
-        //auto delBoxed = winrt::box_value(del);
-        //xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, delBoxed, true);
-        xd.SetStringProperty(hlb, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, winrt::to_hstring(L"Hello"));
+        //xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, winrt::box_value(reh), true);
 
-        reh = RoutedEventHandler([](auto&&, auto&&) { 
-          //auto p = 0; 
-          });
-        xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, winrt::box_value(reh), true);
+        //auto xdParent = xd.GetXamlDirectObject(delegating);
+        //xd.SetXamlDirectObjectProperty(xdParent, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, hlb);
 
-        auto xdParent = xd.GetXamlDirectObject(delegating);
-        xd.SetXamlDirectObjectProperty(xdParent, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, hlb);
-        // auto obj = xd.GetObject(hlb).as<xaml::Controls::HyperlinkButton>();
-        //obj.AddHandler(xaml::UIElement::TappedEvent(), winrt::box_value(RoutedEventHandler([](auto&&, auto&&) {
-
-        //auto teh = xamlMetadata.ActivateInstance(L"Windows.UI.Xaml.Input.TappedEventHandler");
-        //obj.AddHandler(xaml::UIElement::TappedEvent(), winrt::box_value(xaml::Input::TappedEventHandler([](auto&&, auto&&) {
-        //  auto z = 0;
-        //  })), true);
-
-        ///*obj.Click([](auto&, auto&) {
-        //  auto y = 0;
-        //  });
-        //  */
-        //e = obj.as<xaml::UIElement>();
-        //
-        //delegating.Content(e);
-        //e = xamlMetadata.Create(typeName, m_reactContext);
-        //e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
-        //delegating.Content(e);
+        delegating.Content(e);
+        e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
       }
       else {
         assert(false && "xaml type not specified");
