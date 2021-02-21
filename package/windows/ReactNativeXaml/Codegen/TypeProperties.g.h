@@ -1,3 +1,4 @@
+#pragma once
 #include "pch.h"
 #include "XamlMetadata.h"
 #include "Crc32Str.h"
@@ -15,7 +16,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-/*static*/ const PropInfo XamlMetadata::xamlPropertyMap[] = {
+/*static*/ const PropInfo xamlPropertyMap[] = {
         { MAKE_KEY("acceptsReturn"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, AcceptsReturnProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("acceptsReturn"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, AcceptsReturnProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("allowFocusOnInteraction"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, AllowFocusOnInteractionProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -695,8 +696,6 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("zoomSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, ZoomSnapPointsTypeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SnapPointsType>, ViewManagerPropertyType::String },
   };
 
-/*static*/ const uint32_t XamlMetadata::xamlPropCount = 677;
-
 #ifdef USE_CRC32
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
     nativeProps.Insert(winrt::to_hstring("acceptsReturn"), ViewManagerPropertyType::Boolean);
@@ -1172,3 +1171,6 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
   }
 }
 #endif
+
+
+

@@ -8,60 +8,22 @@
 #include <Crc32Str.h>
 #include <xutility>
 
+#include "Codegen/TypeProperties.g.h"
+#include "Codegen/TypeEvents.g.h"
+
 using namespace winrt::Microsoft::ReactNative;
-#ifdef USE_WINMD_READER
-using namespace winmd::reader;
-#endif
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
 //ctx.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](auto const& evtDataWriter) noexcept {}); \
 
-#define MAKE_EVENT(evtName, xamlType) \
-        { #evtName, { [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) { \
-          if (auto c = o.try_as<xamlType>()) {  \
-            c.evtName([reactContext] (auto&& sender, auto&& /*args*/) { \
-              reactContext.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*evtDataWriter*/) noexcept {}); \
-            }); \
-          } \
-        } } }
-
-//#define CREATE_TYPE(T) [](){return T();}
-#ifdef USE_WINMD_READER
-
-std::string getWindowsWinMd() {
-  // The root location for Windows SDKs is stored in HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots
-  // under KitsRoot10
-  // But it should be ok to check the default path for most cases
-
-  const std::filesystem::path sdkRoot = "C:\\Program Files (x86)\\Windows Kits\\10\\UnionMetadata";
-
-  for (const auto& d : std::filesystem::directory_iterator(sdkRoot)) {
-    auto dirPath = d.path();
-    auto winmd = dirPath / "Windows.winmd";
-    if (std::filesystem::exists(winmd)) {
-      return winmd.u8string();
-    }
-  }
-  throw std::string("no winmd found");
-}
-#endif
 
 XamlMetadata::XamlMetadata() {
-#ifdef USE_WINMD_READER
-  std::vector<std::string> files = {
-    getWindowsWinMd(),
-  };
-  reader = std::make_unique<cache>(files);
-#endif
-  xamlEventMap = {
-    MAKE_EVENT(Click, xaml::Controls::Primitives::ButtonBase),
     //   { "Click", { [](IInspectable o, IReactContext context) {
     //     if (auto c = o.try_as<xaml::Controls::Primitives::ButtonBase>()) {
     //       c.Click([context](auto&& sender, auto&& /*args*/) {
     //         context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L"Click", [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*eventDataWriter*/) noexcept {}); });
     //}} } }
-  };
 }
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::ActivateInstance(const winrt::hstring& hstr) {
@@ -75,32 +37,16 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::ActivateInstance(const wi
   return e;
 }
 
-#ifdef USE_WINMD_READER
+struct RoutedEventInfo {
+  const char* name;
 
-template<typename T>
-std::string MakeName(T t) {
-  return t.TypeNamespace().data() + std::string(".") + t.TypeName().data();
-}
-
-TypeDef GetBaseClass(const TypeDef& t) {
-  auto extends = t.Extends();
-  if (extends) {
-    if (extends.type() == TypeDefOrRef::TypeDef) {
-      return extends.TypeDef();
-    }
-    else {
-      auto tr = extends.TypeRef();
-      auto td = tr.get_cache().find(tr.TypeNamespace(), tr.TypeName());
-      return td;
-    }
-  }
-  return {};
-}
-#endif
+  using routedEventGetter_t = xaml::RoutedEvent(*)();
+  routedEventGetter_t routedEventGetter;
+};
 
 // https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.routedevent?view=winrt-19041#events-that-use-a-routedevent-identifier
 #define ROUTED_EVENT(name)  { #name, xaml::UIElement::name##Event }
-const std::unordered_map<std::string, std::function<xaml::RoutedEvent ()>> routedEvents = {
+constexpr RoutedEventInfo routedEvents[] = {
   ROUTED_EVENT(DoubleTapped),
   ROUTED_EVENT(DragEnter),
   ROUTED_EVENT(DragLeave),
@@ -129,13 +75,13 @@ const std::unordered_map<std::string, std::function<xaml::RoutedEvent ()>> route
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto e = Create(typeName);
   // Register events
-  std::for_each(xamlEventMap.begin(), xamlEventMap.end(), [e, context](const auto& entry) {entry.second(e, context); });
+  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
   return e;
 }
 
 const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
   auto key = MAKE_KEY(propertyName.c_str());
-  auto it = std::find_if(xamlPropertyMap, xamlPropertyMap + xamlPropCount /*ARRAYSIZE(xamlPropertyMap)*/, [key](const PropInfo& entry) { return entry.propName == key; });
+  auto it = std::find_if(xamlPropertyMap, xamlPropertyMap + ARRAYSIZE(xamlPropertyMap), [key](const PropInfo& entry) { return entry.propName == key; });
   while (it->propName == key) {
     if (it->isType(obj)) {
       return it;

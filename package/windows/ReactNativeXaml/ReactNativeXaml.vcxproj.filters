@@ -12,9 +12,6 @@
     <ClCompile Include="Codegen\TypeCreator.cpp">
       <Filter>Codegen</Filter>
     </ClCompile>
-    <ClCompile Include="Codegen\TypeProperties.cpp">
-      <Filter>Codegen</Filter>
-    </ClCompile>
     <ClCompile Include="Codegen\EnumConverters.cpp">
       <Filter>Codegen</Filter>
     </ClCompile>
@@ -26,6 +23,12 @@
     <ClInclude Include="XamlViewManager.h" />
     <ClInclude Include="XamlMetadata.h" />
     <ClInclude Include="Crc32Str.h" />
+    <ClInclude Include="Codegen\TypeProperties.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
+    <ClInclude Include="Codegen\TypeEvents.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />

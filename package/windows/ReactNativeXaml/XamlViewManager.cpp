@@ -108,20 +108,8 @@ namespace winrt::ReactNativeXaml {
     return nullptr;
   }
 
-  void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
-    constantWriter.WritePropertyName(topName);
-    constantWriter.WriteObjectBegin();
-    WriteProperty(constantWriter, L"registrationName", onName);
-    constantWriter.WriteObjectEnd();
-  }
-
-#define JS_EVENT(evtName) JsEvent(constantWriter, L"top" L#evtName, L"on" L#evtName)
-
-
   ConstantProviderDelegate XamlViewManager::ExportedCustomDirectEventTypeConstants() noexcept {
-    return [](winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter) {
-      JS_EVENT(Click);
-    };
+    return GetEvents;
   }
 
   // IViewManagerWithCommands

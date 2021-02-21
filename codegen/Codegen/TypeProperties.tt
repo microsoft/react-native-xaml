@@ -3,6 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+#pragma once
 #include "pch.h"
 #include "XamlMetadata.h"
 #include "Crc32Str.h"
@@ -17,17 +18,15 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-/*static*/ const PropInfo XamlMetadata::xamlPropertyMap[] = {
+/*static*/ const PropInfo xamlPropertyMap[] = {
   <# foreach (var p in Properties) { #>
       { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), MAKE_GET_DP(<#= Util.GetCppWinRTType(p.DeclaringType) #>, <#= p.GetName() #>Property), SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
   <# } #>
 };
 
-/*static*/ const uint32_t XamlMetadata::xamlPropCount = <#= Properties.Count() #>;
-
 #ifdef USE_CRC32
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
-<# foreach (var p in Properties.Distinct(new Codegen.PropertyNameEqualityComparer())) { #>
+<# foreach (MiddleweightReflection.MrProperty p in Properties.Distinct(new Codegen.NameEqualityComparer())) { #>
     nativeProps.Insert(winrt::to_hstring("<#= Util.ToJsName(p.GetName()) #>"), ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #>);
 <# } #>
 }
@@ -38,3 +37,6 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
   }
 }
 #endif
+
+
+

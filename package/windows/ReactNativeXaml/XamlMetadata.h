@@ -5,9 +5,7 @@
 #include <JSValue.h>
 #include <JSValueReader.h>
 #include <JSValueXaml.h>
-#ifdef USE_WINMD_READER
-#include <winmd_reader.h>
-#endif
+
 #include <winrt/Windows.Foundation.Collections.h>
 #include <UI.Xaml.Media.h>
 #include "Crc32Str.h"
@@ -86,6 +84,16 @@ struct PropInfo {
   }
 };
 
+struct EventInfo {
+  const char* name;
+  using attachHandlers_t = void (*)(winrt::Windows::Foundation::IInspectable o, winrt::Microsoft::ReactNative::IReactContext context);
+  attachHandlers_t attachHandler;
+
+  static const EventInfo xamlEventMap[];
+};
+
+extern ConstantProviderDelegate GetEvents;
+
 struct XamlMetadata {
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;
   XamlMetadata();
@@ -93,13 +101,6 @@ struct XamlMetadata {
   static winrt::Windows::Foundation::IInspectable ActivateInstance(const winrt::hstring& hstr);
   void PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
 
-private:
-  static const PropInfo xamlPropertyMap[];
-  static const uint32_t xamlPropCount;
-  mutable std::map<std::string, std::function<void(winrt::Windows::Foundation::IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
-#ifdef USE_WINMD_READER
-  std::unique_ptr<winmd::reader::cache> reader;
-#endif
 private:
   winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
 };

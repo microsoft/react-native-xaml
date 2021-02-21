@@ -93,13 +93,23 @@ namespace Codegen
         IEnumerable<MrProperty> Properties { get; set; }
     }
 
-    public class PropertyNameEqualityComparer : IEqualityComparer<MrProperty> {
-        public bool Equals(MrProperty that, MrProperty other)
+    public partial class TypeEvents
+    {
+        public TypeEvents(IEnumerable<MrEvent> events)
+        {
+            Events = events;
+        }
+        IEnumerable<MrEvent> Events { get; set; }
+    }
+
+
+    public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase> {
+        public bool Equals(MrTypeAndMemberBase that, MrTypeAndMemberBase other)
         {
             return that.GetName() == other.GetName();
         }
 
-        public int GetHashCode([DisallowNull] MrProperty obj)
+        public int GetHashCode([DisallowNull] MrTypeAndMemberBase obj)
         {
             return obj.GetName().GetHashCode();
         }
@@ -145,19 +155,25 @@ class Program
             File.WriteAllText(Path.Join(generatedDirPath, "TypeCreator.cpp"), typeCreatorGen);
 
             var properties = new List<MrProperty>();
-            
+            var events = new List<MrEvent>();
             foreach (var type in fe)
             {
                 var propsToAdd = type.GetProperties().Where(p => ShouldEmitPropertyMetadata(p));
                 properties.AddRange(propsToAdd);
+
+                var eventsToAdd = type.GetEvents().Where(e => e.GetMemberModifiers().IsPublic);
+                events.AddRange(eventsToAdd);
             }
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var propertiesGen = new TypeProperties(properties).TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "TypeProperties.cpp"), propertiesGen);
+            File.WriteAllText(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
 
             var enumConvertersGen = new EnumConverters().TransformText();
             File.WriteAllText(Path.Join(generatedDirPath, "EnumConverters.cpp"), enumConvertersGen);
+
+            var eventsGen = new TypeEvents(events).TransformText();
+            File.WriteAllText(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
         }
 
         private bool ShouldEmitPropertyMetadata(MrProperty p)

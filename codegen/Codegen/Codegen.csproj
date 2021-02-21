@@ -25,6 +25,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TypeCreator.tt</DependentUpon>
     </Compile>
+    <Compile Update="TypeEvents.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TypeEvents.tt</DependentUpon>
+    </Compile>
     <Compile Update="TypeProperties.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -40,6 +45,10 @@
     <None Update="TypeCreator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>TypeCreator.cs</LastGenOutput>
+    </None>
+    <None Update="TypeEvents.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TypeEvents.cs</LastGenOutput>
     </None>
     <None Update="TypeProperties.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
