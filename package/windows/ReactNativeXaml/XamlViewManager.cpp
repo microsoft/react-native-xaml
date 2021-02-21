@@ -49,8 +49,6 @@ namespace winrt::ReactNativeXaml {
     return nativeProps.GetView();
   }
 
-  xaml::RoutedEventHandler reh{ nullptr };
-
   void XamlViewManager::UpdateProperties(
     FrameworkElement const& view,
     IJSValueReader const& propertyMapReader) noexcept {
@@ -141,4 +139,55 @@ namespace winrt::ReactNativeXaml {
     m_reactContext = reactContext;
   }
 
+  void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
+    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    if (auto panel = e.try_as<Panel>()) {
+      return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
+    }
+    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+      if (index == 0) {
+        return contentCtrl.Content(child);
+      }
+    }
+    else if (auto border = e.try_as<Border>()) {
+      if (index == 0) {
+        return border.Child(child);
+      }
+    }
+    else {
+      auto cn = winrt::get_class_name(e);
+      assert(false && "this element cannot have children");
+    }
+  }
+
+  void XamlViewManager::RemoveAllChildren(xaml::FrameworkElement parent) {
+    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    if (auto panel = e.try_as<Panel>()) {
+      return panel.Children().Clear();
+    }
+    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+      return contentCtrl.Content(nullptr);
+    }
+    else if (auto border = e.try_as<Border>()) {
+        return border.Child(nullptr);
+    }
+  }
+  void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
+    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    if (auto panel = e.try_as<Panel>()) {
+      return panel.Children().RemoveAt(static_cast<uint32_t>(index));
+    }
+    else if (index == 0) {
+      if (auto contentCtrl = e.try_as<ContentControl>()) {
+        return contentCtrl.Content(nullptr);
+      }
+      else if (auto border = e.try_as<Border>()) {
+        return border.Child(nullptr);
+      }
+    }
+  }
+
+  void XamlViewManager::ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {
+    assert(false && "nyi");
+  }
 }

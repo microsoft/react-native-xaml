@@ -17,7 +17,8 @@ namespace winrt::ReactNativeXaml {
     winrt::Microsoft::ReactNative::IViewManagerWithNativeProperties,
     winrt::Microsoft::ReactNative::IViewManagerWithCommands,
     winrt::Microsoft::ReactNative::IViewManagerWithExportedEventTypeConstants,
-    winrt::Microsoft::ReactNative::IViewManagerWithReactContext
+    winrt::Microsoft::ReactNative::IViewManagerWithReactContext,
+    winrt::Microsoft::ReactNative::IViewManagerWithChildren
 #ifdef HAS_CREATEWITHPROPERTIES
     ,winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties
 #endif
@@ -62,6 +63,13 @@ namespace winrt::ReactNativeXaml {
 
     // IViewManagerRequiresNativeLayout
     bool RequiresNativeLayout() noexcept { return true; }
+
+    // IViewManagerWithChildren
+    void AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index);
+    void RemoveAllChildren(xaml::FrameworkElement parent);
+    void RemoveChildAt(xaml::FrameworkElement parent, int64_t index);
+    void ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild);
+
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
     XamlMetadata xamlMetadata;
