@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Codegen
 {
@@ -92,7 +93,20 @@ namespace Codegen
         IEnumerable<MrProperty> Properties { get; set; }
     }
 
-    class Program
+    public class PropertyNameEqualityComparer : IEqualityComparer<MrProperty> {
+        public bool Equals(MrProperty that, MrProperty other)
+        {
+            return that.GetName() == other.GetName();
+        }
+
+        public int GetHashCode([DisallowNull] MrProperty obj)
+        {
+            return obj.GetName().GetHashCode();
+        }
+    }
+
+
+class Program
     {
         private bool hasCtor(MrType t)
         {
@@ -131,6 +145,7 @@ namespace Codegen
             File.WriteAllText(Path.Join(generatedDirPath, "TypeCreator.cpp"), typeCreatorGen);
 
             var properties = new List<MrProperty>();
+            
             foreach (var type in fe)
             {
                 var propsToAdd = type.GetProperties().Where(p => ShouldEmitPropertyMetadata(p));
@@ -143,20 +158,7 @@ namespace Codegen
 
             var enumConvertersGen = new EnumConverters().TransformText();
             File.WriteAllText(Path.Join(generatedDirPath, "EnumConverters.cpp"), enumConvertersGen);
-
-
-
         }
-
-
-        //foreach (var entry in output)
-        //{
-        //    Console.WriteLine($"{{ \"{entry.Key.JSName}\", {entry.Value} }}");
-        //}
-
-        //Console.WriteLine($"{output.Count} properties");
-
-
 
         private bool ShouldEmitPropertyMetadata(MrProperty p)
         {
@@ -172,58 +174,6 @@ namespace Codegen
             return false;
         }
 
-
-        //Dictionary<string, ViewManagerPropertyType> jsTypeMap = new Dictionary<string, FromJSType>()
-        //{
-        //    { "System.String", FromJSType.String },
-        //    { "System.Array", FromJSType.Array },
-        //    { "System.Object", FromJSType.Object },
-        //    { "System.Boolean", FromJSType.Boolean },
-        //    { "System.Int32", FromJSType.Int64 },
-        //    { "System.Int64", FromJSType.Int64 },
-        //    { "System.Double", FromJSType.Double },
-        //    { "System.Single", FromJSType.Double },
-        //    { "Windows.UI.Xaml.Thickness", FromJSType.Thickness },
-        //    { "Windows.UI.Xaml.HorizontalAlignment", FromJSType.String },
-        //    { "Windows.UI.Xaml.VerticalAlignment", FromJSType.String },
-        //    { "Windows.UI.Xaml.Media.Brush", FromJSType.SolidColorBrush },
-        //    { "Windows.UI.Xaml.Media.SolidColorBrush", FromJSType.SolidColorBrush },
-        //    { "Windows.UI.Text.FontWeight", FromJSType.String },
-        //    { "Windows.UI.Text.FontStyle", FromJSType.String },
-        //    { "Windows.UI.Text.FontStretch", FromJSType.String },
-        //    { "Windows.UI.Xaml.Media.FontFamily", FromJSType.String },
-        //    { "Windows.UI.Xaml.Input.KeyboardNavigationMode", FromJSType.String },
-        //    { "Windows.UI.Xaml.Controls.ControlTemplate", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.FocusState", FromJSType.String },
-        //    { "Windows.UI.Xaml.DependencyObject", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.RequiresPointer", FromJSType.String },
-        //    { "Windows.UI.Xaml.ElementSoundMode", FromJSType.String },
-        //    { "System.Uri", FromJSType.String },
-        //    { "Windows.UI.Xaml.CornerRadius", FromJSType.Array },
-        //    { "Windows.UI.Xaml.Controls.BackgroundSizing", FromJSType.String },
-        //    { "Windows.UI.Xaml.Media.Animation.TransitionCollection", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.DataTemplateSelector", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.DataTemplate", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.UIElement", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.AppBarClosedDisplayMode", FromJSType.String },
-        //    { "Windows.UI.Xaml.Controls.Primitives.AppBarTemplateSettings", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.LightDismissOverlayMode", FromJSType.String },
-        //    { "System.Windows.Input.ICommand", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.ClickMode", FromJSType.String },
-        //    { "Windows.UI.Xaml.Controls.Primitives.FlyoutBase", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.IconElement", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.CommandBarLabelPosition", FromJSType.String },
-        //    { "Windows.UI.Xaml.Controls.Primitives.AppBarButtonTemplateSettings", FromJSType.Null }, // NYI
-        //    { "System.Nullable`1", FromJSType.String }, // Nullable<bool> for IsChecked
-        //    { "Windows.UI.Xaml.Controls.Primitives.AppBarToggleButtonTemplateSettings", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.ItemsPanelTemplate", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Controls.StyleSelector", FromJSType.Null }, // NYI
-        //    { "Windows.UI.Xaml.Style", FromJSType.Null },
-        //    { "Windows.UI.Xaml.Controls.GroupStyleSelector", FromJSType.Null },
-        //    { "Windows.Foundation.Collections.IObservableVector`1", FromJSType.Null },
-        //};
-
-
         private bool IsFrameworkElementDerived(MrType type)
         {
             var feName = "Windows.UI.Xaml.FrameworkElement";
@@ -232,33 +182,10 @@ namespace Codegen
             else return IsFrameworkElementDerived(type.GetBaseType());
         }
 
-        //private static string MapManagedTypeToWinRtType(MrType t)
-        //{
-        //    var map = new Dictionary<string, string> {
-        //        { typeof(Object).FullName, "Windows.Foundation.IInspectable" },
-        //        { "System.Collections.Generic.IList`1",  "Windows.Foundation.Collections.IVector`1" },
-        //        { "System.Collections.Generic.IReadOnlyList`1", "Windows.Foundation.Collections.IVectorView`1" },
-        //        { "System.Collections.Generic.IDictionary`2", "Windows.Foundation.Collections.IMap`2" },
-        //        { "System.Collections.Generic.IReadOnlyDictionary`2", "Windows.Foundation.Collections.IMapView`2" },
-        //    };
-
-        //    if (map.ContainsKey(t.GetFullName()))
-        //    {
-        //        return map[t.GetFullName()];
-        //    }
-        //    if (t.GetNamespace() == "System")
-        //    {
-        //        return t.GetName();
-        //    }
-        //    else
-        //    {
-        //        return t.GetFullName();
-        //    }
-        //}
-
         static void Main(string[] args)
         {
             new Program().DumpTypes();
         }
     }
 }
+

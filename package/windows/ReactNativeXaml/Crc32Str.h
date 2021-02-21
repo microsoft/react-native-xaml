@@ -67,3 +67,12 @@ struct MM<size, size, dummy> {
 
 // This don't take into account the nul char
 #define COMPILE_TIME_CRC32_STR(x) (MM<sizeof(x)-1>::crc32(x))
+
+
+#ifdef USE_CRC32
+#define MAKE_KEY(str) COMPILE_TIME_CRC32_STR(str)
+using stringKey = uint32_t;
+#else
+#define MAKE_KEY(str) str
+using stringKey = std::string;
+#endif

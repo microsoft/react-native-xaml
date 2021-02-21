@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <unordered_map>
 #include <Crc32Str.h>
+#include <xutility>
 
 using namespace winrt::Microsoft::ReactNative;
 #ifdef USE_WINMD_READER
@@ -61,24 +62,6 @@ XamlMetadata::XamlMetadata() {
     //         context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L"Click", [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*eventDataWriter*/) noexcept {}); });
     //}} } }
   };
-
-  //xamlPropertyMap = {
-  //{ "width", { MAKE_GET_DP(FrameworkElement, WidthProperty), ViewManagerPropertyType::Double, XamlPropType::Double }},
-  //{ "height", { MAKE_GET_DP(FrameworkElement, HeightProperty), ViewManagerPropertyType::Double, XamlPropType::Double }},
-  //{ "text", { MAKE_GET_DP(ContentControl, ContentProperty), ViewManagerPropertyType::String, XamlPropType::Object }},
-  //{ "text", { MAKE_GET_DP(TextBlock, TextProperty), ViewManagerPropertyType::String, XamlPropType::String }},
-  //{ "color", { MAKE_GET_DP(Control, ForegroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
-  //{ "color", { MAKE_GET_DP(TextBlock, ForegroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
-  //{ "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), ViewManagerPropertyType::SolidColorBrush, XamlPropType::Object }},
-  //};
-
-  InitPropertiesMap();
-
-  //xamlTypeCreatorMap = {
-  //{ "hyperlinkButton", CREATE_TYPE(HyperlinkButton)},
-  //{ "textblock", CREATE_TYPE(TextBlock)},
-  //};
-
 }
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::ActivateInstance(const winrt::hstring& hstr) {
@@ -151,16 +134,13 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 }
 
 const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
-  auto propRange = xamlPropertyMap.equal_range(propertyName);
-  for (auto prop = propRange.first; prop != propRange.second; ++prop)
-  {
-    if (prop->second.isType(obj)) { return &(prop->second); }
+  auto key = MAKE_KEY(propertyName.c_str());
+  auto it = std::find_if(xamlPropertyMap, xamlPropertyMap + xamlPropCount /*ARRAYSIZE(xamlPropertyMap)*/, [key](const PropInfo& entry) { return entry.propName == key; });
+  while (it->propName == key) {
+    if (it->isType(obj)) {
+      return it;
+    }
   }
+  
   return nullptr;
-}
-
-void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
-  for (auto const& entry : xamlPropertyMap) {
-    nativeProps.Insert(winrt::to_hstring(entry.first), entry.second.jsType);
-  }
 }

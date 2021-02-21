@@ -10,6 +10,7 @@
 #endif
 #include <winrt/Windows.Foundation.Collections.h>
 #include <UI.Xaml.Media.h>
+#include "Crc32Str.h"
 
 using namespace xaml;
 using namespace xaml::Controls;
@@ -58,11 +59,18 @@ void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const
 
 
 struct PropInfo {
-  std::function<bool(winrt::Windows::Foundation::IInspectable)> isType;
-  std::function<xaml::DependencyProperty()> xamlPropertyGetter;
-  std::function<void (xaml::DependencyObject, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue&)> xamlPropertySetter;
+  stringKey propName;
+  
+  using isType_t = bool (*) (winrt::Windows::Foundation::IInspectable);
+  isType_t isType;
+  
+  using xamlPropertyGetter_t = xaml::DependencyProperty(*)();
+  xamlPropertyGetter_t xamlPropertyGetter;
+
+  using xamlPropertySetter_t = void (*) (xaml::DependencyObject, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue&);
+  xamlPropertySetter_t xamlPropertySetter;
+
   ViewManagerPropertyType jsType;
-//  XamlPropType xamlType;
 
   void ClearValue(xaml::DependencyObject o) const {
     o.ClearValue(xamlPropertyGetter());
@@ -86,14 +94,12 @@ struct XamlMetadata {
   void PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
 
 private:
-  using stringKey = int; // int for crc32, std::string for slow/more-debuggable code
-  //mutable std::multimap<std::string, PropInfo> xamlPropertyMap;
-  std::unordered_map<std::string, PropInfo> xamlPropertyMap;
+  static const PropInfo xamlPropertyMap[];
+  static const uint32_t xamlPropCount;
   mutable std::map<std::string, std::function<void(winrt::Windows::Foundation::IInspectable o, winrt::Microsoft::ReactNative::IReactContext context)> > xamlEventMap;
 #ifdef USE_WINMD_READER
   std::unique_ptr<winmd::reader::cache> reader;
 #endif
 private:
   winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
-  void InitPropertiesMap();
 };

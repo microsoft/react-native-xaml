@@ -45,9 +45,6 @@ namespace winrt::ReactNativeXaml {
   IMapView<hstring, ViewManagerPropertyType> XamlViewManager::NativeProps() noexcept {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
-    //nativeProps.Insert(L"text", ViewManagerPropertyType::String);
-    //nativeProps.Insert(L"color", ViewManagerPropertyType::Color);
-    //nativeProps.Insert(L"backgroundColor", ViewManagerPropertyType::Color);
     xamlMetadata.PopulateNativeProps(nativeProps);
     return nativeProps.GetView();
   }

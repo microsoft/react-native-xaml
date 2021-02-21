@@ -5,6 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 #include "pch.h"
 #include "XamlMetadata.h"
+#include "Crc32Str.h"
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
@@ -16,13 +17,24 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-void XamlMetadata::InitPropertiesMap() {
-//   { "width", { MAKE_GET_DP(FrameworkElement, WidthProperty), ViewManagerPropertyType::Double, XamlPropType::Double }},
-  xamlPropertyMap = {
+/*static*/ const PropInfo XamlMetadata::xamlPropertyMap[] = {
   <# foreach (var p in Properties) { #>
-      { "<#= Util.ToJsName(p.GetName()) #>", { MAKE_GET_DP(<#= Util.GetCppWinRTType(p.DeclaringType) #>, <#= p.GetName() #>Property), SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> }},
+      { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), MAKE_GET_DP(<#= Util.GetCppWinRTType(p.DeclaringType) #>, <#= p.GetName() #>Property), SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
   <# } #>
-  };
+};
+
+/*static*/ const uint32_t XamlMetadata::xamlPropCount = <#= Properties.Count() #>;
+
+#ifdef USE_CRC32
+void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
+<# foreach (var p in Properties.Distinct(new Codegen.PropertyNameEqualityComparer())) { #>
+    nativeProps.Insert(winrt::to_hstring("<#= Util.ToJsName(p.GetName()) #>"), ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #>);
+<# } #>
 }
-
-
+#else
+void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
+  for (auto const& entry : xamlPropertyMap) {
+    nativeProps.Insert(winrt::to_hstring(entry.propName), entry.jsType);
+  }
+}
+#endif
