@@ -3,6 +3,11 @@
 #include "pch.h"
 #include "CppWinRTIncludes.h"
 #include "winrt/Microsoft.ReactNative.h"
+#include "XamlMetadata.h"
+
+// Required to avoid creating unnecessary ContentControls to hold dynamically-typed ui elements
+// https://github.com/microsoft/react-native-windows/pull/7137
+// #define HAS_CREATEWITHPROPERTIES
 
 namespace winrt::ReactNativeXaml {
 
@@ -12,7 +17,11 @@ namespace winrt::ReactNativeXaml {
     winrt::Microsoft::ReactNative::IViewManagerWithNativeProperties,
     winrt::Microsoft::ReactNative::IViewManagerWithCommands,
     winrt::Microsoft::ReactNative::IViewManagerWithExportedEventTypeConstants,
-    winrt::Microsoft::ReactNative::IViewManagerWithReactContext
+    winrt::Microsoft::ReactNative::IViewManagerWithReactContext,
+    winrt::Microsoft::ReactNative::IViewManagerWithChildren
+#ifdef HAS_CREATEWITHPROPERTIES
+    ,winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties
+#endif
     //,winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
   > {
   public:
@@ -22,6 +31,9 @@ namespace winrt::ReactNativeXaml {
     winrt::hstring Name() noexcept;
 
     xaml::FrameworkElement CreateView() noexcept;
+
+    // IViewManagerCreateWithProperties
+    winrt::IInspectable CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept;
 
     // IViewManagerWithNativeProperties
     winrt::Windows::Foundation::Collections::
@@ -51,8 +63,16 @@ namespace winrt::ReactNativeXaml {
 
     // IViewManagerRequiresNativeLayout
     bool RequiresNativeLayout() noexcept { return true; }
+
+    // IViewManagerWithChildren
+    void AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index);
+    void RemoveAllChildren(xaml::FrameworkElement parent);
+    void RemoveChildAt(xaml::FrameworkElement parent, int64_t index);
+    void ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild);
+
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
+    XamlMetadata xamlMetadata;
   };
 
 }

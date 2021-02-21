@@ -8,15 +8,35 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="ReactPackageProvider.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
+    <ClCompile Include="XamlMetadata.cpp" />
+    <ClCompile Include="Codegen\TypeCreator.cpp">
+      <Filter>Codegen</Filter>
+    </ClCompile>
+    <ClCompile Include="Codegen\EnumConverters.cpp">
+      <Filter>Codegen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="ReactNativeModule.h" />
     <ClInclude Include="XamlViewManager.h" />
+    <ClInclude Include="XamlMetadata.h" />
+    <ClInclude Include="Crc32Str.h" />
+    <ClInclude Include="Codegen\TypeProperties.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
+    <ClInclude Include="Codegen\TypeEvents.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Codegen">
+      <UniqueIdentifier>{0ef07389-5c8a-4c8b-9570-1cf9a2153ce5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -6,6 +6,8 @@
 #include <restrictederrorinfo.h>
 #include <unknwn.h>
 #include <windows.h>
+#include <roapi.h>
+
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
@@ -24,3 +26,5 @@
 #include <winrt/Microsoft.UI.Xaml.Media.h>
 #include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
 using namespace winrt::Windows::Foundation;
+#include "CppWinRTIncludes.h"
+#include <winrt/Microsoft.ReactNative.h>

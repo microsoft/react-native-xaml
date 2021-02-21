@@ -3,18 +3,21 @@
 
 #include "JSValueReader.h"
 #include "NativeModules.h"
-#include <JSValueXaml.h>
-
+#include "XamlMetadata.h"
+#include <winrt/Windows.UI.Xaml.Core.Direct.h>
+#include <UI.Xaml.Input.h>
 using namespace winrt;
 using namespace Microsoft::ReactNative;
-using namespace Windows::Foundation;
-using namespace Windows::Foundation::Collections;
 using namespace xaml;
 using namespace xaml::Controls;
 
 namespace winrt::ReactNativeXaml {
+
+  
+
+
   using DelegatingType = xaml::Controls::ContentControl;
-  //using DelegatingType = xaml::Controls::Panel;
+
   IInspectable Content(const xaml::Controls::ContentControl& t) {
     return t.Content();
   }
@@ -32,167 +35,18 @@ namespace winrt::ReactNativeXaml {
     return delegating;
   }
 
+  winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
+    const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
+    auto typeName = propertyMap["type"].AsString();
+    return xamlMetadata.Create(typeName, m_reactContext, nullptr);
+  }
+
   // IViewManagerWithNativeProperties
   IMapView<hstring, ViewManagerPropertyType> XamlViewManager::NativeProps() noexcept {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
-    nativeProps.Insert(L"text", ViewManagerPropertyType::String);
-    nativeProps.Insert(L"color", ViewManagerPropertyType::Color);
-    nativeProps.Insert(L"backgroundColor", ViewManagerPropertyType::Color);
-
+    xamlMetadata.PopulateNativeProps(nativeProps);
     return nativeProps.GetView();
-  }
-
-  // MUST BE KEPT IN SYNC WITH JSValueType
-  enum class FromJSType
-  {
-    Null = 0,
-    Object = 1,
-    Array = 2,
-    String = 3,
-    Boolean = 4,
-    Int64 = 5,
-    Double = 6,
-    SolidColorBrush = 7
-  };
-
-  enum class XamlPropType {
-    Int,
-    Double,
-    String,
-    Object
-  };
-
-  template <typename T> bool IsType(IInspectable i) { return i.try_as<T>() != nullptr; }
-
-#define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
-
-  struct PropInfo {
-    std::function<bool(IInspectable)> isType;
-    std::function<xaml::DependencyProperty()> xamlPropertyGetter;
-    FromJSType jsType;
-    XamlPropType xamlType;
-
-    void ClearValue(xaml::DependencyObject o) const {
-      o.ClearValue(xamlPropertyGetter());
-    }
-
-    void SetValue(xaml::DependencyObject o, const JSValue& v) const {
-      switch (xamlType) {
-      case XamlPropType::Double: {
-        auto d = v.AsDouble();
-        SetValue(o, d);
-        break;
-      }
-      case XamlPropType::Int: {
-        auto i = v.AsInt32();
-        SetValue(o, i);
-        break;
-      }
-      case XamlPropType::String: {
-        auto s = v.AsString();
-        SetValue(o, winrt::to_hstring(s));
-        break;
-      }
-      case XamlPropType::Object: {
-        switch (jsType)
-        {
-        case FromJSType::SolidColorBrush: {
-          auto scb = v.To<xaml::Media::Brush>();
-          SetValue(o, scb);
-          break;
-        }
-        case JSValueType::String: {
-          auto s = v.AsString();
-          SetValue(o, winrt::box_value(winrt::to_hstring(s)));
-        }
-        default:
-          break;
-        }
-      }
-      }
-    }
-  private:
-    void SetValue(xaml::DependencyObject o, int v) const {
-      if (xamlType == XamlPropType::Int) {
-        o.SetValue(xamlPropertyGetter(), winrt::box_value(v));
-      }
-      else if (xamlType == XamlPropType::Double) {
-        o.SetValue(xamlPropertyGetter(), winrt::box_value((double)v));
-      }
-      else { assert(false); }
-    }
-    void SetValue(xaml::DependencyObject o, double v) const {
-      if (xamlType == XamlPropType::Double) {
-        o.SetValue(xamlPropertyGetter(), winrt::box_value(v));
-      }
-      else assert(false);
-    }
-    void SetValue(xaml::DependencyObject  o, const winrt::hstring& v) const {
-      if (xamlType == XamlPropType::String) {
-        o.SetValue(xamlPropertyGetter(), winrt::box_value(v));
-      }
-      else assert(false);
-    }
-    void SetValue(xaml::DependencyObject o, const winrt::IInspectable& v) const {
-      if (xamlType == XamlPropType::Object) {
-        o.SetValue(xamlPropertyGetter(), v);
-      }
-      else assert(false);
-    }
-
-  };
-
-#define CREATE_TYPE(T) [](){return T();}
-
-  const std::map<std::string, std::function<xaml::DependencyObject()>> xamlTypeCreatorMap = {
-    { "hyperlinkButton", CREATE_TYPE(HyperlinkButton)},
-    { "textblock", CREATE_TYPE(TextBlock)},
-  };
-
-  const std::multimap<std::string, PropInfo> xamlPropertyMap = {
-    { "width", { MAKE_GET_DP(FrameworkElement, WidthProperty), FromJSType::Double, XamlPropType::Double }},
-    { "height", { MAKE_GET_DP(FrameworkElement, HeightProperty), FromJSType::Double, XamlPropType::Double }},
-    { "text", { MAKE_GET_DP(ContentControl, ContentProperty), FromJSType::String, XamlPropType::Object }},
-    { "text", { MAKE_GET_DP(TextBlock, TextProperty), FromJSType::String, XamlPropType::String }},
-    { "color", { MAKE_GET_DP(Control, ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-    { "color", { MAKE_GET_DP(TextBlock, ForegroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-    { "backgroundColor", { MAKE_GET_DP(Control, BackgroundProperty), FromJSType::SolidColorBrush, XamlPropType::Object }},
-  };
-
-  void DispatchEvent(winrt::weak_ref<IReactContext> ctx, IInspectable sender, std::wstring topEvtName) {
-    
-  }
-
-  //ctx.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](auto const& evtDataWriter) noexcept {}); \
-
-#define MAKE_EVENT(evtName, xamlType) { #evtName, { [](IInspectable o, IReactContext reactContext) { \
-          if (auto c = o.try_as<xamlType>()) {  \
-            auto ctx = winrt::make_weak(reactContext); \
-            c.evtName([ctx] (auto&& sender, auto&& /*args*/) { \
-              if (auto context = ctx.get()) { \
-                context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {}); \
-              } \
-            }); \
-          } \
-        } } }
-
-  const std::map<std::string, std::function<void(IInspectable o, IReactContext context)> > xamlEventMap = {
-//    MAKE_EVENT(Click, xaml::Controls::Primitives::ButtonBase),
-       { "Click", { [](IInspectable o, IReactContext context) {
-         if (auto c = o.try_as<xaml::Controls::Primitives::ButtonBase>()) {
-           c.Click([context](auto&& sender, auto&& /*args*/) {
-             context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L"Click", [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*eventDataWriter*/) noexcept {}); });
-    }} } }
-  };
-
-  const PropInfo* GetProp(const std::string& propertyName, const IInspectable& obj) {
-    auto propRange = xamlPropertyMap.equal_range(propertyName);
-    for (auto prop = propRange.first; prop != propRange.second; ++prop)
-    {
-      if (prop->second.isType(obj)) { return &(prop->second); }
-    }
-    return nullptr;
   }
 
   void XamlViewManager::UpdateProperties(
@@ -200,39 +54,48 @@ namespace winrt::ReactNativeXaml {
     IJSValueReader const& propertyMapReader) noexcept {
 
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
-
+#ifdef HAS_CREATEWITHPROPERTIES
+    auto e = view;
+#else
     const auto delegating = view.as<DelegatingType>();
     auto e = Content(delegating);
     if (!e) {
       if (propertyMap.count("type") != 0) {
         const auto typeName = propertyMap["type"].AsString();
-        if (xamlTypeCreatorMap.count(typeName) != 0) {
-          auto creator = xamlTypeCreatorMap.at(typeName);
-          e = creator();
-          e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
-          // Register events
-          std::for_each(xamlEventMap.begin(), xamlEventMap.end(), [e, context = ReactContext()](const auto& entry) {entry.second(e, context); });
-          delegating.Content(e);
-        }
-        else {
-          assert(false && "xaml type not found");
-        }
+        e = xamlMetadata.Create(typeName, m_reactContext, delegating.Tag());
+
+        delegating.Content(e);
+
+        //auto xd = xaml::Core::Direct::XamlDirect::GetDefault();
+        //auto hlb = xd.CreateInstance(xaml::Core::Direct::XamlTypeIndex::HyperlinkButton);
+        //e = xd.GetObject(hlb);
+        //xd.SetStringProperty(hlb, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, winrt::to_hstring(L"Hello"));
+
+        //reh = RoutedEventHandler([](auto&&, auto&&) { 
+        //  });
+        //xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, winrt::box_value(reh), true);
+
+        //auto xdParent = xd.GetXamlDirectObject(delegating);
+        //xd.SetXamlDirectObjectProperty(xdParent, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, hlb);
+
       }
       else {
         assert(false && "xaml type not specified");
       }
     }
+#endif
 
     if (auto control = e.try_as<DependencyObject>()) {
       for (auto const& pair : propertyMap) {
         auto const& propertyName = pair.first;
         auto const& propertyValue = pair.second;
 
-        if (auto prop = GetProp(propertyName, control)) {
+        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
           prop->SetValue(control, propertyValue);
         }
         else if (propertyName == "type") {} 
         else {
+          auto className = winrt::get_class_name(e);
           assert(false && "unknown property");
         }
       }
@@ -244,20 +107,8 @@ namespace winrt::ReactNativeXaml {
     return nullptr;
   }
 
-  void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
-    constantWriter.WritePropertyName(topName);
-    constantWriter.WriteObjectBegin();
-    WriteProperty(constantWriter, L"registrationName", onName);
-    constantWriter.WriteObjectEnd();
-  }
-
-#define JS_EVENT(evtName) JsEvent(constantWriter, L"top" L#evtName, L"on" L#evtName)
-
-
   ConstantProviderDelegate XamlViewManager::ExportedCustomDirectEventTypeConstants() noexcept {
-    return [](winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter) {
-      JS_EVENT(Click);
-    };
+    return GetEvents;
   }
 
   // IViewManagerWithCommands
@@ -288,4 +139,55 @@ namespace winrt::ReactNativeXaml {
     m_reactContext = reactContext;
   }
 
+  void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
+    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    if (auto panel = e.try_as<Panel>()) {
+      return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
+    }
+    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+      if (index == 0) {
+        return contentCtrl.Content(child);
+      }
+    }
+    else if (auto border = e.try_as<Border>()) {
+      if (index == 0) {
+        return border.Child(child);
+      }
+    }
+    else {
+      auto cn = winrt::get_class_name(e);
+      assert(false && "this element cannot have children");
+    }
+  }
+
+  void XamlViewManager::RemoveAllChildren(xaml::FrameworkElement parent) {
+    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    if (auto panel = e.try_as<Panel>()) {
+      return panel.Children().Clear();
+    }
+    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+      return contentCtrl.Content(nullptr);
+    }
+    else if (auto border = e.try_as<Border>()) {
+        return border.Child(nullptr);
+    }
+  }
+  void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
+    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    if (auto panel = e.try_as<Panel>()) {
+      return panel.Children().RemoveAt(static_cast<uint32_t>(index));
+    }
+    else if (index == 0) {
+      if (auto contentCtrl = e.try_as<ContentControl>()) {
+        return contentCtrl.Content(nullptr);
+      }
+      else if (auto border = e.try_as<Border>()) {
+        return border.Child(nullptr);
+      }
+    }
+  }
+
+  void XamlViewManager::ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {
+    assert(false && "nyi");
+  }
 }

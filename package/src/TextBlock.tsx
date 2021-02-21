@@ -7,6 +7,6 @@ export type TextBlockProps = Omit<NativeTextBlockProps, 'type'>;
 export const TextBlock: React.FC<TextBlockProps> = (props : TextBlockProps) => {
   //    const accessibilityLabel = text;
     return (
-        <NativeXamlControl type="textblock" {...props} />
+        <NativeXamlControl type="textBlock" {...props} />
     );
   };
