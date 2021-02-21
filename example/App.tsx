@@ -76,7 +76,7 @@ const App: () => Node = () => {
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
-          <HyperlinkButton content={{ string: "Hello World" }} style={{width:150,height:40}} onClick={()=>{alert("clicked!");} } />
+          <HyperlinkButton content="Click me!" style={{width:150,height:40}} onClick={()=>{alert("clicked!");} } />
           <TextBlock style={{width:150,height:40}} text="this is a textblock" foreground='red' />
           <Section title="See Your Changes">
             <ReloadInstructions />
