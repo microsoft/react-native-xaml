@@ -38,7 +38,7 @@ namespace winrt::ReactNativeXaml {
   winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
-    return xamlMetadata.Create(typeName, m_reactContext);
+    return xamlMetadata.Create(typeName, m_reactContext, nullptr);
   }
 
   // IViewManagerWithNativeProperties
@@ -64,7 +64,9 @@ namespace winrt::ReactNativeXaml {
     if (!e) {
       if (propertyMap.count("type") != 0) {
         const auto typeName = propertyMap["type"].AsString();
-        e = xamlMetadata.Create(typeName, m_reactContext);
+        e = xamlMetadata.Create(typeName, m_reactContext, delegating.Tag());
+
+        delegating.Content(e);
 
         //auto xd = xaml::Core::Direct::XamlDirect::GetDefault();
         //auto hlb = xd.CreateInstance(xaml::Core::Direct::XamlTypeIndex::HyperlinkButton);
@@ -78,8 +80,6 @@ namespace winrt::ReactNativeXaml {
         //auto xdParent = xd.GetXamlDirectObject(delegating);
         //xd.SetXamlDirectObjectProperty(xdParent, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, hlb);
 
-        delegating.Content(e);
-        e.as<FrameworkElement>().Tag(delegating.Tag()); // event dispatching needs to have the xaml event sender have a tag
       }
       else {
         assert(false && "xaml type not specified");
@@ -87,20 +87,21 @@ namespace winrt::ReactNativeXaml {
     }
 #endif
 
-    //if (auto control = e.try_as<DependencyObject>()) {
-    //  for (auto const& pair : propertyMap) {
-    //    auto const& propertyName = pair.first;
-    //    auto const& propertyValue = pair.second;
+    if (auto control = e.try_as<DependencyObject>()) {
+      for (auto const& pair : propertyMap) {
+        auto const& propertyName = pair.first;
+        auto const& propertyValue = pair.second;
 
-    //    if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
-    //      prop->SetValue(control, propertyValue);
-    //    }
-    //    else if (propertyName == "type") {} 
-    //    else {
-    //      assert(false && "unknown property");
-    //    }
-    //  }
-    //}
+        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
+          prop->SetValue(control, propertyValue);
+        }
+        else if (propertyName == "type") {} 
+        else {
+          auto className = winrt::get_class_name(e);
+          assert(false && "unknown property");
+        }
+      }
+    }
   }
 
   // IViewManagerWithExportedEventTypeConstants

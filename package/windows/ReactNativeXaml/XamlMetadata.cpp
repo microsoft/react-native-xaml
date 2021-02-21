@@ -72,8 +72,11 @@ constexpr RoutedEventInfo routedEvents[] = {
   ROUTED_EVENT(Tapped),
 };
 
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context, const winrt::Windows::Foundation::IInspectable& tag) const {
   auto e = Create(typeName);
+  auto fe = e.as<FrameworkElement>();
+  fe.Tag(tag); // event dispatching needs to have the xaml event sender have a tag
+  auto ntag = fe.Tag();
   // Register events
   std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
   return e;
@@ -82,10 +85,11 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
   auto key = MAKE_KEY(propertyName.c_str());
   auto it = std::find_if(xamlPropertyMap, xamlPropertyMap + ARRAYSIZE(xamlPropertyMap), [key](const PropInfo& entry) { return entry.propName == key; });
-  while (it->propName == key) {
+  while ((it != xamlPropertyMap + ARRAYSIZE(xamlPropertyMap)) && it->propName == key) {
     if (it->isType(obj)) {
       return it;
     }
+    it++;
   }
   
   return nullptr;

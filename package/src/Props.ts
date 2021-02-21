@@ -2,16 +2,16 @@ import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 
 interface NativeHyperlinkButtonProps extends ViewProps { 
   type: 'hyperlinkButton';
-  text?: string;
-  color?: ColorValue;
+  content?: object;
+  foreground?: ColorValue;
   onClick?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export type HyperlinkButtonProps = Omit<NativeHyperlinkButtonProps, 'type'>;
 
 export interface NativeTextBlockProps extends ViewProps {
-  type: 'textblock';
+  type: 'textBlock';
   text?: string;
-  color?: ColorValue;
+  foreground?: ColorValue;
 }
 
 export type XamlControlProps = NativeHyperlinkButtonProps | NativeTextBlockProps;

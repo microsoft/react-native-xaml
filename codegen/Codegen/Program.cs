@@ -36,6 +36,7 @@ namespace Codegen
                 { "System.Int64", "int64_t" },
                 { "System.Double", "double" },
                 { "System.Single", "float" },
+                { "System.Object", "winrt::Windows::Foundation::IInspectable" },
             };
             if (primitiveTypes.ContainsKey(t.GetFullName()))
             {
@@ -68,6 +69,8 @@ namespace Codegen
                 case "Windows.UI.Xaml.Media.Brush":
                 case "Windows.UI.Xaml.Media.SolidColorBrush":
                     return ViewManagerPropertyType.Color;
+                case "System.Object":
+                    return ViewManagerPropertyType.Map;
             }
 
             return ViewManagerPropertyType.Unknown;

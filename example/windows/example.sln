@@ -220,6 +220,8 @@ Global
 		{5B4C219B-2178-4226-B5C1-DFAD6919790A}.Release|x64.Build.0 = Release|Any CPU
 		{5B4C219B-2178-4226-B5C1-DFAD6919790A}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B4C219B-2178-4226-B5C1-DFAD6919790A}.Release|x86.Build.0 = Release|Any CPU
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.CPU.ActiveCfg = CPU
+		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.CPU.Build.0 = CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

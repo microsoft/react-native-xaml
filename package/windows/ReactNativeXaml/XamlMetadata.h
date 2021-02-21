@@ -42,7 +42,7 @@ void SetPropValue (xaml::DependencyObject o, xaml::DependencyProperty prop, cons
 }
 
 
-template<typename T, std::enable_if_t<!std::is_enum<T>::value && !std::is_same<winrt::hstring, T>::value, int> = 0>
+template<typename T, std::enable_if_t<!std::is_enum<T>::value && !std::is_same<winrt::hstring, T>::value && !std::is_same<winrt::Windows::Foundation::IInspectable, T>::value, int> = 0>
 void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
   auto b = v.To<T>();
   o.SetValue(prop, winrt::box_value(b));
@@ -54,7 +54,22 @@ void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const
   o.SetValue(prop, winrt::box_value(winrt::to_hstring(b)));
 }
 
-
+template<typename T, std::enable_if_t<std::is_same<T, winrt::Windows::Foundation::IInspectable>::value, int> = 0>
+void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+  switch (v.Type()) {
+  case JSValueType::String: return SetPropValue<winrt::hstring>(o, prop, v);
+  case JSValueType::Boolean: return SetPropValue<bool>(o, prop, v);
+  case JSValueType::Double: return SetPropValue<double>(o, prop, v);
+  case JSValueType::Int64: return SetPropValue<int64_t>(o, prop, v);
+  case JSValueType::Object: {
+    const auto& obj = v.AsObject();
+    if (obj.find("string") != obj.cend()) {
+      const auto& value = obj["string"];
+      return SetPropValue<winrt::Windows::Foundation::IInspectable>(o, prop, value);
+    }
+  }
+  }
+}
 
 struct PropInfo {
   stringKey propName;
@@ -95,7 +110,7 @@ struct EventInfo {
 extern ConstantProviderDelegate GetEvents;
 
 struct XamlMetadata {
-  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;
+  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context, const winrt::Windows::Foundation::IInspectable& tag) const;
   XamlMetadata();
   const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const;
   static winrt::Windows::Foundation::IInspectable ActivateInstance(const winrt::hstring& hstr);
