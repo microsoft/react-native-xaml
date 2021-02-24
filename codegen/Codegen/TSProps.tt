@@ -9,10 +9,12 @@ import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 
 export interface Native<#= type.GetName() #>Props extends <#= Util.GetBaseClassProps(type) #> {
   type: <#= Util.GetDerivedJsTypes(type, Types) #>;
-  <# foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
-<#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
-  <# } #>
-  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
+<# foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
+  <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
+<# } 
+  foreach (var evt in type.GetEvents()) { #>
+  on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
+<# } #>
 }
 
 <# } #>

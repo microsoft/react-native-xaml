@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {HyperlinkButton, NativeXamlControl, TextBlock} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
+import {HyperlinkButton, Border, TextBlock, StackPanel, Button} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -76,13 +76,15 @@ const App: () => Node = () => {
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
-          <NativeXamlControl type="stackPanel" orientation="horizontal">
-            <HyperlinkButton content="Click me!" style={{ width: 150, height: 40 }} onClick={() => { alert("clicked!"); }} />
-            <NativeXamlControl type="border" verticalAlignment="center" background="blue" style={{ width: 150, height: 40 }}>
+          <Button content={{string: "this is a button 1"}} style={{ width: 150, height: 40 }} foreground="red" onClick={() => { alert("you clicked the button!"); }} />
+          <StackPanel orientation="horizontal">
+            <HyperlinkButton content={{string: "Click me!"}} style={{ width: 150, height: 40 }} onClick={() => { alert("clicked!"); }} />
+            <Border verticalAlignment="center"  style={{ width: 250, height: 40 }}>
               <TextBlock style={{ width: 150, height: 40 }} text="this is a textblock" foreground='red' textAlignment="center" />
-            </NativeXamlControl>
-            <NativeXamlControl type="button" content="this is a button" style={{ width: 150, height: 40 }} onClick={() => { alert("you clicked the button!"); }} />
-          </NativeXamlControl>
+            </Border>
+            <TextBlock style={{ width: 150, height: 40 }} text="this is another textblock" foreground='green' textAlignment="center" />
+            <Button content={{string: "this is a button"}} style={{ width: 150, height: 40 }}  onClick={() => { alert("you clicked the button!"); }}  />
+          </StackPanel>
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
