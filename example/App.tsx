@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {HyperlinkButton, Border, TextBlock, StackPanel, Button} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
+import {HyperlinkButton, Border, TextBlock, StackPanel, Button, ComboBox, ComboBoxItem} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -76,7 +76,7 @@ const App: () => Node = () => {
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
-          <Button content={{string: "this is a button 1"}} style={{ width: 150, height: 40 }} foreground="red" onClick={() => { alert("you clicked the button!"); }} />
+          <Button content={{string: "this is a button 1"}} style={{ width: 150, height: 40 }} foreground="red" onClick />
           <StackPanel orientation="horizontal">
             <HyperlinkButton content={{string: "Click me!"}} style={{ width: 150, height: 40 }} onClick={() => { alert("clicked!"); }} />
             <Border verticalAlignment="center"  style={{ width: 250, height: 40 }}>
@@ -85,6 +85,10 @@ const App: () => Node = () => {
             <TextBlock style={{ width: 150, height: 40 }} text="this is another textblock" foreground='green' textAlignment="center" />
             <Button content={{string: "this is a button"}} style={{ width: 150, height: 40 }}  onClick={() => { alert("you clicked the button!"); }}  />
           </StackPanel>
+          <ComboBox text="this is a combobox" description={{string: "best bois"}} style={{ width: 150, height: 48 }}>
+            <ComboBoxItem content={{string: "garfield"}} foreground="black" style={{width: 150, height: 32}} />
+            <ComboBoxItem content={{string: "snoopy"}} foreground="black" style={{width: 150, height: 32}} />
+          </ComboBox>
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>
