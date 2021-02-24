@@ -16,14 +16,18 @@ The app then uses [T4 runtime templates](https://docs.microsoft.com/visualstudio
 With this approach developers can write JSX code as shown in the below GIF. `NativeXamlControl` is the base control exposed to TS, and `HyperlinkButton` and `TextBlock` are aliases where they set the type property.
 
 ## Implemented features:
--	All creatable XAML types can be created.
+- All creatable XAML types can be created.
 - All properties of type int, double, float, string, color/brush can be set. Some special casing for properties of type Object (e.g. Content).
 - All events are wired up (see GIF below, clicking on a hyperlink button calls into the JS to execute the onClick handler!).
-- Children are supported for Panel, ContentControl, and Border.
+- Children are supported for Panel, ContentControl, Border and ItemsControl (and their subclasses).
+- TypeScript typings for all wrapped XAML types.
+
 ## Not yet implemented:
--	Reduce DLL size further. Currently the Release x64 version is about 800 kB, but can likely be trimmed down further.
+- Reduce DLL size further. Currently the Release x64 version is about 800 kB, but can likely be trimmed down further.
 - Code-gen the TypeScript information so that apps can use friendly type names and get IntelliSense for properties, instead of using NativeXamlControl directly.
--	Evaluate code-gen’ing separate view managers with independent properties/events/etc. instead of a single one.
+- Evaluate code-gen’ing separate view managers with independent properties/events/etc. instead of a single one.
+- Currently doesn't emit property setter for a property named Style (since it would conflict with style from ViewProps); this only impacts the Map control.
+- Emit WinUI 3 elements instead.
 
 ## Demo
 
