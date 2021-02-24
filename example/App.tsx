@@ -76,18 +76,18 @@ const App: () => Node = () => {
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
-          <Button content={{string: "this is a button 1"}} style={{ width: 150, height: 40 }} foreground="red" onClick />
+          <Button content={{string: "this is a button 1"}}  foreground="red" onClick={() => { alert("clicked!"); }} />
           <StackPanel orientation="horizontal">
-            <HyperlinkButton content={{string: "Click me!"}} style={{ width: 150, height: 40 }} onClick={() => { alert("clicked!"); }} />
-            <Border verticalAlignment="center"  style={{ width: 250, height: 40 }}>
-              <TextBlock style={{ width: 150, height: 40 }} text="this is a textblock" foreground='red' textAlignment="center" />
+            <HyperlinkButton content={{string: "Click me!"}}  onClick={() => { alert("clicked!"); }} />
+            <Border verticalAlignment="center"  background="gray">
+              <TextBlock  text="this is a textblock" foreground='red' textAlignment="center" />
             </Border>
-            <TextBlock style={{ width: 150, height: 40 }} text="this is another textblock" foreground='green' textAlignment="center" />
-            <Button content={{string: "this is a button"}} style={{ width: 150, height: 40 }}  onClick={() => { alert("you clicked the button!"); }}  />
+            <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
+            <Button content={{string: "this is a button"}}  onClick={() => { alert("you clicked the button!"); }}  />
           </StackPanel>
-          <ComboBox text="this is a combobox" description={{string: "best bois"}} style={{ width: 150, height: 48 }}>
-            <ComboBoxItem content={{string: "garfield"}} foreground="black" style={{width: 150, height: 32}} />
-            <ComboBoxItem content={{string: "snoopy"}} foreground="black" style={{width: 150, height: 32}} />
+          <ComboBox text="this is a combobox" description={{string: "best bois"}} >
+            <ComboBoxItem content={{string: "garfield"}} foreground="black"  />
+            <ComboBoxItem content={{string: "snoopy"}} foreground="black"  />
           </ComboBox>
           <Section title="See Your Changes">
             <ReloadInstructions />
