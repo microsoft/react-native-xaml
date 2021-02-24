@@ -153,6 +153,12 @@
     <Midl Include="ReactPackageProvider.idl" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\src\HyperlinkButton.tsx" />
+    <None Include="..\..\src\index.ts" />
+    <None Include="..\..\src\NativeXamlControl.tsx" />
+    <None Include="..\..\src\Props.ts" />
+    <None Include="..\..\src\TextBlock.tsx" />
+    <None Include="..\..\src\Types.tsx" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
   </ItemGroup>
