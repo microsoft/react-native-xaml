@@ -95,28 +95,6 @@ void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& wri
         });
     }
     } },
-  {"KeyDown", [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) {
-    if (auto c = o.try_as<winrt::Windows::UI::Xaml::UIElement>()) {
-        c.KeyDown([reactContext] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::KeyRoutedEventArgs& args) {
-            if (auto fe = sender ? sender.try_as<xaml::FrameworkElement>() : nullptr) {
-              reactContext.DispatchEvent(fe, L"topKeyDown", [args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {
-                SerializeEventArgs(evtDataWriter, args);
-              });
-            }
-        });
-    }
-    } },
-  {"KeyUp", [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) {
-    if (auto c = o.try_as<winrt::Windows::UI::Xaml::UIElement>()) {
-        c.KeyUp([reactContext] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::KeyRoutedEventArgs& args) {
-            if (auto fe = sender ? sender.try_as<xaml::FrameworkElement>() : nullptr) {
-              reactContext.DispatchEvent(fe, L"topKeyUp", [args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {
-                SerializeEventArgs(evtDataWriter, args);
-              });
-            }
-        });
-    }
-    } },
   {"LostFocus", [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) {
     if (auto c = o.try_as<winrt::Windows::UI::Xaml::UIElement>()) {
         c.LostFocus([reactContext] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
@@ -2925,7 +2903,7 @@ void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& wri
 
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 264);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 262);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

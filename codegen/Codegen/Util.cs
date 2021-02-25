@@ -122,6 +122,15 @@ namespace Codegen
             }
         }
 
+        public static bool ShouldEmitEventMetadata(MrEvent e)
+        {
+            // KeyboardEventHandler already registers these events as bubbling
+            // we currently register all events as direct, so this causes a conflict (can't be registered as both bubbling and direct) for these two events; 
+            // so hide them for now
+            var bannedEvents = new string[] { "KeyDown", "KeyUp" };
+            return e.GetMemberModifiers().IsPublic && !bannedEvents.Contains(e.GetName());
+        }
+
         public static bool HasCtor(MrType t)
         {
             t.GetMethodsAndConstructors(out var methods, out var ctors);

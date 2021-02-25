@@ -109,7 +109,7 @@ class Program
                 var propsToAdd = type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p));
                 properties.AddRange(propsToAdd);
 
-                var eventsToAdd = type.GetEvents().Where(e => e.GetMemberModifiers().IsPublic);
+                var eventsToAdd = type.GetEvents().Where(e => Util.ShouldEmitEventMetadata(e));
                 events.AddRange(eventsToAdd);
             }
 
