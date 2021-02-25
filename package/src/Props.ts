@@ -1,4 +1,5 @@
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
+export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
 
 export interface NativeFrameworkElementProps extends ViewProps {
@@ -11,14 +12,18 @@ export interface NativeFrameworkElementProps extends ViewProps {
 	minHeight?: number;
 	maxWidth?: number;
 	maxHeight?: number;
+	margin?: Thickness;
 	language?: string;
 	horizontalAlignment?: 'left' | 'center' | 'right' | 'stretch';
 	height?: number;
 	flowDirection?: 'leftToRight' | 'rightToLeft';
 	dataContext?: object;
 	requestedTheme?: 'default' | 'light' | 'dark';
+	focusVisualSecondaryThickness?: Thickness;
 	focusVisualSecondaryBrush?: ColorValue;
+	focusVisualPrimaryThickness?: Thickness;
 	focusVisualPrimaryBrush?: ColorValue;
+	focusVisualMargin?: Thickness;
 	allowFocusWhenDisabled?: boolean;
 	allowFocusOnInteraction?: boolean;
 	onLayoutUpdated?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -34,6 +39,7 @@ export interface NativeFrameworkElementProps extends ViewProps {
 
 export interface NativeControlProps extends NativeFrameworkElementProps {
 	type: 'control' | 'contentControl' | 'appBar' | 'buttonBase' | 'button' | 'appBarButton' | 'appBarElementContainer' | 'appBarSeparator' | 'toggleButton' | 'appBarToggleButton' | 'itemsControl' | 'autoSuggestBox' | 'calendarDatePicker' | 'calendarView' | 'calendarViewDayItem' | 'checkBox' | 'colorPicker' | 'selector' | 'comboBox' | 'selectorItem' | 'comboBoxItem' | 'commandBar' | 'commandBarOverflowPresenter' | 'contentDialog' | 'datePicker' | 'datePickerFlyoutPresenter' | 'dropDownButton' | 'flipView' | 'flipViewItem' | 'flyoutPresenter' | 'frame' | 'listViewBase' | 'gridView' | 'listViewBaseHeaderItem' | 'gridViewHeaderItem' | 'gridViewItem' | 'groupItem' | 'handwritingView' | 'hub' | 'hubSection' | 'hyperlinkButton' | 'inkToolbar' | 'radioButton' | 'inkToolbarToolButton' | 'inkToolbarPenButton' | 'inkToolbarBallpointPenButton' | 'inkToolbarCustomPenButton' | 'inkToolbarToggleButton' | 'inkToolbarCustomToggleButton' | 'inkToolbarCustomToolButton' | 'inkToolbarEraserButton' | 'inkToolbarFlyoutItem' | 'inkToolbarHighlighterButton' | 'inkToolbarMenuButton' | 'inkToolbarPenConfigurationControl' | 'inkToolbarPencilButton' | 'inkToolbarRulerButton' | 'inkToolbarStencilButton' | 'listBox' | 'listBoxItem' | 'listPickerFlyoutPresenter' | 'listView' | 'listViewHeaderItem' | 'listViewItem' | 'mapControl' | 'mediaPlayerElement' | 'mediaTransportControls' | 'menuBar' | 'menuBarItem' | 'menuFlyoutItemBase' | 'menuFlyoutItem' | 'menuFlyoutPresenter' | 'menuFlyoutSeparator' | 'menuFlyoutSubItem' | 'navigationView' | 'navigationViewItemBase' | 'navigationViewItem' | 'navigationViewItemHeader' | 'navigationViewItemSeparator' | 'navigationViewList' | 'userControl' | 'page' | 'passwordBox' | 'personPicture' | 'pickerFlyoutPresenter' | 'pivot' | 'pivotItem' | 'rangeBase' | 'slider' | 'colorPickerSlider' | 'colorSpectrum' | 'commandBarFlyoutCommandBar' | 'loopingSelector' | 'loopingSelectorItem' | 'navigationViewItemPresenter' | 'pivotHeaderItem' | 'repeatButton' | 'scrollBar' | 'thumb' | 'progressBar' | 'progressRing' | 'ratingControl' | 'refreshContainer' | 'refreshVisualizer' | 'richEditBox' | 'scrollViewer' | 'searchBox' | 'semanticZoom' | 'settingsFlyout' | 'splitButton' | 'splitView' | 'swipeControl' | 'textBox' | 'timePicker' | 'timePickerFlyoutPresenter' | 'toggleMenuFlyoutItem' | 'toggleSplitButton' | 'toggleSwitch' | 'toolTip' | 'treeView' | 'treeViewItem' | 'treeViewList' | 'twoPaneView';
+	padding?: Thickness;
 	isTabStop?: boolean;
 	isEnabled?: boolean;
 	horizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
@@ -43,6 +49,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
 	fontSize?: number;
 	tabIndex?: number;
 	characterSpacing?: number;
+	borderThickness?: Thickness;
 	borderBrush?: ColorValue;
 	tabNavigation?: 'local' | 'cycle' | 'once';
 	background?: ColorValue;
@@ -175,6 +182,8 @@ export interface NativeBitmapIconProps extends NativeIconElementProps {
 
 export interface NativeBorderProps extends NativeFrameworkElementProps {
 	type: 'border';
+	padding?: Thickness;
+	borderThickness?: Thickness;
 	borderBrush?: ColorValue;
 	background?: ColorValue;
 	backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
@@ -218,6 +227,7 @@ export interface NativeCalendarViewProps extends NativeControlProps {
 	dayItemFontSize?: number;
 	selectedPressedBorderBrush?: ColorValue;
 	calendarItemForeground?: ColorValue;
+	calendarItemBorderThickness?: Thickness;
 	calendarItemBorderBrush?: ColorValue;
 	calendarItemBackground?: ColorValue;
 	calendarIdentifier?: string;
@@ -386,10 +396,12 @@ export interface NativeContentPresenterProps extends NativeFrameworkElementProps
 	isTextScaleFactorEnabled?: boolean;
 	verticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
 	textWrapping?: 'noWrap' | 'wrap' | 'wrapWholeWords';
+	padding?: Thickness;
 	maxLines?: number;
 	lineStackingStrategy?: 'maxHeight' | 'blockLineHeight' | 'baselineToBaseline';
 	lineHeight?: number;
 	horizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
+	borderThickness?: Thickness;
 	borderBrush?: ColorValue;
 	background?: ColorValue;
 	backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
@@ -464,6 +476,8 @@ export interface NativeFrameProps extends NativeContentControlProps {
 
 export interface NativeGridProps extends NativePanelProps {
 	type: 'grid' | 'swapChainBackgroundPanel' | 'swapChainPanel';
+	padding?: Thickness;
+	borderThickness?: Thickness;
 	borderBrush?: ColorValue;
 	rowSpacing?: number;
 	columnSpacing?: number;
@@ -564,6 +578,7 @@ export interface NativeIconSourceElementProps extends NativeIconElementProps {
 export interface NativeImageProps extends NativeFrameworkElementProps {
 	type: 'image';
 	stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+	nineGrid?: Thickness;
 	onImageFailed?: (event: NativeSyntheticEvent<undefined>) => void;
 	onImageOpened?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -686,6 +701,7 @@ export interface NativeInkToolbarStencilButtonProps extends NativeInkToolbarMenu
 
 export interface NativeItemsPresenterProps extends NativeFrameworkElementProps {
 	type: 'itemsPresenter';
+	padding?: Thickness;
 	header?: object;
 	footer?: object;
 	onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -696,6 +712,7 @@ export interface NativeItemsPresenterProps extends NativeFrameworkElementProps {
 export interface NativeItemsStackPanelProps extends NativePanelProps {
 	type: 'itemsStackPanel';
 	orientation?: 'vertical' | 'horizontal';
+	groupPadding?: Thickness;
 	groupHeaderPlacement?: 'top' | 'left';
 	cacheLength?: number;
 	areStickyGroupHeadersEnabled?: boolean;
@@ -708,6 +725,7 @@ export interface NativeItemsWrapGridProps extends NativePanelProps {
 	maximumRowsOrColumns?: number;
 	itemWidth?: number;
 	itemHeight?: number;
+	groupPadding?: Thickness;
 	groupHeaderPlacement?: 'top' | 'left';
 	cacheLength?: number;
 	areStickyGroupHeadersEnabled?: boolean;
@@ -765,6 +783,7 @@ export interface NativeMapControlProps extends NativeControlProps {
 	panInteractionMode?: 'auto' | 'disabled';
 	transitFeaturesEnabled?: boolean;
 	businessLandmarksEnabled?: boolean;
+	viewPadding?: Thickness;
 	mapProjection?: 'webMercator' | 'globe';
 	region?: string;
 	onCenterChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1136,17 +1155,21 @@ export interface NativeGridViewItemPresenterProps extends NativeContentPresenter
 	selectedPointerOverBorderBrush?: ColorValue;
 	selectedPointerOverBackground?: ColorValue;
 	selectedForeground?: ColorValue;
+	selectedBorderThickness?: Thickness;
 	selectedBackground?: ColorValue;
 	reorderHintOffset?: number;
+	pointerOverBackgroundMargin?: Thickness;
 	pointerOverBackground?: ColorValue;
 	placeholderBackground?: ColorValue;
 	gridViewItemPresenterVerticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+	gridViewItemPresenterPadding?: Thickness;
 	gridViewItemPresenterHorizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
 	focusBorderBrush?: ColorValue;
 	dragOpacity?: number;
 	dragForeground?: ColorValue;
 	dragBackground?: ColorValue;
 	disabledOpacity?: number;
+	contentMargin?: Thickness;
 	checkSelectingBrush?: ColorValue;
 	checkHintBrush?: ColorValue;
 	checkBrush?: ColorValue;
@@ -1159,17 +1182,21 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
 	selectedPointerOverBorderBrush?: ColorValue;
 	selectedPointerOverBackground?: ColorValue;
 	selectedForeground?: ColorValue;
+	selectedBorderThickness?: Thickness;
 	selectedBackground?: ColorValue;
 	reorderHintOffset?: number;
+	pointerOverBackgroundMargin?: Thickness;
 	pointerOverBackground?: ColorValue;
 	placeholderBackground?: ColorValue;
 	listViewItemPresenterVerticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+	listViewItemPresenterPadding?: Thickness;
 	listViewItemPresenterHorizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
 	focusBorderBrush?: ColorValue;
 	dragOpacity?: number;
 	dragForeground?: ColorValue;
 	dragBackground?: ColorValue;
 	disabledOpacity?: number;
+	contentMargin?: Thickness;
 	checkSelectingBrush?: ColorValue;
 	checkHintBrush?: ColorValue;
 	checkBrush?: ColorValue;
@@ -1179,6 +1206,7 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
 	focusSecondaryBorderBrush?: ColorValue;
 	checkMode?: 'inline' | 'overlay';
 	checkBoxBrush?: ColorValue;
+	revealBorderThickness?: Thickness;
 	revealBorderBrush?: ColorValue;
 	revealBackgroundShowsAboveContent?: boolean;
 	revealBackground?: ColorValue;
@@ -1324,6 +1352,8 @@ export interface NativeRefreshVisualizerProps extends NativeControlProps {
 
 export interface NativeRelativePanelProps extends NativePanelProps {
 	type: 'relativePanel';
+	padding?: Thickness;
+	borderThickness?: Thickness;
 	borderBrush?: ColorValue;
 	backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
 }
@@ -1377,6 +1407,7 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
 	textTrimming?: 'none' | 'characterEllipsis' | 'wordEllipsis' | 'clip';
 	textIndent?: number;
 	textAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+	padding?: Thickness;
 	foreground?: ColorValue;
 	fontStyle?: 'normal' | 'oblique' | 'italic';
 	fontStretch?: 'undefined' | 'ultraCondensed' | 'extraCondensed' | 'condensed' | 'semiCondensed' | 'normal' | 'semiExpanded' | 'expanded' | 'extraExpanded' | 'ultraExpanded';
@@ -1402,6 +1433,7 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
 
 export interface NativeRichTextBlockOverflowProps extends NativeFrameworkElementProps {
 	type: 'richTextBlockOverflow';
+	padding?: Thickness;
 	maxLines?: number;
 	onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1511,6 +1543,8 @@ export interface NativeStackPanelProps extends NativePanelProps {
 	type: 'stackPanel';
 	orientation?: 'vertical' | 'horizontal';
 	areScrollSnapPointsRegular?: boolean;
+	padding?: Thickness;
+	borderThickness?: Thickness;
 	borderBrush?: ColorValue;
 	spacing?: number;
 	backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
@@ -1547,6 +1581,7 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
 	textTrimming?: 'none' | 'characterEllipsis' | 'wordEllipsis' | 'clip';
 	textAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
 	text?: string;
+	padding?: Thickness;
 	foreground?: ColorValue;
 	fontStyle?: 'normal' | 'oblique' | 'italic';
 	fontStretch?: 'undefined' | 'ultraCondensed' | 'extraCondensed' | 'condensed' | 'semiCondensed' | 'normal' | 'semiExpanded' | 'expanded' | 'extraExpanded' | 'ultraExpanded';

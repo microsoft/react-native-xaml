@@ -72,14 +72,10 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Button content={{string: "this is a button 1"}}  foreground="red" onClick={() => { alert("clicked!"); }} />
+          <Button content={{string: "this is a button 1"}} foreground="red" onClick={() => { alert("clicked!"); }} />
           <StackPanel orientation="horizontal">
             <HyperlinkButton content={{string: "Click me!"}}  onClick={() => { alert("clicked!"); }} />
-            <Border verticalAlignment="center"  background="gray">
+            <Border verticalAlignment="center"  background="paleturquoise" >
               <TextBlock  text="this is a textblock" foreground='red' textAlignment="center" />
             </Border>
             <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
@@ -89,6 +85,10 @@ const App: () => Node = () => {
             <ComboBoxItem content={{string: "garfield"}} foreground="black"  />
             <ComboBoxItem content={{string: "snoopy"}} foreground="black"  />
           </ComboBox>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
           </Section>

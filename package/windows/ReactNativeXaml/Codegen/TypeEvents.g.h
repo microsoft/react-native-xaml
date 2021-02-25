@@ -19,7 +19,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { #evtName, [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) { \
           if (auto c = o.try_as<xamlType>()) {  \
             c.evtName([reactContext] (auto&& sender, auto&& /*args*/) { \
-              reactContext.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*evtDataWriter*/) noexcept {}); \
+              if (sender) reactContext.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*evtDataWriter*/) noexcept {}); \
             }); \
           } \
         } }

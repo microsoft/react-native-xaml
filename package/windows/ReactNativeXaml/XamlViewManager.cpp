@@ -155,7 +155,7 @@ namespace winrt::ReactNativeXaml {
       }
     }
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
-      return itemsControl.Items().InsertAt(index, child);
+      return itemsControl.Items().InsertAt(static_cast<uint32_t>(index), child);
     }
     else {
       auto cn = winrt::get_class_name(e);
@@ -185,7 +185,7 @@ namespace winrt::ReactNativeXaml {
       return panel.Children().RemoveAt(static_cast<uint32_t>(index));
     }
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
-      return itemsControl.Items().RemoveAt(index);
+      return itemsControl.Items().RemoveAt(static_cast<uint32_t>(index));
     }
     else if (index == 0) {
       if (auto contentCtrl = e.try_as<ContentControl>()) {

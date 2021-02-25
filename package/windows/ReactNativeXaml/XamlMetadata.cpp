@@ -15,16 +15,7 @@ using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-//ctx.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](auto const& evtDataWriter) noexcept {}); \
-
-
-XamlMetadata::XamlMetadata() {
-    //   { "Click", { [](IInspectable o, IReactContext context) {
-    //     if (auto c = o.try_as<xaml::Controls::Primitives::ButtonBase>()) {
-    //       c.Click([context](auto&& sender, auto&& /*args*/) {
-    //         context.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L"Click", [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*eventDataWriter*/) noexcept {}); });
-    //}} } }
-}
+XamlMetadata::XamlMetadata() {}
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::ActivateInstance(const winrt::hstring& hstr) {
   winrt::Windows::Foundation::IUnknown unknown{ nullptr };

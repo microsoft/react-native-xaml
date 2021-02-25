@@ -1321,28 +1321,6 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
 
-"@react-native-windows/cli@0.64.0-preview.5":
-  version "0.64.0-preview.5"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.64.0-preview.5.tgz#76b5775671553c154c456498f971e75e19b92867"
-  integrity sha512-966OEtolsrOuoSb1LMtVvKnd0zXVU6HpXF9/YVBQlpibfGEeNb17LHZvuwPb3tjsBiuhAYSbBkPM+txqDN7Jyg==
-  dependencies:
-    "@react-native-windows/package-utils" "0.64.0-preview.1"
-    "@react-native-windows/telemetry" "0.64.0-preview.1"
-    chalk "^4.1.0"
-    cli-spinners "^2.2.0"
-    envinfo "^7.5.0"
-    glob "^7.1.1"
-    inquirer "^3.0.6"
-    mustache "^4.0.1"
-    ora "^3.4.0"
-    semver "^7.3.2"
-    shelljs "^0.8.4"
-    username "^5.1.0"
-    uuid "^3.3.2"
-    xml-parser "^1.2.1"
-    xmldom "^0.3.0"
-    xpath "^0.0.27"
-
 "@react-native-windows/cli@0.64.0-preview.7":
   version "0.64.0-preview.7"
   resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.64.0-preview.7.tgz#eae38f2174bd4c70fc2b1d3c976db2922c2ad907"
@@ -5883,49 +5861,10 @@ react-native-windows@0.64.0-preview.11:
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
 
-react-native-windows@^0.64.0-preview.8:
-  version "0.64.0-preview.8"
-  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.64.0-preview.8.tgz#db372cbd8897ea024f5c9f00bfa4412a1f74e4b2"
-  integrity sha512-9FiO82x5QQjdoKc1YFu4vcFi2NwIaPM1Gk+L0KBLlATuoWjf4LISwsUFgviHnm5S3dEElwayBmMWPsMz6hCBLg==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    "@jest/create-cache-key-function" "^26.5.0"
-    "@react-native-community/cli" "^5.0.1-alpha.0"
-    "@react-native-community/cli-platform-android" "^5.0.1-alpha.0"
-    "@react-native-community/cli-platform-ios" "^5.0.1-alpha.0"
-    "@react-native-windows/cli" "0.64.0-preview.5"
-    "@react-native/assets" "1.0.0"
-    "@react-native/normalize-color" "1.0.0"
-    "@react-native/polyfills" "1.0.0"
-    abort-controller "^3.0.0"
-    anser "^1.4.9"
-    base64-js "^1.1.2"
-    event-target-shim "^5.0.1"
-    hermes-engine "~0.7.0"
-    invariant "^2.2.4"
-    jsc-android "^245459.0.0"
-    metro-babel-register "0.64.0"
-    metro-react-native-babel-transformer "0.64.0"
-    metro-runtime "0.64.0"
-    metro-source-map "0.64.0"
-    nullthrows "^1.1.1"
-    pretty-format "^26.5.2"
-    promise "^8.0.3"
-    prop-types "^15.7.2"
-    react-devtools-core "^4.6.0"
-    react-refresh "^0.4.0"
-    regenerator-runtime "^0.13.2"
-    scheduler "^0.20.1"
-    shelljs "^0.8.4"
-    stacktrace-parser "^0.1.3"
-    use-subscription "^1.0.0"
-    whatwg-fetch "^3.0.0"
-    ws "^6.1.4"
-
-react-native@0.64.0-rc.2:
-  version "0.64.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.64.0-rc.2.tgz#fd9f273255ac61bd23abd4a1251a6d6fba5ee343"
-  integrity sha512-c9eZEHnAtoEIlfm1AmCjobCeGqxcb7046U6CaWNKScE+Plf+A8Kq62k7kTianQHrC5mba9SyoMx01gox0w6xbg==
+react-native@0.64.0-rc.3:
+  version "0.64.0-rc.3"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.64.0-rc.3.tgz#31c27ea4baf935cc7340fb464e07352fac8864de"
+  integrity sha512-WjUvxO7yKOh3Jj0YWkInWR0UubstUFQSwOmWUnUb5ZrOfGpJc4gSYDfo5LQrqBO1Cd8+Me0zkEuFiIPeBxLMtQ==
   dependencies:
     "@jest/create-cache-key-function" "^26.5.0"
     "@react-native-community/cli" "^5.0.1-alpha.0"

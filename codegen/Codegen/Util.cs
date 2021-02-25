@@ -53,6 +53,8 @@ namespace Codegen
                 case "Windows.UI.Xaml.Media.Brush":
                 case "Windows.UI.Xaml.Media.SolidColorBrush":
                     return ViewManagerPropertyType.Color;
+                case "Windows.UI.Xaml.Thickness":
+                    return ViewManagerPropertyType.Map;
                 case "System.Object":
                     return ViewManagerPropertyType.Map;
             }
@@ -84,6 +86,8 @@ namespace Codegen
                 case "Windows.UI.Xaml.Media.Brush":
                 case "Windows.UI.Xaml.Media.SolidColorBrush":
                     return "ColorValue";
+                case "Windows.UI.Xaml.Thickness":
+                    return "Thickness";
                 case "System.Object":
                     return "object";
             }
@@ -152,7 +156,33 @@ namespace Codegen
             var derived = types.Where(type => DerivesFrom(type, t.GetFullName())).Select(t => $"'{ToJsName(t.GetName())}'");
             return string.Join("|", derived);
         }
+        public static string GetDerivedJsTypes(MrType t, Dictionary<string, List<string>> derived)
+        {
+            var listDerived = derived[t.GetName()].Select(t => $"'{ToJsName(t)}'");
+            return string.Join("|", listDerived);
+        }
 
+        public static Dictionary<string, List<string>> GetDerivedTypes(IEnumerable<MrType> types)
+        {
+            var derivedClasses = new Dictionary<string, List<string>>();
+            foreach (var type in types)
+            {
+                if (!derivedClasses.ContainsKey(type.GetName()))
+                {
+                    derivedClasses[type.GetName()] = new List<string>() { type.GetName() };
+                }
+
+                for (var baseType = type.GetBaseType(); baseType !=null && baseType.GetName() != "Windows.UI.Xaml.DependencyObject"; baseType = baseType.GetBaseType())
+                {
+                    if (!derivedClasses.ContainsKey(baseType.GetName()))
+                    {
+                        derivedClasses[baseType.GetName()] = new List<string>();
+                    }
+                    derivedClasses[baseType.GetName()].Add(type.GetName());
+                }
+            }
+            return derivedClasses;
+        }
     }
 }
 

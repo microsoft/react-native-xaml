@@ -4,11 +4,13 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
+export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
-<# foreach (var type in Types) { #>
+<# var derived = Util.GetDerivedTypes(Types);
+foreach (var type in Types) { #>
 
 export interface Native<#= type.GetName() #>Props extends <#= Util.GetBaseClassProps(type) #> {
-  type: <#= Util.GetDerivedJsTypes(type, Types) #>;
+  type: <#= Util.GetDerivedJsTypes(type, derived) #>;
 <# foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
   <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
 <# } 
