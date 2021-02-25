@@ -1321,10 +1321,10 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
 
-"@react-native-windows/cli@0.64.0-preview.5":
-  version "0.64.0-preview.5"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.64.0-preview.5.tgz#76b5775671553c154c456498f971e75e19b92867"
-  integrity sha512-966OEtolsrOuoSb1LMtVvKnd0zXVU6HpXF9/YVBQlpibfGEeNb17LHZvuwPb3tjsBiuhAYSbBkPM+txqDN7Jyg==
+"@react-native-windows/cli@0.64.0-preview.7":
+  version "0.64.0-preview.7"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.64.0-preview.7.tgz#eae38f2174bd4c70fc2b1d3c976db2922c2ad907"
+  integrity sha512-vSBl+h92jTbteMG2/jswzGG4BMO9kmx1s7V0Ob8ol8b8YgtayVDZOWVFo2E3jKh/DYedReBJ6/MLGQB/dLKocw==
   dependencies:
     "@react-native-windows/package-utils" "0.64.0-preview.1"
     "@react-native-windows/telemetry" "0.64.0-preview.1"
@@ -5822,17 +5822,17 @@ react-native-typescript-transformer@*:
     semver "^5.4.1"
     source-map "^0.5.6"
 
-react-native-windows@0.64.0-preview.8, react-native-windows@^0.64.0-preview.8:
-  version "0.64.0-preview.8"
-  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.64.0-preview.8.tgz#db372cbd8897ea024f5c9f00bfa4412a1f74e4b2"
-  integrity sha512-9FiO82x5QQjdoKc1YFu4vcFi2NwIaPM1Gk+L0KBLlATuoWjf4LISwsUFgviHnm5S3dEElwayBmMWPsMz6hCBLg==
+react-native-windows@0.64.0-preview.11:
+  version "0.64.0-preview.11"
+  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.64.0-preview.11.tgz#2d7afd4e9e9e1ea7a905ad8547c166c5973950a0"
+  integrity sha512-MeCUVBu0McwwF3KdaRddIxsFC6zE5rm7DMwTfJLEUYU2nxGtPYdBdhgBEm9ZF+JNGGdpt2m5KlFPItpipK0Thg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@jest/create-cache-key-function" "^26.5.0"
     "@react-native-community/cli" "^5.0.1-alpha.0"
     "@react-native-community/cli-platform-android" "^5.0.1-alpha.0"
     "@react-native-community/cli-platform-ios" "^5.0.1-alpha.0"
-    "@react-native-windows/cli" "0.64.0-preview.5"
+    "@react-native-windows/cli" "0.64.0-preview.7"
     "@react-native/assets" "1.0.0"
     "@react-native/normalize-color" "1.0.0"
     "@react-native/polyfills" "1.0.0"
@@ -5861,10 +5861,10 @@ react-native-windows@0.64.0-preview.8, react-native-windows@^0.64.0-preview.8:
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
 
-react-native@0.64.0-rc.2:
-  version "0.64.0-rc.2"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.64.0-rc.2.tgz#fd9f273255ac61bd23abd4a1251a6d6fba5ee343"
-  integrity sha512-c9eZEHnAtoEIlfm1AmCjobCeGqxcb7046U6CaWNKScE+Plf+A8Kq62k7kTianQHrC5mba9SyoMx01gox0w6xbg==
+react-native@0.64.0-rc.3:
+  version "0.64.0-rc.3"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.64.0-rc.3.tgz#31c27ea4baf935cc7340fb464e07352fac8864de"
+  integrity sha512-WjUvxO7yKOh3Jj0YWkInWR0UubstUFQSwOmWUnUb5ZrOfGpJc4gSYDfo5LQrqBO1Cd8+Me0zkEuFiIPeBxLMtQ==
   dependencies:
     "@jest/create-cache-key-function" "^26.5.0"
     "@react-native-community/cli" "^5.0.1-alpha.0"

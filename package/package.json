@@ -29,13 +29,13 @@
   "readmeFilename": "README.md",
   "peerDependencies": {
     "react": ">= 17.0.1",
-    "react-native": ">= 0.64.0-rc.2",
-    "react-native-windows": ">= 0.64.0-preview.8"
+    "react-native": ">= 0.64.0-rc.3",
+    "react-native-windows": ">= 0.64.0-preview.11"
   },
   "devDependencies": {
     "react": "17.0.1",
-    "react-native": "0.64.0-rc.2",
-    "react-native-windows": "^0.64.0-preview.8",
+    "react-native": "0.64.0-rc.3",
+    "react-native-windows": "0.64.0-preview.11",
     "react-native-typescript-transformer": "*",
     "typescript": "^4.1.2",
     "@types/react": "*",

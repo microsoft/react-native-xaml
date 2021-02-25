@@ -33,10 +33,31 @@
   <ItemGroup>
     <None Include="PropertySheet.props" />
     <None Include="packages.config" />
+    <None Include="..\..\src\HyperlinkButton.tsx">
+      <Filter>TS</Filter>
+    </None>
+    <None Include="..\..\src\index.ts">
+      <Filter>TS</Filter>
+    </None>
+    <None Include="..\..\src\NativeXamlControl.tsx">
+      <Filter>TS</Filter>
+    </None>
+    <None Include="..\..\src\Props.ts">
+      <Filter>TS</Filter>
+    </None>
+    <None Include="..\..\src\TextBlock.tsx">
+      <Filter>TS</Filter>
+    </None>
+    <None Include="..\..\src\Types.tsx">
+      <Filter>TS</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codegen">
       <UniqueIdentifier>{0ef07389-5c8a-4c8b-9570-1cf9a2153ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TS">
+      <UniqueIdentifier>{5c572e8a-9a91-412d-8a35-4bd65c3cfa2b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

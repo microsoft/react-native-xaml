@@ -1,0 +1,31 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
+export type Thickness = number | { left: number, top: number, right: number, bottom: number };
+
+<# var derived = Util.GetDerivedTypes(Types);
+foreach (var type in Types) { #>
+
+export interface Native<#= type.GetName() #>Props extends <#= Util.GetBaseClassProps(type) #> {
+  type: <#= Util.GetDerivedJsTypes(type, derived) #>;
+<# foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
+  <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
+<# } 
+  foreach (var evt in type.GetEvents()) { #>
+  on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
+<# } #>
+}
+
+<# } #>
+
+export type XamlControlProps =<# var first = true; foreach (var type in Types) {
+	if (Util.HasCtor(type)) {
+		if (!first) #> | <# ;
+		
+		first = false;
+		#> Native<#= type.GetName() #>Props 
+	<# }
+	} #>;

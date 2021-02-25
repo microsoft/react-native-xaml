@@ -19,64 +19,6 @@ namespace Codegen
         Map = 4,
         Color = 5,
     };
-
-    public static class Util
-    {
-        public static string ToJsName(string name)
-        {
-            return name[0].ToString().ToLower() + name.Substring(1);
-        }
-        public static string GetCppWinRTType(MrType t)
-        {
-            var primitiveTypes = new Dictionary<string, string>()
-            {
-                { "System.String", "winrt::hstring" },
-                { "System.Boolean", "bool" },
-                { "System.Int32", "int32_t" },
-                { "System.Int64", "int64_t" },
-                { "System.Double", "double" },
-                { "System.Single", "float" },
-                { "System.Object", "winrt::Windows::Foundation::IInspectable" },
-            };
-            if (primitiveTypes.ContainsKey(t.GetFullName()))
-            {
-                return primitiveTypes[t.GetFullName()];
-            }
-            return $"winrt::{t.GetFullName().Replace(".", "::")}";
-        }
-        public static HashSet<MrType> enumsToGenerateConvertersFor = new HashSet<MrType>();
-        public static ViewManagerPropertyType GetVMPropertyType(MrType propType)
-        {
-            if (propType.IsEnum)
-            {
-                enumsToGenerateConvertersFor.Add(propType);
-                return ViewManagerPropertyType.String;
-            }
-            else if (propType.IsArray)
-            {
-                return ViewManagerPropertyType.Array;
-            }
-
-            switch (propType.GetFullName())
-            {
-                case "System.String": return ViewManagerPropertyType.String;
-                case "System.Boolean": return ViewManagerPropertyType.Boolean;
-                case "System.Int32":
-                case "System.Int64":
-                case "System.Double":
-                case "System.Single":
-                    return ViewManagerPropertyType.Number;
-                case "Windows.UI.Xaml.Media.Brush":
-                case "Windows.UI.Xaml.Media.SolidColorBrush":
-                    return ViewManagerPropertyType.Color;
-                case "System.Object":
-                    return ViewManagerPropertyType.Map;
-            }
-
-            return ViewManagerPropertyType.Unknown;
-        }
-
-    }
     public partial class TypeCreator
     {
         public TypeCreator(IEnumerable<MrType> types)
@@ -105,6 +47,17 @@ namespace Codegen
         IEnumerable<MrEvent> Events { get; set; }
     }
 
+    public partial class TSProps
+    {
+        public TSProps(IEnumerable<MrType> types) { Types = types; }
+        IEnumerable<MrType> Types { get; set; }
+    }
+
+    public partial class TSTypes
+    {
+        public TSTypes(IEnumerable<MrType> types) { Types = types; }
+        IEnumerable<MrType> Types { get; set; }
+    }
 
     public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase> {
         public bool Equals(MrTypeAndMemberBase that, MrTypeAndMemberBase other)
@@ -121,13 +74,6 @@ namespace Codegen
 
 class Program
     {
-        private bool hasCtor(MrType t)
-        {
-            t.GetMethodsAndConstructors(out var methods, out var ctors);
-            var publicCtors = ctors.Where(x => x.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Public));
-            return publicCtors.Count() != 0;
-
-        }
         private void DumpTypes()
         {
             var context = new MrLoadContext(true);
@@ -143,11 +89,11 @@ class Program
                                                                                                                                                  //            var assembly = context.LoadAssemblyFromPath(path); // @"C:\rnw\vnext\target\x86\Debug\Microsoft.ReactNative\Microsoft.ReactNative.winmd");
             context.FinishLoading();
             var types = windows_winmd.GetAllTypes().Skip(1);
-            var fe = types.Where(type => IsFrameworkElementDerived(type));
+            var fe = types.Where(type => Util.DerivesFrom(type, "Windows.UI.Xaml.FrameworkElement"));
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var generatedDirPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
 
-            var creatableTypes = fe.Where(x => hasCtor(x)).ToList();
+            var creatableTypes = fe.Where(x => Util.HasCtor(x)).ToList();
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
 
@@ -161,12 +107,18 @@ class Program
             var events = new List<MrEvent>();
             foreach (var type in fe)
             {
-                var propsToAdd = type.GetProperties().Where(p => ShouldEmitPropertyMetadata(p));
+                var propsToAdd = type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p));
                 properties.AddRange(propsToAdd);
 
                 var eventsToAdd = type.GetEvents().Where(e => e.GetMemberModifiers().IsPublic);
                 events.AddRange(eventsToAdd);
             }
+
+            var propsGen = new TSProps(fe).TransformText();
+            File.WriteAllText(Path.Join(generatedDirPath, "Props.ts"), propsGen);
+
+            var typesGen = new TSTypes(fe).TransformText();
+            File.WriteAllText(Path.Join(generatedDirPath, "Types.tsx"), typesGen);
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var propertiesGen = new TypeProperties(properties).TransformText();
@@ -177,28 +129,6 @@ class Program
 
             var eventsGen = new TypeEvents(events).TransformText();
             File.WriteAllText(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
-        }
-
-        private bool ShouldEmitPropertyMetadata(MrProperty p)
-        {
-            if (p.Setter == null) return false;
-            bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
-            if (!isStatic)
-            {
-                var staticDPName = p.GetName() + "Property";
-                var staticDP = p.DeclaringType.GetProperties().Where(staticProp => !staticProp.Getter.MethodSignature.Header.IsInstance && (staticProp.GetName() == staticDPName));
-                System.Diagnostics.Debug.Assert(staticDP.Count() <= 1);
-                return staticDP.Count() == 1 && Util.GetVMPropertyType(p.GetPropertyType()) != ViewManagerPropertyType.Unknown;
-            }
-            return false;
-        }
-
-        private bool IsFrameworkElementDerived(MrType type)
-        {
-            var feName = "Windows.UI.Xaml.FrameworkElement";
-            if (type.GetFullName() == feName) return true;
-            else if (type.GetBaseType() == null) return false;
-            else return IsFrameworkElementDerived(type.GetBaseType());
         }
 
         static void Main(string[] args)

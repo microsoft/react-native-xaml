@@ -20,6 +20,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>EnumConverters.tt</DependentUpon>
     </Compile>
+    <Compile Update="TSProps.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TSProps.tt</DependentUpon>
+    </Compile>
     <Compile Update="TypeCreator.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -35,12 +40,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TypeProperties.tt</DependentUpon>
     </Compile>
+    <Compile Update="TSTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TSTypes.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="EnumConverters.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EnumConverters.cs</LastGenOutput>
+    </None>
+    <None Update="TSProps.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TSProps.cs</LastGenOutput>
     </None>
     <None Update="TypeCreator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
@@ -53,6 +67,10 @@
     <None Update="TypeProperties.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>TypeProperties.cs</LastGenOutput>
+    </None>
+    <None Update="TSTypes.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TSTypes.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

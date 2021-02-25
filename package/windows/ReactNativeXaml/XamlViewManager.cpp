@@ -154,6 +154,9 @@ namespace winrt::ReactNativeXaml {
         return border.Child(child);
       }
     }
+    else if (auto itemsControl = e.try_as<ItemsControl>()) {
+      return itemsControl.Items().InsertAt(static_cast<uint32_t>(index), child);
+    }
     else {
       auto cn = winrt::get_class_name(e);
       assert(false && "this element cannot have children");
@@ -171,11 +174,18 @@ namespace winrt::ReactNativeXaml {
     else if (auto border = e.try_as<Border>()) {
         return border.Child(nullptr);
     }
+    else if (auto itemsControl = e.try_as<ItemsControl>()) {
+      return itemsControl.Items().Clear();
+    }
   }
+
   void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
     auto e = parent.as<xaml::Controls::ContentControl>().Content();
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().RemoveAt(static_cast<uint32_t>(index));
+    }
+    else if (auto itemsControl = e.try_as<ItemsControl>()) {
+      return itemsControl.Items().RemoveAt(static_cast<uint32_t>(index));
     }
     else if (index == 0) {
       if (auto contentCtrl = e.try_as<ContentControl>()) {

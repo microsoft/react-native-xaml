@@ -18,1237 +18,1041 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::VerticalAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::VerticalAlignment ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::VerticalAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("top"): { ret = winrt::Windows::UI::Xaml::VerticalAlignment::Top; break; }
-      case COMPILE_TIME_CRC32_STR("center"): { ret = winrt::Windows::UI::Xaml::VerticalAlignment::Center; break; }
-      case COMPILE_TIME_CRC32_STR("bottom"): { ret = winrt::Windows::UI::Xaml::VerticalAlignment::Bottom; break; }
-      case COMPILE_TIME_CRC32_STR("stretch"): { ret = winrt::Windows::UI::Xaml::VerticalAlignment::Stretch; break; }
+	    case COMPILE_TIME_CRC32_STR("top"): { return winrt::box_value(winrt::Windows::UI::Xaml::VerticalAlignment::Top); }
+      case COMPILE_TIME_CRC32_STR("center"): { return winrt::box_value(winrt::Windows::UI::Xaml::VerticalAlignment::Center); }
+      case COMPILE_TIME_CRC32_STR("bottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::VerticalAlignment::Bottom); }
+      case COMPILE_TIME_CRC32_STR("stretch"): { return winrt::box_value(winrt::Windows::UI::Xaml::VerticalAlignment::Stretch); }
     }
-
-  return winrt::box_value(ret);
-  }
-
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::HorizontalAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::HorizontalAlignment ret;
-  switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::HorizontalAlignment::Left; break; }
-      case COMPILE_TIME_CRC32_STR("center"): { ret = winrt::Windows::UI::Xaml::HorizontalAlignment::Center; break; }
-      case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::HorizontalAlignment::Right; break; }
-      case COMPILE_TIME_CRC32_STR("stretch"): { ret = winrt::Windows::UI::Xaml::HorizontalAlignment::Stretch; break; }
-    }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::FlowDirection>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::FlowDirection ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::HorizontalAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("leftToRight"): { ret = winrt::Windows::UI::Xaml::FlowDirection::LeftToRight; break; }
-      case COMPILE_TIME_CRC32_STR("rightToLeft"): { ret = winrt::Windows::UI::Xaml::FlowDirection::RightToLeft; break; }
+	    case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::HorizontalAlignment::Left); }
+      case COMPILE_TIME_CRC32_STR("center"): { return winrt::box_value(winrt::Windows::UI::Xaml::HorizontalAlignment::Center); }
+      case COMPILE_TIME_CRC32_STR("right"): { return winrt::box_value(winrt::Windows::UI::Xaml::HorizontalAlignment::Right); }
+      case COMPILE_TIME_CRC32_STR("stretch"): { return winrt::box_value(winrt::Windows::UI::Xaml::HorizontalAlignment::Stretch); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::ElementTheme>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::ElementTheme ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::FlowDirection>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("default"): { ret = winrt::Windows::UI::Xaml::ElementTheme::Default; break; }
-      case COMPILE_TIME_CRC32_STR("light"): { ret = winrt::Windows::UI::Xaml::ElementTheme::Light; break; }
-      case COMPILE_TIME_CRC32_STR("dark"): { ret = winrt::Windows::UI::Xaml::ElementTheme::Dark; break; }
+	    case COMPILE_TIME_CRC32_STR("leftToRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::FlowDirection::LeftToRight); }
+      case COMPILE_TIME_CRC32_STR("rightToLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::FlowDirection::RightToLeft); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Text::FontStyle>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Text::FontStyle ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::ElementTheme>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("normal"): { ret = winrt::Windows::UI::Text::FontStyle::Normal; break; }
-      case COMPILE_TIME_CRC32_STR("oblique"): { ret = winrt::Windows::UI::Text::FontStyle::Oblique; break; }
-      case COMPILE_TIME_CRC32_STR("italic"): { ret = winrt::Windows::UI::Text::FontStyle::Italic; break; }
+	    case COMPILE_TIME_CRC32_STR("default"): { return winrt::box_value(winrt::Windows::UI::Xaml::ElementTheme::Default); }
+      case COMPILE_TIME_CRC32_STR("light"): { return winrt::box_value(winrt::Windows::UI::Xaml::ElementTheme::Light); }
+      case COMPILE_TIME_CRC32_STR("dark"): { return winrt::box_value(winrt::Windows::UI::Xaml::ElementTheme::Dark); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Text::FontStretch>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Text::FontStretch ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Text::FontStyle>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("undefined"): { ret = winrt::Windows::UI::Text::FontStretch::Undefined; break; }
-      case COMPILE_TIME_CRC32_STR("ultraCondensed"): { ret = winrt::Windows::UI::Text::FontStretch::UltraCondensed; break; }
-      case COMPILE_TIME_CRC32_STR("extraCondensed"): { ret = winrt::Windows::UI::Text::FontStretch::ExtraCondensed; break; }
-      case COMPILE_TIME_CRC32_STR("condensed"): { ret = winrt::Windows::UI::Text::FontStretch::Condensed; break; }
-      case COMPILE_TIME_CRC32_STR("semiCondensed"): { ret = winrt::Windows::UI::Text::FontStretch::SemiCondensed; break; }
-      case COMPILE_TIME_CRC32_STR("normal"): { ret = winrt::Windows::UI::Text::FontStretch::Normal; break; }
-      case COMPILE_TIME_CRC32_STR("semiExpanded"): { ret = winrt::Windows::UI::Text::FontStretch::SemiExpanded; break; }
-      case COMPILE_TIME_CRC32_STR("expanded"): { ret = winrt::Windows::UI::Text::FontStretch::Expanded; break; }
-      case COMPILE_TIME_CRC32_STR("extraExpanded"): { ret = winrt::Windows::UI::Text::FontStretch::ExtraExpanded; break; }
-      case COMPILE_TIME_CRC32_STR("ultraExpanded"): { ret = winrt::Windows::UI::Text::FontStretch::UltraExpanded; break; }
+	    case COMPILE_TIME_CRC32_STR("normal"): { return winrt::box_value(winrt::Windows::UI::Text::FontStyle::Normal); }
+      case COMPILE_TIME_CRC32_STR("oblique"): { return winrt::box_value(winrt::Windows::UI::Text::FontStyle::Oblique); }
+      case COMPILE_TIME_CRC32_STR("italic"): { return winrt::box_value(winrt::Windows::UI::Text::FontStyle::Italic); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Text::FontStretch>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("local"): { ret = winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode::Local; break; }
-      case COMPILE_TIME_CRC32_STR("cycle"): { ret = winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode::Cycle; break; }
-      case COMPILE_TIME_CRC32_STR("once"): { ret = winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode::Once; break; }
+	    case COMPILE_TIME_CRC32_STR("undefined"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::Undefined); }
+      case COMPILE_TIME_CRC32_STR("ultraCondensed"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::UltraCondensed); }
+      case COMPILE_TIME_CRC32_STR("extraCondensed"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::ExtraCondensed); }
+      case COMPILE_TIME_CRC32_STR("condensed"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::Condensed); }
+      case COMPILE_TIME_CRC32_STR("semiCondensed"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::SemiCondensed); }
+      case COMPILE_TIME_CRC32_STR("normal"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::Normal); }
+      case COMPILE_TIME_CRC32_STR("semiExpanded"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::SemiExpanded); }
+      case COMPILE_TIME_CRC32_STR("expanded"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::Expanded); }
+      case COMPILE_TIME_CRC32_STR("extraExpanded"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::ExtraExpanded); }
+      case COMPILE_TIME_CRC32_STR("ultraExpanded"): { return winrt::box_value(winrt::Windows::UI::Text::FontStretch::UltraExpanded); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RequiresPointer>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::RequiresPointer ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("never"): { ret = winrt::Windows::UI::Xaml::Controls::RequiresPointer::Never; break; }
-      case COMPILE_TIME_CRC32_STR("whenEngaged"): { ret = winrt::Windows::UI::Xaml::Controls::RequiresPointer::WhenEngaged; break; }
-      case COMPILE_TIME_CRC32_STR("whenFocused"): { ret = winrt::Windows::UI::Xaml::Controls::RequiresPointer::WhenFocused; break; }
+	    case COMPILE_TIME_CRC32_STR("local"): { return winrt::box_value(winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode::Local); }
+      case COMPILE_TIME_CRC32_STR("cycle"): { return winrt::box_value(winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode::Cycle); }
+      case COMPILE_TIME_CRC32_STR("once"): { return winrt::box_value(winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode::Once); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::ElementSoundMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::ElementSoundMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RequiresPointer>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("default"): { ret = winrt::Windows::UI::Xaml::ElementSoundMode::Default; break; }
-      case COMPILE_TIME_CRC32_STR("focusOnly"): { ret = winrt::Windows::UI::Xaml::ElementSoundMode::FocusOnly; break; }
-      case COMPILE_TIME_CRC32_STR("off"): { ret = winrt::Windows::UI::Xaml::ElementSoundMode::Off; break; }
+	    case COMPILE_TIME_CRC32_STR("never"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RequiresPointer::Never); }
+      case COMPILE_TIME_CRC32_STR("whenEngaged"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RequiresPointer::WhenEngaged); }
+      case COMPILE_TIME_CRC32_STR("whenFocused"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RequiresPointer::WhenFocused); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::BackgroundSizing ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::ElementSoundMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("innerBorderEdge"): { ret = winrt::Windows::UI::Xaml::Controls::BackgroundSizing::InnerBorderEdge; break; }
-      case COMPILE_TIME_CRC32_STR("outerBorderEdge"): { ret = winrt::Windows::UI::Xaml::Controls::BackgroundSizing::OuterBorderEdge; break; }
+	    case COMPILE_TIME_CRC32_STR("default"): { return winrt::box_value(winrt::Windows::UI::Xaml::ElementSoundMode::Default); }
+      case COMPILE_TIME_CRC32_STR("focusOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::ElementSoundMode::FocusOnly); }
+      case COMPILE_TIME_CRC32_STR("off"): { return winrt::box_value(winrt::Windows::UI::Xaml::ElementSoundMode::Off); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("compact"): { ret = winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode::Compact; break; }
-      case COMPILE_TIME_CRC32_STR("minimal"): { ret = winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode::Minimal; break; }
-      case COMPILE_TIME_CRC32_STR("hidden"): { ret = winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode::Hidden; break; }
+	    case COMPILE_TIME_CRC32_STR("innerBorderEdge"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::BackgroundSizing::InnerBorderEdge); }
+      case COMPILE_TIME_CRC32_STR("outerBorderEdge"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::BackgroundSizing::OuterBorderEdge); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("on"): { ret = winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode::On; break; }
-      case COMPILE_TIME_CRC32_STR("off"): { ret = winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode::Off; break; }
+	    case COMPILE_TIME_CRC32_STR("compact"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode::Compact); }
+      case COMPILE_TIME_CRC32_STR("minimal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode::Minimal); }
+      case COMPILE_TIME_CRC32_STR("hidden"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode::Hidden); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ClickMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ClickMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("release"): { ret = winrt::Windows::UI::Xaml::Controls::ClickMode::Release; break; }
-      case COMPILE_TIME_CRC32_STR("press"): { ret = winrt::Windows::UI::Xaml::Controls::ClickMode::Press; break; }
-      case COMPILE_TIME_CRC32_STR("hover"): { ret = winrt::Windows::UI::Xaml::Controls::ClickMode::Hover; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode::Auto); }
+      case COMPILE_TIME_CRC32_STR("on"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode::On); }
+      case COMPILE_TIME_CRC32_STR("off"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode::Off); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ClickMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("default"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition::Default; break; }
-      case COMPILE_TIME_CRC32_STR("collapsed"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition::Collapsed; break; }
+	    case COMPILE_TIME_CRC32_STR("release"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ClickMode::Release); }
+      case COMPILE_TIME_CRC32_STR("press"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ClickMode::Press); }
+      case COMPILE_TIME_CRC32_STR("hover"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ClickMode::Hover); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::Globalization::DayOfWeek>(const std::string& value) noexcept { 
-  winrt::Windows::Globalization::DayOfWeek ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("sunday"): { ret = winrt::Windows::Globalization::DayOfWeek::Sunday; break; }
-      case COMPILE_TIME_CRC32_STR("monday"): { ret = winrt::Windows::Globalization::DayOfWeek::Monday; break; }
-      case COMPILE_TIME_CRC32_STR("tuesday"): { ret = winrt::Windows::Globalization::DayOfWeek::Tuesday; break; }
-      case COMPILE_TIME_CRC32_STR("wednesday"): { ret = winrt::Windows::Globalization::DayOfWeek::Wednesday; break; }
-      case COMPILE_TIME_CRC32_STR("thursday"): { ret = winrt::Windows::Globalization::DayOfWeek::Thursday; break; }
-      case COMPILE_TIME_CRC32_STR("friday"): { ret = winrt::Windows::Globalization::DayOfWeek::Friday; break; }
-      case COMPILE_TIME_CRC32_STR("saturday"): { ret = winrt::Windows::Globalization::DayOfWeek::Saturday; break; }
+	    case COMPILE_TIME_CRC32_STR("default"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition::Default); }
+      case COMPILE_TIME_CRC32_STR("collapsed"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition::Collapsed); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::Globalization::DayOfWeek>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("month"): { ret = winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode::Month; break; }
-      case COMPILE_TIME_CRC32_STR("year"): { ret = winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode::Year; break; }
-      case COMPILE_TIME_CRC32_STR("decade"): { ret = winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode::Decade; break; }
+	    case COMPILE_TIME_CRC32_STR("sunday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Sunday); }
+      case COMPILE_TIME_CRC32_STR("monday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Monday); }
+      case COMPILE_TIME_CRC32_STR("tuesday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Tuesday); }
+      case COMPILE_TIME_CRC32_STR("wednesday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Wednesday); }
+      case COMPILE_TIME_CRC32_STR("thursday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Thursday); }
+      case COMPILE_TIME_CRC32_STR("friday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Friday); }
+      case COMPILE_TIME_CRC32_STR("saturday"): { return winrt::box_value(winrt::Windows::Globalization::DayOfWeek::Saturday); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode::None; break; }
-      case COMPILE_TIME_CRC32_STR("single"): { ret = winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode::Single; break; }
-      case COMPILE_TIME_CRC32_STR("multiple"): { ret = winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode::Multiple; break; }
+	    case COMPILE_TIME_CRC32_STR("month"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode::Month); }
+      case COMPILE_TIME_CRC32_STR("year"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode::Year); }
+      case COMPILE_TIME_CRC32_STR("decade"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode::Decade); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::Stretch>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::Stretch ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Media::Stretch::None; break; }
-      case COMPILE_TIME_CRC32_STR("fill"): { ret = winrt::Windows::UI::Xaml::Media::Stretch::Fill; break; }
-      case COMPILE_TIME_CRC32_STR("uniform"): { ret = winrt::Windows::UI::Xaml::Media::Stretch::Uniform; break; }
-      case COMPILE_TIME_CRC32_STR("uniformToFill"): { ret = winrt::Windows::UI::Xaml::Media::Stretch::UniformToFill; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode::None); }
+      case COMPILE_TIME_CRC32_STR("single"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode::Single); }
+      case COMPILE_TIME_CRC32_STR("multiple"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode::Multiple); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::Stretch>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("box"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape::Box; break; }
-      case COMPILE_TIME_CRC32_STR("ring"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape::Ring; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stretch::None); }
+      case COMPILE_TIME_CRC32_STR("fill"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stretch::Fill); }
+      case COMPILE_TIME_CRC32_STR("uniform"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stretch::Uniform); }
+      case COMPILE_TIME_CRC32_STR("uniformToFill"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stretch::UniformToFill); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("hueValue"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::HueValue; break; }
-      case COMPILE_TIME_CRC32_STR("valueHue"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::ValueHue; break; }
-      case COMPILE_TIME_CRC32_STR("hueSaturation"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::HueSaturation; break; }
-      case COMPILE_TIME_CRC32_STR("saturationHue"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::SaturationHue; break; }
-      case COMPILE_TIME_CRC32_STR("saturationValue"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::SaturationValue; break; }
-      case COMPILE_TIME_CRC32_STR("valueSaturation"): { ret = winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::ValueSaturation; break; }
+	    case COMPILE_TIME_CRC32_STR("box"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape::Box); }
+      case COMPILE_TIME_CRC32_STR("ring"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape::Ring); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("committed"): { ret = winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger::Committed; break; }
-      case COMPILE_TIME_CRC32_STR("always"): { ret = winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger::Always; break; }
+	    case COMPILE_TIME_CRC32_STR("hueValue"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::HueValue); }
+      case COMPILE_TIME_CRC32_STR("valueHue"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::ValueHue); }
+      case COMPILE_TIME_CRC32_STR("hueSaturation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::HueSaturation); }
+      case COMPILE_TIME_CRC32_STR("saturationHue"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::SaturationHue); }
+      case COMPILE_TIME_CRC32_STR("saturationValue"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::SaturationValue); }
+      case COMPILE_TIME_CRC32_STR("valueSaturation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents::ValueSaturation); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("visible"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility::Visible; break; }
-      case COMPILE_TIME_CRC32_STR("collapsed"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility::Collapsed; break; }
+	    case COMPILE_TIME_CRC32_STR("committed"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger::Committed); }
+      case COMPILE_TIME_CRC32_STR("always"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger::Always); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("bottom"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition::Bottom; break; }
-      case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition::Right; break; }
-      case COMPILE_TIME_CRC32_STR("collapsed"): { ret = winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition::Collapsed; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility::Auto); }
+      case COMPILE_TIME_CRC32_STR("visible"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility::Visible); }
+      case COMPILE_TIME_CRC32_STR("collapsed"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility::Collapsed); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ContentDialogButton>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ContentDialogButton ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::ContentDialogButton::None; break; }
-      case COMPILE_TIME_CRC32_STR("primary"): { ret = winrt::Windows::UI::Xaml::Controls::ContentDialogButton::Primary; break; }
-      case COMPILE_TIME_CRC32_STR("secondary"): { ret = winrt::Windows::UI::Xaml::Controls::ContentDialogButton::Secondary; break; }
-      case COMPILE_TIME_CRC32_STR("close"): { ret = winrt::Windows::UI::Xaml::Controls::ContentDialogButton::Close; break; }
+	    case COMPILE_TIME_CRC32_STR("bottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition::Bottom); }
+      case COMPILE_TIME_CRC32_STR("right"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition::Right); }
+      case COMPILE_TIME_CRC32_STR("collapsed"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition::Collapsed); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextLineBounds>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::TextLineBounds ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ContentDialogButton>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("full"): { ret = winrt::Windows::UI::Xaml::TextLineBounds::Full; break; }
-      case COMPILE_TIME_CRC32_STR("trimToCapHeight"): { ret = winrt::Windows::UI::Xaml::TextLineBounds::TrimToCapHeight; break; }
-      case COMPILE_TIME_CRC32_STR("trimToBaseline"): { ret = winrt::Windows::UI::Xaml::TextLineBounds::TrimToBaseline; break; }
-      case COMPILE_TIME_CRC32_STR("tight"): { ret = winrt::Windows::UI::Xaml::TextLineBounds::Tight; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ContentDialogButton::None); }
+      case COMPILE_TIME_CRC32_STR("primary"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ContentDialogButton::Primary); }
+      case COMPILE_TIME_CRC32_STR("secondary"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ContentDialogButton::Secondary); }
+      case COMPILE_TIME_CRC32_STR("close"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ContentDialogButton::Close); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::OpticalMarginAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::OpticalMarginAlignment ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextLineBounds>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::OpticalMarginAlignment::None; break; }
-      case COMPILE_TIME_CRC32_STR("trimSideBearings"): { ret = winrt::Windows::UI::Xaml::OpticalMarginAlignment::TrimSideBearings; break; }
+	    case COMPILE_TIME_CRC32_STR("full"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextLineBounds::Full); }
+      case COMPILE_TIME_CRC32_STR("trimToCapHeight"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextLineBounds::TrimToCapHeight); }
+      case COMPILE_TIME_CRC32_STR("trimToBaseline"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextLineBounds::TrimToBaseline); }
+      case COMPILE_TIME_CRC32_STR("tight"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextLineBounds::Tight); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextWrapping>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::TextWrapping ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::OpticalMarginAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("noWrap"): { ret = winrt::Windows::UI::Xaml::TextWrapping::NoWrap; break; }
-      case COMPILE_TIME_CRC32_STR("wrap"): { ret = winrt::Windows::UI::Xaml::TextWrapping::Wrap; break; }
-      case COMPILE_TIME_CRC32_STR("wrapWholeWords"): { ret = winrt::Windows::UI::Xaml::TextWrapping::WrapWholeWords; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::OpticalMarginAlignment::None); }
+      case COMPILE_TIME_CRC32_STR("trimSideBearings"): { return winrt::box_value(winrt::Windows::UI::Xaml::OpticalMarginAlignment::TrimSideBearings); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::LineStackingStrategy>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::LineStackingStrategy ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextWrapping>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("maxHeight"): { ret = winrt::Windows::UI::Xaml::LineStackingStrategy::MaxHeight; break; }
-      case COMPILE_TIME_CRC32_STR("blockLineHeight"): { ret = winrt::Windows::UI::Xaml::LineStackingStrategy::BlockLineHeight; break; }
-      case COMPILE_TIME_CRC32_STR("baselineToBaseline"): { ret = winrt::Windows::UI::Xaml::LineStackingStrategy::BaselineToBaseline; break; }
+	    case COMPILE_TIME_CRC32_STR("noWrap"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextWrapping::NoWrap); }
+      case COMPILE_TIME_CRC32_STR("wrap"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextWrapping::Wrap); }
+      case COMPILE_TIME_CRC32_STR("wrapWholeWords"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextWrapping::WrapWholeWords); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Orientation>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Orientation ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::LineStackingStrategy>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("vertical"): { ret = winrt::Windows::UI::Xaml::Controls::Orientation::Vertical; break; }
-      case COMPILE_TIME_CRC32_STR("horizontal"): { ret = winrt::Windows::UI::Xaml::Controls::Orientation::Horizontal; break; }
+	    case COMPILE_TIME_CRC32_STR("maxHeight"): { return winrt::box_value(winrt::Windows::UI::Xaml::LineStackingStrategy::MaxHeight); }
+      case COMPILE_TIME_CRC32_STR("blockLineHeight"): { return winrt::box_value(winrt::Windows::UI::Xaml::LineStackingStrategy::BlockLineHeight); }
+      case COMPILE_TIME_CRC32_STR("baselineToBaseline"): { return winrt::box_value(winrt::Windows::UI::Xaml::LineStackingStrategy::BaselineToBaseline); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Orientation>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::None; break; }
-      case COMPILE_TIME_CRC32_STR("single"): { ret = winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::Single; break; }
-      case COMPILE_TIME_CRC32_STR("multiple"): { ret = winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::Multiple; break; }
-      case COMPILE_TIME_CRC32_STR("extended"): { ret = winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::Extended; break; }
+	    case COMPILE_TIME_CRC32_STR("vertical"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Orientation::Vertical); }
+      case COMPILE_TIME_CRC32_STR("horizontal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Orientation::Horizontal); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger::None; break; }
-      case COMPILE_TIME_CRC32_STR("edge"): { ret = winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger::Edge; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::None); }
+      case COMPILE_TIME_CRC32_STR("single"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::Single); }
+      case COMPILE_TIME_CRC32_STR("multiple"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::Multiple); }
+      case COMPILE_TIME_CRC32_STR("extended"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode::Extended); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ListViewReorderMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ListViewReorderMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::ListViewReorderMode::Disabled; break; }
-      case COMPILE_TIME_CRC32_STR("enabled"): { ret = winrt::Windows::UI::Xaml::Controls::ListViewReorderMode::Enabled; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger::None); }
+      case COMPILE_TIME_CRC32_STR("edge"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger::Edge); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ListViewReorderMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("topLeft"): { ret = winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::TopLeft; break; }
-      case COMPILE_TIME_CRC32_STR("topRight"): { ret = winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::TopRight; break; }
-      case COMPILE_TIME_CRC32_STR("bottomLeft"): { ret = winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::BottomLeft; break; }
-      case COMPILE_TIME_CRC32_STR("bottomRight"): { ret = winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::BottomRight; break; }
+	    case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ListViewReorderMode::Disabled); }
+      case COMPILE_TIME_CRC32_STR("enabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ListViewReorderMode::Enabled); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("all"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::All; break; }
-      case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::None; break; }
-      case COMPILE_TIME_CRC32_STR("pensOnly"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::PensOnly; break; }
-      case COMPILE_TIME_CRC32_STR("allExceptPens"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::AllExceptPens; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::Auto); }
+      case COMPILE_TIME_CRC32_STR("topLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::TopLeft); }
+      case COMPILE_TIME_CRC32_STR("topRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::TopRight); }
+      case COMPILE_TIME_CRC32_STR("bottomLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::BottomLeft); }
+      case COMPILE_TIME_CRC32_STR("bottomRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment::BottomRight); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("top"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Top; break; }
-      case COMPILE_TIME_CRC32_STR("bottom"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Bottom; break; }
-      case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Left; break; }
-      case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Right; break; }
+	    case COMPILE_TIME_CRC32_STR("all"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::All); }
+      case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::None); }
+      case COMPILE_TIME_CRC32_STR("pensOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::PensOnly); }
+      case COMPILE_TIME_CRC32_STR("allExceptPens"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls::AllExceptPens); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("simple"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::Simple; break; }
-      case COMPILE_TIME_CRC32_STR("radio"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::Radio; break; }
-      case COMPILE_TIME_CRC32_STR("check"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::Check; break; }
-      case COMPILE_TIME_CRC32_STR("radioCheck"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::RadioCheck; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Auto); }
+      case COMPILE_TIME_CRC32_STR("top"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Top); }
+      case COMPILE_TIME_CRC32_STR("bottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Bottom); }
+      case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Left); }
+      case COMPILE_TIME_CRC32_STR("right"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement::Right); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("ruler"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind::Ruler; break; }
-      case COMPILE_TIME_CRC32_STR("protractor"): { ret = winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind::Protractor; break; }
+	    case COMPILE_TIME_CRC32_STR("simple"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::Simple); }
+      case COMPILE_TIME_CRC32_STR("radio"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::Radio); }
+      case COMPILE_TIME_CRC32_STR("check"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::Check); }
+      case COMPILE_TIME_CRC32_STR("radioCheck"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind::RadioCheck); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("top"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement::Top; break; }
-      case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement::Left; break; }
+	    case COMPILE_TIME_CRC32_STR("ruler"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind::Ruler); }
+      case COMPILE_TIME_CRC32_STR("protractor"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind::Protractor); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SelectionMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::SelectionMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("single"): { ret = winrt::Windows::UI::Xaml::Controls::SelectionMode::Single; break; }
-      case COMPILE_TIME_CRC32_STR("multiple"): { ret = winrt::Windows::UI::Xaml::Controls::SelectionMode::Multiple; break; }
-      case COMPILE_TIME_CRC32_STR("extended"): { ret = winrt::Windows::UI::Xaml::Controls::SelectionMode::Extended; break; }
+	    case COMPILE_TIME_CRC32_STR("top"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement::Top); }
+      case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement::Left); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SelectionMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("automatic"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode::Automatic; break; }
-      case COMPILE_TIME_CRC32_STR("on"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode::On; break; }
+	    case COMPILE_TIME_CRC32_STR("single"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SelectionMode::Single); }
+      case COMPILE_TIME_CRC32_STR("multiple"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SelectionMode::Multiple); }
+      case COMPILE_TIME_CRC32_STR("extended"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SelectionMode::Extended); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Maps::MapStyle ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::None; break; }
-      case COMPILE_TIME_CRC32_STR("road"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::Road; break; }
-      case COMPILE_TIME_CRC32_STR("aerial"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::Aerial; break; }
-      case COMPILE_TIME_CRC32_STR("aerialWithRoads"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::AerialWithRoads; break; }
-      case COMPILE_TIME_CRC32_STR("terrain"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::Terrain; break; }
-      case COMPILE_TIME_CRC32_STR("aerial3D"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::Aerial3D; break; }
-      case COMPILE_TIME_CRC32_STR("aerial3DWithRoads"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::Aerial3DWithRoads; break; }
-      case COMPILE_TIME_CRC32_STR("custom"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapStyle::Custom; break; }
+	    case COMPILE_TIME_CRC32_STR("automatic"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode::Automatic); }
+      case COMPILE_TIME_CRC32_STR("on"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode::On); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("light"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme::Light; break; }
-      case COMPILE_TIME_CRC32_STR("dark"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme::Dark; break; }
+	    case COMPILE_TIME_CRC32_STR("light"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme::Light); }
+      case COMPILE_TIME_CRC32_STR("dark"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme::Dark); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::Disabled; break; }
-      case COMPILE_TIME_CRC32_STR("gestureOnly"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::GestureOnly; break; }
-      case COMPILE_TIME_CRC32_STR("pointerAndKeyboard"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::PointerAndKeyboard; break; }
-      case COMPILE_TIME_CRC32_STR("controlOnly"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::ControlOnly; break; }
-      case COMPILE_TIME_CRC32_STR("gestureAndControl"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::GestureAndControl; break; }
-      case COMPILE_TIME_CRC32_STR("pointerKeyboardAndControl"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::PointerKeyboardAndControl; break; }
-      case COMPILE_TIME_CRC32_STR("pointerOnly"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::PointerOnly; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::Auto); }
+      case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::Disabled); }
+      case COMPILE_TIME_CRC32_STR("gestureOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::GestureOnly); }
+      case COMPILE_TIME_CRC32_STR("pointerAndKeyboard"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::PointerAndKeyboard); }
+      case COMPILE_TIME_CRC32_STR("controlOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::ControlOnly); }
+      case COMPILE_TIME_CRC32_STR("gestureAndControl"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::GestureAndControl); }
+      case COMPILE_TIME_CRC32_STR("pointerKeyboardAndControl"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::PointerKeyboardAndControl); }
+      case COMPILE_TIME_CRC32_STR("pointerOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode::PointerOnly); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode::Disabled; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode::Auto); }
+      case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode::Disabled); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapProjection>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Maps::MapProjection ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Maps::MapProjection>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("webMercator"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapProjection::WebMercator; break; }
-      case COMPILE_TIME_CRC32_STR("globe"): { ret = winrt::Windows::UI::Xaml::Controls::Maps::MapProjection::Globe; break; }
+	    case COMPILE_TIME_CRC32_STR("webMercator"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapProjection::WebMercator); }
+      case COMPILE_TIME_CRC32_STR("globe"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Maps::MapProjection::Globe); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("mono"): { ret = winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode::Mono; break; }
-      case COMPILE_TIME_CRC32_STR("stereo"): { ret = winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode::Stereo; break; }
+	    case COMPILE_TIME_CRC32_STR("mono"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode::Mono); }
+      case COMPILE_TIME_CRC32_STR("stereo"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode::Stereo); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode::None; break; }
-      case COMPILE_TIME_CRC32_STR("sideBySide"): { ret = winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode::SideBySide; break; }
-      case COMPILE_TIME_CRC32_STR("topBottom"): { ret = winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode::TopBottom; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode::None); }
+      case COMPILE_TIME_CRC32_STR("sideBySide"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode::SideBySide); }
+      case COMPILE_TIME_CRC32_STR("topBottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode::TopBottom); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::AudioDeviceType>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::AudioDeviceType ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::AudioDeviceType>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("console"): { ret = winrt::Windows::UI::Xaml::Media::AudioDeviceType::Console; break; }
-      case COMPILE_TIME_CRC32_STR("multimedia"): { ret = winrt::Windows::UI::Xaml::Media::AudioDeviceType::Multimedia; break; }
-      case COMPILE_TIME_CRC32_STR("communications"): { ret = winrt::Windows::UI::Xaml::Media::AudioDeviceType::Communications; break; }
+	    case COMPILE_TIME_CRC32_STR("console"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioDeviceType::Console); }
+      case COMPILE_TIME_CRC32_STR("multimedia"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioDeviceType::Multimedia); }
+      case COMPILE_TIME_CRC32_STR("communications"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioDeviceType::Communications); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::AudioCategory>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::AudioCategory ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::AudioCategory>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("other"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::Other; break; }
-      case COMPILE_TIME_CRC32_STR("foregroundOnlyMedia"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::ForegroundOnlyMedia; break; }
-      case COMPILE_TIME_CRC32_STR("backgroundCapableMedia"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::BackgroundCapableMedia; break; }
-      case COMPILE_TIME_CRC32_STR("communications"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::Communications; break; }
-      case COMPILE_TIME_CRC32_STR("alerts"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::Alerts; break; }
-      case COMPILE_TIME_CRC32_STR("soundEffects"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::SoundEffects; break; }
-      case COMPILE_TIME_CRC32_STR("gameEffects"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::GameEffects; break; }
-      case COMPILE_TIME_CRC32_STR("gameMedia"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::GameMedia; break; }
-      case COMPILE_TIME_CRC32_STR("gameChat"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::GameChat; break; }
-      case COMPILE_TIME_CRC32_STR("speech"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::Speech; break; }
-      case COMPILE_TIME_CRC32_STR("movie"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::Movie; break; }
-      case COMPILE_TIME_CRC32_STR("media"): { ret = winrt::Windows::UI::Xaml::Media::AudioCategory::Media; break; }
+	    case COMPILE_TIME_CRC32_STR("other"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::Other); }
+      case COMPILE_TIME_CRC32_STR("foregroundOnlyMedia"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::ForegroundOnlyMedia); }
+      case COMPILE_TIME_CRC32_STR("backgroundCapableMedia"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::BackgroundCapableMedia); }
+      case COMPILE_TIME_CRC32_STR("communications"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::Communications); }
+      case COMPILE_TIME_CRC32_STR("alerts"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::Alerts); }
+      case COMPILE_TIME_CRC32_STR("soundEffects"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::SoundEffects); }
+      case COMPILE_TIME_CRC32_STR("gameEffects"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::GameEffects); }
+      case COMPILE_TIME_CRC32_STR("gameMedia"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::GameMedia); }
+      case COMPILE_TIME_CRC32_STR("gameChat"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::GameChat); }
+      case COMPILE_TIME_CRC32_STR("speech"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::Speech); }
+      case COMPILE_TIME_CRC32_STR("movie"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::Movie); }
+      case COMPILE_TIME_CRC32_STR("media"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::AudioCategory::Media); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("skip"): { ret = winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour::Skip; break; }
-      case COMPILE_TIME_CRC32_STR("hide"): { ret = winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour::Hide; break; }
-      case COMPILE_TIME_CRC32_STR("disable"): { ret = winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour::Disable; break; }
+	    case COMPILE_TIME_CRC32_STR("skip"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour::Skip); }
+      case COMPILE_TIME_CRC32_STR("hide"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour::Hide); }
+      case COMPILE_TIME_CRC32_STR("disable"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour::Disable); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("collapsed"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible::Collapsed; break; }
-      case COMPILE_TIME_CRC32_STR("visible"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible::Visible; break; }
-      case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible::Auto; break; }
+	    case COMPILE_TIME_CRC32_STR("collapsed"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible::Collapsed); }
+      case COMPILE_TIME_CRC32_STR("visible"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible::Visible); }
+      case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible::Auto); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("whenSelectionFollowsFocus"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled::WhenSelectionFollowsFocus; break; }
-      case COMPILE_TIME_CRC32_STR("always"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled::Always; break; }
-      case COMPILE_TIME_CRC32_STR("never"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled::Never; break; }
+	    case COMPILE_TIME_CRC32_STR("whenSelectionFollowsFocus"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled::WhenSelectionFollowsFocus); }
+      case COMPILE_TIME_CRC32_STR("always"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled::Always); }
+      case COMPILE_TIME_CRC32_STR("never"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled::Never); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus::Disabled; break; }
-      case COMPILE_TIME_CRC32_STR("enabled"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus::Enabled; break; }
+	    case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus::Disabled); }
+      case COMPILE_TIME_CRC32_STR("enabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus::Enabled); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Left; break; }
-      case COMPILE_TIME_CRC32_STR("top"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Top; break; }
-      case COMPILE_TIME_CRC32_STR("leftCompact"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::LeftCompact; break; }
-      case COMPILE_TIME_CRC32_STR("leftMinimal"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::LeftMinimal; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Auto); }
+      case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Left); }
+      case COMPILE_TIME_CRC32_STR("top"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::Top); }
+      case COMPILE_TIME_CRC32_STR("leftCompact"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::LeftCompact); }
+      case COMPILE_TIME_CRC32_STR("leftMinimal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode::LeftMinimal); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("moreLabel"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode::MoreLabel; break; }
-      case COMPILE_TIME_CRC32_STR("noLabel"): { ret = winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode::NoLabel; break; }
+	    case COMPILE_TIME_CRC32_STR("moreLabel"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode::MoreLabel); }
+      case COMPILE_TIME_CRC32_STR("noLabel"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode::NoLabel); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("absolute"): { ret = winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind::Absolute; break; }
-      case COMPILE_TIME_CRC32_STR("relative"): { ret = winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind::Relative; break; }
+	    case COMPILE_TIME_CRC32_STR("absolute"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind::Absolute); }
+      case COMPILE_TIME_CRC32_STR("relative"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind::Relative); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextReadingOrder>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::TextReadingOrder ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextReadingOrder>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("default"): { ret = winrt::Windows::UI::Xaml::TextReadingOrder::Default; break; }
-      case COMPILE_TIME_CRC32_STR("useFlowDirection"): { ret = winrt::Windows::UI::Xaml::TextReadingOrder::UseFlowDirection; break; }
-      case COMPILE_TIME_CRC32_STR("detectFromContent"): { ret = winrt::Windows::UI::Xaml::TextReadingOrder::DetectFromContent; break; }
+	    case COMPILE_TIME_CRC32_STR("default"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextReadingOrder::Default); }
+      case COMPILE_TIME_CRC32_STR("useFlowDirection"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextReadingOrder::UseFlowDirection); }
+      case COMPILE_TIME_CRC32_STR("detectFromContent"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextReadingOrder::DetectFromContent); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::PasswordRevealMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::PasswordRevealMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::PasswordRevealMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("peek"): { ret = winrt::Windows::UI::Xaml::Controls::PasswordRevealMode::Peek; break; }
-      case COMPILE_TIME_CRC32_STR("hidden"): { ret = winrt::Windows::UI::Xaml::Controls::PasswordRevealMode::Hidden; break; }
-      case COMPILE_TIME_CRC32_STR("visible"): { ret = winrt::Windows::UI::Xaml::Controls::PasswordRevealMode::Visible; break; }
+	    case COMPILE_TIME_CRC32_STR("peek"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::PasswordRevealMode::Peek); }
+      case COMPILE_TIME_CRC32_STR("hidden"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::PasswordRevealMode::Hidden); }
+      case COMPILE_TIME_CRC32_STR("visible"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::PasswordRevealMode::Visible); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("itemHeaders"): { ret = winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement::ItemHeaders; break; }
-      case COMPILE_TIME_CRC32_STR("selectedItemHeader"): { ret = winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement::SelectedItemHeader; break; }
+	    case COMPILE_TIME_CRC32_STR("itemHeaders"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement::ItemHeaders); }
+      case COMPILE_TIME_CRC32_STR("selectedItemHeader"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement::SelectedItemHeader); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::None; break; }
-      case COMPILE_TIME_CRC32_STR("topLeft"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::TopLeft; break; }
-      case COMPILE_TIME_CRC32_STR("bottomRight"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::BottomRight; break; }
-      case COMPILE_TIME_CRC32_STR("outside"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::Outside; break; }
-      case COMPILE_TIME_CRC32_STR("inline"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::Inline; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::None); }
+      case COMPILE_TIME_CRC32_STR("topLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::TopLeft); }
+      case COMPILE_TIME_CRC32_STR("bottomRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::BottomRight); }
+      case COMPILE_TIME_CRC32_STR("outside"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::Outside); }
+      case COMPILE_TIME_CRC32_STR("inline"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement::Inline); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("stepValues"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo::StepValues; break; }
-      case COMPILE_TIME_CRC32_STR("ticks"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo::Ticks; break; }
+	    case COMPILE_TIME_CRC32_STR("stepValues"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo::StepValues); }
+      case COMPILE_TIME_CRC32_STR("ticks"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo::Ticks); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("hue"): { ret = winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Hue; break; }
-      case COMPILE_TIME_CRC32_STR("saturation"): { ret = winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Saturation; break; }
-      case COMPILE_TIME_CRC32_STR("value"): { ret = winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Value; break; }
-      case COMPILE_TIME_CRC32_STR("alpha"): { ret = winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Alpha; break; }
+	    case COMPILE_TIME_CRC32_STR("hue"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Hue); }
+      case COMPILE_TIME_CRC32_STR("saturation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Saturation); }
+      case COMPILE_TIME_CRC32_STR("value"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Value); }
+      case COMPILE_TIME_CRC32_STR("alpha"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel::Alpha); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("inline"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode::Inline; break; }
-      case COMPILE_TIME_CRC32_STR("overlay"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode::Overlay; break; }
+	    case COMPILE_TIME_CRC32_STR("inline"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode::Inline); }
+      case COMPILE_TIME_CRC32_STR("overlay"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode::Overlay); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode::None; break; }
-      case COMPILE_TIME_CRC32_STR("touchIndicator"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode::TouchIndicator; break; }
-      case COMPILE_TIME_CRC32_STR("mouseIndicator"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode::MouseIndicator; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode::None); }
+      case COMPILE_TIME_CRC32_STR("touchIndicator"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode::TouchIndicator); }
+      case COMPILE_TIME_CRC32_STR("mouseIndicator"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode::MouseIndicator); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RefreshPullDirection>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::RefreshPullDirection ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RefreshPullDirection>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("leftToRight"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::LeftToRight; break; }
-      case COMPILE_TIME_CRC32_STR("topToBottom"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::TopToBottom; break; }
-      case COMPILE_TIME_CRC32_STR("rightToLeft"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::RightToLeft; break; }
-      case COMPILE_TIME_CRC32_STR("bottomToTop"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::BottomToTop; break; }
+	    case COMPILE_TIME_CRC32_STR("leftToRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::LeftToRight); }
+      case COMPILE_TIME_CRC32_STR("topToBottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::TopToBottom); }
+      case COMPILE_TIME_CRC32_STR("rightToLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::RightToLeft); }
+      case COMPILE_TIME_CRC32_STR("bottomToTop"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshPullDirection::BottomToTop); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("normal"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Normal; break; }
-      case COMPILE_TIME_CRC32_STR("rotate90DegreesCounterclockwise"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Rotate90DegreesCounterclockwise; break; }
-      case COMPILE_TIME_CRC32_STR("rotate270DegreesCounterclockwise"): { ret = winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Rotate270DegreesCounterclockwise; break; }
+	    case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Auto); }
+      case COMPILE_TIME_CRC32_STR("normal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Normal); }
+      case COMPILE_TIME_CRC32_STR("rotate90DegreesCounterclockwise"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Rotate90DegreesCounterclockwise); }
+      case COMPILE_TIME_CRC32_STR("rotate270DegreesCounterclockwise"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation::Rotate270DegreesCounterclockwise); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::TextAlignment ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("center"): { ret = winrt::Windows::UI::Xaml::TextAlignment::Center; break; }
-      case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::TextAlignment::Left; break; }
-      case COMPILE_TIME_CRC32_STR("start"): { ret = winrt::Windows::UI::Xaml::TextAlignment::Start; break; }
-      case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::TextAlignment::Right; break; }
-      case COMPILE_TIME_CRC32_STR("end"): { ret = winrt::Windows::UI::Xaml::TextAlignment::End; break; }
-      case COMPILE_TIME_CRC32_STR("justify"): { ret = winrt::Windows::UI::Xaml::TextAlignment::Justify; break; }
-      case COMPILE_TIME_CRC32_STR("detectFromContent"): { ret = winrt::Windows::UI::Xaml::TextAlignment::DetectFromContent; break; }
+	    case COMPILE_TIME_CRC32_STR("center"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::Center); }
+      case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::Left); }
+      case COMPILE_TIME_CRC32_STR("start"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::Start); }
+      case COMPILE_TIME_CRC32_STR("right"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::Right); }
+      case COMPILE_TIME_CRC32_STR("end"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::End); }
+      case COMPILE_TIME_CRC32_STR("justify"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::Justify); }
+      case COMPILE_TIME_CRC32_STR("detectFromContent"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextAlignment::DetectFromContent); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("default"): { ret = winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment::Default; break; }
-      case COMPILE_TIME_CRC32_STR("bottomEdge"): { ret = winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment::BottomEdge; break; }
+	    case COMPILE_TIME_CRC32_STR("default"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment::Default); }
+      case COMPILE_TIME_CRC32_STR("bottomEdge"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment::BottomEdge); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("allFormats"): { ret = winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat::AllFormats; break; }
-      case COMPILE_TIME_CRC32_STR("plainText"): { ret = winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat::PlainText; break; }
+	    case COMPILE_TIME_CRC32_STR("allFormats"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat::AllFormats); }
+      case COMPILE_TIME_CRC32_STR("plainText"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat::PlainText); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::None; break; }
-      case COMPILE_TIME_CRC32_STR("bold"): { ret = winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::Bold; break; }
-      case COMPILE_TIME_CRC32_STR("italic"): { ret = winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::Italic; break; }
-      case COMPILE_TIME_CRC32_STR("underline"): { ret = winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::Underline; break; }
-      case COMPILE_TIME_CRC32_STR("all"): { ret = winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::All; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::None); }
+      case COMPILE_TIME_CRC32_STR("bold"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::Bold); }
+      case COMPILE_TIME_CRC32_STR("italic"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::Italic); }
+      case COMPILE_TIME_CRC32_STR("underline"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::Underline); }
+      case COMPILE_TIME_CRC32_STR("all"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators::All); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CharacterCasing>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::CharacterCasing ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::CharacterCasing>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("normal"): { ret = winrt::Windows::UI::Xaml::Controls::CharacterCasing::Normal; break; }
-      case COMPILE_TIME_CRC32_STR("lower"): { ret = winrt::Windows::UI::Xaml::Controls::CharacterCasing::Lower; break; }
-      case COMPILE_TIME_CRC32_STR("upper"): { ret = winrt::Windows::UI::Xaml::Controls::CharacterCasing::Upper; break; }
+	    case COMPILE_TIME_CRC32_STR("normal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CharacterCasing::Normal); }
+      case COMPILE_TIME_CRC32_STR("lower"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CharacterCasing::Lower); }
+      case COMPILE_TIME_CRC32_STR("upper"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::CharacterCasing::Upper); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextTrimming>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::TextTrimming ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::TextTrimming>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::TextTrimming::None; break; }
-      case COMPILE_TIME_CRC32_STR("characterEllipsis"): { ret = winrt::Windows::UI::Xaml::TextTrimming::CharacterEllipsis; break; }
-      case COMPILE_TIME_CRC32_STR("wordEllipsis"): { ret = winrt::Windows::UI::Xaml::TextTrimming::WordEllipsis; break; }
-      case COMPILE_TIME_CRC32_STR("clip"): { ret = winrt::Windows::UI::Xaml::TextTrimming::Clip; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextTrimming::None); }
+      case COMPILE_TIME_CRC32_STR("characterEllipsis"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextTrimming::CharacterEllipsis); }
+      case COMPILE_TIME_CRC32_STR("wordEllipsis"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextTrimming::WordEllipsis); }
+      case COMPILE_TIME_CRC32_STR("clip"): { return winrt::box_value(winrt::Windows::UI::Xaml::TextTrimming::Clip); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Text::TextDecorations>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Text::TextDecorations ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Text::TextDecorations>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Text::TextDecorations::None; break; }
-      case COMPILE_TIME_CRC32_STR("underline"): { ret = winrt::Windows::UI::Text::TextDecorations::Underline; break; }
-      case COMPILE_TIME_CRC32_STR("strikethrough"): { ret = winrt::Windows::UI::Text::TextDecorations::Strikethrough; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Text::TextDecorations::None); }
+      case COMPILE_TIME_CRC32_STR("underline"): { return winrt::box_value(winrt::Windows::UI::Text::TextDecorations::Underline); }
+      case COMPILE_TIME_CRC32_STR("strikethrough"): { return winrt::box_value(winrt::Windows::UI::Text::TextDecorations::Strikethrough); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SnapPointsType>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::SnapPointsType ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SnapPointsType>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::SnapPointsType::None; break; }
-      case COMPILE_TIME_CRC32_STR("optional"): { ret = winrt::Windows::UI::Xaml::Controls::SnapPointsType::Optional; break; }
-      case COMPILE_TIME_CRC32_STR("mandatory"): { ret = winrt::Windows::UI::Xaml::Controls::SnapPointsType::Mandatory; break; }
-      case COMPILE_TIME_CRC32_STR("optionalSingle"): { ret = winrt::Windows::UI::Xaml::Controls::SnapPointsType::OptionalSingle; break; }
-      case COMPILE_TIME_CRC32_STR("mandatorySingle"): { ret = winrt::Windows::UI::Xaml::Controls::SnapPointsType::MandatorySingle; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SnapPointsType::None); }
+      case COMPILE_TIME_CRC32_STR("optional"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SnapPointsType::Optional); }
+      case COMPILE_TIME_CRC32_STR("mandatory"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SnapPointsType::Mandatory); }
+      case COMPILE_TIME_CRC32_STR("optionalSingle"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SnapPointsType::OptionalSingle); }
+      case COMPILE_TIME_CRC32_STR("mandatorySingle"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SnapPointsType::MandatorySingle); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("near"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment::Near; break; }
-      case COMPILE_TIME_CRC32_STR("center"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment::Center; break; }
-      case COMPILE_TIME_CRC32_STR("far"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment::Far; break; }
+	    case COMPILE_TIME_CRC32_STR("near"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment::Near); }
+      case COMPILE_TIME_CRC32_STR("center"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment::Center); }
+      case COMPILE_TIME_CRC32_STR("far"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment::Far); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ScrollMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ScrollMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ScrollMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollMode::Disabled; break; }
-      case COMPILE_TIME_CRC32_STR("enabled"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollMode::Enabled; break; }
-      case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollMode::Auto; break; }
+	    case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollMode::Disabled); }
+      case COMPILE_TIME_CRC32_STR("enabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollMode::Enabled); }
+      case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollMode::Auto); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Disabled; break; }
-      case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Auto; break; }
-      case COMPILE_TIME_CRC32_STR("hidden"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Hidden; break; }
-      case COMPILE_TIME_CRC32_STR("visible"): { ret = winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Visible; break; }
+	    case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Disabled); }
+      case COMPILE_TIME_CRC32_STR("auto"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Auto); }
+      case COMPILE_TIME_CRC32_STR("hidden"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Hidden); }
+      case COMPILE_TIME_CRC32_STR("visible"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility::Visible); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ZoomMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::ZoomMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ZoomMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("disabled"): { ret = winrt::Windows::UI::Xaml::Controls::ZoomMode::Disabled; break; }
-      case COMPILE_TIME_CRC32_STR("enabled"): { ret = winrt::Windows::UI::Xaml::Controls::ZoomMode::Enabled; break; }
+	    case COMPILE_TIME_CRC32_STR("disabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ZoomMode::Disabled); }
+      case COMPILE_TIME_CRC32_STR("enabled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::ZoomMode::Enabled); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement::Left; break; }
-      case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement::Right; break; }
+	    case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement::Left); }
+      case COMPILE_TIME_CRC32_STR("right"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement::Right); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("overlay"): { ret = winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::Overlay; break; }
-      case COMPILE_TIME_CRC32_STR("inline"): { ret = winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::Inline; break; }
-      case COMPILE_TIME_CRC32_STR("compactOverlay"): { ret = winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::CompactOverlay; break; }
-      case COMPILE_TIME_CRC32_STR("compactInline"): { ret = winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::CompactInline; break; }
+	    case COMPILE_TIME_CRC32_STR("overlay"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::Overlay); }
+      case COMPILE_TIME_CRC32_STR("inline"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::Inline); }
+      case COMPILE_TIME_CRC32_STR("compactOverlay"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::CompactOverlay); }
+      case COMPILE_TIME_CRC32_STR("compactInline"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode::CompactInline); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Symbol>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Symbol ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Symbol>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("previous"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Previous; break; }
-      case COMPILE_TIME_CRC32_STR("next"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Next; break; }
-      case COMPILE_TIME_CRC32_STR("play"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Play; break; }
-      case COMPILE_TIME_CRC32_STR("pause"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Pause; break; }
-      case COMPILE_TIME_CRC32_STR("edit"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Edit; break; }
-      case COMPILE_TIME_CRC32_STR("save"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Save; break; }
-      case COMPILE_TIME_CRC32_STR("clear"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Clear; break; }
-      case COMPILE_TIME_CRC32_STR("delete"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Delete; break; }
-      case COMPILE_TIME_CRC32_STR("remove"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Remove; break; }
-      case COMPILE_TIME_CRC32_STR("add"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Add; break; }
-      case COMPILE_TIME_CRC32_STR("cancel"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Cancel; break; }
-      case COMPILE_TIME_CRC32_STR("accept"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Accept; break; }
-      case COMPILE_TIME_CRC32_STR("more"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::More; break; }
-      case COMPILE_TIME_CRC32_STR("redo"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Redo; break; }
-      case COMPILE_TIME_CRC32_STR("undo"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Undo; break; }
-      case COMPILE_TIME_CRC32_STR("home"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Home; break; }
-      case COMPILE_TIME_CRC32_STR("up"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Up; break; }
-      case COMPILE_TIME_CRC32_STR("forward"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Forward; break; }
-      case COMPILE_TIME_CRC32_STR("back"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Back; break; }
-      case COMPILE_TIME_CRC32_STR("favorite"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Favorite; break; }
-      case COMPILE_TIME_CRC32_STR("camera"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Camera; break; }
-      case COMPILE_TIME_CRC32_STR("setting"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Setting; break; }
-      case COMPILE_TIME_CRC32_STR("video"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Video; break; }
-      case COMPILE_TIME_CRC32_STR("sync"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Sync; break; }
-      case COMPILE_TIME_CRC32_STR("download"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Download; break; }
-      case COMPILE_TIME_CRC32_STR("mail"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Mail; break; }
-      case COMPILE_TIME_CRC32_STR("find"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Find; break; }
-      case COMPILE_TIME_CRC32_STR("help"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Help; break; }
-      case COMPILE_TIME_CRC32_STR("upload"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Upload; break; }
-      case COMPILE_TIME_CRC32_STR("emoji"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Emoji; break; }
-      case COMPILE_TIME_CRC32_STR("twoPage"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::TwoPage; break; }
-      case COMPILE_TIME_CRC32_STR("leaveChat"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::LeaveChat; break; }
-      case COMPILE_TIME_CRC32_STR("mailForward"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MailForward; break; }
-      case COMPILE_TIME_CRC32_STR("clock"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Clock; break; }
-      case COMPILE_TIME_CRC32_STR("send"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Send; break; }
-      case COMPILE_TIME_CRC32_STR("crop"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Crop; break; }
-      case COMPILE_TIME_CRC32_STR("rotateCamera"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::RotateCamera; break; }
-      case COMPILE_TIME_CRC32_STR("people"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::People; break; }
-      case COMPILE_TIME_CRC32_STR("openPane"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OpenPane; break; }
-      case COMPILE_TIME_CRC32_STR("closePane"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ClosePane; break; }
-      case COMPILE_TIME_CRC32_STR("world"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::World; break; }
-      case COMPILE_TIME_CRC32_STR("flag"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Flag; break; }
-      case COMPILE_TIME_CRC32_STR("previewLink"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::PreviewLink; break; }
-      case COMPILE_TIME_CRC32_STR("globe"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Globe; break; }
-      case COMPILE_TIME_CRC32_STR("trim"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Trim; break; }
-      case COMPILE_TIME_CRC32_STR("attachCamera"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::AttachCamera; break; }
-      case COMPILE_TIME_CRC32_STR("zoomIn"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ZoomIn; break; }
-      case COMPILE_TIME_CRC32_STR("bookmarks"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Bookmarks; break; }
-      case COMPILE_TIME_CRC32_STR("document"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Document; break; }
-      case COMPILE_TIME_CRC32_STR("protectedDocument"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ProtectedDocument; break; }
-      case COMPILE_TIME_CRC32_STR("page"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Page; break; }
-      case COMPILE_TIME_CRC32_STR("bullets"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Bullets; break; }
-      case COMPILE_TIME_CRC32_STR("comment"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Comment; break; }
-      case COMPILE_TIME_CRC32_STR("mailFilled"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MailFilled; break; }
-      case COMPILE_TIME_CRC32_STR("contactInfo"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ContactInfo; break; }
-      case COMPILE_TIME_CRC32_STR("hangUp"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::HangUp; break; }
-      case COMPILE_TIME_CRC32_STR("viewAll"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ViewAll; break; }
-      case COMPILE_TIME_CRC32_STR("mapPin"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MapPin; break; }
-      case COMPILE_TIME_CRC32_STR("phone"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Phone; break; }
-      case COMPILE_TIME_CRC32_STR("videoChat"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::VideoChat; break; }
-      case COMPILE_TIME_CRC32_STR("switch"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Switch; break; }
-      case COMPILE_TIME_CRC32_STR("contact"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Contact; break; }
-      case COMPILE_TIME_CRC32_STR("rename"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Rename; break; }
-      case COMPILE_TIME_CRC32_STR("pin"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Pin; break; }
-      case COMPILE_TIME_CRC32_STR("musicInfo"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MusicInfo; break; }
-      case COMPILE_TIME_CRC32_STR("go"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Go; break; }
-      case COMPILE_TIME_CRC32_STR("keyboard"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Keyboard; break; }
-      case COMPILE_TIME_CRC32_STR("dockLeft"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::DockLeft; break; }
-      case COMPILE_TIME_CRC32_STR("dockRight"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::DockRight; break; }
-      case COMPILE_TIME_CRC32_STR("dockBottom"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::DockBottom; break; }
-      case COMPILE_TIME_CRC32_STR("remote"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Remote; break; }
-      case COMPILE_TIME_CRC32_STR("refresh"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Refresh; break; }
-      case COMPILE_TIME_CRC32_STR("rotate"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Rotate; break; }
-      case COMPILE_TIME_CRC32_STR("shuffle"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Shuffle; break; }
-      case COMPILE_TIME_CRC32_STR("list"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::List; break; }
-      case COMPILE_TIME_CRC32_STR("shop"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Shop; break; }
-      case COMPILE_TIME_CRC32_STR("selectAll"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SelectAll; break; }
-      case COMPILE_TIME_CRC32_STR("orientation"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Orientation; break; }
-      case COMPILE_TIME_CRC32_STR("import"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Import; break; }
-      case COMPILE_TIME_CRC32_STR("importAll"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ImportAll; break; }
-      case COMPILE_TIME_CRC32_STR("browsePhotos"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::BrowsePhotos; break; }
-      case COMPILE_TIME_CRC32_STR("webCam"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::WebCam; break; }
-      case COMPILE_TIME_CRC32_STR("pictures"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Pictures; break; }
-      case COMPILE_TIME_CRC32_STR("saveLocal"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SaveLocal; break; }
-      case COMPILE_TIME_CRC32_STR("caption"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Caption; break; }
-      case COMPILE_TIME_CRC32_STR("stop"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Stop; break; }
-      case COMPILE_TIME_CRC32_STR("showResults"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ShowResults; break; }
-      case COMPILE_TIME_CRC32_STR("volume"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Volume; break; }
-      case COMPILE_TIME_CRC32_STR("repair"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Repair; break; }
-      case COMPILE_TIME_CRC32_STR("message"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Message; break; }
-      case COMPILE_TIME_CRC32_STR("page2"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Page2; break; }
-      case COMPILE_TIME_CRC32_STR("calendarDay"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::CalendarDay; break; }
-      case COMPILE_TIME_CRC32_STR("calendarWeek"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::CalendarWeek; break; }
-      case COMPILE_TIME_CRC32_STR("calendar"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Calendar; break; }
-      case COMPILE_TIME_CRC32_STR("character"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Character; break; }
-      case COMPILE_TIME_CRC32_STR("mailReplyAll"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MailReplyAll; break; }
-      case COMPILE_TIME_CRC32_STR("read"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Read; break; }
-      case COMPILE_TIME_CRC32_STR("link"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Link; break; }
-      case COMPILE_TIME_CRC32_STR("account"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Account; break; }
-      case COMPILE_TIME_CRC32_STR("showBcc"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ShowBcc; break; }
-      case COMPILE_TIME_CRC32_STR("hideBcc"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::HideBcc; break; }
-      case COMPILE_TIME_CRC32_STR("cut"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Cut; break; }
-      case COMPILE_TIME_CRC32_STR("attach"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Attach; break; }
-      case COMPILE_TIME_CRC32_STR("paste"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Paste; break; }
-      case COMPILE_TIME_CRC32_STR("filter"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Filter; break; }
-      case COMPILE_TIME_CRC32_STR("copy"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Copy; break; }
-      case COMPILE_TIME_CRC32_STR("emoji2"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Emoji2; break; }
-      case COMPILE_TIME_CRC32_STR("important"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Important; break; }
-      case COMPILE_TIME_CRC32_STR("mailReply"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MailReply; break; }
-      case COMPILE_TIME_CRC32_STR("slideShow"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SlideShow; break; }
-      case COMPILE_TIME_CRC32_STR("sort"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Sort; break; }
-      case COMPILE_TIME_CRC32_STR("manage"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Manage; break; }
-      case COMPILE_TIME_CRC32_STR("allApps"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::AllApps; break; }
-      case COMPILE_TIME_CRC32_STR("disconnectDrive"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::DisconnectDrive; break; }
-      case COMPILE_TIME_CRC32_STR("mapDrive"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MapDrive; break; }
-      case COMPILE_TIME_CRC32_STR("newWindow"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::NewWindow; break; }
-      case COMPILE_TIME_CRC32_STR("openWith"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OpenWith; break; }
-      case COMPILE_TIME_CRC32_STR("contactPresence"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ContactPresence; break; }
-      case COMPILE_TIME_CRC32_STR("priority"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Priority; break; }
-      case COMPILE_TIME_CRC32_STR("goToToday"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::GoToToday; break; }
-      case COMPILE_TIME_CRC32_STR("font"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Font; break; }
-      case COMPILE_TIME_CRC32_STR("fontColor"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::FontColor; break; }
-      case COMPILE_TIME_CRC32_STR("contact2"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Contact2; break; }
-      case COMPILE_TIME_CRC32_STR("folder"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Folder; break; }
-      case COMPILE_TIME_CRC32_STR("audio"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Audio; break; }
-      case COMPILE_TIME_CRC32_STR("placeholder"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Placeholder; break; }
-      case COMPILE_TIME_CRC32_STR("view"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::View; break; }
-      case COMPILE_TIME_CRC32_STR("setLockScreen"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SetLockScreen; break; }
-      case COMPILE_TIME_CRC32_STR("setTile"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SetTile; break; }
-      case COMPILE_TIME_CRC32_STR("closedCaption"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ClosedCaption; break; }
-      case COMPILE_TIME_CRC32_STR("stopSlideShow"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::StopSlideShow; break; }
-      case COMPILE_TIME_CRC32_STR("permissions"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Permissions; break; }
-      case COMPILE_TIME_CRC32_STR("highlight"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Highlight; break; }
-      case COMPILE_TIME_CRC32_STR("disableUpdates"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::DisableUpdates; break; }
-      case COMPILE_TIME_CRC32_STR("unFavorite"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::UnFavorite; break; }
-      case COMPILE_TIME_CRC32_STR("unPin"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::UnPin; break; }
-      case COMPILE_TIME_CRC32_STR("openLocal"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OpenLocal; break; }
-      case COMPILE_TIME_CRC32_STR("mute"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Mute; break; }
-      case COMPILE_TIME_CRC32_STR("italic"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Italic; break; }
-      case COMPILE_TIME_CRC32_STR("underline"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Underline; break; }
-      case COMPILE_TIME_CRC32_STR("bold"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Bold; break; }
-      case COMPILE_TIME_CRC32_STR("moveToFolder"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::MoveToFolder; break; }
-      case COMPILE_TIME_CRC32_STR("likeDislike"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::LikeDislike; break; }
-      case COMPILE_TIME_CRC32_STR("dislike"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Dislike; break; }
-      case COMPILE_TIME_CRC32_STR("like"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Like; break; }
-      case COMPILE_TIME_CRC32_STR("alignRight"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::AlignRight; break; }
-      case COMPILE_TIME_CRC32_STR("alignCenter"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::AlignCenter; break; }
-      case COMPILE_TIME_CRC32_STR("alignLeft"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::AlignLeft; break; }
-      case COMPILE_TIME_CRC32_STR("zoom"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Zoom; break; }
-      case COMPILE_TIME_CRC32_STR("zoomOut"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ZoomOut; break; }
-      case COMPILE_TIME_CRC32_STR("openFile"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OpenFile; break; }
-      case COMPILE_TIME_CRC32_STR("otherUser"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OtherUser; break; }
-      case COMPILE_TIME_CRC32_STR("admin"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Admin; break; }
-      case COMPILE_TIME_CRC32_STR("street"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Street; break; }
-      case COMPILE_TIME_CRC32_STR("map"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Map; break; }
-      case COMPILE_TIME_CRC32_STR("clearSelection"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ClearSelection; break; }
-      case COMPILE_TIME_CRC32_STR("fontDecrease"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::FontDecrease; break; }
-      case COMPILE_TIME_CRC32_STR("fontIncrease"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::FontIncrease; break; }
-      case COMPILE_TIME_CRC32_STR("fontSize"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::FontSize; break; }
-      case COMPILE_TIME_CRC32_STR("cellPhone"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::CellPhone; break; }
-      case COMPILE_TIME_CRC32_STR("reShare"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ReShare; break; }
-      case COMPILE_TIME_CRC32_STR("tag"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Tag; break; }
-      case COMPILE_TIME_CRC32_STR("repeatOne"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::RepeatOne; break; }
-      case COMPILE_TIME_CRC32_STR("repeatAll"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::RepeatAll; break; }
-      case COMPILE_TIME_CRC32_STR("outlineStar"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OutlineStar; break; }
-      case COMPILE_TIME_CRC32_STR("solidStar"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SolidStar; break; }
-      case COMPILE_TIME_CRC32_STR("calculator"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Calculator; break; }
-      case COMPILE_TIME_CRC32_STR("directions"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Directions; break; }
-      case COMPILE_TIME_CRC32_STR("target"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Target; break; }
-      case COMPILE_TIME_CRC32_STR("library"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Library; break; }
-      case COMPILE_TIME_CRC32_STR("phoneBook"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::PhoneBook; break; }
-      case COMPILE_TIME_CRC32_STR("memo"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Memo; break; }
-      case COMPILE_TIME_CRC32_STR("microphone"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Microphone; break; }
-      case COMPILE_TIME_CRC32_STR("postUpdate"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::PostUpdate; break; }
-      case COMPILE_TIME_CRC32_STR("backToWindow"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::BackToWindow; break; }
-      case COMPILE_TIME_CRC32_STR("fullScreen"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::FullScreen; break; }
-      case COMPILE_TIME_CRC32_STR("newFolder"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::NewFolder; break; }
-      case COMPILE_TIME_CRC32_STR("calendarReply"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::CalendarReply; break; }
-      case COMPILE_TIME_CRC32_STR("unSyncFolder"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::UnSyncFolder; break; }
-      case COMPILE_TIME_CRC32_STR("reportHacked"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ReportHacked; break; }
-      case COMPILE_TIME_CRC32_STR("syncFolder"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SyncFolder; break; }
-      case COMPILE_TIME_CRC32_STR("blockContact"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::BlockContact; break; }
-      case COMPILE_TIME_CRC32_STR("switchApps"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::SwitchApps; break; }
-      case COMPILE_TIME_CRC32_STR("addFriend"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::AddFriend; break; }
-      case COMPILE_TIME_CRC32_STR("touchPointer"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::TouchPointer; break; }
-      case COMPILE_TIME_CRC32_STR("goToStart"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::GoToStart; break; }
-      case COMPILE_TIME_CRC32_STR("zeroBars"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ZeroBars; break; }
-      case COMPILE_TIME_CRC32_STR("oneBar"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::OneBar; break; }
-      case COMPILE_TIME_CRC32_STR("twoBars"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::TwoBars; break; }
-      case COMPILE_TIME_CRC32_STR("threeBars"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::ThreeBars; break; }
-      case COMPILE_TIME_CRC32_STR("fourBars"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::FourBars; break; }
-      case COMPILE_TIME_CRC32_STR("scan"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Scan; break; }
-      case COMPILE_TIME_CRC32_STR("preview"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Preview; break; }
-      case COMPILE_TIME_CRC32_STR("globalNavigationButton"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::GlobalNavigationButton; break; }
-      case COMPILE_TIME_CRC32_STR("share"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Share; break; }
-      case COMPILE_TIME_CRC32_STR("print"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::Print; break; }
-      case COMPILE_TIME_CRC32_STR("xboxOneConsole"): { ret = winrt::Windows::UI::Xaml::Controls::Symbol::XboxOneConsole; break; }
+	    case COMPILE_TIME_CRC32_STR("previous"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Previous); }
+      case COMPILE_TIME_CRC32_STR("next"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Next); }
+      case COMPILE_TIME_CRC32_STR("play"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Play); }
+      case COMPILE_TIME_CRC32_STR("pause"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Pause); }
+      case COMPILE_TIME_CRC32_STR("edit"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Edit); }
+      case COMPILE_TIME_CRC32_STR("save"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Save); }
+      case COMPILE_TIME_CRC32_STR("clear"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Clear); }
+      case COMPILE_TIME_CRC32_STR("delete"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Delete); }
+      case COMPILE_TIME_CRC32_STR("remove"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Remove); }
+      case COMPILE_TIME_CRC32_STR("add"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Add); }
+      case COMPILE_TIME_CRC32_STR("cancel"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Cancel); }
+      case COMPILE_TIME_CRC32_STR("accept"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Accept); }
+      case COMPILE_TIME_CRC32_STR("more"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::More); }
+      case COMPILE_TIME_CRC32_STR("redo"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Redo); }
+      case COMPILE_TIME_CRC32_STR("undo"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Undo); }
+      case COMPILE_TIME_CRC32_STR("home"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Home); }
+      case COMPILE_TIME_CRC32_STR("up"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Up); }
+      case COMPILE_TIME_CRC32_STR("forward"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Forward); }
+      case COMPILE_TIME_CRC32_STR("back"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Back); }
+      case COMPILE_TIME_CRC32_STR("favorite"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Favorite); }
+      case COMPILE_TIME_CRC32_STR("camera"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Camera); }
+      case COMPILE_TIME_CRC32_STR("setting"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Setting); }
+      case COMPILE_TIME_CRC32_STR("video"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Video); }
+      case COMPILE_TIME_CRC32_STR("sync"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Sync); }
+      case COMPILE_TIME_CRC32_STR("download"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Download); }
+      case COMPILE_TIME_CRC32_STR("mail"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Mail); }
+      case COMPILE_TIME_CRC32_STR("find"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Find); }
+      case COMPILE_TIME_CRC32_STR("help"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Help); }
+      case COMPILE_TIME_CRC32_STR("upload"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Upload); }
+      case COMPILE_TIME_CRC32_STR("emoji"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Emoji); }
+      case COMPILE_TIME_CRC32_STR("twoPage"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::TwoPage); }
+      case COMPILE_TIME_CRC32_STR("leaveChat"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::LeaveChat); }
+      case COMPILE_TIME_CRC32_STR("mailForward"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MailForward); }
+      case COMPILE_TIME_CRC32_STR("clock"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Clock); }
+      case COMPILE_TIME_CRC32_STR("send"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Send); }
+      case COMPILE_TIME_CRC32_STR("crop"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Crop); }
+      case COMPILE_TIME_CRC32_STR("rotateCamera"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::RotateCamera); }
+      case COMPILE_TIME_CRC32_STR("people"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::People); }
+      case COMPILE_TIME_CRC32_STR("openPane"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OpenPane); }
+      case COMPILE_TIME_CRC32_STR("closePane"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ClosePane); }
+      case COMPILE_TIME_CRC32_STR("world"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::World); }
+      case COMPILE_TIME_CRC32_STR("flag"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Flag); }
+      case COMPILE_TIME_CRC32_STR("previewLink"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::PreviewLink); }
+      case COMPILE_TIME_CRC32_STR("globe"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Globe); }
+      case COMPILE_TIME_CRC32_STR("trim"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Trim); }
+      case COMPILE_TIME_CRC32_STR("attachCamera"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::AttachCamera); }
+      case COMPILE_TIME_CRC32_STR("zoomIn"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ZoomIn); }
+      case COMPILE_TIME_CRC32_STR("bookmarks"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Bookmarks); }
+      case COMPILE_TIME_CRC32_STR("document"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Document); }
+      case COMPILE_TIME_CRC32_STR("protectedDocument"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ProtectedDocument); }
+      case COMPILE_TIME_CRC32_STR("page"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Page); }
+      case COMPILE_TIME_CRC32_STR("bullets"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Bullets); }
+      case COMPILE_TIME_CRC32_STR("comment"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Comment); }
+      case COMPILE_TIME_CRC32_STR("mailFilled"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MailFilled); }
+      case COMPILE_TIME_CRC32_STR("contactInfo"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ContactInfo); }
+      case COMPILE_TIME_CRC32_STR("hangUp"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::HangUp); }
+      case COMPILE_TIME_CRC32_STR("viewAll"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ViewAll); }
+      case COMPILE_TIME_CRC32_STR("mapPin"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MapPin); }
+      case COMPILE_TIME_CRC32_STR("phone"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Phone); }
+      case COMPILE_TIME_CRC32_STR("videoChat"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::VideoChat); }
+      case COMPILE_TIME_CRC32_STR("switch"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Switch); }
+      case COMPILE_TIME_CRC32_STR("contact"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Contact); }
+      case COMPILE_TIME_CRC32_STR("rename"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Rename); }
+      case COMPILE_TIME_CRC32_STR("pin"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Pin); }
+      case COMPILE_TIME_CRC32_STR("musicInfo"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MusicInfo); }
+      case COMPILE_TIME_CRC32_STR("go"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Go); }
+      case COMPILE_TIME_CRC32_STR("keyboard"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Keyboard); }
+      case COMPILE_TIME_CRC32_STR("dockLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::DockLeft); }
+      case COMPILE_TIME_CRC32_STR("dockRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::DockRight); }
+      case COMPILE_TIME_CRC32_STR("dockBottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::DockBottom); }
+      case COMPILE_TIME_CRC32_STR("remote"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Remote); }
+      case COMPILE_TIME_CRC32_STR("refresh"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Refresh); }
+      case COMPILE_TIME_CRC32_STR("rotate"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Rotate); }
+      case COMPILE_TIME_CRC32_STR("shuffle"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Shuffle); }
+      case COMPILE_TIME_CRC32_STR("list"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::List); }
+      case COMPILE_TIME_CRC32_STR("shop"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Shop); }
+      case COMPILE_TIME_CRC32_STR("selectAll"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SelectAll); }
+      case COMPILE_TIME_CRC32_STR("orientation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Orientation); }
+      case COMPILE_TIME_CRC32_STR("import"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Import); }
+      case COMPILE_TIME_CRC32_STR("importAll"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ImportAll); }
+      case COMPILE_TIME_CRC32_STR("browsePhotos"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::BrowsePhotos); }
+      case COMPILE_TIME_CRC32_STR("webCam"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::WebCam); }
+      case COMPILE_TIME_CRC32_STR("pictures"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Pictures); }
+      case COMPILE_TIME_CRC32_STR("saveLocal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SaveLocal); }
+      case COMPILE_TIME_CRC32_STR("caption"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Caption); }
+      case COMPILE_TIME_CRC32_STR("stop"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Stop); }
+      case COMPILE_TIME_CRC32_STR("showResults"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ShowResults); }
+      case COMPILE_TIME_CRC32_STR("volume"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Volume); }
+      case COMPILE_TIME_CRC32_STR("repair"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Repair); }
+      case COMPILE_TIME_CRC32_STR("message"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Message); }
+      case COMPILE_TIME_CRC32_STR("page2"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Page2); }
+      case COMPILE_TIME_CRC32_STR("calendarDay"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::CalendarDay); }
+      case COMPILE_TIME_CRC32_STR("calendarWeek"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::CalendarWeek); }
+      case COMPILE_TIME_CRC32_STR("calendar"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Calendar); }
+      case COMPILE_TIME_CRC32_STR("character"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Character); }
+      case COMPILE_TIME_CRC32_STR("mailReplyAll"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MailReplyAll); }
+      case COMPILE_TIME_CRC32_STR("read"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Read); }
+      case COMPILE_TIME_CRC32_STR("link"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Link); }
+      case COMPILE_TIME_CRC32_STR("account"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Account); }
+      case COMPILE_TIME_CRC32_STR("showBcc"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ShowBcc); }
+      case COMPILE_TIME_CRC32_STR("hideBcc"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::HideBcc); }
+      case COMPILE_TIME_CRC32_STR("cut"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Cut); }
+      case COMPILE_TIME_CRC32_STR("attach"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Attach); }
+      case COMPILE_TIME_CRC32_STR("paste"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Paste); }
+      case COMPILE_TIME_CRC32_STR("filter"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Filter); }
+      case COMPILE_TIME_CRC32_STR("copy"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Copy); }
+      case COMPILE_TIME_CRC32_STR("emoji2"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Emoji2); }
+      case COMPILE_TIME_CRC32_STR("important"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Important); }
+      case COMPILE_TIME_CRC32_STR("mailReply"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MailReply); }
+      case COMPILE_TIME_CRC32_STR("slideShow"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SlideShow); }
+      case COMPILE_TIME_CRC32_STR("sort"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Sort); }
+      case COMPILE_TIME_CRC32_STR("manage"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Manage); }
+      case COMPILE_TIME_CRC32_STR("allApps"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::AllApps); }
+      case COMPILE_TIME_CRC32_STR("disconnectDrive"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::DisconnectDrive); }
+      case COMPILE_TIME_CRC32_STR("mapDrive"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MapDrive); }
+      case COMPILE_TIME_CRC32_STR("newWindow"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::NewWindow); }
+      case COMPILE_TIME_CRC32_STR("openWith"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OpenWith); }
+      case COMPILE_TIME_CRC32_STR("contactPresence"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ContactPresence); }
+      case COMPILE_TIME_CRC32_STR("priority"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Priority); }
+      case COMPILE_TIME_CRC32_STR("goToToday"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::GoToToday); }
+      case COMPILE_TIME_CRC32_STR("font"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Font); }
+      case COMPILE_TIME_CRC32_STR("fontColor"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::FontColor); }
+      case COMPILE_TIME_CRC32_STR("contact2"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Contact2); }
+      case COMPILE_TIME_CRC32_STR("folder"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Folder); }
+      case COMPILE_TIME_CRC32_STR("audio"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Audio); }
+      case COMPILE_TIME_CRC32_STR("placeholder"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Placeholder); }
+      case COMPILE_TIME_CRC32_STR("view"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::View); }
+      case COMPILE_TIME_CRC32_STR("setLockScreen"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SetLockScreen); }
+      case COMPILE_TIME_CRC32_STR("setTile"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SetTile); }
+      case COMPILE_TIME_CRC32_STR("closedCaption"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ClosedCaption); }
+      case COMPILE_TIME_CRC32_STR("stopSlideShow"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::StopSlideShow); }
+      case COMPILE_TIME_CRC32_STR("permissions"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Permissions); }
+      case COMPILE_TIME_CRC32_STR("highlight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Highlight); }
+      case COMPILE_TIME_CRC32_STR("disableUpdates"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::DisableUpdates); }
+      case COMPILE_TIME_CRC32_STR("unFavorite"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::UnFavorite); }
+      case COMPILE_TIME_CRC32_STR("unPin"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::UnPin); }
+      case COMPILE_TIME_CRC32_STR("openLocal"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OpenLocal); }
+      case COMPILE_TIME_CRC32_STR("mute"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Mute); }
+      case COMPILE_TIME_CRC32_STR("italic"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Italic); }
+      case COMPILE_TIME_CRC32_STR("underline"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Underline); }
+      case COMPILE_TIME_CRC32_STR("bold"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Bold); }
+      case COMPILE_TIME_CRC32_STR("moveToFolder"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::MoveToFolder); }
+      case COMPILE_TIME_CRC32_STR("likeDislike"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::LikeDislike); }
+      case COMPILE_TIME_CRC32_STR("dislike"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Dislike); }
+      case COMPILE_TIME_CRC32_STR("like"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Like); }
+      case COMPILE_TIME_CRC32_STR("alignRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::AlignRight); }
+      case COMPILE_TIME_CRC32_STR("alignCenter"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::AlignCenter); }
+      case COMPILE_TIME_CRC32_STR("alignLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::AlignLeft); }
+      case COMPILE_TIME_CRC32_STR("zoom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Zoom); }
+      case COMPILE_TIME_CRC32_STR("zoomOut"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ZoomOut); }
+      case COMPILE_TIME_CRC32_STR("openFile"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OpenFile); }
+      case COMPILE_TIME_CRC32_STR("otherUser"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OtherUser); }
+      case COMPILE_TIME_CRC32_STR("admin"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Admin); }
+      case COMPILE_TIME_CRC32_STR("street"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Street); }
+      case COMPILE_TIME_CRC32_STR("map"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Map); }
+      case COMPILE_TIME_CRC32_STR("clearSelection"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ClearSelection); }
+      case COMPILE_TIME_CRC32_STR("fontDecrease"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::FontDecrease); }
+      case COMPILE_TIME_CRC32_STR("fontIncrease"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::FontIncrease); }
+      case COMPILE_TIME_CRC32_STR("fontSize"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::FontSize); }
+      case COMPILE_TIME_CRC32_STR("cellPhone"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::CellPhone); }
+      case COMPILE_TIME_CRC32_STR("reShare"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ReShare); }
+      case COMPILE_TIME_CRC32_STR("tag"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Tag); }
+      case COMPILE_TIME_CRC32_STR("repeatOne"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::RepeatOne); }
+      case COMPILE_TIME_CRC32_STR("repeatAll"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::RepeatAll); }
+      case COMPILE_TIME_CRC32_STR("outlineStar"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OutlineStar); }
+      case COMPILE_TIME_CRC32_STR("solidStar"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SolidStar); }
+      case COMPILE_TIME_CRC32_STR("calculator"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Calculator); }
+      case COMPILE_TIME_CRC32_STR("directions"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Directions); }
+      case COMPILE_TIME_CRC32_STR("target"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Target); }
+      case COMPILE_TIME_CRC32_STR("library"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Library); }
+      case COMPILE_TIME_CRC32_STR("phoneBook"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::PhoneBook); }
+      case COMPILE_TIME_CRC32_STR("memo"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Memo); }
+      case COMPILE_TIME_CRC32_STR("microphone"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Microphone); }
+      case COMPILE_TIME_CRC32_STR("postUpdate"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::PostUpdate); }
+      case COMPILE_TIME_CRC32_STR("backToWindow"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::BackToWindow); }
+      case COMPILE_TIME_CRC32_STR("fullScreen"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::FullScreen); }
+      case COMPILE_TIME_CRC32_STR("newFolder"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::NewFolder); }
+      case COMPILE_TIME_CRC32_STR("calendarReply"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::CalendarReply); }
+      case COMPILE_TIME_CRC32_STR("unSyncFolder"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::UnSyncFolder); }
+      case COMPILE_TIME_CRC32_STR("reportHacked"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ReportHacked); }
+      case COMPILE_TIME_CRC32_STR("syncFolder"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SyncFolder); }
+      case COMPILE_TIME_CRC32_STR("blockContact"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::BlockContact); }
+      case COMPILE_TIME_CRC32_STR("switchApps"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::SwitchApps); }
+      case COMPILE_TIME_CRC32_STR("addFriend"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::AddFriend); }
+      case COMPILE_TIME_CRC32_STR("touchPointer"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::TouchPointer); }
+      case COMPILE_TIME_CRC32_STR("goToStart"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::GoToStart); }
+      case COMPILE_TIME_CRC32_STR("zeroBars"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ZeroBars); }
+      case COMPILE_TIME_CRC32_STR("oneBar"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::OneBar); }
+      case COMPILE_TIME_CRC32_STR("twoBars"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::TwoBars); }
+      case COMPILE_TIME_CRC32_STR("threeBars"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::ThreeBars); }
+      case COMPILE_TIME_CRC32_STR("fourBars"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::FourBars); }
+      case COMPILE_TIME_CRC32_STR("scan"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Scan); }
+      case COMPILE_TIME_CRC32_STR("preview"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Preview); }
+      case COMPILE_TIME_CRC32_STR("globalNavigationButton"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::GlobalNavigationButton); }
+      case COMPILE_TIME_CRC32_STR("share"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Share); }
+      case COMPILE_TIME_CRC32_STR("print"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::Print); }
+      case COMPILE_TIME_CRC32_STR("xboxOneConsole"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Symbol::XboxOneConsole); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("bottom"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Bottom; break; }
-      case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Left; break; }
-      case COMPILE_TIME_CRC32_STR("mouse"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Mouse; break; }
-      case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Right; break; }
-      case COMPILE_TIME_CRC32_STR("top"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Top; break; }
+	    case COMPILE_TIME_CRC32_STR("bottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Bottom); }
+      case COMPILE_TIME_CRC32_STR("left"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Left); }
+      case COMPILE_TIME_CRC32_STR("mouse"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Mouse); }
+      case COMPILE_TIME_CRC32_STR("right"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Right); }
+      case COMPILE_TIME_CRC32_STR("top"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode::Top); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode::None; break; }
-      case COMPILE_TIME_CRC32_STR("single"): { ret = winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode::Single; break; }
-      case COMPILE_TIME_CRC32_STR("multiple"): { ret = winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode::Multiple; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode::None); }
+      case COMPILE_TIME_CRC32_STR("single"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode::Single); }
+      case COMPILE_TIME_CRC32_STR("multiple"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode::Multiple); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("singlePane"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration::SinglePane; break; }
-      case COMPILE_TIME_CRC32_STR("leftRight"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration::LeftRight; break; }
-      case COMPILE_TIME_CRC32_STR("rightLeft"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration::RightLeft; break; }
+	    case COMPILE_TIME_CRC32_STR("singlePane"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration::SinglePane); }
+      case COMPILE_TIME_CRC32_STR("leftRight"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration::LeftRight); }
+      case COMPILE_TIME_CRC32_STR("rightLeft"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration::RightLeft); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("singlePane"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration::SinglePane; break; }
-      case COMPILE_TIME_CRC32_STR("topBottom"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration::TopBottom; break; }
-      case COMPILE_TIME_CRC32_STR("bottomTop"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration::BottomTop; break; }
+	    case COMPILE_TIME_CRC32_STR("singlePane"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration::SinglePane); }
+      case COMPILE_TIME_CRC32_STR("topBottom"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration::TopBottom); }
+      case COMPILE_TIME_CRC32_STR("bottomTop"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration::BottomTop); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("pane1"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority::Pane1; break; }
-      case COMPILE_TIME_CRC32_STR("pane2"): { ret = winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority::Pane2; break; }
+	    case COMPILE_TIME_CRC32_STR("pane1"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority::Pane1); }
+      case COMPILE_TIME_CRC32_STR("pane2"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority::Pane2); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::StretchDirection>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Controls::StretchDirection ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::StretchDirection>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("upOnly"): { ret = winrt::Windows::UI::Xaml::Controls::StretchDirection::UpOnly; break; }
-      case COMPILE_TIME_CRC32_STR("downOnly"): { ret = winrt::Windows::UI::Xaml::Controls::StretchDirection::DownOnly; break; }
-      case COMPILE_TIME_CRC32_STR("both"): { ret = winrt::Windows::UI::Xaml::Controls::StretchDirection::Both; break; }
+	    case COMPILE_TIME_CRC32_STR("upOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::StretchDirection::UpOnly); }
+      case COMPILE_TIME_CRC32_STR("downOnly"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::StretchDirection::DownOnly); }
+      case COMPILE_TIME_CRC32_STR("both"): { return winrt::box_value(winrt::Windows::UI::Xaml::Controls::StretchDirection::Both); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::StyleSimulations>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::StyleSimulations ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::StyleSimulations>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("none"): { ret = winrt::Windows::UI::Xaml::Media::StyleSimulations::None; break; }
-      case COMPILE_TIME_CRC32_STR("boldSimulation"): { ret = winrt::Windows::UI::Xaml::Media::StyleSimulations::BoldSimulation; break; }
-      case COMPILE_TIME_CRC32_STR("italicSimulation"): { ret = winrt::Windows::UI::Xaml::Media::StyleSimulations::ItalicSimulation; break; }
-      case COMPILE_TIME_CRC32_STR("boldItalicSimulation"): { ret = winrt::Windows::UI::Xaml::Media::StyleSimulations::BoldItalicSimulation; break; }
+	    case COMPILE_TIME_CRC32_STR("none"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::StyleSimulations::None); }
+      case COMPILE_TIME_CRC32_STR("boldSimulation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::StyleSimulations::BoldSimulation); }
+      case COMPILE_TIME_CRC32_STR("italicSimulation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::StyleSimulations::ItalicSimulation); }
+      case COMPILE_TIME_CRC32_STR("boldItalicSimulation"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::StyleSimulations::BoldItalicSimulation); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::PenLineCap>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::PenLineCap ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::PenLineCap>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("flat"): { ret = winrt::Windows::UI::Xaml::Media::PenLineCap::Flat; break; }
-      case COMPILE_TIME_CRC32_STR("square"): { ret = winrt::Windows::UI::Xaml::Media::PenLineCap::Square; break; }
-      case COMPILE_TIME_CRC32_STR("round"): { ret = winrt::Windows::UI::Xaml::Media::PenLineCap::Round; break; }
-      case COMPILE_TIME_CRC32_STR("triangle"): { ret = winrt::Windows::UI::Xaml::Media::PenLineCap::Triangle; break; }
+	    case COMPILE_TIME_CRC32_STR("flat"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineCap::Flat); }
+      case COMPILE_TIME_CRC32_STR("square"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineCap::Square); }
+      case COMPILE_TIME_CRC32_STR("round"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineCap::Round); }
+      case COMPILE_TIME_CRC32_STR("triangle"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineCap::Triangle); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::PenLineJoin>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::PenLineJoin ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::PenLineJoin>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("miter"): { ret = winrt::Windows::UI::Xaml::Media::PenLineJoin::Miter; break; }
-      case COMPILE_TIME_CRC32_STR("bevel"): { ret = winrt::Windows::UI::Xaml::Media::PenLineJoin::Bevel; break; }
-      case COMPILE_TIME_CRC32_STR("round"): { ret = winrt::Windows::UI::Xaml::Media::PenLineJoin::Round; break; }
+	    case COMPILE_TIME_CRC32_STR("miter"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineJoin::Miter); }
+      case COMPILE_TIME_CRC32_STR("bevel"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineJoin::Bevel); }
+      case COMPILE_TIME_CRC32_STR("round"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::PenLineJoin::Round); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 
-  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::FillRule>(const std::string& value) noexcept { 
-  winrt::Windows::UI::Xaml::Media::FillRule ret;
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Media::FillRule>(const std::string& value) { 
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	    case COMPILE_TIME_CRC32_STR("evenOdd"): { ret = winrt::Windows::UI::Xaml::Media::FillRule::EvenOdd; break; }
-      case COMPILE_TIME_CRC32_STR("nonzero"): { ret = winrt::Windows::UI::Xaml::Media::FillRule::Nonzero; break; }
+	    case COMPILE_TIME_CRC32_STR("evenOdd"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::FillRule::EvenOdd); }
+      case COMPILE_TIME_CRC32_STR("nonzero"): { return winrt::box_value(winrt::Windows::UI::Xaml::Media::FillRule::Nonzero); }
     }
-
-  return winrt::box_value(ret);
+  return nullptr;
   }
 

@@ -19,6 +19,20 @@ namespace winrt::Microsoft::ReactNative {
     auto color = XamlHelper::ColorFrom([&jsValue](IJSValueWriter const& writer) noexcept { jsValue.WriteTo(writer); });
     value = xaml::Media::SolidColorBrush(color);
   }
+
+  inline void ReadValue(JSValue const& jsValue, xaml::Thickness& value) noexcept {
+    if (auto array = jsValue.TryGetArray()) {
+      if (array->size() == 4) {
+        value = Thickness{ (*array)[0].AsDouble(), (*array)[1].AsDouble(), (*array)[2].AsDouble() , (*array)[3].AsDouble() };
+        return;
+      }
+    }
+    else {
+      const auto& obj = jsValue.AsObject();
+      value = Thickness{ obj["left"].AsDouble(), obj["top"].AsDouble(), obj["bottom"].AsDouble(), obj["right"].AsDouble() };
+      return;
+    }
+  }
 }
 
 enum class XamlPropType {

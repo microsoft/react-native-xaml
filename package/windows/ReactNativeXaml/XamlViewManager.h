@@ -22,7 +22,7 @@ namespace winrt::ReactNativeXaml {
 #ifdef HAS_CREATEWITHPROPERTIES
     ,winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties
 #endif
-    //,winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
+    ,winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
   > {
   public:
     XamlViewManager() = default;
