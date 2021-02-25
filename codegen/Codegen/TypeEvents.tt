@@ -15,25 +15,30 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 <# foreach (var ns in Events.Select(p => p.DeclaringType.GetNamespace()).Distinct()) { #>
 #include <winrt/<#= ns #>.h>
 <# } #>
+#include <winrt/Windows.UI.Xaml.Input.h>
 
 /////// Events
-
-
-#define MAKE_EVENT(evtName, xamlType) \
-        { #evtName, [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) { \
-          if (auto c = o.try_as<xamlType>()) {  \
-            c.evtName([reactContext] (auto&& sender, auto&& /*args*/) { \
-              if (sender) reactContext.DispatchEvent(sender.as<xaml::FrameworkElement>(), L"top" L#evtName, [](winrt::Microsoft::ReactNative::IJSValueWriter const& /*evtDataWriter*/) noexcept {}); \
-            }); \
-          } \
-        } }
+template<typename TArgs>
+void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const TArgs& args);
 
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
 <# foreach (var evt in Events) { #>
-  MAKE_EVENT(<#= evt.GetName() #>, <#= Util.GetCppWinRTType(evt.DeclaringType) #>),
+  {"<#= evt.GetName() #>", [](winrt::Windows::Foundation::IInspectable o, IReactContext reactContext) {
+    if (auto c = o.try_as<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>()) {
+        c.<#= evt.GetName() #>([reactContext] (<#= Util.GetCppWinRTEventSignature(evt) #>) {
+            if (auto fe = sender ? sender.try_as<xaml::FrameworkElement>() : nullptr) {
+              reactContext.DispatchEvent(fe, L"top<#= evt.GetName() #>", [args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {
+                SerializeEventArgs(evtDataWriter, args);
+              });
+            }
+        });
+    }
+    } },
 <# } #>
 
 };
+
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == <#= Events.Count() #>);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

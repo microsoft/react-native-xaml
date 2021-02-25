@@ -1,8 +1,6 @@
 ﻿using MiddleweightReflection;
-using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
@@ -89,7 +87,8 @@ class Program
                                                                                                                                                  //            var assembly = context.LoadAssemblyFromPath(path); // @"C:\rnw\vnext\target\x86\Debug\Microsoft.ReactNative\Microsoft.ReactNative.winmd");
             context.FinishLoading();
             var types = windows_winmd.GetAllTypes().Skip(1);
-            var fe = types.Where(type => Util.DerivesFrom(type, "Windows.UI.Xaml.FrameworkElement"));
+            Util.LoadContext = context;
+            var fe = types.Where(type => Util.DerivesFrom(type, "Windows.UI.Xaml.UIElement"));
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var generatedDirPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
 

@@ -2,7 +2,79 @@ import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
 
-export interface NativeFrameworkElementProps extends ViewProps {
+export interface NativeUIElementProps extends ViewProps {
+  type: 'uiElement'|'frameworkElement'|'control'|'contentControl'|'appBar'|'buttonBase'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'iconElement'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'panel'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'selector'|'comboBox'|'selectorItem'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyoutPresenter'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'listViewBase'|'gridView'|'listViewBaseHeaderItem'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyoutPresenter'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItemBase'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyoutPresenter'|'pivot'|'pivotItem'|'calendarPanel'|'virtualizingPanel'|'carouselPanel'|'rangeBase'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'loopingSelector'|'loopingSelectorItem'|'loopingSelectorPanel'|'navigationViewItemPresenter'|'orientedVirtualizingPanel'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'timePickerFlyoutPresenter'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'shape'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  opacity?: number;
+  manipulationMode?: 'none' | 'translateX' | 'translateY' | 'translateRailsX' | 'translateRailsY' | 'rotate' | 'scale' | 'translateInertia' | 'rotateInertia' | 'scaleInertia' | 'all' | 'system';
+  isTapEnabled?: boolean;
+  isRightTapEnabled?: boolean;
+  isHoldingEnabled?: boolean;
+  isHitTestVisible?: boolean;
+  isDoubleTapEnabled?: boolean;
+  allowDrop?: boolean;
+  useLayoutRounding?: boolean;
+  visibility?: 'visible' | 'collapsed';
+  compositeMode?: 'inherit' | 'sourceOver' | 'minBlend';
+  canDrag?: boolean;
+  isAccessKeyScope?: boolean;
+  exitDisplayModeOnAccessKeyInvoked?: boolean;
+  accessKey?: string;
+  keyTipHorizontalOffset?: number;
+  highContrastAdjustment?: 'none' | 'application' | 'auto';
+  xyFocusRightNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
+  xyFocusKeyboardNavigation?: 'auto' | 'enabled' | 'disabled';
+  xyFocusDownNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
+  tabFocusNavigation?: 'local' | 'cycle' | 'once';
+  keyTipVerticalOffset?: number;
+  xyFocusUpNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
+  keyTipPlacementMode?: 'auto' | 'bottom' | 'top' | 'left' | 'right' | 'center' | 'hidden';
+  xyFocusLeftNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
+  keyboardAcceleratorPlacementMode?: 'auto' | 'hidden';
+  canBeScrollAnchor?: boolean;
+  onDoubleTapped?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDragEnter?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDragLeave?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDragOver?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDrop?: (event: NativeSyntheticEvent<undefined>) => void;
+  onGotFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+  onHolding?: (event: NativeSyntheticEvent<undefined>) => void;
+  onKeyDown?: (event: NativeSyntheticEvent<undefined>) => void;
+  onKeyUp?: (event: NativeSyntheticEvent<undefined>) => void;
+  onLostFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+  onManipulationCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
+  onManipulationDelta?: (event: NativeSyntheticEvent<undefined>) => void;
+  onManipulationInertiaStarting?: (event: NativeSyntheticEvent<undefined>) => void;
+  onManipulationStarted?: (event: NativeSyntheticEvent<undefined>) => void;
+  onManipulationStarting?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerCanceled?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerCaptureLost?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerEntered?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerExited?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerMoved?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerPressed?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerReleased?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPointerWheelChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onRightTapped?: (event: NativeSyntheticEvent<undefined>) => void;
+  onTapped?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDragStarting?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDropCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAccessKeyDisplayDismissed?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAccessKeyDisplayRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAccessKeyInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onContextCanceled?: (event: NativeSyntheticEvent<undefined>) => void;
+  onContextRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onGettingFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+  onLosingFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+  onNoFocusCandidateFound?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCharacterReceived?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPreviewKeyDown?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPreviewKeyUp?: (event: NativeSyntheticEvent<undefined>) => void;
+  onProcessKeyboardAccelerators?: (event: NativeSyntheticEvent<undefined>) => void;
+  onBringIntoViewRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeFrameworkElementProps extends NativeUIElementProps {
   type: 'frameworkElement'|'control'|'contentControl'|'appBar'|'buttonBase'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'iconElement'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'panel'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'selector'|'comboBox'|'selectorItem'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyoutPresenter'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'listViewBase'|'gridView'|'listViewBaseHeaderItem'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyoutPresenter'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItemBase'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyoutPresenter'|'pivot'|'pivotItem'|'calendarPanel'|'virtualizingPanel'|'carouselPanel'|'rangeBase'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'loopingSelector'|'loopingSelectorItem'|'loopingSelectorPanel'|'navigationViewItemPresenter'|'orientedVirtualizingPanel'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'timePickerFlyoutPresenter'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'shape'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   width?: number;
   verticalAlignment?: 'top' | 'center' | 'bottom' | 'stretch';

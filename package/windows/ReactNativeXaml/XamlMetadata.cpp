@@ -85,3 +85,7 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   
   return nullptr;
 }
+
+template<typename TArgs>
+void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const TArgs& args)
+{}
