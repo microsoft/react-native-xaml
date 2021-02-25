@@ -88,12 +88,7 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   return nullptr;
 }
 
-void SerializeEventArgsInternal(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::RoutedEventArgs& args) {
-  writer.WriteObjectBegin();
-  writer.WritePropertyName(L"foo");
-  writer.WriteInt64(42);
-  writer.WriteObjectEnd();
-}
+
 
 std::vector<uint32_t> VectorToIndices(const winrt::IVector<winrt::IInspectable>& vector, const Controls::ItemCollection& coll)
 {
@@ -125,6 +120,12 @@ namespace winrt::Microsoft::ReactNative {
     auto cn = winrt::get_class_name(item);
     writer.WriteObjectBegin();
     WriteProperty(writer, L"type", cn);
+    if (auto fe = ii.try_as<FrameworkElement>()) {
+      if (auto tagII = fe.Tag()) {
+        auto tag = winrt::unbox_value<int64_t>(tagII);
+        WriteProperty(writer, L"tag", tag);
+      }
+    }
     writer.WritePropertyName(L"value");
     WriteIInspectable(writer, ii);
     writer.WriteObjectEnd();
@@ -140,7 +141,21 @@ namespace winrt::Microsoft::ReactNative {
   }
 }
 
-void SerializeEventArgsInternal(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::Controls::SelectionChangedEventArgs& args) {
+template<typename T>
+void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const T& args) {
+//  assert(false);
+}
+
+template<>
+void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::RoutedEventArgs& args) {
+    writer.WriteObjectBegin();
+    writer.WritePropertyName(L"foo");
+    writer.WriteInt64(42);
+    writer.WriteObjectEnd();
+}
+
+template<>
+void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::Controls::SelectionChangedEventArgs& args) {
   auto sel = sender.as<Controls::Primitives::Selector>();
   const auto& items = sel.Items();
   auto added = VectorToIndices(args.AddedItems(), items);
@@ -151,17 +166,14 @@ void SerializeEventArgsInternal(winrt::Microsoft::ReactNative::IJSValueWriter co
   WriteProperty(writer, L"removedIndices", removed);
   WriteProperty(writer, L"addedItems", args.AddedItems());
   WriteProperty(writer, L"removedItems", args.RemovedItems());
+  WriteProperty(writer, L"selectedIndex", sel.SelectedIndex());
+  WriteProperty(writer, L"selectedItem", sel.SelectedItem());
+  WriteProperty(writer, L"selectedValue", sel.SelectedValue());
   writer.WriteObjectEnd();
 }
 
 template<typename TArgs>
 void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const TArgs& args)
 {
-  if constexpr (std::is_same_v<TArgs, xaml::RoutedEventArgs>)
-  {
-    SerializeEventArgsInternal(writer, sender, args);
-  }
-  else if constexpr (std::is_same_v<TArgs, xaml::Controls::SelectionChangedEventArgs>) {
-    SerializeEventArgsInternal(writer, sender, args);
-  }
+  Serialize(writer, sender, args);
 }
