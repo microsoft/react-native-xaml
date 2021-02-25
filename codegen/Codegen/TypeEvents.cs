@@ -58,10 +58,14 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
             
             #line default
             #line hidden
-            this.Write("#include <winrt/Windows.UI.Xaml.Input.h>\r\n\r\n/////// Events\r\ntemplate<typename TAr" +
-                    "gs>\r\nvoid SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const" +
-                    "& writer, const TArgs& args);\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEvent" +
-                    "Map[] = {\r\n");
+            this.Write(@"#include <winrt/Windows.UI.Xaml.Input.h>
+
+/////// Events
+template<typename TArgs>
+void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::Windows::Foundation::IInspectable& sender, const TArgs& args);
+
+/*static*/ const EventInfo EventInfo::xamlEventMap[] = {
+");
             
             #line 25 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\TypeEvents.tt"
  foreach (var evt in Events) { 
@@ -105,9 +109,9 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
             
             #line default
             #line hidden
-            this.Write("\", [args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noe" +
-                    "xcept {\r\n                SerializeEventArgs(evtDataWriter, args);\r\n             " +
-                    " });\r\n            }\r\n        });\r\n    }\r\n    } },\r\n");
+            this.Write("\", [sender, args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWri" +
+                    "ter) noexcept {\r\n                SerializeEventArgs(evtDataWriter, sender, args)" +
+                    ";\r\n              });\r\n            }\r\n        });\r\n    }\r\n    } },\r\n");
             
             #line 37 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\TypeEvents.tt"
  } 

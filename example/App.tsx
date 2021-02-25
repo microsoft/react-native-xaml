@@ -87,7 +87,9 @@ const App: () => Node = () => {
             <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
             <Button content={{string: "this is a button"}}  onClick={() => { alert("you clicked the button!"); }}  />
           </StackPanel>
-          <ComboBox text="this is a combobox" description={{string: "best bois"}} >
+          <ComboBox text="this is a combobox" description={{string: "best bois"}} onSelectionChanged={(args) => { 
+              alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`); 
+              }} >
             <ComboBoxItem content={{string: "garfield"}} foreground="black" />
             <ComboBoxItem content={{string: "snoopy"}} foreground="black"  />
           </ComboBox>

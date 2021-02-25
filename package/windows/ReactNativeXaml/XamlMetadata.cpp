@@ -88,18 +88,80 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   return nullptr;
 }
 
-void SerializeRoutedEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const xaml::RoutedEventArgs& args) {
+void SerializeEventArgsInternal(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::RoutedEventArgs& args) {
   writer.WriteObjectBegin();
   writer.WritePropertyName(L"foo");
   writer.WriteInt64(42);
   writer.WriteObjectEnd();
 }
 
+std::vector<uint32_t> VectorToIndices(const winrt::IVector<winrt::IInspectable>& vector, const Controls::ItemCollection& coll)
+{
+  std::vector<uint32_t> vec;
+  for (const auto& item : vector) {
+    uint32_t index;
+    if (coll.IndexOf(item, index)) {
+      vec.push_back(index);
+    }
+  }
+  return vec;
+}
+namespace winrt::Microsoft::ReactNative {
+  void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& ii);
+
+  void WriteIInspectable(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& item) {
+    if (auto str = item.try_as<winrt::IReference<winrt::hstring>>()) {
+      writer.WriteString(str.GetString());
+    }
+    else if (auto cc = item.try_as<xaml::Controls::ContentControl>()) {
+      WriteIInspectable(writer, cc.Content());
+    }
+    else {
+      assert(false);
+    }
+  }
+  void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& ii) {
+    auto item = ii.as<xaml::Controls::ContentControl>().Content();
+    auto cn = winrt::get_class_name(item);
+    writer.WriteObjectBegin();
+    WriteProperty(writer, L"type", cn);
+    writer.WritePropertyName(L"value");
+    WriteIInspectable(writer, ii);
+    writer.WriteObjectEnd();
+  }
+
+  template<typename TElems>
+  void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IVector<TElems>& t) {
+    writer.WriteArrayBegin();
+    for (const auto& e : t) {
+      WriteValue(writer, e);
+    }
+    writer.WriteArrayEnd();
+  }
+}
+
+void SerializeEventArgsInternal(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::Controls::SelectionChangedEventArgs& args) {
+  auto sel = sender.as<Controls::Primitives::Selector>();
+  const auto& items = sel.Items();
+  auto added = VectorToIndices(args.AddedItems(), items);
+  auto removed = VectorToIndices(args.RemovedItems(), items);
+
+  writer.WriteObjectBegin();
+  WriteProperty(writer, L"addedIndices", added);
+  WriteProperty(writer, L"removedIndices", removed);
+  WriteProperty(writer, L"addedItems", args.AddedItems());
+  WriteProperty(writer, L"removedItems", args.RemovedItems());
+  writer.WriteObjectEnd();
+}
+
 template<typename TArgs>
-void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const TArgs& args)
+void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const TArgs& args)
 {
   if constexpr (std::is_same_v<TArgs, xaml::RoutedEventArgs>)
   {
-    SerializeRoutedEventArgs(writer, args);
+    SerializeEventArgsInternal(writer, sender, args);
+  }
+  else if constexpr (std::is_same_v<TArgs, xaml::Controls::SelectionChangedEventArgs>) {
+    SerializeEventArgsInternal(writer, sender, args);
   }
 }
