@@ -78,7 +78,9 @@ const App: () => Node = () => {
           }}>
           <Button content={{string: `this is a button ${count}`}} foreground="red" onClick={() => { setCount(count + 1); }} />
           <StackPanel orientation="horizontal">
-            <HyperlinkButton content={{string: "Click me!"}}  onClick={() => { alert("clicked!"); }}   />
+            <HyperlinkButton content={{string: "Click me!"}}  onClick={(args) => { 
+              alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`); 
+              }}   />
             <Border verticalAlignment="center"  background="paleturquoise" >
               <TextBlock  text="this is a textblock" foreground='red' textAlignment="center" />
             </Border>

@@ -11,6 +11,8 @@
 #include "Codegen/TypeProperties.g.h"
 #include "Codegen/TypeEvents.g.h"
 
+#include <JSValueWriter.h>
+
 using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
@@ -86,6 +88,18 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   return nullptr;
 }
 
+void SerializeRoutedEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const xaml::RoutedEventArgs& args) {
+  writer.WriteObjectBegin();
+  writer.WritePropertyName(L"foo");
+  writer.WriteInt64(42);
+  writer.WriteObjectEnd();
+}
+
 template<typename TArgs>
 void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const TArgs& args)
-{}
+{
+  if constexpr (std::is_same_v<TArgs, xaml::RoutedEventArgs>)
+  {
+    SerializeRoutedEventArgs(writer, args);
+  }
+}
