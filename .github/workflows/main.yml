@@ -12,21 +12,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  codegen:
     runs-on: windows-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1
-
-    - name: build CodeGen
-      run: msbuild /restore codegen\CodeGen\Codegen.csproj /p:configuration=release
 
     - name: run CodeGen
       run: dotnet run 
@@ -38,9 +27,10 @@ jobs:
         $changed = git status --porcelain=v1
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
-    - name: Setup NuGet.exe for use with actions
-      uses: NuGet/setup-nuget@v1.0.5
-
+  example:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
     - name: yarn install
       run: yarn install
  
@@ -50,6 +40,19 @@ jobs:
     - name: build example
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: example
+
+  package:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: yarn install
+      run: yarn install 
+    - name: build TS
+      run: yarn build
 
     - name: build Release x64
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
