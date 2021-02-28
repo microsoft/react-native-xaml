@@ -28,6 +28,9 @@ jobs:
     - name: build CodeGen
       run: msbuild /restore codegen\CodeGen\Codegen.csproj /p:configuration=release
 
+    - name: run CodeGen
+      run: dotnet run codegen\CodeGen\Codegen.csproj
+
     - name: verify no changes from CodeGen
       run: git status --porcelain=v1 1>&2
 
