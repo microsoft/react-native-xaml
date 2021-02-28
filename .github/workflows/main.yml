@@ -67,8 +67,14 @@ jobs:
         }
 
     - name: npm pack
-      run: npm pack && md $(Build.StagingDirectory)\npm && copy *.tgz $(Build.StagingDirectory)\npm
+      run: npm pack
       working-directory: package
+
+    - name: mkdir npm 
+      run: md %BUILD_STAGINGDIRECTORY%\npm
+      
+    - name: Copy npm package
+      run: copy *.tgz %BUILD_STAGINGDIRECTORY%\npm
 
     - name: Upload npm package
       uses: actions/upload-artifact@v2
