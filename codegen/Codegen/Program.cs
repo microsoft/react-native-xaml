@@ -91,6 +91,7 @@ class Program
             var fe = types.Where(type => Util.DerivesFrom(type, "Windows.UI.Xaml.UIElement"));
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var generatedDirPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
+            var packageSrcPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\src"));
 
             var creatableTypes = fe.Where(x => Util.HasCtor(x)).ToList();
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
@@ -114,10 +115,10 @@ class Program
             }
 
             var propsGen = new TSProps(fe).TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "Props.ts"), propsGen);
+            File.WriteAllText(Path.Join(packageSrcPath, "Props.ts"), propsGen);
 
             var typesGen = new TSTypes(fe).TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "Types.tsx"), typesGen);
+            File.WriteAllText(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var propertiesGen = new TypeProperties(properties).TransformText();
