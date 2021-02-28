@@ -9,10 +9,10 @@
     <ClCompile Include="ReactPackageProvider.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
     <ClCompile Include="XamlMetadata.cpp" />
-    <ClCompile Include="Codegen\TypeCreator.cpp">
+    <ClCompile Include="Codegen\TypeCreator.g.cpp">
       <Filter>Codegen</Filter>
     </ClCompile>
-    <ClCompile Include="Codegen\EnumConverters.cpp">
+    <ClCompile Include="Codegen\EnumConverters.g.cpp">
       <Filter>Codegen</Filter>
     </ClCompile>
   </ItemGroup>

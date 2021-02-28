@@ -100,7 +100,7 @@ class Program
             {
                 Directory.CreateDirectory(generatedDirPath);
             }
-            File.WriteAllText(Path.Join(generatedDirPath, "TypeCreator.cpp"), typeCreatorGen);
+            File.WriteAllText(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
 
             var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
@@ -124,7 +124,7 @@ class Program
             File.WriteAllText(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
 
             var enumConvertersGen = new EnumConverters().TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "EnumConverters.cpp"), enumConvertersGen);
+            File.WriteAllText(Path.Join(generatedDirPath, "EnumConverters.g.cpp"), enumConvertersGen);
 
             var eventsGen = new TypeEvents(events).TransformText();
             File.WriteAllText(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
