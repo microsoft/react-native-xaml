@@ -179,29 +179,29 @@ namespace Codegen
             var derived = types.Where(type => DerivesFrom(type, t.GetFullName())).Select(t => $"'{ToJsName(t.GetName())}'");
             return string.Join("|", derived);
         }
-        public static string GetDerivedJsTypes(MrType t, Dictionary<string, List<string>> derived)
+        public static string GetJsTypeProperty(MrType t, Dictionary<string, List<MrType>> derived)
         {
-            var listDerived = derived[t.GetName()].Select(t => $"'{ToJsName(t)}'");
+            var listDerived = derived[t.GetName()].Where(t => HasCtor(t)).Select(t => $"'{ToJsName(t.GetName())}'");
             return string.Join("|", listDerived);
         }
 
-        public static Dictionary<string, List<string>> GetDerivedTypes(IEnumerable<MrType> types)
+        public static Dictionary<string, List<MrType>> GetDerivedTypes(IEnumerable<MrType> types)
         {
-            var derivedClasses = new Dictionary<string, List<string>>();
+            var derivedClasses = new Dictionary<string, List<MrType>>();
             foreach (var type in types)
             {
                 if (!derivedClasses.ContainsKey(type.GetName()))
                 {
-                    derivedClasses[type.GetName()] = new List<string>() { type.GetName() };
+                    derivedClasses[type.GetName()] = new List<MrType>() { type };
                 }
 
                 for (var baseType = type.GetBaseType(); baseType !=null && baseType.GetName() != "Windows.UI.Xaml.DependencyObject"; baseType = baseType.GetBaseType())
                 {
                     if (!derivedClasses.ContainsKey(baseType.GetName()))
                     {
-                        derivedClasses[baseType.GetName()] = new List<string>();
+                        derivedClasses[baseType.GetName()] = new List<MrType>();
                     }
-                    derivedClasses[baseType.GetName()].Add(type.GetName());
+                    derivedClasses[baseType.GetName()].Add(type);
                 }
             }
             return derivedClasses;
