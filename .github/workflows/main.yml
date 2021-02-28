@@ -65,3 +65,14 @@ jobs:
         if ($size -gt 1.5MB) {
           throw "DLL is bigger than 1.5MB"
         }
+
+    - name: npm pack
+      run: npm pack && md $(BuildStagingDircetory)\npm && copy *.tgz $(Build.StagingDirectory)\npm
+      working-directory: package
+
+    - task: PublishBuildArtifacts@1
+      displayName: publish NPM package
+      inputs:
+        artifactName: npm-package
+        pathToPublish: $(Build.StagingDirectory)\npm
+        parallel: true
