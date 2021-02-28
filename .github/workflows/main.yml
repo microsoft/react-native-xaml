@@ -32,7 +32,10 @@ jobs:
       run: dotnet run codegen\CodeGen\Codegen.csproj
 
     - name: verify no changes from CodeGen
-      run: git status --porcelain=v1 1>&2
+      shell: powershell
+      run: |
+        $changed = git status --porcelain=v1
+        if ($changed -ne $null) { throw "CodeGen detected changes" }
 
     - name: Setup NuGet.exe for use with actions
       uses: NuGet/setup-nuget@v1.0.5
