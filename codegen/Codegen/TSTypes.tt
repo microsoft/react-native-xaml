@@ -15,9 +15,9 @@ import { NativeXamlControl } from './NativeXamlControl';
 <# foreach (var type in Types.Where(t => Util.HasCtor(t))) { #>
 export type <#= type.GetName() #>Props = Omit<Native<#= type.GetName()#>Props, 'type'>;
 
-export const <#= type.GetName() #>: React.FC<<#= type.GetName() #>Props> = (props : <#= type.GetName() #>Props) => {
+export const <#= type.GetName() #>: React.FC<<#= type.GetName() #>Props> = (props: <#= type.GetName() #>Props) => {
     return (
         <NativeXamlControl type="<#= Util.ToJsName(type.GetName()) #>" {...props} />
     );
-  };
+};
 <# } #>

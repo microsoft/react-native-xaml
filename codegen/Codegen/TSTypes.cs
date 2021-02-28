@@ -85,7 +85,7 @@ namespace Codegen
             
             #line default
             #line hidden
-            this.Write("Props> = (props : ");
+            this.Write("Props> = (props: ");
             
             #line 18 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
@@ -99,7 +99,7 @@ namespace Codegen
             
             #line default
             #line hidden
-            this.Write("\" {...props} />\r\n    );\r\n  };\r\n");
+            this.Write("\" {...props} />\r\n    );\r\n};\r\n");
             
             #line 23 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\TSTypes.tt"
  } 

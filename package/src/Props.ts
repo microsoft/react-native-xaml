@@ -3,7 +3,7 @@ export type Thickness = number | { left: number, top: number, right: number, bot
 
 
 export interface NativeUIElementProps extends ViewProps {
-  type: 'uiElement'|'frameworkElement'|'control'|'contentControl'|'appBar'|'buttonBase'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'iconElement'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'panel'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'selector'|'comboBox'|'selectorItem'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyoutPresenter'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'listViewBase'|'gridView'|'listViewBaseHeaderItem'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyoutPresenter'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItemBase'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyoutPresenter'|'pivot'|'pivotItem'|'calendarPanel'|'virtualizingPanel'|'carouselPanel'|'rangeBase'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'loopingSelector'|'loopingSelectorItem'|'loopingSelectorPanel'|'navigationViewItemPresenter'|'orientedVirtualizingPanel'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'timePickerFlyoutPresenter'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'shape'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   opacity?: number;
   manipulationMode?: 'none' | 'translateX' | 'translateY' | 'translateRailsX' | 'translateRailsY' | 'rotate' | 'scale' | 'translateInertia' | 'rotateInertia' | 'scaleInertia' | 'all' | 'system';
   isTapEnabled?: boolean;
@@ -75,7 +75,7 @@ export interface NativeUIElementProps extends ViewProps {
 
 
 export interface NativeFrameworkElementProps extends NativeUIElementProps {
-  type: 'frameworkElement'|'control'|'contentControl'|'appBar'|'buttonBase'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'iconElement'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'panel'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'selector'|'comboBox'|'selectorItem'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyoutPresenter'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'listViewBase'|'gridView'|'listViewBaseHeaderItem'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyoutPresenter'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItemBase'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyoutPresenter'|'pivot'|'pivotItem'|'calendarPanel'|'virtualizingPanel'|'carouselPanel'|'rangeBase'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'loopingSelector'|'loopingSelectorItem'|'loopingSelectorPanel'|'navigationViewItemPresenter'|'orientedVirtualizingPanel'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'timePickerFlyoutPresenter'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'shape'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   width?: number;
   verticalAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
   tag?: object;
@@ -110,7 +110,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
 
 
 export interface NativeControlProps extends NativeFrameworkElementProps {
-  type: 'control'|'contentControl'|'appBar'|'buttonBase'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'checkBox'|'colorPicker'|'selector'|'comboBox'|'selectorItem'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'datePicker'|'datePickerFlyoutPresenter'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'frame'|'listViewBase'|'gridView'|'listViewBaseHeaderItem'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'inkToolbar'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBox'|'listBoxItem'|'listPickerFlyoutPresenter'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaPlayerElement'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItemBase'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'passwordBox'|'personPicture'|'pickerFlyoutPresenter'|'pivot'|'pivotItem'|'rangeBase'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'loopingSelector'|'loopingSelectorItem'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'scrollBar'|'thumb'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'richEditBox'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'swipeControl'|'textBox'|'timePicker'|'timePickerFlyoutPresenter'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView';
+  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'frame'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaPlayerElement'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'passwordBox'|'personPicture'|'pivot'|'pivotItem'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'scrollBar'|'thumb'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'richEditBox'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'swipeControl'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView';
   padding?: Thickness;
   isTabStop?: boolean;
   isEnabled?: boolean;
@@ -141,7 +141,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
 
 
 export interface NativeContentControlProps extends NativeControlProps {
-  type: 'contentControl'|'appBar'|'buttonBase'|'button'|'appBarButton'|'appBarElementContainer'|'toggleButton'|'appBarToggleButton'|'checkBox'|'selectorItem'|'comboBoxItem'|'commandBar'|'contentDialog'|'dropDownButton'|'flipViewItem'|'flyoutPresenter'|'frame'|'listViewBaseHeaderItem'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'hyperlinkButton'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBoxItem'|'listViewHeaderItem'|'listViewItem'|'navigationView'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'pickerFlyoutPresenter'|'pivotItem'|'commandBarFlyoutCommandBar'|'loopingSelectorItem'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'refreshContainer'|'scrollViewer'|'settingsFlyout'|'splitButton'|'swipeControl'|'toggleSplitButton'|'toolTip'|'treeViewItem';
+  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'toggleButton'|'appBarToggleButton'|'checkBox'|'comboBoxItem'|'commandBar'|'contentDialog'|'dropDownButton'|'flipViewItem'|'flyoutPresenter'|'frame'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'hyperlinkButton'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBoxItem'|'listViewHeaderItem'|'listViewItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'pivotItem'|'commandBarFlyoutCommandBar'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'refreshContainer'|'scrollViewer'|'settingsFlyout'|'splitButton'|'swipeControl'|'toggleSplitButton'|'toolTip'|'treeViewItem';
   content?: object;
 }
 
@@ -160,7 +160,7 @@ export interface NativeAppBarProps extends NativeContentControlProps {
 
 
 export interface NativeButtonBaseProps extends NativeContentControlProps {
-  type: 'buttonBase'|'button'|'appBarButton'|'toggleButton'|'appBarToggleButton'|'checkBox'|'dropDownButton'|'hyperlinkButton'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'repeatButton';
+  type: 'button'|'appBarButton'|'toggleButton'|'appBarToggleButton'|'checkBox'|'dropDownButton'|'hyperlinkButton'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'repeatButton';
   commandParameter?: object;
   clickMode?: 'release' | 'press' | 'hover';
   onClick?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -197,7 +197,7 @@ export interface NativeAppBarSeparatorProps extends NativeControlProps {
 
 
 export interface NativeToggleButtonProps extends NativeButtonBaseProps {
-  type: 'toggleButton'|'appBarToggleButton'|'checkBox'|'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarMenuButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton';
+  type: 'toggleButton'|'appBarToggleButton'|'checkBox'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton';
   isThreeState?: boolean;
   onChecked?: (event: NativeSyntheticEvent<undefined>) => void;
   onIndeterminate?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -216,7 +216,7 @@ export interface NativeAppBarToggleButtonProps extends NativeToggleButtonProps {
 
 
 export interface NativeItemsControlProps extends NativeControlProps {
-  type: 'itemsControl'|'autoSuggestBox'|'selector'|'comboBox'|'commandBarOverflowPresenter'|'flipView'|'listViewBase'|'gridView'|'listBox'|'listView'|'menuFlyoutPresenter'|'navigationViewList'|'pivot'|'treeViewList';
+  type: 'itemsControl'|'autoSuggestBox'|'comboBox'|'commandBarOverflowPresenter'|'flipView'|'gridView'|'listBox'|'listView'|'menuFlyoutPresenter'|'navigationViewList'|'pivot'|'treeViewList';
   itemsSource?: object;
   displayMemberPath?: string;
 }
@@ -241,7 +241,7 @@ export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
 
 
 export interface NativeIconElementProps extends NativeFrameworkElementProps {
-  type: 'iconElement'|'bitmapIcon'|'fontIcon'|'iconSourceElement'|'pathIcon'|'symbolIcon';
+  type: 'bitmapIcon'|'fontIcon'|'iconSourceElement'|'pathIcon'|'symbolIcon';
   foreground?: ColorValue;
 }
 
@@ -335,13 +335,13 @@ export interface NativeCalendarViewDayItemProps extends NativeControlProps {
 
 
 export interface NativePanelProps extends NativeFrameworkElementProps {
-  type: 'panel'|'canvas'|'grid'|'itemsStackPanel'|'itemsWrapGrid'|'calendarPanel'|'virtualizingPanel'|'carouselPanel'|'loopingSelectorPanel'|'orientedVirtualizingPanel'|'pivotHeaderPanel'|'pivotPanel'|'relativePanel'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'variableSizedWrapGrid'|'virtualizingStackPanel'|'wrapGrid';
+  type: 'canvas'|'grid'|'itemsStackPanel'|'itemsWrapGrid'|'calendarPanel'|'carouselPanel'|'pivotHeaderPanel'|'pivotPanel'|'relativePanel'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'variableSizedWrapGrid'|'virtualizingStackPanel'|'wrapGrid';
   background?: ColorValue;
 }
 
 
 export interface NativeCanvasProps extends NativePanelProps {
-  type: 'canvas'|'loopingSelectorPanel'|'pivotHeaderPanel';
+  type: 'canvas'|'pivotHeaderPanel';
 }
 
 
@@ -352,7 +352,7 @@ export interface NativeCaptureElementProps extends NativeFrameworkElementProps {
 
 
 export interface NativeCheckBoxProps extends NativeToggleButtonProps {
-  type: 'checkBox'|'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarRulerButton';
+  type: 'checkBox'|'inkToolbarCustomToggleButton'|'inkToolbarRulerButton';
 }
 
 
@@ -380,7 +380,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
 
 
 export interface NativeSelectorProps extends NativeItemsControlProps {
-  type: 'selector'|'comboBox'|'flipView'|'listViewBase'|'gridView'|'listBox'|'listView'|'navigationViewList'|'treeViewList';
+  type: 'comboBox'|'flipView'|'gridView'|'listBox'|'listView'|'navigationViewList'|'treeViewList';
   selectedValuePath?: string;
   selectedValue?: object;
   selectedItem?: object;
@@ -409,7 +409,7 @@ export interface NativeComboBoxProps extends NativeSelectorProps {
 
 
 export interface NativeSelectorItemProps extends NativeContentControlProps {
-  type: 'selectorItem'|'comboBoxItem'|'flipViewItem'|'gridViewItem'|'listBoxItem'|'listViewItem'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'treeViewItem';
+  type: 'comboBoxItem'|'flipViewItem'|'gridViewItem'|'listBoxItem'|'listViewItem'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'treeViewItem';
   isSelected?: boolean;
 }
 
@@ -498,7 +498,7 @@ export interface NativeDatePickerProps extends NativeControlProps {
 
 
 export interface NativeDatePickerFlyoutPresenterProps extends NativeControlProps {
-  type: 'datePickerFlyoutPresenter';
+  type: ;
   isDefaultShadowEnabled?: boolean;
 }
 
@@ -558,7 +558,7 @@ export interface NativeGridProps extends NativePanelProps {
 
 
 export interface NativeListViewBaseProps extends NativeSelectorProps {
-  type: 'listViewBase'|'gridView'|'listView'|'navigationViewList'|'treeViewList';
+  type: 'gridView'|'listView'|'navigationViewList'|'treeViewList';
   selectionMode?: 'none' | 'single' | 'multiple' | 'extended';
   isSwipeEnabled?: boolean;
   isItemClickEnabled?: boolean;
@@ -590,7 +590,7 @@ export interface NativeGridViewProps extends NativeListViewBaseProps {
 
 
 export interface NativeListViewBaseHeaderItemProps extends NativeContentControlProps {
-  type: 'listViewBaseHeaderItem'|'gridViewHeaderItem'|'listViewHeaderItem';
+  type: 'gridViewHeaderItem'|'listViewHeaderItem';
 }
 
 
@@ -677,19 +677,19 @@ export interface NativeInkToolbarProps extends NativeControlProps {
 
 
 export interface NativeRadioButtonProps extends NativeToggleButtonProps {
-  type: 'radioButton'|'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
+  type: 'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
   groupName?: string;
 }
 
 
 export interface NativeInkToolbarToolButtonProps extends NativeRadioButtonProps {
-  type: 'inkToolbarToolButton'|'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
+  type: 'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
   isExtensionGlyphShown?: boolean;
 }
 
 
 export interface NativeInkToolbarPenButtonProps extends NativeInkToolbarToolButtonProps {
-  type: 'inkToolbarPenButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
+  type: 'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
   selectedStrokeWidth?: number;
   selectedBrushIndex?: number;
   minStrokeWidth?: number;
@@ -708,7 +708,7 @@ export interface NativeInkToolbarCustomPenButtonProps extends NativeInkToolbarPe
 
 
 export interface NativeInkToolbarToggleButtonProps extends NativeCheckBoxProps {
-  type: 'inkToolbarToggleButton'|'inkToolbarCustomToggleButton'|'inkToolbarRulerButton';
+  type: 'inkToolbarCustomToggleButton'|'inkToolbarRulerButton';
 }
 
 
@@ -743,7 +743,7 @@ export interface NativeInkToolbarHighlighterButtonProps extends NativeInkToolbar
 
 
 export interface NativeInkToolbarMenuButtonProps extends NativeToggleButtonProps {
-  type: 'inkToolbarMenuButton'|'inkToolbarStencilButton';
+  type: 'inkToolbarStencilButton';
   isExtensionGlyphShown?: boolean;
 }
 
@@ -817,7 +817,7 @@ export interface NativeListBoxItemProps extends NativeSelectorItemProps {
 
 
 export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps {
-  type: 'listPickerFlyoutPresenter';
+  type: ;
 }
 
 
@@ -832,7 +832,7 @@ export interface NativeListViewHeaderItemProps extends NativeListViewBaseHeaderI
 
 
 export interface NativeListViewItemProps extends NativeSelectorItemProps {
-  type: 'listViewItem'|'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'treeViewItem';
+  type: 'listViewItem'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'treeViewItem';
 }
 
 
@@ -973,7 +973,7 @@ export interface NativeMenuBarItemProps extends NativeControlProps {
 
 
 export interface NativeMenuFlyoutItemBaseProps extends NativeControlProps {
-  type: 'menuFlyoutItemBase'|'menuFlyoutItem'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'toggleMenuFlyoutItem';
+  type: 'menuFlyoutItem'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'toggleMenuFlyoutItem';
 }
 
 
@@ -1036,7 +1036,7 @@ export interface NativeNavigationViewProps extends NativeContentControlProps {
 
 
 export interface NativeNavigationViewItemBaseProps extends NativeListViewItemProps {
-  type: 'navigationViewItemBase'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator';
+  type: 'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator';
 }
 
 
@@ -1126,7 +1126,7 @@ export interface NativePersonPictureProps extends NativeControlProps {
 
 
 export interface NativePickerFlyoutPresenterProps extends NativeContentControlProps {
-  type: 'pickerFlyoutPresenter';
+  type: ;
 }
 
 
@@ -1160,7 +1160,7 @@ export interface NativeCalendarPanelProps extends NativePanelProps {
 
 
 export interface NativeVirtualizingPanelProps extends NativePanelProps {
-  type: 'virtualizingPanel'|'carouselPanel'|'orientedVirtualizingPanel'|'virtualizingStackPanel'|'wrapGrid';
+  type: 'carouselPanel'|'virtualizingStackPanel'|'wrapGrid';
 }
 
 
@@ -1172,7 +1172,7 @@ export interface NativeCarouselPanelProps extends NativeVirtualizingPanelProps {
 
 
 export interface NativeRangeBaseProps extends NativeControlProps {
-  type: 'rangeBase'|'slider'|'colorPickerSlider'|'scrollBar'|'progressBar';
+  type: 'slider'|'colorPickerSlider'|'scrollBar'|'progressBar';
   value?: number;
   smallChange?: number;
   minimum?: number;
@@ -1286,7 +1286,7 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
 
 
 export interface NativeLoopingSelectorProps extends NativeControlProps {
-  type: 'loopingSelector';
+  type: ;
   shouldLoop?: boolean;
   selectedItem?: object;
   selectedIndex?: number;
@@ -1297,12 +1297,12 @@ export interface NativeLoopingSelectorProps extends NativeControlProps {
 
 
 export interface NativeLoopingSelectorItemProps extends NativeContentControlProps {
-  type: 'loopingSelectorItem';
+  type: ;
 }
 
 
 export interface NativeLoopingSelectorPanelProps extends NativeCanvasProps {
-  type: 'loopingSelectorPanel';
+  type: ;
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1314,7 +1314,7 @@ export interface NativeNavigationViewItemPresenterProps extends NativeContentCon
 
 
 export interface NativeOrientedVirtualizingPanelProps extends NativeVirtualizingPanelProps {
-  type: 'orientedVirtualizingPanel'|'virtualizingStackPanel'|'wrapGrid';
+  type: 'virtualizingStackPanel'|'wrapGrid';
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1728,7 +1728,7 @@ export interface NativeTimePickerProps extends NativeControlProps {
 
 
 export interface NativeTimePickerFlyoutPresenterProps extends NativeControlProps {
-  type: 'timePickerFlyoutPresenter';
+  type: ;
   isDefaultShadowEnabled?: boolean;
 }
 
@@ -1886,7 +1886,7 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
 
 
 export interface NativeShapeProps extends NativeFrameworkElementProps {
-  type: 'shape'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   strokeThickness?: number;
   strokeStartLineCap?: 'flat' | 'square' | 'round' | 'triangle';
   strokeMiterLimit?: number;
