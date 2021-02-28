@@ -67,7 +67,7 @@ jobs:
         }
 
     - name: npm pack
-      run: npm pack && md $(BuildStagingDircetory)\npm && copy *.tgz $(Build.StagingDirectory)\npm
+      run: npm pack && md $(Build.StagingDirectory)\npm && copy *.tgz $(Build.StagingDirectory)\npm
       working-directory: package
 
     - name: Upload npm package
