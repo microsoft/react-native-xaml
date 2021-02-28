@@ -41,6 +41,19 @@ jobs:
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: example
 
+    - name: mkdir Appx
+      run: md %BUILD_STAGINGDIRECTORY%\appx
+
+    - name: Copy appx package
+      run: xcopy /s * %BUILD_STAGINGDIRECTORY%\appx
+      working-directory: examples\windows\AppPackages\example
+
+    - name: Upload appx package
+      uses: actions/upload-artifact@v2
+      with:
+        name: Example appx
+        path: $(Build.StagingDirectory)\appx
+
   package:
     runs-on: windows-latest
     steps:
