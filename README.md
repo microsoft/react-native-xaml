@@ -1,3 +1,4 @@
+[![CI](https://github.com/asklar/react-native-xaml/actions/workflows/main.yml/badge.svg)](https://github.com/asklar/react-native-xaml/actions/workflows/main.yml)
 # react-native-xaml
 A React Native Windows view manager that allows directly using the [Windows XAML](https://docs.microsoft.com/windows/uwp/xaml-platform/xaml-overview) framework.
 
