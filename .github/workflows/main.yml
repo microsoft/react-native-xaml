@@ -70,9 +70,9 @@ jobs:
       run: npm pack && md $(BuildStagingDircetory)\npm && copy *.tgz $(Build.StagingDirectory)\npm
       working-directory: package
 
-    - task: PublishBuildArtifacts@1
-      displayName: publish NPM package
-      inputs:
-        artifactName: npm-package
-        pathToPublish: $(Build.StagingDirectory)\npm
-        parallel: true
+    - name: Upload npm package
+      uses: actions/upload-artifact@v2
+      with:
+        name: npm package
+        path: $(Build.StagingDirectory)\npm
+
