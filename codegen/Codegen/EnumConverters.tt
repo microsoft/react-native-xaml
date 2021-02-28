@@ -27,11 +27,11 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
   template<> winrt::IInspectable MakeEnum<<#= Util.GetCppWinRTType(e) #>>(const std::string& value) noexcept { 
   <#= Util.GetCppWinRTType(e) #> ret;
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
-	<# for (var i = 1; i < e.GetFields().Length; i++) { 
+<# for (var i = 1; i < e.GetFields().Length; i++) { 
 		var name = e.GetFields()[i].GetName();
 	#>
     case COMPILE_TIME_CRC32_STR("<#= Util.ToJsName(name) #>"): { ret = <#= Util.GetCppWinRTType(e) #>::<#= name #>; break; }
-  <# } #>
+<# } #>
   }
 
   return winrt::box_value(ret);

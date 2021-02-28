@@ -8,6 +8,8 @@
 
 import React from 'react';
 import type {Node} from 'react';
+import {useState} from 'react';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -61,6 +63,8 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const [count, setCount] = useState(0);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -72,17 +76,21 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Button content={{string: "this is a button 1"}} foreground="red" onClick={() => { alert("clicked!"); }} />
+          <Button content={{string: `this is a button ${count}`}} foreground="red" onClick={() => { setCount(count + 1); }} />
           <StackPanel orientation="horizontal">
-            <HyperlinkButton content={{string: "Click me!"}}  onClick={() => { alert("clicked!"); }} />
+            <HyperlinkButton content={{string: "Click me!"}}  onClick={(args) => { 
+              alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`); 
+              }}   />
             <Border verticalAlignment="center"  background="paleturquoise" >
               <TextBlock  text="this is a textblock" foreground='red' textAlignment="center" />
             </Border>
             <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
             <Button content={{string: "this is a button"}}  onClick={() => { alert("you clicked the button!"); }}  />
           </StackPanel>
-          <ComboBox text="this is a combobox" description={{string: "best bois"}} >
-            <ComboBoxItem content={{string: "garfield"}} foreground="black"  />
+          <ComboBox text="this is a combobox" description={{string: "best bois"}} onSelectionChanged={(args) => { 
+              alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`); 
+              }} >
+            <ComboBoxItem content={{string: "garfield"}} foreground="black" />
             <ComboBoxItem content={{string: "snoopy"}} foreground="black"  />
           </ComboBox>
           <Section title="Step One">

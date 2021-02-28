@@ -1,5 +1,7 @@
 ﻿using MiddleweightReflection;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Codegen
@@ -8,6 +10,15 @@ namespace Codegen
     {
         public static string ToJsName(string name)
         {
+            var specialPrefixes = new string[] { "UI", "XY" };
+            foreach (var p in specialPrefixes)
+            {
+                if (name.StartsWith(p))
+                {
+                    return p.ToLower() + name.Substring(p.Length);
+                }
+            }
+
             return name[0].ToString().ToLower() + name.Substring(1);
         }
         public static string GetCppWinRTType(MrType t)
@@ -29,6 +40,9 @@ namespace Codegen
             return $"winrt::{t.GetFullName().Replace(".", "::")}";
         }
         public static HashSet<MrType> enumsToGenerateConvertersFor = new HashSet<MrType>();
+
+        public static MrLoadContext LoadContext { get; internal set; }
+
         public static ViewManagerPropertyType GetVMPropertyType(MrType propType)
         {
             if (propType.IsEnum)
@@ -98,7 +112,7 @@ namespace Codegen
 
         public static string GetBaseClassProps(MrType type)
         {
-            if (type.GetName() == "FrameworkElement")
+            if (type.GetName() == "UIElement")
             {
                 return "ViewProps";
             }
@@ -106,6 +120,15 @@ namespace Codegen
             {
                 return $"Native{type.GetBaseType().GetName()}Props";
             }
+        }
+
+        public static bool ShouldEmitEventMetadata(MrEvent e)
+        {
+            // KeyboardEventHandler already registers these events as bubbling
+            // we currently register all events as direct, so this causes a conflict (can't be registered as both bubbling and direct) for these two events; 
+            // so hide them for now
+            var bannedEvents = new string[] { "KeyDown", "KeyUp" };
+            return e.GetMemberModifiers().IsPublic && !bannedEvents.Contains(e.GetName());
         }
 
         public static bool HasCtor(MrType t)
@@ -182,6 +205,34 @@ namespace Codegen
                 }
             }
             return derivedClasses;
+        }
+        class EventArgParameter
+        {
+            public MrType Type { get; set; }
+            public string Name { get; set; }
+        }
+        public static string GetCppWinRTEventSignature(MrEvent e)
+        {
+            var et = e.GetEventType();
+            IEnumerable<EventArgParameter> evtArgs;
+            if (et.GetHasGenericParameters())
+            {
+                evtArgs = et.GetGenericArguments().Select(a => new EventArgParameter() { Type = a, Name = ToJsName(a.GetName()) });
+                if (et.GetName() == "EventHandler`1")
+                {
+                    LoadContext.TryFindMrType("System.Object", out var objType);
+                    evtArgs = evtArgs.ToList().Prepend(new EventArgParameter() { Type = objType, Name = "sender" });
+                }
+            } else
+            {
+                evtArgs = et.GetInvokeMethod().GetParameters().Select(t => new EventArgParameter() { Type = t.GetParameterType(), Name = t.GetParameterName() });
+            }
+            var argList = evtArgs.ToList();
+            argList[0].Name = "sender";
+            argList[1].Name = "args";
+
+            var args = argList.Select(t => $"const {GetCppWinRTType(t.Type)}& {t.Name}");
+            return string.Join(", ", args);
         }
     }
 }
