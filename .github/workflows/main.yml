@@ -50,8 +50,8 @@ jobs:
     - name: Validate size
       shell: powershell
       run: |
-      $size = (gci package\windows\x64\Release\ReactNativeXaml\ReactNativeXaml.dll).Length
-      $size
-      if ($size -gt 1.5MB) {
-        throw "DLL is bigger than 1.5MB"
-      }
+        $size = (gci package\windows\x64\Release\ReactNativeXaml\ReactNativeXaml.dll).Length
+        $size
+        if ($size -gt 1.5MB) {
+          throw "DLL is bigger than 1.5MB"
+        }
