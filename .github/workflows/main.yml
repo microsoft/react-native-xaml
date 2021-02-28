@@ -17,9 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: build CodeGen
-      run: msbuild /restore codegen\CodeGen\Codegen.csproj /p:configuration=release
-
     - name: run CodeGen
       run: dotnet run 
       working-directory: codegen\Codegen
