@@ -14,7 +14,6 @@ on:
 jobs:
   codegen:
     runs-on: windows-latest
-    needs: basic
     steps:
     - uses: actions/checkout@v2
 
@@ -34,7 +33,6 @@ jobs:
 
   withJS:
     runs-on: windows-latest
-    needs: basic
     steps:
     - uses: actions/checkout@v2
 
