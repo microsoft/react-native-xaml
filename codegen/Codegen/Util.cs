@@ -179,7 +179,7 @@ namespace Codegen
             var derived = types.Where(type => DerivesFrom(type, t.GetFullName())).Select(t => $"'{ToJsName(t.GetName())}'");
             return string.Join("|", derived);
         }
-        public static string GetDerivedJsTypes(MrType t, Dictionary<string, List<MrType>> derived)
+        public static string GetJsTypeProperty(MrType t, Dictionary<string, List<MrType>> derived)
         {
             var listDerived = derived[t.GetName()].Where(t => HasCtor(t)).Select(t => $"'{ToJsName(t.GetName())}'");
             return string.Join("|", listDerived);

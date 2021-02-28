@@ -10,8 +10,11 @@ export type Thickness = number | { left: number, top: number, right: number, bot
 foreach (var type in Types) { #>
 
 export interface Native<#= type.GetName() #>Props extends <#= Util.GetBaseClassProps(type) #> {
-  type: <#= Util.GetDerivedJsTypes(type, derived) #>;
-<# foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
+<# var typeProp = Util.GetJsTypeProperty(type, derived);
+if (typeProp != "") { #>
+  type: <#= typeProp #>;
+<# }
+foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
   <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
 <# } 
   foreach (var evt in type.GetEvents()) { #>

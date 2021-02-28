@@ -498,7 +498,6 @@ export interface NativeDatePickerProps extends NativeControlProps {
 
 
 export interface NativeDatePickerFlyoutPresenterProps extends NativeControlProps {
-  type: ;
   isDefaultShadowEnabled?: boolean;
 }
 
@@ -817,7 +816,6 @@ export interface NativeListBoxItemProps extends NativeSelectorItemProps {
 
 
 export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps {
-  type: ;
 }
 
 
@@ -1126,7 +1124,6 @@ export interface NativePersonPictureProps extends NativeControlProps {
 
 
 export interface NativePickerFlyoutPresenterProps extends NativeContentControlProps {
-  type: ;
 }
 
 
@@ -1286,7 +1283,6 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
 
 
 export interface NativeLoopingSelectorProps extends NativeControlProps {
-  type: ;
   shouldLoop?: boolean;
   selectedItem?: object;
   selectedIndex?: number;
@@ -1297,12 +1293,10 @@ export interface NativeLoopingSelectorProps extends NativeControlProps {
 
 
 export interface NativeLoopingSelectorItemProps extends NativeContentControlProps {
-  type: ;
 }
 
 
 export interface NativeLoopingSelectorPanelProps extends NativeCanvasProps {
-  type: ;
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1728,7 +1722,6 @@ export interface NativeTimePickerProps extends NativeControlProps {
 
 
 export interface NativeTimePickerFlyoutPresenterProps extends NativeControlProps {
-  type: ;
   isDefaultShadowEnabled?: boolean;
 }
 
