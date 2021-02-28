@@ -137,8 +137,8 @@
     <ClInclude Include="XamlViewManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Codegen\EnumConverters.cpp" />
-    <ClCompile Include="Codegen\TypeCreator.cpp" />
+    <ClCompile Include="Codegen\EnumConverters.g.cpp" />
+    <ClCompile Include="Codegen\TypeCreator.g.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
