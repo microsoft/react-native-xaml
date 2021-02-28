@@ -27,37 +27,32 @@ jobs:
         $changed = git status --porcelain=v1
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
-
-  withJS:
+  example:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-
     - name: yarn install
       run: yarn install
  
     - name: build TS
       run: yarn build
       
-
-  example:
-    runs-on: windows-latest
-    needs: withJS
-    steps:
-    - uses: actions/checkout@v2
-
     - name: build example
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: example
 
   package:
     runs-on: windows-latest
-    needs: withJS
     steps:
     - uses: actions/checkout@v2
 
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
+
+    - name: yarn install
+      run: yarn install 
+    - name: build TS
+      run: yarn build
 
     - name: build Release x64
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
