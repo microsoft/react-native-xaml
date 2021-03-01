@@ -41,6 +41,13 @@ jobs:
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: example
 
+    - name: Upload appx
+      uses: actions/upload-artifact@v2
+      with:
+        name: Example appx
+        path: example\windows\AppPackages\example\example_1.0.0.0_Win32_Debug_Test
+        if-no-files-found: error
+
   package:
     runs-on: windows-latest
     steps:
@@ -51,8 +58,20 @@ jobs:
 
     - name: yarn install
       run: yarn install 
+
     - name: build TS
       run: yarn build
+
+    - name: npm pack
+      run: npm pack
+      working-directory: package
+
+    - name: Upload npm package
+      uses: actions/upload-artifact@v2
+      with:
+        name: npm package
+        path: package\*.tgz
+        if-no-files-found: error
 
     - name: build Release x64
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
@@ -65,3 +84,4 @@ jobs:
         if ($size -gt 1.5MB) {
           throw "DLL is bigger than 1.5MB"
         }
+
