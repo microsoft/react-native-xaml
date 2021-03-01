@@ -41,6 +41,7 @@ jobs:
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: example
 
+    - name: Upload appx
       uses: actions/upload-artifact@v2
       with:
         name: Example appx
