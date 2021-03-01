@@ -41,21 +41,10 @@ jobs:
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: example
 
-    - name: mkdir Appx
-      run: md $env:BUILD_STAGINGDIRECTORY\appx
-
-    - name: Copy appx package
-      run: xcopy /s * $env:BUILD_STAGINGDIRECTORY\appx
-      working-directory: examples\windows\AppPackages\example
-
-    - name: dir appx
-      run: dir $env:BUILD_STAGINGDIRECTORY\appx -Recurse
-
-    - name: Upload appx package
       uses: actions/upload-artifact@v2
       with:
         name: Example appx
-        path: $(Build.StagingDirectory)\appx\*
+        path: examples\windows\AppPackages\example\
 
   package:
     runs-on: windows-latest
@@ -75,18 +64,11 @@ jobs:
       run: npm pack
       working-directory: package
 
-    - name: Copy npm package
-      run: copy *.tgz $env:BUILD_STAGINGDIRECTORY\npm
-      working-directory: package
-
-    - name: dir npm
-      run: dir $env:BUILD_STAGINGDIRECTORY\npm -Recurse
-
     - name: Upload npm package
       uses: actions/upload-artifact@v2
       with:
         name: npm package
-        path: $(Build.StagingDirectory)\npm\*
+        path: .\*.tgz
 
     - name: build Release x64
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
