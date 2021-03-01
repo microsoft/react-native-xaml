@@ -46,6 +46,7 @@ jobs:
       with:
         name: Example appx
         path: example\windows\AppPackages\example\example_1.0.0.0_Win32_Debug_Test
+        if-no-files-found: error
 
   package:
     runs-on: windows-latest
