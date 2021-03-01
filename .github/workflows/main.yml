@@ -84,7 +84,3 @@ jobs:
           throw "DLL is bigger than 1.5MB"
         }
 
-    - name: mkdir npm 
-      run: md $env:BUILD_STAGINGDIRECTORY\npm
-      
-
