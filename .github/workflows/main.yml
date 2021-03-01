@@ -48,11 +48,14 @@ jobs:
       run: xcopy /s * %BUILD_STAGINGDIRECTORY%\appx
       working-directory: examples\windows\AppPackages\example
 
+    - name: dir appx
+      run: dir /s %BUILD_STAGINGDIRECTORY%\appx
+
     - name: Upload appx package
       uses: actions/upload-artifact@v2
       with:
         name: Example appx
-        path: $(Build.StagingDirectory)\appx
+        path: $(Build.StagingDirectory)\appx\*
 
   package:
     runs-on: windows-latest
@@ -89,9 +92,12 @@ jobs:
     - name: Copy npm package
       run: copy *.tgz %BUILD_STAGINGDIRECTORY%\npm
 
+    - name: dir npm
+      run: dir /s %BUILD_STAGINGDIRECTORY%\npm
+
     - name: Upload npm package
       uses: actions/upload-artifact@v2
       with:
         name: npm package
-        path: $(Build.StagingDirectory)\npm
+        path: $(Build.StagingDirectory)\npm\*
 
