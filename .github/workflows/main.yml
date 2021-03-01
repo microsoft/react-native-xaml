@@ -42,14 +42,14 @@ jobs:
       working-directory: example
 
     - name: mkdir Appx
-      run: md %BUILD_STAGINGDIRECTORY%\appx
+      run: md $env:BUILD_STAGINGDIRECTORY\appx
 
     - name: Copy appx package
-      run: xcopy /s * %BUILD_STAGINGDIRECTORY%\appx
+      run: xcopy /s * $env:BUILD_STAGINGDIRECTORY\appx
       working-directory: examples\windows\AppPackages\example
 
     - name: dir appx
-      run: dir /s %BUILD_STAGINGDIRECTORY%\appx
+      run: dir /s $env:BUILD_STAGINGDIRECTORY\appx
 
     - name: Upload appx package
       uses: actions/upload-artifact@v2
@@ -76,11 +76,11 @@ jobs:
       working-directory: package
 
     - name: Copy npm package
-      run: copy *.tgz %BUILD_STAGINGDIRECTORY%\npm
+      run: copy *.tgz $env:BUILD_STAGINGDIRECTORY\npm
       working-directory: package
 
     - name: dir npm
-      run: dir /s %BUILD_STAGINGDIRECTORY%\npm
+      run: dir /s $env:BUILD_STAGINGDIRECTORY\npm
 
     - name: Upload npm package
       uses: actions/upload-artifact@v2
@@ -101,6 +101,6 @@ jobs:
         }
 
     - name: mkdir npm 
-      run: md %BUILD_STAGINGDIRECTORY%\npm
+      run: md $env:BUILD_STAGINGDIRECTORY\npm
       
 
