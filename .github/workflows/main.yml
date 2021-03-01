@@ -85,7 +85,7 @@ jobs:
     - name: Upload npm package
       uses: actions/upload-artifact@v2
       with:
-        name: npm package ${{ GITHUB_RUN_NUMBER }}
+        name: npm package
         path: $(Build.StagingDirectory)\npm\*
 
     - name: build Release x64
