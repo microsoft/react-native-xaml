@@ -67,8 +67,26 @@ jobs:
 
     - name: yarn install
       run: yarn install 
+
     - name: build TS
       run: yarn build
+
+    - name: npm pack
+      run: npm pack
+      working-directory: package
+
+    - name: Copy npm package
+      run: copy *.tgz %BUILD_STAGINGDIRECTORY%\npm
+      working-directory: package
+
+    - name: dir npm
+      run: dir /s %BUILD_STAGINGDIRECTORY%\npm
+
+    - name: Upload npm package
+      uses: actions/upload-artifact@v2
+      with:
+        name: npm package ${{ GITHUB_RUN_NUMBER }}
+        path: $(Build.StagingDirectory)\npm\*
 
     - name: build Release x64
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
@@ -82,22 +100,7 @@ jobs:
           throw "DLL is bigger than 1.5MB"
         }
 
-    - name: npm pack
-      run: npm pack
-      working-directory: package
-
     - name: mkdir npm 
       run: md %BUILD_STAGINGDIRECTORY%\npm
       
-    - name: Copy npm package
-      run: copy *.tgz %BUILD_STAGINGDIRECTORY%\npm
-
-    - name: dir npm
-      run: dir /s %BUILD_STAGINGDIRECTORY%\npm
-
-    - name: Upload npm package
-      uses: actions/upload-artifact@v2
-      with:
-        name: npm package
-        path: $(Build.StagingDirectory)\npm\*
 
