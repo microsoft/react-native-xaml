@@ -69,7 +69,8 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: npm package
-        path: .\*.tgz
+        path: package\*.tgz
+        if-no-files-found: error
 
     - name: build Release x64
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
