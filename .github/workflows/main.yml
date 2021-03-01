@@ -49,7 +49,7 @@ jobs:
       working-directory: examples\windows\AppPackages\example
 
     - name: dir appx
-      run: dir /s $env:BUILD_STAGINGDIRECTORY\appx
+      run: dir $env:BUILD_STAGINGDIRECTORY\appx -Recurse
 
     - name: Upload appx package
       uses: actions/upload-artifact@v2
@@ -80,7 +80,7 @@ jobs:
       working-directory: package
 
     - name: dir npm
-      run: dir /s $env:BUILD_STAGINGDIRECTORY\npm
+      run: dir $env:BUILD_STAGINGDIRECTORY\npm -Recurse
 
     - name: Upload npm package
       uses: actions/upload-artifact@v2
