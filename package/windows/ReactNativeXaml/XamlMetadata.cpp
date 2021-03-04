@@ -118,14 +118,14 @@ namespace winrt::Microsoft::ReactNative {
     auto cn = winrt::get_class_name(item);
     writer.WriteObjectBegin();
     WriteProperty(writer, L"type", cn);
-    if (auto fe = ii.try_as<FrameworkElement>()) {
+    if (auto fe = item.try_as<FrameworkElement>()) {
       if (auto tagII = fe.Tag()) {
         auto tag = winrt::unbox_value<int64_t>(tagII);
         WriteProperty(writer, L"tag", tag);
       }
     }
     writer.WritePropertyName(L"value");
-    WriteIInspectable(writer, ii);
+    WriteIInspectable(writer, item);
     writer.WriteObjectEnd();
   }
 
