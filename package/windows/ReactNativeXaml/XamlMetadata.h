@@ -124,7 +124,7 @@ struct EventInfo {
 extern ConstantProviderDelegate GetEvents;
 
 struct XamlMetadata {
-  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context, const winrt::Windows::Foundation::IInspectable& tag) const;
+  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;
   XamlMetadata();
   const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const;
   static winrt::Windows::Foundation::IInspectable ActivateInstance(const winrt::hstring& hstr);

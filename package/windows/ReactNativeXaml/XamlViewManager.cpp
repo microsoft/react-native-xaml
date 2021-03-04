@@ -13,32 +13,20 @@ using namespace xaml::Controls;
 
 namespace winrt::ReactNativeXaml {
 
-  
-
-
-  using DelegatingType = xaml::Controls::ContentControl;
-
-  IInspectable Content(const xaml::Controls::ContentControl& t) {
-    return t.Content();
-  }
-  void Content(const xaml::Controls::ContentControl& t, const IInspectable& v) {
-    t.Content(v);
-  }
-
   // IViewManager
   hstring XamlViewManager::Name() noexcept {
     return L"XamlControl";
   }
 
   xaml::FrameworkElement XamlViewManager::CreateView() noexcept {
-    auto delegating = DelegatingType();
-    return delegating;
+    assert(false);
+    return nullptr;
   }
 
   winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
-    return xamlMetadata.Create(typeName, m_reactContext, nullptr);
+    return xamlMetadata.Create(typeName, m_reactContext);
   }
 
   // IViewManagerWithNativeProperties
@@ -54,36 +42,8 @@ namespace winrt::ReactNativeXaml {
     IJSValueReader const& propertyMapReader) noexcept {
 
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
-#ifdef HAS_CREATEWITHPROPERTIES
+
     auto e = view;
-#else
-    const auto delegating = view.as<DelegatingType>();
-    auto e = Content(delegating);
-    if (!e) {
-      if (propertyMap.count("type") != 0) {
-        const auto typeName = propertyMap["type"].AsString();
-        e = xamlMetadata.Create(typeName, m_reactContext, delegating.Tag());
-
-        delegating.Content(e);
-
-        //auto xd = xaml::Core::Direct::XamlDirect::GetDefault();
-        //auto hlb = xd.CreateInstance(xaml::Core::Direct::XamlTypeIndex::HyperlinkButton);
-        //e = xd.GetObject(hlb);
-        //xd.SetStringProperty(hlb, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, winrt::to_hstring(L"Hello"));
-
-        //reh = RoutedEventHandler([](auto&&, auto&&) { 
-        //  });
-        //xd.AddEventHandler(hlb, xaml::Core::Direct::XamlEventIndex::ButtonBase_Click, winrt::box_value(reh), true);
-
-        //auto xdParent = xd.GetXamlDirectObject(delegating);
-        //xd.SetXamlDirectObjectProperty(xdParent, xaml::Core::Direct::XamlPropertyIndex::ContentControl_Content, hlb);
-
-      }
-      else {
-        assert(false && "xaml type not specified");
-      }
-    }
-#endif
 
     if (auto control = e.try_as<DependencyObject>()) {
       for (auto const& pair : propertyMap) {
@@ -140,7 +100,7 @@ namespace winrt::ReactNativeXaml {
   }
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
-    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    auto e = parent;
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
     }
@@ -164,7 +124,7 @@ namespace winrt::ReactNativeXaml {
   }
 
   void XamlViewManager::RemoveAllChildren(xaml::FrameworkElement parent) {
-    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    auto e = parent;
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().Clear();
     }
@@ -180,7 +140,7 @@ namespace winrt::ReactNativeXaml {
   }
 
   void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
-    auto e = parent.as<xaml::Controls::ContentControl>().Content();
+    auto e = parent;
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().RemoveAt(static_cast<uint32_t>(index));
     }

@@ -5,10 +5,6 @@
 #include "winrt/Microsoft.ReactNative.h"
 #include "XamlMetadata.h"
 
-// Required to avoid creating unnecessary ContentControls to hold dynamically-typed ui elements
-// https://github.com/microsoft/react-native-windows/pull/7137
-// #define HAS_CREATEWITHPROPERTIES
-
 namespace winrt::ReactNativeXaml {
 
   struct XamlViewManager : winrt::implements<
@@ -18,11 +14,9 @@ namespace winrt::ReactNativeXaml {
     winrt::Microsoft::ReactNative::IViewManagerWithCommands,
     winrt::Microsoft::ReactNative::IViewManagerWithExportedEventTypeConstants,
     winrt::Microsoft::ReactNative::IViewManagerWithReactContext,
-    winrt::Microsoft::ReactNative::IViewManagerWithChildren
-#ifdef HAS_CREATEWITHPROPERTIES
-    ,winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties
-#endif
-    ,winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
+    winrt::Microsoft::ReactNative::IViewManagerWithChildren,
+    winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties,
+    winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
   > {
   public:
     XamlViewManager() = default;
