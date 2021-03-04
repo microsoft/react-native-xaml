@@ -28,7 +28,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {HyperlinkButton, Border, TextBlock, StackPanel, Button, ComboBox, ComboBoxItem} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
+import {HyperlinkButton, Border, TextBlock, StackPanel, Button, ComboBox, ComboBoxItem,
+NativeXamlControl,
+MenuFlyoutItem,
+TextBox
+} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -64,6 +68,7 @@ const App: () => Node = () => {
   };
 
   const [count, setCount] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -76,23 +81,41 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Button content={{string: `this is a button ${count}`}} foreground="red" onClick={() => { setCount(count + 1); }} />
-          <StackPanel orientation="horizontal">
-            <HyperlinkButton content={{string: "Click me!"}}  onClick={(args) => { 
-              alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`); 
-              }}   />
-            <Border verticalAlignment="center"  background="paleturquoise" >
-              <TextBlock  text="this is a textblock" foreground='red' textAlignment="center" />
-            </Border>
-            <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
-            <Button content={{string: "this is a button"}}  onClick={() => { alert("you clicked the button!"); }}  />
-          </StackPanel>
-          <ComboBox text="this is a combobox" description={{string: "best bois"}} onSelectionChanged={(args) => { 
-              alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`); 
-              }} >
-            <ComboBoxItem content={{string: "garfield"}} foreground="black" />
-            <ComboBoxItem content={{string: "snoopy"}} foreground="black"  />
-          </ComboBox>
+                  <Button content={{ string: `this is a button ${count}` }} foreground="red"
+                      onClick={() => { setCount(count + 1); setIsOpen(true); }} />
+                  {/*<StackPanel orientation="horizontal">*/}
+                  {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
+                  {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
+                  {/*    }} />*/}
+                  {/*    <Border verticalAlignment="center" background="paleturquoise" >*/}
+                  {/*        <TextBlock text="this is a textblock" foreground='red' textAlignment="center" />*/}
+                  {/*    </Border>*/}
+                  {/*    <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />*/}
+                  {/*    <Button content={{ string: "this is a button" }} onClick={() => { alert("you clicked the button!"); }} />*/}
+                  {/*</StackPanel>*/}
+                  {/*<ComboBox text="this is a combobox" description={{ string: "best bois" }} onSelectionChanged={(args) => {*/}
+                  {/*    alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
+                  {/*}} >*/}
+                  {/*    <ComboBoxItem content={{ string: "garfield" }} foreground="black" />*/}
+                  {/*    <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />*/}
+                  {/*</ComboBox>*/}
+                  <TextBox text="this is a textbox with a menuFlyout" foreground="red" >
+                      <NativeXamlControl type="menuFlyout" isOpen={isOpen} onClosed={() => {
+                          setIsOpen(false);
+                          alert("Closed");
+                      }} >
+                      <MenuFlyoutItem text="option 1" onClick={() => { alert("clicked 1"); }} />
+                      <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); }}/>
+                    </NativeXamlControl>
+                  </TextBox>
+
+                  {/*<TextBox text="this is a textbox with a flyout" */}
+                  {/*  foreground="red" >*/}
+                  {/*  <NativeXamlControl type="flyout" >*/}
+                  {/*    <Button content={{string: "click me"}} />*/}
+                  {/*  </NativeXamlControl>*/}
+                  {/*</TextBox>*/}
+
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.

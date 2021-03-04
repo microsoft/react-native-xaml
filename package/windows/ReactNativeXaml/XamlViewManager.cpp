@@ -44,19 +44,42 @@ namespace winrt::ReactNativeXaml {
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
 
     auto e = view;
-
     if (auto control = e.try_as<DependencyObject>()) {
       for (auto const& pair : propertyMap) {
+        bool handled = false;
         auto const& propertyName = pair.first;
         auto const& propertyValue = pair.second;
 
-        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
-          prop->SetValue(control, propertyValue);
+        auto cn = get_class_name(e);
+        if (auto contentControl = e.try_as<ContentControl>()) {
+          auto flyout = contentControl.Content().try_as<Controls::Primitives::FlyoutBase>();
+          if (flyout &&
+            propertyName == "isOpen" &&
+            propertyValue.Type() == JSValueType::Boolean) {
+            handled = true;
+            if (propertyValue.AsBoolean()) {
+              auto target = flyout.Target();
+
+              // TODO: Need to figure out the parent element, but the content control isn't parented to anything anymore
+              if (!target) target = contentControl.DataContext().as<FrameworkElement>();
+              auto cn = winrt::get_class_name(target);
+              flyout.ShowAt(target);
+            }
+            else {
+              flyout.Hide();
+            }
+          }
         }
-        else if (propertyName == "type") {} 
-        else {
-          auto className = winrt::get_class_name(e);
-          assert(false && "unknown property");
+        if (!handled) {
+          if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
+            prop->SetValue(control, propertyValue);
+            handled = true;
+          }
+          else if (propertyName == "type") {}
+          else {
+            auto className = winrt::get_class_name(e);
+            assert(false && "unknown property");
+          }
         }
       }
     }
@@ -101,10 +124,40 @@ namespace winrt::ReactNativeXaml {
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
     auto e = parent;
+    auto parentType = winrt::get_class_name(e);
+    auto childType = winrt::get_class_name(child);
+    if (auto childAsCC = child.try_as<ContentControl>()) {
+      auto childContent = childAsCC.Content();
+      childType = winrt::get_class_name(childContent);
+      if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
+        Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
+        childAsCC.DataContext(e);
+        if (auto button = e.try_as<Button>()) {
+          return button.Flyout(childFlyout);
+        } else {
+          if (auto uiParent = e.try_as<UIElement>()) {
+            return uiParent.ContextFlyout(childFlyout);
+          }
+        }
+      }
+    }
+
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
     }
     else if (auto contentCtrl = e.try_as<ContentControl>()) {
+      auto parentContent = contentCtrl.Content();
+      if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
+        if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
+          return menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
+        }
+      }
+      else if (auto flyout = parentContent.try_as<Flyout>()) {
+        if (index == 0) {
+          return flyout.Content(child);
+        }
+      }
+
       if (index == 0) {
         return contentCtrl.Content(child);
       }
@@ -117,7 +170,8 @@ namespace winrt::ReactNativeXaml {
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().InsertAt(static_cast<uint32_t>(index), child);
     }
-    else {
+    //else 
+    {
       auto cn = winrt::get_class_name(e);
       assert(false && "this element cannot have children");
     }

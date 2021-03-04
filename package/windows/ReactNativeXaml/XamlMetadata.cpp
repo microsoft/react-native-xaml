@@ -65,12 +65,48 @@ constexpr RoutedEventInfo routedEvents[] = {
   ROUTED_EVENT(Tapped),
 };
 
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
-  auto e = Create(typeName);
-  auto fe = e.as<FrameworkElement>();
+FrameworkElement Wrap(const DependencyObject& d) {
+  if (auto fe = d.try_as<FrameworkElement>()) {
+    return fe;
+  }
+  else {
+    ContentControl cc;
+    cc.Content(d);
+    return cc;
+  }
+}
 
-  // Register events
-  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
+void AttachMenuClosed(const FrameworkElement& wrapper, const Primitives::FlyoutBase& f, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
+  f.Closed([wrapper, reactContext](const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
+    reactContext.DispatchEvent(wrapper, L"topClosed", [](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {});
+    });
+}
+template<typename T>
+FrameworkElement MakeFlyout(const winrt::Microsoft::ReactNative::IReactContext& context) {
+  T o;
+  auto e = Wrap(o);
+  AttachMenuClosed(e, o, context);
+  return e;
+}
+
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
+  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
+  FrameworkElement e{ nullptr };
+  switch (key)
+  {
+  case COMPILE_TIME_CRC32_STR("menuFlyout"):
+    e = MakeFlyout<MenuFlyout>(context);
+    break;
+  case COMPILE_TIME_CRC32_STR("flyout"):
+    e = MakeFlyout<Flyout>(context);
+    break;
+  default: // Creates FrameworkElements
+    e = Create(typeName).as<FrameworkElement>(); 
+    // Register events
+    std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); }); 
+    break;
+  }
+  
   return e;
 }
 
