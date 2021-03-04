@@ -65,23 +65,33 @@ constexpr RoutedEventInfo routedEvents[] = {
   ROUTED_EVENT(Tapped),
 };
 
+FrameworkElement Wrap(const DependencyObject& d) {
+  if (auto fe = d.try_as<FrameworkElement>()) {
+    return fe;
+  }
+  else {
+    ContentControl cc;
+    cc.Content(d);
+    return cc;
+  }
+}
+
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
-  winrt::Windows::Foundation::IInspectable e{ nullptr };
+  FrameworkElement e{ nullptr };
   switch (key)
   {
   case COMPILE_TIME_CRC32_STR("menuFlyout"):
-    e = MenuFlyout(); break;
+    e = Wrap(MenuFlyout()); break;
   case COMPILE_TIME_CRC32_STR("flyout"):
-    e = Flyout(); break;
+    e = Wrap(Flyout()); break;
   default: // Creates FrameworkElements
-    e = Create(typeName); break;
+    e = Create(typeName).as<FrameworkElement>(); 
+    // Register events
+    std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); }); 
+    break;
   }
   
-  if (auto fe = e.try_as<FrameworkElement>()) {
-    // Register events
-    std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
-  }
   return e;
 }
 

@@ -112,7 +112,7 @@ namespace winrt::ReactNativeXaml {
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
     auto e = parent;
     auto parentType = winrt::get_class_name(e);
-    auto childType = winrt::get_class_name(child.as<ContentControl>().Content());
+    auto childType = winrt::get_class_name(child);
     if (auto childAsCC = child.try_as<ContentControl>()) {
       auto childContent = childAsCC.Content();
       childType = winrt::get_class_name(childContent);
@@ -130,12 +130,19 @@ namespace winrt::ReactNativeXaml {
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
     }
-    else if (auto menuFlyout = e.try_as<MenuFlyout>()) {
-      if (auto mfi = child.as<ContentControl>().Content().try_as<MenuFlyoutItemBase>()) {
-        return menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
-      }
-    }
     else if (auto contentCtrl = e.try_as<ContentControl>()) {
+      auto parentContent = contentCtrl.Content();
+      if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
+        if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
+          return menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
+        }
+      }
+      else if (auto flyout = parentContent.try_as<Flyout>()) {
+        if (index == 0) {
+          return flyout.Content(child);
+        }
+      }
+
       if (index == 0) {
         return contentCtrl.Content(child);
       }
@@ -147,11 +154,6 @@ namespace winrt::ReactNativeXaml {
     }
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().InsertAt(static_cast<uint32_t>(index), child);
-    }
-    else if (auto flyout = e.try_as<Flyout>()) {
-      if (index == 0) {
-        return flyout.Content(child);
-      }
     }
     //else 
     {
