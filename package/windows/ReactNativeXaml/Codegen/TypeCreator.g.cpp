@@ -165,6 +165,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("virtualizingStackPanel"): { return winrt::Windows::UI::Xaml::Controls::VirtualizingStackPanel(); }
     case COMPILE_TIME_CRC32_STR("webView"): { return winrt::Windows::UI::Xaml::Controls::WebView(); }
     case COMPILE_TIME_CRC32_STR("wrapGrid"): { return winrt::Windows::UI::Xaml::Controls::WrapGrid(); }
+
   }
   throw std::invalid_argument("xaml type not found");
 }
