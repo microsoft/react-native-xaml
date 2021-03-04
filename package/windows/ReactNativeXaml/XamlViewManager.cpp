@@ -101,8 +101,21 @@ namespace winrt::ReactNativeXaml {
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
     auto e = parent;
+    if (auto childMF = child.try_as<MenuFlyout>()) {
+      if (auto button = e.try_as<Button>()) {
+        return button.Flyout(childMF);
+      } else {
+        return e.ContextFlyout(childMF);
+      }
+    }
+
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
+    }
+    else if (auto menuFlyout = e.try_as<MenuFlyout>()) {
+      if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
+        menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
+      }
     }
     else if (auto contentCtrl = e.try_as<ContentControl>()) {
       if (index == 0) {

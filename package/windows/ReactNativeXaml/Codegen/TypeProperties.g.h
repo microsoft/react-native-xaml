@@ -371,6 +371,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("isOpen"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Popup, IsOpenProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isOpen"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ToolTip, IsOpenProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isOpen"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBar, IsOpenProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
+        { MAKE_KEY("isOpen"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MenuFlyout, IsOpenProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isOutOfScopeEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, IsOutOfScopeEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isOutOfScopeEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, IsOutOfScopeEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isPaneOpen"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, IsPaneOpenProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
