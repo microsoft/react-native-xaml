@@ -65,11 +65,10 @@ constexpr RoutedEventInfo routedEvents[] = {
   ROUTED_EVENT(Tapped),
 };
 
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context, const winrt::Windows::Foundation::IInspectable& tag) const {
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto e = Create(typeName);
   auto fe = e.as<FrameworkElement>();
-  fe.Tag(tag); // event dispatching needs to have the xaml event sender have a tag
-  auto ntag = fe.Tag();
+
   // Register events
   std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
   return e;
@@ -115,19 +114,18 @@ namespace winrt::Microsoft::ReactNative {
       assert(false);
     }
   }
-  void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& ii) {
-    auto item = ii.as<xaml::Controls::ContentControl>().Content();
+  void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& item) {
     auto cn = winrt::get_class_name(item);
     writer.WriteObjectBegin();
     WriteProperty(writer, L"type", cn);
-    if (auto fe = ii.try_as<FrameworkElement>()) {
+    if (auto fe = item.try_as<FrameworkElement>()) {
       if (auto tagII = fe.Tag()) {
         auto tag = winrt::unbox_value<int64_t>(tagII);
         WriteProperty(writer, L"tag", tag);
       }
     }
     writer.WritePropertyName(L"value");
-    WriteIInspectable(writer, ii);
+    WriteIInspectable(writer, item);
     writer.WriteObjectEnd();
   }
 
