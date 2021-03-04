@@ -76,15 +76,30 @@ FrameworkElement Wrap(const DependencyObject& d) {
   }
 }
 
+void AttachMenuClosed(const FrameworkElement& wrapper, const Primitives::FlyoutBase& f, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
+  f.Closed([wrapper, reactContext](const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
+    reactContext.DispatchEvent(wrapper, L"topClosed", [](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {});
+    });
+}
+template<typename T>
+FrameworkElement MakeFlyout(const winrt::Microsoft::ReactNative::IReactContext& context) {
+  T o;
+  auto e = Wrap(o);
+  AttachMenuClosed(e, o, context);
+  return e;
+}
+
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
   FrameworkElement e{ nullptr };
   switch (key)
   {
   case COMPILE_TIME_CRC32_STR("menuFlyout"):
-    e = Wrap(MenuFlyout()); break;
+    e = MakeFlyout<MenuFlyout>(context);
+    break;
   case COMPILE_TIME_CRC32_STR("flyout"):
-    e = Wrap(Flyout()); break;
+    e = MakeFlyout<Flyout>(context);
+    break;
   default: // Creates FrameworkElements
     e = Create(typeName).as<FrameworkElement>(); 
     // Register events
