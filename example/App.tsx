@@ -30,7 +30,8 @@ import {
 
 import {HyperlinkButton, Border, TextBlock, StackPanel, Button, ComboBox, ComboBoxItem,
 NativeXamlControl,
-MenuFlyoutItem
+MenuFlyoutItem,
+TextBox
 } from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
@@ -80,13 +81,21 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Button content={{string: `this is a button ${count}`}} 
-            foreground="red" onClick={() => { setCount(count + 1); setIsOpen(true); }}>
+          <TextBox text="this is a textbox with a menuFlyout" 
+            foreground="red" >
             <NativeXamlControl type="menuFlyout" >
-              <MenuFlyoutItem text="option 1" />
-              <MenuFlyoutItem text="option 2" />
+              <MenuFlyoutItem text="option 1" onClick={() => { alert("clicked 1"); }} />
+              <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); }}/>
             </NativeXamlControl>
-          </Button>
+          </TextBox>
+
+          <TextBox text="this is a textbox with a flyout" 
+            foreground="red" >
+            <NativeXamlControl type="flyout" >
+              <Button content={{string: "click me"}} />
+            </NativeXamlControl>
+          </TextBox>
+
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.

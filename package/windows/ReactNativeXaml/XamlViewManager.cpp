@@ -49,8 +49,18 @@ namespace winrt::ReactNativeXaml {
       for (auto const& pair : propertyMap) {
         auto const& propertyName = pair.first;
         auto const& propertyValue = pair.second;
-
-        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
+        auto flyout = e.try_as<Controls::Primitives::FlyoutBase>();
+        if (flyout &&
+          propertyName == "isOpen" && 
+          propertyValue.Type() == JSValueType::Boolean) {
+          if (propertyValue.AsBoolean()) {
+            flyout.ShowAt(flyout.Target());
+          }
+          else {
+            flyout.Hide();
+          }
+        }
+        else if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
           prop->SetValue(control, propertyValue);
         }
         else if (propertyName == "type") {} 
@@ -101,11 +111,19 @@ namespace winrt::ReactNativeXaml {
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
     auto e = parent;
-    if (auto childMF = child.try_as<MenuFlyout>()) {
-      if (auto button = e.try_as<Button>()) {
-        return button.Flyout(childMF);
-      } else {
-        return e.ContextFlyout(childMF);
+    auto parentType = winrt::get_class_name(e);
+    auto childType = winrt::get_class_name(child.as<ContentControl>().Content());
+    if (auto childAsCC = child.try_as<ContentControl>()) {
+      auto childContent = childAsCC.Content();
+      childType = winrt::get_class_name(childContent);
+      if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
+        if (auto button = e.try_as<Button>()) {
+          return button.Flyout(childFlyout);
+        } else {
+          if (auto uiParent = e.try_as<UIElement>()) {
+            return uiParent.ContextFlyout(childFlyout);
+          }
+        }
       }
     }
 
@@ -113,8 +131,8 @@ namespace winrt::ReactNativeXaml {
       return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
     }
     else if (auto menuFlyout = e.try_as<MenuFlyout>()) {
-      if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
-        menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
+      if (auto mfi = child.as<ContentControl>().Content().try_as<MenuFlyoutItemBase>()) {
+        return menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
       }
     }
     else if (auto contentCtrl = e.try_as<ContentControl>()) {
@@ -130,7 +148,13 @@ namespace winrt::ReactNativeXaml {
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().InsertAt(static_cast<uint32_t>(index), child);
     }
-    else {
+    else if (auto flyout = e.try_as<Flyout>()) {
+      if (index == 0) {
+        return flyout.Content(child);
+      }
+    }
+    //else 
+    {
       auto cn = winrt::get_class_name(e);
       assert(false && "this element cannot have children");
     }

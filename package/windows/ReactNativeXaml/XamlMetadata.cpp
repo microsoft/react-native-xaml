@@ -66,11 +66,22 @@ constexpr RoutedEventInfo routedEvents[] = {
 };
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
-  auto e = Create(typeName);
-  auto fe = e.as<FrameworkElement>();
-
-  // Register events
-  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
+  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
+  winrt::Windows::Foundation::IInspectable e{ nullptr };
+  switch (key)
+  {
+  case COMPILE_TIME_CRC32_STR("menuFlyout"):
+    e = MenuFlyout(); break;
+  case COMPILE_TIME_CRC32_STR("flyout"):
+    e = Flyout(); break;
+  default: // Creates FrameworkElements
+    e = Create(typeName); break;
+  }
+  
+  if (auto fe = e.try_as<FrameworkElement>()) {
+    // Register events
+    std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); });
+  }
   return e;
 }
 
