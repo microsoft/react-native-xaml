@@ -112,13 +112,12 @@ namespace Codegen
 
         public static string GetBaseClassProps(MrType type)
         {
-            if (type.GetName() == "UIElement")
+            switch (type.GetName())
             {
-                return "ViewProps";
-            }
-            else
-            {
-                return $"Native{type.GetBaseType().GetName()}Props";
+                case "DependencyObject":
+                    return "ViewProps";
+                default:
+                    return $"Native{type.GetBaseType().GetName()}Props";
             }
         }
 

@@ -96,7 +96,7 @@ class Program
             };
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
-                Util.DerivesFrom(type, b)));
+                Util.DerivesFrom(type, b)) || type.GetName() == "DependencyObject");
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var generatedDirPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
             var packageSrcPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\src"));
