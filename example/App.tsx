@@ -31,7 +31,8 @@ import {
 import {HyperlinkButton, Border, TextBlock, StackPanel, Button, ComboBox, ComboBoxItem,
 NativeXamlControl,
 MenuFlyoutItem,
-TextBox
+TextBox,
+BlankUserControl,
 } from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
@@ -81,6 +82,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+              <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } />
                   <Button content={{ string: `Last selected option = ${option} ${count}` }} foreground="red"
                       onClick={(a) => { alert(JSON.stringify(a.nativeEvent)); setCount(count + 1); setIsOpen(true); }} />
                   {/*<StackPanel orientation="horizontal">*/}
@@ -99,7 +101,7 @@ const App: () => Node = () => {
                   {/*    <ComboBoxItem content={{ string: "garfield" }} foreground="black" />*/}
                   {/*    <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />*/}
                   {/*</ComboBox>*/}
-                  <TextBox text="this is a textbox with a menuFlyout" foreground="red" onTe >
+                  <TextBox text="this is a textbox with a menuFlyout" foreground="red">
                       <NativeXamlControl type="menuFlyout" isOpen={isOpen} onClosed={() => {
                           setIsOpen(false);
                       }} >

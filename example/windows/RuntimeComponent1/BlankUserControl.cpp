@@ -16,17 +16,31 @@ namespace winrt::RuntimeComponent1::implementation
 
     int32_t BlankUserControl::MyProperty()
     {
-        throw hresult_not_implemented();
+      auto value = this->GetValue(MyPropertyProperty());
+      return winrt::unbox_value<int32_t>(value);
     }
 
-    void BlankUserControl::MyProperty(int32_t /* value */)
+    void BlankUserControl::MyProperty(int32_t value)
     {
-        throw hresult_not_implemented();
+      this->SetValue(MyPropertyProperty(), winrt::box_value(value));
     }
+
+    winrt::event_token BlankUserControl::Happened(Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const
+      & handler) noexcept {
+      return m_happened.add(handler);
+    }
+    void BlankUserControl::Happened(winrt::event_token const& token) {
+      m_happened.remove(token);
+    }
+
 
     void BlankUserControl::ClickHandler(IInspectable const&, RoutedEventArgs const&)
     {
-        Button().Content(box_value(L"Clicked"));
+      auto v = MyProperty() + 1;
+      MyProperty(v);
+      Button().Content(box_value(L"Clicked " + std::to_wstring(v)));
+
+      m_happened(*this, nullptr);
     }
 
     winrt::Windows::UI::Xaml::DependencyProperty BlankUserControl::MyPropertyProperty() {

@@ -37,7 +37,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Include", "..\..\node_modul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeXaml", "..\..\package\windows\ReactNativeXaml\ReactNativeXaml.vcxproj", "{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codegen", "..\..\codegen\Codegen\Codegen.csproj", "{5B4C219B-2178-4226-B5C1-DFAD6919790A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codegen", "..\..\package\Codegen\Codegen.csproj", "{5B4C219B-2178-4226-B5C1-DFAD6919790A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RuntimeComponent1", "RuntimeComponent1\RuntimeComponent1.vcxproj", "{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -220,8 +222,26 @@ Global
 		{5B4C219B-2178-4226-B5C1-DFAD6919790A}.Release|x64.Build.0 = Release|Any CPU
 		{5B4C219B-2178-4226-B5C1-DFAD6919790A}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B4C219B-2178-4226-B5C1-DFAD6919790A}.Release|x86.Build.0 = Release|Any CPU
-		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.CPU.ActiveCfg = CPU
-		{0FF7027A-222C-4FFB-8F17-91D18BBAF7A8}.CPU.Build.0 = CPU
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|ARM.Build.0 = Debug|ARM
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|ARM64.Build.0 = Debug|ARM64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|x64.ActiveCfg = Debug|x64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|x64.Build.0 = Debug|x64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|x86.ActiveCfg = Debug|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|x86.Build.0 = Debug|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Debug|x86.Deploy.0 = Debug|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|ARM.ActiveCfg = Release|ARM
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|ARM.Build.0 = Release|ARM
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|ARM64.ActiveCfg = Release|ARM64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|ARM64.Build.0 = Release|ARM64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|x64.ActiveCfg = Release|x64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|x64.Build.0 = Release|x64
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|x86.ActiveCfg = Release|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|x86.Build.0 = Release|Win32
+		{60D4900D-89A0-403A-A2B7-D52EFBE11B0A}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

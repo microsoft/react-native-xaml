@@ -135,8 +135,8 @@ namespace Codegen
             t.GetMethodsAndConstructors(out var methods, out var ctors);
             var publicCtors = ctors.Where(x => x.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Public));
             return publicCtors.Count() != 0;
-
         }
+        
 
         public static bool IsReservedName(string name)
         {

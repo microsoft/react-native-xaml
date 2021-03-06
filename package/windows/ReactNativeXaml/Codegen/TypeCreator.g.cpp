@@ -7,6 +7,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
 #include <winrt/Windows.UI.Xaml.Controls.h>
+#include <winrt/RuntimeComponent1.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Windows.UI.Xaml.Shapes.h>
 #include <winrt/Windows.UI.Xaml.Documents.h>
@@ -22,6 +23,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("appBarToggleButton"): { return winrt::Windows::UI::Xaml::Controls::AppBarToggleButton(); }
     case COMPILE_TIME_CRC32_STR("autoSuggestBox"): { return winrt::Windows::UI::Xaml::Controls::AutoSuggestBox(); }
     case COMPILE_TIME_CRC32_STR("bitmapIcon"): { return winrt::Windows::UI::Xaml::Controls::BitmapIcon(); }
+    case COMPILE_TIME_CRC32_STR("blankUserControl"): { return winrt::RuntimeComponent1::BlankUserControl(); }
     case COMPILE_TIME_CRC32_STR("border"): { return winrt::Windows::UI::Xaml::Controls::Border(); }
     case COMPILE_TIME_CRC32_STR("button"): { return winrt::Windows::UI::Xaml::Controls::Button(); }
     case COMPILE_TIME_CRC32_STR("calendarDatePicker"): { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker(); }

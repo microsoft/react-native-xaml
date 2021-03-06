@@ -2,13 +2,20 @@ import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
 
+export interface NativeBlankUserControlProps extends NativeUserControlProps {
+  type: 'blankUserControl';
+  myProperty?: number;
+  onHappened?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
 export interface NativeDependencyObjectProps extends ViewProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarFlyout'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyout'|'dropDownButton'|'flipView'|'flipViewItem'|'flyout'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyout'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyout'|'menuBarItemFlyout'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyout'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'textCommandBarFlyout'|'timePicker'|'timePickerFlyout'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'blankUserControl'|'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarFlyout'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyout'|'dropDownButton'|'flipView'|'flipViewItem'|'flyout'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyout'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyout'|'menuBarItemFlyout'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyout'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'textCommandBarFlyout'|'timePicker'|'timePickerFlyout'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
 }
 
 
 export interface NativeUIElementProps extends NativeDependencyObjectProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'blankUserControl'|'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   opacity?: number;
   manipulationMode?: 'none' | 'translateX' | 'translateY' | 'translateRailsX' | 'translateRailsY' | 'rotate' | 'scale' | 'translateInertia' | 'rotateInertia' | 'scaleInertia' | 'all' | 'system';
   isTapEnabled?: boolean;
@@ -80,7 +87,7 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
 
 
 export interface NativeFrameworkElementProps extends NativeUIElementProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'blankUserControl'|'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   width?: number;
   verticalAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
   tag?: object;
@@ -115,7 +122,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
 
 
 export interface NativeControlProps extends NativeFrameworkElementProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'frame'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaPlayerElement'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'passwordBox'|'personPicture'|'pivot'|'pivotItem'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'scrollBar'|'thumb'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'richEditBox'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'swipeControl'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView';
+  type: 'blankUserControl'|'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'frame'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaPlayerElement'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'passwordBox'|'personPicture'|'pivot'|'pivotItem'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'scrollBar'|'thumb'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'richEditBox'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'swipeControl'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView';
   padding?: Thickness;
   isTabStop?: boolean;
   isEnabled?: boolean;
@@ -1133,7 +1140,7 @@ export interface NativeNavigationViewListProps extends NativeListViewProps {
 
 
 export interface NativeUserControlProps extends NativeControlProps {
-  type: 'userControl'|'page';
+  type: 'blankUserControl'|'page';
 }
 
 
@@ -2024,8 +2031,14 @@ export interface NativeRectangleProps extends NativeShapeProps {
 }
 
 
-export type XamlControlProps = NativeContentControlProps 
+export type XamlControlProps = NativeBlankUserControlProps 
+	 |  NativeDependencyObjectProps 
+	 |  NativeUIElementProps 
+	 |  NativeFrameworkElementProps 
+	 |  NativeControlProps 
+	 |  NativeContentControlProps 
 	 |  NativeAppBarProps 
+	 |  NativeButtonBaseProps 
 	 |  NativeButtonProps 
 	 |  NativeAppBarButtonProps 
 	 |  NativeAppBarElementContainerProps 
@@ -2034,23 +2047,29 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeAppBarToggleButtonProps 
 	 |  NativeItemsControlProps 
 	 |  NativeAutoSuggestBoxProps 
+	 |  NativeIconElementProps 
 	 |  NativeBitmapIconProps 
 	 |  NativeBorderProps 
 	 |  NativeCalendarDatePickerProps 
 	 |  NativeCalendarViewProps 
 	 |  NativeCalendarViewDayItemProps 
+	 |  NativePanelProps 
 	 |  NativeCanvasProps 
 	 |  NativeCaptureElementProps 
 	 |  NativeCheckBoxProps 
 	 |  NativeColorPickerProps 
+	 |  NativeSelectorProps 
 	 |  NativeComboBoxProps 
+	 |  NativeSelectorItemProps 
 	 |  NativeComboBoxItemProps 
 	 |  NativeCommandBarProps 
+	 |  NativeFlyoutBaseProps 
 	 |  NativeCommandBarFlyoutProps 
 	 |  NativeCommandBarOverflowPresenterProps 
 	 |  NativeContentDialogProps 
 	 |  NativeContentPresenterProps 
 	 |  NativeDatePickerProps 
+	 |  NativePickerFlyoutBaseProps 
 	 |  NativeDatePickerFlyoutProps 
 	 |  NativeDropDownButtonProps 
 	 |  NativeFlipViewProps 
@@ -2060,7 +2079,9 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeFontIconProps 
 	 |  NativeFrameProps 
 	 |  NativeGridProps 
+	 |  NativeListViewBaseProps 
 	 |  NativeGridViewProps 
+	 |  NativeListViewBaseHeaderItemProps 
 	 |  NativeGridViewHeaderItemProps 
 	 |  NativeGridViewItemProps 
 	 |  NativeGroupItemProps 
@@ -2073,13 +2094,17 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeInkCanvasProps 
 	 |  NativeInkToolbarProps 
 	 |  NativeRadioButtonProps 
+	 |  NativeInkToolbarToolButtonProps 
+	 |  NativeInkToolbarPenButtonProps 
 	 |  NativeInkToolbarBallpointPenButtonProps 
 	 |  NativeInkToolbarCustomPenButtonProps 
+	 |  NativeInkToolbarToggleButtonProps 
 	 |  NativeInkToolbarCustomToggleButtonProps 
 	 |  NativeInkToolbarCustomToolButtonProps 
 	 |  NativeInkToolbarEraserButtonProps 
 	 |  NativeInkToolbarFlyoutItemProps 
 	 |  NativeInkToolbarHighlighterButtonProps 
+	 |  NativeInkToolbarMenuButtonProps 
 	 |  NativeInkToolbarPenConfigurationControlProps 
 	 |  NativeInkToolbarPencilButtonProps 
 	 |  NativeInkToolbarRulerButtonProps 
@@ -2102,11 +2127,13 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeMenuBarItemProps 
 	 |  NativeMenuFlyoutProps 
 	 |  NativeMenuBarItemFlyoutProps 
+	 |  NativeMenuFlyoutItemBaseProps 
 	 |  NativeMenuFlyoutItemProps 
 	 |  NativeMenuFlyoutPresenterProps 
 	 |  NativeMenuFlyoutSeparatorProps 
 	 |  NativeMenuFlyoutSubItemProps 
 	 |  NativeNavigationViewProps 
+	 |  NativeNavigationViewItemBaseProps 
 	 |  NativeNavigationViewItemProps 
 	 |  NativeNavigationViewItemHeaderProps 
 	 |  NativeNavigationViewItemSeparatorProps 
@@ -2121,7 +2148,9 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativePivotProps 
 	 |  NativePivotItemProps 
 	 |  NativeCalendarPanelProps 
+	 |  NativeVirtualizingPanelProps 
 	 |  NativeCarouselPanelProps 
+	 |  NativeRangeBaseProps 
 	 |  NativeSliderProps 
 	 |  NativeColorPickerSliderProps 
 	 |  NativeColorSpectrumProps 
@@ -2129,6 +2158,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeGridViewItemPresenterProps 
 	 |  NativeListViewItemPresenterProps 
 	 |  NativeNavigationViewItemPresenterProps 
+	 |  NativeOrientedVirtualizingPanelProps 
 	 |  NativePivotHeaderItemProps 
 	 |  NativePivotHeaderPanelProps 
 	 |  NativePivotPanelProps 
@@ -2177,6 +2207,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeWebViewProps 
 	 |  NativeWrapGridProps 
 	 |  NativeGlyphsProps 
+	 |  NativeShapeProps 
 	 |  NativeEllipseProps 
 	 |  NativeLineProps 
 	 |  NativePathProps 

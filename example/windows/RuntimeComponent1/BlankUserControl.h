@@ -18,8 +18,15 @@ namespace winrt::RuntimeComponent1::implementation
         void ClickHandler(Windows::Foundation::IInspectable const& sender, Windows::UI::Xaml::RoutedEventArgs const& args);
 
         static winrt::Windows::UI::Xaml::DependencyProperty MyPropertyProperty();
+
+        winrt::event_token Happened(Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable> const
+          & handler) noexcept;
+        void Happened(winrt::event_token const& token);
+
+
     private:
       static winrt::Windows::UI::Xaml::DependencyProperty m_myPropertyProperty;
+      winrt::event<Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>> m_happened;
 
     };
 }

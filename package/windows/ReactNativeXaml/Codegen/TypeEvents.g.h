@@ -7,6 +7,7 @@
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
+#include <winrt/RuntimeComponent1.h>
 #include <winrt/Windows.UI.Xaml.h>
 #include <winrt/Windows.UI.Xaml.Controls.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
@@ -18,6 +19,19 @@ template<typename TArgs>
 void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::Windows::Foundation::IInspectable& sender, const TArgs& args);
 
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
+  {"Happened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
+  winrt::Windows::Foundation::IInspectable o = (isWrapped) ? ii.as<ContentControl>().Content() : ii;
+  if (auto c = o.try_as<winrt::RuntimeComponent1::BlankUserControl>()) {
+        c.Happened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
+            if (auto fe = sender ? sender.try_as<xaml::FrameworkElement>() : 
+            (ii ? ii.try_as<xaml::FrameworkElement>() : nullptr)) {
+              reactContext.DispatchEvent(fe, L"topHappened", [sender, args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {
+                SerializeEventArgs(evtDataWriter, sender, args);
+              });
+            }
+        });
+    }
+    } },
   {"DoubleTapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
   winrt::Windows::Foundation::IInspectable o = (isWrapped) ? ii.as<ContentControl>().Content() : ii;
   if (auto c = o.try_as<winrt::Windows::UI::Xaml::UIElement>()) {
@@ -3531,7 +3545,7 @@ void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& wri
 
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 270);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 271);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

@@ -5,7 +5,7 @@ namespace RuntimeComponent1
     {
         BlankUserControl();
         Int32 MyProperty;
-
+        event Windows.Foundation.EventHandler<IInspectable> Happened;
         static Windows.UI.Xaml.DependencyProperty MyPropertyProperty{ get; };
     }
 }

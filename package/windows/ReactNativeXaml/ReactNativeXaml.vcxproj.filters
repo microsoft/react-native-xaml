@@ -45,6 +45,7 @@
     <None Include="..\..\src\Types.tsx">
       <Filter>TS</Filter>
     </None>
+    <None Include="..\..\..\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codegen">

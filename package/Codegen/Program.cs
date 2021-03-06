@@ -86,9 +86,17 @@ class Program
                 }
             };
             var windows_winmd = context.LoadAssemblyFromPath(Windows_winmd);
-            var winmd = winmdPath != null ? context.LoadAssemblyFromPath(winmdPath) : windows_winmd;
+            var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
+            // ToList realizes the list which is needs to happen before FinishLoading is called
             context.FinishLoading();
-            var types = winmd.GetAllTypes().Skip(1);
+
+            var typesPerAssembly = winmds.Select(winmd => winmd.GetAllTypes().Skip(1));
+            var types = typesPerAssembly.Aggregate((l1, l2) => l1.Union(l2));
+            var windows_winmdTypes = windows_winmd.GetAllTypes().Skip(1);
+            if (winmdPaths.Count != 0)
+            {
+                types = types.Union(windows_winmdTypes);
+            }
             Util.LoadContext = context;
 
             var baseClassesToProject = new string[]
@@ -99,9 +107,18 @@ class Program
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
                 Util.DerivesFrom(type, b)) || type.GetName() == "DependencyObject");
+
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
-            var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\src"));
+            var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(assemblyLocation, @"..\..\..\..", @"windows\ReactNativeXaml\Codegen"));
+            var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(assemblyLocation, @"..\..\..\..", @"src"));
+
+            Console.WriteLine("Generating projections for the following WinMD files:");
+            Console.WriteLine($"- {Windows_winmd}");
+            foreach (var path in winmdPaths)
+            {
+                Console.WriteLine($"- {Path.GetFullPath(path)}");
+            }
+            Console.WriteLine();
 
             var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
@@ -111,7 +128,7 @@ class Program
             {
                 Directory.CreateDirectory(generatedDirPath);
             }
-            File.WriteAllText(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
+            UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
 
             var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
@@ -124,25 +141,69 @@ class Program
                 var eventsToAdd = type.GetEvents().Where(e => Util.ShouldEmitEventMetadata(e));
                 events.AddRange(eventsToAdd);
             }
-
+            properties.Sort((p1, p2) =>
+            {
+                var h1 = GetPropertySortKey(p1);
+                var h2 = GetPropertySortKey(p2);
+                if (h1.CompareTo(h2) != 0)
+                {
+                    return h1.CompareTo(h2);
+                }
+                else
+                {
+                    return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
+                }
+            });
             var propsGen = new TSProps(xamlTypes).TransformText();
-            File.WriteAllText(Path.Join(packageSrcPath, "Props.ts"), propsGen);
+            UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
 
             var typesGen = new TSTypes(xamlTypes).TransformText();
-            File.WriteAllText(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+            UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var propertiesGen = new TypeProperties(properties).TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
+            UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
 
             var enumConvertersGen = new EnumConverters().TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "EnumConverters.g.cpp"), enumConvertersGen);
+            UpdateFile(Path.Join(generatedDirPath, "EnumConverters.g.cpp"), enumConvertersGen);
 
             var eventsGen = new TypeEvents(events).TransformText();
-            File.WriteAllText(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
+            UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
         }
 
-        private string winmdPath { get; set; }
+        private static void UpdateFile(string path, string content)
+        {
+            var existing = File.Exists(path) ? File.ReadAllText(path) : "";
+            if (existing != content)
+            {
+                Console.WriteLine($" Writing {path}");
+                File.WriteAllText(path, content);
+            }
+        }
+
+        private static uint HashName(string input)
+        {
+            var accum = 5381u;
+            for (var i = input.Length - 1; i >= 0; i--)
+            {
+                var c = (uint)input[i];
+                if (i == input.Length - 1)
+                {
+                    accum += c;
+                } else
+                {
+                    accum = c + 33 * accum;
+                }
+            }
+            return accum;
+        }
+
+        private static uint GetPropertySortKey(MrProperty p1)
+        {
+            return HashName(p1.GetName());
+        }
+
+        private List<string> winmdPaths { get; } = new List<string>();
         private string cppOutPath { get; set; }
         private string tsOutPath { get; set; }
         class OptionDef
@@ -161,7 +222,7 @@ class Program
 
         static Dictionary<string, OptionDef> optionDefs = new Dictionary<string, OptionDef>() {
                 { "-help", new OptionDef (){ NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
-                { "-winmd", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.winmdPath = v; } } },
+                { "-winmd", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
                 { "-cppout", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
                 { "-tsout", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
             };
@@ -182,7 +243,7 @@ class Program
                     def.Action(p, v);
                 } else
                 {
-                    throw new ArgumentException($"Unkown option {args[i]}");
+                    throw new ArgumentException($"Unknown option {args[i]}");
                 }
             }
             p.DumpTypes();
