@@ -115,11 +115,12 @@ If you need to add/change code behind, or the set of properties and events in yo
 
 ### Try the example
 In order to try the example app with the sample RuntimeComponent BlankUserControl, you need to:
-1. Build your RuntimeComponent
+1. Build the RuntimeComponent1 library (example\windows\RuntimeComponent1) in Visual Studio
 2. rerun codegen
 3. rebuild the TS
 4. Ensure your app references the runtime component project or winmd.
 5. Build your app
+6. Uncomment the lines in example\App.tsx that use BlankUserControl
 
 Example of steps 2 and 3:
 ```

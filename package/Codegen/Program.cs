@@ -92,11 +92,14 @@ class Program
             context.FinishLoading();
 
             var typesPerAssembly = winmds.Select(winmd => winmd.GetAllTypes().Skip(1));
-            var types = typesPerAssembly.Aggregate((l1, l2) => l1.Union(l2));
+            var types = typesPerAssembly.Count() != 0 ? typesPerAssembly.Aggregate((l1, l2) => l1.Union(l2)) : new MrType[] { };
             var windows_winmdTypes = windows_winmd.GetAllTypes().Skip(1);
             if (winmdPaths.Count != 0)
             {
                 types = types.Union(windows_winmdTypes);
+            } else
+            {
+                types = windows_winmdTypes;
             }
             Util.LoadContext = context;
 

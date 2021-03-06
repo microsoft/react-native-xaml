@@ -1,5 +1,4 @@
 import type {
-    NativeBlankUserControlProps,
     NativeContentControlProps,
     NativeAppBarProps,
     NativeButtonProps,
@@ -164,13 +163,6 @@ import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 
 
-export type BlankUserControlProps = Omit<NativeBlankUserControlProps, 'type'>;
-
-export const BlankUserControl: React.FC<BlankUserControlProps> = (props: BlankUserControlProps) => {
-    return (
-        <NativeXamlControl type="blankUserControl" {...props} />
-    );
-};
 export type ContentControlProps = Omit<NativeContentControlProps, 'type'>;
 
 export const ContentControl: React.FC<ContentControlProps> = (props: ContentControlProps) => {
