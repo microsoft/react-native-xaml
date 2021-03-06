@@ -115,7 +115,7 @@ If you need to add/change code behind, or the set of properties and events in yo
 
 ### Try the example
 In order to try the example app with the sample RuntimeComponent BlankUserControl, you need to:
-1. Build the RuntimeComponent1 library (example\windows\RuntimeComponent1) in Visual Studio
+1. Add the RuntimeComponent1 library (example\windows\RuntimeComponent1) into the ReactNativeXaml project in Visual Studio
 2. rerun codegen
 3. rebuild the TS
 4. Ensure your app references the runtime component project or winmd.
