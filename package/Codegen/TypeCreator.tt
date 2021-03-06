@@ -23,7 +23,8 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 <# } #>
   
   }
-  throw std::invalid_argument("xaml type not found");
+  assert(false && "xaml type not found");
+  return nullptr;
 }
 
 

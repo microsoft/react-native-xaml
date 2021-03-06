@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+    #line 1 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class TypeCreator : TypeCreatorBase
     {
@@ -38,21 +38,21 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 ");
             
-            #line 14 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 14 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var ns in Types.Select(t => t.GetNamespace()).Distinct()) { 
             
             #line default
             #line hidden
             this.Write("#include <winrt/");
             
-            #line 15 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 15 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
             
             #line default
             #line hidden
             this.Write(".h>\r\n");
             
-            #line 16 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 16 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
             
             #line default
@@ -61,33 +61,33 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
                     "& typeName) const {\r\n  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());\r\n  s" +
                     "witch (key) {\r\n");
             
-            #line 21 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 21 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var t in Types.Where(x => !x.IsAbstract)) { 
             
             #line default
             #line hidden
             this.Write("    case COMPILE_TIME_CRC32_STR(\"");
             
-            #line 22 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 22 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(t.GetName())));
             
             #line default
             #line hidden
             this.Write("\"): { return ");
             
-            #line 22 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 22 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
             
             #line default
             #line hidden
             this.Write("(); }\r\n");
             
-            #line 23 "E:\react-native-xaml\codegen\Codegen\TypeCreator.tt"
+            #line 23 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("  \r\n  }\r\n  throw std::invalid_argument(\"xaml type not found\");\r\n}\r\n\r\n\r\n");
+            this.Write("  \r\n  }\r\n  assert(false && \"xaml type not found\");\r\n  return nullptr;\r\n}\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
