@@ -114,6 +114,17 @@ This means you can change your XAML markup file for your UserControl in real tim
 If you need to add/change code behind, or the set of properties and events in your UserControl, you will need to rebuild the RuntimeComponent library, re-run CodeGen, and rebuild your TS.
 
 ### Try the example
-In order to try the example app with the sample RuntimeComponent BlankUserControl:
-- re-run codegen: `dotnet run CodeGen -winmd "E:\react-native-xaml\example\windows\RuntimeComponent1\Debug\Merged\RuntimeComponent1.winmd"`
-- rebuild the TS: `yarn build` 
+In order to try the example app with the sample RuntimeComponent BlankUserControl, you need to:
+1. Build your RuntimeComponent
+2. rerun codegen
+3. rebuild the TS
+4. Ensure your app references the runtime component project or winmd.
+5. Build your app
+
+Example of steps 2 and 3:
+```
+cd MyApp
+dotnet run -p .\node_modules\react-native-xaml\Codegen -- -winmd "E:\react-native-xaml\example\windows\RuntimeComponent1\Debug\Merged\RuntimeComponent1.winmd"
+cd node_modules\react-native-xaml
+yarn build
+```
