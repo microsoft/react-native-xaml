@@ -51,35 +51,14 @@ namespace winrt::ReactNativeXaml {
         auto const& propertyValue = pair.second;
 
         auto cn = get_class_name(e);
-        if (auto contentControl = e.try_as<ContentControl>()) {
-          auto flyout = contentControl.Content().try_as<Controls::Primitives::FlyoutBase>();
-          if (flyout &&
-            propertyName == "isOpen" &&
-            propertyValue.Type() == JSValueType::Boolean) {
-            handled = true;
-            if (propertyValue.AsBoolean()) {
-              auto target = flyout.Target();
-
-              // TODO: Need to figure out the parent element, but the content control isn't parented to anything anymore
-              if (!target) target = contentControl.DataContext().as<FrameworkElement>();
-              auto cn = winrt::get_class_name(target);
-              flyout.ShowAt(target);
-            }
-            else {
-              flyout.Hide();
-            }
-          }
+        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
+          prop->SetValue(control, propertyValue);
+          handled = true;
         }
-        if (!handled) {
-          if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
-            prop->SetValue(control, propertyValue);
-            handled = true;
-          }
-          else if (propertyName == "type") {}
-          else {
-            auto className = winrt::get_class_name(e);
-            assert(false && "unknown property");
-          }
+        else if (propertyName == "type") {}
+        else {
+          auto className = winrt::get_class_name(e);
+          assert(false && "unknown property");
         }
       }
     }

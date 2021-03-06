@@ -38,16 +38,19 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("comboBox"): { return winrt::Windows::UI::Xaml::Controls::ComboBox(); }
     case COMPILE_TIME_CRC32_STR("comboBoxItem"): { return winrt::Windows::UI::Xaml::Controls::ComboBoxItem(); }
     case COMPILE_TIME_CRC32_STR("commandBar"): { return winrt::Windows::UI::Xaml::Controls::CommandBar(); }
+    case COMPILE_TIME_CRC32_STR("commandBarFlyout"): { return winrt::Windows::UI::Xaml::Controls::CommandBarFlyout(); }
     case COMPILE_TIME_CRC32_STR("commandBarFlyoutCommandBar"): { return winrt::Windows::UI::Xaml::Controls::Primitives::CommandBarFlyoutCommandBar(); }
     case COMPILE_TIME_CRC32_STR("commandBarOverflowPresenter"): { return winrt::Windows::UI::Xaml::Controls::CommandBarOverflowPresenter(); }
     case COMPILE_TIME_CRC32_STR("contentControl"): { return winrt::Windows::UI::Xaml::Controls::ContentControl(); }
     case COMPILE_TIME_CRC32_STR("contentDialog"): { return winrt::Windows::UI::Xaml::Controls::ContentDialog(); }
     case COMPILE_TIME_CRC32_STR("contentPresenter"): { return winrt::Windows::UI::Xaml::Controls::ContentPresenter(); }
     case COMPILE_TIME_CRC32_STR("datePicker"): { return winrt::Windows::UI::Xaml::Controls::DatePicker(); }
+    case COMPILE_TIME_CRC32_STR("datePickerFlyout"): { return winrt::Windows::UI::Xaml::Controls::DatePickerFlyout(); }
     case COMPILE_TIME_CRC32_STR("dropDownButton"): { return winrt::Windows::UI::Xaml::Controls::DropDownButton(); }
     case COMPILE_TIME_CRC32_STR("ellipse"): { return winrt::Windows::UI::Xaml::Shapes::Ellipse(); }
     case COMPILE_TIME_CRC32_STR("flipView"): { return winrt::Windows::UI::Xaml::Controls::FlipView(); }
     case COMPILE_TIME_CRC32_STR("flipViewItem"): { return winrt::Windows::UI::Xaml::Controls::FlipViewItem(); }
+    case COMPILE_TIME_CRC32_STR("flyout"): { return winrt::Windows::UI::Xaml::Controls::Flyout(); }
     case COMPILE_TIME_CRC32_STR("flyoutPresenter"): { return winrt::Windows::UI::Xaml::Controls::FlyoutPresenter(); }
     case COMPILE_TIME_CRC32_STR("fontIcon"): { return winrt::Windows::UI::Xaml::Controls::FontIcon(); }
     case COMPILE_TIME_CRC32_STR("frame"): { return winrt::Windows::UI::Xaml::Controls::Frame(); }
@@ -84,6 +87,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("line"): { return winrt::Windows::UI::Xaml::Shapes::Line(); }
     case COMPILE_TIME_CRC32_STR("listBox"): { return winrt::Windows::UI::Xaml::Controls::ListBox(); }
     case COMPILE_TIME_CRC32_STR("listBoxItem"): { return winrt::Windows::UI::Xaml::Controls::ListBoxItem(); }
+    case COMPILE_TIME_CRC32_STR("listPickerFlyout"): { return winrt::Windows::UI::Xaml::Controls::ListPickerFlyout(); }
     case COMPILE_TIME_CRC32_STR("listView"): { return winrt::Windows::UI::Xaml::Controls::ListView(); }
     case COMPILE_TIME_CRC32_STR("listViewHeaderItem"): { return winrt::Windows::UI::Xaml::Controls::ListViewHeaderItem(); }
     case COMPILE_TIME_CRC32_STR("listViewItem"): { return winrt::Windows::UI::Xaml::Controls::ListViewItem(); }
@@ -95,6 +99,8 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("mediaTransportControls"): { return winrt::Windows::UI::Xaml::Controls::MediaTransportControls(); }
     case COMPILE_TIME_CRC32_STR("menuBar"): { return winrt::Windows::UI::Xaml::Controls::MenuBar(); }
     case COMPILE_TIME_CRC32_STR("menuBarItem"): { return winrt::Windows::UI::Xaml::Controls::MenuBarItem(); }
+    case COMPILE_TIME_CRC32_STR("menuBarItemFlyout"): { return winrt::Windows::UI::Xaml::Controls::MenuBarItemFlyout(); }
+    case COMPILE_TIME_CRC32_STR("menuFlyout"): { return winrt::Windows::UI::Xaml::Controls::MenuFlyout(); }
     case COMPILE_TIME_CRC32_STR("menuFlyoutItem"): { return winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem(); }
     case COMPILE_TIME_CRC32_STR("menuFlyoutPresenter"): { return winrt::Windows::UI::Xaml::Controls::MenuFlyoutPresenter(); }
     case COMPILE_TIME_CRC32_STR("menuFlyoutSeparator"): { return winrt::Windows::UI::Xaml::Controls::MenuFlyoutSeparator(); }
@@ -111,6 +117,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("path"): { return winrt::Windows::UI::Xaml::Shapes::Path(); }
     case COMPILE_TIME_CRC32_STR("pathIcon"): { return winrt::Windows::UI::Xaml::Controls::PathIcon(); }
     case COMPILE_TIME_CRC32_STR("personPicture"): { return winrt::Windows::UI::Xaml::Controls::PersonPicture(); }
+    case COMPILE_TIME_CRC32_STR("pickerFlyout"): { return winrt::Windows::UI::Xaml::Controls::PickerFlyout(); }
     case COMPILE_TIME_CRC32_STR("pivot"): { return winrt::Windows::UI::Xaml::Controls::Pivot(); }
     case COMPILE_TIME_CRC32_STR("pivotHeaderItem"): { return winrt::Windows::UI::Xaml::Controls::Primitives::PivotHeaderItem(); }
     case COMPILE_TIME_CRC32_STR("pivotHeaderPanel"): { return winrt::Windows::UI::Xaml::Controls::Primitives::PivotHeaderPanel(); }
@@ -147,9 +154,11 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("symbolIcon"): { return winrt::Windows::UI::Xaml::Controls::SymbolIcon(); }
     case COMPILE_TIME_CRC32_STR("textBlock"): { return winrt::Windows::UI::Xaml::Controls::TextBlock(); }
     case COMPILE_TIME_CRC32_STR("textBox"): { return winrt::Windows::UI::Xaml::Controls::TextBox(); }
+    case COMPILE_TIME_CRC32_STR("textCommandBarFlyout"): { return winrt::Windows::UI::Xaml::Controls::TextCommandBarFlyout(); }
     case COMPILE_TIME_CRC32_STR("thumb"): { return winrt::Windows::UI::Xaml::Controls::Primitives::Thumb(); }
     case COMPILE_TIME_CRC32_STR("tickBar"): { return winrt::Windows::UI::Xaml::Controls::Primitives::TickBar(); }
     case COMPILE_TIME_CRC32_STR("timePicker"): { return winrt::Windows::UI::Xaml::Controls::TimePicker(); }
+    case COMPILE_TIME_CRC32_STR("timePickerFlyout"): { return winrt::Windows::UI::Xaml::Controls::TimePickerFlyout(); }
     case COMPILE_TIME_CRC32_STR("toggleButton"): { return winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton(); }
     case COMPILE_TIME_CRC32_STR("toggleMenuFlyoutItem"): { return winrt::Windows::UI::Xaml::Controls::ToggleMenuFlyoutItem(); }
     case COMPILE_TIME_CRC32_STR("toggleSplitButton"): { return winrt::Windows::UI::Xaml::Controls::ToggleSplitButton(); }

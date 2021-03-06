@@ -21,13 +21,16 @@ import type {
     NativeComboBoxProps,
     NativeComboBoxItemProps,
     NativeCommandBarProps,
+    NativeCommandBarFlyoutProps,
     NativeCommandBarOverflowPresenterProps,
     NativeContentDialogProps,
     NativeContentPresenterProps,
     NativeDatePickerProps,
+    NativeDatePickerFlyoutProps,
     NativeDropDownButtonProps,
     NativeFlipViewProps,
     NativeFlipViewItemProps,
+    NativeFlyoutProps,
     NativeFlyoutPresenterProps,
     NativeFontIconProps,
     NativeFrameProps,
@@ -61,6 +64,7 @@ import type {
     NativeItemsWrapGridProps,
     NativeListBoxProps,
     NativeListBoxItemProps,
+    NativeListPickerFlyoutProps,
     NativeListViewProps,
     NativeListViewHeaderItemProps,
     NativeListViewItemProps,
@@ -71,6 +75,8 @@ import type {
     NativeMediaTransportControlsProps,
     NativeMenuBarProps,
     NativeMenuBarItemProps,
+    NativeMenuFlyoutProps,
+    NativeMenuBarItemFlyoutProps,
     NativeMenuFlyoutItemProps,
     NativeMenuFlyoutPresenterProps,
     NativeMenuFlyoutSeparatorProps,
@@ -86,6 +92,7 @@ import type {
     NativePasswordBoxProps,
     NativePathIconProps,
     NativePersonPictureProps,
+    NativePickerFlyoutProps,
     NativePivotProps,
     NativePivotItemProps,
     NativeCalendarPanelProps,
@@ -128,7 +135,9 @@ import type {
     NativeSymbolIconProps,
     NativeTextBlockProps,
     NativeTextBoxProps,
+    NativeTextCommandBarFlyoutProps,
     NativeTimePickerProps,
+    NativeTimePickerFlyoutProps,
     NativeToggleMenuFlyoutItemProps,
     NativeToggleSplitButtonProps,
     NativeToggleSwitchProps,
@@ -308,6 +317,13 @@ export const CommandBar: React.FC<CommandBarProps> = (props: CommandBarProps) =>
         <NativeXamlControl type="commandBar" {...props} />
     );
 };
+export type CommandBarFlyoutProps = Omit<NativeCommandBarFlyoutProps, 'type'>;
+
+export const CommandBarFlyout: React.FC<CommandBarFlyoutProps> = (props: CommandBarFlyoutProps) => {
+    return (
+        <NativeXamlControl type="commandBarFlyout" {...props} />
+    );
+};
 export type CommandBarOverflowPresenterProps = Omit<NativeCommandBarOverflowPresenterProps, 'type'>;
 
 export const CommandBarOverflowPresenter: React.FC<CommandBarOverflowPresenterProps> = (props: CommandBarOverflowPresenterProps) => {
@@ -336,6 +352,13 @@ export const DatePicker: React.FC<DatePickerProps> = (props: DatePickerProps) =>
         <NativeXamlControl type="datePicker" {...props} />
     );
 };
+export type DatePickerFlyoutProps = Omit<NativeDatePickerFlyoutProps, 'type'>;
+
+export const DatePickerFlyout: React.FC<DatePickerFlyoutProps> = (props: DatePickerFlyoutProps) => {
+    return (
+        <NativeXamlControl type="datePickerFlyout" {...props} />
+    );
+};
 export type DropDownButtonProps = Omit<NativeDropDownButtonProps, 'type'>;
 
 export const DropDownButton: React.FC<DropDownButtonProps> = (props: DropDownButtonProps) => {
@@ -355,6 +378,13 @@ export type FlipViewItemProps = Omit<NativeFlipViewItemProps, 'type'>;
 export const FlipViewItem: React.FC<FlipViewItemProps> = (props: FlipViewItemProps) => {
     return (
         <NativeXamlControl type="flipViewItem" {...props} />
+    );
+};
+export type FlyoutProps = Omit<NativeFlyoutProps, 'type'>;
+
+export const Flyout: React.FC<FlyoutProps> = (props: FlyoutProps) => {
+    return (
+        <NativeXamlControl type="flyout" {...props} />
     );
 };
 export type FlyoutPresenterProps = Omit<NativeFlyoutPresenterProps, 'type'>;
@@ -588,6 +618,13 @@ export const ListBoxItem: React.FC<ListBoxItemProps> = (props: ListBoxItemProps)
         <NativeXamlControl type="listBoxItem" {...props} />
     );
 };
+export type ListPickerFlyoutProps = Omit<NativeListPickerFlyoutProps, 'type'>;
+
+export const ListPickerFlyout: React.FC<ListPickerFlyoutProps> = (props: ListPickerFlyoutProps) => {
+    return (
+        <NativeXamlControl type="listPickerFlyout" {...props} />
+    );
+};
 export type ListViewProps = Omit<NativeListViewProps, 'type'>;
 
 export const ListView: React.FC<ListViewProps> = (props: ListViewProps) => {
@@ -656,6 +693,20 @@ export type MenuBarItemProps = Omit<NativeMenuBarItemProps, 'type'>;
 export const MenuBarItem: React.FC<MenuBarItemProps> = (props: MenuBarItemProps) => {
     return (
         <NativeXamlControl type="menuBarItem" {...props} />
+    );
+};
+export type MenuFlyoutProps = Omit<NativeMenuFlyoutProps, 'type'>;
+
+export const MenuFlyout: React.FC<MenuFlyoutProps> = (props: MenuFlyoutProps) => {
+    return (
+        <NativeXamlControl type="menuFlyout" {...props} />
+    );
+};
+export type MenuBarItemFlyoutProps = Omit<NativeMenuBarItemFlyoutProps, 'type'>;
+
+export const MenuBarItemFlyout: React.FC<MenuBarItemFlyoutProps> = (props: MenuBarItemFlyoutProps) => {
+    return (
+        <NativeXamlControl type="menuBarItemFlyout" {...props} />
     );
 };
 export type MenuFlyoutItemProps = Omit<NativeMenuFlyoutItemProps, 'type'>;
@@ -761,6 +812,13 @@ export type PersonPictureProps = Omit<NativePersonPictureProps, 'type'>;
 export const PersonPicture: React.FC<PersonPictureProps> = (props: PersonPictureProps) => {
     return (
         <NativeXamlControl type="personPicture" {...props} />
+    );
+};
+export type PickerFlyoutProps = Omit<NativePickerFlyoutProps, 'type'>;
+
+export const PickerFlyout: React.FC<PickerFlyoutProps> = (props: PickerFlyoutProps) => {
+    return (
+        <NativeXamlControl type="pickerFlyout" {...props} />
     );
 };
 export type PivotProps = Omit<NativePivotProps, 'type'>;
@@ -1057,11 +1115,25 @@ export const TextBox: React.FC<TextBoxProps> = (props: TextBoxProps) => {
         <NativeXamlControl type="textBox" {...props} />
     );
 };
+export type TextCommandBarFlyoutProps = Omit<NativeTextCommandBarFlyoutProps, 'type'>;
+
+export const TextCommandBarFlyout: React.FC<TextCommandBarFlyoutProps> = (props: TextCommandBarFlyoutProps) => {
+    return (
+        <NativeXamlControl type="textCommandBarFlyout" {...props} />
+    );
+};
 export type TimePickerProps = Omit<NativeTimePickerProps, 'type'>;
 
 export const TimePicker: React.FC<TimePickerProps> = (props: TimePickerProps) => {
     return (
         <NativeXamlControl type="timePicker" {...props} />
+    );
+};
+export type TimePickerFlyoutProps = Omit<NativeTimePickerFlyoutProps, 'type'>;
+
+export const TimePickerFlyout: React.FC<TimePickerFlyoutProps> = (props: TimePickerFlyoutProps) => {
+    return (
+        <NativeXamlControl type="timePickerFlyout" {...props} />
     );
 };
 export type ToggleMenuFlyoutItemProps = Omit<NativeToggleMenuFlyoutItemProps, 'type'>;

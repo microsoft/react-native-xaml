@@ -112,13 +112,12 @@ namespace Codegen
 
         public static string GetBaseClassProps(MrType type)
         {
-            if (type.GetName() == "UIElement")
+            switch (type.GetName())
             {
-                return "ViewProps";
-            }
-            else
-            {
-                return $"Native{type.GetBaseType().GetName()}Props";
+                case "DependencyObject":
+                    return "ViewProps";
+                default:
+                    return $"Native{type.GetBaseType().GetName()}Props";
             }
         }
 
@@ -229,7 +228,10 @@ namespace Codegen
             }
             var argList = evtArgs.ToList();
             argList[0].Name = "sender";
-            argList[1].Name = "args";
+            if (argList.Count == 2)
+            {
+                argList[1].Name = "args";
+            }
 
             var args = argList.Select(t => $"const {GetCppWinRTType(t.Type)}& {t.Name}");
             return string.Join(", ", args);

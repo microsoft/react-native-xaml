@@ -44,7 +44,7 @@ enum class XamlPropType {
   Enum,
 };
 
-template <typename T> bool IsType(winrt::Windows::Foundation::IInspectable i) { return i.try_as<T>() != nullptr; }
+template <typename T> bool IsType(const winrt::Windows::Foundation::IInspectable& i) { return i.try_as<T>() != nullptr; }
 
 template <typename T> winrt::IInspectable MakeEnum(const std::string& value) noexcept;
 
@@ -88,7 +88,7 @@ void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const
 struct PropInfo {
   stringKey propName;
   
-  using isType_t = bool (*) (winrt::Windows::Foundation::IInspectable);
+  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable&);
   isType_t isType;
   
   using xamlPropertyGetter_t = xaml::DependencyProperty(*)();
@@ -104,18 +104,21 @@ struct PropInfo {
   }
 
   void SetValue(xaml::DependencyObject o, const winrt::Microsoft::ReactNative::JSValue& v) const {
+    auto dp = xamlPropertyGetter ? xamlPropertyGetter() : nullptr;
     if (v.IsNull()) {
-      o.ClearValue(xamlPropertyGetter());
+      if (dp) {
+        o.ClearValue(dp);
+      }
     }
     else {
-      xamlPropertySetter(o, xamlPropertyGetter(), v);
+      xamlPropertySetter(o, dp, v);
     }
   }
 };
 
 struct EventInfo {
   const char* name;
-  using attachHandlers_t = void (*)(winrt::Windows::Foundation::IInspectable o, winrt::Microsoft::ReactNative::IReactContext context);
+  using attachHandlers_t = void (*)(const winrt::Windows::Foundation::IInspectable& o, const winrt::Microsoft::ReactNative::IReactContext& context, bool isWrapped);
   attachHandlers_t attachHandler;
 
   static const EventInfo xamlEventMap[];

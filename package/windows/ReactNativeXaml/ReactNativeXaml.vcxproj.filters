@@ -33,9 +33,6 @@
   <ItemGroup>
     <None Include="PropertySheet.props" />
     <None Include="packages.config" />
-    <None Include="..\..\src\HyperlinkButton.tsx">
-      <Filter>TS</Filter>
-    </None>
     <None Include="..\..\src\index.ts">
       <Filter>TS</Filter>
     </None>
@@ -43,9 +40,6 @@
       <Filter>TS</Filter>
     </None>
     <None Include="..\..\src\Props.ts">
-      <Filter>TS</Filter>
-    </None>
-    <None Include="..\..\src\TextBlock.tsx">
       <Filter>TS</Filter>
     </None>
     <None Include="..\..\src\Types.tsx">

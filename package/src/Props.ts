@@ -2,7 +2,12 @@ import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
 
-export interface NativeUIElementProps extends ViewProps {
+export interface NativeDependencyObjectProps extends ViewProps {
+  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarFlyout'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyout'|'dropDownButton'|'flipView'|'flipViewItem'|'flyout'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyout'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyout'|'menuBarItemFlyout'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyout'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'textCommandBarFlyout'|'timePicker'|'timePickerFlyout'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+}
+
+
+export interface NativeUIElementProps extends NativeDependencyObjectProps {
   type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   opacity?: number;
   manipulationMode?: 'none' | 'translateX' | 'translateY' | 'translateRailsX' | 'translateRailsY' | 'rotate' | 'scale' | 'translateInertia' | 'rotateInertia' | 'scaleInertia' | 'all' | 'system';
@@ -428,6 +433,28 @@ export interface NativeCommandBarProps extends NativeAppBarProps {
 }
 
 
+export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
+  type: 'commandBarFlyout'|'datePickerFlyout'|'flyout'|'listPickerFlyout'|'menuFlyout'|'menuBarItemFlyout'|'pickerFlyout'|'textCommandBarFlyout'|'timePickerFlyout';
+  placement?: 'top' | 'bottom' | 'left' | 'right' | 'full' | 'topEdgeAlignedLeft' | 'topEdgeAlignedRight' | 'bottomEdgeAlignedLeft' | 'bottomEdgeAlignedRight' | 'leftEdgeAlignedTop' | 'leftEdgeAlignedBottom' | 'rightEdgeAlignedTop' | 'rightEdgeAlignedBottom' | 'auto';
+  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  elementSoundMode?: 'default' | 'focusOnly' | 'off';
+  allowFocusWhenDisabled?: boolean;
+  allowFocusOnInteraction?: boolean;
+  showMode?: 'auto' | 'standard' | 'transient' | 'transientWithDismissOnPointerMoveAway';
+  areOpenCloseAnimationsEnabled?: boolean;
+  shouldConstrainToRootBounds?: boolean;
+  onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
+  onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
+  onOpening?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeCommandBarFlyoutProps extends NativeFlyoutBaseProps {
+  type: 'commandBarFlyout'|'textCommandBarFlyout';
+}
+
+
 export interface NativeCommandBarOverflowPresenterProps extends NativeItemsControlProps {
   type: 'commandBarOverflowPresenter';
 }
@@ -497,6 +524,24 @@ export interface NativeDatePickerProps extends NativeControlProps {
 }
 
 
+export interface NativePickerFlyoutBaseProps extends NativeFlyoutBaseProps {
+  type: 'datePickerFlyout'|'listPickerFlyout'|'pickerFlyout'|'timePickerFlyout';
+}
+
+
+export interface NativeDatePickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'datePickerFlyout';
+  yearVisible?: boolean;
+  monthVisible?: boolean;
+  dayVisible?: boolean;
+  calendarIdentifier?: string;
+  yearFormat?: string;
+  monthFormat?: string;
+  dayFormat?: string;
+  onDatePicked?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
 export interface NativeDatePickerFlyoutPresenterProps extends NativeControlProps {
   isDefaultShadowEnabled?: boolean;
 }
@@ -515,6 +560,11 @@ export interface NativeFlipViewProps extends NativeSelectorProps {
 
 export interface NativeFlipViewItemProps extends NativeSelectorItemProps {
   type: 'flipViewItem';
+}
+
+
+export interface NativeFlyoutProps extends NativeFlyoutBaseProps {
+  type: 'flyout';
 }
 
 
@@ -815,6 +865,19 @@ export interface NativeListBoxItemProps extends NativeSelectorItemProps {
 }
 
 
+export interface NativeListPickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'listPickerFlyout';
+  selectionMode?: 'single' | 'multiple';
+  selectedValuePath?: string;
+  selectedValue?: object;
+  selectedItem?: object;
+  selectedIndex?: number;
+  itemsSource?: object;
+  displayMemberPath?: string;
+  onItemsPicked?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
 export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps {
 }
 
@@ -970,6 +1033,16 @@ export interface NativeMenuBarItemProps extends NativeControlProps {
 }
 
 
+export interface NativeMenuFlyoutProps extends NativeFlyoutBaseProps {
+  type: 'menuFlyout'|'menuBarItemFlyout';
+}
+
+
+export interface NativeMenuBarItemFlyoutProps extends NativeMenuFlyoutProps {
+  type: 'menuBarItemFlyout';
+}
+
+
 export interface NativeMenuFlyoutItemBaseProps extends NativeControlProps {
   type: 'menuFlyoutItem'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'toggleMenuFlyoutItem';
 }
@@ -1120,6 +1193,13 @@ export interface NativePersonPictureProps extends NativeControlProps {
   badgeText?: string;
   badgeNumber?: number;
   badgeGlyph?: string;
+}
+
+
+export interface NativePickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'pickerFlyout';
+  confirmationButtonsVisible?: boolean;
+  onConfirmed?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
@@ -1710,6 +1790,11 @@ export interface NativeTextBoxProps extends NativeControlProps {
 }
 
 
+export interface NativeTextCommandBarFlyoutProps extends NativeCommandBarFlyoutProps {
+  type: 'textCommandBarFlyout';
+}
+
+
 export interface NativeTimePickerProps extends NativeControlProps {
   type: 'timePicker';
   minuteIncrement?: number;
@@ -1718,6 +1803,14 @@ export interface NativeTimePickerProps extends NativeControlProps {
   lightDismissOverlayMode?: 'auto' | 'on' | 'off';
   onTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectedTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeTimePickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'timePickerFlyout';
+  minuteIncrement?: number;
+  clockIdentifier?: string;
+  onTimePicked?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
@@ -1953,13 +2046,16 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeComboBoxProps 
 	 |  NativeComboBoxItemProps 
 	 |  NativeCommandBarProps 
+	 |  NativeCommandBarFlyoutProps 
 	 |  NativeCommandBarOverflowPresenterProps 
 	 |  NativeContentDialogProps 
 	 |  NativeContentPresenterProps 
 	 |  NativeDatePickerProps 
+	 |  NativeDatePickerFlyoutProps 
 	 |  NativeDropDownButtonProps 
 	 |  NativeFlipViewProps 
 	 |  NativeFlipViewItemProps 
+	 |  NativeFlyoutProps 
 	 |  NativeFlyoutPresenterProps 
 	 |  NativeFontIconProps 
 	 |  NativeFrameProps 
@@ -1993,6 +2089,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeItemsWrapGridProps 
 	 |  NativeListBoxProps 
 	 |  NativeListBoxItemProps 
+	 |  NativeListPickerFlyoutProps 
 	 |  NativeListViewProps 
 	 |  NativeListViewHeaderItemProps 
 	 |  NativeListViewItemProps 
@@ -2003,6 +2100,8 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeMediaTransportControlsProps 
 	 |  NativeMenuBarProps 
 	 |  NativeMenuBarItemProps 
+	 |  NativeMenuFlyoutProps 
+	 |  NativeMenuBarItemFlyoutProps 
 	 |  NativeMenuFlyoutItemProps 
 	 |  NativeMenuFlyoutPresenterProps 
 	 |  NativeMenuFlyoutSeparatorProps 
@@ -2018,6 +2117,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativePasswordBoxProps 
 	 |  NativePathIconProps 
 	 |  NativePersonPictureProps 
+	 |  NativePickerFlyoutProps 
 	 |  NativePivotProps 
 	 |  NativePivotItemProps 
 	 |  NativeCalendarPanelProps 
@@ -2060,7 +2160,9 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeSymbolIconProps 
 	 |  NativeTextBlockProps 
 	 |  NativeTextBoxProps 
+	 |  NativeTextCommandBarFlyoutProps 
 	 |  NativeTimePickerProps 
+	 |  NativeTimePickerFlyoutProps 
 	 |  NativeToggleMenuFlyoutItemProps 
 	 |  NativeToggleSplitButtonProps 
 	 |  NativeToggleSwitchProps 

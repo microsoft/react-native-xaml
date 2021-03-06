@@ -383,6 +383,40 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
   return winrt::box_value(ret);
   }
 
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode>(const std::string& value) noexcept { 
+  winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode ret;
+  switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
+    case COMPILE_TIME_CRC32_STR("top"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::Top; break; }
+    case COMPILE_TIME_CRC32_STR("bottom"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::Bottom; break; }
+    case COMPILE_TIME_CRC32_STR("left"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::Left; break; }
+    case COMPILE_TIME_CRC32_STR("right"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::Right; break; }
+    case COMPILE_TIME_CRC32_STR("full"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::Full; break; }
+    case COMPILE_TIME_CRC32_STR("topEdgeAlignedLeft"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::TopEdgeAlignedLeft; break; }
+    case COMPILE_TIME_CRC32_STR("topEdgeAlignedRight"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::TopEdgeAlignedRight; break; }
+    case COMPILE_TIME_CRC32_STR("bottomEdgeAlignedLeft"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::BottomEdgeAlignedLeft; break; }
+    case COMPILE_TIME_CRC32_STR("bottomEdgeAlignedRight"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::BottomEdgeAlignedRight; break; }
+    case COMPILE_TIME_CRC32_STR("leftEdgeAlignedTop"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::LeftEdgeAlignedTop; break; }
+    case COMPILE_TIME_CRC32_STR("leftEdgeAlignedBottom"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::LeftEdgeAlignedBottom; break; }
+    case COMPILE_TIME_CRC32_STR("rightEdgeAlignedTop"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::RightEdgeAlignedTop; break; }
+    case COMPILE_TIME_CRC32_STR("rightEdgeAlignedBottom"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::RightEdgeAlignedBottom; break; }
+    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode::Auto; break; }
+  }
+
+  return winrt::box_value(ret);
+  }
+
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode>(const std::string& value) noexcept { 
+  winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode ret;
+  switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
+    case COMPILE_TIME_CRC32_STR("auto"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode::Auto; break; }
+    case COMPILE_TIME_CRC32_STR("standard"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode::Standard; break; }
+    case COMPILE_TIME_CRC32_STR("transient"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode::Transient; break; }
+    case COMPILE_TIME_CRC32_STR("transientWithDismissOnPointerMoveAway"): { ret = winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode::TransientWithDismissOnPointerMoveAway; break; }
+  }
+
+  return winrt::box_value(ret);
+  }
+
   template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ContentDialogButton>(const std::string& value) noexcept { 
   winrt::Windows::UI::Xaml::Controls::ContentDialogButton ret;
   switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
@@ -557,6 +591,16 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
     case COMPILE_TIME_CRC32_STR("single"): { ret = winrt::Windows::UI::Xaml::Controls::SelectionMode::Single; break; }
     case COMPILE_TIME_CRC32_STR("multiple"): { ret = winrt::Windows::UI::Xaml::Controls::SelectionMode::Multiple; break; }
     case COMPILE_TIME_CRC32_STR("extended"): { ret = winrt::Windows::UI::Xaml::Controls::SelectionMode::Extended; break; }
+  }
+
+  return winrt::box_value(ret);
+  }
+
+  template<> winrt::IInspectable MakeEnum<winrt::Windows::UI::Xaml::Controls::ListPickerFlyoutSelectionMode>(const std::string& value) noexcept { 
+  winrt::Windows::UI::Xaml::Controls::ListPickerFlyoutSelectionMode ret;
+  switch (COMPILE_TIME_CRC32_STR(value.c_str())) {
+    case COMPILE_TIME_CRC32_STR("single"): { ret = winrt::Windows::UI::Xaml::Controls::ListPickerFlyoutSelectionMode::Single; break; }
+    case COMPILE_TIME_CRC32_STR("multiple"): { ret = winrt::Windows::UI::Xaml::Controls::ListPickerFlyoutSelectionMode::Multiple; break; }
   }
 
   return winrt::box_value(ret);

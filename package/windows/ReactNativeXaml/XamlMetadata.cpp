@@ -65,7 +65,7 @@ constexpr RoutedEventInfo routedEvents[] = {
   ROUTED_EVENT(Tapped),
 };
 
-FrameworkElement Wrap(const DependencyObject& d) {
+FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
   if (auto fe = d.try_as<FrameworkElement>()) {
     return fe;
   }
@@ -76,50 +76,77 @@ FrameworkElement Wrap(const DependencyObject& d) {
   }
 }
 
-void AttachMenuClosed(const FrameworkElement& wrapper, const Primitives::FlyoutBase& f, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
-  f.Closed([wrapper, reactContext](const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-    reactContext.DispatchEvent(wrapper, L"topClosed", [](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {});
-    });
-}
-template<typename T>
-FrameworkElement MakeFlyout(const winrt::Microsoft::ReactNative::IReactContext& context) {
-  T o;
-  auto e = Wrap(o);
-  AttachMenuClosed(e, o, context);
-  return e;
-}
-
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
-  FrameworkElement e{ nullptr };
-  switch (key)
-  {
-  case COMPILE_TIME_CRC32_STR("menuFlyout"):
-    e = MakeFlyout<MenuFlyout>(context);
-    break;
-  case COMPILE_TIME_CRC32_STR("flyout"):
-    e = MakeFlyout<Flyout>(context);
-    break;
-  default: // Creates FrameworkElements
-    e = Create(typeName).as<FrameworkElement>(); 
-    // Register events
-    std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context](const EventInfo& entry) {entry.attachHandler(e, context); }); 
-    break;
+  auto obj = Create(typeName);
+  auto e = obj.try_as<FrameworkElement>();
+  bool wrapped = e == nullptr;
+  if (!e) {
+    e = Wrap(obj);
   }
-  
+  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context, wrapped](const EventInfo& entry) {entry.attachHandler(e, context, wrapped); }); 
   return e;
 }
 
-const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
-  auto key = MAKE_KEY(propertyName.c_str());
-  auto it = std::find_if(xamlPropertyMap, xamlPropertyMap + ARRAYSIZE(xamlPropertyMap), [key](const PropInfo& entry) { return entry.propName == key; });
-  while ((it != xamlPropertyMap + ARRAYSIZE(xamlPropertyMap)) && it->propName == key) {
+template<typename T>
+T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
+  if (auto contentControl = i.try_as<ContentControl>()) {
+    return contentControl.Content().try_as<T>();
+  }
+  return nullptr;
+}
+
+// FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
+void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+  auto flyout = Unwrap<Controls::Primitives::FlyoutBase>(o);
+  if (flyout && v.Type() == JSValueType::Boolean) {
+    if (v.AsBoolean()) {
+      auto target = flyout.Target();
+
+      // TODO: Need to figure out the parent element, but the content control isn't parented to anything anymore
+      if (!target) target = o.as<ContentControl>().DataContext().as<FrameworkElement>();
+      auto cn = winrt::get_class_name(target);
+      flyout.ShowAt(target);
+    }
+    else {
+      flyout.Hide();
+    }
+  }
+}
+template<typename T>
+bool IsWrapped(const winrt::Windows::Foundation::IInspectable& i) {
+  return Unwrap<T>(i) != nullptr;
+}
+
+const PropInfo fakeProps[] = {
+    { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
+};
+
+const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
+  auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return entry.propName == key; });
+  while ((it != map + size) && it->propName == key) {
     if (it->isType(obj)) {
       return it;
     }
     it++;
   }
-  
+  return nullptr;
+}
+
+const struct {
+  const PropInfo* map; 
+  size_t size;
+} propertyMaps[] = {
+  { xamlPropertyMap, ARRAYSIZE(xamlPropertyMap) },
+  {fakeProps, ARRAYSIZE(fakeProps)}
+};
+
+const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
+  auto key = MAKE_KEY(propertyName.c_str());
+  for (const auto& mapInfo : propertyMaps) {
+    auto it = FindFirstMatch(key, obj, mapInfo.map, mapInfo.size);
+    if (it) return it;
+  }
   return nullptr;
 }
 
@@ -139,6 +166,13 @@ std::vector<uint32_t> VectorToIndices(const winrt::IVector<winrt::IInspectable>&
 namespace winrt::Microsoft::ReactNative {
   void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& ii);
 
+  void WriteValue(const winrt::Microsoft::ReactNative::IJSValueWriter& writer, const Point& p) noexcept {
+    writer.WriteObjectBegin();
+    WriteProperty(writer, "x", p.X);
+    WriteProperty(writer, "y", p.Y);
+    writer.WriteObjectEnd();
+  }
+
   void WriteIInspectable(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& item) {
     if (auto str = item.try_as<winrt::IReference<winrt::hstring>>()) {
       writer.WriteString(str.GetString());
@@ -146,8 +180,28 @@ namespace winrt::Microsoft::ReactNative {
     else if (auto cc = item.try_as<xaml::Controls::ContentControl>()) {
       WriteIInspectable(writer, cc.Content());
     }
+    else if (auto mfi = item.try_as<xaml::Controls::MenuFlyoutItem>()) {
+      writer.WriteObjectBegin(); 
+      WriteProperty(writer, L"text", mfi.Text());
+      writer.WriteObjectEnd();
+    }
+    else if (auto trea = item.try_as<xaml::Input::TappedRoutedEventArgs>()) {
+      writer.WriteObjectBegin();
+      if (auto ui = item.try_as<UIElement>()) {
+        WriteProperty(writer, L"position", trea.GetPosition(ui));
+      }
+      WriteProperty(writer, L"pointerDeviceType", (int)trea.PointerDeviceType());
+      writer.WriteObjectEnd();
+    }
     else {
-      assert(false);
+      if (item) {
+        auto cn = winrt::get_class_name(item);
+        OutputDebugStringW(L"Don't yet know how to marshal this type: ");
+        OutputDebugStringW(cn.c_str());
+        OutputDebugStringW(L"\n");
+        //      assert(false);
+      }
+      writer.WriteNull();
     }
   }
   void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& item) {
@@ -158,6 +212,10 @@ namespace winrt::Microsoft::ReactNative {
       if (auto tagII = fe.Tag()) {
         auto tag = winrt::unbox_value<int64_t>(tagII);
         WriteProperty(writer, L"tag", tag);
+      }
+      auto name = fe.Name();
+      if (!name.empty()) {
+        WriteProperty(writer, L"name", name);
       }
     }
     writer.WritePropertyName(L"value");
@@ -183,8 +241,9 @@ void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, cons
 template<>
 void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::RoutedEventArgs& args) {
     writer.WriteObjectBegin();
-    writer.WritePropertyName(L"foo");
-    writer.WriteInt64(42);
+    if (auto originalSource = args.OriginalSource()) {
+      WriteProperty(writer, L"originalSource", originalSource);
+    }
     writer.WriteObjectEnd();
 }
 
