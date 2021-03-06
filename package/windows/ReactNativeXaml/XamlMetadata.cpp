@@ -194,11 +194,13 @@ namespace winrt::Microsoft::ReactNative {
       writer.WriteObjectEnd();
     }
     else {
-      auto cn = winrt::get_class_name(item);
-      OutputDebugStringW(L"Don't yet know how to marshal this type: ");
-      OutputDebugStringW(cn.c_str());
-      OutputDebugStringW(L"\n");
-//      assert(false);
+      if (item) {
+        auto cn = winrt::get_class_name(item);
+        OutputDebugStringW(L"Don't yet know how to marshal this type: ");
+        OutputDebugStringW(cn.c_str());
+        OutputDebugStringW(L"\n");
+        //      assert(false);
+      }
       writer.WriteNull();
     }
   }
