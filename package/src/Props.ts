@@ -428,6 +428,28 @@ export interface NativeCommandBarProps extends NativeAppBarProps {
 }
 
 
+export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
+  type: 'commandBarFlyout'|'datePickerFlyout'|'flyout'|'listPickerFlyout'|'menuFlyout'|'menuBarItemFlyout'|'pickerFlyout'|'textCommandBarFlyout'|'timePickerFlyout';
+  placement?: 'top' | 'bottom' | 'left' | 'right' | 'full' | 'topEdgeAlignedLeft' | 'topEdgeAlignedRight' | 'bottomEdgeAlignedLeft' | 'bottomEdgeAlignedRight' | 'leftEdgeAlignedTop' | 'leftEdgeAlignedBottom' | 'rightEdgeAlignedTop' | 'rightEdgeAlignedBottom' | 'auto';
+  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  elementSoundMode?: 'default' | 'focusOnly' | 'off';
+  allowFocusWhenDisabled?: boolean;
+  allowFocusOnInteraction?: boolean;
+  showMode?: 'auto' | 'standard' | 'transient' | 'transientWithDismissOnPointerMoveAway';
+  areOpenCloseAnimationsEnabled?: boolean;
+  shouldConstrainToRootBounds?: boolean;
+  onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
+  onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
+  onOpening?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeCommandBarFlyoutProps extends NativeFlyoutBaseProps {
+  type: 'commandBarFlyout'|'textCommandBarFlyout';
+}
+
+
 export interface NativeCommandBarOverflowPresenterProps extends NativeItemsControlProps {
   type: 'commandBarOverflowPresenter';
 }
@@ -497,6 +519,24 @@ export interface NativeDatePickerProps extends NativeControlProps {
 }
 
 
+export interface NativePickerFlyoutBaseProps extends NativeFlyoutBaseProps {
+  type: 'datePickerFlyout'|'listPickerFlyout'|'pickerFlyout'|'timePickerFlyout';
+}
+
+
+export interface NativeDatePickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'datePickerFlyout';
+  yearVisible?: boolean;
+  monthVisible?: boolean;
+  dayVisible?: boolean;
+  calendarIdentifier?: string;
+  yearFormat?: string;
+  monthFormat?: string;
+  dayFormat?: string;
+  onDatePicked?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
 export interface NativeDatePickerFlyoutPresenterProps extends NativeControlProps {
   isDefaultShadowEnabled?: boolean;
 }
@@ -515,6 +555,11 @@ export interface NativeFlipViewProps extends NativeSelectorProps {
 
 export interface NativeFlipViewItemProps extends NativeSelectorItemProps {
   type: 'flipViewItem';
+}
+
+
+export interface NativeFlyoutProps extends NativeFlyoutBaseProps {
+  type: 'flyout';
 }
 
 
@@ -815,6 +860,19 @@ export interface NativeListBoxItemProps extends NativeSelectorItemProps {
 }
 
 
+export interface NativeListPickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'listPickerFlyout';
+  selectionMode?: 'single' | 'multiple';
+  selectedValuePath?: string;
+  selectedValue?: object;
+  selectedItem?: object;
+  selectedIndex?: number;
+  itemsSource?: object;
+  displayMemberPath?: string;
+  onItemsPicked?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
 export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps {
 }
 
@@ -970,6 +1028,16 @@ export interface NativeMenuBarItemProps extends NativeControlProps {
 }
 
 
+export interface NativeMenuFlyoutProps extends NativeFlyoutBaseProps {
+  type: 'menuFlyout'|'menuBarItemFlyout';
+}
+
+
+export interface NativeMenuBarItemFlyoutProps extends NativeMenuFlyoutProps {
+  type: 'menuBarItemFlyout';
+}
+
+
 export interface NativeMenuFlyoutItemBaseProps extends NativeControlProps {
   type: 'menuFlyoutItem'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'toggleMenuFlyoutItem';
 }
@@ -1120,6 +1188,13 @@ export interface NativePersonPictureProps extends NativeControlProps {
   badgeText?: string;
   badgeNumber?: number;
   badgeGlyph?: string;
+}
+
+
+export interface NativePickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'pickerFlyout';
+  confirmationButtonsVisible?: boolean;
+  onConfirmed?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
@@ -1710,6 +1785,11 @@ export interface NativeTextBoxProps extends NativeControlProps {
 }
 
 
+export interface NativeTextCommandBarFlyoutProps extends NativeCommandBarFlyoutProps {
+  type: 'textCommandBarFlyout';
+}
+
+
 export interface NativeTimePickerProps extends NativeControlProps {
   type: 'timePicker';
   minuteIncrement?: number;
@@ -1718,6 +1798,14 @@ export interface NativeTimePickerProps extends NativeControlProps {
   lightDismissOverlayMode?: 'auto' | 'on' | 'off';
   onTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectedTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeTimePickerFlyoutProps extends NativePickerFlyoutBaseProps {
+  type: 'timePickerFlyout';
+  minuteIncrement?: number;
+  clockIdentifier?: string;
+  onTimePicked?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
@@ -1953,13 +2041,16 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeComboBoxProps 
 	 |  NativeComboBoxItemProps 
 	 |  NativeCommandBarProps 
+	 |  NativeCommandBarFlyoutProps 
 	 |  NativeCommandBarOverflowPresenterProps 
 	 |  NativeContentDialogProps 
 	 |  NativeContentPresenterProps 
 	 |  NativeDatePickerProps 
+	 |  NativeDatePickerFlyoutProps 
 	 |  NativeDropDownButtonProps 
 	 |  NativeFlipViewProps 
 	 |  NativeFlipViewItemProps 
+	 |  NativeFlyoutProps 
 	 |  NativeFlyoutPresenterProps 
 	 |  NativeFontIconProps 
 	 |  NativeFrameProps 
@@ -1993,6 +2084,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeItemsWrapGridProps 
 	 |  NativeListBoxProps 
 	 |  NativeListBoxItemProps 
+	 |  NativeListPickerFlyoutProps 
 	 |  NativeListViewProps 
 	 |  NativeListViewHeaderItemProps 
 	 |  NativeListViewItemProps 
@@ -2003,6 +2095,8 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeMediaTransportControlsProps 
 	 |  NativeMenuBarProps 
 	 |  NativeMenuBarItemProps 
+	 |  NativeMenuFlyoutProps 
+	 |  NativeMenuBarItemFlyoutProps 
 	 |  NativeMenuFlyoutItemProps 
 	 |  NativeMenuFlyoutPresenterProps 
 	 |  NativeMenuFlyoutSeparatorProps 
@@ -2018,6 +2112,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativePasswordBoxProps 
 	 |  NativePathIconProps 
 	 |  NativePersonPictureProps 
+	 |  NativePickerFlyoutProps 
 	 |  NativePivotProps 
 	 |  NativePivotItemProps 
 	 |  NativeCalendarPanelProps 
@@ -2060,7 +2155,9 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeSymbolIconProps 
 	 |  NativeTextBlockProps 
 	 |  NativeTextBoxProps 
+	 |  NativeTextCommandBarFlyoutProps 
 	 |  NativeTimePickerProps 
+	 |  NativeTimePickerFlyoutProps 
 	 |  NativeToggleMenuFlyoutItemProps 
 	 |  NativeToggleSplitButtonProps 
 	 |  NativeToggleSwitchProps 

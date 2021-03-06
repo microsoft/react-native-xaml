@@ -88,12 +88,20 @@ class Program
             context.FinishLoading();
             var types = windows_winmd.GetAllTypes().Skip(1);
             Util.LoadContext = context;
-            var fe = types.Where(type => Util.DerivesFrom(type, "Windows.UI.Xaml.UIElement"));
+
+            var baseClassesToProject = new string[]
+            {
+                "Windows.UI.Xaml.UIElement",
+                "Windows.UI.Xaml.Controls.Primitives.FlyoutBase",
+            };
+
+            var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
+                Util.DerivesFrom(type, b)));
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var generatedDirPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\windows\ReactNativeXaml\Codegen"));
             var packageSrcPath = Path.GetFullPath(Path.Join(assemblyLocation, @"..\..\..\..", @"..\package\src"));
 
-            var creatableTypes = fe.Where(x => Util.HasCtor(x)).ToList();
+            var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
 
@@ -105,7 +113,7 @@ class Program
 
             var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
-            foreach (var type in fe)
+            foreach (var type in xamlTypes)
             {
                 var propsToAdd = type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p));
                 properties.AddRange(propsToAdd);
@@ -114,10 +122,10 @@ class Program
                 events.AddRange(eventsToAdd);
             }
 
-            var propsGen = new TSProps(fe).TransformText();
+            var propsGen = new TSProps(xamlTypes).TransformText();
             File.WriteAllText(Path.Join(packageSrcPath, "Props.ts"), propsGen);
 
-            var typesGen = new TSTypes(fe).TransformText();
+            var typesGen = new TSTypes(xamlTypes).TransformText();
             File.WriteAllText(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));

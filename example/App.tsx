@@ -69,7 +69,7 @@ const App: () => Node = () => {
 
   const [count, setCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [option, setOption] = useState("");
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -81,8 +81,8 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-                  <Button content={{ string: `this is a button ${count}` }} foreground="red"
-                      onClick={() => { setCount(count + 1); setIsOpen(true); }} />
+                  <Button content={{ string: `Last selected option = ${option} ${count}` }} foreground="red"
+                      onClick={(a) => { alert(JSON.stringify(a.nativeEvent)); setCount(count + 1); setIsOpen(true); }} />
                   {/*<StackPanel orientation="horizontal">*/}
                   {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
                   {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
@@ -99,13 +99,12 @@ const App: () => Node = () => {
                   {/*    <ComboBoxItem content={{ string: "garfield" }} foreground="black" />*/}
                   {/*    <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />*/}
                   {/*</ComboBox>*/}
-                  <TextBox text="this is a textbox with a menuFlyout" foreground="red" >
+                  <TextBox text="this is a textbox with a menuFlyout" foreground="red" onTe >
                       <NativeXamlControl type="menuFlyout" isOpen={isOpen} onClosed={() => {
                           setIsOpen(false);
-                          alert("Closed");
                       }} >
-                      <MenuFlyoutItem text="option 1" onClick={() => { alert("clicked 1"); }} />
-                      <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); }}/>
+                          <MenuFlyoutItem text="option 1" onClick={(x) => { alert(JSON.stringify(x.nativeEvent)); setOption("option 1"); }} />
+                          <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); setOption("option 2"); }}/>
                     </NativeXamlControl>
                   </TextBox>
 
