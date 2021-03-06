@@ -49,7 +49,7 @@
   },
   "files": [
     "!*.tgz",
-    "CodeGen/bin/Release/netcoreapp3.1/",
+    "CodeGen/*.cs*",
     "windows/",
     "lib/",
     "src/"

@@ -216,6 +216,7 @@ class Program
         private string tsOutPath { get; set; }
         class OptionDef
         {
+            public string Description { get; set; }
             public int NumberOfParams { get; set; }
             public Action<Program, string> Action { get; set; }
         }
@@ -224,15 +225,16 @@ class Program
         {
             foreach (var k in optionDefs.Keys)
             {
-                Console.WriteLine(k);
+                Console.WriteLine($"{k}   \t{optionDefs[k].Description}");
             }
+            Environment.Exit(0);
         }
 
         static Dictionary<string, OptionDef> optionDefs = new Dictionary<string, OptionDef>() {
-                { "-help", new OptionDef (){ NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
-                { "-winmd", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
-                { "-cppout", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
-                { "-tsout", new OptionDef (){ NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
+                { "-help", new OptionDef (){ Description = "Shows this message", NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
+                { "-winmd", new OptionDef (){ Description = "Specifies a custom WinMD file. To specify multiple files, pass this option multiple times", NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
+                { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
+                { "-tsout", new OptionDef (){ Description = "Custom path for TS file", NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
             };
 
         static void Main(string[] args)
@@ -250,6 +252,8 @@ class Program
             //    var versionLine = packageJson.Where(x => x.Contains("\"version\": "))
             } catch { }
             Console.WriteLine($"React-native-xaml Code generator {version}");
+            Console.WriteLine("https://github.com/asklar/react-native-xaml");
+            Console.WriteLine();
             var p = new Program();
             for (int i = 0; i < args.Length;)
             {
