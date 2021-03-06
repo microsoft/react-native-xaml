@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Codegen
 {
@@ -108,9 +109,8 @@ class Program
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
                 Util.DerivesFrom(type, b)) || type.GetName() == "DependencyObject");
 
-            var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(assemblyLocation, @"..\..\..\..", @"windows\ReactNativeXaml\Codegen"));
-            var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(assemblyLocation, @"..\..\..\..", @"src"));
+            var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
+            var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(PackageRoot, @"src"));
 
             Console.WriteLine("Generating projections for the following WinMD files:");
             Console.WriteLine($"- {Windows_winmd}");
@@ -171,6 +171,14 @@ class Program
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
         }
 
+        private static string PackageRoot
+        {
+            get {
+                var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                return Path.Join(assemblyLocation, @"..\..\..\.."); 
+            }
+        }
+
         private static void UpdateFile(string path, string content)
         {
             var existing = File.Exists(path) ? File.ReadAllText(path) : "";
@@ -229,6 +237,19 @@ class Program
 
         static void Main(string[] args)
         {
+            string version = "";
+            try
+            {
+                var packageJson = File.ReadAllText(Path.Join(PackageRoot, "package.json"));
+                Regex r = new Regex("\\s*\"version\":\\s*\"((\\d\\.)*(\\d+))\"");
+                var m = r.Match(packageJson);
+                if (m.Success && m.Groups.Count >= 2)
+                {
+                    version = m.Groups[1].Value;
+                }
+            //    var versionLine = packageJson.Where(x => x.Contains("\"version\": "))
+            } catch { }
+            Console.WriteLine($"React-native-xaml Code generator {version}");
             var p = new Program();
             for (int i = 0; i < args.Length;)
             {
