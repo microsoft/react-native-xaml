@@ -129,3 +129,5 @@ dotnet run -p .\node_modules\react-native-xaml\Codegen -- -winmd "E:\react-nativ
 cd node_modules\react-native-xaml
 yarn build
 ```
+
+See the diff to enable the sample UserControl example here: https://github.com/asklar/react-native-xaml/pull/35
