@@ -32,7 +32,7 @@ import {HyperlinkButton, Border, TextBlock, StackPanel, Button, ComboBox, ComboB
 NativeXamlControl,
 MenuFlyoutItem,
 TextBox,
-// BlankUserControl,
+BlankUserControl,
 } from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
@@ -82,7 +82,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-              {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
+              <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } />
                   <Button content={{ string: `Last selected option = ${option} ${count}` }} foreground="red"
                       onClick={(a) => { alert(JSON.stringify(a.nativeEvent)); setCount(count + 1); setIsOpen(true); }} />
                   {/*<StackPanel orientation="horizontal">*/}
