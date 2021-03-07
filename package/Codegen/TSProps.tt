@@ -25,7 +25,7 @@ foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMeta
 <# } #>
 
 export type XamlControlProps =<# var first = true; foreach (var type in Types) {
-	if (Util.HasCtor(type)) {
+	if (Util.HasCtor(type) || !type.IsSealed) {
 		if (!first) #> | <# ;
 		
 		first = false;

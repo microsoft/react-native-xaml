@@ -138,7 +138,7 @@ const struct {
   size_t size;
 } propertyMaps[] = {
   { xamlPropertyMap, ARRAYSIZE(xamlPropertyMap) },
-  {fakeProps, ARRAYSIZE(fakeProps)}
+  { fakeProps, ARRAYSIZE(fakeProps) }
 };
 
 const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {

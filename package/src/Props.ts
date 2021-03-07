@@ -2024,8 +2024,13 @@ export interface NativeRectangleProps extends NativeShapeProps {
 }
 
 
-export type XamlControlProps = NativeContentControlProps 
+export type XamlControlProps = NativeDependencyObjectProps 
+	 |  NativeUIElementProps 
+	 |  NativeFrameworkElementProps 
+	 |  NativeControlProps 
+	 |  NativeContentControlProps 
 	 |  NativeAppBarProps 
+	 |  NativeButtonBaseProps 
 	 |  NativeButtonProps 
 	 |  NativeAppBarButtonProps 
 	 |  NativeAppBarElementContainerProps 
@@ -2034,23 +2039,29 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeAppBarToggleButtonProps 
 	 |  NativeItemsControlProps 
 	 |  NativeAutoSuggestBoxProps 
+	 |  NativeIconElementProps 
 	 |  NativeBitmapIconProps 
 	 |  NativeBorderProps 
 	 |  NativeCalendarDatePickerProps 
 	 |  NativeCalendarViewProps 
 	 |  NativeCalendarViewDayItemProps 
+	 |  NativePanelProps 
 	 |  NativeCanvasProps 
 	 |  NativeCaptureElementProps 
 	 |  NativeCheckBoxProps 
 	 |  NativeColorPickerProps 
+	 |  NativeSelectorProps 
 	 |  NativeComboBoxProps 
+	 |  NativeSelectorItemProps 
 	 |  NativeComboBoxItemProps 
 	 |  NativeCommandBarProps 
+	 |  NativeFlyoutBaseProps 
 	 |  NativeCommandBarFlyoutProps 
 	 |  NativeCommandBarOverflowPresenterProps 
 	 |  NativeContentDialogProps 
 	 |  NativeContentPresenterProps 
 	 |  NativeDatePickerProps 
+	 |  NativePickerFlyoutBaseProps 
 	 |  NativeDatePickerFlyoutProps 
 	 |  NativeDropDownButtonProps 
 	 |  NativeFlipViewProps 
@@ -2060,7 +2071,9 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeFontIconProps 
 	 |  NativeFrameProps 
 	 |  NativeGridProps 
+	 |  NativeListViewBaseProps 
 	 |  NativeGridViewProps 
+	 |  NativeListViewBaseHeaderItemProps 
 	 |  NativeGridViewHeaderItemProps 
 	 |  NativeGridViewItemProps 
 	 |  NativeGroupItemProps 
@@ -2073,13 +2086,17 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeInkCanvasProps 
 	 |  NativeInkToolbarProps 
 	 |  NativeRadioButtonProps 
+	 |  NativeInkToolbarToolButtonProps 
+	 |  NativeInkToolbarPenButtonProps 
 	 |  NativeInkToolbarBallpointPenButtonProps 
 	 |  NativeInkToolbarCustomPenButtonProps 
+	 |  NativeInkToolbarToggleButtonProps 
 	 |  NativeInkToolbarCustomToggleButtonProps 
 	 |  NativeInkToolbarCustomToolButtonProps 
 	 |  NativeInkToolbarEraserButtonProps 
 	 |  NativeInkToolbarFlyoutItemProps 
 	 |  NativeInkToolbarHighlighterButtonProps 
+	 |  NativeInkToolbarMenuButtonProps 
 	 |  NativeInkToolbarPenConfigurationControlProps 
 	 |  NativeInkToolbarPencilButtonProps 
 	 |  NativeInkToolbarRulerButtonProps 
@@ -2102,11 +2119,13 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeMenuBarItemProps 
 	 |  NativeMenuFlyoutProps 
 	 |  NativeMenuBarItemFlyoutProps 
+	 |  NativeMenuFlyoutItemBaseProps 
 	 |  NativeMenuFlyoutItemProps 
 	 |  NativeMenuFlyoutPresenterProps 
 	 |  NativeMenuFlyoutSeparatorProps 
 	 |  NativeMenuFlyoutSubItemProps 
 	 |  NativeNavigationViewProps 
+	 |  NativeNavigationViewItemBaseProps 
 	 |  NativeNavigationViewItemProps 
 	 |  NativeNavigationViewItemHeaderProps 
 	 |  NativeNavigationViewItemSeparatorProps 
@@ -2121,7 +2140,9 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativePivotProps 
 	 |  NativePivotItemProps 
 	 |  NativeCalendarPanelProps 
+	 |  NativeVirtualizingPanelProps 
 	 |  NativeCarouselPanelProps 
+	 |  NativeRangeBaseProps 
 	 |  NativeSliderProps 
 	 |  NativeColorPickerSliderProps 
 	 |  NativeColorSpectrumProps 
@@ -2129,6 +2150,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeGridViewItemPresenterProps 
 	 |  NativeListViewItemPresenterProps 
 	 |  NativeNavigationViewItemPresenterProps 
+	 |  NativeOrientedVirtualizingPanelProps 
 	 |  NativePivotHeaderItemProps 
 	 |  NativePivotHeaderPanelProps 
 	 |  NativePivotPanelProps 
@@ -2177,6 +2199,7 @@ export type XamlControlProps = NativeContentControlProps
 	 |  NativeWebViewProps 
 	 |  NativeWrapGridProps 
 	 |  NativeGlyphsProps 
+	 |  NativeShapeProps 
 	 |  NativeEllipseProps 
 	 |  NativeLineProps 
 	 |  NativePathProps 

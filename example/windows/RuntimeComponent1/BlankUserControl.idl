@@ -1,0 +1,11 @@
+namespace RuntimeComponent1
+{
+    [default_interface]
+    runtimeclass BlankUserControl : Windows.UI.Xaml.Controls.UserControl
+    {
+        BlankUserControl();
+        Int32 MyProperty;
+        event Windows.Foundation.EventHandler<IInspectable> Happened;
+        static Windows.UI.Xaml.DependencyProperty MyPropertyProperty{ get; };
+    }
+}

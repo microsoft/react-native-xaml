@@ -122,7 +122,7 @@ foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMeta
             
             #line 27 "E:\react-native-xaml\codegen\Codegen\TSProps.tt"
  var first = true; foreach (var type in Types) {
-	if (Util.HasCtor(type)) {
+	if (Util.HasCtor(type) || !type.IsSealed) {
 		if (!first) 
             
             #line default
