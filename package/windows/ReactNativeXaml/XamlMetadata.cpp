@@ -84,7 +84,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   if (!e) {
     e = Wrap(obj);
   }
-  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context, wrapped](const EventInfo& entry) {entry.attachHandler(e, context, wrapped); }); 
+  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context, wrapped](const EventInfo& entry) {entry.attachHandler(e, context, wrapped); });
   return e;
 }
 
@@ -134,7 +134,7 @@ const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Found
 }
 
 const struct {
-  const PropInfo* map; 
+  const PropInfo* map;
   size_t size;
 } propertyMaps[] = {
   { xamlPropertyMap, ARRAYSIZE(xamlPropertyMap) },
@@ -181,7 +181,7 @@ namespace winrt::Microsoft::ReactNative {
       WriteIInspectable(writer, cc.Content());
     }
     else if (auto mfi = item.try_as<xaml::Controls::MenuFlyoutItem>()) {
-      writer.WriteObjectBegin(); 
+      writer.WriteObjectBegin();
       WriteProperty(writer, L"text", mfi.Text());
       writer.WriteObjectEnd();
     }
@@ -235,16 +235,16 @@ namespace winrt::Microsoft::ReactNative {
 
 template<typename T>
 void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const T& args) {
-//  assert(false);
+  //  assert(false);
 }
 
 template<>
 void Serialize(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& sender, const xaml::RoutedEventArgs& args) {
-    writer.WriteObjectBegin();
-    if (auto originalSource = args.OriginalSource()) {
-      WriteProperty(writer, L"originalSource", originalSource);
-    }
-    writer.WriteObjectEnd();
+  writer.WriteObjectBegin();
+  if (auto originalSource = args.OriginalSource()) {
+    WriteProperty(writer, L"originalSource", originalSource);
+  }
+  writer.WriteObjectEnd();
 }
 
 template<>
