@@ -167,8 +167,8 @@ class Program
             var propertiesGen = new TypeProperties(properties).TransformText();
             UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
 
-            var enumConvertersGen = new EnumConverters().TransformText();
-            UpdateFile(Path.Join(generatedDirPath, "EnumConverters.g.cpp"), enumConvertersGen);
+            var tsEnumsGen = new TSEnums().TransformText();
+            UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
 
             var eventsGen = new TypeEvents(events).TransformText();
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);

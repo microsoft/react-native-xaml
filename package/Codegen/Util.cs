@@ -82,7 +82,7 @@ namespace Codegen
         {
             if (propType.IsEnum)
             {
-                return propType.GetName();
+                return $"Enums.{propType.GetName()}";
             }
             else if (propType.IsArray)
             {
