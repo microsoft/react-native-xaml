@@ -34,8 +34,8 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("areStickyGroupHeadersEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, AreStickyGroupHeadersEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("areTransportControlsEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, AreTransportControlsEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("areTransportControlsEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaPlayerElement, AreTransportControlsEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("audioCategory"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, AudioCategoryProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::AudioCategory>, ViewManagerPropertyType::String },
-        { MAKE_KEY("audioDeviceType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, AudioDeviceTypeProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::AudioDeviceType>, ViewManagerPropertyType::String },
+        { MAKE_KEY("audioCategory"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, AudioCategoryProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("audioDeviceType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, AudioDeviceTypeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("autoMaximizeSuggestionArea"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AutoSuggestBox, AutoMaximizeSuggestionAreaProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("autoPlay"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, AutoPlayProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("autoPlay"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaPlayerElement, AutoPlayProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -43,12 +43,12 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("background"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Panel, BackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("background"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, BackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("background"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Border, BackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::StackPanel, BackgroundSizingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>, ViewManagerPropertyType::String },
-        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RelativePanel, BackgroundSizingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>, ViewManagerPropertyType::String },
-        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Grid, BackgroundSizingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>, ViewManagerPropertyType::String },
-        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, BackgroundSizingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>, ViewManagerPropertyType::String },
-        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, BackgroundSizingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>, ViewManagerPropertyType::String },
-        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Border, BackgroundSizingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::BackgroundSizing>, ViewManagerPropertyType::String },
+        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::StackPanel, BackgroundSizingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RelativePanel, BackgroundSizingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Grid, BackgroundSizingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, BackgroundSizingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, BackgroundSizingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("backgroundSizing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Border, BackgroundSizingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("badgeGlyph"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PersonPicture, BadgeGlyphProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("badgeNumber"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PersonPicture, BadgeNumberProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("badgeText"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PersonPicture, BadgeTextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -69,7 +69,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("bringIntoViewOnFocusChange"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, BringIntoViewOnFocusChangeProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("businessLandmarksEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, BusinessLandmarksEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("businessLandmarksVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, BusinessLandmarksVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("buttonFlyoutPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbar, ButtonFlyoutPlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::InkToolbarButtonFlyoutPlacement>, ViewManagerPropertyType::String },
+        { MAKE_KEY("buttonFlyoutPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbar, ButtonFlyoutPlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("cacheLength"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, CacheLengthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("cacheLength"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, CacheLengthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("cacheSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Frame, CacheSizeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -91,8 +91,8 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("canReorderItems"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, CanReorderItemsProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("canReorderItems"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeView, CanReorderItemsProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("caption"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RatingControl, CaptionProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("characterCasing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, CharacterCasingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CharacterCasing>, ViewManagerPropertyType::String },
-        { MAKE_KEY("characterCasing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, CharacterCasingProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CharacterCasing>, ViewManagerPropertyType::String },
+        { MAKE_KEY("characterCasing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, CharacterCasingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("characterCasing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, CharacterCasingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("characterSpacing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, CharacterSpacingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("characterSpacing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, CharacterSpacingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("characterSpacing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, CharacterSpacingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -102,23 +102,23 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("checkBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, CheckBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("checkHintBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, CheckHintBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("checkHintBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, CheckHintBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("checkMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, CheckModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenterCheckMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("checkMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, CheckModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("checkSelectingBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, CheckSelectingBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("checkSelectingBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, CheckSelectingBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("chooseSuggestionOnEnter"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SearchBox, ChooseSuggestionOnEnterProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("clickMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase, ClickModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ClickMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("clipboardCopyFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, ClipboardCopyFormatProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::RichEditClipboardFormat>, ViewManagerPropertyType::String },
+        { MAKE_KEY("clickMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase, ClickModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("clipboardCopyFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, ClipboardCopyFormatProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("clockIdentifier"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TimePicker, ClockIdentifierProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("clockIdentifier"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TimePickerFlyout, ClockIdentifierProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("closeButtonCommandParameter"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, CloseButtonCommandParameterProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("closeButtonText"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, CloseButtonTextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("closedDisplayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBar, ClosedDisplayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::AppBarClosedDisplayMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("closedDisplayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBar, ClosedDisplayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("collapsedGlyph"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeViewItem, CollapsedGlyphProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("colorChannel"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ColorPickerSlider, ColorChannelProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ColorPickerHsvChannel>, ViewManagerPropertyType::String },
+        { MAKE_KEY("colorChannel"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ColorPickerSlider, ColorChannelProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("colorFontPaletteIndex"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, ColorFontPaletteIndexProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("colorScheme"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, ColorSchemeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapColorScheme>, ViewManagerPropertyType::String },
-        { MAKE_KEY("colorSpectrumComponents"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, ColorSpectrumComponentsProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents>, ViewManagerPropertyType::String },
-        { MAKE_KEY("colorSpectrumShape"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, ColorSpectrumShapeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape>, ViewManagerPropertyType::String },
+        { MAKE_KEY("colorScheme"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, ColorSchemeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("colorSpectrumComponents"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, ColorSpectrumComponentsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("colorSpectrumShape"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, ColorSpectrumShapeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("columnSpacing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Grid, ColumnSpacingProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("commandParameter"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitButton, CommandParameterProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("commandParameter"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase, CommandParameterProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
@@ -126,8 +126,8 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("compactModeThresholdWidth"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, CompactModeThresholdWidthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("compactPaneLength"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, CompactPaneLengthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("compactPaneLength"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, CompactPaneLengthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("components"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum, ComponentsProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ColorSpectrumComponents>, ViewManagerPropertyType::String },
-        { MAKE_KEY("compositeMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, CompositeModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::ElementCompositeMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("components"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum, ComponentsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("compositeMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, CompositeModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("confirmationButtonsVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PickerFlyout, ConfirmationButtonsVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("content"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, ContentProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("content"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentControl, ContentProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
@@ -141,13 +141,13 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("dayFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, DayFormatProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePickerFlyout, DayFormatProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayItemFontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, DayItemFontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("dayItemFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, DayItemFontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
+        { MAKE_KEY("dayItemFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, DayItemFontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dayOfWeekFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, DayOfWeekFormatProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayOfWeekFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, DayOfWeekFormatProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePickerFlyout, DayVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("dayVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, DayVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("defaultButton"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, DefaultButtonProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ContentDialogButton>, ViewManagerPropertyType::String },
-        { MAKE_KEY("defaultLabelPosition"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CommandBar, DefaultLabelPositionProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CommandBarDefaultLabelPosition>, ViewManagerPropertyType::String },
+        { MAKE_KEY("defaultButton"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, DefaultButtonProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("defaultLabelPosition"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CommandBar, DefaultLabelPositionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("defaultPlaybackRate"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, DefaultPlaybackRateProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("defaultSectionIndex"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Hub, DefaultSectionIndexProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("defaultStyleKey"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, DefaultStyleKeyProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
@@ -158,17 +158,17 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("description"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, DescriptionProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("description"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AutoSuggestBox, DescriptionProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("description"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, DescriptionProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
-        { MAKE_KEY("desiredCandidateWindowAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, DesiredCandidateWindowAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("desiredCandidateWindowAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, DesiredCandidateWindowAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CandidateWindowAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("desiredCandidateWindowAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, DesiredCandidateWindowAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("desiredCandidateWindowAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, DesiredCandidateWindowAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("desiredPitch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, DesiredPitchProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("disabledFormattingAccelerators"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, DisabledFormattingAcceleratorsProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::DisabledFormattingAccelerators>, ViewManagerPropertyType::String },
+        { MAKE_KEY("disabledFormattingAccelerators"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, DisabledFormattingAcceleratorsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("disabledOpacity"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, DisabledOpacityProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("disabledOpacity"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, DisabledOpacityProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("displayMemberPath"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListPickerFlyout, DisplayMemberPathProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("displayMemberPath"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsControl, DisplayMemberPathProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("displayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, DisplayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SplitViewDisplayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("displayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, DisplayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("displayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, DisplayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CalendarViewDisplayMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("displayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, DisplayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("displayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, DisplayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("displayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, DisplayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("displayName"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PersonPicture, DisplayNameProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dragBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, DragBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("dragBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, DragBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -180,24 +180,24 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("dynamicOverflowOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarElementContainer, DynamicOverflowOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dynamicOverflowOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarSeparator, DynamicOverflowOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dynamicOverflowOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarToggleButton, DynamicOverflowOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("elementSoundMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, ElementSoundModeProperty), SetPropValue<winrt::Windows::UI::Xaml::ElementSoundMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("elementSoundMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, ElementSoundModeProperty), SetPropValue<winrt::Windows::UI::Xaml::ElementSoundMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("elementSoundMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, ElementSoundModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("elementSoundMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, ElementSoundModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("exitDisplayModeOnAccessKeyInvoked"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, ExitDisplayModeOnAccessKeyInvokedProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("expandedGlyph"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeViewItem, ExpandedGlyphProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("expandedModeThresholdWidth"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, ExpandedModeThresholdWidthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("fastPlayFallbackBehaviour"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaTransportControls, FastPlayFallbackBehaviourProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::FastPlayFallbackBehaviour>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fastPlayFallbackBehaviour"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaTransportControls, FastPlayFallbackBehaviourProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("fill"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, FillProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("fill"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, FillProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("fill"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::TickBar, FillProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("fillRule"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Polygon, FillRuleProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::FillRule>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fillRule"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Polyline, FillRuleProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::FillRule>, ViewManagerPropertyType::String },
-        { MAKE_KEY("firstDayOfWeek"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstDayOfWeekProperty), SetPropValue<winrt::Windows::Globalization::DayOfWeek>, ViewManagerPropertyType::String },
-        { MAKE_KEY("firstDayOfWeek"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, FirstDayOfWeekProperty), SetPropValue<winrt::Windows::Globalization::DayOfWeek>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fillRule"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Polygon, FillRuleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fillRule"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Polyline, FillRuleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("firstDayOfWeek"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstDayOfWeekProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("firstDayOfWeek"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, FirstDayOfWeekProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("firstOfMonthLabelFontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstOfMonthLabelFontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("firstOfMonthLabelFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstOfMonthLabelFontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
+        { MAKE_KEY("firstOfMonthLabelFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstOfMonthLabelFontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("firstOfYearDecadeLabelFontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstOfYearDecadeLabelFontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("firstOfYearDecadeLabelFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstOfYearDecadeLabelFontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
-        { MAKE_KEY("flowDirection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, FlowDirectionProperty), SetPropValue<winrt::Windows::UI::Xaml::FlowDirection>, ViewManagerPropertyType::String },
+        { MAKE_KEY("firstOfYearDecadeLabelFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FirstOfYearDecadeLabelFontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("flowDirection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, FlowDirectionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("focusBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, FocusBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("focusBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, FocusBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("focusBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, FocusBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -214,15 +214,15 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("fontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, FontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("fontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, FontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("fontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, FontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, FontStretchProperty), SetPropValue<winrt::Windows::UI::Text::FontStretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, FontStretchProperty), SetPropValue<winrt::Windows::UI::Text::FontStretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, FontStretchProperty), SetPropValue<winrt::Windows::UI::Text::FontStretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, FontStretchProperty), SetPropValue<winrt::Windows::UI::Text::FontStretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, FontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, FontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::FontIcon, FontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, FontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
-        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, FontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, FontStretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, FontStretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, FontStretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, FontStretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, FontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, FontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::FontIcon, FontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, FontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("fontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, FontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("footer"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsPresenter, FooterProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("footer"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, FooterProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("foreground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::IconElement, ForegroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -235,11 +235,11 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("glyphBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeViewItem, GlyphBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("glyphOpacity"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeViewItem, GlyphOpacityProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("glyphSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeViewItem, GlyphSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("gridViewItemPresenterHorizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, GridViewItemPresenterHorizontalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("gridViewItemPresenterHorizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, GridViewItemPresenterHorizontalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("gridViewItemPresenterPadding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, GridViewItemPresenterPaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
-        { MAKE_KEY("gridViewItemPresenterVerticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, GridViewItemPresenterVerticalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("groupHeaderPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, GroupHeaderPlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement>, ViewManagerPropertyType::String },
-        { MAKE_KEY("groupHeaderPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, GroupHeaderPlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::GroupHeaderPlacement>, ViewManagerPropertyType::String },
+        { MAKE_KEY("gridViewItemPresenterVerticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, GridViewItemPresenterVerticalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("groupHeaderPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, GroupHeaderPlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("groupHeaderPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, GroupHeaderPlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("groupName"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RadioButton, GroupNameProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("groupPadding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, GroupPaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("groupPadding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, GroupPaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
@@ -261,39 +261,39 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("header"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, HeaderProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("header"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, HeaderProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("headerBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SettingsFlyout, HeaderBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("headerFocusVisualPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Pivot, HeaderFocusVisualPlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::PivotHeaderFocusVisualPlacement>, ViewManagerPropertyType::String },
+        { MAKE_KEY("headerFocusVisualPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Pivot, HeaderFocusVisualPlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("headerForeground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SettingsFlyout, HeaderForegroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("heading"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, HeadingProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("height"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, HeightProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("highContrastAdjustment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, HighContrastAdjustmentProperty), SetPropValue<winrt::Windows::UI::Xaml::ElementHighContrastAdjustment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, HorizontalAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("highContrastAdjustment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, HighContrastAdjustmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, HorizontalAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalAnchorRatio"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalAnchorRatioProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("horizontalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::WrapGrid, HorizontalChildrenAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, HorizontalChildrenAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, HorizontalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, HorizontalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalDayItemAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, HorizontalDayItemAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalFirstOfMonthLabelAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, HorizontalFirstOfMonthLabelAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("horizontalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::WrapGrid, HorizontalChildrenAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, HorizontalChildrenAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, HorizontalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, HorizontalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalDayItemAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, HorizontalDayItemAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalFirstOfMonthLabelAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, HorizontalFirstOfMonthLabelAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Popup, HorizontalOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ToolTip, HorizontalOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("horizontalScrollBarVisibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalScrollBarVisibilityProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalScrollMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalScrollModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ScrollMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("horizontalScrollBarVisibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalScrollBarVisibilityProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalScrollMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalScrollModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalShift"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, HorizontalShiftProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("horizontalSnapPointsAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalSnapPointsAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalSnapPointsTypeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SnapPointsType>, ViewManagerPropertyType::String },
+        { MAKE_KEY("horizontalSnapPointsAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalSnapPointsAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, HorizontalSnapPointsTypeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalSourceEndOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, HorizontalSourceEndOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("horizontalSourceOffsetKind"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, HorizontalSourceOffsetKindProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind>, ViewManagerPropertyType::String },
+        { MAKE_KEY("horizontalSourceOffsetKind"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, HorizontalSourceOffsetKindProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalSourceStartOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, HorizontalSourceStartOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, HorizontalTextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, HorizontalTextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, HorizontalTextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, HorizontalTextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, HorizontalTextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, HorizontalTextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, HorizontalTextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("horizontalTextAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, HorizontalTextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("hoverBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, HoverBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("incrementalLoadingThreshold"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, IncrementalLoadingThresholdProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("incrementalLoadingTrigger"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, IncrementalLoadingTriggerProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::IncrementalLoadingTrigger>, ViewManagerPropertyType::String },
-        { MAKE_KEY("indicatorMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar, IndicatorModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::ScrollingIndicatorMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("incrementalLoadingTrigger"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, IncrementalLoadingTriggerProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("indicatorMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar, IndicatorModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("indices"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, IndicesProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("initialControls"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbar, InitialControlsProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::InkToolbarInitialControls>, ViewManagerPropertyType::String },
+        { MAKE_KEY("initialControls"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbar, InitialControlsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("initials"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PersonPicture, InitialsProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("initialSetValue"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RatingControl, InitialSetValueProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("intermediateValue"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, IntermediateValueProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -305,7 +305,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("isAlphaEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, IsAlphaEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isAlphaSliderVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, IsAlphaSliderVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isAlphaTextInputVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ColorPicker, IsAlphaTextInputVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("isBackButtonVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, IsBackButtonVisibleProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::NavigationViewBackButtonVisible>, ViewManagerPropertyType::String },
+        { MAKE_KEY("isBackButtonVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, IsBackButtonVisibleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("isBackEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, IsBackEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isBlackout"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarViewDayItem, IsBlackoutProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isCalendarOpen"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, IsCalendarOpenProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -460,42 +460,42 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("itemWidth"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, ItemWidthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("itemWidth"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, ItemWidthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("itemWidth"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector, ItemWidthProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("keyboardAcceleratorPlacementMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, KeyboardAcceleratorPlacementModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::KeyboardAcceleratorPlacementMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("keyboardAcceleratorPlacementMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, KeyboardAcceleratorPlacementModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("keyboardAcceleratorTextOverride"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarToggleButton, KeyboardAcceleratorTextOverrideProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("keyboardAcceleratorTextOverride"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem, KeyboardAcceleratorTextOverrideProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("keyboardAcceleratorTextOverride"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarButton, KeyboardAcceleratorTextOverrideProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("keyTipHorizontalOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, KeyTipHorizontalOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("keyTipPlacementMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, KeyTipPlacementModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::KeyTipPlacementMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("keyTipPlacementMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, KeyTipPlacementModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("keyTipVerticalOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, KeyTipVerticalOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("kind"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem, KindProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItemKind>, ViewManagerPropertyType::String },
+        { MAKE_KEY("kind"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem, KindProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("label"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarToggleButton, LabelProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("label"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarButton, LabelProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("labelPosition"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarButton, LabelPositionProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition>, ViewManagerPropertyType::String },
-        { MAKE_KEY("labelPosition"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarToggleButton, LabelPositionProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CommandBarLabelPosition>, ViewManagerPropertyType::String },
+        { MAKE_KEY("labelPosition"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarButton, LabelPositionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("labelPosition"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBarToggleButton, LabelPositionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("landmarksVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, LandmarksVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("language"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, LanguageProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("largeChange"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase, LargeChangeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("leftHeader"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Pivot, LeftHeaderProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TimePicker, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Popup, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AutoSuggestBox, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBar, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, LightDismissOverlayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::LightDismissOverlayMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TimePicker, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Popup, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarDatePicker, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AutoSuggestBox, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AppBar, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lightDismissOverlayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, LightDismissOverlayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("lineHeight"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, LineHeightProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("lineHeight"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, LineHeightProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("lineHeight"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, LineHeightProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("lineStackingStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, LineStackingStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::LineStackingStrategy>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lineStackingStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, LineStackingStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::LineStackingStrategy>, ViewManagerPropertyType::String },
-        { MAKE_KEY("lineStackingStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, LineStackingStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::LineStackingStrategy>, ViewManagerPropertyType::String },
-        { MAKE_KEY("listViewItemPresenterHorizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, ListViewItemPresenterHorizontalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::HorizontalAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("lineStackingStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, LineStackingStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lineStackingStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, LineStackingStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("lineStackingStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, LineStackingStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("listViewItemPresenterHorizontalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, ListViewItemPresenterHorizontalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("listViewItemPresenterPadding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, ListViewItemPresenterPaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
-        { MAKE_KEY("listViewItemPresenterVerticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, ListViewItemPresenterVerticalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("manipulationMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, ManipulationModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::ManipulationModes>, ViewManagerPropertyType::String },
-        { MAKE_KEY("mapProjection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, MapProjectionProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapProjection>, ViewManagerPropertyType::String },
+        { MAKE_KEY("listViewItemPresenterVerticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, ListViewItemPresenterVerticalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("manipulationMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, ManipulationModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("mapProjection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, MapProjectionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("mapServiceToken"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, MapServiceTokenProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("margin"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, MarginProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("maxDropDownHeight"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, MaxDropDownHeightProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -546,7 +546,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("monthVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, MonthVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("monthVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePickerFlyout, MonthVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("monthYearItemFontSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, MonthYearItemFontSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("monthYearItemFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, MonthYearItemFontStyleProperty), SetPropValue<winrt::Windows::UI::Text::FontStyle>, ViewManagerPropertyType::String },
+        { MAKE_KEY("monthYearItemFontStyle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, MonthYearItemFontStyleProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("name"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, NameProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("nineGrid"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Image, NineGridProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("numberOfWeeksInView"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, NumberOfWeeksInViewProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -555,27 +555,27 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("opacity"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, OpacityProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("openPaneLength"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, OpenPaneLengthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("openPaneLength"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, OpenPaneLengthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("opticalMarginAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, OpticalMarginAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::OpticalMarginAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("opticalMarginAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, OpticalMarginAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::OpticalMarginAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("opticalMarginAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, OpticalMarginAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::OpticalMarginAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VirtualizingStackPanel, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::StackPanel, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RefreshVisualizer, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::RefreshVisualizerOrientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbar, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Hub, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
-        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::WrapGrid, OrientationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Orientation>, ViewManagerPropertyType::String },
+        { MAKE_KEY("opticalMarginAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, OpticalMarginAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("opticalMarginAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, OpticalMarginAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("opticalMarginAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, OpticalMarginAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VirtualizingStackPanel, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::StackPanel, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RefreshVisualizer, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsStackPanel, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbar, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Hub, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("orientation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::WrapGrid, OrientationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("originX"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, OriginXProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("originY"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, OriginYProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("outOfScopeBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, OutOfScopeBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("outOfScopeForeground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, OutOfScopeForegroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("overflowButtonVisibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CommandBar, OverflowButtonVisibilityProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CommandBarOverflowButtonVisibility>, ViewManagerPropertyType::String },
-        { MAKE_KEY("overflowLabelMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, OverflowLabelModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::NavigationViewOverflowLabelMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("overflowButtonVisibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CommandBar, OverflowButtonVisibilityProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("overflowLabelMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, OverflowLabelModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("padding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::StackPanel, PaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("padding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RelativePanel, PaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("padding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Border, PaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
@@ -587,14 +587,14 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("padding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, PaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("padding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ItemsPresenter, PaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("paneBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, PaneBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("paneDisplayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, PaneDisplayModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::NavigationViewPaneDisplayMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("panePlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, PanePlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SplitViewPanePlacement>, ViewManagerPropertyType::String },
-        { MAKE_KEY("panePriority"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TwoPaneView, PanePriorityProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::TwoPaneViewPriority>, ViewManagerPropertyType::String },
+        { MAKE_KEY("paneDisplayMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, PaneDisplayModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("panePlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SplitView, PanePlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("panePriority"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TwoPaneView, PanePriorityProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("paneTitle"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, PaneTitleProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("panInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, PanInteractionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapPanInteractionMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("panInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, PanInteractionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("password"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, PasswordProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("passwordChar"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, PasswordCharProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("passwordRevealMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, PasswordRevealModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::PasswordRevealMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("passwordRevealMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, PasswordRevealModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("pedestrianFeaturesVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, PedestrianFeaturesVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("placeholderBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, PlaceholderBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("placeholderBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, PlaceholderBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -608,9 +608,9 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("placeholderText"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SearchBox, PlaceholderTextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("placeholderText"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, PlaceholderTextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("placeholderValue"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RatingControl, PlaceholderValueProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("placement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ToolTip, PlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::PlacementMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("placement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, PlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutPlacementMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("placementAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::HandwritingView, PlacementAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::HandwritingPanelPlacementAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("placement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ToolTip, PlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("placement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, PlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("placementAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::HandwritingView, PlacementAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("playbackRate"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, PlaybackRateProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("pointerOverBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, PointerOverBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("pointerOverBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, PointerOverBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -626,7 +626,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("preventKeyboardDisplayOnProgrammaticFocus"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, PreventKeyboardDisplayOnProgrammaticFocusProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("primaryButtonCommandParameter"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, PrimaryButtonCommandParameterProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("primaryButtonText"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, PrimaryButtonTextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("pullDirection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RefreshContainer, PullDirectionProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::RefreshPullDirection>, ViewManagerPropertyType::String },
+        { MAKE_KEY("pullDirection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RefreshContainer, PullDirectionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("queryText"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SearchBox, QueryTextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("radiusX"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Rectangle, RadiusXProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("radiusY"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Rectangle, RadiusYProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -635,15 +635,15 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("region"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, RegionProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("reorderHintOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, ReorderHintOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("reorderHintOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, ReorderHintOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("reorderMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, ReorderModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ListViewReorderMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("requestedTheme"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, RequestedThemeProperty), SetPropValue<winrt::Windows::UI::Xaml::ElementTheme>, ViewManagerPropertyType::String },
-        { MAKE_KEY("requiresPointer"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, RequiresPointerProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::RequiresPointer>, ViewManagerPropertyType::String },
+        { MAKE_KEY("reorderMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, ReorderModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("requestedTheme"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, RequestedThemeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("requiresPointer"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, RequiresPointerProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("revealBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, RevealBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("revealBackgroundShowsAboveContent"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, RevealBackgroundShowsAboveContentProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("revealBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, RevealBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("revealBorderThickness"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, RevealBorderThicknessProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("rightHeader"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Pivot, RightHeaderProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
-        { MAKE_KEY("rotateInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, RotateInteractionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("rotateInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, RotateInteractionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("rowSpacing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Grid, RowSpacingProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("searchHistoryContext"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SearchBox, SearchHistoryContextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("searchHistoryEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SearchBox, SearchHistoryEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -674,16 +674,16 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("selectedPointerOverBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, SelectedPointerOverBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectedPressedBackground"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, SelectedPressedBackgroundProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectedPressedBorderBrush"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, SelectedPressedBorderBrushProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("selectedStencil"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbarStencilButton, SelectedStencilProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::InkToolbarStencilKind>, ViewManagerPropertyType::String },
+        { MAKE_KEY("selectedStencil"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbarStencilButton, SelectedStencilProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("selectedStrokeWidth"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::InkToolbarPenButton, SelectedStrokeWidthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("selectedValue"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Selector, SelectedValueProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("selectedValue"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListPickerFlyout, SelectedValueProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("selectedValuePath"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Selector, SelectedValuePathProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("selectedValuePath"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListPickerFlyout, SelectedValuePathProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("selectionChangedTrigger"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, SelectionChangedTriggerProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ComboBoxSelectionChangedTrigger>, ViewManagerPropertyType::String },
+        { MAKE_KEY("selectionChangedTrigger"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, SelectionChangedTriggerProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("selectionCheckMarkVisualEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter, SelectionCheckMarkVisualEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("selectionCheckMarkVisualEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter, SelectionCheckMarkVisualEnabledProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("selectionFollowsFocus"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, SelectionFollowsFocusProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionFollowsFocus>, ViewManagerPropertyType::String },
+        { MAKE_KEY("selectionFollowsFocus"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, SelectionFollowsFocusProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("selectionHighlightColor"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, SelectionHighlightColorProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectionHighlightColor"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, SelectionHighlightColorProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectionHighlightColor"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, SelectionHighlightColorProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
@@ -691,87 +691,87 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("selectionHighlightColor"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, SelectionHighlightColorProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectionHighlightColorWhenNotFocused"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, SelectionHighlightColorWhenNotFocusedProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectionHighlightColorWhenNotFocused"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, SelectionHighlightColorWhenNotFocusedProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListPickerFlyout, SelectionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ListPickerFlyoutSelectionMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, SelectionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::CalendarViewSelectionMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListBox, SelectionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SelectionMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, SelectionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ListViewSelectionMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeView, SelectionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::TreeViewSelectionMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListPickerFlyout, SelectionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, SelectionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListBox, SelectionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, SelectionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("selectionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TreeView, SelectionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("selectsOnInvoked"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationViewItem, SelectsOnInvokedProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("shape"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum, ShapeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ColorSpectrumShape>, ViewManagerPropertyType::String },
+        { MAKE_KEY("shape"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum, ShapeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("shouldConstrainToRootBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Popup, ShouldConstrainToRootBoundsProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("shouldConstrainToRootBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, ShouldConstrainToRootBoundsProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("shoulderNavigationEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, ShoulderNavigationEnabledProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::NavigationViewShoulderNavigationEnabled>, ViewManagerPropertyType::String },
+        { MAKE_KEY("shoulderNavigationEnabled"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::NavigationView, ShoulderNavigationEnabledProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("shouldLoop"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector, ShouldLoopProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("showAndHideAutomatically"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaTransportControls, ShowAndHideAutomaticallyProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("showAsMonochrome"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::BitmapIcon, ShowAsMonochromeProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("showError"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ProgressBar, ShowErrorProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("showMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, ShowModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutShowMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("showMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase, ShowModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("showPaused"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ProgressBar, ShowPausedProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("showsScrollingPlaceholders"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, ShowsScrollingPlaceholdersProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("singleSelectionFollowsFocus"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListViewBase, SingleSelectionFollowsFocusProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("singleSelectionFollowsFocus"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ListBox, SingleSelectionFollowsFocusProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("sizesContentToTemplatedParent"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter, SizesContentToTemplatedParentProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("smallChange"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase, SmallChangeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("snapsTo"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, SnapsToProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::SliderSnapsTo>, ViewManagerPropertyType::String },
+        { MAKE_KEY("snapsTo"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, SnapsToProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("spacing"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::StackPanel, SpacingProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("stepFrequency"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, StepFrequencyProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("stereo3DVideoPackingMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, Stereo3DVideoPackingModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stereo3DVideoPackingMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stereo3DVideoRenderMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, Stereo3DVideoRenderModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stereo3DVideoRenderMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaPlayerPresenter, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaPlayerElement, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Image, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Viewbox, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CaptureElement, StretchProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Stretch>, ViewManagerPropertyType::String },
-        { MAKE_KEY("stretchDirection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Viewbox, StretchDirectionProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::StretchDirection>, ViewManagerPropertyType::String },
+        { MAKE_KEY("stereo3DVideoPackingMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, Stereo3DVideoPackingModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stereo3DVideoRenderMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, Stereo3DVideoRenderModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaPlayerPresenter, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaPlayerElement, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Image, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Viewbox, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretch"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CaptureElement, StretchProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("stretchDirection"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Viewbox, StretchDirectionProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("stroke"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
-        { MAKE_KEY("strokeDashCap"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeDashCapProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::PenLineCap>, ViewManagerPropertyType::String },
+        { MAKE_KEY("strokeDashCap"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeDashCapProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("strokeDashOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeDashOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("strokeEndLineCap"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeEndLineCapProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::PenLineCap>, ViewManagerPropertyType::String },
-        { MAKE_KEY("strokeLineJoin"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeLineJoinProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::PenLineJoin>, ViewManagerPropertyType::String },
+        { MAKE_KEY("strokeEndLineCap"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeEndLineCapProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("strokeLineJoin"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeLineJoinProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("strokeMiterLimit"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeMiterLimitProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("strokeStartLineCap"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeStartLineCapProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::PenLineCap>, ViewManagerPropertyType::String },
+        { MAKE_KEY("strokeStartLineCap"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeStartLineCapProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("strokeThickness"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Shape, StrokeThicknessProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("styleSimulations"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, StyleSimulationsProperty), SetPropValue<winrt::Windows::UI::Xaml::Media::StyleSimulations>, ViewManagerPropertyType::String },
-        { MAKE_KEY("symbol"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SymbolIcon, SymbolProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Symbol>, ViewManagerPropertyType::String },
-        { MAKE_KEY("tabFocusNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, TabFocusNavigationProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("styleSimulations"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Documents::Glyphs, StyleSimulationsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("symbol"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SymbolIcon, SymbolProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("tabFocusNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, TabFocusNavigationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("tabIndex"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, TabIndexProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("tabNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, TabNavigationProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::KeyboardNavigationMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("tabNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, TabNavigationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("tag"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, TagProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
-        { MAKE_KEY("tallModeConfiguration"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TwoPaneView, TallModeConfigurationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::TwoPaneViewTallModeConfiguration>, ViewManagerPropertyType::String },
+        { MAKE_KEY("tallModeConfiguration"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TwoPaneView, TallModeConfigurationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("text"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AutoSuggestBox, TextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("text"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ComboBox, TextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("text"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("text"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("text"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem, TextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("text"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MenuFlyoutSubItem, TextProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, TextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::TextAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textDecorations"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextDecorationsProperty), SetPropValue<winrt::Windows::UI::Text::TextDecorations>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textDecorations"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextDecorationsProperty), SetPropValue<winrt::Windows::UI::Text::TextDecorations>, ViewManagerPropertyType::String },
+        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, TextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textDecorations"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextDecorationsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textDecorations"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextDecorationsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("textIndent"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextIndentProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("textLineBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextLineBoundsProperty), SetPropValue<winrt::Windows::UI::Xaml::TextLineBounds>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textLineBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextLineBoundsProperty), SetPropValue<winrt::Windows::UI::Xaml::TextLineBounds>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textLineBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, TextLineBoundsProperty), SetPropValue<winrt::Windows::UI::Xaml::TextLineBounds>, ViewManagerPropertyType::String },
+        { MAKE_KEY("textLineBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextLineBoundsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textLineBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextLineBoundsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textLineBounds"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, TextLineBoundsProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("textMemberPath"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::AutoSuggestBox, TextMemberPathProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextReadingOrderProperty), SetPropValue<winrt::Windows::UI::Xaml::TextReadingOrder>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, TextReadingOrderProperty), SetPropValue<winrt::Windows::UI::Xaml::TextReadingOrder>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextReadingOrderProperty), SetPropValue<winrt::Windows::UI::Xaml::TextReadingOrder>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, TextReadingOrderProperty), SetPropValue<winrt::Windows::UI::Xaml::TextReadingOrder>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextReadingOrderProperty), SetPropValue<winrt::Windows::UI::Xaml::TextReadingOrder>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textTrimming"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextTrimmingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextTrimming>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textTrimming"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextTrimmingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextTrimming>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextWrappingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextWrapping>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, TextWrappingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextWrapping>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, TextWrappingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextWrapping>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextWrappingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextWrapping>, ViewManagerPropertyType::String },
-        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextWrappingProperty), SetPropValue<winrt::Windows::UI::Xaml::TextWrapping>, ViewManagerPropertyType::String },
+        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextReadingOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, TextReadingOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextReadingOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::PasswordBox, TextReadingOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textReadingOrder"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextReadingOrderProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textTrimming"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextTrimmingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textTrimming"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextTrimmingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichTextBlock, TextWrappingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, TextWrappingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RichEditBox, TextWrappingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBox, TextWrappingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textWrapping"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TextBlock, TextWrappingProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("tickFrequency"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, TickFrequencyProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("tickPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, TickPlacementProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::TickPlacement>, ViewManagerPropertyType::String },
-        { MAKE_KEY("tiltInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, TiltInteractionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("tickPlacement"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Slider, TickPlacementProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("tiltInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, TiltInteractionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("title"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Pivot, TitleProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("title"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentDialog, TitleProperty), SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("title"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::SettingsFlyout, TitleProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -787,48 +787,48 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
         { MAKE_KEY("useTouchAnimationsForAllNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::FlipView, UseTouchAnimationsForAllNavigationProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("value"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase, ValueProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("value"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::RatingControl, ValueProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("verticalAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, VerticalAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("verticalAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, VerticalAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("verticalAnchorRatio"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalAnchorRatioProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("verticalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::WrapGrid, VerticalChildrenAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, VerticalChildrenAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, VerticalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, VerticalContentAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalDayItemAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, VerticalDayItemAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalFirstOfMonthLabelAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, VerticalFirstOfMonthLabelAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::VerticalAlignment>, ViewManagerPropertyType::String },
+        { MAKE_KEY("verticalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::WrapGrid, VerticalChildrenAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalChildrenAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid, VerticalChildrenAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ContentPresenter, VerticalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalContentAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Control, VerticalContentAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalDayItemAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, VerticalDayItemAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalFirstOfMonthLabelAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::CalendarView, VerticalFirstOfMonthLabelAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("verticalOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ToolTip, VerticalOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("verticalOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::Popup, VerticalOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("verticalScrollBarVisibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalScrollBarVisibilityProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ScrollBarVisibility>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalScrollMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalScrollModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ScrollMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("verticalScrollBarVisibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalScrollBarVisibilityProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalScrollMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalScrollModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("verticalShift"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, VerticalShiftProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("verticalSnapPointsAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalSnapPointsAlignmentProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Primitives::SnapPointsAlignment>, ViewManagerPropertyType::String },
-        { MAKE_KEY("verticalSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalSnapPointsTypeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SnapPointsType>, ViewManagerPropertyType::String },
+        { MAKE_KEY("verticalSnapPointsAlignment"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalSnapPointsAlignmentProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("verticalSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, VerticalSnapPointsTypeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("verticalSourceEndOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, VerticalSourceEndOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("verticalSourceOffsetKind"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, VerticalSourceOffsetKindProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ParallaxSourceOffsetKind>, ViewManagerPropertyType::String },
+        { MAKE_KEY("verticalSourceOffsetKind"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, VerticalSourceOffsetKindProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("verticalSourceStartOffset"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ParallaxView, VerticalSourceStartOffsetProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("viewPadding"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, ViewPaddingProperty), SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("viewportSize"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar, ViewportSizeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("visibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, VisibilityProperty), SetPropValue<winrt::Windows::UI::Xaml::Visibility>, ViewManagerPropertyType::String },
+        { MAKE_KEY("visibility"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, VisibilityProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("volume"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::MediaElement, VolumeProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("watermarkMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, WatermarkModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapWatermarkMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("wideModeConfiguration"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TwoPaneView, WideModeConfigurationProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::TwoPaneViewWideModeConfiguration>, ViewManagerPropertyType::String },
+        { MAKE_KEY("watermarkMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, WatermarkModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("wideModeConfiguration"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::TwoPaneView, WideModeConfigurationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("width"), MAKE_GET_DP(winrt::Windows::UI::Xaml::FrameworkElement, WidthProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("x1"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Line, X1Property), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("x2"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Line, X2Property), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("xyFocusDownNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusDownNavigationStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::XYFocusNavigationStrategy>, ViewManagerPropertyType::String },
-        { MAKE_KEY("xyFocusKeyboardNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusKeyboardNavigationProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::XYFocusKeyboardNavigationMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("xyFocusLeftNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusLeftNavigationStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::XYFocusNavigationStrategy>, ViewManagerPropertyType::String },
-        { MAKE_KEY("xyFocusRightNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusRightNavigationStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::XYFocusNavigationStrategy>, ViewManagerPropertyType::String },
-        { MAKE_KEY("xyFocusUpNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusUpNavigationStrategyProperty), SetPropValue<winrt::Windows::UI::Xaml::Input::XYFocusNavigationStrategy>, ViewManagerPropertyType::String },
+        { MAKE_KEY("xyFocusDownNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusDownNavigationStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("xyFocusKeyboardNavigation"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusKeyboardNavigationProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("xyFocusLeftNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusLeftNavigationStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("xyFocusRightNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusRightNavigationStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("xyFocusUpNavigationStrategy"), MAKE_GET_DP(winrt::Windows::UI::Xaml::UIElement, XYFocusUpNavigationStrategyProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("y1"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Line, Y1Property), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("y2"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Shapes::Line, Y2Property), SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("yearFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, YearFormatProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("yearFormat"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePickerFlyout, YearFormatProperty), SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("yearVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePicker, YearVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("yearVisible"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::DatePickerFlyout, YearVisibleProperty), SetPropValue<bool>, ViewManagerPropertyType::Boolean },
-        { MAKE_KEY("zoomInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, ZoomInteractionModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapInteractionMode>, ViewManagerPropertyType::String },
+        { MAKE_KEY("zoomInteractionMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, ZoomInteractionModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("zoomLevel"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::Maps::MapControl, ZoomLevelProperty), SetPropValue<double>, ViewManagerPropertyType::Number },
-        { MAKE_KEY("zoomMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, ZoomModeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::ZoomMode>, ViewManagerPropertyType::String },
-        { MAKE_KEY("zoomSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, ZoomSnapPointsTypeProperty), SetPropValue<winrt::Windows::UI::Xaml::Controls::SnapPointsType>, ViewManagerPropertyType::String },
+        { MAKE_KEY("zoomMode"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, ZoomModeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("zoomSnapPointsType"), MAKE_GET_DP(winrt::Windows::UI::Xaml::Controls::ScrollViewer, ZoomSnapPointsTypeProperty), SetPropValue<int32_t>, ViewManagerPropertyType::Number },
   };
 
 #ifdef USE_CRC32
@@ -844,12 +844,12 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("areScrollSnapPointsRegular"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("areStickyGroupHeadersEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("areTransportControlsEnabled"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("audioCategory"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("audioDeviceType"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("audioCategory"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("audioDeviceType"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("autoMaximizeSuggestionArea"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("autoPlay"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("background"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("backgroundSizing"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("backgroundSizing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("badgeGlyph"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("badgeNumber"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("badgeText"), ViewManagerPropertyType::String);
@@ -860,7 +860,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("bringIntoViewOnFocusChange"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("businessLandmarksEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("businessLandmarksVisible"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("buttonFlyoutPlacement"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("buttonFlyoutPlacement"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("cacheLength"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("cacheSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("calendarIdentifier"), ViewManagerPropertyType::String);
@@ -875,32 +875,32 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("canDragItems"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("canReorderItems"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("caption"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("characterCasing"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("characterCasing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("characterSpacing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("checkBoxBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("checkBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("checkHintBrush"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("checkMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("checkMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("checkSelectingBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("chooseSuggestionOnEnter"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("clickMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("clipboardCopyFormat"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("clickMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("clipboardCopyFormat"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("clockIdentifier"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("closeButtonCommandParameter"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("closeButtonText"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("closedDisplayMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("closedDisplayMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("collapsedGlyph"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("colorChannel"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("colorChannel"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("colorFontPaletteIndex"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("colorScheme"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("colorSpectrumComponents"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("colorSpectrumShape"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("colorScheme"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("colorSpectrumComponents"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("colorSpectrumShape"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("columnSpacing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("commandParameter"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("compactModeThresholdWidth"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("compactPaneLength"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("components"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("compositeMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("components"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("compositeMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("confirmationButtonsVisible"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("content"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("contentLinkBackgroundColor"), ViewManagerPropertyType::Color);
@@ -911,40 +911,40 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("dateFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dayFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dayItemFontSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("dayItemFontStyle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("dayItemFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dayOfWeekFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dayVisible"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("defaultButton"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("defaultLabelPosition"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("defaultButton"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("defaultLabelPosition"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("defaultPlaybackRate"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("defaultSectionIndex"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("defaultStyleKey"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("delay"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("description"), ViewManagerPropertyType::Map);
-    nativeProps.Insert(winrt::to_hstring("desiredCandidateWindowAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("desiredCandidateWindowAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("desiredPitch"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("disabledFormattingAccelerators"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("disabledFormattingAccelerators"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("disabledOpacity"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("displayMemberPath"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("displayMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("displayMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("displayName"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dragBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("dragForeground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("dragOpacity"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dynamicOverflowOrder"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("elementSoundMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("elementSoundMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("exitDisplayModeOnAccessKeyInvoked"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("expandedGlyph"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("expandedModeThresholdWidth"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("fastPlayFallbackBehaviour"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("fastPlayFallbackBehaviour"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("fill"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("fillRule"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("firstDayOfWeek"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("fillRule"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("firstDayOfWeek"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("firstOfMonthLabelFontSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("firstOfMonthLabelFontStyle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("firstOfMonthLabelFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontStyle"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("flowDirection"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontStyle"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("flowDirection"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("focusBorderBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("focusOnKeyboardInput"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("focusSecondaryBorderBrush"), ViewManagerPropertyType::Color);
@@ -955,8 +955,8 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("focusVisualSecondaryThickness"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("fontRenderingEmSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("fontSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("fontStretch"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("fontStyle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("fontStretch"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("fontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("footer"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("foreground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("fullSizeDesired"), ViewManagerPropertyType::Boolean);
@@ -964,42 +964,42 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("glyphBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("glyphOpacity"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("glyphSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("gridViewItemPresenterHorizontalContentAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("gridViewItemPresenterHorizontalContentAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("gridViewItemPresenterPadding"), ViewManagerPropertyType::Map);
-    nativeProps.Insert(winrt::to_hstring("gridViewItemPresenterVerticalContentAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("groupHeaderPlacement"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("gridViewItemPresenterVerticalContentAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("groupHeaderPlacement"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("groupName"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("groupPadding"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("hasUnrealizedChildren"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("header"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("headerBackground"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("headerFocusVisualPlacement"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("headerFocusVisualPlacement"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("headerForeground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("heading"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("height"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("highContrastAdjustment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("horizontalAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("highContrastAdjustment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("horizontalAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("horizontalAnchorRatio"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("horizontalChildrenAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("horizontalContentAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("horizontalDayItemAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("horizontalFirstOfMonthLabelAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("horizontalChildrenAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("horizontalContentAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("horizontalDayItemAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("horizontalFirstOfMonthLabelAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("horizontalOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("horizontalScrollBarVisibility"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("horizontalScrollMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("horizontalScrollBarVisibility"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("horizontalScrollMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("horizontalShift"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("horizontalSnapPointsAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("horizontalSnapPointsType"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("horizontalSnapPointsAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("horizontalSnapPointsType"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("horizontalSourceEndOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("horizontalSourceOffsetKind"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("horizontalSourceOffsetKind"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("horizontalSourceStartOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("horizontalTextAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("horizontalTextAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("hoverBorderBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("incrementalLoadingThreshold"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("incrementalLoadingTrigger"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("indicatorMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("incrementalLoadingTrigger"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("indicatorMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("indices"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("initialControls"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("initialControls"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("initials"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("initialSetValue"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("intermediateValue"), ViewManagerPropertyType::Number);
@@ -1010,7 +1010,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("isAlphaEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("isAlphaSliderVisible"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("isAlphaTextInputVisible"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("isBackButtonVisible"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("isBackButtonVisible"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("isBackEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("isBlackout"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("isCalendarOpen"), ViewManagerPropertyType::Boolean);
@@ -1124,26 +1124,26 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("itemHeight"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("itemsSource"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("itemWidth"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("keyboardAcceleratorPlacementMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("keyboardAcceleratorPlacementMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("keyboardAcceleratorTextOverride"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("keyTipHorizontalOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("keyTipPlacementMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("keyTipPlacementMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("keyTipVerticalOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("kind"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("kind"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("label"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("labelPosition"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("labelPosition"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("landmarksVisible"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("language"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("largeChange"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("leftHeader"), ViewManagerPropertyType::Map);
-    nativeProps.Insert(winrt::to_hstring("lightDismissOverlayMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("lightDismissOverlayMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("lineHeight"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("lineStackingStrategy"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("listViewItemPresenterHorizontalContentAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("lineStackingStrategy"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("listViewItemPresenterHorizontalContentAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("listViewItemPresenterPadding"), ViewManagerPropertyType::Map);
-    nativeProps.Insert(winrt::to_hstring("listViewItemPresenterVerticalContentAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("manipulationMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("mapProjection"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("listViewItemPresenterVerticalContentAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("manipulationMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("mapProjection"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("mapServiceToken"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("margin"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("maxDropDownHeight"), ViewManagerPropertyType::Number);
@@ -1178,7 +1178,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("monthFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("monthVisible"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("monthYearItemFontSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("monthYearItemFontStyle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("monthYearItemFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("name"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("nineGrid"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("numberOfWeeksInView"), ViewManagerPropertyType::Number);
@@ -1186,31 +1186,31 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("onContent"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("opacity"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("openPaneLength"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("opticalMarginAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("orientation"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("opticalMarginAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("orientation"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("originX"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("originY"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("outOfScopeBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("outOfScopeForeground"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("overflowButtonVisibility"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("overflowLabelMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("overflowButtonVisibility"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("overflowLabelMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("padding"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("paneBackground"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("paneDisplayMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("panePlacement"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("panePriority"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("paneDisplayMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("panePlacement"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("panePriority"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("paneTitle"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("panInteractionMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("panInteractionMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("password"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("passwordChar"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("passwordRevealMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("passwordRevealMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("pedestrianFeaturesVisible"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("placeholderBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("placeholderForeground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("placeholderText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("placeholderValue"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("placement"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("placementAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("placement"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("placementAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("playbackRate"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("pointerOverBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("pointerOverBackgroundMargin"), ViewManagerPropertyType::Map);
@@ -1222,7 +1222,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("preventKeyboardDisplayOnProgrammaticFocus"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("primaryButtonCommandParameter"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("primaryButtonText"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("pullDirection"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("pullDirection"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("queryText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("radiusX"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("radiusY"), ViewManagerPropertyType::Number);
@@ -1230,15 +1230,15 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("reduceViewportForCoreInputViewOcclusions"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("region"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("reorderHintOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("reorderMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("requestedTheme"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("requiresPointer"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("reorderMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("requestedTheme"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("requiresPointer"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("revealBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("revealBackgroundShowsAboveContent"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("revealBorderBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("revealBorderThickness"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("rightHeader"), ViewManagerPropertyType::Map);
-    nativeProps.Insert(winrt::to_hstring("rotateInteractionMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("rotateInteractionMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("rowSpacing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("searchHistoryContext"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("searchHistoryEnabled"), ViewManagerPropertyType::Boolean);
@@ -1256,64 +1256,64 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("selectedPointerOverBorderBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("selectedPressedBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("selectedPressedBorderBrush"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("selectedStencil"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("selectedStencil"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("selectedStrokeWidth"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("selectedValue"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("selectedValuePath"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("selectionChangedTrigger"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("selectionChangedTrigger"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("selectionCheckMarkVisualEnabled"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("selectionFollowsFocus"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("selectionFollowsFocus"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("selectionHighlightColor"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("selectionHighlightColorWhenNotFocused"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("selectionMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("selectionMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("selectsOnInvoked"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("shape"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("shape"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("shouldConstrainToRootBounds"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("shoulderNavigationEnabled"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("shoulderNavigationEnabled"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("shouldLoop"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("showAndHideAutomatically"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("showAsMonochrome"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("showError"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("showMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("showMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("showPaused"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("showsScrollingPlaceholders"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("singleSelectionFollowsFocus"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("sizesContentToTemplatedParent"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("smallChange"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("snapsTo"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("snapsTo"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("spacing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("stepFrequency"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("stereo3DVideoPackingMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("stereo3DVideoRenderMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("stretch"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("stretchDirection"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("stereo3DVideoPackingMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("stereo3DVideoRenderMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("stretch"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("stretchDirection"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("stroke"), ViewManagerPropertyType::Color);
-    nativeProps.Insert(winrt::to_hstring("strokeDashCap"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("strokeDashCap"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("strokeDashOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("strokeEndLineCap"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("strokeLineJoin"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("strokeEndLineCap"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("strokeLineJoin"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("strokeMiterLimit"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("strokeStartLineCap"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("strokeStartLineCap"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("strokeThickness"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("styleSimulations"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("symbol"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("tabFocusNavigation"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("styleSimulations"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("symbol"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("tabFocusNavigation"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("tabIndex"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("tabNavigation"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("tabNavigation"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("tag"), ViewManagerPropertyType::Map);
-    nativeProps.Insert(winrt::to_hstring("tallModeConfiguration"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("tallModeConfiguration"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("text"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("textAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("textDecorations"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("textAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("textDecorations"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("textIndent"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("textLineBounds"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("textLineBounds"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("textMemberPath"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("textReadingOrder"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("textTrimming"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("textWrapping"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("textReadingOrder"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("textTrimming"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("textWrapping"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("tickFrequency"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("tickPlacement"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("tiltInteractionMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("tickPlacement"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("tiltInteractionMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("title"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("todayForeground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("trafficFlowVisible"), ViewManagerPropertyType::Boolean);
@@ -1325,43 +1325,43 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("useSystemFocusVisuals"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("useTouchAnimationsForAllNavigation"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("value"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("verticalAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("verticalAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("verticalAnchorRatio"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("verticalChildrenAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("verticalContentAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("verticalDayItemAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("verticalFirstOfMonthLabelAlignment"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("verticalChildrenAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("verticalContentAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("verticalDayItemAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("verticalFirstOfMonthLabelAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("verticalOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("verticalScrollBarVisibility"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("verticalScrollMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("verticalScrollBarVisibility"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("verticalScrollMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("verticalShift"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("verticalSnapPointsAlignment"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("verticalSnapPointsType"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("verticalSnapPointsAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("verticalSnapPointsType"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("verticalSourceEndOffset"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("verticalSourceOffsetKind"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("verticalSourceOffsetKind"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("verticalSourceStartOffset"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("viewPadding"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("viewportSize"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("visibility"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("visibility"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("volume"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("watermarkMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("wideModeConfiguration"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("watermarkMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("wideModeConfiguration"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("width"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("x1"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("x2"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("xyFocusDownNavigationStrategy"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("xyFocusKeyboardNavigation"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("xyFocusLeftNavigationStrategy"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("xyFocusRightNavigationStrategy"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("xyFocusUpNavigationStrategy"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("xyFocusDownNavigationStrategy"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("xyFocusKeyboardNavigation"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("xyFocusLeftNavigationStrategy"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("xyFocusRightNavigationStrategy"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("xyFocusUpNavigationStrategy"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("y1"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("y2"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("yearFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("yearVisible"), ViewManagerPropertyType::Boolean);
-    nativeProps.Insert(winrt::to_hstring("zoomInteractionMode"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("zoomInteractionMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("zoomLevel"), ViewManagerPropertyType::Number);
-    nativeProps.Insert(winrt::to_hstring("zoomMode"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("zoomSnapPointsType"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("zoomMode"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("zoomSnapPointsType"), ViewManagerPropertyType::Number);
 }
 #else
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {

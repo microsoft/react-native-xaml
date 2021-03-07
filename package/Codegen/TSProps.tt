@@ -32,3 +32,13 @@ export type XamlControlProps =<# var first = true; foreach (var type in Types) {
 		#> Native<#= type.GetName() #>Props 
 	<# }
 	} #>;
+
+
+<# foreach (var enumType in Util.enumsToGenerateConvertersFor) { #>
+
+const enum <#= enumType.GetName() #> {
+<# foreach (var value in enumType.GetFields().Skip(1)) { #>
+	<#= value.GetName() #> = <#= (int)value.GetConstantValue(out System.Reflection.Metadata.ConstantTypeCode typeCode) #>,
+<# } #>
+}
+<# } #>

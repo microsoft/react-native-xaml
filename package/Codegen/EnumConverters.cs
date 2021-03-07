@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
+    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EnumConverters.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class EnumConverters : EnumConvertersBase
     {
@@ -39,86 +39,21 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 ");
             
-            #line 20 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
+            #line 20 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EnumConverters.tt"
  foreach (var ns in Util.enumsToGenerateConvertersFor.Select(t => t.GetNamespace()).Distinct()) { 
             
             #line default
             #line hidden
             this.Write("#include <winrt/");
             
-            #line 21 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
+            #line 21 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EnumConverters.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
             
             #line default
             #line hidden
             this.Write(".h>\r\n");
             
-            #line 22 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\n\r\n\r\n");
-            
-            #line 26 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
- foreach (var e in Util.enumsToGenerateConvertersFor) { 
-            
-            #line default
-            #line hidden
-            this.Write("  template<> winrt::IInspectable MakeEnum<");
-            
-            #line 27 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(e)));
-            
-            #line default
-            #line hidden
-            this.Write(">(const std::string& value) noexcept { \r\n  ");
-            
-            #line 28 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(e)));
-            
-            #line default
-            #line hidden
-            this.Write(" ret;\r\n  switch (COMPILE_TIME_CRC32_STR(value.c_str())) {\r\n");
-            
-            #line 30 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
- for (var i = 1; i < e.GetFields().Length; i++) { 
-		var name = e.GetFields()[i].GetName();
-	
-            
-            #line default
-            #line hidden
-            this.Write("    case COMPILE_TIME_CRC32_STR(\"");
-            
-            #line 33 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(name)));
-            
-            #line default
-            #line hidden
-            this.Write("\"): { ret = ");
-            
-            #line 33 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(e)));
-            
-            #line default
-            #line hidden
-            this.Write("::");
-            
-            #line 33 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(name));
-            
-            #line default
-            #line hidden
-            this.Write("; break; }\r\n");
-            
-            #line 34 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("  }\r\n\r\n  return winrt::box_value(ret);\r\n  }\r\n\r\n");
-            
-            #line 40 "C:\Users\asklar\source\repos\react-native-xaml\codegen\Codegen\EnumConverters.tt"
+            #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EnumConverters.tt"
  } 
             
             #line default
