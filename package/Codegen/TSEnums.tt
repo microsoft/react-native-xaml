@@ -3,12 +3,11 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-
 <# foreach (var enumType in Util.enumsToGenerateConvertersFor) { #>
-
 export enum <#= enumType.GetName() #> {
 <# foreach (var value in enumType.GetFields().Skip(1)) { #>
-	<#= value.GetName() #> = <#= (int)value.GetConstantValue(out System.Reflection.Metadata.ConstantTypeCode typeCode) #>,
+  <#= value.GetName() #> = <#= (int)value.GetConstantValue(out System.Reflection.Metadata.ConstantTypeCode typeCode) #>,
 <# } #>
 }
+
 <# } #>

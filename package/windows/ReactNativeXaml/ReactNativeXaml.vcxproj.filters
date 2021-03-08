@@ -12,6 +12,7 @@
     <ClCompile Include="Codegen\TypeCreator.g.cpp">
       <Filter>Codegen</Filter>
     </ClCompile>
+    <ClCompile Include="Serialize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="Codegen\TypeEvents.g.h">
       <Filter>Codegen</Filter>
     </ClInclude>
+    <ClInclude Include="Serialize.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
