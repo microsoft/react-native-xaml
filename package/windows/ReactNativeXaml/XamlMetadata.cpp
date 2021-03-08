@@ -91,13 +91,6 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   return e;
 }
 
-template<typename T>
-T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
-  if (auto contentControl = i.try_as<ContentControl>()) {
-    return contentControl.Content().try_as<T>();
-  }
-  return nullptr;
-}
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
 void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
@@ -116,16 +109,9 @@ void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty pro
     }
   }
 }
-template<typename T>
-bool IsWrapped(const winrt::Windows::Foundation::IInspectable& i) {
-  return Unwrap<T>(i) != nullptr;
-}
 
-const PropInfo fakeProps[] = {
-    { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
-};
 
-const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
+const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
   auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return entry.propName == key; });
   while ((it != map + size) && it->propName == key) {
     if (it->isType(obj)) {
@@ -135,6 +121,10 @@ const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Found
   }
   return nullptr;
 }
+
+const PropInfo fakeProps[] = {
+    { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
+};
 
 const struct {
   const PropInfo* map;

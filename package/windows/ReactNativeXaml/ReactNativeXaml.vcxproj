@@ -159,6 +159,7 @@
     <None Include="..\..\src\NativeXamlControl.tsx" />
     <None Include="..\..\src\Props.ts" />
     <None Include="..\..\src\Types.tsx" />
+    <None Include="..\..\src\Enums.ts" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
   </ItemGroup>
