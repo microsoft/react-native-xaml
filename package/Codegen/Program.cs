@@ -1,10 +1,10 @@
 ﻿using MiddleweightReflection;
-using System.Linq;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Codegen
@@ -59,7 +59,8 @@ namespace Codegen
         IEnumerable<MrType> Types { get; set; }
     }
 
-    public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase> {
+    public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase>
+    {
         public bool Equals(MrTypeAndMemberBase that, MrTypeAndMemberBase other)
         {
             return that.GetName() == other.GetName();
@@ -72,7 +73,7 @@ namespace Codegen
     }
 
 
-class Program
+    class Program
     {
         const string Windows_winmd = @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
         private void DumpTypes()
@@ -97,7 +98,8 @@ class Program
             if (winmdPaths.Count != 0)
             {
                 types = types.Union(windows_winmdTypes);
-            } else
+            }
+            else
             {
                 types = windows_winmdTypes;
             }
@@ -176,9 +178,10 @@ class Program
 
         private static string PackageRoot
         {
-            get {
+            get
+            {
                 var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                return Path.Join(assemblyLocation, @"..\..\..\.."); 
+                return Path.Join(assemblyLocation, @"..\..\..\..");
             }
         }
 
@@ -201,7 +204,8 @@ class Program
                 if (i == input.Length - 1)
                 {
                     accum += c;
-                } else
+                }
+                else
                 {
                     accum = c + 33 * accum;
                 }
@@ -233,7 +237,7 @@ class Program
             Environment.Exit(0);
         }
 
-        static Dictionary<string, OptionDef> optionDefs = new Dictionary<string, OptionDef>() {
+        static readonly Dictionary<string, OptionDef> optionDefs = new Dictionary<string, OptionDef>() {
                 { "-help", new OptionDef (){ Description = "Shows this message", NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
                 { "-winmd", new OptionDef (){ Description = "Specifies a custom WinMD file. To specify multiple files, pass this option multiple times", NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
                 { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
@@ -252,8 +256,8 @@ class Program
                 {
                     version = m.Groups[1].Value;
                 }
-            //    var versionLine = packageJson.Where(x => x.Contains("\"version\": "))
-            } catch { }
+            }
+            catch { }
             Console.WriteLine($"React-native-xaml Code generator {version}");
             Console.WriteLine("https://github.com/asklar/react-native-xaml");
             Console.WriteLine();
@@ -264,12 +268,14 @@ class Program
                 {
                     var def = optionDefs[args[i]];
                     string v = null;
-                    if (def.NumberOfParams == 2 && i < args.Length - 1) {
+                    if (def.NumberOfParams == 2 && i < args.Length - 1)
+                    {
                         v = args[i + 1];
                     }
                     i += def.NumberOfParams;
                     def.Action(p, v);
-                } else
+                }
+                else
                 {
                     throw new ArgumentException($"Unknown option {args[i]}");
                 }

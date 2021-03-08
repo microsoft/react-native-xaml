@@ -12,9 +12,6 @@
     <ClCompile Include="Codegen\TypeCreator.g.cpp">
       <Filter>Codegen</Filter>
     </ClCompile>
-    <ClCompile Include="Codegen\EnumConverters.g.cpp">
-      <Filter>Codegen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
