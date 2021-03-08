@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="EnumConverters.cs">
+    <Compile Update="TSEnums.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>EnumConverters.tt</DependentUpon>
+      <DependentUpon>TSEnums.tt</DependentUpon>
     </Compile>
     <Compile Update="TSProps.cs">
       <DesignTime>True</DesignTime>
@@ -48,9 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="EnumConverters.tt">
+    <None Update="TSEnums.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>EnumConverters.cs</LastGenOutput>
+      <LastGenOutput>TSEnums.cs</LastGenOutput>
     </None>
     <None Update="TSProps.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

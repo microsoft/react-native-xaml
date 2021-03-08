@@ -113,7 +113,8 @@ namespace winrt::ReactNativeXaml {
         childAsCC.DataContext(e);
         if (auto button = e.try_as<Button>()) {
           return button.Flyout(childFlyout);
-        } else {
+        }
+        else {
           if (auto uiParent = e.try_as<UIElement>()) {
             return uiParent.ContextFlyout(childFlyout);
           }
@@ -165,7 +166,7 @@ namespace winrt::ReactNativeXaml {
       return contentCtrl.Content(nullptr);
     }
     else if (auto border = e.try_as<Border>()) {
-        return border.Child(nullptr);
+      return border.Child(nullptr);
     }
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().Clear();

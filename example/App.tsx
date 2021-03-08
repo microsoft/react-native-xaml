@@ -33,6 +33,7 @@ NativeXamlControl,
 MenuFlyoutItem,
 TextBox,
 // BlankUserControl,
+ClickMode,
 } from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
@@ -84,7 +85,9 @@ const App: () => Node = () => {
           }}>
               {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
                   <Button content={{ string: `Last selected option = ${option} ${count}` }} foreground="red"
-                      onClick={(a) => { alert(JSON.stringify(a.nativeEvent)); setCount(count + 1); setIsOpen(true); }} />
+                      onClick={(a) => { alert(JSON.stringify(a.nativeEvent)); setCount(count + 1); setIsOpen(true); }}
+                      clickMode={ClickMode.Release}
+                      />
                   {/*<StackPanel orientation="horizontal">*/}
                   {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
                   {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}

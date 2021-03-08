@@ -33,12 +33,14 @@ namespace Codegen
                 { "System.Single", "float" },
                 { "System.Object", "winrt::Windows::Foundation::IInspectable" },
             };
+            if (t.IsEnum) return "int32_t";
             if (primitiveTypes.ContainsKey(t.GetFullName()))
             {
                 return primitiveTypes[t.GetFullName()];
             }
             return $"winrt::{t.GetFullName().Replace(".", "::")}";
         }
+
         public static HashSet<MrType> enumsToGenerateConvertersFor = new HashSet<MrType>();
 
         public static MrLoadContext LoadContext { get; internal set; }
@@ -48,7 +50,7 @@ namespace Codegen
             if (propType.IsEnum)
             {
                 enumsToGenerateConvertersFor.Add(propType);
-                return ViewManagerPropertyType.String;
+                return ViewManagerPropertyType.Number;
             }
             else if (propType.IsArray)
             {
@@ -80,8 +82,7 @@ namespace Codegen
         {
             if (propType.IsEnum)
             {
-                var enumNames = propType.GetFields().Where(f => !f.IsSpecialName);
-                return string.Join(" | ", enumNames.Select(x => $"'{ToJsName(x.GetName())}'"));
+                return $"Enums.{propType.GetName()}";
             }
             else if (propType.IsArray)
             {

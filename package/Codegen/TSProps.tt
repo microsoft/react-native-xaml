@@ -4,6 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
+import type * as Enums from './Enums';
+
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
 <# var derived = Util.GetDerivedTypes(Types);
@@ -32,3 +34,5 @@ export type XamlControlProps =<# var first = true; foreach (var type in Types) {
 		#> Native<#= type.GetName() #>Props 
 	<# }
 	} #>;
+
+

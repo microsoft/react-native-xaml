@@ -1,4 +1,6 @@
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
+import type * as Enums from './Enums';
+
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
 
@@ -10,7 +12,7 @@ export interface NativeDependencyObjectProps extends ViewProps {
 export interface NativeUIElementProps extends NativeDependencyObjectProps {
   type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   opacity?: number;
-  manipulationMode?: 'none' | 'translateX' | 'translateY' | 'translateRailsX' | 'translateRailsY' | 'rotate' | 'scale' | 'translateInertia' | 'rotateInertia' | 'scaleInertia' | 'all' | 'system';
+  manipulationMode?: Enums.ManipulationModes;
   isTapEnabled?: boolean;
   isRightTapEnabled?: boolean;
   isHoldingEnabled?: boolean;
@@ -18,23 +20,23 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   isDoubleTapEnabled?: boolean;
   allowDrop?: boolean;
   useLayoutRounding?: boolean;
-  visibility?: 'visible' | 'collapsed';
-  compositeMode?: 'inherit' | 'sourceOver' | 'minBlend';
+  visibility?: Enums.Visibility;
+  compositeMode?: Enums.ElementCompositeMode;
   canDrag?: boolean;
   isAccessKeyScope?: boolean;
   exitDisplayModeOnAccessKeyInvoked?: boolean;
   accessKey?: string;
   keyTipHorizontalOffset?: number;
-  highContrastAdjustment?: 'none' | 'application' | 'auto';
-  xyFocusRightNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
-  xyFocusKeyboardNavigation?: 'auto' | 'enabled' | 'disabled';
-  xyFocusDownNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
-  tabFocusNavigation?: 'local' | 'cycle' | 'once';
+  highContrastAdjustment?: Enums.ElementHighContrastAdjustment;
+  xyFocusRightNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusKeyboardNavigation?: Enums.XYFocusKeyboardNavigationMode;
+  xyFocusDownNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  tabFocusNavigation?: Enums.KeyboardNavigationMode;
   keyTipVerticalOffset?: number;
-  xyFocusUpNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
-  keyTipPlacementMode?: 'auto' | 'bottom' | 'top' | 'left' | 'right' | 'center' | 'hidden';
-  xyFocusLeftNavigationStrategy?: 'auto' | 'projection' | 'navigationDirectionDistance' | 'rectilinearDistance';
-  keyboardAcceleratorPlacementMode?: 'auto' | 'hidden';
+  xyFocusUpNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  keyTipPlacementMode?: Enums.KeyTipPlacementMode;
+  xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  keyboardAcceleratorPlacementMode?: Enums.KeyboardAcceleratorPlacementMode;
   canBeScrollAnchor?: boolean;
   onDoubleTapped?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragEnter?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -82,7 +84,7 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
 export interface NativeFrameworkElementProps extends NativeUIElementProps {
   type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   width?: number;
-  verticalAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+  verticalAlignment?: Enums.VerticalAlignment;
   tag?: object;
   name?: string;
   minWidth?: number;
@@ -91,11 +93,11 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
   maxHeight?: number;
   margin?: Thickness;
   language?: string;
-  horizontalAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  horizontalAlignment?: Enums.HorizontalAlignment;
   height?: number;
-  flowDirection?: 'leftToRight' | 'rightToLeft';
+  flowDirection?: Enums.FlowDirection;
   dataContext?: object;
-  requestedTheme?: 'default' | 'light' | 'dark';
+  requestedTheme?: Enums.ElementTheme;
   focusVisualSecondaryThickness?: Thickness;
   focusVisualSecondaryBrush?: ColorValue;
   focusVisualPrimaryThickness?: Thickness;
@@ -119,25 +121,25 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   padding?: Thickness;
   isTabStop?: boolean;
   isEnabled?: boolean;
-  horizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  horizontalContentAlignment?: Enums.HorizontalAlignment;
   foreground?: ColorValue;
-  fontStyle?: 'normal' | 'oblique' | 'italic';
-  fontStretch?: 'undefined' | 'ultraCondensed' | 'extraCondensed' | 'condensed' | 'semiCondensed' | 'normal' | 'semiExpanded' | 'expanded' | 'extraExpanded' | 'ultraExpanded';
+  fontStyle?: Enums.FontStyle;
+  fontStretch?: Enums.FontStretch;
   fontSize?: number;
   tabIndex?: number;
   characterSpacing?: number;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
-  tabNavigation?: 'local' | 'cycle' | 'once';
+  tabNavigation?: Enums.KeyboardNavigationMode;
   background?: ColorValue;
-  verticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+  verticalContentAlignment?: Enums.VerticalAlignment;
   isTextScaleFactorEnabled?: boolean;
   useSystemFocusVisuals?: boolean;
-  requiresPointer?: 'never' | 'whenEngaged' | 'whenFocused';
+  requiresPointer?: Enums.RequiresPointer;
   isFocusEngagementEnabled?: boolean;
   isFocusEngaged?: boolean;
-  elementSoundMode?: 'default' | 'focusOnly' | 'off';
-  backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
+  elementSoundMode?: Enums.ElementSoundMode;
+  backgroundSizing?: Enums.BackgroundSizing;
   defaultStyleKey?: object;
   onIsEnabledChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onFocusDisengaged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -155,8 +157,8 @@ export interface NativeAppBarProps extends NativeContentControlProps {
   type: 'appBar'|'commandBar'|'commandBarFlyoutCommandBar';
   isSticky?: boolean;
   isOpen?: boolean;
-  closedDisplayMode?: 'compact' | 'minimal' | 'hidden';
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  closedDisplayMode?: Enums.AppBarClosedDisplayMode;
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
   onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -167,7 +169,7 @@ export interface NativeAppBarProps extends NativeContentControlProps {
 export interface NativeButtonBaseProps extends NativeContentControlProps {
   type: 'button'|'appBarButton'|'toggleButton'|'appBarToggleButton'|'checkBox'|'dropDownButton'|'hyperlinkButton'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'repeatButton';
   commandParameter?: object;
-  clickMode?: 'release' | 'press' | 'hover';
+  clickMode?: Enums.ClickMode;
   onClick?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
@@ -180,7 +182,7 @@ export interface NativeButtonProps extends NativeButtonBaseProps {
 export interface NativeAppBarButtonProps extends NativeButtonProps {
   type: 'appBarButton';
   label?: string;
-  labelPosition?: 'default' | 'collapsed';
+  labelPosition?: Enums.CommandBarLabelPosition;
   keyboardAcceleratorTextOverride?: string;
   isCompact?: boolean;
   dynamicOverflowOrder?: number;
@@ -213,7 +215,7 @@ export interface NativeToggleButtonProps extends NativeButtonBaseProps {
 export interface NativeAppBarToggleButtonProps extends NativeToggleButtonProps {
   type: 'appBarToggleButton';
   label?: string;
-  labelPosition?: 'default' | 'collapsed';
+  labelPosition?: Enums.CommandBarLabelPosition;
   keyboardAcceleratorTextOverride?: string;
   isCompact?: boolean;
   dynamicOverflowOrder?: number;
@@ -237,7 +239,7 @@ export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
   isSuggestionListOpen?: boolean;
   header?: object;
   autoMaximizeSuggestionArea?: boolean;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   description?: object;
   onSuggestionChosen?: (event: NativeSyntheticEvent<undefined>) => void;
   onTextChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -263,7 +265,7 @@ export interface NativeBorderProps extends NativeFrameworkElementProps {
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
   background?: ColorValue;
-  backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
+  backgroundSizing?: Enums.BackgroundSizing;
 }
 
 
@@ -275,12 +277,12 @@ export interface NativeCalendarDatePickerProps extends NativeControlProps {
   isGroupLabelVisible?: boolean;
   isCalendarOpen?: boolean;
   header?: object;
-  firstDayOfWeek?: 'sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday';
-  displayMode?: 'month' | 'year' | 'decade';
+  firstDayOfWeek?: Enums.DayOfWeek;
+  displayMode?: Enums.CalendarViewDisplayMode;
   dayOfWeekFormat?: string;
   dateFormat?: string;
   calendarIdentifier?: string;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   description?: object;
   onCalendarViewDayItemChanging?: (event: NativeSyntheticEvent<undefined>) => void;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -291,16 +293,16 @@ export interface NativeCalendarDatePickerProps extends NativeControlProps {
 
 export interface NativeCalendarViewProps extends NativeControlProps {
   type: 'calendarView';
-  horizontalFirstOfMonthLabelAlignment?: 'left' | 'center' | 'right' | 'stretch';
-  horizontalDayItemAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  horizontalFirstOfMonthLabelAlignment?: Enums.HorizontalAlignment;
+  horizontalDayItemAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
-  firstOfYearDecadeLabelFontStyle?: 'normal' | 'oblique' | 'italic';
-  firstOfMonthLabelFontStyle?: 'normal' | 'oblique' | 'italic';
+  firstOfYearDecadeLabelFontStyle?: Enums.FontStyle;
+  firstOfMonthLabelFontStyle?: Enums.FontStyle;
   firstOfMonthLabelFontSize?: number;
-  firstDayOfWeek?: 'sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday';
+  firstDayOfWeek?: Enums.DayOfWeek;
   blackoutForeground?: ColorValue;
   dayOfWeekFormat?: string;
-  dayItemFontStyle?: 'normal' | 'oblique' | 'italic';
+  dayItemFontStyle?: Enums.FontStyle;
   dayItemFontSize?: number;
   selectedPressedBorderBrush?: ColorValue;
   calendarItemForeground?: ColorValue;
@@ -308,21 +310,21 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   calendarItemBorderBrush?: ColorValue;
   calendarItemBackground?: ColorValue;
   calendarIdentifier?: string;
-  displayMode?: 'month' | 'year' | 'decade';
+  displayMode?: Enums.CalendarViewDisplayMode;
   hoverBorderBrush?: ColorValue;
   pressedBorderBrush?: ColorValue;
-  verticalDayItemAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+  verticalDayItemAlignment?: Enums.VerticalAlignment;
   todayForeground?: ColorValue;
-  selectionMode?: 'none' | 'single' | 'multiple';
+  selectionMode?: Enums.CalendarViewSelectionMode;
   selectedHoverBorderBrush?: ColorValue;
   selectedForeground?: ColorValue;
   selectedBorderBrush?: ColorValue;
   pressedForeground?: ColorValue;
-  verticalFirstOfMonthLabelAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+  verticalFirstOfMonthLabelAlignment?: Enums.VerticalAlignment;
   outOfScopeForeground?: ColorValue;
   outOfScopeBackground?: ColorValue;
   numberOfWeeksInView?: number;
-  monthYearItemFontStyle?: 'normal' | 'oblique' | 'italic';
+  monthYearItemFontStyle?: Enums.FontStyle;
   monthYearItemFontSize?: number;
   firstOfYearDecadeLabelFontSize?: number;
   isTodayHighlighted?: boolean;
@@ -352,7 +354,7 @@ export interface NativeCanvasProps extends NativePanelProps {
 
 export interface NativeCaptureElementProps extends NativeFrameworkElementProps {
   type: 'captureElement';
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretch?: Enums.Stretch;
 }
 
 
@@ -378,8 +380,8 @@ export interface NativeColorPickerProps extends NativeControlProps {
   isAlphaTextInputVisible?: boolean;
   isAlphaSliderVisible?: boolean;
   isAlphaEnabled?: boolean;
-  colorSpectrumShape?: 'box' | 'ring';
-  colorSpectrumComponents?: 'hueValue' | 'valueHue' | 'hueSaturation' | 'saturationHue' | 'saturationValue' | 'valueSaturation';
+  colorSpectrumShape?: Enums.ColorSpectrumShape;
+  colorSpectrumComponents?: Enums.ColorSpectrumComponents;
   onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
@@ -401,9 +403,9 @@ export interface NativeComboBoxProps extends NativeSelectorProps {
   isDropDownOpen?: boolean;
   placeholderText?: string;
   header?: object;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   isTextSearchEnabled?: boolean;
-  selectionChangedTrigger?: 'committed' | 'always';
+  selectionChangedTrigger?: Enums.ComboBoxSelectionChangedTrigger;
   placeholderForeground?: ColorValue;
   text?: string;
   description?: object;
@@ -426,21 +428,21 @@ export interface NativeComboBoxItemProps extends NativeSelectorItemProps {
 
 export interface NativeCommandBarProps extends NativeAppBarProps {
   type: 'commandBar'|'commandBarFlyoutCommandBar';
-  overflowButtonVisibility?: 'auto' | 'visible' | 'collapsed';
+  overflowButtonVisibility?: Enums.CommandBarOverflowButtonVisibility;
   isDynamicOverflowEnabled?: boolean;
-  defaultLabelPosition?: 'bottom' | 'right' | 'collapsed';
+  defaultLabelPosition?: Enums.CommandBarDefaultLabelPosition;
   onDynamicOverflowItemsChanging?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
   type: 'commandBarFlyout'|'datePickerFlyout'|'flyout'|'listPickerFlyout'|'menuFlyout'|'menuBarItemFlyout'|'pickerFlyout'|'textCommandBarFlyout'|'timePickerFlyout';
-  placement?: 'top' | 'bottom' | 'left' | 'right' | 'full' | 'topEdgeAlignedLeft' | 'topEdgeAlignedRight' | 'bottomEdgeAlignedLeft' | 'bottomEdgeAlignedRight' | 'leftEdgeAlignedTop' | 'leftEdgeAlignedBottom' | 'rightEdgeAlignedTop' | 'rightEdgeAlignedBottom' | 'auto';
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
-  elementSoundMode?: 'default' | 'focusOnly' | 'off';
+  placement?: Enums.FlyoutPlacementMode;
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
+  elementSoundMode?: Enums.ElementSoundMode;
   allowFocusWhenDisabled?: boolean;
   allowFocusOnInteraction?: boolean;
-  showMode?: 'auto' | 'standard' | 'transient' | 'transientWithDismissOnPointerMoveAway';
+  showMode?: Enums.FlyoutShowMode;
   areOpenCloseAnimationsEnabled?: boolean;
   shouldConstrainToRootBounds?: boolean;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -470,7 +472,7 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   isSecondaryButtonEnabled?: boolean;
   isPrimaryButtonEnabled?: boolean;
   fullSizeDesired?: boolean;
-  defaultButton?: 'none' | 'primary' | 'secondary' | 'close';
+  defaultButton?: Enums.ContentDialogButton;
   closeButtonText?: string;
   closeButtonCommandParameter?: object;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -485,25 +487,25 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
   type: 'contentPresenter'|'gridViewItemPresenter'|'listViewItemPresenter'|'scrollContentPresenter';
   foreground?: ColorValue;
-  fontStyle?: 'normal' | 'oblique' | 'italic';
-  fontStretch?: 'undefined' | 'ultraCondensed' | 'extraCondensed' | 'condensed' | 'semiCondensed' | 'normal' | 'semiExpanded' | 'expanded' | 'extraExpanded' | 'ultraExpanded';
+  fontStyle?: Enums.FontStyle;
+  fontStretch?: Enums.FontStretch;
   fontSize?: number;
   content?: object;
   characterSpacing?: number;
-  textLineBounds?: 'full' | 'trimToCapHeight' | 'trimToBaseline' | 'tight';
-  opticalMarginAlignment?: 'none' | 'trimSideBearings';
+  textLineBounds?: Enums.TextLineBounds;
+  opticalMarginAlignment?: Enums.OpticalMarginAlignment;
   isTextScaleFactorEnabled?: boolean;
-  verticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
-  textWrapping?: 'noWrap' | 'wrap' | 'wrapWholeWords';
+  verticalContentAlignment?: Enums.VerticalAlignment;
+  textWrapping?: Enums.TextWrapping;
   padding?: Thickness;
   maxLines?: number;
-  lineStackingStrategy?: 'maxHeight' | 'blockLineHeight' | 'baselineToBaseline';
+  lineStackingStrategy?: Enums.LineStackingStrategy;
   lineHeight?: number;
-  horizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  horizontalContentAlignment?: Enums.HorizontalAlignment;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
   background?: ColorValue;
-  backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
+  backgroundSizing?: Enums.BackgroundSizing;
 }
 
 
@@ -511,14 +513,14 @@ export interface NativeDatePickerProps extends NativeControlProps {
   type: 'datePicker';
   yearVisible?: boolean;
   yearFormat?: string;
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: Enums.Orientation;
   monthVisible?: boolean;
   monthFormat?: string;
   header?: object;
   dayVisible?: boolean;
   dayFormat?: string;
   calendarIdentifier?: string;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onDateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectedDateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -577,7 +579,7 @@ export interface NativeFlyoutPresenterProps extends NativeContentControlProps {
 export interface NativeFontIconProps extends NativeIconElementProps {
   type: 'fontIcon';
   glyph?: string;
-  fontStyle?: 'normal' | 'oblique' | 'italic';
+  fontStyle?: Enums.FontStyle;
   fontSize?: number;
   isTextScaleFactorEnabled?: boolean;
   mirroredWhenRightToLeft?: boolean;
@@ -602,16 +604,16 @@ export interface NativeGridProps extends NativePanelProps {
   borderBrush?: ColorValue;
   rowSpacing?: number;
   columnSpacing?: number;
-  backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
+  backgroundSizing?: Enums.BackgroundSizing;
 }
 
 
 export interface NativeListViewBaseProps extends NativeSelectorProps {
   type: 'gridView'|'listView'|'navigationViewList'|'treeViewList';
-  selectionMode?: 'none' | 'single' | 'multiple' | 'extended';
+  selectionMode?: Enums.ListViewSelectionMode;
   isSwipeEnabled?: boolean;
   isItemClickEnabled?: boolean;
-  incrementalLoadingTrigger?: 'none' | 'edge';
+  incrementalLoadingTrigger?: Enums.IncrementalLoadingTrigger;
   incrementalLoadingThreshold?: number;
   header?: object;
   dataFetchSize?: number;
@@ -619,7 +621,7 @@ export interface NativeListViewBaseProps extends NativeSelectorProps {
   canDragItems?: boolean;
   showsScrollingPlaceholders?: boolean;
   footer?: object;
-  reorderMode?: 'disabled' | 'enabled';
+  reorderMode?: Enums.ListViewReorderMode;
   isMultiSelectCheckBoxEnabled?: boolean;
   singleSelectionFollowsFocus?: boolean;
   isZoomedInView?: boolean;
@@ -660,7 +662,7 @@ export interface NativeGroupItemProps extends NativeContentControlProps {
 
 export interface NativeHandwritingViewProps extends NativeControlProps {
   type: 'handwritingView';
-  placementAlignment?: 'auto' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+  placementAlignment?: Enums.HandwritingPanelPlacementAlignment;
   areCandidatesEnabled?: boolean;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -669,7 +671,7 @@ export interface NativeHandwritingViewProps extends NativeControlProps {
 
 export interface NativeHubProps extends NativeControlProps {
   type: 'hub';
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: Enums.Orientation;
   header?: object;
   defaultSectionIndex?: number;
   isZoomedInView?: boolean;
@@ -698,7 +700,7 @@ export interface NativeIconSourceElementProps extends NativeIconElementProps {
 
 export interface NativeImageProps extends NativeFrameworkElementProps {
   type: 'image';
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretch?: Enums.Stretch;
   nineGrid?: Thickness;
   onImageFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onImageOpened?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -713,10 +715,10 @@ export interface NativeInkCanvasProps extends NativeFrameworkElementProps {
 export interface NativeInkToolbarProps extends NativeControlProps {
   type: 'inkToolbar';
   isRulerButtonChecked?: boolean;
-  initialControls?: 'all' | 'none' | 'pensOnly' | 'allExceptPens';
-  orientation?: 'vertical' | 'horizontal';
+  initialControls?: Enums.InkToolbarInitialControls;
+  orientation?: Enums.Orientation;
   isStencilButtonChecked?: boolean;
-  buttonFlyoutPlacement?: 'auto' | 'top' | 'bottom' | 'left' | 'right';
+  buttonFlyoutPlacement?: Enums.InkToolbarButtonFlyoutPlacement;
   onActiveToolChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onEraseAllClicked?: (event: NativeSyntheticEvent<undefined>) => void;
   onInkDrawingAttributesChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -779,7 +781,7 @@ export interface NativeInkToolbarEraserButtonProps extends NativeInkToolbarToolB
 
 export interface NativeInkToolbarFlyoutItemProps extends NativeButtonBaseProps {
   type: 'inkToolbarFlyoutItem';
-  kind?: 'simple' | 'radio' | 'check' | 'radioCheck';
+  kind?: Enums.InkToolbarFlyoutItemKind;
   isChecked?: boolean;
   onChecked?: (event: NativeSyntheticEvent<undefined>) => void;
   onUnchecked?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -814,7 +816,7 @@ export interface NativeInkToolbarRulerButtonProps extends NativeInkToolbarToggle
 
 export interface NativeInkToolbarStencilButtonProps extends NativeInkToolbarMenuButtonProps {
   type: 'inkToolbarStencilButton';
-  selectedStencil?: 'ruler' | 'protractor';
+  selectedStencil?: Enums.InkToolbarStencilKind;
   isRulerItemVisible?: boolean;
   isProtractorItemVisible?: boolean;
 }
@@ -832,9 +834,9 @@ export interface NativeItemsPresenterProps extends NativeFrameworkElementProps {
 
 export interface NativeItemsStackPanelProps extends NativePanelProps {
   type: 'itemsStackPanel';
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: Enums.Orientation;
   groupPadding?: Thickness;
-  groupHeaderPlacement?: 'top' | 'left';
+  groupHeaderPlacement?: Enums.GroupHeaderPlacement;
   cacheLength?: number;
   areStickyGroupHeadersEnabled?: boolean;
 }
@@ -842,12 +844,12 @@ export interface NativeItemsStackPanelProps extends NativePanelProps {
 
 export interface NativeItemsWrapGridProps extends NativePanelProps {
   type: 'itemsWrapGrid';
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: Enums.Orientation;
   maximumRowsOrColumns?: number;
   itemWidth?: number;
   itemHeight?: number;
   groupPadding?: Thickness;
-  groupHeaderPlacement?: 'top' | 'left';
+  groupHeaderPlacement?: Enums.GroupHeaderPlacement;
   cacheLength?: number;
   areStickyGroupHeadersEnabled?: boolean;
 }
@@ -855,7 +857,7 @@ export interface NativeItemsWrapGridProps extends NativePanelProps {
 
 export interface NativeListBoxProps extends NativeSelectorProps {
   type: 'listBox';
-  selectionMode?: 'single' | 'multiple' | 'extended';
+  selectionMode?: Enums.SelectionMode;
   singleSelectionFollowsFocus?: boolean;
 }
 
@@ -867,7 +869,7 @@ export interface NativeListBoxItemProps extends NativeSelectorItemProps {
 
 export interface NativeListPickerFlyoutProps extends NativePickerFlyoutBaseProps {
   type: 'listPickerFlyout';
-  selectionMode?: 'single' | 'multiple';
+  selectionMode?: Enums.ListPickerFlyoutSelectionMode;
   selectedValuePath?: string;
   selectedValue?: object;
   selectedItem?: object;
@@ -900,24 +902,24 @@ export interface NativeListViewItemProps extends NativeSelectorItemProps {
 export interface NativeMapControlProps extends NativeControlProps {
   type: 'mapControl';
   zoomLevel?: number;
-  watermarkMode?: 'automatic' | 'on';
+  watermarkMode?: Enums.MapWatermarkMode;
   trafficFlowVisible?: boolean;
   pedestrianFeaturesVisible?: boolean;
   mapServiceToken?: string;
   heading?: number;
   desiredPitch?: number;
-  colorScheme?: 'light' | 'dark';
+  colorScheme?: Enums.MapColorScheme;
   landmarksVisible?: boolean;
-  rotateInteractionMode?: 'auto' | 'disabled' | 'gestureOnly' | 'pointerAndKeyboard' | 'controlOnly' | 'gestureAndControl' | 'pointerKeyboardAndControl' | 'pointerOnly';
-  zoomInteractionMode?: 'auto' | 'disabled' | 'gestureOnly' | 'pointerAndKeyboard' | 'controlOnly' | 'gestureAndControl' | 'pointerKeyboardAndControl' | 'pointerOnly';
+  rotateInteractionMode?: Enums.MapInteractionMode;
+  zoomInteractionMode?: Enums.MapInteractionMode;
   transitFeaturesVisible?: boolean;
-  tiltInteractionMode?: 'auto' | 'disabled' | 'gestureOnly' | 'pointerAndKeyboard' | 'controlOnly' | 'gestureAndControl' | 'pointerKeyboardAndControl' | 'pointerOnly';
+  tiltInteractionMode?: Enums.MapInteractionMode;
   businessLandmarksVisible?: boolean;
-  panInteractionMode?: 'auto' | 'disabled';
+  panInteractionMode?: Enums.MapPanInteractionMode;
   transitFeaturesEnabled?: boolean;
   businessLandmarksEnabled?: boolean;
   viewPadding?: Thickness;
-  mapProjection?: 'webMercator' | 'globe';
+  mapProjection?: Enums.MapProjection;
   region?: string;
   onCenterChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onHeadingChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -943,18 +945,18 @@ export interface NativeMapControlProps extends NativeControlProps {
 export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   type: 'mediaElement';
   volume?: number;
-  stereo3DVideoRenderMode?: 'mono' | 'stereo';
-  stereo3DVideoPackingMode?: 'none' | 'sideBySide' | 'topBottom';
+  stereo3DVideoRenderMode?: Enums.Stereo3DVideoRenderMode;
+  stereo3DVideoPackingMode?: Enums.Stereo3DVideoPackingMode;
   realTimePlayback?: boolean;
   playbackRate?: number;
   autoPlay?: boolean;
   isMuted?: boolean;
-  audioDeviceType?: 'console' | 'multimedia' | 'communications';
-  audioCategory?: 'other' | 'foregroundOnlyMedia' | 'backgroundCapableMedia' | 'communications' | 'alerts' | 'soundEffects' | 'gameEffects' | 'gameMedia' | 'gameChat' | 'speech' | 'movie' | 'media';
+  audioDeviceType?: Enums.AudioDeviceType;
+  audioCategory?: Enums.AudioCategory;
   defaultPlaybackRate?: number;
   isLooping?: boolean;
   balance?: number;
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretch?: Enums.Stretch;
   isFullWindow?: boolean;
   areTransportControlsEnabled?: boolean;
   onBufferingProgressChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -973,7 +975,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
 
 export interface NativeMediaPlayerElementProps extends NativeControlProps {
   type: 'mediaPlayerElement';
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretch?: Enums.Stretch;
   isFullWindow?: boolean;
   autoPlay?: boolean;
   areTransportControlsEnabled?: boolean;
@@ -982,7 +984,7 @@ export interface NativeMediaPlayerElementProps extends NativeControlProps {
 
 export interface NativeMediaPlayerPresenterProps extends NativeFrameworkElementProps {
   type: 'mediaPlayerPresenter';
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretch?: Enums.Stretch;
   isFullWindow?: boolean;
 }
 
@@ -1012,7 +1014,7 @@ export interface NativeMediaTransportControlsProps extends NativeControlProps {
   isSkipBackwardButtonVisible?: boolean;
   isPreviousTrackButtonVisible?: boolean;
   isNextTrackButtonVisible?: boolean;
-  fastPlayFallbackBehaviour?: 'skip' | 'hide' | 'disable';
+  fastPlayFallbackBehaviour?: Enums.FastPlayFallbackBehaviour;
   showAndHideAutomatically?: boolean;
   isRepeatEnabled?: boolean;
   isRepeatButtonVisible?: boolean;
@@ -1089,11 +1091,11 @@ export interface NativeNavigationViewProps extends NativeContentControlProps {
   selectedItem?: object;
   paneTitle?: string;
   isBackEnabled?: boolean;
-  isBackButtonVisible?: 'collapsed' | 'visible' | 'auto';
-  shoulderNavigationEnabled?: 'whenSelectionFollowsFocus' | 'always' | 'never';
-  selectionFollowsFocus?: 'disabled' | 'enabled';
-  paneDisplayMode?: 'auto' | 'left' | 'top' | 'leftCompact' | 'leftMinimal';
-  overflowLabelMode?: 'moreLabel' | 'noLabel';
+  isBackButtonVisible?: Enums.NavigationViewBackButtonVisible;
+  shoulderNavigationEnabled?: Enums.NavigationViewShoulderNavigationEnabled;
+  selectionFollowsFocus?: Enums.NavigationViewSelectionFollowsFocus;
+  paneDisplayMode?: Enums.NavigationViewPaneDisplayMode;
+  overflowLabelMode?: Enums.NavigationViewOverflowLabelMode;
   isPaneVisible?: boolean;
   onDisplayModeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onItemInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1145,7 +1147,7 @@ export interface NativePageProps extends NativeUserControlProps {
 export interface NativeParallaxViewProps extends NativeFrameworkElementProps {
   type: 'parallaxView';
   verticalSourceStartOffset?: number;
-  verticalSourceOffsetKind?: 'absolute' | 'relative';
+  verticalSourceOffsetKind?: Enums.ParallaxSourceOffsetKind;
   verticalSourceEndOffset?: number;
   verticalShift?: number;
   maxVerticalShiftRatio?: number;
@@ -1153,7 +1155,7 @@ export interface NativeParallaxViewProps extends NativeFrameworkElementProps {
   isVerticalShiftClamped?: boolean;
   isHorizontalShiftClamped?: boolean;
   horizontalSourceStartOffset?: number;
-  horizontalSourceOffsetKind?: 'absolute' | 'relative';
+  horizontalSourceOffsetKind?: Enums.ParallaxSourceOffsetKind;
   horizontalSourceEndOffset?: number;
   horizontalShift?: number;
 }
@@ -1169,8 +1171,8 @@ export interface NativePasswordBoxProps extends NativeControlProps {
   preventKeyboardDisplayOnProgrammaticFocus?: boolean;
   placeholderText?: string;
   header?: object;
-  textReadingOrder?: 'default' | 'useFlowDirection' | 'detectFromContent';
-  passwordRevealMode?: 'peek' | 'hidden' | 'visible';
+  textReadingOrder?: Enums.TextReadingOrder;
+  passwordRevealMode?: Enums.PasswordRevealMode;
   description?: object;
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onPasswordChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1216,7 +1218,7 @@ export interface NativePivotProps extends NativeItemsControlProps {
   rightHeader?: object;
   leftHeader?: object;
   isHeaderItemsCarouselEnabled?: boolean;
-  headerFocusVisualPlacement?: 'itemHeaders' | 'selectedItemHeader';
+  headerFocusVisualPlacement?: Enums.PivotHeaderFocusVisualPlacement;
   onPivotItemLoaded?: (event: NativeSyntheticEvent<undefined>) => void;
   onPivotItemLoading?: (event: NativeSyntheticEvent<undefined>) => void;
   onPivotItemUnloaded?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1261,11 +1263,11 @@ export interface NativeRangeBaseProps extends NativeControlProps {
 
 export interface NativeSliderProps extends NativeRangeBaseProps {
   type: 'slider'|'colorPickerSlider';
-  tickPlacement?: 'none' | 'topLeft' | 'bottomRight' | 'outside' | 'inline';
+  tickPlacement?: Enums.TickPlacement;
   tickFrequency?: number;
   stepFrequency?: number;
-  snapsTo?: 'stepValues' | 'ticks';
-  orientation?: 'vertical' | 'horizontal';
+  snapsTo?: Enums.SliderSnapsTo;
+  orientation?: Enums.Orientation;
   isThumbToolTipEnabled?: boolean;
   isDirectionReversed?: boolean;
   intermediateValue?: number;
@@ -1275,20 +1277,20 @@ export interface NativeSliderProps extends NativeRangeBaseProps {
 
 export interface NativeColorPickerSliderProps extends NativeSliderProps {
   type: 'colorPickerSlider';
-  colorChannel?: 'hue' | 'saturation' | 'value' | 'alpha';
+  colorChannel?: Enums.ColorPickerHsvChannel;
 }
 
 
 export interface NativeColorSpectrumProps extends NativeControlProps {
   type: 'colorSpectrum';
-  shape?: 'box' | 'ring';
+  shape?: Enums.ColorSpectrumShape;
   minValue?: number;
   minSaturation?: number;
   minHue?: number;
   maxValue?: number;
   maxSaturation?: number;
   maxHue?: number;
-  components?: 'hueValue' | 'valueHue' | 'hueSaturation' | 'saturationHue' | 'saturationValue' | 'valueSaturation';
+  components?: Enums.ColorSpectrumComponents;
   onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
@@ -1310,9 +1312,9 @@ export interface NativeGridViewItemPresenterProps extends NativeContentPresenter
   pointerOverBackgroundMargin?: Thickness;
   pointerOverBackground?: ColorValue;
   placeholderBackground?: ColorValue;
-  gridViewItemPresenterVerticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+  gridViewItemPresenterVerticalContentAlignment?: Enums.VerticalAlignment;
   gridViewItemPresenterPadding?: Thickness;
-  gridViewItemPresenterHorizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  gridViewItemPresenterHorizontalContentAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
   dragOpacity?: number;
   dragForeground?: ColorValue;
@@ -1337,9 +1339,9 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
   pointerOverBackgroundMargin?: Thickness;
   pointerOverBackground?: ColorValue;
   placeholderBackground?: ColorValue;
-  listViewItemPresenterVerticalContentAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
+  listViewItemPresenterVerticalContentAlignment?: Enums.VerticalAlignment;
   listViewItemPresenterPadding?: Thickness;
-  listViewItemPresenterHorizontalContentAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  listViewItemPresenterHorizontalContentAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
   dragOpacity?: number;
   dragForeground?: ColorValue;
@@ -1353,7 +1355,7 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
   pressedBackground?: ColorValue;
   pointerOverForeground?: ColorValue;
   focusSecondaryBorderBrush?: ColorValue;
-  checkMode?: 'inline' | 'overlay';
+  checkMode?: Enums.ListViewItemPresenterCheckMode;
   checkBoxBrush?: ColorValue;
   revealBorderThickness?: Thickness;
   revealBorderBrush?: ColorValue;
@@ -1417,7 +1419,7 @@ export interface NativePopupProps extends NativeFrameworkElementProps {
   isOpen?: boolean;
   isLightDismissEnabled?: boolean;
   horizontalOffset?: number;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   shouldConstrainToRootBounds?: boolean;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1434,8 +1436,8 @@ export interface NativeRepeatButtonProps extends NativeButtonBaseProps {
 export interface NativeScrollBarProps extends NativeRangeBaseProps {
   type: 'scrollBar';
   viewportSize?: number;
-  orientation?: 'vertical' | 'horizontal';
-  indicatorMode?: 'none' | 'touchIndicator' | 'mouseIndicator';
+  orientation?: Enums.Orientation;
+  indicatorMode?: Enums.ScrollingIndicatorMode;
   onScroll?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
@@ -1483,14 +1485,14 @@ export interface NativeRatingControlProps extends NativeControlProps {
 
 export interface NativeRefreshContainerProps extends NativeContentControlProps {
   type: 'refreshContainer';
-  pullDirection?: 'leftToRight' | 'topToBottom' | 'rightToLeft' | 'bottomToTop';
+  pullDirection?: Enums.RefreshPullDirection;
   onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeRefreshVisualizerProps extends NativeControlProps {
   type: 'refreshVisualizer';
-  orientation?: 'auto' | 'normal' | 'rotate90DegreesCounterclockwise' | 'rotate270DegreesCounterclockwise';
+  orientation?: Enums.RefreshVisualizerOrientation;
   onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
   onRefreshStateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1501,14 +1503,14 @@ export interface NativeRelativePanelProps extends NativePanelProps {
   padding?: Thickness;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
-  backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
+  backgroundSizing?: Enums.BackgroundSizing;
 }
 
 
 export interface NativeRichEditBoxProps extends NativeControlProps {
   type: 'richEditBox';
-  textWrapping?: 'noWrap' | 'wrap' | 'wrapWholeWords';
-  textAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+  textWrapping?: Enums.TextWrapping;
+  textAlignment?: Enums.TextAlignment;
   isTextPredictionEnabled?: boolean;
   isSpellCheckEnabled?: boolean;
   isReadOnly?: boolean;
@@ -1518,14 +1520,14 @@ export interface NativeRichEditBoxProps extends NativeControlProps {
   placeholderText?: string;
   isColorFontEnabled?: boolean;
   header?: object;
-  textReadingOrder?: 'default' | 'useFlowDirection' | 'detectFromContent';
-  desiredCandidateWindowAlignment?: 'default' | 'bottomEdge';
-  clipboardCopyFormat?: 'allFormats' | 'plainText';
+  textReadingOrder?: Enums.TextReadingOrder;
+  desiredCandidateWindowAlignment?: Enums.CandidateWindowAlignment;
+  clipboardCopyFormat?: Enums.RichEditClipboardFormat;
   selectionHighlightColorWhenNotFocused?: ColorValue;
   maxLength?: number;
-  horizontalTextAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
-  disabledFormattingAccelerators?: 'none' | 'bold' | 'italic' | 'underline' | 'all';
-  characterCasing?: 'normal' | 'lower' | 'upper';
+  horizontalTextAlignment?: Enums.TextAlignment;
+  disabledFormattingAccelerators?: Enums.DisabledFormattingAccelerators;
+  characterCasing?: Enums.CharacterCasing;
   isHandwritingViewEnabled?: boolean;
   contentLinkForegroundColor?: ColorValue;
   contentLinkBackgroundColor?: ColorValue;
@@ -1549,28 +1551,28 @@ export interface NativeRichEditBoxProps extends NativeControlProps {
 
 export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   type: 'richTextBlock';
-  textWrapping?: 'noWrap' | 'wrap' | 'wrapWholeWords';
-  textTrimming?: 'none' | 'characterEllipsis' | 'wordEllipsis' | 'clip';
+  textWrapping?: Enums.TextWrapping;
+  textTrimming?: Enums.TextTrimming;
   textIndent?: number;
-  textAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+  textAlignment?: Enums.TextAlignment;
   padding?: Thickness;
   foreground?: ColorValue;
-  fontStyle?: 'normal' | 'oblique' | 'italic';
-  fontStretch?: 'undefined' | 'ultraCondensed' | 'extraCondensed' | 'condensed' | 'semiCondensed' | 'normal' | 'semiExpanded' | 'expanded' | 'extraExpanded' | 'ultraExpanded';
+  fontStyle?: Enums.FontStyle;
+  fontStretch?: Enums.FontStretch;
   fontSize?: number;
-  lineStackingStrategy?: 'maxHeight' | 'blockLineHeight' | 'baselineToBaseline';
+  lineStackingStrategy?: Enums.LineStackingStrategy;
   characterSpacing?: number;
   lineHeight?: number;
   isTextSelectionEnabled?: boolean;
-  textReadingOrder?: 'default' | 'useFlowDirection' | 'detectFromContent';
-  textLineBounds?: 'full' | 'trimToCapHeight' | 'trimToBaseline' | 'tight';
+  textReadingOrder?: Enums.TextReadingOrder;
+  textLineBounds?: Enums.TextLineBounds;
   selectionHighlightColor?: ColorValue;
-  opticalMarginAlignment?: 'none' | 'trimSideBearings';
+  opticalMarginAlignment?: Enums.OpticalMarginAlignment;
   maxLines?: number;
   isColorFontEnabled?: boolean;
   isTextScaleFactorEnabled?: boolean;
-  textDecorations?: 'none' | 'underline' | 'strikethrough';
-  horizontalTextAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+  textDecorations?: Enums.TextDecorations;
+  horizontalTextAlignment?: Enums.TextAlignment;
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1599,22 +1601,22 @@ export interface NativeScrollViewerProps extends NativeContentControlProps {
   isHorizontalScrollChainingEnabled?: boolean;
   isHorizontalRailEnabled?: boolean;
   isDeferredScrollingEnabled?: boolean;
-  horizontalSnapPointsType?: 'none' | 'optional' | 'mandatory' | 'optionalSingle' | 'mandatorySingle';
-  horizontalSnapPointsAlignment?: 'near' | 'center' | 'far';
-  horizontalScrollMode?: 'disabled' | 'enabled' | 'auto';
-  horizontalScrollBarVisibility?: 'disabled' | 'auto' | 'hidden' | 'visible';
+  horizontalSnapPointsType?: Enums.SnapPointsType;
+  horizontalSnapPointsAlignment?: Enums.SnapPointsAlignment;
+  horizontalScrollMode?: Enums.ScrollMode;
+  horizontalScrollBarVisibility?: Enums.ScrollBarVisibility;
   minZoomFactor?: number;
   maxZoomFactor?: number;
   isZoomInertiaEnabled?: boolean;
   isZoomChainingEnabled?: boolean;
   isVerticalScrollChainingEnabled?: boolean;
   bringIntoViewOnFocusChange?: boolean;
-  zoomSnapPointsType?: 'none' | 'optional' | 'mandatory' | 'optionalSingle' | 'mandatorySingle';
-  zoomMode?: 'disabled' | 'enabled';
-  verticalSnapPointsType?: 'none' | 'optional' | 'mandatory' | 'optionalSingle' | 'mandatorySingle';
-  verticalSnapPointsAlignment?: 'near' | 'center' | 'far';
-  verticalScrollMode?: 'disabled' | 'enabled' | 'auto';
-  verticalScrollBarVisibility?: 'disabled' | 'auto' | 'hidden' | 'visible';
+  zoomSnapPointsType?: Enums.SnapPointsType;
+  zoomMode?: Enums.ZoomMode;
+  verticalSnapPointsType?: Enums.SnapPointsType;
+  verticalSnapPointsAlignment?: Enums.SnapPointsAlignment;
+  verticalScrollMode?: Enums.ScrollMode;
+  verticalScrollBarVisibility?: Enums.ScrollBarVisibility;
   verticalAnchorRatio?: number;
   reduceViewportForCoreInputViewOcclusions?: boolean;
   horizontalAnchorRatio?: number;
@@ -1671,13 +1673,13 @@ export interface NativeSplitButtonProps extends NativeContentControlProps {
 
 export interface NativeSplitViewProps extends NativeControlProps {
   type: 'splitView';
-  panePlacement?: 'left' | 'right';
+  panePlacement?: Enums.SplitViewPanePlacement;
   paneBackground?: ColorValue;
   openPaneLength?: number;
   isPaneOpen?: boolean;
-  displayMode?: 'overlay' | 'inline' | 'compactOverlay' | 'compactInline';
+  displayMode?: Enums.SplitViewDisplayMode;
   compactPaneLength?: number;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onPaneClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onPaneClosing?: (event: NativeSyntheticEvent<undefined>) => void;
   onPaneOpened?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1687,13 +1689,13 @@ export interface NativeSplitViewProps extends NativeControlProps {
 
 export interface NativeStackPanelProps extends NativePanelProps {
   type: 'stackPanel';
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: Enums.Orientation;
   areScrollSnapPointsRegular?: boolean;
   padding?: Thickness;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
   spacing?: number;
-  backgroundSizing?: 'innerBorderEdge' | 'outerBorderEdge';
+  backgroundSizing?: Enums.BackgroundSizing;
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1717,34 +1719,34 @@ export interface NativeSwipeControlProps extends NativeContentControlProps {
 
 export interface NativeSymbolIconProps extends NativeIconElementProps {
   type: 'symbolIcon';
-  symbol?: 'previous' | 'next' | 'play' | 'pause' | 'edit' | 'save' | 'clear' | 'delete' | 'remove' | 'add' | 'cancel' | 'accept' | 'more' | 'redo' | 'undo' | 'home' | 'up' | 'forward' | 'back' | 'favorite' | 'camera' | 'setting' | 'video' | 'sync' | 'download' | 'mail' | 'find' | 'help' | 'upload' | 'emoji' | 'twoPage' | 'leaveChat' | 'mailForward' | 'clock' | 'send' | 'crop' | 'rotateCamera' | 'people' | 'openPane' | 'closePane' | 'world' | 'flag' | 'previewLink' | 'globe' | 'trim' | 'attachCamera' | 'zoomIn' | 'bookmarks' | 'document' | 'protectedDocument' | 'page' | 'bullets' | 'comment' | 'mailFilled' | 'contactInfo' | 'hangUp' | 'viewAll' | 'mapPin' | 'phone' | 'videoChat' | 'switch' | 'contact' | 'rename' | 'pin' | 'musicInfo' | 'go' | 'keyboard' | 'dockLeft' | 'dockRight' | 'dockBottom' | 'remote' | 'refresh' | 'rotate' | 'shuffle' | 'list' | 'shop' | 'selectAll' | 'orientation' | 'import' | 'importAll' | 'browsePhotos' | 'webCam' | 'pictures' | 'saveLocal' | 'caption' | 'stop' | 'showResults' | 'volume' | 'repair' | 'message' | 'page2' | 'calendarDay' | 'calendarWeek' | 'calendar' | 'character' | 'mailReplyAll' | 'read' | 'link' | 'account' | 'showBcc' | 'hideBcc' | 'cut' | 'attach' | 'paste' | 'filter' | 'copy' | 'emoji2' | 'important' | 'mailReply' | 'slideShow' | 'sort' | 'manage' | 'allApps' | 'disconnectDrive' | 'mapDrive' | 'newWindow' | 'openWith' | 'contactPresence' | 'priority' | 'goToToday' | 'font' | 'fontColor' | 'contact2' | 'folder' | 'audio' | 'placeholder' | 'view' | 'setLockScreen' | 'setTile' | 'closedCaption' | 'stopSlideShow' | 'permissions' | 'highlight' | 'disableUpdates' | 'unFavorite' | 'unPin' | 'openLocal' | 'mute' | 'italic' | 'underline' | 'bold' | 'moveToFolder' | 'likeDislike' | 'dislike' | 'like' | 'alignRight' | 'alignCenter' | 'alignLeft' | 'zoom' | 'zoomOut' | 'openFile' | 'otherUser' | 'admin' | 'street' | 'map' | 'clearSelection' | 'fontDecrease' | 'fontIncrease' | 'fontSize' | 'cellPhone' | 'reShare' | 'tag' | 'repeatOne' | 'repeatAll' | 'outlineStar' | 'solidStar' | 'calculator' | 'directions' | 'target' | 'library' | 'phoneBook' | 'memo' | 'microphone' | 'postUpdate' | 'backToWindow' | 'fullScreen' | 'newFolder' | 'calendarReply' | 'unSyncFolder' | 'reportHacked' | 'syncFolder' | 'blockContact' | 'switchApps' | 'addFriend' | 'touchPointer' | 'goToStart' | 'zeroBars' | 'oneBar' | 'twoBars' | 'threeBars' | 'fourBars' | 'scan' | 'preview' | 'globalNavigationButton' | 'share' | 'print' | 'xboxOneConsole';
+  symbol?: Enums.Symbol;
 }
 
 
 export interface NativeTextBlockProps extends NativeFrameworkElementProps {
   type: 'textBlock';
-  textWrapping?: 'noWrap' | 'wrap' | 'wrapWholeWords';
-  textTrimming?: 'none' | 'characterEllipsis' | 'wordEllipsis' | 'clip';
-  textAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+  textWrapping?: Enums.TextWrapping;
+  textTrimming?: Enums.TextTrimming;
+  textAlignment?: Enums.TextAlignment;
   text?: string;
   padding?: Thickness;
   foreground?: ColorValue;
-  fontStyle?: 'normal' | 'oblique' | 'italic';
-  fontStretch?: 'undefined' | 'ultraCondensed' | 'extraCondensed' | 'condensed' | 'semiCondensed' | 'normal' | 'semiExpanded' | 'expanded' | 'extraExpanded' | 'ultraExpanded';
+  fontStyle?: Enums.FontStyle;
+  fontStretch?: Enums.FontStretch;
   fontSize?: number;
-  lineStackingStrategy?: 'maxHeight' | 'blockLineHeight' | 'baselineToBaseline';
+  lineStackingStrategy?: Enums.LineStackingStrategy;
   lineHeight?: number;
   characterSpacing?: number;
   isTextSelectionEnabled?: boolean;
-  textReadingOrder?: 'default' | 'useFlowDirection' | 'detectFromContent';
-  textLineBounds?: 'full' | 'trimToCapHeight' | 'trimToBaseline' | 'tight';
+  textReadingOrder?: Enums.TextReadingOrder;
+  textLineBounds?: Enums.TextLineBounds;
   selectionHighlightColor?: ColorValue;
-  opticalMarginAlignment?: 'none' | 'trimSideBearings';
+  opticalMarginAlignment?: Enums.OpticalMarginAlignment;
   maxLines?: number;
   isColorFontEnabled?: boolean;
   isTextScaleFactorEnabled?: boolean;
-  textDecorations?: 'none' | 'underline' | 'strikethrough';
-  horizontalTextAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+  textDecorations?: Enums.TextDecorations;
+  horizontalTextAlignment?: Enums.TextAlignment;
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1753,8 +1755,8 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
 
 export interface NativeTextBoxProps extends NativeControlProps {
   type: 'textBox';
-  textWrapping?: 'noWrap' | 'wrap' | 'wrapWholeWords';
-  textAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
+  textWrapping?: Enums.TextWrapping;
+  textAlignment?: Enums.TextAlignment;
   text?: string;
   maxLength?: number;
   isTextPredictionEnabled?: boolean;
@@ -1766,12 +1768,12 @@ export interface NativeTextBoxProps extends NativeControlProps {
   preventKeyboardDisplayOnProgrammaticFocus?: boolean;
   selectionHighlightColor?: ColorValue;
   header?: object;
-  desiredCandidateWindowAlignment?: 'default' | 'bottomEdge';
-  textReadingOrder?: 'default' | 'useFlowDirection' | 'detectFromContent';
+  desiredCandidateWindowAlignment?: Enums.CandidateWindowAlignment;
+  textReadingOrder?: Enums.TextReadingOrder;
   selectionHighlightColorWhenNotFocused?: ColorValue;
   placeholderForeground?: ColorValue;
-  horizontalTextAlignment?: 'center' | 'left' | 'start' | 'right' | 'end' | 'justify' | 'detectFromContent';
-  characterCasing?: 'normal' | 'lower' | 'upper';
+  horizontalTextAlignment?: Enums.TextAlignment;
+  characterCasing?: Enums.CharacterCasing;
   isHandwritingViewEnabled?: boolean;
   description?: object;
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1800,7 +1802,7 @@ export interface NativeTimePickerProps extends NativeControlProps {
   minuteIncrement?: number;
   header?: object;
   clockIdentifier?: string;
-  lightDismissOverlayMode?: 'auto' | 'on' | 'off';
+  lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectedTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1844,7 +1846,7 @@ export interface NativeToggleSwitchProps extends NativeControlProps {
 export interface NativeToolTipProps extends NativeContentControlProps {
   type: 'toolTip';
   verticalOffset?: number;
-  placement?: 'bottom' | 'left' | 'mouse' | 'right' | 'top';
+  placement?: Enums.PlacementMode;
   isOpen?: boolean;
   horizontalOffset?: number;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1854,7 +1856,7 @@ export interface NativeToolTipProps extends NativeContentControlProps {
 
 export interface NativeTreeViewProps extends NativeControlProps {
   type: 'treeView';
-  selectionMode?: 'none' | 'single' | 'multiple';
+  selectionMode?: Enums.TreeViewSelectionMode;
   itemsSource?: object;
   canReorderItems?: boolean;
   canDragItems?: boolean;
@@ -1886,9 +1888,9 @@ export interface NativeTreeViewListProps extends NativeListViewProps {
 
 export interface NativeTwoPaneViewProps extends NativeControlProps {
   type: 'twoPaneView';
-  wideModeConfiguration?: 'singlePane' | 'leftRight' | 'rightLeft';
-  tallModeConfiguration?: 'singlePane' | 'topBottom' | 'bottomTop';
-  panePriority?: 'pane1' | 'pane2';
+  wideModeConfiguration?: Enums.TwoPaneViewWideModeConfiguration;
+  tallModeConfiguration?: Enums.TwoPaneViewTallModeConfiguration;
+  panePriority?: Enums.TwoPaneViewPriority;
   minWideModeWidth?: number;
   minTallModeHeight?: number;
   onModeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1897,25 +1899,25 @@ export interface NativeTwoPaneViewProps extends NativeControlProps {
 
 export interface NativeVariableSizedWrapGridProps extends NativePanelProps {
   type: 'variableSizedWrapGrid';
-  verticalChildrenAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
-  orientation?: 'vertical' | 'horizontal';
+  verticalChildrenAlignment?: Enums.VerticalAlignment;
+  orientation?: Enums.Orientation;
   maximumRowsOrColumns?: number;
   itemWidth?: number;
   itemHeight?: number;
-  horizontalChildrenAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  horizontalChildrenAlignment?: Enums.HorizontalAlignment;
 }
 
 
 export interface NativeViewboxProps extends NativeFrameworkElementProps {
   type: 'viewbox';
-  stretchDirection?: 'upOnly' | 'downOnly' | 'both';
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretchDirection?: Enums.StretchDirection;
+  stretch?: Enums.Stretch;
 }
 
 
 export interface NativeVirtualizingStackPanelProps extends NativeOrientedVirtualizingPanelProps {
   type: 'virtualizingStackPanel';
-  orientation?: 'vertical' | 'horizontal';
+  orientation?: Enums.Orientation;
   areScrollSnapPointsRegular?: boolean;
   onCleanUpVirtualizedItemEvent?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1948,19 +1950,19 @@ export interface NativeWebViewProps extends NativeFrameworkElementProps {
 
 export interface NativeWrapGridProps extends NativeOrientedVirtualizingPanelProps {
   type: 'wrapGrid';
-  verticalChildrenAlignment?: 'top' | 'center' | 'bottom' | 'stretch';
-  orientation?: 'vertical' | 'horizontal';
+  verticalChildrenAlignment?: Enums.VerticalAlignment;
+  orientation?: Enums.Orientation;
   maximumRowsOrColumns?: number;
   itemWidth?: number;
   itemHeight?: number;
-  horizontalChildrenAlignment?: 'left' | 'center' | 'right' | 'stretch';
+  horizontalChildrenAlignment?: Enums.HorizontalAlignment;
 }
 
 
 export interface NativeGlyphsProps extends NativeFrameworkElementProps {
   type: 'glyphs';
   unicodeString?: string;
-  styleSimulations?: 'none' | 'boldSimulation' | 'italicSimulation' | 'boldItalicSimulation';
+  styleSimulations?: Enums.StyleSimulations;
   originY?: number;
   originX?: number;
   indices?: string;
@@ -1974,14 +1976,14 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
 export interface NativeShapeProps extends NativeFrameworkElementProps {
   type: 'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
   strokeThickness?: number;
-  strokeStartLineCap?: 'flat' | 'square' | 'round' | 'triangle';
+  strokeStartLineCap?: Enums.PenLineCap;
   strokeMiterLimit?: number;
-  strokeLineJoin?: 'miter' | 'bevel' | 'round';
-  strokeEndLineCap?: 'flat' | 'square' | 'round' | 'triangle';
+  strokeLineJoin?: Enums.PenLineJoin;
+  strokeEndLineCap?: Enums.PenLineCap;
   strokeDashOffset?: number;
-  strokeDashCap?: 'flat' | 'square' | 'round' | 'triangle';
+  strokeDashCap?: Enums.PenLineCap;
   stroke?: ColorValue;
-  stretch?: 'none' | 'fill' | 'uniform' | 'uniformToFill';
+  stretch?: Enums.Stretch;
   fill?: ColorValue;
 }
 
@@ -2007,13 +2009,13 @@ export interface NativePathProps extends NativeShapeProps {
 
 export interface NativePolygonProps extends NativeShapeProps {
   type: 'polygon';
-  fillRule?: 'evenOdd' | 'nonzero';
+  fillRule?: Enums.FillRule;
 }
 
 
 export interface NativePolylineProps extends NativeShapeProps {
   type: 'polyline';
-  fillRule?: 'evenOdd' | 'nonzero';
+  fillRule?: Enums.FillRule;
 }
 
 
@@ -2207,3 +2209,5 @@ export type XamlControlProps = NativeDependencyObjectProps
 	 |  NativePolylineProps 
 	 |  NativeRectangleProps 
 	;
+
+
