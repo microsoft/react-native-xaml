@@ -1,7 +1,6 @@
 ﻿using MiddleweightReflection;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Codegen
@@ -137,7 +136,7 @@ namespace Codegen
             var publicCtors = ctors.Where(x => x.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Public));
             return publicCtors.Count() != 0;
         }
-        
+
 
         public static bool IsReservedName(string name)
         {
@@ -195,7 +194,7 @@ namespace Codegen
                     derivedClasses[type.GetName()] = new List<MrType>() { type };
                 }
 
-                for (var baseType = type.GetBaseType(); baseType !=null && baseType.GetName() != "Windows.UI.Xaml.DependencyObject"; baseType = baseType.GetBaseType())
+                for (var baseType = type.GetBaseType(); baseType != null && baseType.GetName() != "Windows.UI.Xaml.DependencyObject"; baseType = baseType.GetBaseType())
                 {
                     if (!derivedClasses.ContainsKey(baseType.GetName()))
                     {
@@ -223,7 +222,8 @@ namespace Codegen
                     LoadContext.TryFindMrType("System.Object", out var objType);
                     evtArgs = evtArgs.ToList().Prepend(new EventArgParameter() { Type = objType, Name = "sender" });
                 }
-            } else
+            }
+            else
             {
                 evtArgs = et.GetInvokeMethod().GetParameters().Select(t => new EventArgParameter() { Type = t.GetParameterType(), Name = t.GetParameterName() });
             }

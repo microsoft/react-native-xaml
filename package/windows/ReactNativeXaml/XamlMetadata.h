@@ -113,6 +113,14 @@ struct PropInfo {
   }
 };
 
+template<typename T>
+T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
+  if (auto contentControl = i.try_as<ContentControl>()) {
+    return contentControl.Content().try_as<T>();
+  }
+  return nullptr;
+}
+
 struct EventInfo {
   const char* name;
   using attachHandlers_t = void (*)(const winrt::Windows::Foundation::IInspectable& o, const winrt::Microsoft::ReactNative::IReactContext& context, bool isWrapped);
@@ -132,4 +140,5 @@ struct XamlMetadata {
 
 private:
   winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
+  static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
 };

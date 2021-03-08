@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "XamlMetadata.h"
+#include "Serialize.h"
 #include "Crc32Str.h"
 #include <JSValueWriter.h>
 
