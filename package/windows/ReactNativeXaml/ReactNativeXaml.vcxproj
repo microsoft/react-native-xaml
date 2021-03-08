@@ -90,7 +90,7 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /Zc:lambda </AdditionalOptions>
       <DisableSpecificWarnings>4453;28204;4100;4189</DisableSpecificWarnings>
-      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Codegen;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
@@ -125,9 +125,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="$(SolutionDir)\CodeGen\CustomTypeEvents.g.h" Condition="Exists('$(SolutionDir)\CodeGen\CustomTypeEvents.g.h')"/>
+    <ClInclude Include="$(SolutionDir)\CodeGen\CustomTypeProperties.g.h" Condition="Exists('$(SolutionDir)\CodeGen\CustomTypeProperties.g.h')"/>
     <ClInclude Include="Codegen\TypeEvents.g.h" />
     <ClInclude Include="Codegen\TypeProperties.g.h" />
     <ClInclude Include="Crc32Str.h" />
+    <ClInclude Include="PropInfo.h" />
     <ClInclude Include="ReactPackageProvider.h">
       <DependentUpon>ReactPackageProvider.idl</DependentUpon>
     </ClInclude>
@@ -138,6 +141,8 @@
     <ClInclude Include="XamlViewManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(SolutionDir)\CodeGen\CustomTypeCreator.g.cpp" /> 
+    <!-- Condition="Exists('$(SolutionDir)\CodeGen\CustomTypeCreator.g.cpp')"/> -->
     <ClCompile Include="Codegen\TypeCreator.g.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -154,6 +159,9 @@
     <Midl Include="ReactPackageProvider.idl" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(SolutionDir)\CodeGen\CustomEnums.ts" />
+    <None Include="$(SolutionDir)\CodeGen\CustomProps.ts" />
+    <None Include="$(SolutionDir)\CodeGen\CustomTypes.tsx" />
     <None Include="..\..\..\README.md" />
     <None Include="..\..\src\index.ts" />
     <None Include="..\..\src\NativeXamlControl.tsx" />

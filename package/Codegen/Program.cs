@@ -19,45 +19,6 @@ namespace Codegen
         Map = 4,
         Color = 5,
     };
-    public partial class TypeCreator
-    {
-        public TypeCreator(IEnumerable<MrType> types)
-        {
-            Types = types;
-        }
-
-        public IEnumerable<MrType> Types { get; set; }
-    }
-
-    public partial class TypeProperties
-    {
-        public TypeProperties(IEnumerable<MrProperty> properties)
-        {
-            Properties = properties;
-        }
-        IEnumerable<MrProperty> Properties { get; set; }
-    }
-
-    public partial class TypeEvents
-    {
-        public TypeEvents(IEnumerable<MrEvent> events)
-        {
-            Events = events;
-        }
-        IEnumerable<MrEvent> Events { get; set; }
-    }
-
-    public partial class TSProps
-    {
-        public TSProps(IEnumerable<MrType> types) { Types = types; }
-        IEnumerable<MrType> Types { get; set; }
-    }
-
-    public partial class TSTypes
-    {
-        public TSTypes(IEnumerable<MrType> types) { Types = types; }
-        IEnumerable<MrType> Types { get; set; }
-    }
 
     public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase>
     {
@@ -95,27 +56,8 @@ namespace Codegen
             var typesPerAssembly = winmds.Select(winmd => winmd.GetAllTypes().Skip(1));
             var types = typesPerAssembly.Count() != 0 ? typesPerAssembly.Aggregate((l1, l2) => l1.Union(l2)) : new MrType[] { };
             var windows_winmdTypes = windows_winmd.GetAllTypes().Skip(1);
-            if (winmdPaths.Count != 0)
-            {
-                types = types.Union(windows_winmdTypes);
-            }
-            else
-            {
-                types = windows_winmdTypes;
-            }
+
             Util.LoadContext = context;
-
-            var baseClassesToProject = new string[]
-            {
-                "Windows.UI.Xaml.UIElement",
-                "Windows.UI.Xaml.Controls.Primitives.FlyoutBase",
-            };
-
-            var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
-                Util.DerivesFrom(type, b)) || type.GetName() == "DependencyObject");
-
-            var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
-            var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(PackageRoot, @"src"));
 
             Console.WriteLine("Generating projections for the following WinMD files:");
             Console.WriteLine($"- {Windows_winmd}");
@@ -125,15 +67,33 @@ namespace Codegen
             }
             Console.WriteLine();
 
+            Project(windows_winmdTypes, false);
+            Project(types, true);
+        }
+
+        private void Project(IEnumerable<MrType> types, bool isCustom)
+        {
+            var baseClassesToProject = new string[]
+            {
+                "Windows.UI.Xaml.UIElement",
+                "Windows.UI.Xaml.Controls.Primitives.FlyoutBase",
+            };
+
+            var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
+                Util.DerivesFrom(type, b)) || type.GetName() == "DependencyObject");
+
+            var generatedDirPath = GetGeneratedCppPath(isCustom);
+            var packageSrcPath = GetGeneratedTsPath(isCustom);
+
             var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
-            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
+            var typeCreatorGen = new TypeCreator(creatableTypes, isCustom).TransformText();
 
             if (!Directory.Exists(generatedDirPath))
             {
                 Directory.CreateDirectory(generatedDirPath);
             }
-            UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
+            UpdateFile(Path.Join(generatedDirPath, (isCustom ? "Custom" : "") + "TypeCreator.g.cpp"), typeCreatorGen);
 
             var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
@@ -159,21 +119,31 @@ namespace Codegen
                     return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
                 }
             });
-            var propsGen = new TSProps(xamlTypes).TransformText();
-            UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
+            var propsGen = new TSProps(xamlTypes, isCustom).TransformText();
+            UpdateFile(Path.Join(packageSrcPath, (isCustom ? "Custom" : "") + "Props.ts"), propsGen);
 
-            var typesGen = new TSTypes(xamlTypes).TransformText();
-            UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+            var typesGen = new TSTypes(xamlTypes, isCustom).TransformText();
+            UpdateFile(Path.Join(packageSrcPath, (isCustom ? "Custom" : "") + "Types.tsx"), typesGen);
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
-            var propertiesGen = new TypeProperties(properties).TransformText();
-            UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
+            var propertiesGen = new TypeProperties(properties, isCustom).TransformText();
+            UpdateFile(Path.Join(generatedDirPath, (isCustom ? "Custom" : "") + "TypeProperties.g.h"), propertiesGen);
 
-            var tsEnumsGen = new TSEnums().TransformText();
-            UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
+            var tsEnumsGen = new TSEnums(isCustom).TransformText();
+            UpdateFile(Path.Join(packageSrcPath, (isCustom ? "Custom" : "") + "Enums.ts"), tsEnumsGen);
 
-            var eventsGen = new TypeEvents(events).TransformText();
-            UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
+            var eventsGen = new TypeEvents(events, isCustom).TransformText();
+            UpdateFile(Path.Join(generatedDirPath, (isCustom ? "Custom" : "") + "TypeEvents.g.h"), eventsGen);
+        }
+
+        private string GetGeneratedTsPath(bool isCustom)
+        {
+            return Path.GetFullPath(isCustom ? tsOutPath : Path.Join(PackageRoot, @"src"));
+        }
+
+        private string GetGeneratedCppPath(bool isCustom)
+        {
+            return Path.GetFullPath(isCustom ? cppOutPath : Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
         }
 
         private static string PackageRoot

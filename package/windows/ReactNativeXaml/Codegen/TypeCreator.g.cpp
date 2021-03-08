@@ -176,7 +176,6 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
     case COMPILE_TIME_CRC32_STR("wrapGrid"): { return winrt::Windows::UI::Xaml::Controls::WrapGrid(); }
   
   }
-  assert(false && "xaml type not found");
   return nullptr;
 }
 

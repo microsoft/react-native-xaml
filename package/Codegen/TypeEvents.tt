@@ -1,4 +1,4 @@
-﻿<#@ template language="C#" #>
+﻿<#@ template language="C#" inherits="Generator" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -22,7 +22,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 template<typename TArgs>
 void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::Windows::Foundation::IInspectable& sender, const TArgs& args);
 
-/*static*/ const EventInfo EventInfo::xamlEventMap[] = {
+/*static*/ const EventInfo EventInfo::xaml<#= Name #>EventMap[] = {
 <# foreach (var evt in Events) { #>
   {"<#= evt.GetName() #>", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
   winrt::Windows::Foundation::IInspectable o = (isWrapped) ? ii.as<ContentControl>().Content() : ii;
@@ -41,22 +41,8 @@ void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& wri
 
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == <#= Events.Count() #>);
+static_assert(ARRAYSIZE(EventInfo::xaml<#= Name #>EventMap) == <#= Events.Count() #>);
 
-void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
-    constantWriter.WritePropertyName(topName);
-    constantWriter.WriteObjectBegin();
-    WriteProperty(constantWriter, L"registrationName", onName);
-    constantWriter.WriteObjectEnd();
-  }
-
-#define JS_EVENT(evtName) JsEvent(constantWriter, L"top" L#evtName, L"on" L#evtName)
-
-ConstantProviderDelegate GetEvents = 
-    [](winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter) {
-    for (auto const& e : EventInfo::xamlEventMap) {
-        auto wideName = std::wstring(winrt::to_hstring(e.name));
-        JsEvent(constantWriter, L"top" + wideName, L"on" + wideName);
-    }
-};
-
+<# if (Name != "") { #>
+#define RNX_HAS_CUSTOM_EVENTS
+<# } #>

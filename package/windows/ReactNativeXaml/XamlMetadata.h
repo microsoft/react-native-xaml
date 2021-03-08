@@ -9,6 +9,7 @@
 #include <winrt/Windows.Foundation.Collections.h>
 #include <UI.Xaml.Media.h>
 #include "Crc32Str.h"
+#include "PropInfo.h"
 
 using namespace xaml;
 using namespace xaml::Controls;
@@ -82,36 +83,6 @@ void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const
   }
 }
 
-struct PropInfo {
-  stringKey propName;
-
-  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable&);
-  isType_t isType;
-
-  using xamlPropertyGetter_t = xaml::DependencyProperty(*)();
-  xamlPropertyGetter_t xamlPropertyGetter;
-
-  using xamlPropertySetter_t = void (*) (xaml::DependencyObject, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue&);
-  xamlPropertySetter_t xamlPropertySetter;
-
-  ViewManagerPropertyType jsType;
-
-  void ClearValue(xaml::DependencyObject o) const {
-    o.ClearValue(xamlPropertyGetter());
-  }
-
-  void SetValue(xaml::DependencyObject o, const winrt::Microsoft::ReactNative::JSValue& v) const {
-    auto dp = xamlPropertyGetter ? xamlPropertyGetter() : nullptr;
-    if (v.IsNull()) {
-      if (dp) {
-        o.ClearValue(dp);
-      }
-    }
-    else {
-      xamlPropertySetter(o, dp, v);
-    }
-  }
-};
 
 template<typename T>
 T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
@@ -127,9 +98,13 @@ struct EventInfo {
   attachHandlers_t attachHandler;
 
   static const EventInfo xamlEventMap[];
+  static const EventInfo xamlCustomEventMap[];
 };
 
 extern ConstantProviderDelegate GetEvents;
+
+void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName);
+
 
 struct XamlMetadata {
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;
@@ -140,5 +115,6 @@ struct XamlMetadata {
 
 private:
   winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
+  winrt::Windows::Foundation::IInspectable XamlMetadata::CreateCustom(const std::string& typeName) const;
   static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
 };

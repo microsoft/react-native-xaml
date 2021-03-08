@@ -76,7 +76,6 @@ namespace winrt::ReactNativeXaml {
   // IViewManagerWithCommands
   IVectorView<hstring> XamlViewManager::Commands() noexcept {
     auto commands = winrt::single_threaded_vector<hstring>();
-    commands.Append(L"CustomCommand");
     return commands.GetView();
   }
 
@@ -84,12 +83,6 @@ namespace winrt::ReactNativeXaml {
     FrameworkElement const& view,
     winrt::hstring const& commandId,
     winrt::Microsoft::ReactNative::IJSValueReader const& /*commandArgsReader*/) noexcept {
-    if (auto control = view.try_as<winrt::Windows::UI::Xaml::Controls::HyperlinkButton>()) {
-      if (commandId == L"CustomCommand") {
-        // const JSValueArray& commandArgs = JSValue::ReadArrayFrom(commandArgsReader);
-        // Execute command
-      }
-    }
   }
 
   // IViewManagerWithReactContext

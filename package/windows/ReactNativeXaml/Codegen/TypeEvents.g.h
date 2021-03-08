@@ -3534,20 +3534,3 @@ void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& wri
 
 static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 270);
 
-void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
-    constantWriter.WritePropertyName(topName);
-    constantWriter.WriteObjectBegin();
-    WriteProperty(constantWriter, L"registrationName", onName);
-    constantWriter.WriteObjectEnd();
-  }
-
-#define JS_EVENT(evtName) JsEvent(constantWriter, L"top" L#evtName, L"on" L#evtName)
-
-ConstantProviderDelegate GetEvents = 
-    [](winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter) {
-    for (auto const& e : EventInfo::xamlEventMap) {
-        auto wideName = std::wstring(winrt::to_hstring(e.name));
-        JsEvent(constantWriter, L"top" + wideName, L"on" + wideName);
-    }
-};
-

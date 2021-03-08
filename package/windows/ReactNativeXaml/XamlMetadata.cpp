@@ -13,6 +13,26 @@
 
 #include <JSValueWriter.h>
 #include "Serialize.h"
+#include "PropInfo.h"
+
+#include "CustomTypeProperties.g.h"
+
+#if __has_include("CustomTypeProperties.g.h")
+#include "CustomTypeProperties.g.h"
+#else
+#error Please run react-native-xaml codegen for your project before building it.
+#endif
+
+#if __has_include("CustomTypeEvents.g.h")
+#include "CustomTypeEvents.g.h"
+#else
+#error Please run react-native-xaml codegen for your project before building it.
+#endif
+
+#if __has_include("CustomTypeCreator.g.cpp")
+#else
+winrt::Windows::Foundation::IInspectable XamlMetadata::CreateCustom(const std::string& typeName) const { return nullptr; }
+#endif
 
 using namespace winrt::Microsoft::ReactNative;
 
@@ -82,6 +102,10 @@ FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
   auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
   auto obj = Create(typeName);
+  if (!obj) {
+    obj = CreateCustom(typeName);
+  }
+  assert(obj && "xaml type not found");
   auto e = obj.try_as<FrameworkElement>();
   bool wrapped = e == nullptr;
   if (!e) {
@@ -122,6 +146,9 @@ const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::
   return nullptr;
 }
 
+template<typename T>
+bool IsWrapped(const winrt::Windows::Foundation::IInspectable& i) { return Unwrap<T>(i) != nullptr; }
+
 const PropInfo fakeProps[] = {
     { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
 };
@@ -131,7 +158,10 @@ const struct {
   size_t size;
 } propertyMaps[] = {
   { xamlPropertyMap, ARRAYSIZE(xamlPropertyMap) },
-  { fakeProps, ARRAYSIZE(fakeProps) }
+  { fakeProps, ARRAYSIZE(fakeProps) },
+#ifdef RNX_HAS_CUSTOM_PROPS
+  { xamlCustomPropertyMap, ARRAYSIZE(xamlCustomPropertyMap) },
+#endif
 };
 
 const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const {
@@ -142,4 +172,25 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   }
   return nullptr;
 }
+
+void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
+  constantWriter.WritePropertyName(topName);
+  constantWriter.WriteObjectBegin();
+  WriteProperty(constantWriter, L"registrationName", onName);
+  constantWriter.WriteObjectEnd();
+}
+
+ConstantProviderDelegate GetEvents =
+[](winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter) {
+  for (auto const& e : EventInfo::xamlEventMap) {
+    auto wideName = std::wstring(winrt::to_hstring(e.name));
+    JsEvent(constantWriter, L"top" + wideName, L"on" + wideName);
+  }
+#if RNX_HAS_CUSTOM_EVENTS
+  for (auto const& e : EventInfo::xamlCustomEventMap) {
+    auto wideName = std::wstring(winrt::to_hstring(e.name));
+    JsEvent(constantWriter, L"top" + wideName, L"on" + wideName);
+  }
+#endif
+};
 

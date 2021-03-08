@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Codegen": {
+      "commandName": "Project",
+      "commandLineArgs": "-cppout C:\\Users\\asklar\\source\\repos\\react-native-xaml\\example\\windows\\CodeGen -tsout C:\\Users\\asklar\\source\\repos\\react-native-xaml\\example\\windows\\CodeGen -winmd C:\\Users\\asklar\\source\\repos\\react-native-xaml\\example\\windows\\RuntimeComponent1\\x64\\Release\\Merged\\RuntimeComponent1.winmd"
+    }
+  }
+}

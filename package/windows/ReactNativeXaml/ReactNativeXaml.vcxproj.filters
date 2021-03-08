@@ -13,6 +13,9 @@
       <Filter>Codegen</Filter>
     </ClCompile>
     <ClCompile Include="Serialize.cpp" />
+    <ClCompile Include="$(SolutionDir)\CodeGen\CustomTypeCreator.g.cpp">
+      <Filter>Codegen\Custom Codegen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -28,6 +31,13 @@
       <Filter>Codegen</Filter>
     </ClInclude>
     <ClInclude Include="Serialize.h" />
+    <ClInclude Include="PropInfo.h" />
+    <ClInclude Include="$(SolutionDir)\CodeGen\CustomTypeEvents.g.h">
+      <Filter>Codegen\Custom Codegen</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\CodeGen\CustomTypeProperties.g.h">
+      <Filter>Codegen\Custom Codegen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
@@ -45,6 +55,16 @@
       <Filter>TS</Filter>
     </None>
     <None Include="..\..\..\README.md" />
+    <None Include="..\..\src\Enums.ts" />
+    <None Include="$(SolutionDir)\CodeGen\CustomEnums.ts">
+      <Filter>Codegen\Custom Codegen</Filter>
+    </None>
+    <None Include="$(SolutionDir)\CodeGen\CustomProps.ts">
+      <Filter>Codegen\Custom Codegen</Filter>
+    </None>
+    <None Include="$(SolutionDir)\CodeGen\CustomTypes.tsx">
+      <Filter>Codegen\Custom Codegen</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codegen">
@@ -52,6 +72,9 @@
     </Filter>
     <Filter Include="TS">
       <UniqueIdentifier>{5c572e8a-9a91-412d-8a35-4bd65c3cfa2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Codegen\Custom Codegen">
+      <UniqueIdentifier>{b43f3b89-f84e-4579-bff2-15606fbf45a2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
