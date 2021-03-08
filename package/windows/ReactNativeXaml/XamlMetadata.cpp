@@ -122,6 +122,8 @@ const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::
   return nullptr;
 }
 
+template<typename T> bool IsWrapped(const winrt::Windows::Foundation::IInspectable& i) { return Unwrap<T>(i) != nullptr; }
+
 const PropInfo fakeProps[] = {
     { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
 };
