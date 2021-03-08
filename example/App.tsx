@@ -35,7 +35,7 @@ TextBox,
 // BlankUserControl,
 ClickMode,
 MenuFlyout,
-} from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
+} from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -85,9 +85,16 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
               {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
-                  <Button content={{ string: `Last selected option = ${option} ${count}` }} foreground="red"
-                      onClick={(a) => { alert(JSON.stringify(a.nativeEvent)); setCount(count + 1); setIsOpen(true); }}
+                  <Button content={{ string: `Last selected option = ${option} ${count}` }}
+                      onClick={(a) => { 
+                        alert(JSON.stringify(a.nativeEvent)); 
+                        setCount(count + 1); 
+                        setIsOpen(true); }}
                       clickMode={ClickMode.Release}
+                      resources={{ 
+                        ButtonForeground: "#00fff1",
+                        ButtonForegroundPressed: "#2090ff",
+                     }}
                       />
                   {/*<StackPanel orientation="horizontal">*/}
                   {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
