@@ -45,6 +45,7 @@
       <Filter>TS</Filter>
     </None>
     <None Include="..\..\..\README.md" />
+    <None Include="..\..\src\Enums.ts" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codegen">

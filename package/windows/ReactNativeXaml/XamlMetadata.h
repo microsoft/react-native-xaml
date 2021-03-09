@@ -139,6 +139,6 @@ struct XamlMetadata {
   void PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
 
 private:
-  winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
+  winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const;
   static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
 };

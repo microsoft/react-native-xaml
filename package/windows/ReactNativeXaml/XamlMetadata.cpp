@@ -110,10 +110,9 @@ void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty pro
   }
 }
 
-
 const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
-  auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return entry.propName == key; });
-  while ((it != map + size) && it->propName == key) {
+  auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return Equals(entry.propName, key); });
+  while ((it != map + size) && Equals(it->propName, key)) {
     if (it->isType(obj)) {
       return it;
     }
