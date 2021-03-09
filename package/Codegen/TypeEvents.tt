@@ -22,21 +22,27 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 template<typename TArgs>
 void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::Windows::Foundation::IInspectable& sender, const TArgs& args);
 
+
+template<typename T>
+__declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IInspectable& ii, bool isWrapped) {
+  auto o = isWrapped ? Unwrap<T>(ii) : ii.try_as<T>();
+  return o;
+}
+
+template<typename T>
+__declspec(noinline) void DispatchTheEvent(const xaml::FrameworkElement& fe, const xaml::FrameworkElement& sender, const T& args, const IReactContext& reactContext, std::wstring_view eventName) {
+  reactContext.DispatchEvent(fe, eventName, [sender, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { SerializeEventArgs(evtDataWriter, sender, args); });
+};
+
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
 <# foreach (var evt in Events) { #>
   {"<#= evt.GetName() #>", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-  winrt::Windows::Foundation::IInspectable o = (isWrapped) ? ii.as<ContentControl>().Content() : ii;
-  if (auto c = o.try_as<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>()) {
-        c.<#= evt.GetName() #>([reactContext, ii] (<#= Util.GetCppWinRTEventSignature(evt) #>) {
-            if (auto fe = sender ? sender.try_as<xaml::FrameworkElement>() : 
-            (ii ? ii.try_as<xaml::FrameworkElement>() : nullptr)) {
-              reactContext.DispatchEvent(fe, L"top<#= evt.GetName() #>", [sender, args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {
-                SerializeEventArgs(evtDataWriter, sender, args);
-              });
-            }
-        });
+    if (auto c = DoTheTypeChecking<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>(ii, isWrapped)) {
+      c.<#= evt.GetName() #>([reactContext, ii] (<#= Util.GetCppWinRTEventSignature(evt) #>) {
+        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"top<#= evt.GetName() #>");
+      });
     }
-    } },
+  } },
 <# } #>
 
 };

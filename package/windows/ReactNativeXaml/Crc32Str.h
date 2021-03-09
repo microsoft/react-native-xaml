@@ -84,7 +84,7 @@ inline bool Equals(const stringKey& a, const stringKey& b) {
 }
 #else
 #define MAKE_KEY(str) str
-using stringKey = const char*;
+using stringKey = const char* const;
 inline bool Equals(const stringKey& a, const stringKey& b) {
   return strcmp(a, b) == 0;
 }
