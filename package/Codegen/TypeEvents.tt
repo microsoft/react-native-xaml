@@ -30,16 +30,21 @@ __declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IInsp
 }
 
 template<typename T>
-__declspec(noinline) void DispatchTheEvent(const xaml::FrameworkElement& fe, const xaml::FrameworkElement& sender, const T& args, const IReactContext& reactContext, std::wstring_view eventName) {
-  reactContext.DispatchEvent(fe, eventName, [sender, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { SerializeEventArgs(evtDataWriter, sender, args); });
+__declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
+  xaml::FrameworkElement senderAsFE = sender.try_as<FrameworkElement>();
+  auto wEN = winrt::to_hstring(eai.jsEventName);
+  eai.context.DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(), 
+    [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { 
+        SerializeEventArgs(evtDataWriter, senderAsFE, args); 
+        });
 };
 
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
 <# foreach (var evt in Events) { #>
-  {"<#= evt.GetName() #>", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>(ii, isWrapped)) {
-      c.<#= evt.GetName() #>([reactContext, ii] (<#= Util.GetCppWinRTEventSignature(evt) #>) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"top<#= evt.GetName() #>");
+  {"<#= evt.GetName() #>", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>(eai.obj, isWrapped)) {
+      c.<#= evt.GetName() #>([eai] (<#= Util.GetCppWinRTEventSignature(evt) #>) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },

@@ -121,15 +121,23 @@ T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
   return nullptr;
 }
 
+
+struct EventAttachInfo {
+  winrt::Microsoft::ReactNative::IReactContext context{ nullptr };
+  winrt::Windows::Foundation::IInspectable obj{ nullptr };
+  std::string jsEventName;
+};
+
 struct EventInfo {
-  const char* name;
-  using attachHandlers_t = void (*)(const winrt::Windows::Foundation::IInspectable& o, const winrt::Microsoft::ReactNative::IReactContext& context, bool isWrapped);
+  const char* const name;
+  using attachHandlers_t = void (*)(const EventAttachInfo&, bool isWrapped);
   attachHandlers_t attachHandler;
 
   static const EventInfo xamlEventMap[];
 };
 
 extern ConstantProviderDelegate GetEvents;
+
 
 struct XamlMetadata {
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;

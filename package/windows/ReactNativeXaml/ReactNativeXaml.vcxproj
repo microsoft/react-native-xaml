@@ -125,6 +125,10 @@
     <Link>
       <LinkTimeCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
+    <Link>
+      <LinkTimeCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableCOMDATFolding>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Codegen\TypeEvents.g.h" />

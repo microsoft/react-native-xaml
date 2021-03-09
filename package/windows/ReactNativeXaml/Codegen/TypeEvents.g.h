@@ -26,1898 +26,1903 @@ __declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IInsp
 }
 
 template<typename T>
-__declspec(noinline) void DispatchTheEvent(const xaml::FrameworkElement& fe, const xaml::FrameworkElement& sender, const T& args, const IReactContext& reactContext, std::wstring_view eventName) {
-  reactContext.DispatchEvent(fe, eventName, [sender, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { SerializeEventArgs(evtDataWriter, sender, args); });
+__declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
+  xaml::FrameworkElement senderAsFE = sender.try_as<FrameworkElement>();
+  auto wEN = winrt::to_hstring(eai.jsEventName);
+  eai.context.DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(), 
+    [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { 
+        SerializeEventArgs(evtDataWriter, senderAsFE, args); 
+        });
 };
 
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
-  {"DoubleTapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.DoubleTapped([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::DoubleTappedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDoubleTapped");
+  {"DoubleTapped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.DoubleTapped([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::DoubleTappedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragEnter", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.DragEnter([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragEnter");
+  {"DragEnter", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.DragEnter([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragLeave", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.DragLeave([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragLeave");
+  {"DragLeave", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.DragLeave([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragOver", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.DragOver([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragOver");
+  {"DragOver", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.DragOver([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Drop", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.Drop([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDrop");
+  {"Drop", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.Drop([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"GotFocus", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.GotFocus([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topGotFocus");
+  {"GotFocus", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.GotFocus([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Holding", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.Holding([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::HoldingRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHolding");
+  {"Holding", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.Holding([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::HoldingRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"LostFocus", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.LostFocus([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLostFocus");
+  {"LostFocus", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.LostFocus([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ManipulationCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ManipulationCompleted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationCompletedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topManipulationCompleted");
+  {"ManipulationCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ManipulationCompleted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationCompletedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ManipulationDelta", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ManipulationDelta([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationDeltaRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topManipulationDelta");
+  {"ManipulationDelta", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ManipulationDelta([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationDeltaRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ManipulationInertiaStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ManipulationInertiaStarting([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationInertiaStartingRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topManipulationInertiaStarting");
+  {"ManipulationInertiaStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ManipulationInertiaStarting([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationInertiaStartingRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ManipulationStarted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ManipulationStarted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationStartedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topManipulationStarted");
+  {"ManipulationStarted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ManipulationStarted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationStartedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ManipulationStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ManipulationStarting([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationStartingRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topManipulationStarting");
+  {"ManipulationStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ManipulationStarting([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::ManipulationStartingRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerCanceled", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerCanceled([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerCanceled");
+  {"PointerCanceled", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerCanceled([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerCaptureLost", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerCaptureLost([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerCaptureLost");
+  {"PointerCaptureLost", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerCaptureLost([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerEntered", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerEntered([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerEntered");
+  {"PointerEntered", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerEntered([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerExited", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerExited([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerExited");
+  {"PointerExited", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerExited([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerMoved", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerMoved([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerMoved");
+  {"PointerMoved", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerMoved([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerPressed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerPressed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerPressed");
+  {"PointerPressed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerPressed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerReleased", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerReleased([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerReleased");
+  {"PointerReleased", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerReleased([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PointerWheelChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PointerWheelChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPointerWheelChanged");
+  {"PointerWheelChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PointerWheelChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::PointerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"RightTapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.RightTapped([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::RightTappedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topRightTapped");
+  {"RightTapped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.RightTapped([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::RightTappedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Tapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.Tapped([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::TappedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTapped");
+  {"Tapped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.Tapped([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::TappedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.DragStarting([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::DragStartingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragStarting");
+  {"DragStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.DragStarting([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::DragStartingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DropCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.DropCompleted([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::DropCompletedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDropCompleted");
+  {"DropCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.DropCompleted([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::DropCompletedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"AccessKeyDisplayDismissed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.AccessKeyDisplayDismissed([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyDisplayDismissedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topAccessKeyDisplayDismissed");
+  {"AccessKeyDisplayDismissed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.AccessKeyDisplayDismissed([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyDisplayDismissedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"AccessKeyDisplayRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.AccessKeyDisplayRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyDisplayRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topAccessKeyDisplayRequested");
+  {"AccessKeyDisplayRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.AccessKeyDisplayRequested([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyDisplayRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"AccessKeyInvoked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.AccessKeyInvoked([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyInvokedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topAccessKeyInvoked");
+  {"AccessKeyInvoked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.AccessKeyInvoked([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyInvokedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextCanceled", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ContextCanceled([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextCanceled");
+  {"ContextCanceled", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ContextCanceled([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ContextRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextRequested");
+  {"ContextRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ContextRequested([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"GettingFocus", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.GettingFocus([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::GettingFocusEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topGettingFocus");
+  {"GettingFocus", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.GettingFocus([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::GettingFocusEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"LosingFocus", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.LosingFocus([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::LosingFocusEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLosingFocus");
+  {"LosingFocus", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.LosingFocus([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::LosingFocusEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NoFocusCandidateFound", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.NoFocusCandidateFound([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::NoFocusCandidateFoundEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNoFocusCandidateFound");
+  {"NoFocusCandidateFound", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.NoFocusCandidateFound([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::NoFocusCandidateFoundEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CharacterReceived", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.CharacterReceived([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::CharacterReceivedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCharacterReceived");
+  {"CharacterReceived", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.CharacterReceived([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::CharacterReceivedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PreviewKeyDown", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PreviewKeyDown([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::KeyRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPreviewKeyDown");
+  {"PreviewKeyDown", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PreviewKeyDown([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::KeyRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PreviewKeyUp", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.PreviewKeyUp([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::KeyRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPreviewKeyUp");
+  {"PreviewKeyUp", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.PreviewKeyUp([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Input::KeyRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ProcessKeyboardAccelerators", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.ProcessKeyboardAccelerators([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::ProcessKeyboardAcceleratorEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topProcessKeyboardAccelerators");
+  {"ProcessKeyboardAccelerators", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.ProcessKeyboardAccelerators([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::Input::ProcessKeyboardAcceleratorEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"BringIntoViewRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(ii, isWrapped)) {
-      c.BringIntoViewRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::BringIntoViewRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topBringIntoViewRequested");
+  {"BringIntoViewRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
+      c.BringIntoViewRequested([eai] (const winrt::Windows::UI::Xaml::UIElement& sender, const winrt::Windows::UI::Xaml::BringIntoViewRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"LayoutUpdated", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.LayoutUpdated([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLayoutUpdated");
+  {"LayoutUpdated", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.LayoutUpdated([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Loaded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.Loaded([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLoaded");
+  {"Loaded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.Loaded([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SizeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.SizeChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::SizeChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSizeChanged");
+  {"SizeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.SizeChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::SizeChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Unloaded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.Unloaded([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topUnloaded");
+  {"Unloaded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.Unloaded([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DataContextChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.DataContextChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::UI::Xaml::DataContextChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDataContextChanged");
+  {"DataContextChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.DataContextChanged([eai] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::UI::Xaml::DataContextChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Loading", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.Loading([reactContext, ii] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLoading");
+  {"Loading", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.Loading([eai] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ActualThemeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.ActualThemeChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topActualThemeChanged");
+  {"ActualThemeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.ActualThemeChanged([eai] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"EffectiveViewportChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(ii, isWrapped)) {
-      c.EffectiveViewportChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::UI::Xaml::EffectiveViewportChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topEffectiveViewportChanged");
+  {"EffectiveViewportChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::FrameworkElement>(eai.obj, isWrapped)) {
+      c.EffectiveViewportChanged([eai] (const winrt::Windows::UI::Xaml::FrameworkElement& sender, const winrt::Windows::UI::Xaml::EffectiveViewportChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsEnabledChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Control>(ii, isWrapped)) {
-      c.IsEnabledChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DependencyPropertyChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsEnabledChanged");
+  {"IsEnabledChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Control>(eai.obj, isWrapped)) {
+      c.IsEnabledChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DependencyPropertyChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"FocusDisengaged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Control>(ii, isWrapped)) {
-      c.FocusDisengaged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Control& sender, const winrt::Windows::UI::Xaml::Controls::FocusDisengagedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topFocusDisengaged");
+  {"FocusDisengaged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Control>(eai.obj, isWrapped)) {
+      c.FocusDisengaged([eai] (const winrt::Windows::UI::Xaml::Controls::Control& sender, const winrt::Windows::UI::Xaml::Controls::FocusDisengagedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"FocusEngaged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Control>(ii, isWrapped)) {
-      c.FocusEngaged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Control& sender, const winrt::Windows::UI::Xaml::Controls::FocusEngagedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topFocusEngaged");
+  {"FocusEngaged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Control>(eai.obj, isWrapped)) {
+      c.FocusEngaged([eai] (const winrt::Windows::UI::Xaml::Controls::Control& sender, const winrt::Windows::UI::Xaml::Controls::FocusEngagedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closing", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(ii, isWrapped)) {
-      c.Closing([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosing");
+  {"Closing", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(eai.obj, isWrapped)) {
+      c.Closing([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(ii, isWrapped)) {
-      c.Opening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpening");
+  {"Opening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AppBar>(eai.obj, isWrapped)) {
+      c.Opening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Click", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase>(ii, isWrapped)) {
-      c.Click([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClick");
+  {"Click", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase>(eai.obj, isWrapped)) {
+      c.Click([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Checked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton>(ii, isWrapped)) {
-      c.Checked([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topChecked");
+  {"Checked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton>(eai.obj, isWrapped)) {
+      c.Checked([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Indeterminate", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton>(ii, isWrapped)) {
-      c.Indeterminate([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIndeterminate");
+  {"Indeterminate", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton>(eai.obj, isWrapped)) {
+      c.Indeterminate([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Unchecked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton>(ii, isWrapped)) {
-      c.Unchecked([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topUnchecked");
+  {"Unchecked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ToggleButton>(eai.obj, isWrapped)) {
+      c.Unchecked([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SuggestionChosen", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>(ii, isWrapped)) {
-      c.SuggestionChosen([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::AutoSuggestBox& sender, const winrt::Windows::UI::Xaml::Controls::AutoSuggestBoxSuggestionChosenEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSuggestionChosen");
+  {"SuggestionChosen", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>(eai.obj, isWrapped)) {
+      c.SuggestionChosen([eai] (const winrt::Windows::UI::Xaml::Controls::AutoSuggestBox& sender, const winrt::Windows::UI::Xaml::Controls::AutoSuggestBoxSuggestionChosenEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>(ii, isWrapped)) {
-      c.TextChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::AutoSuggestBox& sender, const winrt::Windows::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextChanged");
+  {"TextChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>(eai.obj, isWrapped)) {
+      c.TextChanged([eai] (const winrt::Windows::UI::Xaml::Controls::AutoSuggestBox& sender, const winrt::Windows::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"QuerySubmitted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>(ii, isWrapped)) {
-      c.QuerySubmitted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::AutoSuggestBox& sender, const winrt::Windows::UI::Xaml::Controls::AutoSuggestBoxQuerySubmittedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topQuerySubmitted");
+  {"QuerySubmitted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>(eai.obj, isWrapped)) {
+      c.QuerySubmitted([eai] (const winrt::Windows::UI::Xaml::Controls::AutoSuggestBox& sender, const winrt::Windows::UI::Xaml::Controls::AutoSuggestBoxQuerySubmittedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CalendarViewDayItemChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(ii, isWrapped)) {
-      c.CalendarViewDayItemChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::CalendarView& sender, const winrt::Windows::UI::Xaml::Controls::CalendarViewDayItemChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCalendarViewDayItemChanging");
+  {"CalendarViewDayItemChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(eai.obj, isWrapped)) {
+      c.CalendarViewDayItemChanging([eai] (const winrt::Windows::UI::Xaml::Controls::CalendarView& sender, const winrt::Windows::UI::Xaml::Controls::CalendarViewDayItemChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DateChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(ii, isWrapped)) {
-      c.DateChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::CalendarDatePicker& sender, const winrt::Windows::UI::Xaml::Controls::CalendarDatePickerDateChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDateChanged");
+  {"DateChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(eai.obj, isWrapped)) {
+      c.DateChanged([eai] (const winrt::Windows::UI::Xaml::Controls::CalendarDatePicker& sender, const winrt::Windows::UI::Xaml::Controls::CalendarDatePickerDateChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CalendarViewDayItemChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarView>(ii, isWrapped)) {
-      c.CalendarViewDayItemChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::CalendarView& sender, const winrt::Windows::UI::Xaml::Controls::CalendarViewDayItemChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCalendarViewDayItemChanging");
+  {"CalendarViewDayItemChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarView>(eai.obj, isWrapped)) {
+      c.CalendarViewDayItemChanging([eai] (const winrt::Windows::UI::Xaml::Controls::CalendarView& sender, const winrt::Windows::UI::Xaml::Controls::CalendarViewDayItemChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectedDatesChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarView>(ii, isWrapped)) {
-      c.SelectedDatesChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::CalendarView& sender, const winrt::Windows::UI::Xaml::Controls::CalendarViewSelectedDatesChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectedDatesChanged");
+  {"SelectedDatesChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CalendarView>(eai.obj, isWrapped)) {
+      c.SelectedDatesChanged([eai] (const winrt::Windows::UI::Xaml::Controls::CalendarView& sender, const winrt::Windows::UI::Xaml::Controls::CalendarViewSelectedDatesChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ColorChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ColorPicker>(ii, isWrapped)) {
-      c.ColorChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ColorPicker& sender, const winrt::Windows::UI::Xaml::Controls::ColorChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topColorChanged");
+  {"ColorChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ColorPicker>(eai.obj, isWrapped)) {
+      c.ColorChanged([eai] (const winrt::Windows::UI::Xaml::Controls::ColorPicker& sender, const winrt::Windows::UI::Xaml::Controls::ColorChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Selector>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Selector>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DropDownClosed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ComboBox>(ii, isWrapped)) {
-      c.DropDownClosed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDropDownClosed");
+  {"DropDownClosed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ComboBox>(eai.obj, isWrapped)) {
+      c.DropDownClosed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DropDownOpened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ComboBox>(ii, isWrapped)) {
-      c.DropDownOpened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDropDownOpened");
+  {"DropDownOpened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ComboBox>(eai.obj, isWrapped)) {
+      c.DropDownOpened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextSubmitted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ComboBox>(ii, isWrapped)) {
-      c.TextSubmitted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ComboBox& sender, const winrt::Windows::UI::Xaml::Controls::ComboBoxTextSubmittedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextSubmitted");
+  {"TextSubmitted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ComboBox>(eai.obj, isWrapped)) {
+      c.TextSubmitted([eai] (const winrt::Windows::UI::Xaml::Controls::ComboBox& sender, const winrt::Windows::UI::Xaml::Controls::ComboBoxTextSubmittedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DynamicOverflowItemsChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CommandBar>(ii, isWrapped)) {
-      c.DynamicOverflowItemsChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::CommandBar& sender, const winrt::Windows::UI::Xaml::Controls::DynamicOverflowItemsChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDynamicOverflowItemsChanging");
+  {"DynamicOverflowItemsChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::CommandBar>(eai.obj, isWrapped)) {
+      c.DynamicOverflowItemsChanging([eai] (const winrt::Windows::UI::Xaml::Controls::CommandBar& sender, const winrt::Windows::UI::Xaml::Controls::DynamicOverflowItemsChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(ii, isWrapped)) {
-      c.Opening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpening");
+  {"Opening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(eai.obj, isWrapped)) {
+      c.Opening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closing", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(ii, isWrapped)) {
-      c.Closing([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBaseClosingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosing");
+  {"Closing", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>(eai.obj, isWrapped)) {
+      c.Closing([eai] (const winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBaseClosingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogClosedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogClosedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closing", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(ii, isWrapped)) {
-      c.Closing([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogClosingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosing");
+  {"Closing", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(eai.obj, isWrapped)) {
+      c.Closing([eai] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogClosingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogOpenedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogOpenedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PrimaryButtonClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(ii, isWrapped)) {
-      c.PrimaryButtonClick([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPrimaryButtonClick");
+  {"PrimaryButtonClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(eai.obj, isWrapped)) {
+      c.PrimaryButtonClick([eai] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SecondaryButtonClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(ii, isWrapped)) {
-      c.SecondaryButtonClick([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSecondaryButtonClick");
+  {"SecondaryButtonClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(eai.obj, isWrapped)) {
+      c.SecondaryButtonClick([eai] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CloseButtonClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(ii, isWrapped)) {
-      c.CloseButtonClick([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCloseButtonClick");
+  {"CloseButtonClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ContentDialog>(eai.obj, isWrapped)) {
+      c.CloseButtonClick([eai] (const winrt::Windows::UI::Xaml::Controls::ContentDialog& sender, const winrt::Windows::UI::Xaml::Controls::ContentDialogButtonClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DateChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::DatePicker>(ii, isWrapped)) {
-      c.DateChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::DatePickerValueChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDateChanged");
+  {"DateChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::DatePicker>(eai.obj, isWrapped)) {
+      c.DateChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::DatePickerValueChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectedDateChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::DatePicker>(ii, isWrapped)) {
-      c.SelectedDateChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::DatePicker& sender, const winrt::Windows::UI::Xaml::Controls::DatePickerSelectedValueChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectedDateChanged");
+  {"SelectedDateChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::DatePicker>(eai.obj, isWrapped)) {
+      c.SelectedDateChanged([eai] (const winrt::Windows::UI::Xaml::Controls::DatePicker& sender, const winrt::Windows::UI::Xaml::Controls::DatePickerSelectedValueChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DatePicked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::DatePickerFlyout>(ii, isWrapped)) {
-      c.DatePicked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::DatePickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::DatePickedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDatePicked");
+  {"DatePicked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::DatePickerFlyout>(eai.obj, isWrapped)) {
+      c.DatePicked([eai] (const winrt::Windows::UI::Xaml::Controls::DatePickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::DatePickedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Navigated", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(ii, isWrapped)) {
-      c.Navigated([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigated");
+  {"Navigated", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(eai.obj, isWrapped)) {
+      c.Navigated([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Navigating", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(ii, isWrapped)) {
-      c.Navigating([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigatingCancelEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigating");
+  {"Navigating", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(eai.obj, isWrapped)) {
+      c.Navigating([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigatingCancelEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NavigationFailed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(ii, isWrapped)) {
-      c.NavigationFailed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationFailedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigationFailed");
+  {"NavigationFailed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(eai.obj, isWrapped)) {
+      c.NavigationFailed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationFailedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NavigationStopped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(ii, isWrapped)) {
-      c.NavigationStopped([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigationStopped");
+  {"NavigationStopped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Frame>(eai.obj, isWrapped)) {
+      c.NavigationStopped([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragItemsStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(ii, isWrapped)) {
-      c.DragItemsStarting([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::DragItemsStartingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragItemsStarting");
+  {"DragItemsStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(eai.obj, isWrapped)) {
+      c.DragItemsStarting([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::DragItemsStartingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ItemClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(ii, isWrapped)) {
-      c.ItemClick([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ItemClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topItemClick");
+  {"ItemClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(eai.obj, isWrapped)) {
+      c.ItemClick([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ItemClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContainerContentChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(ii, isWrapped)) {
-      c.ContainerContentChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContainerContentChanging");
+  {"ContainerContentChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(eai.obj, isWrapped)) {
+      c.ContainerContentChanging([eai] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ChoosingGroupHeaderContainer", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(ii, isWrapped)) {
-      c.ChoosingGroupHeaderContainer([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::ChoosingGroupHeaderContainerEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topChoosingGroupHeaderContainer");
+  {"ChoosingGroupHeaderContainer", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(eai.obj, isWrapped)) {
+      c.ChoosingGroupHeaderContainer([eai] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::ChoosingGroupHeaderContainerEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ChoosingItemContainer", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(ii, isWrapped)) {
-      c.ChoosingItemContainer([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::ChoosingItemContainerEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topChoosingItemContainer");
+  {"ChoosingItemContainer", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(eai.obj, isWrapped)) {
+      c.ChoosingItemContainer([eai] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::ChoosingItemContainerEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragItemsCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(ii, isWrapped)) {
-      c.DragItemsCompleted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::DragItemsCompletedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragItemsCompleted");
+  {"DragItemsCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListViewBase>(eai.obj, isWrapped)) {
+      c.DragItemsCompleted([eai] (const winrt::Windows::UI::Xaml::Controls::ListViewBase& sender, const winrt::Windows::UI::Xaml::Controls::DragItemsCompletedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::HandwritingView>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::HandwritingView& sender, const winrt::Windows::UI::Xaml::Controls::HandwritingPanelClosedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::HandwritingView>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::UI::Xaml::Controls::HandwritingView& sender, const winrt::Windows::UI::Xaml::Controls::HandwritingPanelClosedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::HandwritingView>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::HandwritingView& sender, const winrt::Windows::UI::Xaml::Controls::HandwritingPanelOpenedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::HandwritingView>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::UI::Xaml::Controls::HandwritingView& sender, const winrt::Windows::UI::Xaml::Controls::HandwritingPanelOpenedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SectionHeaderClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Hub>(ii, isWrapped)) {
-      c.SectionHeaderClick([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::HubSectionHeaderClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSectionHeaderClick");
+  {"SectionHeaderClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Hub>(eai.obj, isWrapped)) {
+      c.SectionHeaderClick([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::HubSectionHeaderClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SectionsInViewChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Hub>(ii, isWrapped)) {
-      c.SectionsInViewChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SectionsInViewChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSectionsInViewChanged");
+  {"SectionsInViewChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Hub>(eai.obj, isWrapped)) {
+      c.SectionsInViewChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SectionsInViewChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ImageFailed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Image>(ii, isWrapped)) {
-      c.ImageFailed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::ExceptionRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topImageFailed");
+  {"ImageFailed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Image>(eai.obj, isWrapped)) {
+      c.ImageFailed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::ExceptionRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ImageOpened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Image>(ii, isWrapped)) {
-      c.ImageOpened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topImageOpened");
+  {"ImageOpened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Image>(eai.obj, isWrapped)) {
+      c.ImageOpened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ActiveToolChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(ii, isWrapped)) {
-      c.ActiveToolChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topActiveToolChanged");
+  {"ActiveToolChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(eai.obj, isWrapped)) {
+      c.ActiveToolChanged([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"EraseAllClicked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(ii, isWrapped)) {
-      c.EraseAllClicked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topEraseAllClicked");
+  {"EraseAllClicked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(eai.obj, isWrapped)) {
+      c.EraseAllClicked([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"InkDrawingAttributesChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(ii, isWrapped)) {
-      c.InkDrawingAttributesChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topInkDrawingAttributesChanged");
+  {"InkDrawingAttributesChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(eai.obj, isWrapped)) {
+      c.InkDrawingAttributesChanged([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsRulerButtonCheckedChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(ii, isWrapped)) {
-      c.IsRulerButtonCheckedChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsRulerButtonCheckedChanged");
+  {"IsRulerButtonCheckedChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(eai.obj, isWrapped)) {
+      c.IsRulerButtonCheckedChanged([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsStencilButtonCheckedChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(ii, isWrapped)) {
-      c.IsStencilButtonCheckedChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::UI::Xaml::Controls::InkToolbarIsStencilButtonCheckedChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsStencilButtonCheckedChanged");
+  {"IsStencilButtonCheckedChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbar>(eai.obj, isWrapped)) {
+      c.IsStencilButtonCheckedChanged([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbar& sender, const winrt::Windows::UI::Xaml::Controls::InkToolbarIsStencilButtonCheckedChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Checked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem>(ii, isWrapped)) {
-      c.Checked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topChecked");
+  {"Checked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem>(eai.obj, isWrapped)) {
+      c.Checked([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Unchecked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem>(ii, isWrapped)) {
-      c.Unchecked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topUnchecked");
+  {"Unchecked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem>(eai.obj, isWrapped)) {
+      c.Unchecked([eai] (const winrt::Windows::UI::Xaml::Controls::InkToolbarFlyoutItem& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HorizontalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ItemsPresenter>(ii, isWrapped)) {
-      c.HorizontalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHorizontalSnapPointsChanged");
+  {"HorizontalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ItemsPresenter>(eai.obj, isWrapped)) {
+      c.HorizontalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VerticalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ItemsPresenter>(ii, isWrapped)) {
-      c.VerticalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVerticalSnapPointsChanged");
+  {"VerticalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ItemsPresenter>(eai.obj, isWrapped)) {
+      c.VerticalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ItemsPicked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListPickerFlyout>(ii, isWrapped)) {
-      c.ItemsPicked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ListPickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::ItemsPickedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topItemsPicked");
+  {"ItemsPicked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ListPickerFlyout>(eai.obj, isWrapped)) {
+      c.ItemsPicked([eai] (const winrt::Windows::UI::Xaml::Controls::ListPickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::ItemsPickedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CenterChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.CenterChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCenterChanged");
+  {"CenterChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.CenterChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HeadingChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.HeadingChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHeadingChanged");
+  {"HeadingChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.HeadingChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"LoadingStatusChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.LoadingStatusChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLoadingStatusChanged");
+  {"LoadingStatusChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.LoadingStatusChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapDoubleTapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapDoubleTapped([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapInputEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapDoubleTapped");
+  {"MapDoubleTapped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapDoubleTapped([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapInputEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapHolding", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapHolding([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapInputEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapHolding");
+  {"MapHolding", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapHolding([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapInputEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapTapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapTapped([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapInputEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapTapped");
+  {"MapTapped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapTapped([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapInputEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PitchChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.PitchChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPitchChanged");
+  {"PitchChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.PitchChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TransformOriginChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.TransformOriginChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTransformOriginChanged");
+  {"TransformOriginChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.TransformOriginChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ZoomLevelChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.ZoomLevelChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topZoomLevelChanged");
+  {"ZoomLevelChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.ZoomLevelChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ActualCameraChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.ActualCameraChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapActualCameraChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topActualCameraChanged");
+  {"ActualCameraChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.ActualCameraChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapActualCameraChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ActualCameraChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.ActualCameraChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapActualCameraChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topActualCameraChanging");
+  {"ActualCameraChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.ActualCameraChanging([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapActualCameraChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CustomExperienceChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.CustomExperienceChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapCustomExperienceChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCustomExperienceChanged");
+  {"CustomExperienceChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.CustomExperienceChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapCustomExperienceChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapElementClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapElementClick([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapElementClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapElementClick");
+  {"MapElementClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapElementClick([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapElementClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapElementPointerEntered", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapElementPointerEntered([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapElementPointerEnteredEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapElementPointerEntered");
+  {"MapElementPointerEntered", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapElementPointerEntered([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapElementPointerEnteredEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapElementPointerExited", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapElementPointerExited([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapElementPointerExitedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapElementPointerExited");
+  {"MapElementPointerExited", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapElementPointerExited([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapElementPointerExitedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TargetCameraChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.TargetCameraChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapTargetCameraChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTargetCameraChanged");
+  {"TargetCameraChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.TargetCameraChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapTargetCameraChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapRightTapped", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapRightTapped([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapRightTappedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapRightTapped");
+  {"MapRightTapped", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapRightTapped([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapRightTappedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MapContextRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(ii, isWrapped)) {
-      c.MapContextRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapContextRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMapContextRequested");
+  {"MapContextRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>(eai.obj, isWrapped)) {
+      c.MapContextRequested([eai] (const winrt::Windows::UI::Xaml::Controls::Maps::MapControl& sender, const winrt::Windows::UI::Xaml::Controls::Maps::MapContextRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"BufferingProgressChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.BufferingProgressChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topBufferingProgressChanged");
+  {"BufferingProgressChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.BufferingProgressChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CurrentStateChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.CurrentStateChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCurrentStateChanged");
+  {"CurrentStateChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.CurrentStateChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DownloadProgressChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.DownloadProgressChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDownloadProgressChanged");
+  {"DownloadProgressChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.DownloadProgressChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MarkerReached", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.MarkerReached([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Media::TimelineMarkerRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMarkerReached");
+  {"MarkerReached", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.MarkerReached([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Media::TimelineMarkerRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MediaEnded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.MediaEnded([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMediaEnded");
+  {"MediaEnded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.MediaEnded([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MediaFailed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.MediaFailed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::ExceptionRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMediaFailed");
+  {"MediaFailed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.MediaFailed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::ExceptionRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"MediaOpened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.MediaOpened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topMediaOpened");
+  {"MediaOpened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.MediaOpened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"RateChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.RateChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Media::RateChangedRoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topRateChanged");
+  {"RateChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.RateChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Media::RateChangedRoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SeekCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.SeekCompleted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSeekCompleted");
+  {"SeekCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.SeekCompleted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VolumeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.VolumeChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVolumeChanged");
+  {"VolumeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.VolumeChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PartialMediaFailureDetected", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(ii, isWrapped)) {
-      c.PartialMediaFailureDetected([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::MediaElement& sender, const winrt::Windows::UI::Xaml::Media::PartialMediaFailureDetectedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPartialMediaFailureDetected");
+  {"PartialMediaFailureDetected", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaElement>(eai.obj, isWrapped)) {
+      c.PartialMediaFailureDetected([eai] (const winrt::Windows::UI::Xaml::Controls::MediaElement& sender, const winrt::Windows::UI::Xaml::Media::PartialMediaFailureDetectedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ThumbnailRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaTransportControls>(ii, isWrapped)) {
-      c.ThumbnailRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::MediaTransportControls& sender, const winrt::Windows::UI::Xaml::Media::MediaTransportControlsThumbnailRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topThumbnailRequested");
+  {"ThumbnailRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MediaTransportControls>(eai.obj, isWrapped)) {
+      c.ThumbnailRequested([eai] (const winrt::Windows::UI::Xaml::Controls::MediaTransportControls& sender, const winrt::Windows::UI::Xaml::Media::MediaTransportControlsThumbnailRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Click", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem>(ii, isWrapped)) {
-      c.Click([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClick");
+  {"Click", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem>(eai.obj, isWrapped)) {
+      c.Click([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DisplayModeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.DisplayModeChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewDisplayModeChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDisplayModeChanged");
+  {"DisplayModeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.DisplayModeChanged([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewDisplayModeChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ItemInvoked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.ItemInvoked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topItemInvoked");
+  {"ItemInvoked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.ItemInvoked([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"BackRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.BackRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topBackRequested");
+  {"BackRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.BackRequested([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneClosed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.PaneClosed([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneClosed");
+  {"PaneClosed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.PaneClosed([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneClosing", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.PaneClosing([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewPaneClosingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneClosing");
+  {"PaneClosing", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.PaneClosing([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::UI::Xaml::Controls::NavigationViewPaneClosingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneOpened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.PaneOpened([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneOpened");
+  {"PaneOpened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.PaneOpened([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(ii, isWrapped)) {
-      c.PaneOpening([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneOpening");
+  {"PaneOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      c.PaneOpening([eai] (const winrt::Windows::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextMenuOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(ii, isWrapped)) {
-      c.ContextMenuOpening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextMenuOpening");
+  {"ContextMenuOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(eai.obj, isWrapped)) {
+      c.ContextMenuOpening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PasswordChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(ii, isWrapped)) {
-      c.PasswordChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPasswordChanged");
+  {"PasswordChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(eai.obj, isWrapped)) {
+      c.PasswordChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Paste", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(ii, isWrapped)) {
-      c.Paste([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextControlPasteEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaste");
+  {"Paste", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(eai.obj, isWrapped)) {
+      c.Paste([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextControlPasteEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PasswordChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(ii, isWrapped)) {
-      c.PasswordChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::PasswordBox& sender, const winrt::Windows::UI::Xaml::Controls::PasswordBoxPasswordChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPasswordChanging");
+  {"PasswordChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PasswordBox>(eai.obj, isWrapped)) {
+      c.PasswordChanging([eai] (const winrt::Windows::UI::Xaml::Controls::PasswordBox& sender, const winrt::Windows::UI::Xaml::Controls::PasswordBoxPasswordChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Confirmed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PickerFlyout>(ii, isWrapped)) {
-      c.Confirmed([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::PickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::PickerConfirmedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topConfirmed");
+  {"Confirmed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::PickerFlyout>(eai.obj, isWrapped)) {
+      c.Confirmed([eai] (const winrt::Windows::UI::Xaml::Controls::PickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::PickerConfirmedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PivotItemLoaded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(ii, isWrapped)) {
-      c.PivotItemLoaded([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPivotItemLoaded");
+  {"PivotItemLoaded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(eai.obj, isWrapped)) {
+      c.PivotItemLoaded([eai] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PivotItemLoading", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(ii, isWrapped)) {
-      c.PivotItemLoading([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPivotItemLoading");
+  {"PivotItemLoading", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(eai.obj, isWrapped)) {
+      c.PivotItemLoading([eai] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PivotItemUnloaded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(ii, isWrapped)) {
-      c.PivotItemUnloaded([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPivotItemUnloaded");
+  {"PivotItemUnloaded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(eai.obj, isWrapped)) {
+      c.PivotItemUnloaded([eai] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PivotItemUnloading", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(ii, isWrapped)) {
-      c.PivotItemUnloading([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPivotItemUnloading");
+  {"PivotItemUnloading", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(eai.obj, isWrapped)) {
+      c.PivotItemUnloading([eai] (const winrt::Windows::UI::Xaml::Controls::Pivot& sender, const winrt::Windows::UI::Xaml::Controls::PivotItemEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Pivot>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HorizontalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::CarouselPanel>(ii, isWrapped)) {
-      c.HorizontalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHorizontalSnapPointsChanged");
+  {"HorizontalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::CarouselPanel>(eai.obj, isWrapped)) {
+      c.HorizontalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VerticalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::CarouselPanel>(ii, isWrapped)) {
-      c.VerticalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVerticalSnapPointsChanged");
+  {"VerticalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::CarouselPanel>(eai.obj, isWrapped)) {
+      c.VerticalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ValueChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase>(ii, isWrapped)) {
-      c.ValueChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topValueChanged");
+  {"ValueChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase>(eai.obj, isWrapped)) {
+      c.ValueChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::RangeBaseValueChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ColorChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum>(ii, isWrapped)) {
-      c.ColorChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum& sender, const winrt::Windows::UI::Xaml::Controls::ColorChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topColorChanged");
+  {"ColorChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum>(eai.obj, isWrapped)) {
+      c.ColorChanged([eai] (const winrt::Windows::UI::Xaml::Controls::Primitives::ColorSpectrum& sender, const winrt::Windows::UI::Xaml::Controls::ColorChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HorizontalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelectorPanel>(ii, isWrapped)) {
-      c.HorizontalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHorizontalSnapPointsChanged");
+  {"HorizontalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelectorPanel>(eai.obj, isWrapped)) {
+      c.HorizontalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VerticalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelectorPanel>(ii, isWrapped)) {
-      c.VerticalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVerticalSnapPointsChanged");
+  {"VerticalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelectorPanel>(eai.obj, isWrapped)) {
+      c.VerticalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HorizontalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel>(ii, isWrapped)) {
-      c.HorizontalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHorizontalSnapPointsChanged");
+  {"HorizontalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel>(eai.obj, isWrapped)) {
+      c.HorizontalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VerticalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel>(ii, isWrapped)) {
-      c.VerticalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVerticalSnapPointsChanged");
+  {"VerticalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::OrientedVirtualizingPanel>(eai.obj, isWrapped)) {
+      c.VerticalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HorizontalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::PivotPanel>(ii, isWrapped)) {
-      c.HorizontalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHorizontalSnapPointsChanged");
+  {"HorizontalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::PivotPanel>(eai.obj, isWrapped)) {
+      c.HorizontalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VerticalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::PivotPanel>(ii, isWrapped)) {
-      c.VerticalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVerticalSnapPointsChanged");
+  {"VerticalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::PivotPanel>(eai.obj, isWrapped)) {
+      c.VerticalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Popup>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Popup>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Popup>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Popup>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Scroll", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar>(ii, isWrapped)) {
-      c.Scroll([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::ScrollEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topScroll");
+  {"Scroll", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar>(eai.obj, isWrapped)) {
+      c.Scroll([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::ScrollEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Thumb>(ii, isWrapped)) {
-      c.DragCompleted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::DragCompletedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragCompleted");
+  {"DragCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Thumb>(eai.obj, isWrapped)) {
+      c.DragCompleted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::DragCompletedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragDelta", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Thumb>(ii, isWrapped)) {
-      c.DragDelta([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::DragDeltaEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragDelta");
+  {"DragDelta", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Thumb>(eai.obj, isWrapped)) {
+      c.DragDelta([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::DragDeltaEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragStarted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Thumb>(ii, isWrapped)) {
-      c.DragStarted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::DragStartedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragStarted");
+  {"DragStarted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Thumb>(eai.obj, isWrapped)) {
+      c.DragStarted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::Primitives::DragStartedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ValueChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RatingControl>(ii, isWrapped)) {
-      c.ValueChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RatingControl& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topValueChanged");
+  {"ValueChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RatingControl>(eai.obj, isWrapped)) {
+      c.ValueChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RatingControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"RefreshRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RefreshContainer>(ii, isWrapped)) {
-      c.RefreshRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RefreshContainer& sender, const winrt::Windows::UI::Xaml::Controls::RefreshRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topRefreshRequested");
+  {"RefreshRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RefreshContainer>(eai.obj, isWrapped)) {
+      c.RefreshRequested([eai] (const winrt::Windows::UI::Xaml::Controls::RefreshContainer& sender, const winrt::Windows::UI::Xaml::Controls::RefreshRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"RefreshRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RefreshVisualizer>(ii, isWrapped)) {
-      c.RefreshRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RefreshVisualizer& sender, const winrt::Windows::UI::Xaml::Controls::RefreshRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topRefreshRequested");
+  {"RefreshRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RefreshVisualizer>(eai.obj, isWrapped)) {
+      c.RefreshRequested([eai] (const winrt::Windows::UI::Xaml::Controls::RefreshVisualizer& sender, const winrt::Windows::UI::Xaml::Controls::RefreshRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"RefreshStateChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RefreshVisualizer>(ii, isWrapped)) {
-      c.RefreshStateChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RefreshVisualizer& sender, const winrt::Windows::UI::Xaml::Controls::RefreshStateChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topRefreshStateChanged");
+  {"RefreshStateChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RefreshVisualizer>(eai.obj, isWrapped)) {
+      c.RefreshStateChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RefreshVisualizer& sender, const winrt::Windows::UI::Xaml::Controls::RefreshStateChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextMenuOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.ContextMenuOpening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextMenuOpening");
+  {"ContextMenuOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.ContextMenuOpening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.TextChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextChanged");
+  {"TextChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.TextChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Paste", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.Paste([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextControlPasteEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaste");
+  {"Paste", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.Paste([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextControlPasteEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CandidateWindowBoundsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.CandidateWindowBoundsChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::CandidateWindowBoundsChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCandidateWindowBoundsChanged");
+  {"CandidateWindowBoundsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.CandidateWindowBoundsChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::CandidateWindowBoundsChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.TextChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::RichEditBoxTextChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextChanging");
+  {"TextChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.TextChanging([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::RichEditBoxTextChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextCompositionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.TextCompositionChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextCompositionChanged");
+  {"TextCompositionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.TextCompositionChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextCompositionEnded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.TextCompositionEnded([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionEndedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextCompositionEnded");
+  {"TextCompositionEnded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.TextCompositionEnded([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionEndedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextCompositionStarted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.TextCompositionStarted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionStartedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextCompositionStarted");
+  {"TextCompositionStarted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.TextCompositionStarted([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionStartedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CopyingToClipboard", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.CopyingToClipboard([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCopyingToClipboardEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCopyingToClipboard");
+  {"CopyingToClipboard", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.CopyingToClipboard([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCopyingToClipboardEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CuttingToClipboard", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.CuttingToClipboard([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCuttingToClipboardEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCuttingToClipboard");
+  {"CuttingToClipboard", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.CuttingToClipboard([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCuttingToClipboardEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContentLinkChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.ContentLinkChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::ContentLinkChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContentLinkChanged");
+  {"ContentLinkChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.ContentLinkChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::ContentLinkChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContentLinkInvoked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.ContentLinkInvoked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Documents::ContentLinkInvokedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContentLinkInvoked");
+  {"ContentLinkInvoked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.ContentLinkInvoked([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Documents::ContentLinkInvokedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(ii, isWrapped)) {
-      c.SelectionChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::RichEditBoxSelectionChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanging");
+  {"SelectionChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichEditBox>(eai.obj, isWrapped)) {
+      c.SelectionChanging([eai] (const winrt::Windows::UI::Xaml::Controls::RichEditBox& sender, const winrt::Windows::UI::Xaml::Controls::RichEditBoxSelectionChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextMenuOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlock>(ii, isWrapped)) {
-      c.ContextMenuOpening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextMenuOpening");
+  {"ContextMenuOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlock>(eai.obj, isWrapped)) {
+      c.ContextMenuOpening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlock>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlock>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsTextTrimmedChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlock>(ii, isWrapped)) {
-      c.IsTextTrimmedChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichTextBlock& sender, const winrt::Windows::UI::Xaml::Controls::IsTextTrimmedChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsTextTrimmedChanged");
+  {"IsTextTrimmedChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlock>(eai.obj, isWrapped)) {
+      c.IsTextTrimmedChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RichTextBlock& sender, const winrt::Windows::UI::Xaml::Controls::IsTextTrimmedChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsTextTrimmedChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlockOverflow>(ii, isWrapped)) {
-      c.IsTextTrimmedChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::RichTextBlockOverflow& sender, const winrt::Windows::UI::Xaml::Controls::IsTextTrimmedChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsTextTrimmedChanged");
+  {"IsTextTrimmedChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::RichTextBlockOverflow>(eai.obj, isWrapped)) {
+      c.IsTextTrimmedChanged([eai] (const winrt::Windows::UI::Xaml::Controls::RichTextBlockOverflow& sender, const winrt::Windows::UI::Xaml::Controls::IsTextTrimmedChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ViewChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(ii, isWrapped)) {
-      c.ViewChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ScrollViewerViewChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topViewChanged");
+  {"ViewChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(eai.obj, isWrapped)) {
+      c.ViewChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ScrollViewerViewChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ViewChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(ii, isWrapped)) {
-      c.ViewChanging([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ScrollViewerViewChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topViewChanging");
+  {"ViewChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(eai.obj, isWrapped)) {
+      c.ViewChanging([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ScrollViewerViewChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DirectManipulationCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(ii, isWrapped)) {
-      c.DirectManipulationCompleted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDirectManipulationCompleted");
+  {"DirectManipulationCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(eai.obj, isWrapped)) {
+      c.DirectManipulationCompleted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DirectManipulationStarted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(ii, isWrapped)) {
-      c.DirectManipulationStarted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDirectManipulationStarted");
+  {"DirectManipulationStarted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(eai.obj, isWrapped)) {
+      c.DirectManipulationStarted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"AnchorRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(ii, isWrapped)) {
-      c.AnchorRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ScrollViewer& sender, const winrt::Windows::UI::Xaml::Controls::AnchorRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topAnchorRequested");
+  {"AnchorRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ScrollViewer>(eai.obj, isWrapped)) {
+      c.AnchorRequested([eai] (const winrt::Windows::UI::Xaml::Controls::ScrollViewer& sender, const winrt::Windows::UI::Xaml::Controls::AnchorRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PrepareForFocusOnKeyboardInput", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(ii, isWrapped)) {
-      c.PrepareForFocusOnKeyboardInput([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPrepareForFocusOnKeyboardInput");
+  {"PrepareForFocusOnKeyboardInput", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(eai.obj, isWrapped)) {
+      c.PrepareForFocusOnKeyboardInput([eai] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"QueryChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(ii, isWrapped)) {
-      c.QueryChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxQueryChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topQueryChanged");
+  {"QueryChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(eai.obj, isWrapped)) {
+      c.QueryChanged([eai] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxQueryChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"QuerySubmitted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(ii, isWrapped)) {
-      c.QuerySubmitted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topQuerySubmitted");
+  {"QuerySubmitted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(eai.obj, isWrapped)) {
+      c.QuerySubmitted([eai] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxQuerySubmittedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ResultSuggestionChosen", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(ii, isWrapped)) {
-      c.ResultSuggestionChosen([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxResultSuggestionChosenEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topResultSuggestionChosen");
+  {"ResultSuggestionChosen", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(eai.obj, isWrapped)) {
+      c.ResultSuggestionChosen([eai] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxResultSuggestionChosenEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SuggestionsRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(ii, isWrapped)) {
-      c.SuggestionsRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxSuggestionsRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSuggestionsRequested");
+  {"SuggestionsRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SearchBox>(eai.obj, isWrapped)) {
+      c.SuggestionsRequested([eai] (const winrt::Windows::UI::Xaml::Controls::SearchBox& sender, const winrt::Windows::UI::Xaml::Controls::SearchBoxSuggestionsRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ViewChangeCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SemanticZoom>(ii, isWrapped)) {
-      c.ViewChangeCompleted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SemanticZoomViewChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topViewChangeCompleted");
+  {"ViewChangeCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SemanticZoom>(eai.obj, isWrapped)) {
+      c.ViewChangeCompleted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SemanticZoomViewChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ViewChangeStarted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SemanticZoom>(ii, isWrapped)) {
-      c.ViewChangeStarted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SemanticZoomViewChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topViewChangeStarted");
+  {"ViewChangeStarted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SemanticZoom>(eai.obj, isWrapped)) {
+      c.ViewChangeStarted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SemanticZoomViewChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"BackClick", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SettingsFlyout>(ii, isWrapped)) {
-      c.BackClick([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::BackClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topBackClick");
+  {"BackClick", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SettingsFlyout>(eai.obj, isWrapped)) {
+      c.BackClick([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::BackClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Click", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitButton>(ii, isWrapped)) {
-      c.Click([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SplitButton& sender, const winrt::Windows::UI::Xaml::Controls::SplitButtonClickEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClick");
+  {"Click", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitButton>(eai.obj, isWrapped)) {
+      c.Click([eai] (const winrt::Windows::UI::Xaml::Controls::SplitButton& sender, const winrt::Windows::UI::Xaml::Controls::SplitButtonClickEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneClosed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(ii, isWrapped)) {
-      c.PaneClosed([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneClosed");
+  {"PaneClosed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(eai.obj, isWrapped)) {
+      c.PaneClosed([eai] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneClosing", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(ii, isWrapped)) {
-      c.PaneClosing([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::UI::Xaml::Controls::SplitViewPaneClosingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneClosing");
+  {"PaneClosing", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(eai.obj, isWrapped)) {
+      c.PaneClosing([eai] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::UI::Xaml::Controls::SplitViewPaneClosingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneOpened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(ii, isWrapped)) {
-      c.PaneOpened([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneOpened");
+  {"PaneOpened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(eai.obj, isWrapped)) {
+      c.PaneOpened([eai] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PaneOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(ii, isWrapped)) {
-      c.PaneOpening([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaneOpening");
+  {"PaneOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SplitView>(eai.obj, isWrapped)) {
+      c.PaneOpening([eai] (const winrt::Windows::UI::Xaml::Controls::SplitView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"HorizontalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::StackPanel>(ii, isWrapped)) {
-      c.HorizontalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topHorizontalSnapPointsChanged");
+  {"HorizontalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::StackPanel>(eai.obj, isWrapped)) {
+      c.HorizontalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"VerticalSnapPointsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::StackPanel>(ii, isWrapped)) {
-      c.VerticalSnapPointsChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topVerticalSnapPointsChanged");
+  {"VerticalSnapPointsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::StackPanel>(eai.obj, isWrapped)) {
+      c.VerticalSnapPointsChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CompositionScaleChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SwapChainPanel>(ii, isWrapped)) {
-      c.CompositionScaleChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::SwapChainPanel& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCompositionScaleChanged");
+  {"CompositionScaleChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::SwapChainPanel>(eai.obj, isWrapped)) {
+      c.CompositionScaleChanged([eai] (const winrt::Windows::UI::Xaml::Controls::SwapChainPanel& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextMenuOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBlock>(ii, isWrapped)) {
-      c.ContextMenuOpening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextMenuOpening");
+  {"ContextMenuOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBlock>(eai.obj, isWrapped)) {
+      c.ContextMenuOpening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBlock>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBlock>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsTextTrimmedChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBlock>(ii, isWrapped)) {
-      c.IsTextTrimmedChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBlock& sender, const winrt::Windows::UI::Xaml::Controls::IsTextTrimmedChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsTextTrimmedChanged");
+  {"IsTextTrimmedChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBlock>(eai.obj, isWrapped)) {
+      c.IsTextTrimmedChanged([eai] (const winrt::Windows::UI::Xaml::Controls::TextBlock& sender, const winrt::Windows::UI::Xaml::Controls::IsTextTrimmedChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContextMenuOpening", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.ContextMenuOpening([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContextMenuOpening");
+  {"ContextMenuOpening", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.ContextMenuOpening([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::ContextMenuEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.SelectionChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanged");
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.TextChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextChanged");
+  {"TextChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.TextChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Paste", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.Paste([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextControlPasteEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPaste");
+  {"Paste", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.Paste([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TextControlPasteEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CandidateWindowBoundsChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.CandidateWindowBoundsChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::CandidateWindowBoundsChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCandidateWindowBoundsChanged");
+  {"CandidateWindowBoundsChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.CandidateWindowBoundsChanged([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::CandidateWindowBoundsChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.TextChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextBoxTextChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextChanging");
+  {"TextChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.TextChanging([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextBoxTextChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextCompositionChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.TextCompositionChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextCompositionChanged");
+  {"TextCompositionChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.TextCompositionChanged([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextCompositionEnded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.TextCompositionEnded([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionEndedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextCompositionEnded");
+  {"TextCompositionEnded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.TextCompositionEnded([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionEndedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TextCompositionStarted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.TextCompositionStarted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionStartedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTextCompositionStarted");
+  {"TextCompositionStarted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.TextCompositionStarted([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextCompositionStartedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"BeforeTextChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.BeforeTextChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextBoxBeforeTextChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topBeforeTextChanging");
+  {"BeforeTextChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.BeforeTextChanging([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextBoxBeforeTextChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CopyingToClipboard", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.CopyingToClipboard([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCopyingToClipboardEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCopyingToClipboard");
+  {"CopyingToClipboard", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.CopyingToClipboard([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCopyingToClipboardEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CuttingToClipboard", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.CuttingToClipboard([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCuttingToClipboardEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCuttingToClipboard");
+  {"CuttingToClipboard", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.CuttingToClipboard([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextControlCuttingToClipboardEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectionChanging", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(ii, isWrapped)) {
-      c.SelectionChanging([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextBoxSelectionChangingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectionChanging");
+  {"SelectionChanging", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TextBox>(eai.obj, isWrapped)) {
+      c.SelectionChanging([eai] (const winrt::Windows::UI::Xaml::Controls::TextBox& sender, const winrt::Windows::UI::Xaml::Controls::TextBoxSelectionChangingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TimeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TimePicker>(ii, isWrapped)) {
-      c.TimeChanged([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TimePickerValueChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTimeChanged");
+  {"TimeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TimePicker>(eai.obj, isWrapped)) {
+      c.TimeChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::TimePickerValueChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SelectedTimeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TimePicker>(ii, isWrapped)) {
-      c.SelectedTimeChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TimePicker& sender, const winrt::Windows::UI::Xaml::Controls::TimePickerSelectedValueChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSelectedTimeChanged");
+  {"SelectedTimeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TimePicker>(eai.obj, isWrapped)) {
+      c.SelectedTimeChanged([eai] (const winrt::Windows::UI::Xaml::Controls::TimePicker& sender, const winrt::Windows::UI::Xaml::Controls::TimePickerSelectedValueChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"TimePicked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TimePickerFlyout>(ii, isWrapped)) {
-      c.TimePicked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TimePickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::TimePickedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topTimePicked");
+  {"TimePicked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TimePickerFlyout>(eai.obj, isWrapped)) {
+      c.TimePicked([eai] (const winrt::Windows::UI::Xaml::Controls::TimePickerFlyout& sender, const winrt::Windows::UI::Xaml::Controls::TimePickedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"IsCheckedChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToggleSplitButton>(ii, isWrapped)) {
-      c.IsCheckedChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::ToggleSplitButton& sender, const winrt::Windows::UI::Xaml::Controls::ToggleSplitButtonIsCheckedChangedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topIsCheckedChanged");
+  {"IsCheckedChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToggleSplitButton>(eai.obj, isWrapped)) {
+      c.IsCheckedChanged([eai] (const winrt::Windows::UI::Xaml::Controls::ToggleSplitButton& sender, const winrt::Windows::UI::Xaml::Controls::ToggleSplitButtonIsCheckedChangedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Toggled", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToggleSwitch>(ii, isWrapped)) {
-      c.Toggled([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topToggled");
+  {"Toggled", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToggleSwitch>(eai.obj, isWrapped)) {
+      c.Toggled([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Closed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToolTip>(ii, isWrapped)) {
-      c.Closed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topClosed");
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToolTip>(eai.obj, isWrapped)) {
+      c.Closed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Opened", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToolTip>(ii, isWrapped)) {
-      c.Opened([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topOpened");
+  {"Opened", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::ToolTip>(eai.obj, isWrapped)) {
+      c.Opened([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Collapsed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(ii, isWrapped)) {
-      c.Collapsed([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewCollapsedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCollapsed");
+  {"Collapsed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      c.Collapsed([eai] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewCollapsedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"Expanding", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(ii, isWrapped)) {
-      c.Expanding([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewExpandingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topExpanding");
+  {"Expanding", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      c.Expanding([eai] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewExpandingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ItemInvoked", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(ii, isWrapped)) {
-      c.ItemInvoked([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewItemInvokedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topItemInvoked");
+  {"ItemInvoked", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      c.ItemInvoked([eai] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewItemInvokedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragItemsCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(ii, isWrapped)) {
-      c.DragItemsCompleted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragItemsCompleted");
+  {"DragItemsCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      c.DragItemsCompleted([eai] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DragItemsStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(ii, isWrapped)) {
-      c.DragItemsStarting([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsStartingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDragItemsStarting");
+  {"DragItemsStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      c.DragItemsStarting([eai] (const winrt::Windows::UI::Xaml::Controls::TreeView& sender, const winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsStartingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ModeChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TwoPaneView>(ii, isWrapped)) {
-      c.ModeChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::TwoPaneView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topModeChanged");
+  {"ModeChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::TwoPaneView>(eai.obj, isWrapped)) {
+      c.ModeChanged([eai] (const winrt::Windows::UI::Xaml::Controls::TwoPaneView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"CleanUpVirtualizedItemEvent", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::VirtualizingStackPanel>(ii, isWrapped)) {
-      c.CleanUpVirtualizedItemEvent([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::CleanUpVirtualizedItemEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topCleanUpVirtualizedItemEvent");
+  {"CleanUpVirtualizedItemEvent", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::VirtualizingStackPanel>(eai.obj, isWrapped)) {
+      c.CleanUpVirtualizedItemEvent([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::CleanUpVirtualizedItemEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"LoadCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.LoadCompleted([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLoadCompleted");
+  {"LoadCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.LoadCompleted([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NavigationFailed", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.NavigationFailed([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationFailedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigationFailed");
+  {"NavigationFailed", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.NavigationFailed([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationFailedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ScriptNotify", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.ScriptNotify([reactContext, ii] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::NotifyEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topScriptNotify");
+  {"ScriptNotify", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.ScriptNotify([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::NotifyEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContentLoading", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.ContentLoading([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContentLoading");
+  {"ContentLoading", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.ContentLoading([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"DOMContentLoaded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.DOMContentLoaded([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewDOMContentLoadedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topDOMContentLoaded");
+  {"DOMContentLoaded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.DOMContentLoaded([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewDOMContentLoadedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"FrameContentLoading", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.FrameContentLoading([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topFrameContentLoading");
+  {"FrameContentLoading", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.FrameContentLoading([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewContentLoadingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"FrameDOMContentLoaded", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.FrameDOMContentLoaded([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewDOMContentLoadedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topFrameDOMContentLoaded");
+  {"FrameDOMContentLoaded", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.FrameDOMContentLoaded([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewDOMContentLoadedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"FrameNavigationCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.FrameNavigationCompleted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topFrameNavigationCompleted");
+  {"FrameNavigationCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.FrameNavigationCompleted([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"FrameNavigationStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.FrameNavigationStarting([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topFrameNavigationStarting");
+  {"FrameNavigationStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.FrameNavigationStarting([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"LongRunningScriptDetected", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.LongRunningScriptDetected([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewLongRunningScriptDetectedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topLongRunningScriptDetected");
+  {"LongRunningScriptDetected", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.LongRunningScriptDetected([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewLongRunningScriptDetectedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NavigationCompleted", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.NavigationCompleted([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigationCompleted");
+  {"NavigationCompleted", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.NavigationCompleted([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NavigationStarting", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.NavigationStarting([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNavigationStarting");
+  {"NavigationStarting", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.NavigationStarting([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNavigationStartingEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"UnsafeContentWarningDisplaying", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.UnsafeContentWarningDisplaying([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topUnsafeContentWarningDisplaying");
+  {"UnsafeContentWarningDisplaying", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.UnsafeContentWarningDisplaying([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"UnviewableContentIdentified", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.UnviewableContentIdentified([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewUnviewableContentIdentifiedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topUnviewableContentIdentified");
+  {"UnviewableContentIdentified", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.UnviewableContentIdentified([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewUnviewableContentIdentifiedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"ContainsFullScreenElementChanged", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.ContainsFullScreenElementChanged([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::Foundation::IInspectable& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topContainsFullScreenElementChanged");
+  {"ContainsFullScreenElementChanged", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.ContainsFullScreenElementChanged([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"NewWindowRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.NewWindowRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topNewWindowRequested");
+  {"NewWindowRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.NewWindowRequested([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewNewWindowRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"PermissionRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.PermissionRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewPermissionRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topPermissionRequested");
+  {"PermissionRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.PermissionRequested([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewPermissionRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"UnsupportedUriSchemeIdentified", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.UnsupportedUriSchemeIdentified([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewUnsupportedUriSchemeIdentifiedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topUnsupportedUriSchemeIdentified");
+  {"UnsupportedUriSchemeIdentified", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.UnsupportedUriSchemeIdentified([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewUnsupportedUriSchemeIdentifiedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"SeparateProcessLost", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.SeparateProcessLost([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewSeparateProcessLostEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topSeparateProcessLost");
+  {"SeparateProcessLost", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.SeparateProcessLost([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewSeparateProcessLostEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },
-  {"WebResourceRequested", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-    if (auto c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(ii, isWrapped)) {
-      c.WebResourceRequested([reactContext, ii] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewWebResourceRequestedEventArgs& args) {
-        DispatchTheEvent(ii.try_as<xaml::FrameworkElement>(), sender.try_as<xaml::FrameworkElement>(), args, reactContext, L"topWebResourceRequested");
+  {"WebResourceRequested", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::WebView>(eai.obj, isWrapped)) {
+      c.WebResourceRequested([eai] (const winrt::Windows::UI::Xaml::Controls::WebView& sender, const winrt::Windows::UI::Xaml::Controls::WebViewWebResourceRequestedEventArgs& args) noexcept {
+        DispatchTheEvent(eai, sender, args);
       });
     }
   } },

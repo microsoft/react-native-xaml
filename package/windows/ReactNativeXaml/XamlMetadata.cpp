@@ -87,7 +87,11 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   if (!e) {
     e = Wrap(obj);
   }
-  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context, wrapped](const EventInfo& entry) {entry.attachHandler(e, context, wrapped); });
+
+
+  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context, wrapped](const EventInfo& entry) {
+    entry.attachHandler({ context, e, std::string("top") + entry.name }, wrapped);
+    });
   return e;
 }
 
