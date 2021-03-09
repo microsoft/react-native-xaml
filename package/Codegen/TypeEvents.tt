@@ -22,21 +22,32 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 template<typename TArgs>
 void SerializeEventArgs(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::Windows::Foundation::IInspectable& sender, const TArgs& args);
 
+
+template<typename T>
+__declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IInspectable& ii, bool isWrapped) {
+  auto o = isWrapped ? Unwrap<T>(ii) : ii.try_as<T>();
+  return o;
+}
+
+template<typename T>
+__declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
+  xaml::FrameworkElement senderAsFE = sender.try_as<FrameworkElement>();
+  auto wEN = winrt::to_hstring(eai.jsEventName);
+  eai.context.DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(), 
+    [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { 
+        SerializeEventArgs(evtDataWriter, senderAsFE, args); 
+        });
+};
+
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
 <# foreach (var evt in Events) { #>
-  {"<#= evt.GetName() #>", [](const winrt::Windows::Foundation::IInspectable& ii, const IReactContext& reactContext, bool isWrapped) {
-  winrt::Windows::Foundation::IInspectable o = (isWrapped) ? ii.as<ContentControl>().Content() : ii;
-  if (auto c = o.try_as<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>()) {
-        c.<#= evt.GetName() #>([reactContext, ii] (<#= Util.GetCppWinRTEventSignature(evt) #>) {
-            if (auto fe = sender ? sender.try_as<xaml::FrameworkElement>() : 
-            (ii ? ii.try_as<xaml::FrameworkElement>() : nullptr)) {
-              reactContext.DispatchEvent(fe, L"top<#= evt.GetName() #>", [sender, args](winrt::Microsoft::ReactNative::IJSValueWriter const& evtDataWriter) noexcept {
-                SerializeEventArgs(evtDataWriter, sender, args);
-              });
-            }
-        });
+  {"<#= evt.GetName() #>", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+    if (const auto& c = DoTheTypeChecking<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>(eai.obj, isWrapped)) {
+      c.<#= evt.GetName() #>([eai] (<#= Util.GetCppWinRTEventSignature(evt) #>) noexcept {
+        DispatchTheEvent(eai, sender, args);
+      });
     }
-    } },
+  } },
 <# } #>
 
 };

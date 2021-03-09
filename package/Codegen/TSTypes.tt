@@ -17,7 +17,7 @@ export type <#= type.GetName() #>Props = Omit<Native<#= type.GetName()#>Props, '
 
 export const <#= type.GetName() #>: React.FC<<#= type.GetName() #>Props> = (props: <#= type.GetName() #>Props) => {
     return (
-        <NativeXamlControl type="<#= Util.ToJsName(type.GetName()) #>" {...props} />
+        <NativeXamlControl type="<#= type.GetFullName() #>" {...props} />
     );
 };
 <# } #>

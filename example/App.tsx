@@ -34,6 +34,7 @@ MenuFlyoutItem,
 TextBox,
 // BlankUserControl,
 ClickMode,
+MenuFlyout,
 } from 'react-native-xaml'; // Would be from 'react-native-xaml' outside of this repo;
 
 const Section = ({children, title}): Node => {
@@ -105,12 +106,12 @@ const App: () => Node = () => {
                   {/*    <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />*/}
                   {/*</ComboBox>*/}
                   <TextBox text="this is a textbox with a menuFlyout" foreground="red">
-                      <NativeXamlControl type="menuFlyout" isOpen={isOpen} onClosed={() => {
+                      <MenuFlyout isOpen={isOpen} onClosed={() => {
                           setIsOpen(false);
                       }} >
                           <MenuFlyoutItem text="option 1" onClick={(x) => { alert(JSON.stringify(x.nativeEvent)); setOption("option 1"); }} />
                           <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); setOption("option 2"); }}/>
-                    </NativeXamlControl>
+                    </MenuFlyout>
                   </TextBox>
 
                   {/*<TextBox text="this is a textbox with a flyout" */}

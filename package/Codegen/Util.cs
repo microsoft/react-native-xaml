@@ -180,7 +180,7 @@ namespace Codegen
         }
         public static string GetJsTypeProperty(MrType t, Dictionary<string, List<MrType>> derived)
         {
-            var listDerived = derived[t.GetName()].Where(t => HasCtor(t)).Select(t => $"'{ToJsName(t.GetName())}'");
+            var listDerived = derived[t.GetName()].Where(t => HasCtor(t)).Select(t => $"'{t.GetFullName()}'");
             return string.Join("|", listDerived);
         }
 

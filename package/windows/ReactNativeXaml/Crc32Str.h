@@ -79,7 +79,15 @@ uint32_t constexpr const_hash(char const* input) {
 #ifdef USE_CRC32
 #define MAKE_KEY(str) COMPILE_TIME_CRC32_STR(str)
 using stringKey = uint32_t;
+inline bool Equals(const stringKey& a, const stringKey& b) {
+  return a == b;
+}
 #else
 #define MAKE_KEY(str) str
-using stringKey = std::string;
+using stringKey = const char* const;
+inline bool Equals(const stringKey& a, const stringKey& b) {
+  return strcmp(a, b) == 0;
+}
+
+
 #endif

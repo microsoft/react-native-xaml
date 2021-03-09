@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
+    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class TypeCreator : TypeCreatorBase
     {
@@ -31,63 +31,35 @@ namespace Codegen
             this.Write(@"#include ""pch.h""
 #include ""XamlMetadata.h""
 #include ""Crc32Str.h""
+#include <winstring.h>
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
+  wchar_t buf[128]{};
+  for (auto i = 0u; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
+    buf[i] = static_cast<wchar_t>(typeName[i]);
+  }
+
+  HSTRING clsid = nullptr;
+  if (SUCCEEDED(WindowsCreateString(buf, static_cast<UINT32>(wcslen(buf)), &clsid))) {
+    winrt::com_ptr<::IInspectable> insp{ nullptr };
+    if (SUCCEEDED(RoActivateInstance(clsid, insp.put()))) {
+      winrt::IUnknown unk{ nullptr };
+      winrt::copy_from_abi(unk, insp.get());
+      WindowsDeleteString(clsid);
+      return unk.as<winrt::IInspectable>();
+    }
+  }
+  WindowsDeleteString(clsid);
+  assert(false && ""xaml type not found"");
+  return nullptr;
+}
+
+
 ");
-            
-            #line 14 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
- foreach (var ns in Types.Select(t => t.GetNamespace()).Distinct()) { 
-            
-            #line default
-            #line hidden
-            this.Write("#include <winrt/");
-            
-            #line 15 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
-            this.Write(".h>\r\n");
-            
-            #line 16 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\r\nwinrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string" +
-                    "& typeName) const {\r\n  auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());\r\n  s" +
-                    "witch (key) {\r\n");
-            
-            #line 21 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
- foreach (var t in Types.Where(x => !x.IsAbstract)) { 
-            
-            #line default
-            #line hidden
-            this.Write("    case COMPILE_TIME_CRC32_STR(\"");
-            
-            #line 22 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(t.GetName())));
-            
-            #line default
-            #line hidden
-            this.Write("\"): { return ");
-            
-            #line 22 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
-            
-            #line default
-            #line hidden
-            this.Write("(); }\r\n");
-            
-            #line 23 "E:\react-native-xaml\package\Codegen\TypeCreator.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("  \r\n  }\r\n  assert(false && \"xaml type not found\");\r\n  return nullptr;\r\n}\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

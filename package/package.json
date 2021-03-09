@@ -53,6 +53,7 @@
     "CodeGen/*.cs*",
     "windows/",
     "lib/",
-    "src/"
+    "src/",
+    "!*.ruleset"
   ]
 }

@@ -5,12 +5,12 @@ export type Thickness = number | { left: number, top: number, right: number, bot
 
 
 export interface NativeDependencyObjectProps extends ViewProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarFlyout'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'datePickerFlyout'|'dropDownButton'|'flipView'|'flipViewItem'|'flyout'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listPickerFlyout'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyout'|'menuBarItemFlyout'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pickerFlyout'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'textCommandBarFlyout'|'timePicker'|'timePickerFlyout'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.AppBarSeparator'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.BitmapIcon'|'Windows.UI.Xaml.Controls.Border'|'Windows.UI.Xaml.Controls.CalendarDatePicker'|'Windows.UI.Xaml.Controls.CalendarView'|'Windows.UI.Xaml.Controls.CalendarViewDayItem'|'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.CaptureElement'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ColorPicker'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.CommandBarFlyout'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.DatePicker'|'Windows.UI.Xaml.Controls.DatePickerFlyout'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.Flyout'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.FontIcon'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HandwritingView'|'Windows.UI.Xaml.Controls.Hub'|'Windows.UI.Xaml.Controls.HubSection'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.IconSourceElement'|'Windows.UI.Xaml.Controls.Image'|'Windows.UI.Xaml.Controls.InkCanvas'|'Windows.UI.Xaml.Controls.InkToolbar'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ItemsPresenter'|'Windows.UI.Xaml.Controls.ItemsStackPanel'|'Windows.UI.Xaml.Controls.ItemsWrapGrid'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListPickerFlyout'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.Maps.MapControl'|'Windows.UI.Xaml.Controls.MediaElement'|'Windows.UI.Xaml.Controls.MediaPlayerElement'|'Windows.UI.Xaml.Controls.MediaPlayerPresenter'|'Windows.UI.Xaml.Controls.MediaTransportControls'|'Windows.UI.Xaml.Controls.MenuBar'|'Windows.UI.Xaml.Controls.MenuBarItem'|'Windows.UI.Xaml.Controls.MenuFlyout'|'Windows.UI.Xaml.Controls.MenuBarItemFlyout'|'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page'|'Windows.UI.Xaml.Controls.ParallaxView'|'Windows.UI.Xaml.Controls.PasswordBox'|'Windows.UI.Xaml.Controls.PathIcon'|'Windows.UI.Xaml.Controls.PersonPicture'|'Windows.UI.Xaml.Controls.PickerFlyout'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CalendarPanel'|'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotPanel'|'Windows.UI.Xaml.Controls.Primitives.Popup'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.Primitives.Thumb'|'Windows.UI.Xaml.Controls.Primitives.TickBar'|'Windows.UI.Xaml.Controls.ProgressBar'|'Windows.UI.Xaml.Controls.ProgressRing'|'Windows.UI.Xaml.Controls.RatingControl'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.RefreshVisualizer'|'Windows.UI.Xaml.Controls.RelativePanel'|'Windows.UI.Xaml.Controls.RichEditBox'|'Windows.UI.Xaml.Controls.RichTextBlock'|'Windows.UI.Xaml.Controls.RichTextBlockOverflow'|'Windows.UI.Xaml.Controls.ScrollContentPresenter'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SearchBox'|'Windows.UI.Xaml.Controls.SemanticZoom'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SplitView'|'Windows.UI.Xaml.Controls.StackPanel'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.SymbolIcon'|'Windows.UI.Xaml.Controls.TextBlock'|'Windows.UI.Xaml.Controls.TextBox'|'Windows.UI.Xaml.Controls.TextCommandBarFlyout'|'Windows.UI.Xaml.Controls.TimePicker'|'Windows.UI.Xaml.Controls.TimePickerFlyout'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToggleSwitch'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeView'|'Windows.UI.Xaml.Controls.TreeViewItem'|'Windows.UI.Xaml.Controls.TreeViewList'|'Windows.UI.Xaml.Controls.TwoPaneView'|'Windows.UI.Xaml.Controls.VariableSizedWrapGrid'|'Windows.UI.Xaml.Controls.Viewbox'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WebView'|'Windows.UI.Xaml.Controls.WrapGrid'|'Windows.UI.Xaml.Documents.Glyphs'|'Windows.UI.Xaml.Shapes.Ellipse'|'Windows.UI.Xaml.Shapes.Line'|'Windows.UI.Xaml.Shapes.Path'|'Windows.UI.Xaml.Shapes.Polygon'|'Windows.UI.Xaml.Shapes.Polyline'|'Windows.UI.Xaml.Shapes.Rectangle';
 }
 
 
 export interface NativeUIElementProps extends NativeDependencyObjectProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.AppBarSeparator'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.BitmapIcon'|'Windows.UI.Xaml.Controls.Border'|'Windows.UI.Xaml.Controls.CalendarDatePicker'|'Windows.UI.Xaml.Controls.CalendarView'|'Windows.UI.Xaml.Controls.CalendarViewDayItem'|'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.CaptureElement'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ColorPicker'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.DatePicker'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.FontIcon'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HandwritingView'|'Windows.UI.Xaml.Controls.Hub'|'Windows.UI.Xaml.Controls.HubSection'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.IconSourceElement'|'Windows.UI.Xaml.Controls.Image'|'Windows.UI.Xaml.Controls.InkCanvas'|'Windows.UI.Xaml.Controls.InkToolbar'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ItemsPresenter'|'Windows.UI.Xaml.Controls.ItemsStackPanel'|'Windows.UI.Xaml.Controls.ItemsWrapGrid'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.Maps.MapControl'|'Windows.UI.Xaml.Controls.MediaElement'|'Windows.UI.Xaml.Controls.MediaPlayerElement'|'Windows.UI.Xaml.Controls.MediaPlayerPresenter'|'Windows.UI.Xaml.Controls.MediaTransportControls'|'Windows.UI.Xaml.Controls.MenuBar'|'Windows.UI.Xaml.Controls.MenuBarItem'|'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page'|'Windows.UI.Xaml.Controls.ParallaxView'|'Windows.UI.Xaml.Controls.PasswordBox'|'Windows.UI.Xaml.Controls.PathIcon'|'Windows.UI.Xaml.Controls.PersonPicture'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CalendarPanel'|'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotPanel'|'Windows.UI.Xaml.Controls.Primitives.Popup'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.Primitives.Thumb'|'Windows.UI.Xaml.Controls.Primitives.TickBar'|'Windows.UI.Xaml.Controls.ProgressBar'|'Windows.UI.Xaml.Controls.ProgressRing'|'Windows.UI.Xaml.Controls.RatingControl'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.RefreshVisualizer'|'Windows.UI.Xaml.Controls.RelativePanel'|'Windows.UI.Xaml.Controls.RichEditBox'|'Windows.UI.Xaml.Controls.RichTextBlock'|'Windows.UI.Xaml.Controls.RichTextBlockOverflow'|'Windows.UI.Xaml.Controls.ScrollContentPresenter'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SearchBox'|'Windows.UI.Xaml.Controls.SemanticZoom'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SplitView'|'Windows.UI.Xaml.Controls.StackPanel'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.SymbolIcon'|'Windows.UI.Xaml.Controls.TextBlock'|'Windows.UI.Xaml.Controls.TextBox'|'Windows.UI.Xaml.Controls.TimePicker'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToggleSwitch'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeView'|'Windows.UI.Xaml.Controls.TreeViewItem'|'Windows.UI.Xaml.Controls.TreeViewList'|'Windows.UI.Xaml.Controls.TwoPaneView'|'Windows.UI.Xaml.Controls.VariableSizedWrapGrid'|'Windows.UI.Xaml.Controls.Viewbox'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WebView'|'Windows.UI.Xaml.Controls.WrapGrid'|'Windows.UI.Xaml.Documents.Glyphs'|'Windows.UI.Xaml.Shapes.Ellipse'|'Windows.UI.Xaml.Shapes.Line'|'Windows.UI.Xaml.Shapes.Path'|'Windows.UI.Xaml.Shapes.Polygon'|'Windows.UI.Xaml.Shapes.Polyline'|'Windows.UI.Xaml.Shapes.Rectangle';
   opacity?: number;
   manipulationMode?: Enums.ManipulationModes;
   isTapEnabled?: boolean;
@@ -82,7 +82,7 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
 
 
 export interface NativeFrameworkElementProps extends NativeUIElementProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'bitmapIcon'|'border'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'canvas'|'captureElement'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'contentPresenter'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'fontIcon'|'frame'|'grid'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'iconSourceElement'|'image'|'inkCanvas'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'itemsPresenter'|'itemsStackPanel'|'itemsWrapGrid'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaElement'|'mediaPlayerElement'|'mediaPlayerPresenter'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'parallaxView'|'passwordBox'|'pathIcon'|'personPicture'|'pivot'|'pivotItem'|'calendarPanel'|'carouselPanel'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'gridViewItemPresenter'|'listViewItemPresenter'|'navigationViewItemPresenter'|'pivotHeaderItem'|'pivotHeaderPanel'|'pivotPanel'|'popup'|'repeatButton'|'scrollBar'|'thumb'|'tickBar'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'relativePanel'|'richEditBox'|'richTextBlock'|'richTextBlockOverflow'|'scrollContentPresenter'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'swipeControl'|'symbolIcon'|'textBlock'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView'|'variableSizedWrapGrid'|'viewbox'|'virtualizingStackPanel'|'webView'|'wrapGrid'|'glyphs'|'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.AppBarSeparator'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.BitmapIcon'|'Windows.UI.Xaml.Controls.Border'|'Windows.UI.Xaml.Controls.CalendarDatePicker'|'Windows.UI.Xaml.Controls.CalendarView'|'Windows.UI.Xaml.Controls.CalendarViewDayItem'|'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.CaptureElement'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ColorPicker'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.DatePicker'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.FontIcon'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HandwritingView'|'Windows.UI.Xaml.Controls.Hub'|'Windows.UI.Xaml.Controls.HubSection'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.IconSourceElement'|'Windows.UI.Xaml.Controls.Image'|'Windows.UI.Xaml.Controls.InkCanvas'|'Windows.UI.Xaml.Controls.InkToolbar'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ItemsPresenter'|'Windows.UI.Xaml.Controls.ItemsStackPanel'|'Windows.UI.Xaml.Controls.ItemsWrapGrid'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.Maps.MapControl'|'Windows.UI.Xaml.Controls.MediaElement'|'Windows.UI.Xaml.Controls.MediaPlayerElement'|'Windows.UI.Xaml.Controls.MediaPlayerPresenter'|'Windows.UI.Xaml.Controls.MediaTransportControls'|'Windows.UI.Xaml.Controls.MenuBar'|'Windows.UI.Xaml.Controls.MenuBarItem'|'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page'|'Windows.UI.Xaml.Controls.ParallaxView'|'Windows.UI.Xaml.Controls.PasswordBox'|'Windows.UI.Xaml.Controls.PathIcon'|'Windows.UI.Xaml.Controls.PersonPicture'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CalendarPanel'|'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotPanel'|'Windows.UI.Xaml.Controls.Primitives.Popup'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.Primitives.Thumb'|'Windows.UI.Xaml.Controls.Primitives.TickBar'|'Windows.UI.Xaml.Controls.ProgressBar'|'Windows.UI.Xaml.Controls.ProgressRing'|'Windows.UI.Xaml.Controls.RatingControl'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.RefreshVisualizer'|'Windows.UI.Xaml.Controls.RelativePanel'|'Windows.UI.Xaml.Controls.RichEditBox'|'Windows.UI.Xaml.Controls.RichTextBlock'|'Windows.UI.Xaml.Controls.RichTextBlockOverflow'|'Windows.UI.Xaml.Controls.ScrollContentPresenter'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SearchBox'|'Windows.UI.Xaml.Controls.SemanticZoom'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SplitView'|'Windows.UI.Xaml.Controls.StackPanel'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.SymbolIcon'|'Windows.UI.Xaml.Controls.TextBlock'|'Windows.UI.Xaml.Controls.TextBox'|'Windows.UI.Xaml.Controls.TimePicker'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToggleSwitch'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeView'|'Windows.UI.Xaml.Controls.TreeViewItem'|'Windows.UI.Xaml.Controls.TreeViewList'|'Windows.UI.Xaml.Controls.TwoPaneView'|'Windows.UI.Xaml.Controls.VariableSizedWrapGrid'|'Windows.UI.Xaml.Controls.Viewbox'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WebView'|'Windows.UI.Xaml.Controls.WrapGrid'|'Windows.UI.Xaml.Documents.Glyphs'|'Windows.UI.Xaml.Shapes.Ellipse'|'Windows.UI.Xaml.Shapes.Line'|'Windows.UI.Xaml.Shapes.Path'|'Windows.UI.Xaml.Shapes.Polygon'|'Windows.UI.Xaml.Shapes.Polyline'|'Windows.UI.Xaml.Shapes.Rectangle';
   width?: number;
   verticalAlignment?: Enums.VerticalAlignment;
   tag?: object;
@@ -117,7 +117,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
 
 
 export interface NativeControlProps extends NativeFrameworkElementProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'appBarSeparator'|'toggleButton'|'appBarToggleButton'|'itemsControl'|'autoSuggestBox'|'calendarDatePicker'|'calendarView'|'calendarViewDayItem'|'checkBox'|'colorPicker'|'comboBox'|'comboBoxItem'|'commandBar'|'commandBarOverflowPresenter'|'contentDialog'|'datePicker'|'dropDownButton'|'flipView'|'flipViewItem'|'flyoutPresenter'|'frame'|'gridView'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'handwritingView'|'hub'|'hubSection'|'hyperlinkButton'|'inkToolbar'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPenConfigurationControl'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBox'|'listBoxItem'|'listView'|'listViewHeaderItem'|'listViewItem'|'mapControl'|'mediaPlayerElement'|'mediaTransportControls'|'menuBar'|'menuBarItem'|'menuFlyoutItem'|'menuFlyoutPresenter'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'navigationViewList'|'userControl'|'page'|'passwordBox'|'personPicture'|'pivot'|'pivotItem'|'slider'|'colorPickerSlider'|'colorSpectrum'|'commandBarFlyoutCommandBar'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'scrollBar'|'thumb'|'progressBar'|'progressRing'|'ratingControl'|'refreshContainer'|'refreshVisualizer'|'richEditBox'|'scrollViewer'|'searchBox'|'semanticZoom'|'settingsFlyout'|'splitButton'|'splitView'|'swipeControl'|'textBox'|'timePicker'|'toggleMenuFlyoutItem'|'toggleSplitButton'|'toggleSwitch'|'toolTip'|'treeView'|'treeViewItem'|'treeViewList'|'twoPaneView';
+  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.AppBarSeparator'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.CalendarDatePicker'|'Windows.UI.Xaml.Controls.CalendarView'|'Windows.UI.Xaml.Controls.CalendarViewDayItem'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ColorPicker'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.DatePicker'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HandwritingView'|'Windows.UI.Xaml.Controls.Hub'|'Windows.UI.Xaml.Controls.HubSection'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.InkToolbar'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.Maps.MapControl'|'Windows.UI.Xaml.Controls.MediaPlayerElement'|'Windows.UI.Xaml.Controls.MediaTransportControls'|'Windows.UI.Xaml.Controls.MenuBar'|'Windows.UI.Xaml.Controls.MenuBarItem'|'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page'|'Windows.UI.Xaml.Controls.PasswordBox'|'Windows.UI.Xaml.Controls.PersonPicture'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.Primitives.Thumb'|'Windows.UI.Xaml.Controls.ProgressBar'|'Windows.UI.Xaml.Controls.ProgressRing'|'Windows.UI.Xaml.Controls.RatingControl'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.RefreshVisualizer'|'Windows.UI.Xaml.Controls.RichEditBox'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SearchBox'|'Windows.UI.Xaml.Controls.SemanticZoom'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SplitView'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.TextBox'|'Windows.UI.Xaml.Controls.TimePicker'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToggleSwitch'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeView'|'Windows.UI.Xaml.Controls.TreeViewItem'|'Windows.UI.Xaml.Controls.TreeViewList'|'Windows.UI.Xaml.Controls.TwoPaneView';
   padding?: Thickness;
   isTabStop?: boolean;
   isEnabled?: boolean;
@@ -148,13 +148,13 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
 
 
 export interface NativeContentControlProps extends NativeControlProps {
-  type: 'contentControl'|'appBar'|'button'|'appBarButton'|'appBarElementContainer'|'toggleButton'|'appBarToggleButton'|'checkBox'|'comboBoxItem'|'commandBar'|'contentDialog'|'dropDownButton'|'flipViewItem'|'flyoutPresenter'|'frame'|'gridViewHeaderItem'|'gridViewItem'|'groupItem'|'hyperlinkButton'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'listBoxItem'|'listViewHeaderItem'|'listViewItem'|'navigationView'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'pivotItem'|'commandBarFlyoutCommandBar'|'navigationViewItemPresenter'|'pivotHeaderItem'|'repeatButton'|'refreshContainer'|'scrollViewer'|'settingsFlyout'|'splitButton'|'swipeControl'|'toggleSplitButton'|'toolTip'|'treeViewItem';
+  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeViewItem';
   content?: object;
 }
 
 
 export interface NativeAppBarProps extends NativeContentControlProps {
-  type: 'appBar'|'commandBar'|'commandBarFlyoutCommandBar';
+  type: 'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
   isSticky?: boolean;
   isOpen?: boolean;
   closedDisplayMode?: Enums.AppBarClosedDisplayMode;
@@ -167,7 +167,7 @@ export interface NativeAppBarProps extends NativeContentControlProps {
 
 
 export interface NativeButtonBaseProps extends NativeContentControlProps {
-  type: 'button'|'appBarButton'|'toggleButton'|'appBarToggleButton'|'checkBox'|'dropDownButton'|'hyperlinkButton'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarFlyoutItem'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton'|'repeatButton';
+  type: 'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton';
   commandParameter?: object;
   clickMode?: Enums.ClickMode;
   onClick?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -175,12 +175,12 @@ export interface NativeButtonBaseProps extends NativeContentControlProps {
 
 
 export interface NativeButtonProps extends NativeButtonBaseProps {
-  type: 'button'|'appBarButton'|'dropDownButton';
+  type: 'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.DropDownButton';
 }
 
 
 export interface NativeAppBarButtonProps extends NativeButtonProps {
-  type: 'appBarButton';
+  type: 'Windows.UI.Xaml.Controls.AppBarButton';
   label?: string;
   labelPosition?: Enums.CommandBarLabelPosition;
   keyboardAcceleratorTextOverride?: string;
@@ -190,21 +190,21 @@ export interface NativeAppBarButtonProps extends NativeButtonProps {
 
 
 export interface NativeAppBarElementContainerProps extends NativeContentControlProps {
-  type: 'appBarElementContainer';
+  type: 'Windows.UI.Xaml.Controls.AppBarElementContainer';
   isCompact?: boolean;
   dynamicOverflowOrder?: number;
 }
 
 
 export interface NativeAppBarSeparatorProps extends NativeControlProps {
-  type: 'appBarSeparator';
+  type: 'Windows.UI.Xaml.Controls.AppBarSeparator';
   isCompact?: boolean;
   dynamicOverflowOrder?: number;
 }
 
 
 export interface NativeToggleButtonProps extends NativeButtonBaseProps {
-  type: 'toggleButton'|'appBarToggleButton'|'checkBox'|'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToggleButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton'|'inkToolbarRulerButton'|'inkToolbarStencilButton';
+  type: 'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton';
   isThreeState?: boolean;
   onChecked?: (event: NativeSyntheticEvent<undefined>) => void;
   onIndeterminate?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -213,7 +213,7 @@ export interface NativeToggleButtonProps extends NativeButtonBaseProps {
 
 
 export interface NativeAppBarToggleButtonProps extends NativeToggleButtonProps {
-  type: 'appBarToggleButton';
+  type: 'Windows.UI.Xaml.Controls.AppBarToggleButton';
   label?: string;
   labelPosition?: Enums.CommandBarLabelPosition;
   keyboardAcceleratorTextOverride?: string;
@@ -223,14 +223,14 @@ export interface NativeAppBarToggleButtonProps extends NativeToggleButtonProps {
 
 
 export interface NativeItemsControlProps extends NativeControlProps {
-  type: 'itemsControl'|'autoSuggestBox'|'comboBox'|'commandBarOverflowPresenter'|'flipView'|'gridView'|'listBox'|'listView'|'menuFlyoutPresenter'|'navigationViewList'|'pivot'|'treeViewList';
+  type: 'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.TreeViewList';
   itemsSource?: object;
   displayMemberPath?: string;
 }
 
 
 export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
-  type: 'autoSuggestBox';
+  type: 'Windows.UI.Xaml.Controls.AutoSuggestBox';
   updateTextOnSelect?: boolean;
   textMemberPath?: string;
   text?: string;
@@ -248,19 +248,19 @@ export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
 
 
 export interface NativeIconElementProps extends NativeFrameworkElementProps {
-  type: 'bitmapIcon'|'fontIcon'|'iconSourceElement'|'pathIcon'|'symbolIcon';
+  type: 'Windows.UI.Xaml.Controls.BitmapIcon'|'Windows.UI.Xaml.Controls.FontIcon'|'Windows.UI.Xaml.Controls.IconSourceElement'|'Windows.UI.Xaml.Controls.PathIcon'|'Windows.UI.Xaml.Controls.SymbolIcon';
   foreground?: ColorValue;
 }
 
 
 export interface NativeBitmapIconProps extends NativeIconElementProps {
-  type: 'bitmapIcon';
+  type: 'Windows.UI.Xaml.Controls.BitmapIcon';
   showAsMonochrome?: boolean;
 }
 
 
 export interface NativeBorderProps extends NativeFrameworkElementProps {
-  type: 'border';
+  type: 'Windows.UI.Xaml.Controls.Border';
   padding?: Thickness;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
@@ -270,7 +270,7 @@ export interface NativeBorderProps extends NativeFrameworkElementProps {
 
 
 export interface NativeCalendarDatePickerProps extends NativeControlProps {
-  type: 'calendarDatePicker';
+  type: 'Windows.UI.Xaml.Controls.CalendarDatePicker';
   placeholderText?: string;
   isTodayHighlighted?: boolean;
   isOutOfScopeEnabled?: boolean;
@@ -292,7 +292,7 @@ export interface NativeCalendarDatePickerProps extends NativeControlProps {
 
 
 export interface NativeCalendarViewProps extends NativeControlProps {
-  type: 'calendarView';
+  type: 'Windows.UI.Xaml.Controls.CalendarView';
   horizontalFirstOfMonthLabelAlignment?: Enums.HorizontalAlignment;
   horizontalDayItemAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
@@ -336,35 +336,35 @@ export interface NativeCalendarViewProps extends NativeControlProps {
 
 
 export interface NativeCalendarViewDayItemProps extends NativeControlProps {
-  type: 'calendarViewDayItem';
+  type: 'Windows.UI.Xaml.Controls.CalendarViewDayItem';
   isBlackout?: boolean;
 }
 
 
 export interface NativePanelProps extends NativeFrameworkElementProps {
-  type: 'canvas'|'grid'|'itemsStackPanel'|'itemsWrapGrid'|'calendarPanel'|'carouselPanel'|'pivotHeaderPanel'|'pivotPanel'|'relativePanel'|'stackPanel'|'swapChainBackgroundPanel'|'swapChainPanel'|'variableSizedWrapGrid'|'virtualizingStackPanel'|'wrapGrid';
+  type: 'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.ItemsStackPanel'|'Windows.UI.Xaml.Controls.ItemsWrapGrid'|'Windows.UI.Xaml.Controls.Primitives.CalendarPanel'|'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotPanel'|'Windows.UI.Xaml.Controls.RelativePanel'|'Windows.UI.Xaml.Controls.StackPanel'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel'|'Windows.UI.Xaml.Controls.VariableSizedWrapGrid'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WrapGrid';
   background?: ColorValue;
 }
 
 
 export interface NativeCanvasProps extends NativePanelProps {
-  type: 'canvas'|'pivotHeaderPanel';
+  type: 'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel';
 }
 
 
 export interface NativeCaptureElementProps extends NativeFrameworkElementProps {
-  type: 'captureElement';
+  type: 'Windows.UI.Xaml.Controls.CaptureElement';
   stretch?: Enums.Stretch;
 }
 
 
 export interface NativeCheckBoxProps extends NativeToggleButtonProps {
-  type: 'checkBox'|'inkToolbarCustomToggleButton'|'inkToolbarRulerButton';
+  type: 'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton';
 }
 
 
 export interface NativeColorPickerProps extends NativeControlProps {
-  type: 'colorPicker';
+  type: 'Windows.UI.Xaml.Controls.ColorPicker';
   minValue?: number;
   minSaturation?: number;
   minHue?: number;
@@ -387,7 +387,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
 
 
 export interface NativeSelectorProps extends NativeItemsControlProps {
-  type: 'comboBox'|'flipView'|'gridView'|'listBox'|'listView'|'navigationViewList'|'treeViewList';
+  type: 'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.TreeViewList';
   selectedValuePath?: string;
   selectedValue?: object;
   selectedItem?: object;
@@ -397,7 +397,7 @@ export interface NativeSelectorProps extends NativeItemsControlProps {
 
 
 export interface NativeComboBoxProps extends NativeSelectorProps {
-  type: 'comboBox';
+  type: 'Windows.UI.Xaml.Controls.ComboBox';
   maxDropDownHeight?: number;
   isEditable?: boolean;
   isDropDownOpen?: boolean;
@@ -416,18 +416,18 @@ export interface NativeComboBoxProps extends NativeSelectorProps {
 
 
 export interface NativeSelectorItemProps extends NativeContentControlProps {
-  type: 'comboBoxItem'|'flipViewItem'|'gridViewItem'|'listBoxItem'|'listViewItem'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'treeViewItem';
+  type: 'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.TreeViewItem';
   isSelected?: boolean;
 }
 
 
 export interface NativeComboBoxItemProps extends NativeSelectorItemProps {
-  type: 'comboBoxItem';
+  type: 'Windows.UI.Xaml.Controls.ComboBoxItem';
 }
 
 
 export interface NativeCommandBarProps extends NativeAppBarProps {
-  type: 'commandBar'|'commandBarFlyoutCommandBar';
+  type: 'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
   overflowButtonVisibility?: Enums.CommandBarOverflowButtonVisibility;
   isDynamicOverflowEnabled?: boolean;
   defaultLabelPosition?: Enums.CommandBarDefaultLabelPosition;
@@ -436,7 +436,7 @@ export interface NativeCommandBarProps extends NativeAppBarProps {
 
 
 export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
-  type: 'commandBarFlyout'|'datePickerFlyout'|'flyout'|'listPickerFlyout'|'menuFlyout'|'menuBarItemFlyout'|'pickerFlyout'|'textCommandBarFlyout'|'timePickerFlyout';
+  type: 'Windows.UI.Xaml.Controls.CommandBarFlyout'|'Windows.UI.Xaml.Controls.DatePickerFlyout'|'Windows.UI.Xaml.Controls.Flyout'|'Windows.UI.Xaml.Controls.ListPickerFlyout'|'Windows.UI.Xaml.Controls.MenuFlyout'|'Windows.UI.Xaml.Controls.MenuBarItemFlyout'|'Windows.UI.Xaml.Controls.PickerFlyout'|'Windows.UI.Xaml.Controls.TextCommandBarFlyout'|'Windows.UI.Xaml.Controls.TimePickerFlyout';
   placement?: Enums.FlyoutPlacementMode;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   elementSoundMode?: Enums.ElementSoundMode;
@@ -453,17 +453,17 @@ export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
 
 
 export interface NativeCommandBarFlyoutProps extends NativeFlyoutBaseProps {
-  type: 'commandBarFlyout'|'textCommandBarFlyout';
+  type: 'Windows.UI.Xaml.Controls.CommandBarFlyout'|'Windows.UI.Xaml.Controls.TextCommandBarFlyout';
 }
 
 
 export interface NativeCommandBarOverflowPresenterProps extends NativeItemsControlProps {
-  type: 'commandBarOverflowPresenter';
+  type: 'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter';
 }
 
 
 export interface NativeContentDialogProps extends NativeContentControlProps {
-  type: 'contentDialog';
+  type: 'Windows.UI.Xaml.Controls.ContentDialog';
   title?: object;
   secondaryButtonText?: string;
   secondaryButtonCommandParameter?: object;
@@ -485,7 +485,7 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
 
 
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
-  type: 'contentPresenter'|'gridViewItemPresenter'|'listViewItemPresenter'|'scrollContentPresenter';
+  type: 'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.ScrollContentPresenter';
   foreground?: ColorValue;
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
@@ -510,7 +510,7 @@ export interface NativeContentPresenterProps extends NativeFrameworkElementProps
 
 
 export interface NativeDatePickerProps extends NativeControlProps {
-  type: 'datePicker';
+  type: 'Windows.UI.Xaml.Controls.DatePicker';
   yearVisible?: boolean;
   yearFormat?: string;
   orientation?: Enums.Orientation;
@@ -527,12 +527,12 @@ export interface NativeDatePickerProps extends NativeControlProps {
 
 
 export interface NativePickerFlyoutBaseProps extends NativeFlyoutBaseProps {
-  type: 'datePickerFlyout'|'listPickerFlyout'|'pickerFlyout'|'timePickerFlyout';
+  type: 'Windows.UI.Xaml.Controls.DatePickerFlyout'|'Windows.UI.Xaml.Controls.ListPickerFlyout'|'Windows.UI.Xaml.Controls.PickerFlyout'|'Windows.UI.Xaml.Controls.TimePickerFlyout';
 }
 
 
 export interface NativeDatePickerFlyoutProps extends NativePickerFlyoutBaseProps {
-  type: 'datePickerFlyout';
+  type: 'Windows.UI.Xaml.Controls.DatePickerFlyout';
   yearVisible?: boolean;
   monthVisible?: boolean;
   dayVisible?: boolean;
@@ -550,34 +550,34 @@ export interface NativeDatePickerFlyoutPresenterProps extends NativeControlProps
 
 
 export interface NativeDropDownButtonProps extends NativeButtonProps {
-  type: 'dropDownButton';
+  type: 'Windows.UI.Xaml.Controls.DropDownButton';
 }
 
 
 export interface NativeFlipViewProps extends NativeSelectorProps {
-  type: 'flipView';
+  type: 'Windows.UI.Xaml.Controls.FlipView';
   useTouchAnimationsForAllNavigation?: boolean;
 }
 
 
 export interface NativeFlipViewItemProps extends NativeSelectorItemProps {
-  type: 'flipViewItem';
+  type: 'Windows.UI.Xaml.Controls.FlipViewItem';
 }
 
 
 export interface NativeFlyoutProps extends NativeFlyoutBaseProps {
-  type: 'flyout';
+  type: 'Windows.UI.Xaml.Controls.Flyout';
 }
 
 
 export interface NativeFlyoutPresenterProps extends NativeContentControlProps {
-  type: 'flyoutPresenter';
+  type: 'Windows.UI.Xaml.Controls.FlyoutPresenter';
   isDefaultShadowEnabled?: boolean;
 }
 
 
 export interface NativeFontIconProps extends NativeIconElementProps {
-  type: 'fontIcon';
+  type: 'Windows.UI.Xaml.Controls.FontIcon';
   glyph?: string;
   fontStyle?: Enums.FontStyle;
   fontSize?: number;
@@ -587,7 +587,7 @@ export interface NativeFontIconProps extends NativeIconElementProps {
 
 
 export interface NativeFrameProps extends NativeContentControlProps {
-  type: 'frame';
+  type: 'Windows.UI.Xaml.Controls.Frame';
   cacheSize?: number;
   isNavigationStackEnabled?: boolean;
   onNavigated?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -598,7 +598,7 @@ export interface NativeFrameProps extends NativeContentControlProps {
 
 
 export interface NativeGridProps extends NativePanelProps {
-  type: 'grid'|'swapChainBackgroundPanel'|'swapChainPanel';
+  type: 'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel';
   padding?: Thickness;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
@@ -609,7 +609,7 @@ export interface NativeGridProps extends NativePanelProps {
 
 
 export interface NativeListViewBaseProps extends NativeSelectorProps {
-  type: 'gridView'|'listView'|'navigationViewList'|'treeViewList';
+  type: 'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.TreeViewList';
   selectionMode?: Enums.ListViewSelectionMode;
   isSwipeEnabled?: boolean;
   isItemClickEnabled?: boolean;
@@ -636,32 +636,32 @@ export interface NativeListViewBaseProps extends NativeSelectorProps {
 
 
 export interface NativeGridViewProps extends NativeListViewBaseProps {
-  type: 'gridView';
+  type: 'Windows.UI.Xaml.Controls.GridView';
 }
 
 
 export interface NativeListViewBaseHeaderItemProps extends NativeContentControlProps {
-  type: 'gridViewHeaderItem'|'listViewHeaderItem';
+  type: 'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewHeaderItem';
 }
 
 
 export interface NativeGridViewHeaderItemProps extends NativeListViewBaseHeaderItemProps {
-  type: 'gridViewHeaderItem';
+  type: 'Windows.UI.Xaml.Controls.GridViewHeaderItem';
 }
 
 
 export interface NativeGridViewItemProps extends NativeSelectorItemProps {
-  type: 'gridViewItem';
+  type: 'Windows.UI.Xaml.Controls.GridViewItem';
 }
 
 
 export interface NativeGroupItemProps extends NativeContentControlProps {
-  type: 'groupItem';
+  type: 'Windows.UI.Xaml.Controls.GroupItem';
 }
 
 
 export interface NativeHandwritingViewProps extends NativeControlProps {
-  type: 'handwritingView';
+  type: 'Windows.UI.Xaml.Controls.HandwritingView';
   placementAlignment?: Enums.HandwritingPanelPlacementAlignment;
   areCandidatesEnabled?: boolean;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -670,7 +670,7 @@ export interface NativeHandwritingViewProps extends NativeControlProps {
 
 
 export interface NativeHubProps extends NativeControlProps {
-  type: 'hub';
+  type: 'Windows.UI.Xaml.Controls.Hub';
   orientation?: Enums.Orientation;
   header?: object;
   defaultSectionIndex?: number;
@@ -682,24 +682,24 @@ export interface NativeHubProps extends NativeControlProps {
 
 
 export interface NativeHubSectionProps extends NativeControlProps {
-  type: 'hubSection';
+  type: 'Windows.UI.Xaml.Controls.HubSection';
   isHeaderInteractive?: boolean;
   header?: object;
 }
 
 
 export interface NativeHyperlinkButtonProps extends NativeButtonBaseProps {
-  type: 'hyperlinkButton';
+  type: 'Windows.UI.Xaml.Controls.HyperlinkButton';
 }
 
 
 export interface NativeIconSourceElementProps extends NativeIconElementProps {
-  type: 'iconSourceElement';
+  type: 'Windows.UI.Xaml.Controls.IconSourceElement';
 }
 
 
 export interface NativeImageProps extends NativeFrameworkElementProps {
-  type: 'image';
+  type: 'Windows.UI.Xaml.Controls.Image';
   stretch?: Enums.Stretch;
   nineGrid?: Thickness;
   onImageFailed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -708,12 +708,12 @@ export interface NativeImageProps extends NativeFrameworkElementProps {
 
 
 export interface NativeInkCanvasProps extends NativeFrameworkElementProps {
-  type: 'inkCanvas';
+  type: 'Windows.UI.Xaml.Controls.InkCanvas';
 }
 
 
 export interface NativeInkToolbarProps extends NativeControlProps {
-  type: 'inkToolbar';
+  type: 'Windows.UI.Xaml.Controls.InkToolbar';
   isRulerButtonChecked?: boolean;
   initialControls?: Enums.InkToolbarInitialControls;
   orientation?: Enums.Orientation;
@@ -728,19 +728,19 @@ export interface NativeInkToolbarProps extends NativeControlProps {
 
 
 export interface NativeRadioButtonProps extends NativeToggleButtonProps {
-  type: 'radioButton'|'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
+  type: 'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton';
   groupName?: string;
 }
 
 
 export interface NativeInkToolbarToolButtonProps extends NativeRadioButtonProps {
-  type: 'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarCustomToolButton'|'inkToolbarEraserButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton';
   isExtensionGlyphShown?: boolean;
 }
 
 
 export interface NativeInkToolbarPenButtonProps extends NativeInkToolbarToolButtonProps {
-  type: 'inkToolbarBallpointPenButton'|'inkToolbarCustomPenButton'|'inkToolbarHighlighterButton'|'inkToolbarPencilButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton';
   selectedStrokeWidth?: number;
   selectedBrushIndex?: number;
   minStrokeWidth?: number;
@@ -749,38 +749,38 @@ export interface NativeInkToolbarPenButtonProps extends NativeInkToolbarToolButt
 
 
 export interface NativeInkToolbarBallpointPenButtonProps extends NativeInkToolbarPenButtonProps {
-  type: 'inkToolbarBallpointPenButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton';
 }
 
 
 export interface NativeInkToolbarCustomPenButtonProps extends NativeInkToolbarPenButtonProps {
-  type: 'inkToolbarCustomPenButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton';
 }
 
 
 export interface NativeInkToolbarToggleButtonProps extends NativeCheckBoxProps {
-  type: 'inkToolbarCustomToggleButton'|'inkToolbarRulerButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton';
 }
 
 
 export interface NativeInkToolbarCustomToggleButtonProps extends NativeInkToolbarToggleButtonProps {
-  type: 'inkToolbarCustomToggleButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton';
 }
 
 
 export interface NativeInkToolbarCustomToolButtonProps extends NativeInkToolbarToolButtonProps {
-  type: 'inkToolbarCustomToolButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton';
 }
 
 
 export interface NativeInkToolbarEraserButtonProps extends NativeInkToolbarToolButtonProps {
-  type: 'inkToolbarEraserButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarEraserButton';
   isClearAllVisible?: boolean;
 }
 
 
 export interface NativeInkToolbarFlyoutItemProps extends NativeButtonBaseProps {
-  type: 'inkToolbarFlyoutItem';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem';
   kind?: Enums.InkToolbarFlyoutItemKind;
   isChecked?: boolean;
   onChecked?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -789,33 +789,33 @@ export interface NativeInkToolbarFlyoutItemProps extends NativeButtonBaseProps {
 
 
 export interface NativeInkToolbarHighlighterButtonProps extends NativeInkToolbarPenButtonProps {
-  type: 'inkToolbarHighlighterButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton';
 }
 
 
 export interface NativeInkToolbarMenuButtonProps extends NativeToggleButtonProps {
-  type: 'inkToolbarStencilButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarStencilButton';
   isExtensionGlyphShown?: boolean;
 }
 
 
 export interface NativeInkToolbarPenConfigurationControlProps extends NativeControlProps {
-  type: 'inkToolbarPenConfigurationControl';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl';
 }
 
 
 export interface NativeInkToolbarPencilButtonProps extends NativeInkToolbarPenButtonProps {
-  type: 'inkToolbarPencilButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarPencilButton';
 }
 
 
 export interface NativeInkToolbarRulerButtonProps extends NativeInkToolbarToggleButtonProps {
-  type: 'inkToolbarRulerButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarRulerButton';
 }
 
 
 export interface NativeInkToolbarStencilButtonProps extends NativeInkToolbarMenuButtonProps {
-  type: 'inkToolbarStencilButton';
+  type: 'Windows.UI.Xaml.Controls.InkToolbarStencilButton';
   selectedStencil?: Enums.InkToolbarStencilKind;
   isRulerItemVisible?: boolean;
   isProtractorItemVisible?: boolean;
@@ -823,7 +823,7 @@ export interface NativeInkToolbarStencilButtonProps extends NativeInkToolbarMenu
 
 
 export interface NativeItemsPresenterProps extends NativeFrameworkElementProps {
-  type: 'itemsPresenter';
+  type: 'Windows.UI.Xaml.Controls.ItemsPresenter';
   padding?: Thickness;
   header?: object;
   footer?: object;
@@ -833,7 +833,7 @@ export interface NativeItemsPresenterProps extends NativeFrameworkElementProps {
 
 
 export interface NativeItemsStackPanelProps extends NativePanelProps {
-  type: 'itemsStackPanel';
+  type: 'Windows.UI.Xaml.Controls.ItemsStackPanel';
   orientation?: Enums.Orientation;
   groupPadding?: Thickness;
   groupHeaderPlacement?: Enums.GroupHeaderPlacement;
@@ -843,7 +843,7 @@ export interface NativeItemsStackPanelProps extends NativePanelProps {
 
 
 export interface NativeItemsWrapGridProps extends NativePanelProps {
-  type: 'itemsWrapGrid';
+  type: 'Windows.UI.Xaml.Controls.ItemsWrapGrid';
   orientation?: Enums.Orientation;
   maximumRowsOrColumns?: number;
   itemWidth?: number;
@@ -856,19 +856,19 @@ export interface NativeItemsWrapGridProps extends NativePanelProps {
 
 
 export interface NativeListBoxProps extends NativeSelectorProps {
-  type: 'listBox';
+  type: 'Windows.UI.Xaml.Controls.ListBox';
   selectionMode?: Enums.SelectionMode;
   singleSelectionFollowsFocus?: boolean;
 }
 
 
 export interface NativeListBoxItemProps extends NativeSelectorItemProps {
-  type: 'listBoxItem';
+  type: 'Windows.UI.Xaml.Controls.ListBoxItem';
 }
 
 
 export interface NativeListPickerFlyoutProps extends NativePickerFlyoutBaseProps {
-  type: 'listPickerFlyout';
+  type: 'Windows.UI.Xaml.Controls.ListPickerFlyout';
   selectionMode?: Enums.ListPickerFlyoutSelectionMode;
   selectedValuePath?: string;
   selectedValue?: object;
@@ -885,22 +885,22 @@ export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps
 
 
 export interface NativeListViewProps extends NativeListViewBaseProps {
-  type: 'listView'|'navigationViewList'|'treeViewList';
+  type: 'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.TreeViewList';
 }
 
 
 export interface NativeListViewHeaderItemProps extends NativeListViewBaseHeaderItemProps {
-  type: 'listViewHeaderItem';
+  type: 'Windows.UI.Xaml.Controls.ListViewHeaderItem';
 }
 
 
 export interface NativeListViewItemProps extends NativeSelectorItemProps {
-  type: 'listViewItem'|'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator'|'treeViewItem';
+  type: 'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.TreeViewItem';
 }
 
 
 export interface NativeMapControlProps extends NativeControlProps {
-  type: 'mapControl';
+  type: 'Windows.UI.Xaml.Controls.Maps.MapControl';
   zoomLevel?: number;
   watermarkMode?: Enums.MapWatermarkMode;
   trafficFlowVisible?: boolean;
@@ -943,7 +943,7 @@ export interface NativeMapControlProps extends NativeControlProps {
 
 
 export interface NativeMediaElementProps extends NativeFrameworkElementProps {
-  type: 'mediaElement';
+  type: 'Windows.UI.Xaml.Controls.MediaElement';
   volume?: number;
   stereo3DVideoRenderMode?: Enums.Stereo3DVideoRenderMode;
   stereo3DVideoPackingMode?: Enums.Stereo3DVideoPackingMode;
@@ -974,7 +974,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
 
 
 export interface NativeMediaPlayerElementProps extends NativeControlProps {
-  type: 'mediaPlayerElement';
+  type: 'Windows.UI.Xaml.Controls.MediaPlayerElement';
   stretch?: Enums.Stretch;
   isFullWindow?: boolean;
   autoPlay?: boolean;
@@ -983,14 +983,14 @@ export interface NativeMediaPlayerElementProps extends NativeControlProps {
 
 
 export interface NativeMediaPlayerPresenterProps extends NativeFrameworkElementProps {
-  type: 'mediaPlayerPresenter';
+  type: 'Windows.UI.Xaml.Controls.MediaPlayerPresenter';
   stretch?: Enums.Stretch;
   isFullWindow?: boolean;
 }
 
 
 export interface NativeMediaTransportControlsProps extends NativeControlProps {
-  type: 'mediaTransportControls';
+  type: 'Windows.UI.Xaml.Controls.MediaTransportControls';
   isZoomEnabled?: boolean;
   isZoomButtonVisible?: boolean;
   isVolumeEnabled?: boolean;
@@ -1025,33 +1025,33 @@ export interface NativeMediaTransportControlsProps extends NativeControlProps {
 
 
 export interface NativeMenuBarProps extends NativeControlProps {
-  type: 'menuBar';
+  type: 'Windows.UI.Xaml.Controls.MenuBar';
 }
 
 
 export interface NativeMenuBarItemProps extends NativeControlProps {
-  type: 'menuBarItem';
+  type: 'Windows.UI.Xaml.Controls.MenuBarItem';
   title?: string;
 }
 
 
 export interface NativeMenuFlyoutProps extends NativeFlyoutBaseProps {
-  type: 'menuFlyout'|'menuBarItemFlyout';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyout'|'Windows.UI.Xaml.Controls.MenuBarItemFlyout';
 }
 
 
 export interface NativeMenuBarItemFlyoutProps extends NativeMenuFlyoutProps {
-  type: 'menuBarItemFlyout';
+  type: 'Windows.UI.Xaml.Controls.MenuBarItemFlyout';
 }
 
 
 export interface NativeMenuFlyoutItemBaseProps extends NativeControlProps {
-  type: 'menuFlyoutItem'|'menuFlyoutSeparator'|'menuFlyoutSubItem'|'toggleMenuFlyoutItem';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem';
 }
 
 
 export interface NativeMenuFlyoutItemProps extends NativeMenuFlyoutItemBaseProps {
-  type: 'menuFlyoutItem'|'toggleMenuFlyoutItem';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem';
   text?: string;
   commandParameter?: object;
   keyboardAcceleratorTextOverride?: string;
@@ -1060,24 +1060,24 @@ export interface NativeMenuFlyoutItemProps extends NativeMenuFlyoutItemBaseProps
 
 
 export interface NativeMenuFlyoutPresenterProps extends NativeItemsControlProps {
-  type: 'menuFlyoutPresenter';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutPresenter';
   isDefaultShadowEnabled?: boolean;
 }
 
 
 export interface NativeMenuFlyoutSeparatorProps extends NativeMenuFlyoutItemBaseProps {
-  type: 'menuFlyoutSeparator';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutSeparator';
 }
 
 
 export interface NativeMenuFlyoutSubItemProps extends NativeMenuFlyoutItemBaseProps {
-  type: 'menuFlyoutSubItem';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutSubItem';
   text?: string;
 }
 
 
 export interface NativeNavigationViewProps extends NativeContentControlProps {
-  type: 'navigationView';
+  type: 'Windows.UI.Xaml.Controls.NavigationView';
   isSettingsVisible?: boolean;
   isPaneToggleButtonVisible?: boolean;
   isPaneOpen?: boolean;
@@ -1109,43 +1109,43 @@ export interface NativeNavigationViewProps extends NativeContentControlProps {
 
 
 export interface NativeNavigationViewItemBaseProps extends NativeListViewItemProps {
-  type: 'navigationViewItem'|'navigationViewItemHeader'|'navigationViewItemSeparator';
+  type: 'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator';
 }
 
 
 export interface NativeNavigationViewItemProps extends NativeNavigationViewItemBaseProps {
-  type: 'navigationViewItem';
+  type: 'Windows.UI.Xaml.Controls.NavigationViewItem';
   selectsOnInvoked?: boolean;
 }
 
 
 export interface NativeNavigationViewItemHeaderProps extends NativeNavigationViewItemBaseProps {
-  type: 'navigationViewItemHeader';
+  type: 'Windows.UI.Xaml.Controls.NavigationViewItemHeader';
 }
 
 
 export interface NativeNavigationViewItemSeparatorProps extends NativeNavigationViewItemBaseProps {
-  type: 'navigationViewItemSeparator';
+  type: 'Windows.UI.Xaml.Controls.NavigationViewItemSeparator';
 }
 
 
 export interface NativeNavigationViewListProps extends NativeListViewProps {
-  type: 'navigationViewList';
+  type: 'Windows.UI.Xaml.Controls.NavigationViewList';
 }
 
 
 export interface NativeUserControlProps extends NativeControlProps {
-  type: 'userControl'|'page';
+  type: 'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page';
 }
 
 
 export interface NativePageProps extends NativeUserControlProps {
-  type: 'page';
+  type: 'Windows.UI.Xaml.Controls.Page';
 }
 
 
 export interface NativeParallaxViewProps extends NativeFrameworkElementProps {
-  type: 'parallaxView';
+  type: 'Windows.UI.Xaml.Controls.ParallaxView';
   verticalSourceStartOffset?: number;
   verticalSourceOffsetKind?: Enums.ParallaxSourceOffsetKind;
   verticalSourceEndOffset?: number;
@@ -1162,7 +1162,7 @@ export interface NativeParallaxViewProps extends NativeFrameworkElementProps {
 
 
 export interface NativePasswordBoxProps extends NativeControlProps {
-  type: 'passwordBox';
+  type: 'Windows.UI.Xaml.Controls.PasswordBox';
   passwordChar?: string;
   password?: string;
   maxLength?: number;
@@ -1182,12 +1182,12 @@ export interface NativePasswordBoxProps extends NativeControlProps {
 
 
 export interface NativePathIconProps extends NativeIconElementProps {
-  type: 'pathIcon';
+  type: 'Windows.UI.Xaml.Controls.PathIcon';
 }
 
 
 export interface NativePersonPictureProps extends NativeControlProps {
-  type: 'personPicture';
+  type: 'Windows.UI.Xaml.Controls.PersonPicture';
   preferSmallImage?: boolean;
   isGroup?: boolean;
   initials?: string;
@@ -1199,7 +1199,7 @@ export interface NativePersonPictureProps extends NativeControlProps {
 
 
 export interface NativePickerFlyoutProps extends NativePickerFlyoutBaseProps {
-  type: 'pickerFlyout';
+  type: 'Windows.UI.Xaml.Controls.PickerFlyout';
   confirmationButtonsVisible?: boolean;
   onConfirmed?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -1210,7 +1210,7 @@ export interface NativePickerFlyoutPresenterProps extends NativeContentControlPr
 
 
 export interface NativePivotProps extends NativeItemsControlProps {
-  type: 'pivot';
+  type: 'Windows.UI.Xaml.Controls.Pivot';
   title?: object;
   selectedItem?: object;
   selectedIndex?: number;
@@ -1228,30 +1228,30 @@ export interface NativePivotProps extends NativeItemsControlProps {
 
 
 export interface NativePivotItemProps extends NativeContentControlProps {
-  type: 'pivotItem';
+  type: 'Windows.UI.Xaml.Controls.PivotItem';
   header?: object;
 }
 
 
 export interface NativeCalendarPanelProps extends NativePanelProps {
-  type: 'calendarPanel';
+  type: 'Windows.UI.Xaml.Controls.Primitives.CalendarPanel';
 }
 
 
 export interface NativeVirtualizingPanelProps extends NativePanelProps {
-  type: 'carouselPanel'|'virtualizingStackPanel'|'wrapGrid';
+  type: 'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WrapGrid';
 }
 
 
 export interface NativeCarouselPanelProps extends NativeVirtualizingPanelProps {
-  type: 'carouselPanel';
+  type: 'Windows.UI.Xaml.Controls.Primitives.CarouselPanel';
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeRangeBaseProps extends NativeControlProps {
-  type: 'slider'|'colorPickerSlider'|'scrollBar'|'progressBar';
+  type: 'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.ProgressBar';
   value?: number;
   smallChange?: number;
   minimum?: number;
@@ -1262,7 +1262,7 @@ export interface NativeRangeBaseProps extends NativeControlProps {
 
 
 export interface NativeSliderProps extends NativeRangeBaseProps {
-  type: 'slider'|'colorPickerSlider';
+  type: 'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider';
   tickPlacement?: Enums.TickPlacement;
   tickFrequency?: number;
   stepFrequency?: number;
@@ -1276,13 +1276,13 @@ export interface NativeSliderProps extends NativeRangeBaseProps {
 
 
 export interface NativeColorPickerSliderProps extends NativeSliderProps {
-  type: 'colorPickerSlider';
+  type: 'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider';
   colorChannel?: Enums.ColorPickerHsvChannel;
 }
 
 
 export interface NativeColorSpectrumProps extends NativeControlProps {
-  type: 'colorSpectrum';
+  type: 'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum';
   shape?: Enums.ColorSpectrumShape;
   minValue?: number;
   minSaturation?: number;
@@ -1296,12 +1296,12 @@ export interface NativeColorSpectrumProps extends NativeControlProps {
 
 
 export interface NativeCommandBarFlyoutCommandBarProps extends NativeCommandBarProps {
-  type: 'commandBarFlyoutCommandBar';
+  type: 'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
 }
 
 
 export interface NativeGridViewItemPresenterProps extends NativeContentPresenterProps {
-  type: 'gridViewItemPresenter';
+  type: 'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter';
   selectionCheckMarkVisualEnabled?: boolean;
   selectedPointerOverBorderBrush?: ColorValue;
   selectedPointerOverBackground?: ColorValue;
@@ -1328,7 +1328,7 @@ export interface NativeGridViewItemPresenterProps extends NativeContentPresenter
 
 
 export interface NativeListViewItemPresenterProps extends NativeContentPresenterProps {
-  type: 'listViewItemPresenter';
+  type: 'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter';
   selectionCheckMarkVisualEnabled?: boolean;
   selectedPointerOverBorderBrush?: ColorValue;
   selectedPointerOverBackground?: ColorValue;
@@ -1385,36 +1385,36 @@ export interface NativeLoopingSelectorPanelProps extends NativeCanvasProps {
 
 
 export interface NativeNavigationViewItemPresenterProps extends NativeContentControlProps {
-  type: 'navigationViewItemPresenter';
+  type: 'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter';
 }
 
 
 export interface NativeOrientedVirtualizingPanelProps extends NativeVirtualizingPanelProps {
-  type: 'virtualizingStackPanel'|'wrapGrid';
+  type: 'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WrapGrid';
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativePivotHeaderItemProps extends NativeContentControlProps {
-  type: 'pivotHeaderItem';
+  type: 'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem';
 }
 
 
 export interface NativePivotHeaderPanelProps extends NativeCanvasProps {
-  type: 'pivotHeaderPanel';
+  type: 'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel';
 }
 
 
 export interface NativePivotPanelProps extends NativePanelProps {
-  type: 'pivotPanel';
+  type: 'Windows.UI.Xaml.Controls.Primitives.PivotPanel';
   onHorizontalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativePopupProps extends NativeFrameworkElementProps {
-  type: 'popup';
+  type: 'Windows.UI.Xaml.Controls.Primitives.Popup';
   verticalOffset?: number;
   isOpen?: boolean;
   isLightDismissEnabled?: boolean;
@@ -1427,14 +1427,14 @@ export interface NativePopupProps extends NativeFrameworkElementProps {
 
 
 export interface NativeRepeatButtonProps extends NativeButtonBaseProps {
-  type: 'repeatButton';
+  type: 'Windows.UI.Xaml.Controls.Primitives.RepeatButton';
   interval?: number;
   delay?: number;
 }
 
 
 export interface NativeScrollBarProps extends NativeRangeBaseProps {
-  type: 'scrollBar';
+  type: 'Windows.UI.Xaml.Controls.Primitives.ScrollBar';
   viewportSize?: number;
   orientation?: Enums.Orientation;
   indicatorMode?: Enums.ScrollingIndicatorMode;
@@ -1443,7 +1443,7 @@ export interface NativeScrollBarProps extends NativeRangeBaseProps {
 
 
 export interface NativeThumbProps extends NativeControlProps {
-  type: 'thumb';
+  type: 'Windows.UI.Xaml.Controls.Primitives.Thumb';
   onDragCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragDelta?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragStarted?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1451,13 +1451,13 @@ export interface NativeThumbProps extends NativeControlProps {
 
 
 export interface NativeTickBarProps extends NativeFrameworkElementProps {
-  type: 'tickBar';
+  type: 'Windows.UI.Xaml.Controls.Primitives.TickBar';
   fill?: ColorValue;
 }
 
 
 export interface NativeProgressBarProps extends NativeRangeBaseProps {
-  type: 'progressBar';
+  type: 'Windows.UI.Xaml.Controls.ProgressBar';
   showPaused?: boolean;
   showError?: boolean;
   isIndeterminate?: boolean;
@@ -1465,13 +1465,13 @@ export interface NativeProgressBarProps extends NativeRangeBaseProps {
 
 
 export interface NativeProgressRingProps extends NativeControlProps {
-  type: 'progressRing';
+  type: 'Windows.UI.Xaml.Controls.ProgressRing';
   isActive?: boolean;
 }
 
 
 export interface NativeRatingControlProps extends NativeControlProps {
-  type: 'ratingControl';
+  type: 'Windows.UI.Xaml.Controls.RatingControl';
   value?: number;
   placeholderValue?: number;
   maxRating?: number;
@@ -1484,14 +1484,14 @@ export interface NativeRatingControlProps extends NativeControlProps {
 
 
 export interface NativeRefreshContainerProps extends NativeContentControlProps {
-  type: 'refreshContainer';
+  type: 'Windows.UI.Xaml.Controls.RefreshContainer';
   pullDirection?: Enums.RefreshPullDirection;
   onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeRefreshVisualizerProps extends NativeControlProps {
-  type: 'refreshVisualizer';
+  type: 'Windows.UI.Xaml.Controls.RefreshVisualizer';
   orientation?: Enums.RefreshVisualizerOrientation;
   onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
   onRefreshStateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1499,7 +1499,7 @@ export interface NativeRefreshVisualizerProps extends NativeControlProps {
 
 
 export interface NativeRelativePanelProps extends NativePanelProps {
-  type: 'relativePanel';
+  type: 'Windows.UI.Xaml.Controls.RelativePanel';
   padding?: Thickness;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
@@ -1508,7 +1508,7 @@ export interface NativeRelativePanelProps extends NativePanelProps {
 
 
 export interface NativeRichEditBoxProps extends NativeControlProps {
-  type: 'richEditBox';
+  type: 'Windows.UI.Xaml.Controls.RichEditBox';
   textWrapping?: Enums.TextWrapping;
   textAlignment?: Enums.TextAlignment;
   isTextPredictionEnabled?: boolean;
@@ -1550,7 +1550,7 @@ export interface NativeRichEditBoxProps extends NativeControlProps {
 
 
 export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
-  type: 'richTextBlock';
+  type: 'Windows.UI.Xaml.Controls.RichTextBlock';
   textWrapping?: Enums.TextWrapping;
   textTrimming?: Enums.TextTrimming;
   textIndent?: number;
@@ -1580,7 +1580,7 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
 
 
 export interface NativeRichTextBlockOverflowProps extends NativeFrameworkElementProps {
-  type: 'richTextBlockOverflow';
+  type: 'Windows.UI.Xaml.Controls.RichTextBlockOverflow';
   padding?: Thickness;
   maxLines?: number;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1588,14 +1588,14 @@ export interface NativeRichTextBlockOverflowProps extends NativeFrameworkElement
 
 
 export interface NativeScrollContentPresenterProps extends NativeContentPresenterProps {
-  type: 'scrollContentPresenter';
+  type: 'Windows.UI.Xaml.Controls.ScrollContentPresenter';
   sizesContentToTemplatedParent?: boolean;
   canContentRenderOutsideBounds?: boolean;
 }
 
 
 export interface NativeScrollViewerProps extends NativeContentControlProps {
-  type: 'scrollViewer';
+  type: 'Windows.UI.Xaml.Controls.ScrollViewer';
   isVerticalRailEnabled?: boolean;
   isScrollInertiaEnabled?: boolean;
   isHorizontalScrollChainingEnabled?: boolean;
@@ -1630,7 +1630,7 @@ export interface NativeScrollViewerProps extends NativeContentControlProps {
 
 
 export interface NativeSearchBoxProps extends NativeControlProps {
-  type: 'searchBox';
+  type: 'Windows.UI.Xaml.Controls.SearchBox';
   searchHistoryEnabled?: boolean;
   searchHistoryContext?: string;
   queryText?: string;
@@ -1646,7 +1646,7 @@ export interface NativeSearchBoxProps extends NativeControlProps {
 
 
 export interface NativeSemanticZoomProps extends NativeControlProps {
-  type: 'semanticZoom';
+  type: 'Windows.UI.Xaml.Controls.SemanticZoom';
   isZoomedInViewActive?: boolean;
   isZoomOutButtonEnabled?: boolean;
   canChangeViews?: boolean;
@@ -1656,7 +1656,7 @@ export interface NativeSemanticZoomProps extends NativeControlProps {
 
 
 export interface NativeSettingsFlyoutProps extends NativeContentControlProps {
-  type: 'settingsFlyout';
+  type: 'Windows.UI.Xaml.Controls.SettingsFlyout';
   title?: string;
   headerForeground?: ColorValue;
   headerBackground?: ColorValue;
@@ -1665,14 +1665,14 @@ export interface NativeSettingsFlyoutProps extends NativeContentControlProps {
 
 
 export interface NativeSplitButtonProps extends NativeContentControlProps {
-  type: 'splitButton'|'toggleSplitButton';
+  type: 'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.ToggleSplitButton';
   commandParameter?: object;
   onClick?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeSplitViewProps extends NativeControlProps {
-  type: 'splitView';
+  type: 'Windows.UI.Xaml.Controls.SplitView';
   panePlacement?: Enums.SplitViewPanePlacement;
   paneBackground?: ColorValue;
   openPaneLength?: number;
@@ -1688,7 +1688,7 @@ export interface NativeSplitViewProps extends NativeControlProps {
 
 
 export interface NativeStackPanelProps extends NativePanelProps {
-  type: 'stackPanel';
+  type: 'Windows.UI.Xaml.Controls.StackPanel';
   orientation?: Enums.Orientation;
   areScrollSnapPointsRegular?: boolean;
   padding?: Thickness;
@@ -1702,29 +1702,29 @@ export interface NativeStackPanelProps extends NativePanelProps {
 
 
 export interface NativeSwapChainBackgroundPanelProps extends NativeGridProps {
-  type: 'swapChainBackgroundPanel';
+  type: 'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel';
 }
 
 
 export interface NativeSwapChainPanelProps extends NativeGridProps {
-  type: 'swapChainPanel';
+  type: 'Windows.UI.Xaml.Controls.SwapChainPanel';
   onCompositionScaleChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeSwipeControlProps extends NativeContentControlProps {
-  type: 'swipeControl';
+  type: 'Windows.UI.Xaml.Controls.SwipeControl';
 }
 
 
 export interface NativeSymbolIconProps extends NativeIconElementProps {
-  type: 'symbolIcon';
+  type: 'Windows.UI.Xaml.Controls.SymbolIcon';
   symbol?: Enums.Symbol;
 }
 
 
 export interface NativeTextBlockProps extends NativeFrameworkElementProps {
-  type: 'textBlock';
+  type: 'Windows.UI.Xaml.Controls.TextBlock';
   textWrapping?: Enums.TextWrapping;
   textTrimming?: Enums.TextTrimming;
   textAlignment?: Enums.TextAlignment;
@@ -1754,7 +1754,7 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
 
 
 export interface NativeTextBoxProps extends NativeControlProps {
-  type: 'textBox';
+  type: 'Windows.UI.Xaml.Controls.TextBox';
   textWrapping?: Enums.TextWrapping;
   textAlignment?: Enums.TextAlignment;
   text?: string;
@@ -1793,12 +1793,12 @@ export interface NativeTextBoxProps extends NativeControlProps {
 
 
 export interface NativeTextCommandBarFlyoutProps extends NativeCommandBarFlyoutProps {
-  type: 'textCommandBarFlyout';
+  type: 'Windows.UI.Xaml.Controls.TextCommandBarFlyout';
 }
 
 
 export interface NativeTimePickerProps extends NativeControlProps {
-  type: 'timePicker';
+  type: 'Windows.UI.Xaml.Controls.TimePicker';
   minuteIncrement?: number;
   header?: object;
   clockIdentifier?: string;
@@ -1809,7 +1809,7 @@ export interface NativeTimePickerProps extends NativeControlProps {
 
 
 export interface NativeTimePickerFlyoutProps extends NativePickerFlyoutBaseProps {
-  type: 'timePickerFlyout';
+  type: 'Windows.UI.Xaml.Controls.TimePickerFlyout';
   minuteIncrement?: number;
   clockIdentifier?: string;
   onTimePicked?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1822,19 +1822,19 @@ export interface NativeTimePickerFlyoutPresenterProps extends NativeControlProps
 
 
 export interface NativeToggleMenuFlyoutItemProps extends NativeMenuFlyoutItemProps {
-  type: 'toggleMenuFlyoutItem';
+  type: 'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem';
   isChecked?: boolean;
 }
 
 
 export interface NativeToggleSplitButtonProps extends NativeSplitButtonProps {
-  type: 'toggleSplitButton';
+  type: 'Windows.UI.Xaml.Controls.ToggleSplitButton';
   onIsCheckedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 
 
 export interface NativeToggleSwitchProps extends NativeControlProps {
-  type: 'toggleSwitch';
+  type: 'Windows.UI.Xaml.Controls.ToggleSwitch';
   onContent?: object;
   offContent?: object;
   isOn?: boolean;
@@ -1844,7 +1844,7 @@ export interface NativeToggleSwitchProps extends NativeControlProps {
 
 
 export interface NativeToolTipProps extends NativeContentControlProps {
-  type: 'toolTip';
+  type: 'Windows.UI.Xaml.Controls.ToolTip';
   verticalOffset?: number;
   placement?: Enums.PlacementMode;
   isOpen?: boolean;
@@ -1855,7 +1855,7 @@ export interface NativeToolTipProps extends NativeContentControlProps {
 
 
 export interface NativeTreeViewProps extends NativeControlProps {
-  type: 'treeView';
+  type: 'Windows.UI.Xaml.Controls.TreeView';
   selectionMode?: Enums.TreeViewSelectionMode;
   itemsSource?: object;
   canReorderItems?: boolean;
@@ -1869,7 +1869,7 @@ export interface NativeTreeViewProps extends NativeControlProps {
 
 
 export interface NativeTreeViewItemProps extends NativeListViewItemProps {
-  type: 'treeViewItem';
+  type: 'Windows.UI.Xaml.Controls.TreeViewItem';
   isExpanded?: boolean;
   glyphSize?: number;
   glyphOpacity?: number;
@@ -1882,12 +1882,12 @@ export interface NativeTreeViewItemProps extends NativeListViewItemProps {
 
 
 export interface NativeTreeViewListProps extends NativeListViewProps {
-  type: 'treeViewList';
+  type: 'Windows.UI.Xaml.Controls.TreeViewList';
 }
 
 
 export interface NativeTwoPaneViewProps extends NativeControlProps {
-  type: 'twoPaneView';
+  type: 'Windows.UI.Xaml.Controls.TwoPaneView';
   wideModeConfiguration?: Enums.TwoPaneViewWideModeConfiguration;
   tallModeConfiguration?: Enums.TwoPaneViewTallModeConfiguration;
   panePriority?: Enums.TwoPaneViewPriority;
@@ -1898,7 +1898,7 @@ export interface NativeTwoPaneViewProps extends NativeControlProps {
 
 
 export interface NativeVariableSizedWrapGridProps extends NativePanelProps {
-  type: 'variableSizedWrapGrid';
+  type: 'Windows.UI.Xaml.Controls.VariableSizedWrapGrid';
   verticalChildrenAlignment?: Enums.VerticalAlignment;
   orientation?: Enums.Orientation;
   maximumRowsOrColumns?: number;
@@ -1909,14 +1909,14 @@ export interface NativeVariableSizedWrapGridProps extends NativePanelProps {
 
 
 export interface NativeViewboxProps extends NativeFrameworkElementProps {
-  type: 'viewbox';
+  type: 'Windows.UI.Xaml.Controls.Viewbox';
   stretchDirection?: Enums.StretchDirection;
   stretch?: Enums.Stretch;
 }
 
 
 export interface NativeVirtualizingStackPanelProps extends NativeOrientedVirtualizingPanelProps {
-  type: 'virtualizingStackPanel';
+  type: 'Windows.UI.Xaml.Controls.VirtualizingStackPanel';
   orientation?: Enums.Orientation;
   areScrollSnapPointsRegular?: boolean;
   onCleanUpVirtualizedItemEvent?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1924,7 +1924,7 @@ export interface NativeVirtualizingStackPanelProps extends NativeOrientedVirtual
 
 
 export interface NativeWebViewProps extends NativeFrameworkElementProps {
-  type: 'webView';
+  type: 'Windows.UI.Xaml.Controls.WebView';
   onLoadCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onNavigationFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onScriptNotify?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1949,7 +1949,7 @@ export interface NativeWebViewProps extends NativeFrameworkElementProps {
 
 
 export interface NativeWrapGridProps extends NativeOrientedVirtualizingPanelProps {
-  type: 'wrapGrid';
+  type: 'Windows.UI.Xaml.Controls.WrapGrid';
   verticalChildrenAlignment?: Enums.VerticalAlignment;
   orientation?: Enums.Orientation;
   maximumRowsOrColumns?: number;
@@ -1960,7 +1960,7 @@ export interface NativeWrapGridProps extends NativeOrientedVirtualizingPanelProp
 
 
 export interface NativeGlyphsProps extends NativeFrameworkElementProps {
-  type: 'glyphs';
+  type: 'Windows.UI.Xaml.Documents.Glyphs';
   unicodeString?: string;
   styleSimulations?: Enums.StyleSimulations;
   originY?: number;
@@ -1974,7 +1974,7 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
 
 
 export interface NativeShapeProps extends NativeFrameworkElementProps {
-  type: 'ellipse'|'line'|'path'|'polygon'|'polyline'|'rectangle';
+  type: 'Windows.UI.Xaml.Shapes.Ellipse'|'Windows.UI.Xaml.Shapes.Line'|'Windows.UI.Xaml.Shapes.Path'|'Windows.UI.Xaml.Shapes.Polygon'|'Windows.UI.Xaml.Shapes.Polyline'|'Windows.UI.Xaml.Shapes.Rectangle';
   strokeThickness?: number;
   strokeStartLineCap?: Enums.PenLineCap;
   strokeMiterLimit?: number;
@@ -1989,12 +1989,12 @@ export interface NativeShapeProps extends NativeFrameworkElementProps {
 
 
 export interface NativeEllipseProps extends NativeShapeProps {
-  type: 'ellipse';
+  type: 'Windows.UI.Xaml.Shapes.Ellipse';
 }
 
 
 export interface NativeLineProps extends NativeShapeProps {
-  type: 'line';
+  type: 'Windows.UI.Xaml.Shapes.Line';
   y2?: number;
   y1?: number;
   x2?: number;
@@ -2003,24 +2003,24 @@ export interface NativeLineProps extends NativeShapeProps {
 
 
 export interface NativePathProps extends NativeShapeProps {
-  type: 'path';
+  type: 'Windows.UI.Xaml.Shapes.Path';
 }
 
 
 export interface NativePolygonProps extends NativeShapeProps {
-  type: 'polygon';
+  type: 'Windows.UI.Xaml.Shapes.Polygon';
   fillRule?: Enums.FillRule;
 }
 
 
 export interface NativePolylineProps extends NativeShapeProps {
-  type: 'polyline';
+  type: 'Windows.UI.Xaml.Shapes.Polyline';
   fillRule?: Enums.FillRule;
 }
 
 
 export interface NativeRectangleProps extends NativeShapeProps {
-  type: 'rectangle';
+  type: 'Windows.UI.Xaml.Shapes.Rectangle';
   radiusY?: number;
   radiusX?: number;
 }

@@ -121,15 +121,23 @@ T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
   return nullptr;
 }
 
+
+struct EventAttachInfo {
+  winrt::Microsoft::ReactNative::IReactContext context{ nullptr };
+  winrt::Windows::Foundation::IInspectable obj{ nullptr };
+  std::string jsEventName;
+};
+
 struct EventInfo {
-  const char* name;
-  using attachHandlers_t = void (*)(const winrt::Windows::Foundation::IInspectable& o, const winrt::Microsoft::ReactNative::IReactContext& context, bool isWrapped);
+  const char* const name;
+  using attachHandlers_t = void (*)(const EventAttachInfo&, bool isWrapped);
   attachHandlers_t attachHandler;
 
   static const EventInfo xamlEventMap[];
 };
 
 extern ConstantProviderDelegate GetEvents;
+
 
 struct XamlMetadata {
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;
@@ -139,6 +147,6 @@ struct XamlMetadata {
   void PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
 
 private:
-  winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName) const;
+  winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const;
   static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
 };

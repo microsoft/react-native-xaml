@@ -95,7 +95,7 @@ namespace Codegen
             this.Write("Props) => {\r\n    return (\r\n        <NativeXamlControl type=\"");
             
             #line 20 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type.GetName())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetFullName()));
             
             #line default
             #line hidden
