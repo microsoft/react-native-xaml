@@ -31,7 +31,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
-    <None Include="packages.config" />
     <None Include="..\..\src\index.ts">
       <Filter>TS</Filter>
     </None>
@@ -46,6 +45,7 @@
     </None>
     <None Include="..\..\..\README.md" />
     <None Include="..\..\src\Enums.ts" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codegen">
