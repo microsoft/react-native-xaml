@@ -34,6 +34,7 @@ namespace winrt::ReactNativeXaml {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
     xamlMetadata.PopulateNativeProps(nativeProps);
+    xamlMetadata.PopulateNativeEvents(nativeProps);
     return nativeProps.GetView();
   }
 
@@ -54,6 +55,8 @@ namespace winrt::ReactNativeXaml {
         if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
           prop->SetValue(control, propertyValue);
           handled = true;
+        }
+        else if (auto eventAttacher = xamlMetadata.AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
         }
         else if (propertyName == "type") {}
         else {

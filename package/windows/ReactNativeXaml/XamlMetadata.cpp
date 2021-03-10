@@ -20,17 +20,6 @@ using namespace winrt::Microsoft::ReactNative;
 
 XamlMetadata::XamlMetadata() {}
 
-winrt::Windows::Foundation::IInspectable XamlMetadata::ActivateInstance(const winrt::hstring& hstr) {
-  winrt::Windows::Foundation::IUnknown unknown{ nullptr };
-  auto nhstr = (HSTRING)(winrt::get_abi(hstr));
-  auto res = ::RoActivateInstance(nhstr, (::IInspectable**)winrt::put_abi(unknown));
-  if (res != S_OK) {
-
-  }
-  auto e = unknown.as<winrt::Windows::Foundation::IInspectable>();
-  return e;
-}
-
 /*
 struct RoutedEventInfo {
   const char* name;
@@ -79,22 +68,22 @@ FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
   }
 }
 
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const {
+winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) {
+  
   auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
   auto obj = Create(typeName);
   auto e = obj.try_as<FrameworkElement>();
   bool wrapped = e == nullptr;
   if (!e) {
     e = Wrap(obj);
+    wrapperToWrapped.emplace(e, WrapperInfo{ obj, {} });
+  }
+  else {
+    wrapperToWrapped.emplace(e, WrapperInfo{ nullptr, {} });
   }
 
-
-  std::for_each(EventInfo::xamlEventMap, EventInfo::xamlEventMap + ARRAYSIZE(EventInfo::xamlEventMap), [e, context, wrapped](const EventInfo& entry) {
-    entry.attachHandler({ context, e, std::string("top") + entry.name }, wrapped);
-    });
   return e;
 }
-
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
 void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
@@ -103,7 +92,8 @@ void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty pro
     if (v.AsBoolean()) {
       auto target = flyout.Target();
 
-      // TODO: Need to figure out the parent element, but the content control isn't parented to anything anymore
+      // Go from the wrapping ContentControl to the flyout's parent. 
+      // We can't use Parent() since we unparent the CC once we add the flyout to the tree
       if (!target) target = o.as<ContentControl>().DataContext().as<FrameworkElement>();
       auto cn = winrt::get_class_name(target);
       flyout.ShowAt(target);
@@ -148,3 +138,41 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   return nullptr;
 }
 
+// contentControl -> parent   via DataContext
+// contentControl -> flyout   via wrapperToWrapped
+
+const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::IReactContext& context, 
+  const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj, bool attaching) {
+  // obj is always a FrameworkElement (either a control or a wrapped control)
+  if (!propertyName._Starts_with("on")) return nullptr;
+  const std::string evtName = propertyName.substr(2);
+  auto key = MAKE_KEY(evtName.data());
+
+  auto e = obj.try_as<FrameworkElement>();
+  auto wrapper = wrapperToWrapped.find(e);
+  bool isWrapped = wrapper != wrapperToWrapped.end() && wrapper->second.wrappedObject != nullptr;
+  auto attachedEvt = std::find_if(wrapper->second.events.cbegin(), wrapper->second.events.cend(),
+    [&evtName](AttachedEventInfo const& ei) { return ei.name == evtName; });
+  winrt::event_token token{ 0 };
+  if (attachedEvt != wrapper->second.events.cend()) {
+    token = attachedEvt->token;
+  }
+  if (!attaching) {
+    wrapper->second.events.erase(attachedEvt);
+  }
+  EventAttachInfo eai { context, e, "top" + evtName };
+  for (const auto& entry : EventInfo::xamlEventMap) {
+    if (Equals(MAKE_KEY(entry.name), key)) {
+      auto attached = entry.attachHandler(eai, isWrapped, token);
+      if (attached == winrt::event_token{ -1 } && !attaching) {
+        return &entry;
+      }
+      else if (attached) {
+        wrapper->second.events.push_back({ evtName, attached });
+        return &entry;
+      }
+    }
+  }
+  return nullptr;
+
+}

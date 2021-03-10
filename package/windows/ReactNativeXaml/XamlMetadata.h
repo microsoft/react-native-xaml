@@ -130,7 +130,8 @@ struct EventAttachInfo {
 
 struct EventInfo {
   const char* const name;
-  using attachHandlers_t = void (*)(const EventAttachInfo&, bool isWrapped);
+
+  using attachHandlers_t = winrt::event_token (*)(const EventAttachInfo&, bool isWrapped, winrt::event_token);
   attachHandlers_t attachHandler;
 
   static const EventInfo xamlEventMap[];
@@ -138,15 +139,27 @@ struct EventInfo {
 
 extern ConstantProviderDelegate GetEvents;
 
+struct AttachedEventInfo {
+  std::string name;
+  winrt::event_token token;
+};
+
+struct WrapperInfo {
+  winrt::Windows::Foundation::IInspectable wrappedObject;
+  std::vector<AttachedEventInfo> events;
+};
 
 struct XamlMetadata {
-  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) const;
+  winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context);
   XamlMetadata();
   const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const;
-  static winrt::Windows::Foundation::IInspectable ActivateInstance(const winrt::hstring& hstr);
+  const EventInfo* AttachEvent(const winrt::Microsoft::ReactNative::IReactContext& context, const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj, bool attaching);
+
   void PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
+  void PopulateNativeEvents(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
 
 private:
   winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const;
   static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
+  std::map<xaml::FrameworkElement, WrapperInfo> wrapperToWrapped;
 };

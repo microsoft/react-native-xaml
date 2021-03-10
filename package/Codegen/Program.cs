@@ -146,6 +146,7 @@ namespace Codegen
                 var eventsToAdd = type.GetEvents().Where(e => Util.ShouldEmitEventMetadata(e));
                 events.AddRange(eventsToAdd);
             }
+
             properties.Sort((p1, p2) =>
             {
                 var h1 = GetPropertySortKey(p1);
