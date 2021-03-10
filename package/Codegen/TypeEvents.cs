@@ -97,39 +97,47 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
             
             #line default
             #line hidden
-            this.Write("\", [](const EventAttachInfo& eai, bool isWrapped) noexcept {\r\n    if (const auto&" +
-                    " c = DoTheTypeChecking<");
+            this.Write("\", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexc" +
+                    "ept {\r\n    if (const auto& c = DoTheTypeChecking<");
             
             #line 45 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(evt.DeclaringType)));
             
             #line default
             #line hidden
-            this.Write(">(eai.obj, isWrapped)) {\r\n      c.");
+            this.Write(">(eai.obj, isWrapped)) {\r\n      if (!token) {\r\n        return c.");
             
-            #line 46 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+            #line 47 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));
             
             #line default
             #line hidden
             this.Write("([eai] (");
             
-            #line 46 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+            #line 47 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTEventSignature(evt)));
             
             #line default
             #line hidden
-            this.Write(") noexcept {\r\n        DispatchTheEvent(eai, sender, args);\r\n      });\r\n    }\r\n  }" +
-                    " },\r\n");
+            this.Write(") noexcept {\r\n            DispatchTheEvent(eai, sender, args);\r\n        });\r\n    " +
+                    "  } else {\r\n        c.");
             
             #line 51 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));
+            
+            #line default
+            #line hidden
+            this.Write("(token);\r\n        return winrt::event_token{ -1 };\r\n      }\r\n    }\r\n    return wi" +
+                    "nrt::event_token{0};\r\n  } },\r\n");
+            
+            #line 57 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n};\r\n\r\nstatic_assert(ARRAYSIZE(EventInfo::xamlEventMap) == ");
             
-            #line 55 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+            #line 61 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Events.Count()));
             
             #line default
@@ -153,7 +161,12 @@ ConstantProviderDelegate GetEvents =
     }
 };
 
-");
+void XamlMetadata::PopulateNativeEvents(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
+    for (const auto& evtInfo : EventInfo::xamlEventMap) {
+        auto jsEvtName = L""on"" + winrt::to_hstring(evtInfo.name);
+        nativeProps.Insert(jsEvtName, ViewManagerPropertyType::Boolean);
+    }
+}");
             return this.GenerationEnvironment.ToString();
         }
     }

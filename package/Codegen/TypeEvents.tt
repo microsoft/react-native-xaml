@@ -41,12 +41,18 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
 
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
 <# foreach (var evt in Events) { #>
-  {"<#= evt.GetName() #>", [](const EventAttachInfo& eai, bool isWrapped) noexcept {
+  {"<#= evt.GetName() #>", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
     if (const auto& c = DoTheTypeChecking<<#= Util.GetCppWinRTType(evt.DeclaringType) #>>(eai.obj, isWrapped)) {
-      c.<#= evt.GetName() #>([eai] (<#= Util.GetCppWinRTEventSignature(evt) #>) noexcept {
-        DispatchTheEvent(eai, sender, args);
-      });
+      if (!token) {
+        return c.<#= evt.GetName() #>([eai] (<#= Util.GetCppWinRTEventSignature(evt) #>) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.<#= evt.GetName() #>(token);
+        return winrt::event_token{ -1 };
+      }
     }
+    return winrt::event_token{0};
   } },
 <# } #>
 
@@ -71,3 +77,9 @@ ConstantProviderDelegate GetEvents =
     }
 };
 
+void XamlMetadata::PopulateNativeEvents(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
+    for (const auto& evtInfo : EventInfo::xamlEventMap) {
+        auto jsEvtName = L"on" + winrt::to_hstring(evtInfo.name);
+        nativeProps.Insert(jsEvtName, ViewManagerPropertyType::Boolean);
+    }
+}
