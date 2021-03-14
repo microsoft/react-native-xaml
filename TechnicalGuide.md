@@ -1,6 +1,18 @@
 ## Design
 For background on React Native for Windows View Managers, see the [documentation](https://microsoft.github.io/react-native-windows/docs/view-managers).
 
+The CodeGen app in react-native-xaml is a C# net core console app that uses the [Middleweight Reflection](https://github.com/MikeHillberg/middleweight-reflection) library to parse a Windows metadata file from the Windows 10 SDK (windows.winmd).
+The app then uses [T4 runtime templates](https://docs.microsoft.com/visualstudio/modeling/run-time-text-generation-with-t4-text-templates) to produce some [C++/WinRT](https://github.com/microsoft/cppwinrt) code that gets compiled into the react-native-xaml View Manager. The generated code implements the metadata tables for what XAML types exist, their names, how to create them, what properties and events each type supports, etc.
+With this approach developers can write JSX code as shown in the below GIF. `NativeXamlControl` is the base control exposed to TS, and `HyperlinkButton` and `TextBlock` are aliases where they set the type property.
+
+## Implemented features:
+- All creatable XAML types can be created.
+- All properties of type int, double, float, string, color/brush can be set. Some special casing for properties of type Object (e.g. Content).
+- All events are wired up (see GIF below, clicking on a hyperlink button calls into the JS to execute the onClick handler!).
+- Children are supported for Panel, ContentControl, Border and ItemsControl (and their subclasses).
+- TypeScript typings for all wrapped XAML types.
+- Wrapping arbitrary app defined UserControls
+
 ### Metadata generation
 The story starts with react-native-xaml's code-generation phase. This is implemented in the CodeGen project. This is a .NET Core console app which can parse a [Windows Metadata](https://docs.microsoft.com/uwp/winrt-cref/winmd-files) assembly.
 Once the assembly is parsed into memory, CodeGen will find all of the types that it needs to make available to JavaScript, and generate both the required TypeScript information (props, types) as well as metadata about these types.
