@@ -17,6 +17,40 @@ using namespace xaml::Controls;
 
 namespace winrt::ReactNativeXaml {
 
+  struct XamlObject : winrt::implements<XamlObject, IJsiHostObject> {
+    JsiValueRef GetProperty(JsiRuntime runtime, JsiPropertyIdRef propertyId) {
+      if (runtime.PropertyIdEquals(propertyId, runtime.CreatePropertyId(L"prop1"))) {
+        return { JsiValueKind::Boolean, 1 };
+      }
+      return { JsiValueKind::Undefined, 0 };
+    }
+
+    void SetProperty(JsiRuntime runtime, JsiPropertyIdRef propertyId, JsiValueRef value) {
+
+    }
+
+    IVector<JsiPropertyIdRef> GetPropertyIds(JsiRuntime runtime) {
+      return winrt::single_threaded_vector(std::vector<JsiPropertyIdRef>({ runtime.CreatePropertyId(L"prop1") }));
+    }
+  };
+
+  void XamlViewManager::EnsureJsi() {
+    bool init = false;
+    if (!m_jsi) {
+      m_reactContext.JSDispatcher().Post([this]() {
+        m_jsi = m_reactContext.JSRuntime().as<winrt::Microsoft::ReactNative::JsiRuntime>();
+        auto xamlObjectName = m_jsi.CreatePropertyId(L"xaml");
+        auto xamlObjectName2 = m_jsi.CreatePropertyId(L"xaml2");
+        //auto xamlObject =  m_jsi.CreateStringFromAscii("hello from jsi");
+        auto foo = m_jsi.CreateValueFromJson(LR"({"value":42})");
+        auto obj = m_jsi.CreateObjectWithHostObject(winrt::make<XamlObject>());
+
+        m_jsi.SetProperty(m_jsi.Global(), xamlObjectName, { JsiValueKind::Object, foo.Data });
+        m_jsi.SetProperty(m_jsi.Global(), xamlObjectName2, { JsiValueKind::Object, obj.Data });
+
+        });
+      }
+  }
   // IViewManager
   hstring XamlViewManager::Name() noexcept {
     return L"XamlControl";
@@ -28,6 +62,7 @@ namespace winrt::ReactNativeXaml {
   }
 
   winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
+    EnsureJsi();
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
     return xamlMetadata.Create(typeName, m_reactContext);
@@ -74,6 +109,7 @@ namespace winrt::ReactNativeXaml {
     FrameworkElement const& view,
     IJSValueReader const& propertyMapReader) noexcept {
 
+    EnsureJsi();
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
 
     auto e = view;

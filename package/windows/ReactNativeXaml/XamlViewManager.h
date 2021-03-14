@@ -67,6 +67,8 @@ namespace winrt::ReactNativeXaml {
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
     XamlMetadata xamlMetadata;
+    winrt::Microsoft::ReactNative::JsiRuntime m_jsi{ nullptr };
+    void EnsureJsi();
   };
 
 }
