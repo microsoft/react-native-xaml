@@ -6,6 +6,8 @@
 #include "XamlMetadata.h"
 #include <winrt/Windows.UI.Xaml.Core.Direct.h>
 #include <UI.Xaml.Input.h>
+#include "Styling.h"
+
 using namespace winrt;
 using namespace Microsoft::ReactNative;
 using namespace xaml;
@@ -29,10 +31,38 @@ namespace winrt::ReactNativeXaml {
     return xamlMetadata.Create(typeName, m_reactContext);
   }
 
+  void SetResources(const xaml::FrameworkElement& fe, const JSValueObject& dict) {
+    ResourceDictionary rd;
+
+    for (auto const& entry : dict) {
+      const auto& name = entry.first;
+      const auto& value = entry.second;
+      auto brush = ColorUtils::BrushFrom(value);
+      auto nameII = winrt::box_value(winrt::to_hstring(name));
+      rd.Insert(nameII, brush);
+      if (auto v = rd.TryLookup(nameII)) {
+        if (auto scb = v.try_as<xaml::Media::SolidColorBrush>()) {
+          if (auto newScb = brush.try_as<xaml::Media::SolidColorBrush>()) {
+            scb.Color(newScb.Color());
+            continue;
+          }
+          else {
+            assert(false && "changing from a color to a non-color brush");
+          }
+        }
+        else {
+          assert(false && "changing from a non-color brush");
+        }
+      }
+    }
+    fe.Resources(rd);
+  }
+
   // IViewManagerWithNativeProperties
   IMapView<hstring, ViewManagerPropertyType> XamlViewManager::NativeProps() noexcept {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
+    nativeProps.Insert(L"resources", ViewManagerPropertyType::Map);
     xamlMetadata.PopulateNativeProps(nativeProps);
     xamlMetadata.PopulateNativeEvents(nativeProps);
     return nativeProps.GetView();
@@ -59,6 +89,9 @@ namespace winrt::ReactNativeXaml {
         else if (auto eventAttacher = xamlMetadata.AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
         }
         else if (propertyName == "type") {}
+        else if (propertyName == "resources" && propertyValue.Type() == JSValueType::Object && control.try_as<xaml::FrameworkElement>()) {
+          SetResources(control.as<xaml::FrameworkElement>(), propertyValue.AsObject());
+        }
         else {
           auto className = winrt::get_class_name(e);
           assert(false && "unknown property");
