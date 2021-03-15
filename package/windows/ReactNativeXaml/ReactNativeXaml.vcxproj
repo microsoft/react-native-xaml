@@ -140,6 +140,7 @@
     <ClInclude Include="ReactNativeModule.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Serialize.h" />
+    <ClInclude Include="Styling.h" />
     <ClInclude Include="XamlMetadata.h" />
     <ClInclude Include="XamlViewManager.h" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="Serialize.cpp" />
+    <ClCompile Include="Styling.cpp" />
     <ClCompile Include="XamlMetadata.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
   </ItemGroup>

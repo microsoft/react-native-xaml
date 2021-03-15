@@ -13,6 +13,7 @@
       <Filter>Codegen</Filter>
     </ClCompile>
     <ClCompile Include="Serialize.cpp" />
+    <ClCompile Include="Styling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -28,6 +29,7 @@
       <Filter>Codegen</Filter>
     </ClInclude>
     <ClInclude Include="Serialize.h" />
+    <ClInclude Include="Styling.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
