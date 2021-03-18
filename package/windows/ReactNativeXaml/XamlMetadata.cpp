@@ -13,6 +13,7 @@
 
 #include <JSValueWriter.h>
 #include "Serialize.h"
+#include <UI.Xaml.Documents.h>
 
 using namespace winrt::Microsoft::ReactNative;
 
@@ -86,7 +87,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 }
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
-void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue& v) {
   auto flyout = Unwrap<Controls::Primitives::FlyoutBase>(o);
   if (flyout && v.Type() == JSValueType::Boolean) {
     if (v.AsBoolean()) {
@@ -104,6 +105,12 @@ void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty pro
   }
 }
 
+void SetText_Run(xaml::DependencyObject o, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (auto run = Unwrap<Documents::Run>(o)) {
+    run.Text(winrt::to_hstring(v.AsString()));
+  }
+}
+
 const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
   auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return Equals(entry.propName, key); });
   while ((it != map + size) && Equals(it->propName, key)) {
@@ -118,7 +125,8 @@ const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::
 template<typename T> bool IsWrapped(const winrt::Windows::Foundation::IInspectable& i) { return Unwrap<T>(i) != nullptr; }
 
 const PropInfo fakeProps[] = {
-    { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
+  { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
+  { MAKE_KEY("text"), IsWrapped<Documents::Run>, nullptr, SetText_Run, ViewManagerPropertyType::String },
 };
 
 const struct {

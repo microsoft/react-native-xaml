@@ -109,6 +109,7 @@ namespace Codegen
             {
                 "Windows.UI.Xaml.UIElement",
                 "Windows.UI.Xaml.Controls.Primitives.FlyoutBase",
+                "Windows.UI.Xaml.Documents.TextElement",
             };
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>

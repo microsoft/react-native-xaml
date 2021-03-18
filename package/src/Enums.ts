@@ -830,11 +830,35 @@ export enum StretchDirection {
   Both = 2,
 }
 
+export enum CoreCursorType {
+  Arrow = 0,
+  Cross = 1,
+  Custom = 2,
+  Hand = 3,
+  Help = 4,
+  IBeam = 5,
+  SizeAll = 6,
+  SizeNortheastSouthwest = 7,
+  SizeNorthSouth = 8,
+  SizeNorthwestSoutheast = 9,
+  SizeWestEast = 10,
+  UniversalNo = 11,
+  UpArrow = 12,
+  Wait = 13,
+  Pin = 14,
+  Person = 15,
+}
+
 export enum StyleSimulations {
   None = 0,
   BoldSimulation = 1,
   ItalicSimulation = 2,
   BoldItalicSimulation = 3,
+}
+
+export enum UnderlineStyle {
+  None = 0,
+  Single = 1,
 }
 
 export enum PenLineCap {

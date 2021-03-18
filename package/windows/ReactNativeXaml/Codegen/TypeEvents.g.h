@@ -12,6 +12,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 #include <winrt/Windows.UI.Xaml.Controls.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Windows.UI.Xaml.Controls.Maps.h>
+#include <winrt/Windows.UI.Xaml.Documents.h>
 #include <winrt/Windows.UI.Xaml.Input.h>
 
 /////// Events
@@ -3546,10 +3547,127 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
     }
     return winrt::event_token{0};
   } },
+  {"AccessKeyDisplayDismissed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::TextElement>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.AccessKeyDisplayDismissed([eai] (const winrt::Windows::UI::Xaml::Documents::TextElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyDisplayDismissedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.AccessKeyDisplayDismissed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"AccessKeyDisplayRequested", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::TextElement>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.AccessKeyDisplayRequested([eai] (const winrt::Windows::UI::Xaml::Documents::TextElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyDisplayRequestedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.AccessKeyDisplayRequested(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"AccessKeyInvoked", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::TextElement>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.AccessKeyInvoked([eai] (const winrt::Windows::UI::Xaml::Documents::TextElement& sender, const winrt::Windows::UI::Xaml::Input::AccessKeyInvokedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.AccessKeyInvoked(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"GotFocus", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::ContentLink>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.GotFocus([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.GotFocus(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Invoked", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::ContentLink>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Invoked([eai] (const winrt::Windows::UI::Xaml::Documents::ContentLink& sender, const winrt::Windows::UI::Xaml::Documents::ContentLinkInvokedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Invoked(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"LostFocus", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::ContentLink>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.LostFocus([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.LostFocus(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Click", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::Hyperlink>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Click([eai] (const winrt::Windows::UI::Xaml::Documents::Hyperlink& sender, const winrt::Windows::UI::Xaml::Documents::HyperlinkClickEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Click(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"GotFocus", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::Hyperlink>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.GotFocus([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.GotFocus(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"LostFocus", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Documents::Hyperlink>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.LostFocus([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::RoutedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.LostFocus(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
 
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 270);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 279);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

@@ -151,7 +151,17 @@ import type {
     NativeVirtualizingStackPanelProps,
     NativeWebViewProps,
     NativeWrapGridProps,
+    NativeSpanProps,
+    NativeBoldProps,
+    NativeContentLinkProps,
     NativeGlyphsProps,
+    NativeHyperlinkProps,
+    NativeInlineUIContainerProps,
+    NativeItalicProps,
+    NativeLineBreakProps,
+    NativeParagraphProps,
+    NativeRunProps,
+    NativeUnderlineProps,
     NativeEllipseProps,
     NativeLineProps,
     NativePathProps,
@@ -1227,11 +1237,81 @@ export const WrapGrid: React.FC<WrapGridProps> = (props: WrapGridProps) => {
         <NativeXamlControl type="Windows.UI.Xaml.Controls.WrapGrid" {...props} />
     );
 };
+export type SpanProps = Omit<NativeSpanProps, 'type'>;
+
+export const Span: React.FC<SpanProps> = (props: SpanProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Span" {...props} />
+    );
+};
+export type BoldProps = Omit<NativeBoldProps, 'type'>;
+
+export const Bold: React.FC<BoldProps> = (props: BoldProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Bold" {...props} />
+    );
+};
+export type ContentLinkProps = Omit<NativeContentLinkProps, 'type'>;
+
+export const ContentLink: React.FC<ContentLinkProps> = (props: ContentLinkProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.ContentLink" {...props} />
+    );
+};
 export type GlyphsProps = Omit<NativeGlyphsProps, 'type'>;
 
 export const Glyphs: React.FC<GlyphsProps> = (props: GlyphsProps) => {
     return (
         <NativeXamlControl type="Windows.UI.Xaml.Documents.Glyphs" {...props} />
+    );
+};
+export type HyperlinkProps = Omit<NativeHyperlinkProps, 'type'>;
+
+export const Hyperlink: React.FC<HyperlinkProps> = (props: HyperlinkProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Hyperlink" {...props} />
+    );
+};
+export type InlineUIContainerProps = Omit<NativeInlineUIContainerProps, 'type'>;
+
+export const InlineUIContainer: React.FC<InlineUIContainerProps> = (props: InlineUIContainerProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.InlineUIContainer" {...props} />
+    );
+};
+export type ItalicProps = Omit<NativeItalicProps, 'type'>;
+
+export const Italic: React.FC<ItalicProps> = (props: ItalicProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Italic" {...props} />
+    );
+};
+export type LineBreakProps = Omit<NativeLineBreakProps, 'type'>;
+
+export const LineBreak: React.FC<LineBreakProps> = (props: LineBreakProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.LineBreak" {...props} />
+    );
+};
+export type ParagraphProps = Omit<NativeParagraphProps, 'type'>;
+
+export const Paragraph: React.FC<ParagraphProps> = (props: ParagraphProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Paragraph" {...props} />
+    );
+};
+export type RunProps = Omit<NativeRunProps, 'type'>;
+
+export const Run: React.FC<RunProps> = (props: RunProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Run" {...props} />
+    );
+};
+export type UnderlineProps = Omit<NativeUnderlineProps, 'type'>;
+
+export const Underline: React.FC<UnderlineProps> = (props: UnderlineProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Documents.Underline" {...props} />
     );
 };
 export type EllipseProps = Omit<NativeEllipseProps, 'type'>;
