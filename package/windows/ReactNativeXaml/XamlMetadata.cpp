@@ -87,8 +87,8 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 }
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
-void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue& v) {
-  auto flyout = Unwrap<Controls::Primitives::FlyoutBase>(o);
+void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  auto flyout = o.try_as<Controls::Primitives::FlyoutBase>();
   if (flyout && v.Type() == JSValueType::Boolean) {
     if (v.AsBoolean()) {
       auto target = flyout.Target();
@@ -105,29 +105,28 @@ void SetIsOpen_FlyoutBase(xaml::DependencyObject o, xaml::DependencyProperty, co
   }
 }
 
-void SetText_Run(xaml::DependencyObject o, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue& v) {
-  if (auto run = Unwrap<Documents::Run>(o)) {
+void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (auto run = o.try_as<Documents::Run>()) {
     run.Text(winrt::to_hstring(v.AsString()));
+  }
+}
+
+void SetNavigateUri_Hyperlink(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (auto hyperlink = o.try_as<Documents::Hyperlink>()) {
+    hyperlink.NavigateUri(winrt::Windows::Foundation::Uri{ winrt::to_hstring(v.AsString()) });
   }
 }
 
 const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
   auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return Equals(entry.propName, key); });
   while ((it != map + size) && Equals(it->propName, key)) {
-    if (it->isType(obj)) {
+    if (it->asType(obj)) {
       return it;
     }
     it++;
   }
   return nullptr;
 }
-
-template<typename T> bool IsWrapped(const winrt::Windows::Foundation::IInspectable& i) { return Unwrap<T>(i) != nullptr; }
-
-const PropInfo fakeProps[] = {
-  { MAKE_KEY("isOpen"), IsWrapped<Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
-  { MAKE_KEY("text"), IsWrapped<Documents::Run>, nullptr, SetText_Run, ViewManagerPropertyType::String },
-};
 
 const struct {
   const PropInfo* map;

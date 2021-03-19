@@ -35,6 +35,11 @@ TextBox,
 // BlankUserControl,
 ClickMode,
 MenuFlyout,
+RichTextBlock,
+Run,
+Italic,
+LineBreak,
+Hyperlink,
 } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
@@ -79,13 +84,18 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
+        <View>
+          <Text style={{fontSize: 36, textAlign: "center", padding: 42}}>
+            Welcome to
+            React Native XAML
+          </Text>
+        </View>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
               {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
-                  <Button content={{ string: `Last selected option = ${option} ${count}` }}
+                  {/* <Button content={{ string: `Last selected option = ${option} ${count}` }}
                       onClick={(a) => { 
                         alert(JSON.stringify(a.nativeEvent)); 
                         setCount(count + 1); 
@@ -95,7 +105,18 @@ const App: () => Node = () => {
                         ButtonForeground: "#00fff1",
                         ButtonForegroundPressed: "#2090ff",
                      }}
-                      />
+                  /> */}
+                  <TextBlock foreground="black" padding={20} margin={20}>
+                    <Run text="hello world!"/>
+                    <LineBreak />
+                    <Italic>
+                     <Run text="hi there"/>
+                    </Italic>
+                    <Hyperlink navigateUri="http://bing.com">
+                      <Run text="Go to bing"/>
+                    </Hyperlink>
+                  </TextBlock>
+
                   {/*<StackPanel orientation="horizontal">*/}
                   {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
                   {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
@@ -112,14 +133,14 @@ const App: () => Node = () => {
                   {/*    <ComboBoxItem content={{ string: "garfield" }} foreground="black" />*/}
                   {/*    <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />*/}
                   {/*</ComboBox>*/}
-                  <TextBox text="this is a textbox with a menuFlyout" foreground="red">
+                  {/* <TextBox text="this is a textbox with a menuFlyout" foreground="red">
                       <MenuFlyout isOpen={isOpen} onClosed={() => {
                           setIsOpen(false);
                       }} >
                           <MenuFlyoutItem text="option 1" onClick={(x) => { alert(JSON.stringify(x.nativeEvent)); setOption("option 1"); }} />
                           <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); setOption("option 2"); }}/>
                     </MenuFlyout>
-                  </TextBox>
+                  </TextBox> */}
 
                   {/*<TextBox text="this is a textbox with a flyout" */}
                   {/*  foreground="red" >*/}

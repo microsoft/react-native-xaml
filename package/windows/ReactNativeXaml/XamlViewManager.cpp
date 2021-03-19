@@ -85,7 +85,9 @@ namespace winrt::ReactNativeXaml {
 
         auto cn = get_class_name(e);
         if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
-          prop->SetValue(control, propertyValue);
+          auto realObject = prop->asType(control).as<DependencyObject>();
+          auto rcn = get_class_name(realObject);
+          prop->SetValue(realObject, propertyValue);
           handled = true;
         }
         else if (auto eventAttacher = xamlMetadata.AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
@@ -170,9 +172,14 @@ namespace winrt::ReactNativeXaml {
           return TBparent.Inlines().InsertAt(index, childInline);
         }
       }
-      else if (auto paragraphParent = parent.try_as<Documents::Paragraph>()) {
+      else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
         if (auto childInline = childContent.try_as<Documents::Inline>()) {
           return paragraphParent.Inlines().InsertAt(index, childInline);
+        }
+      }
+      else if (auto spanParent = Unwrap<Documents::Span>(parent)) {
+        if (auto childInline = childContent.try_as<Documents::Inline>()) {
+          return spanParent.Inlines().InsertAt(index, childInline);
         }
       }
     }

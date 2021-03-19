@@ -139,6 +139,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   isFocusEngagementEnabled?: boolean;
   isFocusEngaged?: boolean;
   elementSoundMode?: Enums.ElementSoundMode;
+  defaultStyleResourceUri?: string;
   backgroundSizing?: Enums.BackgroundSizing;
   defaultStyleKey?: object;
   onIsEnabledChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -255,6 +256,7 @@ export interface NativeIconElementProps extends NativeFrameworkElementProps {
 
 export interface NativeBitmapIconProps extends NativeIconElementProps {
   type: 'Windows.UI.Xaml.Controls.BitmapIcon';
+  uriSource?: string;
   showAsMonochrome?: boolean;
 }
 
@@ -445,6 +447,7 @@ export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
   showMode?: Enums.FlyoutShowMode;
   areOpenCloseAnimationsEnabled?: boolean;
   shouldConstrainToRootBounds?: boolean;
+  isOpen?: boolean; // synthetic property
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpening?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -690,6 +693,7 @@ export interface NativeHubSectionProps extends NativeControlProps {
 
 export interface NativeHyperlinkButtonProps extends NativeButtonBaseProps {
   type: 'Windows.UI.Xaml.Controls.HyperlinkButton';
+  navigateUri?: string;
 }
 
 
@@ -947,6 +951,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   volume?: number;
   stereo3DVideoRenderMode?: Enums.Stereo3DVideoRenderMode;
   stereo3DVideoPackingMode?: Enums.Stereo3DVideoPackingMode;
+  source?: string;
   realTimePlayback?: boolean;
   playbackRate?: number;
   autoPlay?: boolean;
@@ -957,6 +962,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   isLooping?: boolean;
   balance?: number;
   stretch?: Enums.Stretch;
+  playToPreferredSourceUri?: string;
   isFullWindow?: boolean;
   areTransportControlsEnabled?: boolean;
   onBufferingProgressChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1925,6 +1931,7 @@ export interface NativeVirtualizingStackPanelProps extends NativeOrientedVirtual
 
 export interface NativeWebViewProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.WebView';
+  source?: string;
   onLoadCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onNavigationFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onScriptNotify?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -2031,6 +2038,7 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
   originY?: number;
   originX?: number;
   indices?: string;
+  fontUri?: string;
   fontRenderingEmSize?: number;
   fill?: ColorValue;
   isColorFontEnabled?: boolean;
@@ -2040,6 +2048,7 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
 
 export interface NativeHyperlinkProps extends NativeSpanProps {
   type: 'Windows.UI.Xaml.Documents.Hyperlink';
+  navigateUri?: string;
   underlineStyle?: Enums.UnderlineStyle;
   elementSoundMode?: Enums.ElementSoundMode;
   xyFocusUpNavigationStrategy?: Enums.XYFocusNavigationStrategy;
@@ -2078,6 +2087,7 @@ export interface NativeParagraphProps extends NativeBlockProps {
 export interface NativeRunProps extends NativeInlineProps {
   type: 'Windows.UI.Xaml.Documents.Run';
   flowDirection?: Enums.FlowDirection;
+  text?: string; // synthetic property
 }
 
 

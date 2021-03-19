@@ -30,6 +30,7 @@ namespace Codegen
                 { "System.Int64", "int64_t" },
                 { "System.Double", "double" },
                 { "System.Single", "float" },
+                { "System.Uri", "winrt::Windows::Foundation::Uri" },
                 { "System.Object", "winrt::Windows::Foundation::IInspectable" },
             };
             if (t.IsEnum) return "int32_t";
@@ -58,8 +59,11 @@ namespace Codegen
 
             switch (propType.GetFullName())
             {
-                case "System.String": return ViewManagerPropertyType.String;
-                case "System.Boolean": return ViewManagerPropertyType.Boolean;
+                case "System.String":
+                case "System.Uri":
+                    return ViewManagerPropertyType.String;
+                case "System.Boolean": 
+                    return ViewManagerPropertyType.Boolean;
                 case "System.Int32":
                 case "System.Int64":
                 case "System.Double":
@@ -90,7 +94,9 @@ namespace Codegen
 
             switch (propType.GetFullName())
             {
-                case "System.String": return "string";
+                case "System.String":
+                case "System.Uri":
+                    return "string";
                 case "System.Boolean": return "boolean";
                 case "System.Int32":
                 case "System.Int64":
