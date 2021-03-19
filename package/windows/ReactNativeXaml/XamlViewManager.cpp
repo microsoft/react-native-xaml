@@ -150,6 +150,13 @@ namespace winrt::ReactNativeXaml {
     if (auto childAsCC = child.try_as<ContentControl>()) {
       auto childContent = childAsCC.Content();
       childType = winrt::get_class_name(childContent);
+      auto tag = childAsCC.Tag();
+      if (auto depObj = childContent.try_as<DependencyObject>()) {
+        // tranfer the Tag from the wrapping ContentControl
+        // This is used for dispatching events and TouchEventHandler
+        depObj.SetValue(FrameworkElement::TagProperty(), tag);
+      }
+
       if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
         Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
         childAsCC.DataContext(e);
