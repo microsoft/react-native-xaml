@@ -6,6 +6,8 @@
 #include "XamlMetadata.h"
 #include <winrt/Windows.UI.Xaml.Core.Direct.h>
 #include <UI.Xaml.Input.h>
+#include <UI.Xaml.Documents.h>
+
 #include "Styling.h"
 
 using namespace winrt;
@@ -83,7 +85,9 @@ namespace winrt::ReactNativeXaml {
 
         auto cn = get_class_name(e);
         if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
-          prop->SetValue(control, propertyValue);
+          auto realObject = prop->asType(control).as<DependencyObject>();
+          auto rcn = get_class_name(realObject);
+          prop->SetValue(realObject, propertyValue);
           handled = true;
         }
         else if (auto eventAttacher = xamlMetadata.AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
@@ -137,13 +141,22 @@ namespace winrt::ReactNativeXaml {
     m_reactContext = reactContext;
   }
 
-  void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index) {
+  void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
+    auto index = static_cast<uint32_t>(_index);
+
     auto e = parent;
     auto parentType = winrt::get_class_name(e);
     auto childType = winrt::get_class_name(child);
     if (auto childAsCC = child.try_as<ContentControl>()) {
       auto childContent = childAsCC.Content();
       childType = winrt::get_class_name(childContent);
+      auto tag = childAsCC.Tag();
+      if (auto depObj = childContent.try_as<DependencyObject>()) {
+        // tranfer the Tag from the wrapping ContentControl
+        // This is used for dispatching events and TouchEventHandler
+        depObj.SetValue(FrameworkElement::TagProperty(), tag);
+      }
+
       if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
         Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
         childAsCC.DataContext(e);
@@ -156,16 +169,37 @@ namespace winrt::ReactNativeXaml {
           }
         }
       }
+      else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
+        if (auto childBlock = childContent.try_as<Documents::Block>()) {
+          return RTBparent.Blocks().InsertAt(index, childBlock);
+        }
+      }
+      else if (auto TBparent = parent.try_as<TextBlock>()) {
+        if (auto childInline = childContent.try_as<Documents::Inline>()) {
+          return TBparent.Inlines().InsertAt(index, childInline);
+        }
+      }
+      else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
+        if (auto childInline = childContent.try_as<Documents::Inline>()) {
+          return paragraphParent.Inlines().InsertAt(index, childInline);
+        }
+      }
+      else if (auto spanParent = Unwrap<Documents::Span>(parent)) {
+        if (auto childInline = childContent.try_as<Documents::Inline>()) {
+          return spanParent.Inlines().InsertAt(index, childInline);
+        }
+      }
     }
 
+
     if (auto panel = e.try_as<Panel>()) {
-      return panel.Children().InsertAt(static_cast<uint32_t>(index), child);
+      return panel.Children().InsertAt(index, child);
     }
     else if (auto contentCtrl = e.try_as<ContentControl>()) {
       auto parentContent = contentCtrl.Content();
       if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
         if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
-          return menuFlyout.Items().InsertAt(static_cast<uint32_t>(index), mfi);
+          return menuFlyout.Items().InsertAt(index, mfi);
         }
       }
       else if (auto flyout = parentContent.try_as<Flyout>()) {
@@ -184,7 +218,7 @@ namespace winrt::ReactNativeXaml {
       }
     }
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
-      return itemsControl.Items().InsertAt(static_cast<uint32_t>(index), child);
+      return itemsControl.Items().InsertAt(index, child);
     }
     //else 
     {

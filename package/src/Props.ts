@@ -5,7 +5,7 @@ export type Thickness = number | { left: number, top: number, right: number, bot
 
 
 export interface NativeDependencyObjectProps extends ViewProps {
-  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.AppBarSeparator'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.BitmapIcon'|'Windows.UI.Xaml.Controls.Border'|'Windows.UI.Xaml.Controls.CalendarDatePicker'|'Windows.UI.Xaml.Controls.CalendarView'|'Windows.UI.Xaml.Controls.CalendarViewDayItem'|'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.CaptureElement'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ColorPicker'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.CommandBarFlyout'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.DatePicker'|'Windows.UI.Xaml.Controls.DatePickerFlyout'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.Flyout'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.FontIcon'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HandwritingView'|'Windows.UI.Xaml.Controls.Hub'|'Windows.UI.Xaml.Controls.HubSection'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.IconSourceElement'|'Windows.UI.Xaml.Controls.Image'|'Windows.UI.Xaml.Controls.InkCanvas'|'Windows.UI.Xaml.Controls.InkToolbar'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ItemsPresenter'|'Windows.UI.Xaml.Controls.ItemsStackPanel'|'Windows.UI.Xaml.Controls.ItemsWrapGrid'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListPickerFlyout'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.Maps.MapControl'|'Windows.UI.Xaml.Controls.MediaElement'|'Windows.UI.Xaml.Controls.MediaPlayerElement'|'Windows.UI.Xaml.Controls.MediaPlayerPresenter'|'Windows.UI.Xaml.Controls.MediaTransportControls'|'Windows.UI.Xaml.Controls.MenuBar'|'Windows.UI.Xaml.Controls.MenuBarItem'|'Windows.UI.Xaml.Controls.MenuFlyout'|'Windows.UI.Xaml.Controls.MenuBarItemFlyout'|'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page'|'Windows.UI.Xaml.Controls.ParallaxView'|'Windows.UI.Xaml.Controls.PasswordBox'|'Windows.UI.Xaml.Controls.PathIcon'|'Windows.UI.Xaml.Controls.PersonPicture'|'Windows.UI.Xaml.Controls.PickerFlyout'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CalendarPanel'|'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotPanel'|'Windows.UI.Xaml.Controls.Primitives.Popup'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.Primitives.Thumb'|'Windows.UI.Xaml.Controls.Primitives.TickBar'|'Windows.UI.Xaml.Controls.ProgressBar'|'Windows.UI.Xaml.Controls.ProgressRing'|'Windows.UI.Xaml.Controls.RatingControl'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.RefreshVisualizer'|'Windows.UI.Xaml.Controls.RelativePanel'|'Windows.UI.Xaml.Controls.RichEditBox'|'Windows.UI.Xaml.Controls.RichTextBlock'|'Windows.UI.Xaml.Controls.RichTextBlockOverflow'|'Windows.UI.Xaml.Controls.ScrollContentPresenter'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SearchBox'|'Windows.UI.Xaml.Controls.SemanticZoom'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SplitView'|'Windows.UI.Xaml.Controls.StackPanel'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.SymbolIcon'|'Windows.UI.Xaml.Controls.TextBlock'|'Windows.UI.Xaml.Controls.TextBox'|'Windows.UI.Xaml.Controls.TextCommandBarFlyout'|'Windows.UI.Xaml.Controls.TimePicker'|'Windows.UI.Xaml.Controls.TimePickerFlyout'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToggleSwitch'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeView'|'Windows.UI.Xaml.Controls.TreeViewItem'|'Windows.UI.Xaml.Controls.TreeViewList'|'Windows.UI.Xaml.Controls.TwoPaneView'|'Windows.UI.Xaml.Controls.VariableSizedWrapGrid'|'Windows.UI.Xaml.Controls.Viewbox'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WebView'|'Windows.UI.Xaml.Controls.WrapGrid'|'Windows.UI.Xaml.Documents.Glyphs'|'Windows.UI.Xaml.Shapes.Ellipse'|'Windows.UI.Xaml.Shapes.Line'|'Windows.UI.Xaml.Shapes.Path'|'Windows.UI.Xaml.Shapes.Polygon'|'Windows.UI.Xaml.Shapes.Polyline'|'Windows.UI.Xaml.Shapes.Rectangle';
+  type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.AppBarSeparator'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.BitmapIcon'|'Windows.UI.Xaml.Controls.Border'|'Windows.UI.Xaml.Controls.CalendarDatePicker'|'Windows.UI.Xaml.Controls.CalendarView'|'Windows.UI.Xaml.Controls.CalendarViewDayItem'|'Windows.UI.Xaml.Controls.Canvas'|'Windows.UI.Xaml.Controls.CaptureElement'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ColorPicker'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.CommandBarFlyout'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.DatePicker'|'Windows.UI.Xaml.Controls.DatePickerFlyout'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.Flyout'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.FontIcon'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.Grid'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HandwritingView'|'Windows.UI.Xaml.Controls.Hub'|'Windows.UI.Xaml.Controls.HubSection'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.IconSourceElement'|'Windows.UI.Xaml.Controls.Image'|'Windows.UI.Xaml.Controls.InkCanvas'|'Windows.UI.Xaml.Controls.InkToolbar'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ItemsPresenter'|'Windows.UI.Xaml.Controls.ItemsStackPanel'|'Windows.UI.Xaml.Controls.ItemsWrapGrid'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListPickerFlyout'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.Maps.MapControl'|'Windows.UI.Xaml.Controls.MediaElement'|'Windows.UI.Xaml.Controls.MediaPlayerElement'|'Windows.UI.Xaml.Controls.MediaPlayerPresenter'|'Windows.UI.Xaml.Controls.MediaTransportControls'|'Windows.UI.Xaml.Controls.MenuBar'|'Windows.UI.Xaml.Controls.MenuBarItem'|'Windows.UI.Xaml.Controls.MenuFlyout'|'Windows.UI.Xaml.Controls.MenuBarItemFlyout'|'Windows.UI.Xaml.Controls.MenuFlyoutItem'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.MenuFlyoutSeparator'|'Windows.UI.Xaml.Controls.MenuFlyoutSubItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.UserControl'|'Windows.UI.Xaml.Controls.Page'|'Windows.UI.Xaml.Controls.ParallaxView'|'Windows.UI.Xaml.Controls.PasswordBox'|'Windows.UI.Xaml.Controls.PathIcon'|'Windows.UI.Xaml.Controls.PersonPicture'|'Windows.UI.Xaml.Controls.PickerFlyout'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CalendarPanel'|'Windows.UI.Xaml.Controls.Primitives.CarouselPanel'|'Windows.UI.Xaml.Controls.Slider'|'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider'|'Windows.UI.Xaml.Controls.Primitives.ColorSpectrum'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel'|'Windows.UI.Xaml.Controls.Primitives.PivotPanel'|'Windows.UI.Xaml.Controls.Primitives.Popup'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.Primitives.ScrollBar'|'Windows.UI.Xaml.Controls.Primitives.Thumb'|'Windows.UI.Xaml.Controls.Primitives.TickBar'|'Windows.UI.Xaml.Controls.ProgressBar'|'Windows.UI.Xaml.Controls.ProgressRing'|'Windows.UI.Xaml.Controls.RatingControl'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.RefreshVisualizer'|'Windows.UI.Xaml.Controls.RelativePanel'|'Windows.UI.Xaml.Controls.RichEditBox'|'Windows.UI.Xaml.Controls.RichTextBlock'|'Windows.UI.Xaml.Controls.RichTextBlockOverflow'|'Windows.UI.Xaml.Controls.ScrollContentPresenter'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SearchBox'|'Windows.UI.Xaml.Controls.SemanticZoom'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SplitView'|'Windows.UI.Xaml.Controls.StackPanel'|'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel'|'Windows.UI.Xaml.Controls.SwapChainPanel'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.SymbolIcon'|'Windows.UI.Xaml.Controls.TextBlock'|'Windows.UI.Xaml.Controls.TextBox'|'Windows.UI.Xaml.Controls.TextCommandBarFlyout'|'Windows.UI.Xaml.Controls.TimePicker'|'Windows.UI.Xaml.Controls.TimePickerFlyout'|'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToggleSwitch'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeView'|'Windows.UI.Xaml.Controls.TreeViewItem'|'Windows.UI.Xaml.Controls.TreeViewList'|'Windows.UI.Xaml.Controls.TwoPaneView'|'Windows.UI.Xaml.Controls.VariableSizedWrapGrid'|'Windows.UI.Xaml.Controls.Viewbox'|'Windows.UI.Xaml.Controls.VirtualizingStackPanel'|'Windows.UI.Xaml.Controls.WebView'|'Windows.UI.Xaml.Controls.WrapGrid'|'Windows.UI.Xaml.Documents.Span'|'Windows.UI.Xaml.Documents.Bold'|'Windows.UI.Xaml.Documents.ContentLink'|'Windows.UI.Xaml.Documents.Glyphs'|'Windows.UI.Xaml.Documents.Hyperlink'|'Windows.UI.Xaml.Documents.InlineUIContainer'|'Windows.UI.Xaml.Documents.Italic'|'Windows.UI.Xaml.Documents.LineBreak'|'Windows.UI.Xaml.Documents.Paragraph'|'Windows.UI.Xaml.Documents.Run'|'Windows.UI.Xaml.Documents.Underline'|'Windows.UI.Xaml.Shapes.Ellipse'|'Windows.UI.Xaml.Shapes.Line'|'Windows.UI.Xaml.Shapes.Path'|'Windows.UI.Xaml.Shapes.Polygon'|'Windows.UI.Xaml.Shapes.Polyline'|'Windows.UI.Xaml.Shapes.Rectangle';
 }
 
 
@@ -139,6 +139,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   isFocusEngagementEnabled?: boolean;
   isFocusEngaged?: boolean;
   elementSoundMode?: Enums.ElementSoundMode;
+  defaultStyleResourceUri?: string;
   backgroundSizing?: Enums.BackgroundSizing;
   defaultStyleKey?: object;
   onIsEnabledChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -255,6 +256,7 @@ export interface NativeIconElementProps extends NativeFrameworkElementProps {
 
 export interface NativeBitmapIconProps extends NativeIconElementProps {
   type: 'Windows.UI.Xaml.Controls.BitmapIcon';
+  uriSource?: string;
   showAsMonochrome?: boolean;
 }
 
@@ -445,6 +447,7 @@ export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
   showMode?: Enums.FlyoutShowMode;
   areOpenCloseAnimationsEnabled?: boolean;
   shouldConstrainToRootBounds?: boolean;
+  isOpen?: boolean; // synthetic property
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpening?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -690,6 +693,7 @@ export interface NativeHubSectionProps extends NativeControlProps {
 
 export interface NativeHyperlinkButtonProps extends NativeButtonBaseProps {
   type: 'Windows.UI.Xaml.Controls.HyperlinkButton';
+  navigateUri?: string;
 }
 
 
@@ -947,6 +951,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   volume?: number;
   stereo3DVideoRenderMode?: Enums.Stereo3DVideoRenderMode;
   stereo3DVideoPackingMode?: Enums.Stereo3DVideoPackingMode;
+  source?: string;
   realTimePlayback?: boolean;
   playbackRate?: number;
   autoPlay?: boolean;
@@ -957,6 +962,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   isLooping?: boolean;
   balance?: number;
   stretch?: Enums.Stretch;
+  playToPreferredSourceUri?: string;
   isFullWindow?: boolean;
   areTransportControlsEnabled?: boolean;
   onBufferingProgressChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1925,6 +1931,7 @@ export interface NativeVirtualizingStackPanelProps extends NativeOrientedVirtual
 
 export interface NativeWebViewProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.WebView';
+  source?: string;
   onLoadCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onNavigationFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onScriptNotify?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1959,6 +1966,71 @@ export interface NativeWrapGridProps extends NativeOrientedVirtualizingPanelProp
 }
 
 
+export interface NativeTextElementProps extends NativeDependencyObjectProps {
+  type: 'Windows.UI.Xaml.Documents.Span'|'Windows.UI.Xaml.Documents.Bold'|'Windows.UI.Xaml.Documents.ContentLink'|'Windows.UI.Xaml.Documents.Hyperlink'|'Windows.UI.Xaml.Documents.InlineUIContainer'|'Windows.UI.Xaml.Documents.Italic'|'Windows.UI.Xaml.Documents.LineBreak'|'Windows.UI.Xaml.Documents.Paragraph'|'Windows.UI.Xaml.Documents.Run'|'Windows.UI.Xaml.Documents.Underline';
+  language?: string;
+  foreground?: ColorValue;
+  fontStyle?: Enums.FontStyle;
+  fontStretch?: Enums.FontStretch;
+  fontSize?: number;
+  characterSpacing?: number;
+  isTextScaleFactorEnabled?: boolean;
+  exitDisplayModeOnAccessKeyInvoked?: boolean;
+  allowFocusOnInteraction?: boolean;
+  accessKey?: string;
+  textDecorations?: Enums.TextDecorations;
+  keyTipVerticalOffset?: number;
+  keyTipPlacementMode?: Enums.KeyTipPlacementMode;
+  keyTipHorizontalOffset?: number;
+  isAccessKeyScope?: boolean;
+  onAccessKeyDisplayDismissed?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAccessKeyDisplayRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAccessKeyInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeBlockProps extends NativeTextElementProps {
+  type: 'Windows.UI.Xaml.Documents.Paragraph';
+  textAlignment?: Enums.TextAlignment;
+  margin?: Thickness;
+  lineStackingStrategy?: Enums.LineStackingStrategy;
+  lineHeight?: number;
+  horizontalTextAlignment?: Enums.TextAlignment;
+}
+
+
+export interface NativeInlineProps extends NativeTextElementProps {
+  type: 'Windows.UI.Xaml.Documents.Span'|'Windows.UI.Xaml.Documents.Bold'|'Windows.UI.Xaml.Documents.ContentLink'|'Windows.UI.Xaml.Documents.Hyperlink'|'Windows.UI.Xaml.Documents.InlineUIContainer'|'Windows.UI.Xaml.Documents.Italic'|'Windows.UI.Xaml.Documents.LineBreak'|'Windows.UI.Xaml.Documents.Run'|'Windows.UI.Xaml.Documents.Underline';
+}
+
+
+export interface NativeSpanProps extends NativeInlineProps {
+  type: 'Windows.UI.Xaml.Documents.Span'|'Windows.UI.Xaml.Documents.Bold'|'Windows.UI.Xaml.Documents.Hyperlink'|'Windows.UI.Xaml.Documents.Italic'|'Windows.UI.Xaml.Documents.Underline';
+}
+
+
+export interface NativeBoldProps extends NativeSpanProps {
+  type: 'Windows.UI.Xaml.Documents.Bold';
+}
+
+
+export interface NativeContentLinkProps extends NativeInlineProps {
+  type: 'Windows.UI.Xaml.Documents.ContentLink';
+  xyFocusUpNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusRightNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusDownNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  tabIndex?: number;
+  isTabStop?: boolean;
+  elementSoundMode?: Enums.ElementSoundMode;
+  cursor?: Enums.CoreCursorType;
+  background?: ColorValue;
+  onGotFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+  onInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onLostFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
 export interface NativeGlyphsProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Documents.Glyphs';
   unicodeString?: string;
@@ -1966,10 +2038,61 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
   originY?: number;
   originX?: number;
   indices?: string;
+  fontUri?: string;
   fontRenderingEmSize?: number;
   fill?: ColorValue;
   isColorFontEnabled?: boolean;
   colorFontPaletteIndex?: number;
+}
+
+
+export interface NativeHyperlinkProps extends NativeSpanProps {
+  type: 'Windows.UI.Xaml.Documents.Hyperlink';
+  navigateUri?: string;
+  underlineStyle?: Enums.UnderlineStyle;
+  elementSoundMode?: Enums.ElementSoundMode;
+  xyFocusUpNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusRightNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  xyFocusDownNavigationStrategy?: Enums.XYFocusNavigationStrategy;
+  tabIndex?: number;
+  isTabStop?: boolean;
+  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onGotFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+  onLostFocus?: (event: NativeSyntheticEvent<undefined>) => void;
+}
+
+
+export interface NativeInlineUIContainerProps extends NativeInlineProps {
+  type: 'Windows.UI.Xaml.Documents.InlineUIContainer';
+}
+
+
+export interface NativeItalicProps extends NativeSpanProps {
+  type: 'Windows.UI.Xaml.Documents.Italic';
+}
+
+
+export interface NativeLineBreakProps extends NativeInlineProps {
+  type: 'Windows.UI.Xaml.Documents.LineBreak';
+}
+
+
+export interface NativeParagraphProps extends NativeBlockProps {
+  type: 'Windows.UI.Xaml.Documents.Paragraph';
+  textIndent?: number;
+}
+
+
+export interface NativeRunProps extends NativeInlineProps {
+  type: 'Windows.UI.Xaml.Documents.Run';
+  flowDirection?: Enums.FlowDirection;
+  text?: string; // synthetic property
+}
+
+
+export interface NativeUnderlineProps extends NativeSpanProps {
+  type: 'Windows.UI.Xaml.Documents.Underline';
 }
 
 
@@ -2200,7 +2323,20 @@ export type XamlControlProps = NativeDependencyObjectProps
 	 |  NativeVirtualizingStackPanelProps 
 	 |  NativeWebViewProps 
 	 |  NativeWrapGridProps 
+	 |  NativeTextElementProps 
+	 |  NativeBlockProps 
+	 |  NativeInlineProps 
+	 |  NativeSpanProps 
+	 |  NativeBoldProps 
+	 |  NativeContentLinkProps 
 	 |  NativeGlyphsProps 
+	 |  NativeHyperlinkProps 
+	 |  NativeInlineUIContainerProps 
+	 |  NativeItalicProps 
+	 |  NativeLineBreakProps 
+	 |  NativeParagraphProps 
+	 |  NativeRunProps 
+	 |  NativeUnderlineProps 
 	 |  NativeShapeProps 
 	 |  NativeEllipseProps 
 	 |  NativeLineProps 

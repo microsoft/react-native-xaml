@@ -33,6 +33,10 @@ namespace winrt::Microsoft::ReactNative {
       return;
     }
   }
+
+  inline void ReadValue(JSValue const& jsValue, winrt::Windows::Foundation::Uri& value) noexcept {
+    value = Uri{ winrt::to_hstring(jsValue.AsString()) };
+  }
 }
 
 enum class XamlPropType {
@@ -47,26 +51,37 @@ enum class XamlPropType {
 template <typename T> bool IsType(const winrt::Windows::Foundation::IInspectable& i) { return i.try_as<T>() != nullptr; }
 
 template<typename T, std::enable_if_t<std::is_enum<T>::value, int> = 0>
-void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetPropValue(const xaml::DependencyObject o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
   auto valueEnum = MakeEnum<T>(v.AsInt32());
   o.SetValue(prop, valueEnum);
 }
 
-
-template<typename T, std::enable_if_t<!std::is_enum<T>::value && !std::is_same<winrt::hstring, T>::value && !std::is_same<winrt::Windows::Foundation::IInspectable, T>::value, int> = 0>
-void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+template<typename T, std::enable_if_t<
+  !std::is_enum<T>::value && 
+  !std::is_same<winrt::hstring, T>::value && 
+  !std::is_same<winrt::Windows::Foundation::IInspectable, T>::value &&
+  !std::is_same<winrt::Windows::Foundation::Uri, T>::value
+  , int> = 0>
+void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
   auto b = v.To<T>();
   o.SetValue(prop, winrt::box_value(b));
 }
 
 template<typename T, std::enable_if_t<std::is_same<T, winrt::hstring>::value, int> = 0>
-void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
   auto b = v.AsString();
   o.SetValue(prop, winrt::box_value(winrt::to_hstring(b)));
 }
 
+template<typename T, std::enable_if_t<std::is_same<T, winrt::Windows::Foundation::Uri>::value, int> = 0>
+void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+  auto cn = winrt::get_class_name(o);
+  auto uri = Uri{ winrt::to_hstring(v.AsString()) };
+  o.SetValue(prop, uri);
+}
+
 template<typename T, std::enable_if_t<std::is_same<T, winrt::Windows::Foundation::IInspectable>::value, int> = 0>
-void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
   switch (v.Type()) {
   case JSValueType::String: return SetPropValue<winrt::hstring>(o, prop, v);
   case JSValueType::Boolean: return SetPropValue<bool>(o, prop, v);
@@ -85,22 +100,22 @@ void SetPropValue(xaml::DependencyObject o, xaml::DependencyProperty prop, const
 struct PropInfo {
   stringKey propName;
 
-  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable&);
-  isType_t isType;
+  using asType_t = winrt::Windows::Foundation::IInspectable (__cdecl *) (const winrt::Windows::Foundation::IInspectable&);
+  asType_t asType;
 
   using xamlPropertyGetter_t = xaml::DependencyProperty(*)();
   xamlPropertyGetter_t xamlPropertyGetter;
 
-  using xamlPropertySetter_t = void (*) (xaml::DependencyObject, xaml::DependencyProperty, const winrt::Microsoft::ReactNative::JSValue&);
+  using xamlPropertySetter_t = void (*) (const xaml::DependencyObject&, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue&);
   xamlPropertySetter_t xamlPropertySetter;
 
   ViewManagerPropertyType jsType;
 
-  void ClearValue(xaml::DependencyObject o) const {
+  void ClearValue(const xaml::DependencyObject& o) const {
     o.ClearValue(xamlPropertyGetter());
   }
 
-  void SetValue(xaml::DependencyObject o, const winrt::Microsoft::ReactNative::JSValue& v) const {
+  void SetValue(const xaml::DependencyObject& o, const winrt::Microsoft::ReactNative::JSValue& v) const {
     auto dp = xamlPropertyGetter ? xamlPropertyGetter() : nullptr;
     if (v.IsNull()) {
       if (dp) {

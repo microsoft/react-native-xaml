@@ -16,12 +16,30 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 #include <winrt/<#= ns #>.h>
 <# } #>
 
-#define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
+template<typename T> 
+winrt::Windows::Foundation::IInspectable AsType(const winrt::Windows::Foundation::IInspectable& o) {
+  return o.try_as<T>();
+}
+
+template<typename T> 
+winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::Foundation::IInspectable& o) {
+  return Unwrap<T>(o);
+}
 
 /*static*/ const PropInfo xamlPropertyMap[] = {
   <# foreach (var p in Properties) { #>
-      { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), MAKE_GET_DP(<#= Util.GetCppWinRTType(p.DeclaringType) #>, <#= p.GetName() #>Property), SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
+      { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), <#= Util.DerivesFrom(p.DeclaringType, "Windows.UI.Xaml.FrameworkElement") ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.DeclaringType) #>::<#= p.GetName() #>Property(); }, SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
   <# } #>
+};
+
+<# foreach (var p in FakeProps) { #>
+void Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+<# } #>
+
+/*static*/ const PropInfo fakeProps[] = {
+<# foreach (var p in FakeProps) { #>
+    { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), AsUnwrappedType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
+<# } #>
 };
 
 #ifdef USE_CRC32
@@ -33,6 +51,9 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
 #else
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
   for (auto const& entry : xamlPropertyMap) {
+    nativeProps.Insert(winrt::to_hstring(entry.propName), entry.jsType);
+  }
+  for (auto const& entry : fakeProps) {
     nativeProps.Insert(winrt::to_hstring(entry.propName), entry.jsType);
   }
 }

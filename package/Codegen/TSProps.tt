@@ -19,6 +19,9 @@ if (typeProp != "") { #>
 foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
   <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
 <# } 
+foreach (var prop in FakeProps.Where(p => type == p.DeclaringType)) { #>
+  <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>; // synthetic property
+<# } 
   foreach (var evt in type.GetEvents()) { #>
   on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
 <# } #>

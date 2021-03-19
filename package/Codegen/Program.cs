@@ -19,6 +19,7 @@ namespace Codegen
         Map = 4,
         Color = 5,
     };
+
     public partial class TypeCreator
     {
         public TypeCreator(IEnumerable<MrType> types)
@@ -31,11 +32,13 @@ namespace Codegen
 
     public partial class TypeProperties
     {
-        public TypeProperties(IEnumerable<MrProperty> properties)
+        public TypeProperties(IEnumerable<MrProperty> properties, IEnumerable<MrProperty> fakeProps)
         {
             Properties = properties;
+            FakeProps = fakeProps;
         }
         IEnumerable<MrProperty> Properties { get; set; }
+        IEnumerable<MrProperty> FakeProps { get; set; }
     }
 
     public partial class TypeEvents
@@ -49,7 +52,8 @@ namespace Codegen
 
     public partial class TSProps
     {
-        public TSProps(IEnumerable<MrType> types) { Types = types; }
+        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps) { Types = types; FakeProps = fakeProps; }
+        IEnumerable<MrProperty> FakeProps { get; set; }
         IEnumerable<MrType> Types { get; set; }
     }
 
@@ -76,6 +80,11 @@ namespace Codegen
     class Program
     {
         const string Windows_winmd = @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
+
+        private static MrProperty GetProperty(MrLoadContext context, string type, string prop)
+        {
+            return context.GetType(type).GetProperties().First(x => x.GetName() == prop);
+        }
         private void DumpTypes()
         {
             var context = new MrLoadContext(true);
@@ -87,6 +96,7 @@ namespace Codegen
                     e.ReplacementType = ctx.GetTypeFromAssembly(e.TypeName, "Windows");
                 }
             };
+
             var windows_winmd = context.LoadAssemblyFromPath(Windows_winmd);
             var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
             // ToList realizes the list which is needs to happen before FinishLoading is called
@@ -104,11 +114,18 @@ namespace Codegen
                 types = windows_winmdTypes;
             }
             Util.LoadContext = context;
+            
+            var fakeProps = new List<MrProperty>{
+                GetProperty(context, "Windows.UI.Xaml.Controls.Primitives.FlyoutBase", "IsOpen"),
+                GetProperty(context, "Windows.UI.Xaml.Documents.Run", "Text"),
+            };
+
 
             var baseClassesToProject = new string[]
             {
                 "Windows.UI.Xaml.UIElement",
                 "Windows.UI.Xaml.Controls.Primitives.FlyoutBase",
+                "Windows.UI.Xaml.Documents.TextElement",
             };
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
@@ -160,14 +177,14 @@ namespace Codegen
                     return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
                 }
             });
-            var propsGen = new TSProps(xamlTypes).TransformText();
+            var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
 
             var typesGen = new TSTypes(xamlTypes).TransformText();
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
-            var propertiesGen = new TypeProperties(properties).TransformText();
+            var propertiesGen = new TypeProperties(properties, fakeProps).TransformText();
             UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
 
             var tsEnumsGen = new TSEnums().TransformText();
