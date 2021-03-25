@@ -17,11 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: print nuget.config
-      run: |
-        gc C:\\Users\\runneradmin\\AppData\\Roaming\\NuGet\\NuGet.Config
-        nuget sources
-
     - name: run CodeGen
       run: dotnet run 
       working-directory: package\Codegen
@@ -38,7 +33,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: yarn install
       run: yarn install
- 
+
+    - name: print nuget.config
+      run: |
+        gc C:\\Users\\runneradmin\\AppData\\Roaming\\NuGet\\NuGet.Config
+        nuget sources
+
     - name: build TS
       run: yarn build
       
