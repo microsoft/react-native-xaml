@@ -1,7 +1,7 @@
 {
   "name": "react-native-xaml",
   "title": "React Native Xaml",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Allows using XAML directly, inside of a React Native Windows app",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -34,12 +34,12 @@
   "peerDependencies": {
     "react": ">= 17.0.1",
     "react-native": ">= 0.64.0",
-    "react-native-windows": ">= 0.64.0"
+    "react-native-windows": ">= 0.64.1"
   },
   "devDependencies": {
     "react": "17.0.1",
     "react-native": "0.64.0",
-    "react-native-windows": "0.64.0",
+    "react-native-windows": "0.64.1",
     "react-native-typescript-transformer": "*",
     "typescript": "^4.1.2",
     "@types/react": "*",
