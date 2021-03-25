@@ -17,6 +17,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: print nuget.config
+      run: |
+        gc C:\\Users\\runneradmin\\AppData\\Roaming\\NuGet\\NuGet.Config
+        
     - name: run CodeGen
       run: dotnet run 
       working-directory: package\Codegen
