@@ -8,6 +8,10 @@
 #include "Crc32Str.h"
 #include <winstring.h>
 
+<# foreach (var ns in Types.Select(x => x.GetNamespace()).Distinct()) { #>
+#include "winrt/<#= ns #>.h"
+<# } #>
+
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
@@ -26,9 +30,18 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
       winrt::copy_from_abi(unk, insp.get());
       WindowsDeleteString(clsid);
       return unk.as<winrt::IInspectable>();
+    } else {
+    // type probably has a custom activation factory, use C++/WinRT to create it
+    WindowsDeleteString(clsid);
+    clsid = nullptr;
+    const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
+    switch (key) {
+<# foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null)) { #>
+        case COMPILE_TIME_CRC32_STR("<#= t.GetFullName() #>"): { return <#= Util.GetCppWinRTType(t) #>(); }
+<# } #>
+    }
     }
   }
-  WindowsDeleteString(clsid);
   assert(false && "xaml type not found");
   return nullptr;
 }

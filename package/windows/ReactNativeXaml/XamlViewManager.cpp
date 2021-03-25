@@ -147,7 +147,10 @@ namespace winrt::ReactNativeXaml {
     auto e = parent;
     auto parentType = winrt::get_class_name(e);
     auto childType = winrt::get_class_name(child);
-    if (auto childAsCC = child.try_as<ContentControl>()) {
+    if (child.try_as<xaml::Controls::Primitives::SelectorItem>() ||
+      child.try_as<NavigationView>()) { 
+      // these are ContentControls too, but we shouldn't try to unwrap, so skip this 
+    } else if (auto childAsCC = child.try_as<Wrapper>()) {
       auto childContent = childAsCC.Content();
       childType = winrt::get_class_name(childContent);
       auto tag = childAsCC.Tag();
@@ -195,7 +198,11 @@ namespace winrt::ReactNativeXaml {
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(index, child);
     }
-    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+    else if (auto navView = e.try_as<NavigationView>()) {
+      auto childCN = winrt::get_class_name(child);
+      return navView.MenuItems().InsertAt(index, child);
+    }
+    else if (auto contentCtrl = e.try_as<Wrapper>()) {
       auto parentContent = contentCtrl.Content();
       if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
         if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
@@ -232,7 +239,7 @@ namespace winrt::ReactNativeXaml {
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().Clear();
     }
-    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+    else if (auto contentCtrl = e.try_as<Wrapper>()) {
       return contentCtrl.Content(nullptr);
     }
     else if (auto border = e.try_as<Border>()) {
@@ -252,7 +259,7 @@ namespace winrt::ReactNativeXaml {
       return itemsControl.Items().RemoveAt(static_cast<uint32_t>(index));
     }
     else if (index == 0) {
-      if (auto contentCtrl = e.try_as<ContentControl>()) {
+      if (auto contentCtrl = e.try_as<Wrapper>()) {
         return contentCtrl.Content(nullptr);
       }
       else if (auto border = e.try_as<Border>()) {

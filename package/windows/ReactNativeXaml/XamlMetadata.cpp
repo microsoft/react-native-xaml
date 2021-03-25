@@ -63,7 +63,7 @@ FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
     return fe;
   }
   else {
-    ContentControl cc;
+    Wrapper cc;
     cc.Content(d);
     return cc;
   }
@@ -95,7 +95,7 @@ void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::Dependenc
 
       // Go from the wrapping ContentControl to the flyout's parent. 
       // We can't use Parent() since we unparent the CC once we add the flyout to the tree
-      if (!target) target = o.as<ContentControl>().DataContext().as<FrameworkElement>();
+      if (!target) target = o.as<Wrapper>().DataContext().as<FrameworkElement>();
       auto cn = winrt::get_class_name(target);
       flyout.ShowAt(target);
     }

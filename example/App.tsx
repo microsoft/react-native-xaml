@@ -39,7 +39,10 @@ RichTextBlock,
 Run,
 Italic,
 LineBreak,
-Hyperlink,
+    Hyperlink,
+    NavigationView,
+    NavigationViewItem,
+NavigationViewItemHeader,
 } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
@@ -86,8 +89,7 @@ const App: () => Node = () => {
         style={backgroundStyle}>
         <View>
           <Text style={{fontSize: 36, textAlign: "center", padding: 42}}>
-            Welcome to
-            React Native XAML
+            Welcome to React Native XAML
           </Text>
         </View>
         <View
@@ -116,7 +118,10 @@ const App: () => Node = () => {
                       <Run text="Go to bing"/>
                     </Hyperlink>
                   </TextBlock>
-
+                  <NavigationView style={{ height: 200, width: 120 }}>
+                      <NavigationViewItem content={{ string: "item 1" }} />
+                      <NavigationViewItem content={{ string: "item 2" }} />
+                  </NavigationView>
                   {/*<StackPanel orientation="horizontal">*/}
                   {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
                   {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
