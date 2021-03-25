@@ -121,10 +121,10 @@ namespace Codegen
                 case "System.Double":
                 case "System.Single":
                     return ViewManagerPropertyType.Number;
-                case "Windows.UI.Xaml.Media.Brush":
-                case "Windows.UI.Xaml.Media.SolidColorBrush":
+                case $"{XamlNames.XamlNamespace}.Media.Brush":
+                case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
                     return ViewManagerPropertyType.Color;
-                case "Windows.UI.Xaml.Thickness":
+                case $"{XamlNames.XamlNamespace}.Thickness":
                     return ViewManagerPropertyType.Map;
                 case "System.Object":
                     return ViewManagerPropertyType.Map;
@@ -155,10 +155,10 @@ namespace Codegen
                 case "System.Double":
                 case "System.Single":
                     return "number";
-                case "Windows.UI.Xaml.Media.Brush":
-                case "Windows.UI.Xaml.Media.SolidColorBrush":
+                case $"{XamlNames.XamlNamespace}.Media.Brush":
+                case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
                     return "ColorValue";
-                case "Windows.UI.Xaml.Thickness":
+                case $"{XamlNames.XamlNamespace}.Thickness":
                     return "Thickness";
                 case "System.Object":
                     return "object";
@@ -252,7 +252,7 @@ namespace Codegen
                     derivedClasses[type.GetName()] = new List<MrType>() { type };
                 }
 
-                for (var baseType = type.GetBaseType(); baseType != null && baseType.GetName() != "Windows.UI.Xaml.DependencyObject"; baseType = baseType.GetBaseType())
+                for (var baseType = type.GetBaseType(); baseType != null && baseType.GetName() != XamlNames.TopLevelProjectedType; baseType = baseType.GetBaseType())
                 {
                     if (!derivedClasses.ContainsKey(baseType.GetName()))
                     {

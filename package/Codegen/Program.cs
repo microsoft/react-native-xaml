@@ -76,6 +76,12 @@ namespace Codegen
         }
     }
 
+    public static class XamlNames
+    {
+        public const string XamlNamespace = "Windows.UI.Xaml";
+        public const string TopLevelProjectedType = $"{XamlNamespace}.DependencyObject";
+        public const string MuxNamespace = "Microsoft.UI.Xaml";
+    }
 
     class Program
     {
@@ -85,6 +91,7 @@ namespace Codegen
         {
             return context.GetType(type).GetProperties().First(x => x.GetName() == prop);
         }
+
         private void DumpTypes()
         {
             var context = new MrLoadContext(true);
@@ -115,21 +122,22 @@ namespace Codegen
             }
             Util.LoadContext = context;
             
+            
             var fakeProps = new List<MrProperty>{
-                GetProperty(context, "Windows.UI.Xaml.Controls.Primitives.FlyoutBase", "IsOpen"),
-                GetProperty(context, "Windows.UI.Xaml.Documents.Run", "Text"),
+                GetProperty(context, $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase", "IsOpen"),
+                GetProperty(context, $"{XamlNames.XamlNamespace}.Documents.Run", "Text"),
             };
 
 
             var baseClassesToProject = new string[]
             {
-                "Windows.UI.Xaml.UIElement",
-                "Windows.UI.Xaml.Controls.Primitives.FlyoutBase",
-                "Windows.UI.Xaml.Documents.TextElement",
+                $"{XamlNames.XamlNamespace}.UIElement",
+                $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase",
+                $"{XamlNames.XamlNamespace}.Documents.TextElement",
             };
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
-                Util.DerivesFrom(type, b)) || type.GetName() == "DependencyObject");
+                Util.DerivesFrom(type, b)) || type.GetFullName() == XamlNames.TopLevelProjectedType);
 
             var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
             var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(PackageRoot, @"src"));
@@ -142,18 +150,57 @@ namespace Codegen
             }
             Console.WriteLine();
 
+            PrintVerbose("Filtering types");
             var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
-            creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
-            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
-
-            if (!Directory.Exists(generatedDirPath))
+            // The same type name may exist in multiple namespaces. The TS names don't support that as they are only short names
+            // So we need to make sure only one type has a given name, and if the options are WUX or MUX, we should pick MUX
+            // If there are more options than that, we should error out.
+            var allCreatableTypes = new Dictionary<string, List<MrType>>();
+            foreach (var t in creatableTypes)
             {
-                Directory.CreateDirectory(generatedDirPath);
+                List<MrType> list = null;
+                if (allCreatableTypes.ContainsKey(t.GetName()))
+                {
+                    list = allCreatableTypes[t.GetName()];
+                } else
+                {
+                    list = new List<MrType>();
+                    allCreatableTypes.Add(t.GetName(), list);
+                }
+                list.Add(t);
             }
-            UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
+            PrintVerbose("Ensuring all types have unique names");
+            foreach (var key in allCreatableTypes.Keys)
+            {
+                if (allCreatableTypes[key].Count == 1) {
+                    continue;
+                } else if (allCreatableTypes[key].Count == 2) {
+                    if (allCreatableTypes[key][0].GetNamespace() == XamlNames.XamlNamespace &&
+                        allCreatableTypes[key][1].GetNamespace() == XamlNames.MuxNamespace)
+                    {
+                        creatableTypes.Remove(allCreatableTypes[key][0]);
+                        continue;
+                    }
+                    else if (allCreatableTypes[key][1].GetNamespace() == XamlNames.XamlNamespace &&
+                        allCreatableTypes[key][0].GetNamespace() == XamlNames.MuxNamespace)
+                    {
+                        creatableTypes.Remove(allCreatableTypes[key][1]);
+                        continue;
+                    }
+                }
+                // If we got here, then either we had more than 2 types with the same short name,
+                // Or we could not disambiguate between the options. Bail out.
+                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));    
+            }
+
+            PrintVerbose("Sorting types");
+            creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
+
+
 
             var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
+            PrintVerbose("Enumerating properties and events");
             foreach (var type in xamlTypes)
             {
                 var props = type.GetProperties();
@@ -163,7 +210,7 @@ namespace Codegen
                 var eventsToAdd = type.GetEvents().Where(e => Util.ShouldEmitEventMetadata(e));
                 events.AddRange(eventsToAdd);
             }
-
+#if !DEBUG
             properties.Sort((p1, p2) =>
             {
                 var h1 = GetPropertySortKey(p1);
@@ -177,23 +224,44 @@ namespace Codegen
                     return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
                 }
             });
+#else
+            properties.Sort((a, b) =>
+            {
+                var c = a.GetName().CompareTo(b.GetName());
+                if (c != 0) return c;
+                return a.DeclaringType.GetName().CompareTo(b.DeclaringType.GetName());
+            }); 
+#endif
+
+            PrintVerbose("Generating projection");
+            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
-            UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
-
             var typesGen = new TSTypes(xamlTypes).TransformText();
-            UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
-
-            properties.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
             var propertiesGen = new TypeProperties(properties, fakeProps).TransformText();
-            UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
-
             var tsEnumsGen = new TSEnums().TransformText();
-            UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
-
             var eventsGen = new TypeEvents(events).TransformText();
+
+            PrintVerbose("Updating files");
+            if (!Directory.Exists(generatedDirPath))
+            {
+                Directory.CreateDirectory(generatedDirPath);
+            }
+            UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
+            UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
+
+            UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
+            UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
+            UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
         }
 
+        private void PrintVerbose(object o)
+        {
+            if (Verbose)
+            {
+                Console.WriteLine(o);
+            }
+        }
         private static string PackageRoot
         {
             get
@@ -255,12 +323,15 @@ namespace Codegen
             Environment.Exit(0);
         }
 
+        private bool Verbose { get; set; }
+
         static readonly Dictionary<string, OptionDef> optionDefs = new Dictionary<string, OptionDef>() {
-                { "-help", new OptionDef (){ Description = "Shows this message", NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
-                { "-winmd", new OptionDef (){ Description = "Specifies a custom WinMD file. To specify multiple files, pass this option multiple times", NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
-                { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
-                { "-tsout", new OptionDef (){ Description = "Custom path for TS file", NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
-            };
+            { "-help", new OptionDef (){ Description = "Shows this message", NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
+            { "-winmd", new OptionDef (){ Description = "Specifies a custom WinMD file. To specify multiple files, pass this option multiple times", NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
+            { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
+            { "-tsout", new OptionDef (){ Description = "Custom path for TS file", NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
+            { "-verbose", new OptionDef() { Description = "Output verbose info", NumberOfParams = 1, Action = (p, _) => { p.Verbose = true; }} }    
+        };
 
         static void Main(string[] args)
         {
