@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Codegen": {
+      "commandName": "Project",
+      "commandLineArgs": "-verbose"
+    }
+  }
+}

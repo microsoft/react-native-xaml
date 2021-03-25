@@ -28,7 +28,7 @@ __declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IInsp
 
 template<typename T>
 __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
-  xaml::FrameworkElement senderAsFE = sender.try_as<FrameworkElement>();
+  auto senderAsFE = sender.try_as<FrameworkElement>();
   auto wEN = winrt::to_hstring(eai.jsEventName);
   XamlUIService::FromContext(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(), 
     [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) { 
