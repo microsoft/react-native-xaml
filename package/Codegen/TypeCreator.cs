@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
+    #line 1 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class TypeCreator : TypeCreatorBase
     {
@@ -28,11 +28,29 @@ namespace Codegen
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"#include ""pch.h""
-#include ""XamlMetadata.h""
-#include ""Crc32Str.h""
-#include <winstring.h>
-
+            this.Write("#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n#include \"Crc32Str.h\"\r\n#include <win" +
+                    "string.h>\r\n\r\n");
+            
+            #line 11 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+ foreach (var ns in Types.Select(x => x.GetNamespace()).Distinct()) { 
+            
+            #line default
+            #line hidden
+            this.Write("#include \"winrt/");
+            
+            #line 12 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ns));
+            
+            #line default
+            #line hidden
+            this.Write(".h\"\r\n");
+            
+            #line 13 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write(@"
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
@@ -51,15 +69,42 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
       winrt::copy_from_abi(unk, insp.get());
       WindowsDeleteString(clsid);
       return unk.as<winrt::IInspectable>();
-    }
-  }
-  WindowsDeleteString(clsid);
-  assert(false && ""xaml type not found"");
-  return nullptr;
-}
-
-
+    } else {
+    // type probably has a custom activation factory, use C++/WinRT to create it
+    WindowsDeleteString(clsid);
+    clsid = nullptr;
+    const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
+    switch (key) {
 ");
+            
+            #line 39 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+ foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null)) { 
+            
+            #line default
+            #line hidden
+            this.Write("        case COMPILE_TIME_CRC32_STR(\"");
+            
+            #line 40 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.GetFullName()));
+            
+            #line default
+            #line hidden
+            this.Write("\"): { return ");
+            
+            #line 40 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
+            
+            #line default
+            #line hidden
+            this.Write("(); }\r\n");
+            
+            #line 41 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    }\r\n    }\r\n  }\r\n  assert(false && \"xaml type not found\");\r\n  return nullptr;\r\n" +
+                    "}\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

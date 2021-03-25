@@ -20,8 +20,60 @@ namespace Codegen
 
             return name[0].ToString().ToLower() + name.Substring(1);
         }
+
+        public static MrType GetComposableFactoryType(MrType type)
+        {
+            var factories = GetFactories(type);
+            var ca = factories.FirstOrDefault(f => f.Kind == "ComposableAttribute");
+            return ca?.Type;
+        }
+        class FactoryInfo
+        {
+            public string Kind { get; set; }
+            public MrType Type { get; set; }
+            public bool Activatable { get; set; }
+            public bool Statics { get; set; }
+            public bool Composable { get; set; }
+            public bool Visible { get; set; }
+        }
+        private static List<FactoryInfo> GetFactories(MrType t)
+        {
+            var d = new List<FactoryInfo>();
+            foreach (var ca in t.GetCustomAttributes())
+            {
+                ca.GetNameAndNamespace(out var name, out var ns);
+                if (ns != "Windows.Foundation.Metadata") continue;
+                ca.GetArguments(out var _fixed, out var named);
+
+                var factoryInfo = new FactoryInfo();
+                factoryInfo.Kind = name;
+                // factoryInfo.Type = GetSystemType(signature);
+                if (name == "ActivatableAttribute")
+                {
+                    factoryInfo.Activatable = true;
+                } else if (name == "StaticAttribute")
+                {
+                    factoryInfo.Statics = true;
+                    factoryInfo.Type = (MrType)_fixed[0].Value;
+                } else if (name == "ComposableAttribute")
+                {
+                    factoryInfo.Composable = true;
+                    factoryInfo.Type = (MrType)_fixed[0].Value;
+
+                } else
+                {
+                    continue;
+                }
+                d.Add(factoryInfo);
+            }
+            return d;
+        }
         public static string GetCppWinRTType(MrType t)
         {
+            if (t.GetName() == "NavigationViewItem")
+            {
+                var f = GetFactories(t);
+            }
             var primitiveTypes = new Dictionary<string, string>()
             {
                 { "System.String", "winrt::hstring" },

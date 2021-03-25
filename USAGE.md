@@ -55,6 +55,14 @@
   </ComboBox>
 ```
 
+## NavigationView
+```jsx
+<NavigationView style={{ height: 200, width: 120 }}>
+    <NavigationViewItem content={{ string: "item 1" }} />
+    <NavigationViewItem content={{ string: "item 2" }} />
+</NavigationView>
+```
+
 ## Lightweight styling
 ```jsx
 <Button content="Hello with style!" resources={{ 

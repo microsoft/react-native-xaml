@@ -39,6 +39,9 @@ namespace winrt::Microsoft::ReactNative {
   }
 }
 
+
+using Wrapper = winrt::Windows::UI::Xaml::Controls::ContentControl;
+
 enum class XamlPropType {
   Boolean,
   Int,
@@ -130,7 +133,7 @@ struct PropInfo {
 
 template<typename T>
 T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
-  if (auto contentControl = i.try_as<ContentControl>()) {
+  if (auto contentControl = i.try_as<Wrapper>()) {
     return contentControl.Content().try_as<T>();
   }
   return nullptr;
