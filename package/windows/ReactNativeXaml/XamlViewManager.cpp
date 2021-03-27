@@ -7,6 +7,7 @@
 #include <winrt/Windows.UI.Xaml.Core.Direct.h>
 #include <UI.Xaml.Input.h>
 #include <UI.Xaml.Documents.h>
+#include "JSI/JsiApiContext.h"
 
 #include "Styling.h"
 
@@ -14,43 +15,70 @@ using namespace winrt;
 using namespace Microsoft::ReactNative;
 using namespace xaml;
 using namespace xaml::Controls;
+namespace jsi = facebook::jsi;
 
 namespace winrt::ReactNativeXaml {
 
-  struct XamlObject : winrt::implements<XamlObject, IJsiHostObject> {
-    JsiValueRef GetProperty(JsiRuntime runtime, JsiPropertyIdRef propertyId) {
-      if (runtime.PropertyIdEquals(propertyId, runtime.CreatePropertyId(L"prop1"))) {
-        return { JsiValueKind::Boolean, 1 };
+  struct XamlObject : std::enable_shared_from_this<XamlObject>, facebook::jsi::HostObject {
+
+    jsi::Value get(jsi::Runtime&rt, const jsi::PropNameID& nameId) override {
+      auto name = nameId.utf8(rt);
+      if (name == "prop1") {
+        return jsi::Value(42);
       }
-      return { JsiValueKind::Undefined, 0 };
+      return jsi::HostObject::get(rt, nameId);
     }
-
-    void SetProperty(JsiRuntime runtime, JsiPropertyIdRef propertyId, JsiValueRef value) {
+    void set(jsi::Runtime& rt, const jsi::PropNameID& name, const jsi::Value& value) override {
 
     }
-
-    IVector<JsiPropertyIdRef> GetPropertyIds(JsiRuntime runtime) {
-      return winrt::single_threaded_vector(std::vector<JsiPropertyIdRef>({ runtime.CreatePropertyId(L"prop1") }));
+    std::vector<jsi::PropNameID> getPropertyNames(jsi::Runtime& rt) override {
+      //auto prop1 = jsi::PropNameID::forAscii(rt, "prop1");
+      return jsi::PropNameID::names({ jsi::PropNameID::forAscii(rt, "prop1") });
     }
   };
 
+
   void XamlViewManager::EnsureJsi() {
     bool init = false;
-    if (!m_jsi) {
-      m_reactContext.JSDispatcher().Post([this]() {
-        m_jsi = m_reactContext.JSRuntime().as<winrt::Microsoft::ReactNative::JsiRuntime>();
-        auto xamlObjectName = m_jsi.CreatePropertyId(L"xaml");
-        auto xamlObjectName2 = m_jsi.CreatePropertyId(L"xaml2");
-        //auto xamlObject =  m_jsi.CreateStringFromAscii("hello from jsi");
-        auto foo = m_jsi.CreateValueFromJson(LR"({"value":42})");
-        auto obj = m_jsi.CreateObjectWithHostObject(winrt::make<XamlObject>());
 
-        m_jsi.SetProperty(m_jsi.Global(), xamlObjectName, { JsiValueKind::Object, foo.Data });
-        m_jsi.SetProperty(m_jsi.Global(), xamlObjectName2, { JsiValueKind::Object, obj.Data });
-
-        });
-      }
+    ExecuteJsi(m_reactContext, [](facebook::jsi::Runtime& rt) {
+      auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
+      rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
+      //auto xamlObjectName2 = m_jsi.CreatePropertyId(L"xaml2");
+      ////auto xamlObject =  m_jsi.CreateStringFromAscii("hello from jsi");
+      //auto foo = m_jsi.CreateValueFromJson(LR"({"value":42})");
+      //m_jsi.SetProperty(m_jsi.Global(), xamlObjectName2, { JsiValueKind::Object, foo.Data });
+      });
   }
+
+  void JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<XamlObject>& eventData) noexcept {
+    auto params = jsi::Array(rt, 3);
+    params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
+    params.setValueAtIndex(rt, 1, eventName);
+    auto obj = rt.global().createFromHostObject(rt, eventData);
+    params.setValueAtIndex(rt, 2, obj);
+
+    auto batchedBridge = rt.global().getPropertyAsObject(rt, "__fbBatchedBridge");
+    
+    auto callFunctionReturnFlushedQueue_ = batchedBridge.getPropertyAsFunction(
+      rt, "callFunctionReturnFlushedQueue"); 
+
+    callFunctionReturnFlushedQueue_.call(rt, "RCTEventEmitter", "receiveEvent", params);
+    /*.getPropertyNames(rt);
+    auto len = v.length(rt);
+    for (auto i = 0; i < len; i++) {
+      auto name = v.getValueAtIndex(rt, i).asString(rt).utf8(rt);
+      OutputDebugStringA(name.c_str());
+      OutputDebugStringA("\n");
+    }*/
+    /*
+    auto react = rt.global().getPropertyAsObject(rt, "React");
+    auto emitter = react.getPropertyAsObject(rt, "RCTEventEmitter");
+    auto receiveEvent = emitter.getPropertyAsFunction(rt, "receiveEvent");
+    receiveEvent.call(rt, params);
+    */
+  }
+
   // IViewManager
   hstring XamlViewManager::Name() noexcept {
     return L"XamlControl";
@@ -65,7 +93,22 @@ namespace winrt::ReactNativeXaml {
     EnsureJsi();
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
-    return xamlMetadata.Create(typeName, m_reactContext);
+    auto e = xamlMetadata.Create(typeName, m_reactContext);
+
+
+    if (typeName == "Windows.UI.Xaml.Controls.Button") {
+      auto b = e.as<xaml::Controls::Button>();
+      b.PointerEntered([ctx = m_reactContext](auto&& sender, auto&&) {
+        auto _b = sender.as<xaml::Controls::Button>();
+        auto tag = winrt::unbox_value<int64_t>(_b.Tag());
+
+        ExecuteJsi(ctx, [tag](jsi::Runtime& rt) {
+          auto obj = std::make_shared<XamlObject>();
+          JsiDispatchEvent(rt, tag, "topClick", obj);
+          });
+        });
+    }
+    return e;
   }
 
   void SetResources(const xaml::FrameworkElement& fe, const JSValueObject& dict) {

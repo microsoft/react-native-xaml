@@ -95,7 +95,11 @@ const App: () => Node = () => {
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+                  }}>
+                  <Button onClick={(a) => {
+                      alert(JSON.stringify(xaml));
+                  }}
+                  content={{ string: 'button' }} />
               {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
                   {/* <Button content={{ string: `Last selected option = ${option} ${count}` }}
                       onClick={(a) => { 
