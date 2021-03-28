@@ -36,7 +36,12 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
   if (eai.xamlMetadata.m_callFunctionReturnFlushedQueue.has_value()) {
     const auto tag = winrt::unbox_value<int64_t>(eai.obj.as<FrameworkElement>().Tag());
     ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
-      auto obj = std::make_shared<XamlObject>(args, metadata);
+      auto objSender = std::make_shared<XamlObject>(senderAsFE, metadata);
+      auto objArgs = std::make_shared<XamlObject>(args, metadata);
+      auto obj = std::make_shared<jsi::Object>(rt);
+      obj->setProperty(rt, "sender", rt.global().createFromHostObject(rt, objSender));
+      obj->setProperty(rt, "args", rt.global().createFromHostObject(rt, objArgs));
+
       metadata->JsiDispatchEvent(rt, tag, std::string(eventName), obj);
       });
   }
