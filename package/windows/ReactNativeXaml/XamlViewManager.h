@@ -4,19 +4,21 @@
 #include "CppWinRTIncludes.h"
 #include "winrt/Microsoft.ReactNative.h"
 #include "XamlMetadata.h"
+#include "JSI/JsiApiContext.h"
 
 namespace winrt::ReactNativeXaml {
 
-  struct XamlViewManager : winrt::implements<
-    XamlViewManager,
-    winrt::Microsoft::ReactNative::IViewManager,
-    winrt::Microsoft::ReactNative::IViewManagerWithNativeProperties,
-    winrt::Microsoft::ReactNative::IViewManagerWithCommands,
-    winrt::Microsoft::ReactNative::IViewManagerWithExportedEventTypeConstants,
-    winrt::Microsoft::ReactNative::IViewManagerWithReactContext,
-    winrt::Microsoft::ReactNative::IViewManagerWithChildren,
-    winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties,
-    winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
+  struct XamlViewManager : 
+    winrt::implements<
+      XamlViewManager,
+      winrt::Microsoft::ReactNative::IViewManager,
+      winrt::Microsoft::ReactNative::IViewManagerWithNativeProperties,
+      winrt::Microsoft::ReactNative::IViewManagerWithCommands,
+      winrt::Microsoft::ReactNative::IViewManagerWithExportedEventTypeConstants,
+      winrt::Microsoft::ReactNative::IViewManagerWithReactContext,
+      winrt::Microsoft::ReactNative::IViewManagerWithChildren,
+      winrt::Microsoft::ReactNative::IViewManagerCreateWithProperties,
+      winrt::Microsoft::ReactNative::IViewManagerRequiresNativeLayout
   > {
   public:
     XamlViewManager() = default;
@@ -64,11 +66,10 @@ namespace winrt::ReactNativeXaml {
     void RemoveChildAt(xaml::FrameworkElement parent, int64_t index);
     void ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild);
 
+    const std::shared_ptr<XamlMetadata>& Metadata() const { return m_xamlMetadata; }
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
-    XamlMetadata xamlMetadata;
-    winrt::Microsoft::ReactNative::JsiRuntime m_jsi{ nullptr };
-    void EnsureJsi();
+    std::shared_ptr<XamlMetadata> m_xamlMetadata;    
   };
 
 }

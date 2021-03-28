@@ -14,6 +14,7 @@
     </ClCompile>
     <ClCompile Include="Serialize.cpp" />
     <ClCompile Include="Styling.cpp" />
+    <ClCompile Include="XamlObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -30,6 +31,7 @@
     </ClInclude>
     <ClInclude Include="Serialize.h" />
     <ClInclude Include="Styling.h" />
+    <ClInclude Include="XamlObject.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />

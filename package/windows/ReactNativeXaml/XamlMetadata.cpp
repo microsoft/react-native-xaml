@@ -14,12 +14,33 @@
 #include <JSValueWriter.h>
 #include "Serialize.h"
 #include <UI.Xaml.Documents.h>
+#include <JSI/JsiApiContext.h>
+
+namespace jsi = facebook::jsi;
 
 using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-XamlMetadata::XamlMetadata() {}
+void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
+  m_reactContext = reactContext;
+  
+  static std::once_flag inited;
+  std::call_once(inited, [ctx = reactContext, this]() {
+    ExecuteJsi(ctx, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
+
+      auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
+      rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
+      auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
+      if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
+        if (auto vm = shared.get()) {
+          vm->m_callFunctionReturnFlushedQueue = batchedBridge.asObject(rt).getPropertyAsFunction(
+            rt, "callFunctionReturnFlushedQueue");
+        }
+      }
+    });
+    });
+}
 
 /*
 struct RoutedEventInfo {
@@ -167,7 +188,7 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
   if (!attaching) {
     wrapper->second.events.erase(attachedEvt);
   }
-  EventAttachInfo eai { context, e, "top" + evtName };
+  EventAttachInfo eai { context, e, "top" + evtName, *this };
   for (const auto& entry : EventInfo::xamlEventMap) {
     if (Equals(MAKE_KEY(entry.name), key)) {
       auto attached = entry.attachHandler(eai, isWrapped, token);
@@ -182,4 +203,41 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
   }
   return nullptr;
 
+}
+
+void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept {
+  auto params = jsi::Array(rt, 3);
+  params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
+  params.setValueAtIndex(rt, 1, eventName);
+  //auto obj = rt.global().createFromHostObject(rt, eventData);
+  params.setValueAtIndex(rt, 2, *eventData.get());
+
+  m_callFunctionReturnFlushedQueue->call(rt, "RCTEventEmitter", "receiveEvent", params);
+  /*.getPropertyNames(rt);
+  auto len = v.length(rt);
+  for (auto i = 0; i < len; i++) {
+    auto name = v.getValueAtIndex(rt, i).asString(rt).utf8(rt);
+    OutputDebugStringA(name.c_str());
+    OutputDebugStringA("\n");
+  }*/
+  /*
+  auto react = rt.global().getPropertyAsObject(rt, "React");
+  auto emitter = react.getPropertyAsObject(rt, "RCTEventEmitter");
+  auto receiveEvent = emitter.getPropertyAsFunction(rt, "receiveEvent");
+  receiveEvent.call(rt, params);
+  */
+}
+
+
+
+void XamlMetadata::PopulateNativeProps(std::vector<std::string>& names, const winrt::Windows::Foundation::IInspectable& obj) const {
+  auto cn = winrt::get_class_name(obj);
+  auto cc = obj.try_as<ContentControl>();
+  for (auto const& map : propertyMaps) {
+    for (auto e = map.map; e != map.map + map.size; e++) {
+      if (auto cast = e->asType(obj)) {
+        names.push_back(e->propName);
+      }
+    }
+  }
 }
