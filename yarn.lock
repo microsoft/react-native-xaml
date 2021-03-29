@@ -1082,16 +1082,17 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
 
-"@react-native-windows/cli@0.64.1":
-  version "0.64.1"
-  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.64.1.tgz#0f974d1f08c5ff9f72c1d204f6b6c86e7a9983ec"
-  integrity sha512-65ckQUdkDB/q4IsO+cpWrKvQ2ENkyWiyy5xmZCwV2SM95o7bnT66tNGv3vrkVYo67c4n8dG/laaiRu12Imv66g==
+"@react-native-windows/cli@0.64.2":
+  version "0.64.2"
+  resolved "https://registry.yarnpkg.com/@react-native-windows/cli/-/cli-0.64.2.tgz#1fe49a6e812c6c2bc1523a70db4ce292576fd606"
+  integrity sha512-cjDMnfhb1QArUBgzeXuvxi7aYhn80KM/aVG9xIgvAxYMg/lSP0kInhZjalf6VE38R1iZvUJ84OZT7JprSC42WQ==
   dependencies:
     "@react-native-windows/package-utils" "0.64.0"
     "@react-native-windows/telemetry" "0.64.0"
     chalk "^4.1.0"
     cli-spinners "^2.2.0"
     envinfo "^7.5.0"
+    find-up "^4.1.0"
     glob "^7.1.1"
     inquirer "^3.0.6"
     mustache "^4.0.1"
@@ -5662,17 +5663,17 @@ react-native-typescript-transformer@*:
     semver "^5.4.1"
     source-map "^0.5.6"
 
-react-native-windows@0.64.1, react-native-windows@^0.64.1:
-  version "0.64.1"
-  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.64.1.tgz#48c30493299064c4d52bdc5d958869e0ca336279"
-  integrity sha512-VO9l1DiMjqpML0U0GqTCcxGwbzG+hoGBik7vRRenh5e4XwDJIxFT603CtdOrvsdusVmXmNth07kpfzrHfyYHfA==
+react-native-windows@0.64.2, react-native-windows@^0.64.2:
+  version "0.64.2"
+  resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.64.2.tgz#00ebd7a3c10031552653ce1a3ad4af4da597a15a"
+  integrity sha512-WHxq5MKAEf7PJHoBui0a7eIzGNRvFK80ri1wROlxymykVlP6jFamGFRQgDquDp9bIF5/EdcUuvoeO0gftfd7EQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@jest/create-cache-key-function" "^26.5.0"
     "@react-native-community/cli" "^5.0.1-alpha.0"
     "@react-native-community/cli-platform-android" "^5.0.1-alpha.0"
     "@react-native-community/cli-platform-ios" "^5.0.1-alpha.0"
-    "@react-native-windows/cli" "0.64.1"
+    "@react-native-windows/cli" "0.64.2"
     "@react-native/assets" "1.0.0"
     "@react-native/normalize-color" "1.0.0"
     "@react-native/polyfills" "1.0.0"
