@@ -2,7 +2,20 @@
 #include "XamlObject.h"
 #include "../include/Shared/cdebug.h"
 
+#include "Codegen/EventArgsTypeProperties.g.h"
+
 namespace jsi = facebook::jsi;
+
+const EventArgsProperty* GetProp(const std::string& name, const winrt::Windows::Foundation::IInspectable& obj) {
+  auto it = std::find_if(eventArgsProperties, eventArgsProperties + ARRAYSIZE(eventArgsProperties), [name](const EventArgsProperty& e) { return e.name == name; });
+  while ((it != eventArgsProperties + ARRAYSIZE(eventArgsProperties)) && (it->name == name)) {
+    if (it->isType(obj)) {
+      return it;
+    }
+    it++;
+  }
+  return nullptr;
+}
 
 template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
 auto XamlObject::RunOnUIThread(const TLambda& code) const {
@@ -31,7 +44,12 @@ void RunOnUIThread(const TLambda& code) {
   std::condition_variable cv;
   std::mutex mutex;
   m_metadata->UIDispatcher().Post([&]() {
-    code();
+    try {
+      code();
+    }
+    catch (const winrt::hresult&) {
+
+    }
     cv.notify_all();
     });
 
@@ -56,6 +74,9 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
               return val;
             }
           }
+        }
+        else if (auto evtProp = GetProp(name, m_obj)) {
+          return evtProp->getter(m_obj);
         }
         return winrt::Windows::Foundation::IInspectable{ nullptr };
         });
@@ -123,6 +144,12 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
       "className",
     };
     m_metadata->PopulateNativeProps(names, m_obj);
+    for (const auto& e : eventArgsProperties) {
+      if (e.isType(m_obj)) {
+        names.push_back(e.name);
+      }
+    }
+
     return names;
     });
 

@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Codegen\EventArgsTypeProperties.g.h" />
     <ClInclude Include="Codegen\TypeEvents.g.h" />
     <ClInclude Include="Codegen\TypeProperties.g.h" />
     <ClInclude Include="Crc32Str.h" />

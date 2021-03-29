@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="EventArgsTypeProperties.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EventArgsTypeProperties.tt</DependentUpon>
+    </Compile>
     <Compile Update="TSEnums.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -49,6 +54,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="EventArgsTypeProperties.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EventArgsTypeProperties.cs</LastGenOutput>
+    </None>
     <None Update="TSEnums.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>TSEnums.cs</LastGenOutput>

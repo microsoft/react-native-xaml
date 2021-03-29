@@ -32,6 +32,9 @@
     <ClInclude Include="Serialize.h" />
     <ClInclude Include="Styling.h" />
     <ClInclude Include="XamlObject.h" />
+    <ClInclude Include="Codegen\EventArgsTypeProperties.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />

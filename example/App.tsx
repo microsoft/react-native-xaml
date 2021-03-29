@@ -96,8 +96,9 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
                   }}>
-                  <Button onTapped={(a) => {
-                      alert(JSON.stringify(a.nativeEvent));
+                    <TextBox text={option} focusable={true} />
+                  <Button foreground="#992222" onTapped={(a) => {
+                      setOption(JSON.stringify(a.nativeEvent));
                   }}
                   content={{ string: 'button' }} />
               {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
