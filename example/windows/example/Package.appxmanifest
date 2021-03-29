@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="b8e4a7e8-1936-4213-a3b7-afd09481400c"
+    Name="ReactNativeXaml-Example"
     Publisher="CN=Alexander Sklar"
     Version="1.0.0.0" />
 

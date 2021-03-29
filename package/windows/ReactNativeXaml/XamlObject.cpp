@@ -92,13 +92,17 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
 
 facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& o) const {
   if (o == nullptr) return jsi::Value::null();
+  auto cn = winrt::get_class_name(o);
   
-  else if (auto refStr = o.try_as<winrt::Windows::Foundation::IReference<winrt::hstring>>()) {
+  if (auto refStr = o.try_as<winrt::Windows::Foundation::IReference<winrt::hstring>>()) {
     auto str = winrt::unbox_value<winrt::hstring>(o);
     return jsi::String::createFromUtf8(rt, winrt::to_string(str));
   }
   else if (auto refInt = o.try_as<winrt::Windows::Foundation::IReference<int32_t>>()) {
     return jsi::Value(refInt.GetInt32());
+  }
+  else if (auto refUInt = o.try_as<winrt::Windows::Foundation::IReference<uint32_t>>()) {
+    return jsi::Value(static_cast<int32_t>(refUInt.GetUInt32()));
   }
   else if (auto refInt8 = o.try_as<winrt::Windows::Foundation::IReference<unsigned char>>()) {
     return jsi::Value(static_cast<double>(refInt8.GetUInt8()));
@@ -144,13 +148,22 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
     auto v = ts.count();
     return jsi::Value(static_cast<double>(v));
   }
-  else if (auto scb = o.try_as<xaml::Media::SolidColorBrush>()) {    
+  else if (auto scb = o.try_as<xaml::Media::SolidColorBrush>()) {
     auto name = RunOnUIThread([&]() {
       auto color = scb.Color();
       return winrt::Windows::UI::ColorHelper::ToDisplayName(color);
       });
     return jsi::String::createFromUtf8(rt, winrt::to_string(name));
   }
+  else if (auto refTN = o.try_as<IReference<xaml::Interop::TypeName>>()) {
+    auto t = jsi::Object(rt);
+    auto tn = refTN.Value();
+
+    t.setProperty(rt, "kind", static_cast<int32_t>(tn.Kind));
+    t.setProperty(rt, "name", jsi::String::createFromUtf8(rt, winrt::to_string(tn.Name)));
+    return t;
+  }
+
 
   return jsi::Object::createFromHostObject(rt, std::make_shared<XamlObject>(o, m_metadata));
 }
