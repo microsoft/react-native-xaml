@@ -269,9 +269,11 @@ namespace Codegen
 
             var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
             var typesGen = new TSTypes(xamlTypes).TransformText();
+            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps).TransformText();
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
+            var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
 
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))
@@ -281,11 +283,8 @@ namespace Codegen
             UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
-
-            var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
             UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
 
-            var tsEnumsGen = new TSEnums().TransformText();
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
@@ -301,6 +300,11 @@ namespace Codegen
 
         private static int CompareProps(MrProperty p1, MrProperty p2)
         {
+#if DEBUG
+            var c = p1.GetName().CompareTo(p2.GetName());
+            if (c != 0) return c;
+            return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
+#else
             var h1 = GetPropertySortKey(p1);
             var h2 = GetPropertySortKey(p2);
             if (h1.CompareTo(h2) != 0)
@@ -311,6 +315,7 @@ namespace Codegen
             {
                 return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
             }
+#endif
         }
 
         private static string PackageRoot
