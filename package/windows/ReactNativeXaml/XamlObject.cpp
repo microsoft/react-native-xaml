@@ -3,8 +3,8 @@
 
 namespace jsi = facebook::jsi;
 
-template <typename TLambda>
-auto XamlObject::RunOnUIThread(const TLambda& code) -> decltype(code()) {
+template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
+auto XamlObject::RunOnUIThread(const TLambda& code) {
   std::condition_variable cv;
   std::mutex mutex;
   std::optional<decltype(code())> result;
@@ -18,15 +18,28 @@ auto XamlObject::RunOnUIThread(const TLambda& code) -> decltype(code()) {
   return result.value();
 }
 
+template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
+void RunOnUIThread(const TLambda& code) {
+  std::condition_variable cv;
+  std::mutex mutex;
+  m_metadata->UIDispatcher().Post([&]() {
+    code();
+    cv.notify_all();
+    });
+
+  std::unique_lock<std::mutex> lock(mutex);
+  cv.wait(lock);
+}
+
 jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noexcept {
   try {
     auto name = nameId.utf8(rt);
-    if (auto ref = m_obj.try_as<winrt::Windows::Foundation::IReference<winrt::hstring>>()) {
-      if (name == "string") {
-        auto str = winrt::unbox_value<winrt::hstring>(m_obj);
-        return jsi::String::createFromUtf8(rt, winrt::to_string(str));
-      }
-    }
+    //if (auto ref = m_obj.try_as<winrt::Windows::Foundation::IReference<winrt::hstring>>()) {
+    //  if (name == "string") {
+    //    auto str = winrt::unbox_value<winrt::hstring>(m_obj);
+    //    return jsi::String::createFromUtf8(rt, winrt::to_string(str));
+    //  }
+    //}
     if (name == "prop1") {
       return jsi::Value(42);
     }
@@ -42,13 +55,30 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
         }
         return winrt::Windows::Foundation::IInspectable{ nullptr };
         });
-      return  jsi::Object::createFromHostObject(rt, std::make_shared<XamlObject>(res, m_metadata)); 
+      return IInspectableToValue(rt, res);
     }
   }
   catch (const winrt::hresult& hr) {
 
   }
   return jsi::HostObject::get(rt, nameId);
+}
+
+facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& o) const {
+  if (auto ref = o.try_as<winrt::Windows::Foundation::IReference<winrt::hstring>>()) {
+    auto str = winrt::unbox_value<winrt::hstring>(o);
+    return jsi::String::createFromUtf8(rt, winrt::to_string(str));
+  }
+  else if (auto ref = o.try_as<winrt::Windows::Foundation::IReference<int32_t>>()) {
+    return jsi::Value(ref.GetInt32());
+  }
+  else if (auto ref = o.try_as<winrt::Windows::Foundation::IReference<double>>()) {
+    return jsi::Value(ref.GetDouble());
+  }
+  else if (auto ref = o.try_as<winrt::Windows::Foundation::IReference<bool>>()) {
+    return jsi::Value(ref.GetBoolean());
+  }
+  return jsi::Object::createFromHostObject(rt, std::make_shared<XamlObject>(o, m_metadata));
 }
 
 void XamlObject::set(jsi::Runtime& rt, const jsi::PropNameID& name, const jsi::Value& value) noexcept {

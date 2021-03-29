@@ -19,5 +19,11 @@ private:
   winrt::Windows::Foundation::IInspectable m_obj;
   std::vector<facebook::jsi::PropNameID> m_propNames;
   std::shared_ptr<const XamlMetadata> m_metadata;
-  template <typename TLambda> auto RunOnUIThread(const TLambda& code) -> decltype(code());
+
+  template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
+  auto RunOnUIThread(const TLambda& code);
+
+  template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
+  void RunOnUIThread(const TLambda& code);
+  facebook::jsi::Value IInspectableToValue(facebook::jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& inspectable) const;
 };
