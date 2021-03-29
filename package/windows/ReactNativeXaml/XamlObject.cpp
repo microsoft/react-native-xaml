@@ -92,12 +92,16 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
 
 facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& o) const {
   if (o == nullptr) return jsi::Value::null();
+  
   else if (auto refStr = o.try_as<winrt::Windows::Foundation::IReference<winrt::hstring>>()) {
     auto str = winrt::unbox_value<winrt::hstring>(o);
     return jsi::String::createFromUtf8(rt, winrt::to_string(str));
   }
   else if (auto refInt = o.try_as<winrt::Windows::Foundation::IReference<int32_t>>()) {
     return jsi::Value(refInt.GetInt32());
+  }
+  else if (auto refInt8 = o.try_as<winrt::Windows::Foundation::IReference<unsigned char>>()) {
+    return jsi::Value(static_cast<double>(refInt8.GetUInt8()));
   }
   else if (auto refInt64 = o.try_as<winrt::Windows::Foundation::IReference<int64_t>>()) {
     auto v = refInt64.GetInt64();
@@ -110,7 +114,7 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
   else if (auto refBool = o.try_as<winrt::Windows::Foundation::IReference<bool>>()) {
     return jsi::Value(refBool.GetBoolean());
   }
-  else if (auto ref = o.try_as<winrt::Windows::Foundation::IReference<xaml::Thickness>>()) {
+  else if (auto refThickness = o.try_as<winrt::Windows::Foundation::IReference<xaml::Thickness>>()) {
     auto thickness = winrt::unbox_value<Thickness>(o);
     auto t = jsi::Object(rt);
     t.setProperty(rt, "left", thickness.Left);
@@ -119,6 +123,27 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
     t.setProperty(rt, "bottom", thickness.Bottom);
     return t;
   }
+  else if (auto refRect = o.try_as<winrt::Windows::Foundation::IReference<Rect>>()) {
+    auto rect = refRect.GetRect();
+    auto t = jsi::Object(rt);
+    t.setProperty(rt, "x", rect.X);
+    t.setProperty(rt, "y", rect.Y);
+    t.setProperty(rt, "width", rect.Width);
+    t.setProperty(rt, "height", rect.Height);
+    return t;
+  }
+  else if (auto refPt = o.try_as<winrt::Windows::Foundation::IReference<Point>>()) {
+    auto pt = refPt.GetPoint();
+    auto t = jsi::Object(rt);
+    t.setProperty(rt, "x", pt.X);
+    t.setProperty(rt, "y", pt.Y);
+    return t;
+  }
+  else if (auto refTs = o.try_as<winrt::Windows::Foundation::IReference<TimeSpan>>()) {
+    auto ts = refTs.GetTimeSpan();
+    auto v = ts.count();
+    return jsi::Value(static_cast<double>(v));
+  }
   else if (auto scb = o.try_as<xaml::Media::SolidColorBrush>()) {    
     auto name = RunOnUIThread([&]() {
       auto color = scb.Color();
@@ -126,6 +151,7 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
       });
     return jsi::String::createFromUtf8(rt, winrt::to_string(name));
   }
+
   return jsi::Object::createFromHostObject(rt, std::make_shared<XamlObject>(o, m_metadata));
 }
 
