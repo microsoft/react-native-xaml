@@ -231,13 +231,17 @@ void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::stri
 
 
 void XamlMetadata::PopulateNativeProps(std::vector<std::string>& names, const winrt::Windows::Foundation::IInspectable& obj) const {
-  auto cn = winrt::get_class_name(obj);
-  auto cc = obj.try_as<ContentControl>();
-  for (auto const& map : propertyMaps) {
-    for (auto e = map.map; e != map.map + map.size; e++) {
-      if (auto cast = e->asType(obj)) {
-        names.push_back(e->propName);
+  if (auto dobj = obj.try_as<DependencyObject>()) {
+    for (auto const& map : propertyMaps) {
+      for (auto e = map.map; e != map.map + map.size; e++) {
+        if (auto cast = e->asType(obj)) {
+          names.push_back(e->propName);
+        }
       }
     }
+  }
+  else if (auto rea = obj.try_as<xaml::RoutedEventArgs>()) {
+    auto cn = winrt::get_class_name(rea);
+    auto trea = rea.try_as<xaml::Input::TappedRoutedEventArgs>();
   }
 }

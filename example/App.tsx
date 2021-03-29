@@ -96,7 +96,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
                   }}>
-                  <Button onClick={(a) => {
+                  <Button onTapped={(a) => {
                       alert(JSON.stringify(a.nativeEvent));
                   }}
                   content={{ string: 'button' }} />
