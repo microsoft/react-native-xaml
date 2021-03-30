@@ -43,6 +43,7 @@ LineBreak,
     NavigationView,
     NavigationViewItem,
 NavigationViewItemHeader,
+FontIcon,
 } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
@@ -123,8 +124,10 @@ const App: () => Node = () => {
                       <Run text="Go to bing"/>
                     </Hyperlink>
                   </TextBlock>
-                  <NavigationView style={{ height: 200, width: 120 }}>
-                      <NavigationViewItem content={{ string: "item 1" }} />
+                  <NavigationView style={{ height: 200, width: 120, margin: 20, padding: 40 }}>
+                      <NavigationViewItem content={{ string: "item 1" }} >
+                        <FontIcon glyph="&#xE790;" />
+                      </NavigationViewItem>
                       <NavigationViewItem content={{ string: "item 2" }} />
                   </NavigationView>
                   {/*<StackPanel orientation="horizontal">*/}
@@ -137,12 +140,12 @@ const App: () => Node = () => {
                   {/*    <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />*/}
                   {/*    <Button content={{ string: "this is a button" }} onClick={() => { alert("you clicked the button!"); }} />*/}
                   {/*</StackPanel>*/}
-                  {/*<ComboBox text="this is a combobox" description={{ string: "best bois" }} onSelectionChanged={(args) => {*/}
-                  {/*    alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
-                  {/*}} >*/}
-                  {/*    <ComboBoxItem content={{ string: "garfield" }} foreground="black" />*/}
-                  {/*    <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />*/}
-                  {/*</ComboBox>*/}
+                  <ComboBox text="this is a combobox" description={{ string: "best bois" }} onSelectionChanged={(args) => {
+                      alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`); }
+                  } >
+                      <ComboBoxItem content={{ string: "garfield" }} foreground="black" />
+                      <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />
+                 </ComboBox>
                   {/* <TextBox text="this is a textbox with a menuFlyout" foreground="red">
                       <MenuFlyout isOpen={isOpen} onClosed={() => {
                           setIsOpen(false);

@@ -55,6 +55,9 @@ namespace winrt::Microsoft::ReactNative {
     }
   }
   void WriteValue(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& item) {
+    if (item == nullptr) {
+      return writer.WriteNull();
+    }
     auto cn = winrt::get_class_name(item);
     writer.WriteObjectBegin();
     WriteProperty(writer, L"type", cn);

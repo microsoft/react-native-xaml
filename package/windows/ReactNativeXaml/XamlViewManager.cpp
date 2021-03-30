@@ -206,6 +206,11 @@ namespace winrt::ReactNativeXaml {
       auto childCN = winrt::get_class_name(child);
       return navView.MenuItems().InsertAt(index, child);
     }
+    else if (auto navViewItem = e.try_as<NavigationViewItem>()) {
+      if (auto childIconElement = child.try_as<IconElement>()) {
+        return navViewItem.Icon(childIconElement);
+      }
+    }
     else if (auto contentCtrl = e.try_as<Wrapper>()) {
       auto parentContent = contentCtrl.Content();
       if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {

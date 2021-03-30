@@ -60,13 +60,13 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
             #line hidden
             this.Write(@"
 struct EventArgsProperty {
-	const char* const name;
-	
-	using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
-	const isType_t isType;
+    const char* const name;
 
-	using getter_t = winrt::Windows::Foundation::IInspectable (*) (const winrt::Windows::Foundation::IInspectable& ea);
-	const getter_t getter;
+    using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
+    const isType_t isType;
+
+    using getter_t = winrt::Windows::Foundation::IInspectable (*) (const winrt::Windows::Foundation::IInspectable& ea);
+    const getter_t getter;
 };
 
 const EventArgsProperty eventArgsProperties[] = {
@@ -77,7 +77,7 @@ const EventArgsProperty eventArgsProperties[] = {
             
             #line default
             #line hidden
-            this.Write("\t{ \"");
+            this.Write("    { \"");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop.GetName())));
