@@ -90,7 +90,9 @@ If you have questions about a scenario you don't see below, please [file an issu
 
 ```jsx
 <NavigationView style={{ height: 200, width: 120 }}>
-  <NavigationViewItem content={{ string: "item 1" }} />
+  <NavigationViewItem content={{ string: "item 1" }}>
+    <FontIcon glyph="&#xE790;" />
+  </NavigationViewItem>
   <NavigationViewItem content={{ string: "item 2" }} />
 </NavigationView>
 ```
