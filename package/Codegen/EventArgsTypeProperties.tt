@@ -28,6 +28,6 @@ struct EventArgsProperty {
 
 const EventArgsProperty eventArgsProperties[] = {
 <# foreach (var prop in Properties) { #>
-	{ "<#= Util.ToJsName(prop.GetName()) #>", IsType<<#= Util.GetCppWinRTType(prop.DeclaringType) #>>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<<#= Util.GetCppWinRTType(prop.DeclaringType) #>>(); return <#= Util.MaybeBox("ea", prop) #>; } },
+    { "<#= Util.ToJsName(prop.GetName()) #>", IsType<<#= Util.GetCppWinRTType(prop.DeclaringType) #>>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<<#= Util.GetCppWinRTType(prop.DeclaringType) #>>(); return <#= Util.MaybeBox("ea", prop) #>; } },
 <# } #>
 };
