@@ -33,24 +33,6 @@ namespace winrt::ReactNativeXaml {
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
     auto e = m_xamlMetadata->Create(typeName, m_reactContext);
-
-
-    //if (typeName == "Windows.UI.Xaml.Controls.Button") {
-    //  auto b = e.as<xaml::Controls::Button>();
-    //  b.PointerEntered([ctx = m_reactContext, vmWeak = get_weak()](auto&& sender, auto&&) {
-    //    auto _b = sender.as<xaml::Controls::Button>();
-    //    auto tag = winrt::unbox_value<int64_t>(_b.Tag());
-
-    //    ExecuteJsi(ctx, [tag, vmWeak](facebook::jsi::Runtime& rt) {
-    //      auto obj = std::make_shared<
-    // bject>();
-    //      if (auto vm = vmWeak.get()) {
-    //        vm->Metadata()->JsiDispatchEvent(rt, tag, "topClick", obj);
-    //      }
-    //      });
-
-    //    });
-    //}
     return e;
   }
 

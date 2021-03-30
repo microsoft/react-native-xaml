@@ -42,43 +42,6 @@ void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
     });
 }
 
-/*
-struct RoutedEventInfo {
-  const char* name;
-
-  using routedEventGetter_t = xaml::RoutedEvent(*)();
-  routedEventGetter_t routedEventGetter;
-};
-
-// https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.routedevent?view=winrt-19041#events-that-use-a-routedevent-identifier
-#define ROUTED_EVENT(name)  { #name, xaml::UIElement::name##Event }
-constexpr RoutedEventInfo routedEvents[] = {
-  ROUTED_EVENT(DoubleTapped),
-  ROUTED_EVENT(DragEnter),
-  ROUTED_EVENT(DragLeave),
-  ROUTED_EVENT(DragOver),
-  ROUTED_EVENT(Drop),
-  ROUTED_EVENT(Holding),
-  ROUTED_EVENT(KeyDown),
-  ROUTED_EVENT(KeyUp),
-  ROUTED_EVENT(ManipulationCompleted),
-  ROUTED_EVENT(ManipulationDelta),
-  ROUTED_EVENT(ManipulationInertiaStarting),
-  ROUTED_EVENT(ManipulationStarted),
-  ROUTED_EVENT(ManipulationStarting),
-  ROUTED_EVENT(PointerCanceled),
-  ROUTED_EVENT(PointerCaptureLost),
-  ROUTED_EVENT(PointerEntered),
-  ROUTED_EVENT(PointerExited),
-  ROUTED_EVENT(PointerMoved),
-  ROUTED_EVENT(PointerPressed),
-  ROUTED_EVENT(PointerReleased),
-  ROUTED_EVENT(PointerWheelChanged),
-  ROUTED_EVENT(RightTapped),
-  ROUTED_EVENT(Tapped),
-};
-*/
-
 FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
   if (auto fe = d.try_as<FrameworkElement>()) {
     return fe;
@@ -209,23 +172,9 @@ void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::stri
   auto params = jsi::Array(rt, 3);
   params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
   params.setValueAtIndex(rt, 1, eventName);
-  //auto obj = rt.global().createFromHostObject(rt, eventData);
   params.setValueAtIndex(rt, 2, *eventData.get());
 
   m_callFunctionReturnFlushedQueue->call(rt, "RCTEventEmitter", "receiveEvent", params);
-  /*.getPropertyNames(rt);
-  auto len = v.length(rt);
-  for (auto i = 0; i < len; i++) {
-    auto name = v.getValueAtIndex(rt, i).asString(rt).utf8(rt);
-    OutputDebugStringA(name.c_str());
-    OutputDebugStringA("\n");
-  }*/
-  /*
-  auto react = rt.global().getPropertyAsObject(rt, "React");
-  auto emitter = react.getPropertyAsObject(rt, "RCTEventEmitter");
-  auto receiveEvent = emitter.getPropertyAsFunction(rt, "receiveEvent");
-  receiveEvent.call(rt, params);
-  */
 }
 
 
