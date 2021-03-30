@@ -28,9 +28,12 @@ namespace winrt::ReactNativeXaml {
   }
 
   winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
+    m_xamlMetadata->SetupEventDispatcher(m_reactContext);
+
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
     auto typeName = propertyMap["type"].AsString();
-    return xamlMetadata.Create(typeName, m_reactContext);
+    auto e = m_xamlMetadata->Create(typeName, m_reactContext);
+    return e;
   }
 
   void SetResources(const xaml::FrameworkElement& fe, const JSValueObject& dict) {
@@ -65,8 +68,8 @@ namespace winrt::ReactNativeXaml {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
     nativeProps.Insert(L"resources", ViewManagerPropertyType::Map);
-    xamlMetadata.PopulateNativeProps(nativeProps);
-    xamlMetadata.PopulateNativeEvents(nativeProps);
+    m_xamlMetadata->PopulateNativeProps(nativeProps);
+    m_xamlMetadata->PopulateNativeEvents(nativeProps);
     return nativeProps.GetView();
   }
 
@@ -84,13 +87,13 @@ namespace winrt::ReactNativeXaml {
         auto const& propertyValue = pair.second;
 
         auto cn = get_class_name(e);
-        if (auto prop = xamlMetadata.GetProp(propertyName, control)) {
+        if (auto prop = m_xamlMetadata->GetProp(propertyName, control)) {
           auto realObject = prop->asType(control).as<DependencyObject>();
           auto rcn = get_class_name(realObject);
           prop->SetValue(realObject, propertyValue);
           handled = true;
         }
-        else if (auto eventAttacher = xamlMetadata.AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
+        else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
         }
         else if (propertyName == "type") {}
         else if (propertyName == "resources" && propertyValue.Type() == JSValueType::Object && control.try_as<xaml::FrameworkElement>()) {
@@ -139,6 +142,7 @@ namespace winrt::ReactNativeXaml {
 
   void XamlViewManager::ReactContext(IReactContext reactContext) noexcept {
     m_reactContext = reactContext;
+    m_xamlMetadata = std::make_shared<XamlMetadata>();
   }
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {

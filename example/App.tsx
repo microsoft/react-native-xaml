@@ -95,7 +95,12 @@ const App: () => Node = () => {
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+                  }}>
+                    <TextBox text={option} focusable={true} />
+                  <Button foreground="#992222" onTapped={(a) => {
+                      setOption(JSON.stringify(a.nativeEvent));
+                  }}
+                  content={{ string: 'button' }} />
               {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
                   {/* <Button content={{ string: `Last selected option = ${option} ${count}` }}
                       onClick={(a) => { 

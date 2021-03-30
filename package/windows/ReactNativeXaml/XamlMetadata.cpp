@@ -14,49 +14,33 @@
 #include <JSValueWriter.h>
 #include "Serialize.h"
 #include <UI.Xaml.Documents.h>
+#include <JSI/JsiApiContext.h>
+
+namespace jsi = facebook::jsi;
 
 using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-XamlMetadata::XamlMetadata() {}
+void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
+  m_reactContext = reactContext;
+  
+  static std::once_flag inited;
+  std::call_once(inited, [ctx = reactContext, this]() {
+    ExecuteJsi(ctx, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
 
-/*
-struct RoutedEventInfo {
-  const char* name;
-
-  using routedEventGetter_t = xaml::RoutedEvent(*)();
-  routedEventGetter_t routedEventGetter;
-};
-
-// https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.routedevent?view=winrt-19041#events-that-use-a-routedevent-identifier
-#define ROUTED_EVENT(name)  { #name, xaml::UIElement::name##Event }
-constexpr RoutedEventInfo routedEvents[] = {
-  ROUTED_EVENT(DoubleTapped),
-  ROUTED_EVENT(DragEnter),
-  ROUTED_EVENT(DragLeave),
-  ROUTED_EVENT(DragOver),
-  ROUTED_EVENT(Drop),
-  ROUTED_EVENT(Holding),
-  ROUTED_EVENT(KeyDown),
-  ROUTED_EVENT(KeyUp),
-  ROUTED_EVENT(ManipulationCompleted),
-  ROUTED_EVENT(ManipulationDelta),
-  ROUTED_EVENT(ManipulationInertiaStarting),
-  ROUTED_EVENT(ManipulationStarted),
-  ROUTED_EVENT(ManipulationStarting),
-  ROUTED_EVENT(PointerCanceled),
-  ROUTED_EVENT(PointerCaptureLost),
-  ROUTED_EVENT(PointerEntered),
-  ROUTED_EVENT(PointerExited),
-  ROUTED_EVENT(PointerMoved),
-  ROUTED_EVENT(PointerPressed),
-  ROUTED_EVENT(PointerReleased),
-  ROUTED_EVENT(PointerWheelChanged),
-  ROUTED_EVENT(RightTapped),
-  ROUTED_EVENT(Tapped),
-};
-*/
+      auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
+      rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
+      auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
+      if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
+        if (auto vm = shared.get()) {
+          vm->m_callFunctionReturnFlushedQueue = batchedBridge.asObject(rt).getPropertyAsFunction(
+            rt, "callFunctionReturnFlushedQueue");
+        }
+      }
+    });
+    });
+}
 
 FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
   if (auto fe = d.try_as<FrameworkElement>()) {
@@ -167,7 +151,7 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
   if (!attaching) {
     wrapper->second.events.erase(attachedEvt);
   }
-  EventAttachInfo eai { context, e, "top" + evtName };
+  EventAttachInfo eai { context, e, "top" + evtName, *this };
   for (const auto& entry : EventInfo::xamlEventMap) {
     if (Equals(MAKE_KEY(entry.name), key)) {
       auto attached = entry.attachHandler(eai, isWrapped, token);
@@ -182,4 +166,31 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
   }
   return nullptr;
 
+}
+
+void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept {
+  auto params = jsi::Array(rt, 3);
+  params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
+  params.setValueAtIndex(rt, 1, eventName);
+  params.setValueAtIndex(rt, 2, *eventData.get());
+
+  m_callFunctionReturnFlushedQueue->call(rt, "RCTEventEmitter", "receiveEvent", params);
+}
+
+
+
+void XamlMetadata::PopulateNativeProps(std::vector<std::string>& names, const winrt::Windows::Foundation::IInspectable& obj) const {
+  if (auto dobj = obj.try_as<DependencyObject>()) {
+    for (auto const& map : propertyMaps) {
+      for (auto e = map.map; e != map.map + map.size; e++) {
+        if (auto cast = e->asType(obj)) {
+          names.push_back(e->propName);
+        }
+      }
+    }
+  }
+  else if (auto rea = obj.try_as<xaml::RoutedEventArgs>()) {
+    auto cn = winrt::get_class_name(rea);
+    auto trea = rea.try_as<xaml::Input::TappedRoutedEventArgs>();
+  }
 }

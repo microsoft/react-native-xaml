@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class TypeCreator : TypeCreatorBase
     {
@@ -31,21 +31,21 @@ namespace Codegen
             this.Write("#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n#include \"Crc32Str.h\"\r\n#include <win" +
                     "string.h>\r\n\r\n");
             
-            #line 11 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 11 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var ns in Types.Select(x => x.GetNamespace()).Distinct()) { 
             
             #line default
             #line hidden
             this.Write("#include \"winrt/");
             
-            #line 12 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 12 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
             
             #line default
             #line hidden
             this.Write(".h\"\r\n");
             
-            #line 13 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 13 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
             
             #line default
@@ -77,28 +77,28 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
     switch (key) {
 ");
             
-            #line 39 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 39 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null)) { 
             
             #line default
             #line hidden
             this.Write("        case COMPILE_TIME_CRC32_STR(\"");
             
-            #line 40 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 40 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.GetFullName()));
             
             #line default
             #line hidden
             this.Write("\"): { return ");
             
-            #line 40 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 40 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
             
             #line default
             #line hidden
             this.Write("(); }\r\n");
             
-            #line 41 "F:\react-native-xaml\package\Codegen\TypeCreator.tt"
+            #line 41 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
             
             #line default

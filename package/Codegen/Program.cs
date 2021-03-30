@@ -30,6 +30,15 @@ namespace Codegen
         public IEnumerable<MrType> Types { get; set; }
     }
 
+    public partial class EventArgsTypeProperties
+    {
+        public EventArgsTypeProperties(IEnumerable<MrProperty> properties)
+        {
+            Properties = properties;
+        }
+        IEnumerable<MrProperty> Properties { get; set; }
+    }
+
     public partial class TypeProperties
     {
         public TypeProperties(IEnumerable<MrProperty> properties, IEnumerable<MrProperty> fakeProps)
@@ -121,8 +130,7 @@ namespace Codegen
                 types = windows_winmdTypes;
             }
             Util.LoadContext = context;
-            
-            
+
             var fakeProps = new List<MrProperty>{
                 GetProperty(context, $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase", "IsOpen"),
                 GetProperty(context, $"{XamlNames.XamlNamespace}.Documents.Run", "Text"),
@@ -200,6 +208,9 @@ namespace Codegen
 
             var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
+
+            var eventArgTypes = new HashSet<MrType>(new NameEqualityComparer());
+            var eventArgProps = new List<MrProperty>();
             PrintVerbose("Enumerating properties and events");
             foreach (var type in xamlTypes)
             {
@@ -208,38 +219,61 @@ namespace Codegen
                 properties.AddRange(propsToAdd);
 
                 var eventsToAdd = type.GetEvents().Where(e => Util.ShouldEmitEventMetadata(e));
+                foreach (var e in eventsToAdd)
+                {
+                    var handlerDelegate = e.GetEventType();
+                    var invoke = handlerDelegate.GetInvokeMethod();
+                    if (invoke != null)
+                    {
+                        var parameters = invoke.GetParameters();
+                        if (parameters.Length == 2 && (parameters[1].GetParameterName().EndsWith("args") || parameters[1].GetParameterType().GetName().EndsWith("Args")))
+                        {
+                            eventArgTypes.Add(parameters[1].GetParameterType());
+                        }
+                        else if (parameters.Length == 1 && parameters[0].GetParameterType().GetName().EndsWith("Args"))
+                        {
+                            eventArgTypes.Add(parameters[0].GetParameterType());
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"Couldn't infer event arg type for event {e.GetName()}");
+                        }
+                    }
+                    else if (handlerDelegate.GetFullName() == "System.EventHandler`1")
+                    {
+                        var paramType = handlerDelegate.GetGenericTypeParameters();
+                        if (paramType.Length != 1)
+                        {
+                            throw new ArgumentException($"Couldn't infer EventHandler generic type for event {e.GetName()}");
+                        }
+                        eventArgTypes.Add(paramType[0]);
+                    }
+                }
                 events.AddRange(eventsToAdd);
             }
-#if !DEBUG
-            properties.Sort((p1, p2) =>
+
+            foreach (var type in eventArgTypes)
             {
-                var h1 = GetPropertySortKey(p1);
-                var h2 = GetPropertySortKey(p2);
-                if (h1.CompareTo(h2) != 0)
-                {
-                    return h1.CompareTo(h2);
-                }
-                else
-                {
-                    return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
-                }
-            });
-#else
-            properties.Sort((a, b) =>
-            {
-                var c = a.GetName().CompareTo(b.GetName());
-                if (c != 0) return c;
-                return a.DeclaringType.GetName().CompareTo(b.DeclaringType.GetName());
-            }); 
-#endif
+                var props = type.GetProperties();
+                var propsToAdd = props.Where(p =>
+                    p.Getter != null &&
+                    !p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static)).ToList();
+                eventArgProps.AddRange(propsToAdd);
+            }
+
+
+            properties.Sort(CompareProps);
+            eventArgProps.Sort(CompareProps);
 
             PrintVerbose("Generating projection");
-            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
+
             var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
             var typesGen = new TSTypes(xamlTypes).TransformText();
+            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps).TransformText();
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
+            var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
 
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))
@@ -249,6 +283,7 @@ namespace Codegen
             UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
+            UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
 
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
@@ -262,6 +297,27 @@ namespace Codegen
                 Console.WriteLine(o);
             }
         }
+
+        private static int CompareProps(MrProperty p1, MrProperty p2)
+        {
+#if DEBUG
+            var c = p1.GetName().CompareTo(p2.GetName());
+            if (c != 0) return c;
+            return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
+#else
+            var h1 = GetPropertySortKey(p1);
+            var h2 = GetPropertySortKey(p2);
+            if (h1.CompareTo(h2) != 0)
+            {
+                return h1.CompareTo(h2);
+            }
+            else
+            {
+                return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
+            }
+#endif
+        }
+
         private static string PackageRoot
         {
             get

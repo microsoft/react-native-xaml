@@ -223,6 +223,22 @@ namespace Codegen
             return false;
         }
 
+        public static string MaybeBox(string varName, MrProperty prop)
+        {
+            var unboxed = $"ea.{prop.GetName()}()";
+            var type = prop.GetPropertyType();
+            if (type.IsEnum)
+            {
+                return $"winrt::box_value(static_cast<uint32_t>({unboxed}))";
+            }
+            //if (type.IsClass && DerivesFrom(type, "System.Object"))
+            //{
+            //    return unboxed;
+            else
+            {
+                return $"winrt::box_value({unboxed})";
+            }
+        }
 
         public static bool DerivesFrom(MrType type, string baseName)
         {

@@ -108,6 +108,9 @@
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RuntimeTypeInfo>
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</RuntimeTypeInfo>
     </ClCompile>
+    <Link>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DebugFull</GenerateDebugInformation>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
@@ -131,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Codegen\EventArgsTypeProperties.g.h" />
     <ClInclude Include="Codegen\TypeEvents.g.h" />
     <ClInclude Include="Codegen\TypeProperties.g.h" />
     <ClInclude Include="Crc32Str.h" />
@@ -142,6 +146,7 @@
     <ClInclude Include="Serialize.h" />
     <ClInclude Include="Styling.h" />
     <ClInclude Include="XamlMetadata.h" />
+    <ClInclude Include="XamlObject.h" />
     <ClInclude Include="XamlViewManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +161,7 @@
     <ClCompile Include="Serialize.cpp" />
     <ClCompile Include="Styling.cpp" />
     <ClCompile Include="XamlMetadata.cpp" />
+    <ClCompile Include="XamlObject.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
   </ItemGroup>
   <ItemGroup>
