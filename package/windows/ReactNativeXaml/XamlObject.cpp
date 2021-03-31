@@ -30,6 +30,7 @@ auto XamlObject::RunOnUIThread(const TLambda& code) const {
       OutputDebugStringA(std::to_string(h.value).c_str());
       OutputDebugStringA("\n");
     }
+    catch (...) { }
     cv.notify_all();
     });
 

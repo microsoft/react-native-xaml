@@ -25,7 +25,7 @@ using namespace winrt::Microsoft::ReactNative;
 void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
   m_reactContext = reactContext;
   
-  static std::once_flag inited;
+  std::once_flag inited;
   std::call_once(inited, [ctx = reactContext, this]() {
     ExecuteJsi(ctx, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
 
