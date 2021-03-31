@@ -59,6 +59,14 @@ namespace Codegen
         IEnumerable<MrEvent> Events { get; set; }
     }
 
+    public partial class Children
+    {
+        public Children(IEnumerable<MrType> types)
+        {
+            Types = types;
+        }
+        IEnumerable<MrType> Types { get; set; }
+    }
     public partial class TSProps
     {
         public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps) { Types = types; FakeProps = fakeProps; }
@@ -135,14 +143,7 @@ namespace Codegen
                 GetProperty(context, $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase", "IsOpen"),
                 GetProperty(context, $"{XamlNames.XamlNamespace}.Documents.Run", "Text"),
             };
-
-
-            var baseClassesToProject = new string[]
-            {
-                $"{XamlNames.XamlNamespace}.UIElement",
-                $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase",
-                $"{XamlNames.XamlNamespace}.Documents.TextElement",
-            };
+            string[] baseClassesToProject = Util.GetProjectedBaseClasses();
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
                 Util.DerivesFrom(type, b)) || type.GetFullName() == XamlNames.TopLevelProjectedType);
@@ -170,7 +171,8 @@ namespace Codegen
                 if (allCreatableTypes.ContainsKey(t.GetName()))
                 {
                     list = allCreatableTypes[t.GetName()];
-                } else
+                }
+                else
                 {
                     list = new List<MrType>();
                     allCreatableTypes.Add(t.GetName(), list);
@@ -180,9 +182,12 @@ namespace Codegen
             PrintVerbose("Ensuring all types have unique names");
             foreach (var key in allCreatableTypes.Keys)
             {
-                if (allCreatableTypes[key].Count == 1) {
+                if (allCreatableTypes[key].Count == 1)
+                {
                     continue;
-                } else if (allCreatableTypes[key].Count == 2) {
+                }
+                else if (allCreatableTypes[key].Count == 2)
+                {
                     if (allCreatableTypes[key][0].GetNamespace() == XamlNames.XamlNamespace &&
                         allCreatableTypes[key][1].GetNamespace() == XamlNames.MuxNamespace)
                     {
@@ -198,7 +203,7 @@ namespace Codegen
                 }
                 // If we got here, then either we had more than 2 types with the same short name,
                 // Or we could not disambiguate between the options. Bail out.
-                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));    
+                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));
             }
 
             PrintVerbose("Sorting types");
@@ -274,6 +279,7 @@ namespace Codegen
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
+            var childrenGen = new Children(xamlTypes).TransformText();
 
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))
@@ -284,11 +290,13 @@ namespace Codegen
             UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
             UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
+            UpdateFile(Path.Join(generatedDirPath, "Children.g.cpp"), childrenGen);
 
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
         }
+
 
         private void PrintVerbose(object o)
         {

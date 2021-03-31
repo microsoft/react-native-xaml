@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Children.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Children.tt</DependentUpon>
+    </Compile>
     <Compile Update="EventArgsTypeProperties.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -54,6 +59,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Children.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Children.cs</LastGenOutput>
+    </None>
     <None Update="EventArgsTypeProperties.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>EventArgsTypeProperties.cs</LastGenOutput>

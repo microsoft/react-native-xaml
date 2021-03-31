@@ -311,6 +311,87 @@ namespace Codegen
             var args = argList.Select(t => $"const {GetCppWinRTType(t.Type)}& {t.Name}");
             return string.Join(", ", args);
         }
+
+
+        public static string[] GetProjectedBaseClasses()
+        {
+            return new string[]
+            {
+                $"{XamlNames.XamlNamespace}.UIElement",
+                $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase",
+                $"{XamlNames.XamlNamespace}.Documents.TextElement",
+            };
+        }
+
+        private static bool ShouldProject(MrType type)
+        {
+            return GetProjectedBaseClasses().Any(b => DerivesFrom(type, b));
+        }
+
+        private static bool IsCollectionType(MrType t)
+        {
+            return GetCollectionElementPropertyType(t) != null;
+        }
+
+        private static MrProperty TryGetContentProperty(MrType t)
+        {
+            foreach (var ca in t.GetCustomAttributes())
+            {
+                ca.GetNameAndNamespace(out var name, out var ns);
+                if (name == "ContentPropertyAttribute")
+                {
+                    ca.GetArguments(out var fixedArgs, out var namedArgs);
+                    if (namedArgs.Length == 1 && namedArgs[0].Type.GetFullName() == "System.String")
+                    {
+                        var propName = (string)namedArgs[0].Value;
+                        return t.GetProperties().Where(p => p.GetName() == propName).FirstOrDefault();
+                    }
+                }
+            }
+            return null;
+        }
+        public static IEnumerable<MrProperty> GetChildrenProperties(MrType t)
+        {
+            var props = new List<MrProperty>();
+            var contentProperty = TryGetContentProperty(t);            
+            foreach (var prop in t.GetProperties())
+            {
+                var pt = prop.GetPropertyType();
+
+                if (IsCollectionType(pt) || (prop.GetName() == contentProperty?.GetName()))
+                {
+                    props.Add(prop);
+                }
+            }
+
+            return props;
+        }
+
+        public static MrType GetCollectionElementPropertyType(MrType t)
+        {
+            var collectionTypes = new string[] { "IList`1", "IEnumerable`1" };
+            var generic = t.GetGenericTypeParameters();
+            if (generic.Length == 1)
+            {
+                var shouldProject = ShouldProject(generic[0]);
+                if (shouldProject || generic[0].GetFullName() == "System.Object" && collectionTypes.Contains(t.GetName()))
+                {
+                    return generic[0];
+                }
+            }
+
+            var ifaces = t.GetInterfaces();
+            var implInterface = ifaces.FirstOrDefault(i => collectionTypes.Contains(i.GetName()));
+            if (implInterface != null)
+            {
+                return GetCollectionElementPropertyType(implInterface);
+            } else if (t.GetName().EndsWith("Collection"))
+            {
+
+            }
+
+            return null;
+        }
     }
 }
 

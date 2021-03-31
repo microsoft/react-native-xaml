@@ -15,6 +15,9 @@
     <ClCompile Include="Serialize.cpp" />
     <ClCompile Include="Styling.cpp" />
     <ClCompile Include="XamlObject.cpp" />
+    <ClCompile Include="Codegen\Children.g.cpp">
+      <Filter>Codegen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
