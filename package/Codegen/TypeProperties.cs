@@ -87,7 +87,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write("\"), ");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType"));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.DerivesFrom(p.DeclaringType, $"{ProjectionOptions.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType"));
             
             #line default
             #line hidden

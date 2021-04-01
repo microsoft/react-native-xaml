@@ -16,7 +16,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 <# foreach (var ns in Events.Select(p => p.DeclaringType.GetNamespace()).Distinct()) { #>
 #include <winrt/<#= ns #>.h>
 <# } #>
-#include <winrt/<#= XamlNames.XamlNamespace #>.Input.h>
+#include <winrt/<#= ProjectionOptions.XamlNamespace #>.Input.h>
 
 /////// Events
 template<typename TArgs>

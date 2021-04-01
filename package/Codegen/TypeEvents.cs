@@ -62,7 +62,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
             this.Write("#include <winrt/");
             
             #line 19 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(XamlNames.XamlNamespace));
+            this.Write(this.ToStringHelper.ToStringWithCulture(ProjectionOptions.XamlNamespace));
             
             #line default
             #line hidden

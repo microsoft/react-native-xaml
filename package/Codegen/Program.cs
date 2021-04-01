@@ -20,65 +20,6 @@ namespace Codegen
         Color = 5,
     };
 
-    public partial class TypeCreator
-    {
-        public TypeCreator(IEnumerable<MrType> types)
-        {
-            Types = types;
-        }
-
-        public IEnumerable<MrType> Types { get; set; }
-    }
-
-    public partial class EventArgsTypeProperties
-    {
-        public EventArgsTypeProperties(IEnumerable<MrProperty> properties)
-        {
-            Properties = properties;
-        }
-        IEnumerable<MrProperty> Properties { get; set; }
-    }
-
-    public partial class TypeProperties
-    {
-        public TypeProperties(IEnumerable<MrProperty> properties, IEnumerable<MrProperty> fakeProps)
-        {
-            Properties = properties;
-            FakeProps = fakeProps;
-        }
-        IEnumerable<MrProperty> Properties { get; set; }
-        IEnumerable<MrProperty> FakeProps { get; set; }
-    }
-
-    public partial class TypeEvents
-    {
-        public TypeEvents(IEnumerable<MrEvent> events)
-        {
-            Events = events;
-        }
-        IEnumerable<MrEvent> Events { get; set; }
-    }
-
-    public partial class Children
-    {
-        public Children(IEnumerable<MrType> types)
-        {
-            Types = types;
-        }
-        IEnumerable<MrType> Types { get; set; }
-    }
-    public partial class TSProps
-    {
-        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps) { Types = types; FakeProps = fakeProps; }
-        IEnumerable<MrProperty> FakeProps { get; set; }
-        IEnumerable<MrType> Types { get; set; }
-    }
-
-    public partial class TSTypes
-    {
-        public TSTypes(IEnumerable<MrType> types) { Types = types; }
-        IEnumerable<MrType> Types { get; set; }
-    }
 
     public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase>
     {
@@ -93,14 +34,7 @@ namespace Codegen
         }
     }
 
-    public static class XamlNames
-    {
-        public const string XamlNamespace = "Windows.UI.Xaml";
-        public const string TopLevelProjectedType = $"{XamlNamespace}.DependencyObject";
-        public const string MuxNamespace = "Microsoft.UI.Xaml";
-    }
-
-    class Program
+    partial class Program
     {
         const string Windows_winmd = @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
 
@@ -122,14 +56,14 @@ namespace Codegen
             };
 
             var windows_winmd = context.LoadAssemblyFromPath(Windows_winmd);
-            var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
+            var winmds = ProjectionOptions.winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
             // ToList realizes the list which is needs to happen before FinishLoading is called
             context.FinishLoading();
 
             var typesPerAssembly = winmds.Select(winmd => winmd.GetAllTypes().Skip(1));
             var types = typesPerAssembly.Count() != 0 ? typesPerAssembly.Aggregate((l1, l2) => l1.Union(l2)) : new MrType[] { };
             var windows_winmdTypes = windows_winmd.GetAllTypes().Skip(1);
-            if (winmdPaths.Count != 0)
+            if (ProjectionOptions.winmdPaths.Count != 0)
             {
                 types = types.Union(windows_winmdTypes);
             }
@@ -140,20 +74,20 @@ namespace Codegen
             Util.LoadContext = context;
 
             var fakeProps = new List<MrProperty>{
-                GetProperty(context, $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase", "IsOpen"),
-                GetProperty(context, $"{XamlNames.XamlNamespace}.Documents.Run", "Text"),
+                GetProperty(context, $"{ProjectionOptions.XamlNamespace}.Controls.Primitives.FlyoutBase", "IsOpen"),
+                GetProperty(context, $"{ProjectionOptions.XamlNamespace}.Documents.Run", "Text"),
             };
             string[] baseClassesToProject = Util.GetProjectedBaseClasses();
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
-                Util.DerivesFrom(type, b)) || type.GetFullName() == XamlNames.TopLevelProjectedType);
+                Util.DerivesFrom(type, b)) || type.GetFullName() == ProjectionOptions.TopLevelProjectedType);
 
-            var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
-            var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(PackageRoot, @"src"));
+            var generatedDirPath = Path.GetFullPath(ProjectionOptions.cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
+            var packageSrcPath = Path.GetFullPath(ProjectionOptions.tsOutPath ?? Path.Join(PackageRoot, @"src"));
 
             Console.WriteLine("Generating projections for the following WinMD files:");
             Console.WriteLine($"- {Windows_winmd}");
-            foreach (var path in winmdPaths)
+            foreach (var path in ProjectionOptions.winmdPaths)
             {
                 Console.WriteLine($"- {Path.GetFullPath(path)}");
             }
@@ -161,50 +95,7 @@ namespace Codegen
 
             PrintVerbose("Filtering types");
             var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
-            // The same type name may exist in multiple namespaces. The TS names don't support that as they are only short names
-            // So we need to make sure only one type has a given name, and if the options are WUX or MUX, we should pick MUX
-            // If there are more options than that, we should error out.
-            var allCreatableTypes = new Dictionary<string, List<MrType>>();
-            foreach (var t in creatableTypes)
-            {
-                List<MrType> list = null;
-                if (allCreatableTypes.ContainsKey(t.GetName()))
-                {
-                    list = allCreatableTypes[t.GetName()];
-                }
-                else
-                {
-                    list = new List<MrType>();
-                    allCreatableTypes.Add(t.GetName(), list);
-                }
-                list.Add(t);
-            }
-            PrintVerbose("Ensuring all types have unique names");
-            foreach (var key in allCreatableTypes.Keys)
-            {
-                if (allCreatableTypes[key].Count == 1)
-                {
-                    continue;
-                }
-                else if (allCreatableTypes[key].Count == 2)
-                {
-                    if (allCreatableTypes[key][0].GetNamespace() == XamlNames.XamlNamespace &&
-                        allCreatableTypes[key][1].GetNamespace() == XamlNames.MuxNamespace)
-                    {
-                        creatableTypes.Remove(allCreatableTypes[key][0]);
-                        continue;
-                    }
-                    else if (allCreatableTypes[key][1].GetNamespace() == XamlNames.XamlNamespace &&
-                        allCreatableTypes[key][0].GetNamespace() == XamlNames.MuxNamespace)
-                    {
-                        creatableTypes.Remove(allCreatableTypes[key][1]);
-                        continue;
-                    }
-                }
-                // If we got here, then either we had more than 2 types with the same short name,
-                // Or we could not disambiguate between the options. Bail out.
-                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));
-            }
+            EnsureUniqueShortNames(creatableTypes);
 
             PrintVerbose("Sorting types");
             creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
@@ -270,16 +161,7 @@ namespace Codegen
             properties.Sort(CompareProps);
             eventArgProps.Sort(CompareProps);
             var sortedXamlTypesForChildren = xamlTypes.ToList();
-            sortedXamlTypesForChildren.Sort((b, a) =>
-            {
-                var ad = GetDerivationDepth(a);
-                var bd = GetDerivationDepth(b);
-                if (ad == bd)
-                {
-                    return a.GetName().CompareTo(b.GetName());
-                }
-                return ad.CompareTo(bd);
-            });
+            sortedXamlTypesForChildren.Sort(CompareDerivationDepth);
             PrintVerbose("Generating projection");
 
             var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
@@ -307,6 +189,65 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
         }
 
+        private static int CompareDerivationDepth(MrType b, MrType a)
+        {
+            var ad = GetDerivationDepth(a);
+            var bd = GetDerivationDepth(b);
+            if (ad == bd)
+            {
+                return a.GetName().CompareTo(b.GetName());
+            }
+            return ad.CompareTo(bd);
+        }
+
+        private void EnsureUniqueShortNames(List<MrType> creatableTypes)
+        {
+            // The same type name may exist in multiple namespaces. The TS names don't support that as they are only short names
+            // So we need to make sure only one type has a given name, and if the options are WUX or MUX, we should pick MUX
+            // If there are more options than that, we should error out.
+            var allCreatableTypes = new Dictionary<string, List<MrType>>();
+            foreach (var t in creatableTypes)
+            {
+                List<MrType> list = null;
+                if (allCreatableTypes.ContainsKey(t.GetName()))
+                {
+                    list = allCreatableTypes[t.GetName()];
+                }
+                else
+                {
+                    list = new List<MrType>();
+                    allCreatableTypes.Add(t.GetName(), list);
+                }
+                list.Add(t);
+            }
+            PrintVerbose("Ensuring all types have unique names");
+            foreach (var key in allCreatableTypes.Keys)
+            {
+                if (allCreatableTypes[key].Count == 1)
+                {
+                    continue;
+                }
+                else if (allCreatableTypes[key].Count == 2)
+                {
+                    if (allCreatableTypes[key][0].GetNamespace() == ProjectionOptions.XamlNamespace &&
+                        allCreatableTypes[key][1].GetNamespace() == ProjectionOptions.MuxNamespace)
+                    {
+                        creatableTypes.Remove(allCreatableTypes[key][0]);
+                        continue;
+                    }
+                    else if (allCreatableTypes[key][1].GetNamespace() == ProjectionOptions.XamlNamespace &&
+                        allCreatableTypes[key][0].GetNamespace() == ProjectionOptions.MuxNamespace)
+                    {
+                        creatableTypes.Remove(allCreatableTypes[key][1]);
+                        continue;
+                    }
+                }
+                // If we got here, then either we had more than 2 types with the same short name,
+                // Or we could not disambiguate between the ProjectionOptions. Bail out.
+                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));
+            }
+        }
+
         private static int GetDerivationDepth(MrType b)
         {
             if (b.GetBaseType() == null) return 0;
@@ -315,7 +256,7 @@ namespace Codegen
 
         private void PrintVerbose(object o)
         {
-            if (Verbose)
+            if (ProjectionOptions.Verbose)
             {
                 Console.WriteLine(o);
             }
@@ -383,34 +324,6 @@ namespace Codegen
             return HashName(p1.GetName());
         }
 
-        private List<string> winmdPaths { get; } = new List<string>();
-        private string cppOutPath { get; set; }
-        private string tsOutPath { get; set; }
-        class OptionDef
-        {
-            public string Description { get; set; }
-            public int NumberOfParams { get; set; }
-            public Action<Program, string> Action { get; set; }
-        }
-
-        static void PrintHelp()
-        {
-            foreach (var k in optionDefs.Keys)
-            {
-                Console.WriteLine($"{k}   \t{optionDefs[k].Description}");
-            }
-            Environment.Exit(0);
-        }
-
-        private bool Verbose { get; set; }
-
-        static readonly Dictionary<string, OptionDef> optionDefs = new Dictionary<string, OptionDef>() {
-            { "-help", new OptionDef (){ Description = "Shows this message", NumberOfParams = 1, Action = (_, _2) => { PrintHelp(); } } },
-            { "-winmd", new OptionDef (){ Description = "Specifies a custom WinMD file. To specify multiple files, pass this option multiple times", NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
-            { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
-            { "-tsout", new OptionDef (){ Description = "Custom path for TS file", NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
-            { "-verbose", new OptionDef() { Description = "Output verbose info", NumberOfParams = 1, Action = (p, _) => { p.Verbose = true; }} }    
-        };
 
         static void Main(string[] args)
         {
@@ -430,24 +343,7 @@ namespace Codegen
             Console.WriteLine("https://github.com/asklar/react-native-xaml");
             Console.WriteLine();
             var p = new Program();
-            for (int i = 0; i < args.Length;)
-            {
-                if (optionDefs.ContainsKey(args[i]))
-                {
-                    var def = optionDefs[args[i]];
-                    string v = null;
-                    if (def.NumberOfParams == 2 && i < args.Length - 1)
-                    {
-                        v = args[i + 1];
-                    }
-                    i += def.NumberOfParams;
-                    def.Action(p, v);
-                }
-                else
-                {
-                    throw new ArgumentException($"Unknown option {args[i]}");
-                }
-            }
+            ProjectionOptions.ParseArgs(args);
             p.DumpTypes();
         }
     }

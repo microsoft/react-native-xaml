@@ -121,10 +121,10 @@ namespace Codegen
                 case "System.Double":
                 case "System.Single":
                     return ViewManagerPropertyType.Number;
-                case $"{XamlNames.XamlNamespace}.Media.Brush":
-                case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
+                case $"{ProjectionOptions.XamlNamespace}.Media.Brush":
+                case $"{ProjectionOptions.XamlNamespace}.Media.SolidColorBrush":
                     return ViewManagerPropertyType.Color;
-                case $"{XamlNames.XamlNamespace}.Thickness":
+                case $"{ProjectionOptions.XamlNamespace}.Thickness":
                     return ViewManagerPropertyType.Map;
                 case "System.Object":
                     return ViewManagerPropertyType.Map;
@@ -155,10 +155,10 @@ namespace Codegen
                 case "System.Double":
                 case "System.Single":
                     return "number";
-                case $"{XamlNames.XamlNamespace}.Media.Brush":
-                case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
+                case $"{ProjectionOptions.XamlNamespace}.Media.Brush":
+                case $"{ProjectionOptions.XamlNamespace}.Media.SolidColorBrush":
                     return "ColorValue";
-                case $"{XamlNames.XamlNamespace}.Thickness":
+                case $"{ProjectionOptions.XamlNamespace}.Thickness":
                     return "Thickness";
                 case "System.Object":
                     return "object";
@@ -268,7 +268,7 @@ namespace Codegen
                     derivedClasses[type.GetName()] = new List<MrType>() { type };
                 }
 
-                for (var baseType = type.GetBaseType(); baseType != null && baseType.GetName() != XamlNames.TopLevelProjectedType; baseType = baseType.GetBaseType())
+                for (var baseType = type.GetBaseType(); baseType != null && baseType.GetName() != ProjectionOptions.TopLevelProjectedType; baseType = baseType.GetBaseType())
                 {
                     if (!derivedClasses.ContainsKey(baseType.GetName()))
                     {
@@ -317,9 +317,9 @@ namespace Codegen
         {
             return new string[]
             {
-                $"{XamlNames.XamlNamespace}.UIElement",
-                $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase",
-                $"{XamlNames.XamlNamespace}.Documents.TextElement",
+                $"{ProjectionOptions.XamlNamespace}.UIElement",
+                $"{ProjectionOptions.XamlNamespace}.Controls.Primitives.FlyoutBase",
+                $"{ProjectionOptions.XamlNamespace}.Documents.TextElement",
             };
         }
 
@@ -381,7 +381,7 @@ namespace Codegen
             {
                 var realType = generic[0]; // LoadContext.GetType(generic[0].GetFullName());
                 var shouldProject = ShouldProject(realType);
-                if ((shouldProject || realType.GetFullName() == "System.Object" || realType.GetFullName() == XamlNames.TopLevelProjectedType) && collectionTypes.Contains(t.GetName()))
+                if ((shouldProject || realType.GetFullName() == "System.Object" || realType.GetFullName() == ProjectionOptions.TopLevelProjectedType) && collectionTypes.Contains(t.GetName()))
                 {
                     return realType;
                 }

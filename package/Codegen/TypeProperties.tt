@@ -28,7 +28,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 
 /*static*/ const PropInfo xamlPropertyMap[] = {
   <# foreach (var p in Properties) { #>
-      { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), <#= Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.DeclaringType) #>::<#= p.GetName() #>Property(); }, SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
+      { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), <#= Util.DerivesFrom(p.DeclaringType, $"{ProjectionOptions.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.DeclaringType) #>::<#= p.GetName() #>Property(); }, SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
   <# } #>
 };
 
