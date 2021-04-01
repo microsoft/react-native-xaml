@@ -22,6 +22,8 @@ auto XamlObject::RunOnUIThread(const TLambda& code) const {
   std::condition_variable cv;
   std::mutex mutex;
   std::optional<decltype(code())> result{};
+  std::unique_lock<std::mutex> lock(mutex);
+
   m_metadata->UIDispatcher().Post([&]() {
     try {
       result = code();
@@ -31,10 +33,19 @@ auto XamlObject::RunOnUIThread(const TLambda& code) const {
       OutputDebugStringA("\n");
     }
     catch (...) { }
+    std::unique_lock<std::mutex> lock(mutex);
+#ifdef DEBUG
+    OutputDebugStringA("Notify from ");
+    OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
+    OutputDebugStringA("\n");
+#endif
     cv.notify_all();
     });
-
-  std::unique_lock<std::mutex> lock(mutex);
+#ifdef DEBUG
+  OutputDebugStringA("Wait from ");
+  OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
+  OutputDebugStringA("\n");
+#endif
   cv.wait(lock);
   assert(result.has_value());
   return result.value();
@@ -44,17 +55,27 @@ template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<T
 void RunOnUIThread(const TLambda& code) {
   std::condition_variable cv;
   std::mutex mutex;
+  std::unique_lock<std::mutex> lock(mutex);
   m_metadata->UIDispatcher().Post([&]() {
     try {
       code();
     }
-    catch (const winrt::hresult&) {
-
-    }
+    catch (const winrt::hresult&) { }
+    catch (...) { }
+    std::unique_lock<std::mutex> lock(mutex);
+#ifdef DEBUG
+    OutputDebugStringA("Notify from ");
+    OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
+    OutputDebugStringA("\n");
+#endif
     cv.notify_all();
     });
 
-  std::unique_lock<std::mutex> lock(mutex);
+#ifdef DEBUG
+  OutputDebugStringA("Wait from ");
+  OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
+  OutputDebugStringA("\n");
+#endif
   cv.wait(lock);
 }
 
