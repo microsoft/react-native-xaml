@@ -269,7 +269,17 @@ namespace Codegen
 
             properties.Sort(CompareProps);
             eventArgProps.Sort(CompareProps);
-
+            var sortedXamlTypesForChildren = xamlTypes.ToList();
+            sortedXamlTypesForChildren.Sort((b, a) =>
+            {
+                var ad = GetDerivationDepth(a);
+                var bd = GetDerivationDepth(b);
+                if (ad == bd)
+                {
+                    return a.GetName().CompareTo(b.GetName());
+                }
+                return ad.CompareTo(bd);
+            });
             PrintVerbose("Generating projection");
 
             var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
@@ -279,7 +289,7 @@ namespace Codegen
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
-            var childrenGen = new Children(xamlTypes).TransformText();
+            var childrenGen = new Children(sortedXamlTypesForChildren).TransformText();
 
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))
@@ -297,6 +307,11 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
         }
 
+        private static int GetDerivationDepth(MrType b)
+        {
+            if (b.GetBaseType() == null) return 0;
+            return 1 + GetDerivationDepth(b.GetBaseType());
+        }
 
         private void PrintVerbose(object o)
         {

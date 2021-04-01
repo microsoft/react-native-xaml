@@ -325,7 +325,7 @@ namespace Codegen
 
         private static bool ShouldProject(MrType type)
         {
-            return GetProjectedBaseClasses().Any(b => DerivesFrom(type, b));
+            return type.IsInterface || GetProjectedBaseClasses().Any(b => DerivesFrom(type, b));
         }
 
         private static bool IsCollectionType(MrType t)
@@ -333,7 +333,7 @@ namespace Codegen
             return GetCollectionElementPropertyType(t) != null;
         }
 
-        private static MrProperty TryGetContentProperty(MrType t)
+        public static MrProperty TryGetContentProperty(MrType t)
         {
             foreach (var ca in t.GetCustomAttributes())
             {
@@ -353,30 +353,37 @@ namespace Codegen
         public static IEnumerable<MrProperty> GetChildrenProperties(MrType t)
         {
             var props = new List<MrProperty>();
-            var contentProperty = TryGetContentProperty(t);            
+            var contentProperty = TryGetContentProperty(t);
+            var projectedItemProps = new List<MrProperty>();
             foreach (var prop in t.GetProperties())
             {
                 var pt = prop.GetPropertyType();
-
                 if (IsCollectionType(pt) || (prop.GetName() == contentProperty?.GetName()))
                 {
                     props.Add(prop);
                 }
+                else if (ShouldProject(pt))
+                {
+                    projectedItemProps.Add(prop);
+                }
             }
 
+            var projectedItemsByType = projectedItemProps.GroupBy(p => p.GetPropertyType().GetFullName());
+            props.AddRange(projectedItemsByType.Where(pg => pg.Count()== 1).Select(k => k.First()));
             return props;
         }
 
         public static MrType GetCollectionElementPropertyType(MrType t)
         {
-            var collectionTypes = new string[] { "IList`1", "IEnumerable`1" };
-            var generic = t.GetGenericTypeParameters();
+            var collectionTypes = new string[] { "IList`1", "IEnumerable`1", "IObservableVector`1" };
+            var generic = t.GetGenericArguments();
             if (generic.Length == 1)
             {
-                var shouldProject = ShouldProject(generic[0]);
-                if (shouldProject || generic[0].GetFullName() == "System.Object" && collectionTypes.Contains(t.GetName()))
+                var realType = generic[0]; // LoadContext.GetType(generic[0].GetFullName());
+                var shouldProject = ShouldProject(realType);
+                if ((shouldProject || realType.GetFullName() == "System.Object" || realType.GetFullName() == XamlNames.TopLevelProjectedType) && collectionTypes.Contains(t.GetName()))
                 {
-                    return generic[0];
+                    return realType;
                 }
             }
 

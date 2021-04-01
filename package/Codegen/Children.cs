@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "F:\react-native-xaml\package\Codegen\Children.tt"
+    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class Children : ChildrenBase
     {
@@ -28,62 +28,106 @@ namespace Codegen
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"#include ""pch.h""
-#include ""XamlMetadata.h""
-
+            this.Write("#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n");
+            
+            #line 8 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
+ foreach (var ns in Types.Select(t => t.GetNamespace()).Distinct()) { 
+            
+            #line default
+            #line hidden
+            this.Write("#include <winrt/");
+            
+            #line 9 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ns));
+            
+            #line default
+            #line hidden
+            this.Write(".h>\r\n");
+            
+            #line 10 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write(@"
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
-  void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
+  void /*XamlViewManager::*/AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
 ");
             
-            #line 14 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 17 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
  foreach (var type in Types) { 
     var props = Util.GetChildrenProperties(type);
     if (props.Count() != 0) {
+      var contentProp = Util.TryGetContentProperty(type);
 
             
             #line default
             #line hidden
             this.Write("    if (auto parent");
             
-            #line 18 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
             
             #line default
             #line hidden
             this.Write(" = parent.try_as<");
             
-            #line 18 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(type)));
             
             #line default
             #line hidden
             this.Write(">()) {\r\n");
             
-            #line 19 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 23 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
     foreach (var prop in props) { 
+        var collectionItemType = Util.GetCollectionElementPropertyType(prop.GetPropertyType());
+        var explanation = "";
+        if (collectionItemType != null) {
+          explanation = $"a collection of {collectionItemType.GetName()}";
+        } else if (contentProp?.GetName() == prop.GetName()) {
+          explanation = "content property";
+        } else {
+          explanation = "a projected item property";
+        }
+
             
             #line default
             #line hidden
             this.Write("      // ");
             
-            #line 20 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 34 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop.GetName()));
             
             #line default
             #line hidden
-            this.Write("\r\n      \r\n");
+            this.Write(" (");
             
-            #line 22 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 34 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(prop.GetPropertyType().GetName()));
+            
+            #line default
+            #line hidden
+            this.Write(", ");
+            
+            #line 34 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(explanation));
+            
+            #line default
+            #line hidden
+            this.Write(")\r\n");
+            
+            #line 35 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
     } 
             
             #line default
             #line hidden
             this.Write("    }\r\n");
             
-            #line 24 "F:\react-native-xaml\package\Codegen\Children.tt"
+            #line 37 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\Children.tt"
  } 
    } 
             

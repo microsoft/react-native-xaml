@@ -5,20 +5,33 @@
 <#@ import namespace="System.Collections.Generic" #>
 #include "pch.h"
 #include "XamlMetadata.h"
+<# foreach (var ns in Types.Select(t => t.GetNamespace()).Distinct()) { #>
+#include <winrt/<#= ns #>.h>
+<# } #>
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
-  void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
+  void /*XamlViewManager::*/AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
 <# foreach (var type in Types) { 
     var props = Util.GetChildrenProperties(type);
     if (props.Count() != 0) {
+      var contentProp = Util.TryGetContentProperty(type);
 #>
     if (auto parent<#= type.GetName() #> = parent.try_as<<#= Util.GetCppWinRTType(type) #>>()) {
-<#    foreach (var prop in props) { #>
-      // <#= prop.GetName() #>
-      
+<#    foreach (var prop in props) { 
+        var collectionItemType = Util.GetCollectionElementPropertyType(prop.GetPropertyType());
+        var explanation = "";
+        if (collectionItemType != null) {
+          explanation = $"a collection of {collectionItemType.GetName()}";
+        } else if (contentProp?.GetName() == prop.GetName()) {
+          explanation = "content property";
+        } else {
+          explanation = "a projected item property";
+        }
+#>
+      // <#= prop.GetName() #> (<#= prop.GetPropertyType().GetName() #>, <#= explanation #>)
 <#    } #>
     }
 <# } 
