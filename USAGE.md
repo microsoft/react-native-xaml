@@ -297,11 +297,13 @@ The content of the native event args object depends on whether the app is using 
 In order to enable Direct debugging for your app, make sure that your App.cpp/App.cs has disabled web debugging:
 
 <summary>C++</summary>
+
 ```cpp
   InstanceSettings().UseWebDebugger(false);
 ```
 
 <summary>C#</summary>
+
 ```cs
   InstanceSettings.UseWebDebugger = false;
 ```
