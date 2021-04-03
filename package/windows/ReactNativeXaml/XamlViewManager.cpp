@@ -80,13 +80,13 @@ namespace winrt::ReactNativeXaml {
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
 
     auto e = view;
+    auto cn = get_class_name(e);
     if (auto control = e.try_as<DependencyObject>()) {
       for (auto const& pair : propertyMap) {
         bool handled = false;
         auto const& propertyName = pair.first;
         auto const& propertyValue = pair.second;
 
-        auto cn = get_class_name(e);
         if (auto prop = m_xamlMetadata->GetProp(propertyName, control)) {
           auto realObject = prop->asType(control).as<DependencyObject>();
           auto rcn = get_class_name(realObject);
@@ -151,6 +151,7 @@ namespace winrt::ReactNativeXaml {
     auto e = parent;
     auto parentType = winrt::get_class_name(e);
     auto childType = winrt::get_class_name(child);
+
     if (child.try_as<xaml::Controls::Primitives::SelectorItem>() ||
       child.try_as<NavigationView>()) { 
       // these are ContentControls too, but we shouldn't try to unwrap, so skip this 
@@ -202,38 +203,40 @@ namespace winrt::ReactNativeXaml {
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(index, child);
     }
-    else if (auto navView = e.try_as<NavigationView>()) {
+    if (auto navView = e.try_as<NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
-      return navView.MenuItems().InsertAt(index, child);
+      if (auto childMI = child.try_as<NavigationViewItemBase>()) {
+        return navView.MenuItems().InsertAt(index, child);
+      }
     }
-    else if (auto navViewItem = e.try_as<NavigationViewItem>()) {
+    if (auto navViewItem = e.try_as<NavigationViewItem>()) {
       if (auto childIconElement = child.try_as<IconElement>()) {
         return navViewItem.Icon(childIconElement);
       }
     }
-    else if (auto contentCtrl = e.try_as<Wrapper>()) {
+    if (auto contentCtrl = e.try_as<Wrapper>()) {
       auto parentContent = contentCtrl.Content();
       if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
         if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
           return menuFlyout.Items().InsertAt(index, mfi);
         }
       }
-      else if (auto flyout = parentContent.try_as<Flyout>()) {
+      if (auto flyout = parentContent.try_as<Flyout>()) {
         if (index == 0) {
           return flyout.Content(child);
         }
       }
 
-      if (index == 0) {
+      if (index == 0 || contentCtrl.Content() == nullptr) {
         return contentCtrl.Content(child);
       }
     }
-    else if (auto border = e.try_as<Border>()) {
+    if (auto border = e.try_as<Border>()) {
       if (index == 0) {
         return border.Child(child);
       }
     }
-    else if (auto itemsControl = e.try_as<ItemsControl>()) {
+    if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().InsertAt(index, child);
     }
     //else 
