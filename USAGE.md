@@ -86,6 +86,14 @@ If you have questions about a scenario you don't see below, please [file an issu
 </ComboBox>
 ```
 
+## AutoSuggestBox
+
+```jsx
+<AutoSuggestBox placeholderText="placeholder text">
+    <SymbolIcon symbol={Symbol.Find}/>
+</AutoSuggestBox>
+```
+
 ## NavigationView
 
 ```jsx
