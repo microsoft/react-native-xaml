@@ -1,6 +1,6 @@
 {
   "name": "react-native-xaml-repo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "build": "tsc --project package"
