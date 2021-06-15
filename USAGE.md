@@ -94,6 +94,18 @@ If you have questions about a scenario you don't see below, please [file an issu
 </AutoSuggestBox>
 ```
 
+## Grid
+
+```jsx
+<Grid background='red' gridLayout={{columns: [60, 60, '*'], rows: [100, 100, 100]}}>
+    <TextBlock text="hello" gridRow={2} gridColumn={2} />
+    <TextBlock text="world" gridRow={1} gridColumn={1} />
+    <TextBlock gridRow={2} gridColumn={1} text='hi there' />
+</Grid>
+```
+
+Note that only react-native-xaml components will respect the `gridRow`/`gridColumn` properties inside a `Grid`, core controls will not do that.
+
 ## NavigationView
 
 ```jsx
