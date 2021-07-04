@@ -36,6 +36,13 @@ namespace winrt::Microsoft::ReactNative {
         return;
       }
     }
+    else if (auto number = jsValue.TryGetDouble()) {
+      value = Thickness{ *number, *number, *number, *number };
+    }
+    else if (auto numberInt = jsValue.TryGetInt64()) {
+      const auto valueDbl = static_cast<double>(*numberInt);
+      value = Thickness{ valueDbl, valueDbl, valueDbl, valueDbl };
+    }
     else {
       const auto& obj = jsValue.AsObject();
       value = Thickness{ obj["left"].AsDouble(), obj["top"].AsDouble(), obj["right"].AsDouble(), obj["bottom"].AsDouble() };
