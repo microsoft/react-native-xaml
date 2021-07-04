@@ -36,7 +36,7 @@ namespace winrt::Microsoft::ReactNative {
     }
     else {
       const auto& obj = jsValue.AsObject();
-      value = Thickness{ obj["left"].AsDouble(), obj["top"].AsDouble(), obj["bottom"].AsDouble(), obj["right"].AsDouble() };
+      value = Thickness{ obj["left"].AsDouble(), obj["top"].AsDouble(), obj["right"].AsDouble(), obj["bottom"].AsDouble() };
       return;
     }
   }
