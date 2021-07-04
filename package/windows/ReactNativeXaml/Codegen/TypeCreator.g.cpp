@@ -7,6 +7,7 @@
 #include "winrt/Windows.UI.Xaml.Documents.h"
 #include "winrt/Windows.UI.Xaml.Controls.Primitives.h"
 #include "winrt/Windows.UI.Xaml.Shapes.h"
+#include "winrt/Windows.UI.Xaml.Input.h"
 #include "winrt/Windows.UI.Xaml.Controls.Maps.h"
 
 /*************************************************************
@@ -91,6 +92,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.InkToolbarRulerButton"): { return winrt::Windows::UI::Xaml::Controls::InkToolbarRulerButton(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.InkToolbarStencilButton"): { return winrt::Windows::UI::Xaml::Controls::InkToolbarStencilButton(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.ItemsControl"): { return winrt::Windows::UI::Xaml::Controls::ItemsControl(); }
+        case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Input.KeyboardAccelerator"): { return winrt::Windows::UI::Xaml::Input::KeyboardAccelerator(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.ListBox"): { return winrt::Windows::UI::Xaml::Controls::ListBox(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.ListBoxItem"): { return winrt::Windows::UI::Xaml::Controls::ListBoxItem(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.ListView"): { return winrt::Windows::UI::Xaml::Controls::ListView(); }

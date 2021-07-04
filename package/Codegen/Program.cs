@@ -157,6 +157,7 @@ namespace Codegen
                 $"{XamlNames.XamlNamespace}.UIElement",
                 $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase",
                 $"{XamlNames.XamlNamespace}.Documents.TextElement",
+                $"{XamlNames.XamlNamespace}.Input.KeyboardAccelerator",
             };
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>

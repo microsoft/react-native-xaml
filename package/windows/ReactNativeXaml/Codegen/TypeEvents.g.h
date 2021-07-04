@@ -14,6 +14,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 #include <winrt/Windows.UI.Xaml.Controls.Maps.h>
 #include <winrt/Windows.UI.Xaml.Documents.h>
 #include <winrt/Windows.UI.Xaml.Input.h>
+#include <winrt/Windows.UI.Xaml.Input.h>
 
 /////// Events
 template<typename TArgs>
@@ -3678,10 +3679,23 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
     }
     return winrt::event_token{0};
   } },
+  {"Invoked", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Input::KeyboardAccelerator>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Invoked([eai] (const winrt::Windows::UI::Xaml::Input::KeyboardAccelerator& sender, const winrt::Windows::UI::Xaml::Input::KeyboardAcceleratorInvokedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Invoked(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
 
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 279);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 280);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

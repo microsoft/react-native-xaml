@@ -171,6 +171,11 @@ namespace winrt::ReactNativeXaml {
             return spanParent.Inlines().InsertAt(index, childInline);
           }
         }
+        else if (auto childKeyboardAccelerator = childContent.try_as<xaml::Input::KeyboardAccelerator>()) {
+          if (auto uiParent = parent.try_as<UIElement>()) {
+            return uiParent.KeyboardAccelerators().Append(childKeyboardAccelerator);
+          }
+        }
       }
     }
 

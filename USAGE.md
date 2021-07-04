@@ -117,7 +117,7 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 </NavigationView>
 ```
 
-## CommandBar with AppBarButtons
+## CommandBar with AppBarButtons and KeyboardAccelerators
 
 ```jsx
 <CommandBar isOpen={true} style={{ height: 56 }}>
@@ -126,6 +126,9 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
     label="Search"
     onClick={() => { alert('search'); }}>
     <SymbolIcon symbol={Symbol.Find} />
+    <KeyboardAccelerator
+        virtualKey={VirtualKey.S}
+        modifiers={VirtualKeyModifiers.Menu} />
   </AppBarButton>
   <AppBarButton
     priority={AppBarButtonPriority.Primary}
@@ -142,6 +145,7 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
   </AppBarButton>
 </CommandBar>
 ```
+
 
 ## Lightweight styling
 

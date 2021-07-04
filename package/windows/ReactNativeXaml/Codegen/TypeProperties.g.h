@@ -13,6 +13,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Windows.UI.Xaml.Controls.Maps.h>
 #include <winrt/Windows.UI.Xaml.Shapes.h>
+#include <winrt/Windows.UI.Xaml.Input.h>
 
 template<typename T> 
 winrt::Windows::Foundation::IInspectable AsType(const winrt::Windows::Foundation::IInspectable& o) {
@@ -374,6 +375,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("isDynamicOverflowEnabled"), AsType<winrt::Windows::UI::Xaml::Controls::CommandBar>,  []() { return winrt::Windows::UI::Xaml::Controls::CommandBar::IsDynamicOverflowEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isEditable"), AsType<winrt::Windows::UI::Xaml::Controls::ComboBox>,  []() { return winrt::Windows::UI::Xaml::Controls::ComboBox::IsEditableProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isEnabled"), AsType<winrt::Windows::UI::Xaml::Controls::Control>,  []() { return winrt::Windows::UI::Xaml::Controls::Control::IsEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
+        { MAKE_KEY("isEnabled"), AsUnwrappedType<winrt::Windows::UI::Xaml::Input::KeyboardAccelerator>,  []() { return winrt::Windows::UI::Xaml::Input::KeyboardAccelerator::IsEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isExpanded"), AsType<winrt::Windows::UI::Xaml::Controls::TreeViewItem>,  []() { return winrt::Windows::UI::Xaml::Controls::TreeViewItem::IsExpandedProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isExtensionGlyphShown"), AsType<winrt::Windows::UI::Xaml::Controls::InkToolbarMenuButton>,  []() { return winrt::Windows::UI::Xaml::Controls::InkToolbarMenuButton::IsExtensionGlyphShownProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isExtensionGlyphShown"), AsType<winrt::Windows::UI::Xaml::Controls::InkToolbarToolButton>,  []() { return winrt::Windows::UI::Xaml::Controls::InkToolbarToolButton::IsExtensionGlyphShownProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -497,6 +499,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("itemWidth"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector::ItemWidthProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("itemWidth"), AsType<winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid>,  []() { return winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid::ItemWidthProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("itemWidth"), AsType<winrt::Windows::UI::Xaml::Controls::WrapGrid>,  []() { return winrt::Windows::UI::Xaml::Controls::WrapGrid::ItemWidthProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("virtualKey"), AsUnwrappedType<winrt::Windows::UI::Xaml::Input::KeyboardAccelerator>,  []() { return winrt::Windows::UI::Xaml::Input::KeyboardAccelerator::KeyProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("keyboardAcceleratorPlacementMode"), AsUnwrappedType<winrt::Windows::UI::Xaml::UIElement>,  []() { return winrt::Windows::UI::Xaml::UIElement::KeyboardAcceleratorPlacementModeProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("keyboardAcceleratorTextOverride"), AsType<winrt::Windows::UI::Xaml::Controls::AppBarButton>,  []() { return winrt::Windows::UI::Xaml::Controls::AppBarButton::KeyboardAcceleratorTextOverrideProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("keyboardAcceleratorTextOverride"), AsType<winrt::Windows::UI::Xaml::Controls::AppBarToggleButton>,  []() { return winrt::Windows::UI::Xaml::Controls::AppBarToggleButton::KeyboardAcceleratorTextOverrideProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -585,6 +588,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("minWidth"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::MinWidthProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("minZoomFactor"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollViewer>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollViewer::MinZoomFactorProperty(); }, SetPropValue<float>, ViewManagerPropertyType::Number },
         { MAKE_KEY("mirroredWhenRightToLeft"), AsType<winrt::Windows::UI::Xaml::Controls::FontIcon>,  []() { return winrt::Windows::UI::Xaml::Controls::FontIcon::MirroredWhenRightToLeftProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
+        { MAKE_KEY("modifiers"), AsUnwrappedType<winrt::Windows::UI::Xaml::Input::KeyboardAccelerator>,  []() { return winrt::Windows::UI::Xaml::Input::KeyboardAccelerator::ModifiersProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("monthFormat"), AsType<winrt::Windows::UI::Xaml::Controls::DatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePicker::MonthFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("monthFormat"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::DatePickerFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePickerFlyout::MonthFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("monthVisible"), AsType<winrt::Windows::UI::Xaml::Controls::DatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePicker::MonthVisibleProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -1216,6 +1220,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("itemHeight"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("itemsSource"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("itemWidth"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("virtualKey"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("keyboardAcceleratorPlacementMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("keyboardAcceleratorTextOverride"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("keyTipHorizontalOffset"), ViewManagerPropertyType::Number);
@@ -1267,6 +1272,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("minWidth"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("minZoomFactor"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("mirroredWhenRightToLeft"), ViewManagerPropertyType::Boolean);
+    nativeProps.Insert(winrt::to_hstring("modifiers"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("monthFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("monthVisible"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("monthYearItemFontFamily"), ViewManagerPropertyType::String);
