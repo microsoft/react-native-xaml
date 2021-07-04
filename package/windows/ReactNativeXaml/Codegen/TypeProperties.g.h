@@ -153,6 +153,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("dateFormat"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker::DateFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayFormat"), AsType<winrt::Windows::UI::Xaml::Controls::DatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePicker::DayFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayFormat"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::DatePickerFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePickerFlyout::DayFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
+        { MAKE_KEY("dayItemFontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::DayItemFontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
         { MAKE_KEY("dayItemFontSize"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::DayItemFontSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dayItemFontStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::DayItemFontStyleProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dayOfWeekFormat"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker::DayOfWeekFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -210,8 +211,10 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("fillRule"), AsType<winrt::Windows::UI::Xaml::Shapes::Polyline>,  []() { return winrt::Windows::UI::Xaml::Shapes::Polyline::FillRuleProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("firstDayOfWeek"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker::FirstDayOfWeekProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("firstDayOfWeek"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstDayOfWeekProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("firstOfMonthLabelFontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfMonthLabelFontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
         { MAKE_KEY("firstOfMonthLabelFontSize"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfMonthLabelFontSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("firstOfMonthLabelFontStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfMonthLabelFontStyleProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("firstOfYearDecadeLabelFontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfYearDecadeLabelFontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
         { MAKE_KEY("firstOfYearDecadeLabelFontSize"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfYearDecadeLabelFontSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("firstOfYearDecadeLabelFontStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfYearDecadeLabelFontStyleProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("flowDirection"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::FlowDirectionProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -226,6 +229,12 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("focusVisualPrimaryThickness"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::FocusVisualPrimaryThicknessProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("focusVisualSecondaryBrush"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::FocusVisualSecondaryBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("focusVisualSecondaryThickness"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::FocusVisualSecondaryThicknessProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("fontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::ContentPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentPresenter::FontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::Control>,  []() { return winrt::Windows::UI::Xaml::Controls::Control::FontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::FontIcon>,  []() { return winrt::Windows::UI::Xaml::Controls::FontIcon::FontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::RichTextBlock>,  []() { return winrt::Windows::UI::Xaml::Controls::RichTextBlock::FontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::TextBlock>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBlock::FontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
+        { MAKE_KEY("fontFamily"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::TextElement>,  []() { return winrt::Windows::UI::Xaml::Documents::TextElement::FontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
         { MAKE_KEY("fontRenderingEmSize"), AsType<winrt::Windows::UI::Xaml::Documents::Glyphs>,  []() { return winrt::Windows::UI::Xaml::Documents::Glyphs::FontRenderingEmSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("fontSize"), AsType<winrt::Windows::UI::Xaml::Controls::ContentPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentPresenter::FontSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("fontSize"), AsType<winrt::Windows::UI::Xaml::Controls::Control>,  []() { return winrt::Windows::UI::Xaml::Controls::Control::FontSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -580,6 +589,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("monthFormat"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::DatePickerFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePickerFlyout::MonthFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("monthVisible"), AsType<winrt::Windows::UI::Xaml::Controls::DatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePicker::MonthVisibleProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("monthVisible"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::DatePickerFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::DatePickerFlyout::MonthVisibleProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
+        { MAKE_KEY("monthYearItemFontFamily"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::MonthYearItemFontFamilyProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::FontFamily>, ViewManagerPropertyType::String },
         { MAKE_KEY("monthYearItemFontSize"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::MonthYearItemFontSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("monthYearItemFontStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::MonthYearItemFontStyleProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("name"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::NameProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -986,6 +996,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("dataFetchSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dateFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dayFormat"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("dayItemFontFamily"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dayItemFontSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dayItemFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dayOfWeekFormat"), ViewManagerPropertyType::String);
@@ -1017,8 +1028,10 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("fill"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("fillRule"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("firstDayOfWeek"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("firstOfMonthLabelFontFamily"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("firstOfMonthLabelFontSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("firstOfMonthLabelFontStyle"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontFamily"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("flowDirection"), ViewManagerPropertyType::Number);
@@ -1030,6 +1043,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("focusVisualPrimaryThickness"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("focusVisualSecondaryBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("focusVisualSecondaryThickness"), ViewManagerPropertyType::Map);
+    nativeProps.Insert(winrt::to_hstring("fontFamily"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("fontRenderingEmSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("fontSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("fontStretch"), ViewManagerPropertyType::Number);
@@ -1255,6 +1269,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("mirroredWhenRightToLeft"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("monthFormat"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("monthVisible"), ViewManagerPropertyType::Boolean);
+    nativeProps.Insert(winrt::to_hstring("monthYearItemFontFamily"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("monthYearItemFontSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("monthYearItemFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("name"), ViewManagerPropertyType::String);

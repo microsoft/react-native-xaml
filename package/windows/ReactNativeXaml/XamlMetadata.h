@@ -22,6 +22,11 @@ namespace winrt::Microsoft::ReactNative {
     value = xaml::Media::SolidColorBrush(color);
   }
 
+  inline void ReadValue(JSValue const& jsValue, xaml::Media::FontFamily& value) noexcept {
+    auto str = winrt::to_hstring(jsValue.AsString());
+    value = xaml::Media::FontFamily(str);
+  }
+
   inline void ReadValue(JSValue const& jsValue, xaml::Thickness& value) noexcept {
     if (auto array = jsValue.TryGetArray()) {
       if (array->size() == 4) {
