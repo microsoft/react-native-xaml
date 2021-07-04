@@ -341,6 +341,17 @@ export enum MapWatermarkMode {
   On = 1,
 }
 
+export enum MapStyle {
+  None = 0,
+  Road = 1,
+  Aerial = 2,
+  AerialWithRoads = 3,
+  Terrain = 4,
+  Aerial3D = 5,
+  Aerial3DWithRoads = 6,
+  Custom = 7,
+}
+
 export enum MapColorScheme {
   Light = 0,
   Dark = 1,

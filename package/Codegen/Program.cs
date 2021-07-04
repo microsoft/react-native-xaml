@@ -289,8 +289,8 @@ namespace Codegen
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
 
-            Util.fakeEnums.Add(new Util.FakeEnum() { Name = "AppBarButtonPriority", Values = new Dictionary<string, int>() { { "Primary", 0 }, { "Secondary", 1 } } });
-            Util.fakeEnums.Add(new Util.FakeEnum() { Name = "NavigationViewItemPriority", Values = new Dictionary<string, int>() { { "MenuItem", 0 }, { "FooterMenuItem", 1 } } });
+            Util.fakeEnums.Add(new FakeEnum() { Name = "AppBarButtonPriority", Values = new Dictionary<string, int>() { { "Primary", 0 }, { "Secondary", 1 } } });
+            Util.fakeEnums.Add(new FakeEnum() { Name = "NavigationViewItemPriority", Values = new Dictionary<string, int>() { { "MenuItem", 0 }, { "FooterMenuItem", 1 } } });
 
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
@@ -348,13 +348,13 @@ namespace Codegen
             }
         }
 
-        private static void UpdateFile(string path, string content)
+        private static void UpdateFile(string path, string newContent)
         {
             var existing = File.Exists(path) ? File.ReadAllText(path) : "";
-            if (existing != content)
+            if (existing != newContent)
             {
                 Console.WriteLine($" Writing {path}");
-                File.WriteAllText(path, content);
+                File.WriteAllText(path, newContent);
             }
         }
 

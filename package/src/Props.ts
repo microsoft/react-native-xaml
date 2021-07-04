@@ -169,7 +169,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
 
 export interface NativeContentControlProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.ContentControl'|'Windows.UI.Xaml.Controls.AppBar'|'Windows.UI.Xaml.Controls.Button'|'Windows.UI.Xaml.Controls.AppBarButton'|'Windows.UI.Xaml.Controls.AppBarElementContainer'|'Windows.UI.Xaml.Controls.Primitives.ToggleButton'|'Windows.UI.Xaml.Controls.AppBarToggleButton'|'Windows.UI.Xaml.Controls.CheckBox'|'Windows.UI.Xaml.Controls.ComboBoxItem'|'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.ContentDialog'|'Windows.UI.Xaml.Controls.DropDownButton'|'Windows.UI.Xaml.Controls.FlipViewItem'|'Windows.UI.Xaml.Controls.FlyoutPresenter'|'Windows.UI.Xaml.Controls.Frame'|'Windows.UI.Xaml.Controls.GridViewHeaderItem'|'Windows.UI.Xaml.Controls.GridViewItem'|'Windows.UI.Xaml.Controls.GroupItem'|'Windows.UI.Xaml.Controls.HyperlinkButton'|'Windows.UI.Xaml.Controls.RadioButton'|'Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomPenButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton'|'Windows.UI.Xaml.Controls.InkToolbarCustomToolButton'|'Windows.UI.Xaml.Controls.InkToolbarEraserButton'|'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem'|'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton'|'Windows.UI.Xaml.Controls.InkToolbarPencilButton'|'Windows.UI.Xaml.Controls.InkToolbarRulerButton'|'Windows.UI.Xaml.Controls.InkToolbarStencilButton'|'Windows.UI.Xaml.Controls.ListBoxItem'|'Windows.UI.Xaml.Controls.ListViewHeaderItem'|'Windows.UI.Xaml.Controls.ListViewItem'|'Windows.UI.Xaml.Controls.NavigationView'|'Windows.UI.Xaml.Controls.NavigationViewItem'|'Windows.UI.Xaml.Controls.NavigationViewItemHeader'|'Windows.UI.Xaml.Controls.NavigationViewItemSeparator'|'Windows.UI.Xaml.Controls.PivotItem'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar'|'Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem'|'Windows.UI.Xaml.Controls.Primitives.RepeatButton'|'Windows.UI.Xaml.Controls.RefreshContainer'|'Windows.UI.Xaml.Controls.ScrollViewer'|'Windows.UI.Xaml.Controls.SettingsFlyout'|'Windows.UI.Xaml.Controls.SplitButton'|'Windows.UI.Xaml.Controls.SwipeControl'|'Windows.UI.Xaml.Controls.ToggleSplitButton'|'Windows.UI.Xaml.Controls.ToolTip'|'Windows.UI.Xaml.Controls.TreeViewItem';
-  content?: object;
+  content?: string;
 }
 
 
@@ -517,7 +517,7 @@ export interface NativeContentPresenterProps extends NativeFrameworkElementProps
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
   fontFamily?: string;
-  content?: object;
+  content?: string;
   characterSpacing?: number;
   textLineBounds?: Enums.TextLineBounds;
   opticalMarginAlignment?: Enums.OpticalMarginAlignment;
@@ -543,7 +543,7 @@ export interface NativeDatePickerProps extends NativeControlProps {
   orientation?: Enums.Orientation;
   monthVisible?: boolean;
   monthFormat?: string;
-  header?: object;
+  header?: string;
   dayVisible?: boolean;
   dayFormat?: string;
   calendarIdentifier?: string;
@@ -937,6 +937,7 @@ export interface NativeMapControlProps extends NativeControlProps {
   zoomLevel?: number;
   watermarkMode?: Enums.MapWatermarkMode;
   trafficFlowVisible?: boolean;
+  mapStyle?: Enums.MapStyle;
   pedestrianFeaturesVisible?: boolean;
   mapServiceToken?: string;
   heading?: number;
@@ -1837,7 +1838,7 @@ export interface NativeTextCommandBarFlyoutProps extends NativeCommandBarFlyoutP
 export interface NativeTimePickerProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.TimePicker';
   minuteIncrement?: number;
-  header?: object;
+  header?: string;
   clockIdentifier?: string;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1875,7 +1876,7 @@ export interface NativeToggleSwitchProps extends NativeControlProps {
   onContent?: object;
   offContent?: object;
   isOn?: boolean;
-  header?: object;
+  header?: string;
   onToggled?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 

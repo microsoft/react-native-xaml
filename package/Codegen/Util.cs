@@ -6,21 +6,20 @@ using System.Linq;
 
 namespace Codegen
 {
-    public class SyntheticProperty
-    {
-        public string Name { get; set; }
-        public MrType DeclaringType { get; set; }
-        public MrType PropertyType { get; set; }
-        public string FakePropertyType { get; set; }
-        public string Comment { get; set; }
-    }
-
-
     public static class Util
     {
         static Dictionary<string, string> propNameMap = new Dictionary<string, string> {
-            { "Key", "virtualKey" },
+            { $"{XamlNames.XamlNamespace}.Input.KeyboardAccelerator.Key", "virtualKey" },
+            { $"{XamlNames.XamlNamespace}.Controls.Maps.MapControl.Style", "mapStyle" },
         };
+
+        public static string ToJsName(MrProperty prop)
+        {
+            var fullName = $"{prop.DeclaringType.GetFullName()}.{prop.GetName()}";
+            if (propNameMap.ContainsKey(fullName)) { return propNameMap[fullName]; }
+            return ToJsName(prop.GetName());
+        }
+
         public static string ToJsName(string name)
         {
             var specialPrefixes = new string[] { "UI", "XY" };
@@ -31,8 +30,8 @@ namespace Codegen
                     return p.ToLower() + name.Substring(p.Length);
                 }
             }
-            
-            if (propNameMap.ContainsKey(name)) { return propNameMap[name]; }
+
+
             return name[0].ToString().ToLower() + name.Substring(1);
         }
 
@@ -66,16 +65,19 @@ namespace Codegen
                 if (name == "ActivatableAttribute")
                 {
                     factoryInfo.Activatable = true;
-                } else if (name == "StaticAttribute")
+                }
+                else if (name == "StaticAttribute")
                 {
                     factoryInfo.Statics = true;
                     factoryInfo.Type = (MrType)_fixed[0].Value;
-                } else if (name == "ComposableAttribute")
+                }
+                else if (name == "ComposableAttribute")
                 {
                     factoryInfo.Composable = true;
                     factoryInfo.Type = (MrType)_fixed[0].Value;
 
-                } else
+                }
+                else
                 {
                     continue;
                 }
@@ -85,10 +87,6 @@ namespace Codegen
         }
         public static string GetCppWinRTType(MrType t)
         {
-            if (t.GetName() == "NavigationViewItem")
-            {
-                var f = GetFactories(t);
-            }
             var primitiveTypes = new Dictionary<string, string>()
             {
                 { "System.String", "winrt::hstring" },
@@ -100,7 +98,13 @@ namespace Codegen
                 { "System.Uri", "winrt::Windows::Foundation::Uri" },
                 { "System.Object", "winrt::Windows::Foundation::IInspectable" },
             };
-            if (t.IsEnum) return "int32_t";
+
+            if (t.GetFullName() == $"{XamlNames.XamlNamespace}.Controls.Maps.MapStyle")
+            {
+                // MapStyle has a bug where it doesn't support coercion from int
+            }
+            else if (t.IsEnum) return "int32_t";
+
             if (primitiveTypes.ContainsKey(t.GetFullName()))
             {
                 return primitiveTypes[t.GetFullName()];
@@ -109,28 +113,30 @@ namespace Codegen
         }
 
 
-        public struct FakeEnum
-        {
-            public string Name { get; set; }
-            public Dictionary<string, int> Values { get; set; }
-        }
-
         public static HashSet<FakeEnum> fakeEnums = new HashSet<FakeEnum>();
         public static HashSet<MrType> enumsToGenerateConvertersFor = new HashSet<MrType>();
 
         public static MrLoadContext LoadContext { get; internal set; }
 
-        public static ViewManagerPropertyType GetVMPropertyType(string propType)
+        public static ViewManagerPropertyType GetVMPropertyType(SyntheticProperty prop)
         {
+            if (prop.PropertyType != null) return GetVMPropertyType(prop.PropertyType);
+            var propType = prop.Name;
             switch (propType)
             {
                 case "GridLayout":
                     return ViewManagerPropertyType.Map;
             }
-            throw new ArgumentException($"Invalid propery type ${propType}");
+            throw new ArgumentException($"Invalid property type ${propType}");
         }
 
-        public static ViewManagerPropertyType GetVMPropertyType(MrType propType)
+        public static ViewManagerPropertyType GetVMPropertyType(MrProperty prop)
+        {
+            if (IsPropertyContentProperty(prop)) return ViewManagerPropertyType.String;
+            return GetVMPropertyType(prop.GetPropertyType());
+        }
+
+        private static ViewManagerPropertyType GetVMPropertyType(MrType propType)
         {
             if (propType.IsEnum)
             {
@@ -147,7 +153,7 @@ namespace Codegen
                 case "System.String":
                 case "System.Uri":
                     return ViewManagerPropertyType.String;
-                case "System.Boolean": 
+                case "System.Boolean":
                     return ViewManagerPropertyType.Boolean;
                 case "System.Int32":
                 case "System.Int64":
@@ -168,8 +174,10 @@ namespace Codegen
             return ViewManagerPropertyType.Unknown;
         }
 
-        public static string GetTypeScriptType(string typeName)
+        public static string GetTypeScriptType(SyntheticProperty prop)
         {
+            if (prop.PropertyType != null) return GetTypeScriptType(prop.PropertyType);
+            var typeName = prop.FakePropertyType;
             switch (typeName)
             {
                 case "GridLayout":
@@ -178,7 +186,32 @@ namespace Codegen
             throw new ArgumentException($"Unknown type ${typeName}");
         }
 
-        public static string GetTypeScriptType(MrType propType)
+        public static string GetTypeScriptType(MrProperty prop)
+        {
+            var tsTypeFromPropType = GetTypeScriptType(prop.GetPropertyType());
+
+            if (tsTypeFromPropType == "object" && IsPropertyContentProperty(prop))
+            {
+                return "string";
+            }
+            return tsTypeFromPropType;
+        }
+        static bool IsPropertyContentProperty(MrProperty prop)
+        {
+            return prop.DeclaringType.GetCustomAttributes().Any(x =>
+            {
+                x.GetNameAndNamespace(out var name, out var ns);
+                if (name == "ContentPropertyAttribute")
+                {
+                    x.GetArguments(out var fixedArgs, out var namedArgs);
+                    var na = namedArgs.Where(n => n.Name == "Name").First();
+                    return (string)na.Value == prop.GetName();
+                }
+                return false;
+            });
+        }
+
+        private static string GetTypeScriptType(MrType propType)
         {
             if (propType.IsEnum)
             {
@@ -243,21 +276,25 @@ namespace Codegen
         }
 
 
-        public static bool IsReservedName(string name)
+        public static bool IsReservedName(MrProperty prop)
         {
-            switch (name)
+            var fullName = $"{prop.DeclaringType.GetFullName()}.{prop.GetName()}";
+            switch (fullName)
             {
-                case "Style":
-                case "Type":
+                case $"{XamlNames.XamlNamespace}.FrameworkElement.Style":
                     return true;
-                default:
-                    return false;
             }
+
+            if (prop.GetName() == "Type")
+            {
+                return true;
+            }
+            return false;
         }
 
         public static bool ShouldEmitPropertyMetadata(MrProperty p)
         {
-            if (IsReservedName(p.GetName())) return false;
+            if (IsReservedName(p)) return false;
             if (p.Setter == null) return false;
             bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
             if (!isStatic)

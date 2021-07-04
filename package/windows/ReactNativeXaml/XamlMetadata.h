@@ -7,6 +7,8 @@
 #include <JSValueXaml.h>
 
 #include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.UI.Xaml.Controls.Maps.h>
+
 #include <UI.Xaml.Media.h>
 #include "Crc32Str.h"
 #include <JSI/JsiApiContext.h>
@@ -75,6 +77,15 @@ template<typename T, std::enable_if_t<
 void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
   auto b = v.To<T>();
   o.SetValue(prop, winrt::box_value(b));
+}
+
+
+// MapStyle has a bug where it expects the property to be set as an IReference<MapStyle> always, and does not support IReference<uint32_t>
+template<typename T, std::enable_if_t<
+  std::is_same<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle, T>::value, int> = 0>
+void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v) {
+  auto boxed = v.To<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle>();
+  o.SetValue(prop, winrt::box_value(boxed));
 }
 
 template<typename T, std::enable_if_t<std::is_same<T, winrt::hstring>::value, int> = 0>
