@@ -120,9 +120,26 @@ GridLength GetGridLength(const winrt::Microsoft::ReactNative::JSValue& v) {
   if (v.Type() == JSValueType::Double || v.Type() == JSValueType::Int64) {
     return GridLengthHelper::FromValueAndType(v.AsDouble(), GridUnitType::Pixel);
   }
-  else {
-    return GridLengthHelper::FromValueAndType(1, GridUnitType::Auto);
+  else if (v.Type() == JSValueType::String) {
+    auto str = v.AsString();
+    double units = 1;
+    GridUnitType unitType = GridUnitType::Pixel;
+    if (str.back() == '*') {
+      unitType = GridUnitType::Star;
+      str.pop_back();
+      if (str.length() > 0) {
+        units = std::stod(str);
+      }
+    }
+    else if (str == "auto") {
+      unitType = GridUnitType::Auto;
+    }
+    else {
+      units = std::stod(str);
+    }
+    return GridLengthHelper::FromValueAndType(units, unitType);
   }
+  return GridLengthHelper::FromValueAndType(1, GridUnitType::Auto);
 }
 
 void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
