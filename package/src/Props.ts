@@ -144,6 +144,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
+  fontFamily?: string;
   tabIndex?: number;
   characterSpacing?: number;
   borderThickness?: Thickness;
@@ -317,13 +318,17 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   horizontalDayItemAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
   firstOfYearDecadeLabelFontStyle?: Enums.FontStyle;
+  monthYearItemFontFamily?: string;
+  firstOfYearDecadeLabelFontFamily?: string;
   firstOfMonthLabelFontStyle?: Enums.FontStyle;
   firstOfMonthLabelFontSize?: number;
+  firstOfMonthLabelFontFamily?: string;
   firstDayOfWeek?: Enums.DayOfWeek;
   blackoutForeground?: ColorValue;
   dayOfWeekFormat?: string;
   dayItemFontStyle?: Enums.FontStyle;
   dayItemFontSize?: number;
+  dayItemFontFamily?: string;
   selectedPressedBorderBrush?: ColorValue;
   calendarItemForeground?: ColorValue;
   calendarItemBorderThickness?: Thickness;
@@ -511,6 +516,7 @@ export interface NativeContentPresenterProps extends NativeFrameworkElementProps
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
+  fontFamily?: string;
   content?: object;
   characterSpacing?: number;
   textLineBounds?: Enums.TextLineBounds;
@@ -602,6 +608,7 @@ export interface NativeFontIconProps extends NativeIconElementProps {
   glyph?: string;
   fontStyle?: Enums.FontStyle;
   fontSize?: number;
+  fontFamily?: string;
   isTextScaleFactorEnabled?: boolean;
   mirroredWhenRightToLeft?: boolean;
 }
@@ -1588,6 +1595,7 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
+  fontFamily?: string;
   lineStackingStrategy?: Enums.LineStackingStrategy;
   characterSpacing?: number;
   lineHeight?: number;
@@ -1762,6 +1770,7 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
+  fontFamily?: string;
   lineStackingStrategy?: Enums.LineStackingStrategy;
   lineHeight?: number;
   characterSpacing?: number;
@@ -1995,6 +2004,7 @@ export interface NativeTextElementProps extends NativeDependencyObjectProps {
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
+  fontFamily?: string;
   characterSpacing?: number;
   isTextScaleFactorEnabled?: boolean;
   exitDisplayModeOnAccessKeyInvoked?: boolean;

@@ -153,6 +153,8 @@ namespace Codegen
                 case $"{XamlNames.XamlNamespace}.Media.Brush":
                 case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
                     return ViewManagerPropertyType.Color;
+                case $"{XamlNames.XamlNamespace}.Media.FontFamily":
+                    return ViewManagerPropertyType.String;
                 case $"{XamlNames.XamlNamespace}.Thickness":
                     return ViewManagerPropertyType.Map;
                 case "System.Object":
@@ -199,6 +201,8 @@ namespace Codegen
                     return "ColorValue";
                 case $"{XamlNames.XamlNamespace}.Thickness":
                     return "Thickness";
+                case $"{XamlNames.XamlNamespace}.Media.FontFamily":
+                    return "string";
                 case "System.Object":
                     return "object";
             }
