@@ -3,7 +3,7 @@ import type * as Enums from './Enums';
 
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
-export type GridLength = number | '*';
+export type GridLength = number | '*' | 'auto' | `${number}*`;
 
 
 export interface NativeDependencyObjectProps extends ViewProps {
