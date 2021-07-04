@@ -76,6 +76,56 @@ namespace Codegen
             
             #line default
             #line hidden
+            this.Write("\r\n");
+            
+            #line 15 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+ foreach (var enumType in Util.fakeEnums) { 
+            
+            #line default
+            #line hidden
+            this.Write("export enum ");
+            
+            #line 16 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(enumType.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" {\r\n");
+            
+            #line 17 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+ foreach (var value in enumType.Values) { 
+            
+            #line default
+            #line hidden
+            this.Write("  ");
+            
+            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(value.Key));
+            
+            #line default
+            #line hidden
+            this.Write(" = ");
+            
+            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(value.Value));
+            
+            #line default
+            #line hidden
+            this.Write(",\r\n");
+            
+            #line 19 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n\r\n");
+            
+            #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -197,3 +197,5 @@ private:
 
   std::map<xaml::FrameworkElement, WrapperInfo> wrapperToWrapped;
 };
+
+xaml::DependencyProperty GetPriorityProperty();

@@ -879,3 +879,15 @@ export enum FillRule {
   Nonzero = 1,
 }
 
+
+export enum AppBarButtonPriority {
+  Primary = 0,
+  Secondary = 1,
+}
+
+export enum NavigationViewItemPriority {
+  MenuItem = 0,
+  FooterMenuItem = 1,
+}
+
+

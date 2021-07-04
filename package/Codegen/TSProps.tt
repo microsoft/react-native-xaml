@@ -22,6 +22,12 @@ foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMeta
 foreach (var prop in FakeProps.Where(p => type == p.DeclaringType)) { #>
   <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>; // synthetic property
 <# } 
+foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
+  /**
+  * <#= prop.Comment #>
+  */
+  <#= Util.ToJsName(prop.Name) #>?: <#= Util.GetTypeScriptType(prop.PropertyType) #>; // synthetic property
+<# } 
   foreach (var evt in type.GetEvents()) { #>
   on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
 <# } #>

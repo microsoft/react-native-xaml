@@ -16,6 +16,9 @@
 #include <UI.Xaml.Documents.h>
 #include <JSI/JsiApiContext.h>
 
+
+#include "Styling.h"
+
 namespace jsi = facebook::jsi;
 
 using namespace winrt::Microsoft::ReactNative;
@@ -100,6 +103,92 @@ void SetNavigateUri_Hyperlink(const xaml::DependencyObject& o, const xaml::Depen
     hyperlink.NavigateUri(winrt::Windows::Foundation::Uri{ winrt::to_hstring(v.AsString()) });
   }
 }
+
+void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (auto ui = o.try_as<UIElement>()) {
+    ui.SetValue(Grid::RowProperty(), winrt::box_value(v.AsInt32()));
+  }
+}
+
+void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (auto ui = o.try_as<UIElement>()) {
+    ui.SetValue(Grid::ColumnProperty(), winrt::box_value(v.AsInt32()));
+  }
+}
+
+GridLength GetGridLength(const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (v.Type() == JSValueType::Double || v.Type() == JSValueType::Int64) {
+    return GridLengthHelper::FromValueAndType(v.AsDouble(), GridUnitType::Pixel);
+  }
+  else {
+    return GridLengthHelper::FromValueAndType(1, GridUnitType::Auto);
+  }
+}
+
+void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (auto grid = o.try_as<Grid>()) {
+    const auto& cols = v.AsObject()["columns"].AsArray();
+    const auto& rows = v.AsObject()["rows"].AsArray();
+    grid.ColumnDefinitions().Clear();
+    grid.RowDefinitions().Clear();
+    for (const auto& col : cols) {
+      ColumnDefinition cd;
+      cd.Width(GetGridLength(col));
+      grid.ColumnDefinitions().Append(cd);
+    }
+
+    for (const auto& row : rows) {
+      RowDefinition rd;
+      rd.Height(GetGridLength(row));
+      grid.RowDefinitions().Append(rd);
+    }
+  }
+}
+
+void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::DependencyProperty&, const JSValue& jsValue) {
+  ResourceDictionary rd;
+  const auto& dict = jsValue.AsObject();
+
+  const auto fe = dobj.as<FrameworkElement>();
+
+  for (auto const& entry : dict) {
+    const auto& name = entry.first;
+    const auto& value = entry.second;
+    auto brush = ColorUtils::BrushFrom(value);
+    auto nameII = winrt::box_value(winrt::to_hstring(name));
+    rd.Insert(nameII, brush);
+    if (auto v = rd.TryLookup(nameII)) {
+      if (auto scb = v.try_as<xaml::Media::SolidColorBrush>()) {
+        if (auto newScb = brush.try_as<xaml::Media::SolidColorBrush>()) {
+          scb.Color(newScb.Color());
+          continue;
+        }
+        else {
+          assert(false && "changing from a color to a non-color brush");
+        }
+      }
+      else {
+        assert(false && "changing from a non-color brush");
+      }
+    }
+  }
+  fe.Resources(rd);
+}
+
+
+
+const xaml::Interop::TypeName viewPanelTypeName{ winrt::hstring{L"ViewPanel"}, xaml::Interop::TypeKind::Metadata };
+
+xaml::DependencyProperty GetPriorityProperty() {
+  static const auto priority = DependencyProperty::RegisterAttached(L"Priority", winrt::xaml_typename<uint32_t>(), viewPanelTypeName, xaml::PropertyMetadata{ winrt::box_value(0u) });
+  return priority;
+}
+
+void SetPriority_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  const auto priorityValue = v.AsUInt32();
+  u.SetValue(GetPriorityProperty(), winrt::box_value(priorityValue));
+}
+
 
 const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
   auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return Equals(entry.propName, key); });

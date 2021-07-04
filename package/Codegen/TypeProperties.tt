@@ -36,10 +36,18 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 void Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
 <# } #>
 
+<# foreach (var p in SyntheticProps) { #>
+void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+<# } #>
+
 /*static*/ const PropInfo fakeProps[] = {
 <# foreach (var p in FakeProps) { #>
     { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), AsUnwrappedType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
 <# } #>
+<# foreach (var p in SyntheticProps) { #>
+    { MAKE_KEY("<#= Util.ToJsName(p.Name) #>"), AsType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.PropertyType)  #> },
+<# } #>
+
 };
 
 #ifdef USE_CRC32

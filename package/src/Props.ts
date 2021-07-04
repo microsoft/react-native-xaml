@@ -38,6 +38,22 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   keyboardAcceleratorPlacementMode?: Enums.KeyboardAcceleratorPlacementMode;
   canBeScrollAnchor?: boolean;
+  /**
+  * The row number of this component inside an enclosing Grid.
+  */
+  gridRow?: number; // synthetic property
+  /**
+  * The column number of this component inside an enclosing Grid.
+  */
+  gridColumn?: number; // synthetic property
+  /**
+  * A hint of where this item should be placed within its parent.
+  */
+  priority?: number; // synthetic property
+  /**
+  * An object of key/value pairs used for lightweight styling.
+  */
+  resources?: object; // synthetic property
   onDoubleTapped?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragEnter?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragLeave?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -608,6 +624,10 @@ export interface NativeGridProps extends NativePanelProps {
   rowSpacing?: number;
   columnSpacing?: number;
   backgroundSizing?: Enums.BackgroundSizing;
+  /**
+  * An object with a columns and a rows members, each of which is an array of the corresponding dimensions.
+  */
+  gridLayout?: object; // synthetic property
 }
 
 

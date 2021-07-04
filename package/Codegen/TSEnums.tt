@@ -11,3 +11,13 @@ export enum <#= enumType.GetName() #> {
 }
 
 <# } #>
+
+<# foreach (var enumType in Util.fakeEnums) { #>
+export enum <#= enumType.Name #> {
+<# foreach (var value in enumType.Values) { #>
+  <#= value.Key #> = <#= value.Value #>,
+<# } #>
+}
+
+<# } #>
+
