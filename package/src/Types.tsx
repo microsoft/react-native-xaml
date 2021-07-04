@@ -162,6 +162,7 @@ import type {
     NativeParagraphProps,
     NativeRunProps,
     NativeUnderlineProps,
+    NativeKeyboardAcceleratorProps,
     NativeEllipseProps,
     NativeLineProps,
     NativePathProps,
@@ -1312,6 +1313,13 @@ export type UnderlineProps = Omit<NativeUnderlineProps, 'type'>;
 export const Underline: React.FC<UnderlineProps> = (props: UnderlineProps) => {
     return (
         <NativeXamlControl type="Windows.UI.Xaml.Documents.Underline" {...props} />
+    );
+};
+export type KeyboardAcceleratorProps = Omit<NativeKeyboardAcceleratorProps, 'type'>;
+
+export const KeyboardAccelerator: React.FC<KeyboardAcceleratorProps> = (props: KeyboardAcceleratorProps) => {
+    return (
+        <NativeXamlControl type="Windows.UI.Xaml.Input.KeyboardAccelerator" {...props} />
     );
 };
 export type EllipseProps = Omit<NativeEllipseProps, 'type'>;

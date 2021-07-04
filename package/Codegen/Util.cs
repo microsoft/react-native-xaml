@@ -18,6 +18,9 @@ namespace Codegen
 
     public static class Util
     {
+        static Dictionary<string, string> propNameMap = new Dictionary<string, string> {
+            { "Key", "virtualKey" },
+        };
         public static string ToJsName(string name)
         {
             var specialPrefixes = new string[] { "UI", "XY" };
@@ -28,7 +31,8 @@ namespace Codegen
                     return p.ToLower() + name.Substring(p.Length);
                 }
             }
-
+            
+            if (propNameMap.ContainsKey(name)) { return propNameMap[name]; }
             return name[0].ToString().ToLower() + name.Substring(1);
         }
 
