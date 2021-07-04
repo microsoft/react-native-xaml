@@ -123,6 +123,7 @@ namespace Codegen
             var windows_winmd = context.LoadAssemblyFromPath(Windows_winmd);
             var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
             // ToList realizes the list which is needs to happen before FinishLoading is called
+
             context.FinishLoading();
 
             var typesPerAssembly = winmds.Select(winmd => winmd.GetAllTypes().Skip(1));
@@ -146,7 +147,7 @@ namespace Codegen
             var syntheticProps = new List<SyntheticProperty> {
                 new SyntheticProperty{ Name = "GridRow", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "The row number of this component inside an enclosing Grid." },
                 new SyntheticProperty{ Name = "GridColumn", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "The column number of this component inside an enclosing Grid." },
-                new SyntheticProperty{ Name = "GridLayout", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.Controls.Grid"), PropertyType = context.GetType("System.Object"), Comment = "An object with a columns and a rows members, each of which is an array of the corresponding dimensions." },
+                new SyntheticProperty{ Name = "GridLayout", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.Controls.Grid"), FakePropertyType = "GridLayout", Comment = "An object with a columns and a rows members, each of which is an array of the corresponding dimensions." },
                 new SyntheticProperty{ Name = "Priority", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "A hint of where this item should be placed within its parent." },
                 new SyntheticProperty{ Name = "Resources", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Object"), Comment = "An object of key/value pairs used for lightweight styling."},
             };

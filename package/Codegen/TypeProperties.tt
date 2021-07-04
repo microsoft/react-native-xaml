@@ -45,7 +45,7 @@ void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObj
     { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), AsUnwrappedType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
 <# } #>
 <# foreach (var p in SyntheticProps) { #>
-    { MAKE_KEY("<#= Util.ToJsName(p.Name) #>"), AsType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.PropertyType)  #> },
+    { MAKE_KEY("<#= Util.ToJsName(p.Name) #>"), AsType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= p.PropertyType != null ? Util.GetVMPropertyType(p.PropertyType) : Util.GetVMPropertyType(p.FakePropertyType) #> },
 <# } #>
 
 };

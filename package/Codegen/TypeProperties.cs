@@ -277,7 +277,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write(", ViewManagerPropertyType::");
             
             #line 48 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p.PropertyType)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(p.PropertyType != null ? Util.GetVMPropertyType(p.PropertyType) : Util.GetVMPropertyType(p.FakePropertyType)));
             
             #line default
             #line hidden

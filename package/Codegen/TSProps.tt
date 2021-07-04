@@ -8,6 +8,8 @@ import type * as Enums from './Enums';
 
 export type Thickness = number | { left: number, top: number, right: number, bottom: number };
 
+export type GridLength = number | '*';
+
 <# var derived = Util.GetDerivedTypes(Types);
 foreach (var type in Types) { #>
 
@@ -26,7 +28,7 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
   /**
   * <#= prop.Comment #>
   */
-  <#= Util.ToJsName(prop.Name) #>?: <#= Util.GetTypeScriptType(prop.PropertyType) #>; // synthetic property
+  <#= Util.ToJsName(prop.Name) #>?: <#= prop.PropertyType != null ? Util.GetTypeScriptType(prop.PropertyType) : Util.GetTypeScriptType(prop.FakePropertyType) #>; // synthetic property
 <# } 
   foreach (var evt in type.GetEvents()) { #>
   on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
