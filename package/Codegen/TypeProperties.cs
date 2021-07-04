@@ -80,7 +80,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write("      { MAKE_KEY(\"");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p.GetName())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p)));
             
             #line default
             #line hidden
@@ -122,7 +122,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write(">, ViewManagerPropertyType::");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p.GetPropertyType())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
             
             #line default
             #line hidden
@@ -201,7 +201,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write("    { MAKE_KEY(\"");
             
             #line 45 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p.GetName())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p)));
             
             #line default
             #line hidden
@@ -229,7 +229,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write(", ViewManagerPropertyType::");
             
             #line 45 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p.GetPropertyType())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
             
             #line default
             #line hidden
@@ -277,7 +277,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write(", ViewManagerPropertyType::");
             
             #line 48 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.PropertyType != null ? Util.GetVMPropertyType(p.PropertyType) : Util.GetVMPropertyType(p.FakePropertyType)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
             
             #line default
             #line hidden
@@ -300,14 +300,14 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write("    nativeProps.Insert(winrt::to_hstring(\"");
             
             #line 56 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p.GetName())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p)));
             
             #line default
             #line hidden
             this.Write("\"), ViewManagerPropertyType::");
             
             #line 56 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p.GetPropertyType())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
             
             #line default
             #line hidden

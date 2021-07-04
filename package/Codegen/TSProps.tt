@@ -19,16 +19,16 @@ if (typeProp != "") { #>
   type: <#= typeProp #>;
 <# }
 foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMetadata(p))) { #>
-  <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>;
+  <#= Util.ToJsName(prop) #>?: <#= Util.GetTypeScriptType(prop) #>;
 <# } 
 foreach (var prop in FakeProps.Where(p => type == p.DeclaringType)) { #>
-  <#= Util.ToJsName(prop.GetName()) #>?: <#= Util.GetTypeScriptType(prop.GetPropertyType()) #>; // synthetic property
+  <#= Util.ToJsName(prop) #>?: <#= Util.GetTypeScriptType(prop) #>; // synthetic property
 <# } 
 foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
   /**
   * <#= prop.Comment #>
   */
-  <#= Util.ToJsName(prop.Name) #>?: <#= prop.PropertyType != null ? Util.GetTypeScriptType(prop.PropertyType) : Util.GetTypeScriptType(prop.FakePropertyType) #>; // synthetic property
+  <#= Util.ToJsName(prop.Name) #>?: <#= Util.GetTypeScriptType(prop) #>; // synthetic property
 <# } 
   foreach (var evt in type.GetEvents()) { #>
   on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;

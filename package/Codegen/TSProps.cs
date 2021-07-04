@@ -83,14 +83,14 @@ foreach (var prop in type.GetProperties().Where(p => Util.ShouldEmitPropertyMeta
             this.Write("  ");
             
             #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop.GetName())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop)));
             
             #line default
             #line hidden
             this.Write("?: ");
             
             #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetTypeScriptType(prop.GetPropertyType())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetTypeScriptType(prop)));
             
             #line default
             #line hidden
@@ -105,14 +105,14 @@ foreach (var prop in FakeProps.Where(p => type == p.DeclaringType)) {
             this.Write("  ");
             
             #line 25 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop.GetName())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop)));
             
             #line default
             #line hidden
             this.Write("?: ");
             
             #line 25 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetTypeScriptType(prop.GetPropertyType())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetTypeScriptType(prop)));
             
             #line default
             #line hidden
@@ -141,7 +141,7 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) {
             this.Write("?: ");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(prop.PropertyType != null ? Util.GetTypeScriptType(prop.PropertyType) : Util.GetTypeScriptType(prop.FakePropertyType)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetTypeScriptType(prop)));
             
             #line default
             #line hidden

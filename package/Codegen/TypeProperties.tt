@@ -28,7 +28,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 
 /*static*/ const PropInfo xamlPropertyMap[] = {
   <# foreach (var p in Properties) { #>
-      { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), <#= Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.DeclaringType) #>::<#= p.GetName() #>Property(); }, SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
+      { MAKE_KEY("<#= Util.ToJsName(p) #>"), <#= Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.DeclaringType) #>::<#= p.GetName() #>Property(); }, SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p)  #> },
   <# } #>
 };
 
@@ -42,10 +42,10 @@ void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObj
 
 /*static*/ const PropInfo fakeProps[] = {
 <# foreach (var p in FakeProps) { #>
-    { MAKE_KEY("<#= Util.ToJsName(p.GetName()) #>"), AsUnwrappedType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #> },
+    { MAKE_KEY("<#= Util.ToJsName(p) #>"), AsUnwrappedType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p)  #> },
 <# } #>
 <# foreach (var p in SyntheticProps) { #>
-    { MAKE_KEY("<#= Util.ToJsName(p.Name) #>"), AsType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= p.PropertyType != null ? Util.GetVMPropertyType(p.PropertyType) : Util.GetVMPropertyType(p.FakePropertyType) #> },
+    { MAKE_KEY("<#= Util.ToJsName(p.Name) #>"), AsType<<#= Util.GetCppWinRTType(p.DeclaringType) #>>, nullptr, Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p) #> },
 <# } #>
 
 };
@@ -53,7 +53,7 @@ void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObj
 #ifdef USE_CRC32
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
 <# foreach (MiddleweightReflection.MrProperty p in Properties.Distinct(new Codegen.NameEqualityComparer())) { #>
-    nativeProps.Insert(winrt::to_hstring("<#= Util.ToJsName(p.GetName()) #>"), ViewManagerPropertyType::<#= Util.GetVMPropertyType(p.GetPropertyType())  #>);
+    nativeProps.Insert(winrt::to_hstring("<#= Util.ToJsName(p) #>"), ViewManagerPropertyType::<#= Util.GetVMPropertyType(p)  #>);
 <# } #>
 }
 #else

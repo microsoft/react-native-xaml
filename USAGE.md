@@ -27,7 +27,7 @@ If you have questions about a scenario you don't see below, please [file an issu
 
 ```jsx
 <StackPanel orientation="horizontal">
-  <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {
+  <HyperlinkButton content="Click me!" onClick={(args) => {
       alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);
   }} />
   
@@ -36,7 +36,7 @@ If you have questions about a scenario you don't see below, please [file an issu
   </Border>
   
   <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
-  <Button content={{ string: "this is a button" }} onClick={() => { alert("you clicked the button!"); }} />
+  <Button content="this is a button" onClick={() => { alert("you clicked the button!"); }} />
 </StackPanel>
 ```
 
@@ -69,7 +69,7 @@ If you have questions about a scenario you don't see below, please [file an issu
   </MenuFlyout>
 </TextBox>
 
-<Button content={{ string: `Last selected option = ${option} ${count}` }}
+<Button content={`Last selected option = ${option} ${count}`}
   onClick={(a) => { 
   setIsOpen(true); }} />
 ```
@@ -77,12 +77,12 @@ If you have questions about a scenario you don't see below, please [file an issu
 ## ComboBox
 
 ```jsx
-<ComboBox text="this is a combobox" description={{ string: "best bois" }} 
+<ComboBox text="this is a combobox" description="best bois" 
     onSelectionChanged={(args) => 
     { alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`); }
   } >
-  <ComboBoxItem content={{ string: "garfield" }} foreground="black" />
-  <ComboBoxItem content={{ string: "snoopy" }} foreground="black" />
+  <ComboBoxItem content="garfield" foreground="black" />
+  <ComboBoxItem content="snoopy" foreground="black" />
 </ComboBox>
 ```
 
@@ -110,10 +110,10 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 
 ```jsx
 <NavigationView style={{ height: 200, width: 120 }}>
-  <NavigationViewItem content={{ string: "item 1" }}>
+  <NavigationViewItem content="item 1">
     <FontIcon glyph="&#xE790;" />
   </NavigationViewItem>
-  <NavigationViewItem content={{ string: "item 2" }} />
+  <NavigationViewItem content="item 2" />
 </NavigationView>
 ```
 
@@ -161,7 +161,7 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 react-native-xaml supports raising events and sending event args to the registered JavaScript event handlers. The native XAML event args object is projected to JavaScript through the `nativeEvent` method:
 
 ```jsx
-  <HyperlinkButton content={{ string: "Click me!" }} 
+  <HyperlinkButton content="Click me!" 
     onClick={(args) => {
       alert(JSON.stringify(args.nativeEvent));
     }} />
