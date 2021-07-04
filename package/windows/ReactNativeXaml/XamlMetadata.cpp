@@ -124,10 +124,9 @@ GridLength GetGridLength(const winrt::Microsoft::ReactNative::JSValue& v) {
     auto str = v.AsString();
     double units = 1;
     GridUnitType unitType = GridUnitType::Pixel;
-    auto& lastChar = str.back();
-    if (lastChar == '*') {
+    if (str.back() == '*') {
       unitType = GridUnitType::Star;
-      lastChar = '\0';
+      str.pop_back();
       if (str.length() > 0) {
         units = std::stod(str);
       }
