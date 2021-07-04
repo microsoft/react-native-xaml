@@ -41,13 +41,15 @@ namespace Codegen
 
     public partial class TypeProperties
     {
-        public TypeProperties(IEnumerable<MrProperty> properties, IEnumerable<MrProperty> fakeProps)
+        public TypeProperties(IEnumerable<MrProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps)
         {
             Properties = properties;
             FakeProps = fakeProps;
+            SyntheticProps = syntheticProps;
         }
         IEnumerable<MrProperty> Properties { get; set; }
         IEnumerable<MrProperty> FakeProps { get; set; }
+        IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
     }
 
     public partial class TypeEvents
@@ -61,8 +63,13 @@ namespace Codegen
 
     public partial class TSProps
     {
-        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps) { Types = types; FakeProps = fakeProps; }
+        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps) { 
+            Types = types; 
+            FakeProps = fakeProps;
+            SyntheticProps = syntheticProps;
+        }
         IEnumerable<MrProperty> FakeProps { get; set; }
+        IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
         IEnumerable<MrType> Types { get; set; }
     }
 
@@ -116,6 +123,7 @@ namespace Codegen
             var windows_winmd = context.LoadAssemblyFromPath(Windows_winmd);
             var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
             // ToList realizes the list which is needs to happen before FinishLoading is called
+
             context.FinishLoading();
 
             var typesPerAssembly = winmds.Select(winmd => winmd.GetAllTypes().Skip(1));
@@ -136,6 +144,13 @@ namespace Codegen
                 GetProperty(context, $"{XamlNames.XamlNamespace}.Documents.Run", "Text"),
             };
 
+            var syntheticProps = new List<SyntheticProperty> {
+                new SyntheticProperty{ Name = "GridRow", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "The row number of this component inside an enclosing Grid." },
+                new SyntheticProperty{ Name = "GridColumn", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "The column number of this component inside an enclosing Grid." },
+                new SyntheticProperty{ Name = "GridLayout", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.Controls.Grid"), FakePropertyType = "GridLayout", Comment = "An object with a columns and a rows members, each of which is an array of the corresponding dimensions." },
+                new SyntheticProperty{ Name = "Priority", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "A hint of where this item should be placed within its parent." },
+                new SyntheticProperty{ Name = "Resources", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Object"), Comment = "An object of key/value pairs used for lightweight styling."},
+            };
 
             var baseClassesToProject = new string[]
             {
@@ -267,10 +282,15 @@ namespace Codegen
 
             PrintVerbose("Generating projection");
 
-            var propsGen = new TSProps(xamlTypes, fakeProps).TransformText();
+
+            var propsGen = new TSProps(xamlTypes, fakeProps, syntheticProps).TransformText();
             var typesGen = new TSTypes(xamlTypes).TransformText();
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
-            var propertiesGen = new TypeProperties(properties, fakeProps).TransformText();
+            var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
+
+            Util.fakeEnums.Add(new Util.FakeEnum() { Name = "AppBarButtonPriority", Values = new Dictionary<string, int>() { { "Primary", 0 }, { "Secondary", 1 } } });
+            Util.fakeEnums.Add(new Util.FakeEnum() { Name = "NavigationViewItemPriority", Values = new Dictionary<string, int>() { { "MenuItem", 0 }, { "FooterMenuItem", 1 } } });
+
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();

@@ -117,6 +117,32 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 </NavigationView>
 ```
 
+## CommandBar with AppBarButtons
+
+```jsx
+<CommandBar isOpen={true} style={{ height: 56 }}>
+  <AppBarButton
+    priority={AppBarButtonPriority.Primary}
+    label="Search"
+    onClick={() => { alert('search'); }}>
+    <SymbolIcon symbol={Symbol.Find} />
+  </AppBarButton>
+  <AppBarButton
+    priority={AppBarButtonPriority.Primary}
+    label="Calendar">
+    <SymbolIcon symbol={Symbol.Calendar} />
+  </AppBarButton>
+  <AppBarButton label="Audio" priority={AppBarButtonPriority.Secondary}>
+    <SymbolIcon symbol={Symbol.Audio} />
+  </AppBarButton>
+  <AppBarButton
+    label="Calculator"
+    priority={AppBarButtonPriority.Secondary}>
+    <SymbolIcon symbol={Symbol.Calculator} />
+  </AppBarButton>
+</CommandBar>
+```
+
 ## Lightweight styling
 
 ```jsx

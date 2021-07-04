@@ -1,10 +1,21 @@
 ﻿using MiddleweightReflection;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 
 namespace Codegen
 {
+    public class SyntheticProperty
+    {
+        public string Name { get; set; }
+        public MrType DeclaringType { get; set; }
+        public MrType PropertyType { get; set; }
+        public string FakePropertyType { get; set; }
+        public string Comment { get; set; }
+    }
+
+
     public static class Util
     {
         public static string ToJsName(string name)
@@ -93,9 +104,27 @@ namespace Codegen
             return $"winrt::{t.GetFullName().Replace(".", "::")}";
         }
 
+
+        public struct FakeEnum
+        {
+            public string Name { get; set; }
+            public Dictionary<string, int> Values { get; set; }
+        }
+
+        public static HashSet<FakeEnum> fakeEnums = new HashSet<FakeEnum>();
         public static HashSet<MrType> enumsToGenerateConvertersFor = new HashSet<MrType>();
 
         public static MrLoadContext LoadContext { get; internal set; }
+
+        public static ViewManagerPropertyType GetVMPropertyType(string propType)
+        {
+            switch (propType)
+            {
+                case "GridLayout":
+                    return ViewManagerPropertyType.Map;
+            }
+            throw new ArgumentException($"Invalid propery type ${propType}");
+        }
 
         public static ViewManagerPropertyType GetVMPropertyType(MrType propType)
         {
@@ -131,6 +160,16 @@ namespace Codegen
             }
 
             return ViewManagerPropertyType.Unknown;
+        }
+
+        public static string GetTypeScriptType(string typeName)
+        {
+            switch (typeName)
+            {
+                case "GridLayout":
+                    return "{ rows: GridLength[], columns: GridLength[] }";
+            }
+            throw new ArgumentException($"Unknown type ${typeName}");
         }
 
         public static string GetTypeScriptType(MrType propType)

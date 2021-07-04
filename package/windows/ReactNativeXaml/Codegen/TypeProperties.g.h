@@ -889,9 +889,21 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
 void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
 
+void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void SetPriority_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void SetResources_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+
 /*static*/ const PropInfo fakeProps[] = {
     { MAKE_KEY("isOpen"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
     { MAKE_KEY("text"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::Run>, nullptr, SetText_Run, ViewManagerPropertyType::String },
+    { MAKE_KEY("gridRow"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetGridRow_UIElement, ViewManagerPropertyType::Number },
+    { MAKE_KEY("gridColumn"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetGridColumn_UIElement, ViewManagerPropertyType::Number },
+    { MAKE_KEY("gridLayout"), AsType<winrt::Windows::UI::Xaml::Controls::Grid>, nullptr, SetGridLayout_Grid, ViewManagerPropertyType::Map },
+    { MAKE_KEY("priority"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetPriority_UIElement, ViewManagerPropertyType::Number },
+    { MAKE_KEY("resources"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetResources_UIElement, ViewManagerPropertyType::Map },
+
 };
 
 #ifdef USE_CRC32

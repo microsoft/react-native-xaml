@@ -8,8 +8,6 @@
 #include <UI.Xaml.Input.h>
 #include <UI.Xaml.Documents.h>
 
-#include "Styling.h"
-
 using namespace winrt;
 using namespace Microsoft::ReactNative;
 using namespace xaml;
@@ -36,88 +34,14 @@ namespace winrt::ReactNativeXaml {
     return e;
   }
 
-  namespace XamlGrid {
-
-    void SetGridRow(const xaml::DependencyObject& o, const winrt::Microsoft::ReactNative::JSValue& v) {
-      if (auto ui = o.try_as<UIElement>()) {
-        ui.SetValue(Grid::RowProperty(), winrt::box_value(v.AsInt32()));
-      }
-    }
-
-    void SetGridColumn(const xaml::DependencyObject& o, const winrt::Microsoft::ReactNative::JSValue& v) {
-      if (auto ui = o.try_as<UIElement>()) {
-        ui.SetValue(Grid::ColumnProperty(), winrt::box_value(v.AsInt32()));
-      }
-    }
-
-    GridLength GetGridLength(const winrt::Microsoft::ReactNative::JSValue& v) {
-      if (v.Type() == JSValueType::Double || v.Type() == JSValueType::Int64) {
-        return GridLengthHelper::FromValueAndType(v.AsDouble(), GridUnitType::Pixel);
-      }
-      else {
-        return GridLengthHelper::FromValueAndType(1, GridUnitType::Auto);
-      }
-    }
-
-    void SetGridLayout(const xaml::DependencyObject& o, const winrt::Microsoft::ReactNative::JSValue& v) {
-      if (auto grid = o.try_as<Grid>()) {
-        const auto& cols = v.AsObject()["columns"].AsArray();
-        const auto& rows = v.AsObject()["rows"].AsArray();
-        grid.ColumnDefinitions().Clear();
-        grid.RowDefinitions().Clear();
-        for (const auto& col : cols) {
-          ColumnDefinition cd;
-          cd.Width(GetGridLength(col));
-          grid.ColumnDefinitions().Append(cd);
-        }
-
-        for (const auto& row : rows) {
-          RowDefinition rd;
-          rd.Height(GetGridLength(row));
-          grid.RowDefinitions().Append(rd);
-        }
-      }
-    }
-  }
-
-  void SetResources(const xaml::FrameworkElement& fe, const JSValueObject& dict) {
-    ResourceDictionary rd;
-
-    for (auto const& entry : dict) {
-      const auto& name = entry.first;
-      const auto& value = entry.second;
-      auto brush = ColorUtils::BrushFrom(value);
-      auto nameII = winrt::box_value(winrt::to_hstring(name));
-      rd.Insert(nameII, brush);
-      if (auto v = rd.TryLookup(nameII)) {
-        if (auto scb = v.try_as<xaml::Media::SolidColorBrush>()) {
-          if (auto newScb = brush.try_as<xaml::Media::SolidColorBrush>()) {
-            scb.Color(newScb.Color());
-            continue;
-          }
-          else {
-            assert(false && "changing from a color to a non-color brush");
-          }
-        }
-        else {
-          assert(false && "changing from a non-color brush");
-        }
-      }
-    }
-    fe.Resources(rd);
-  }
 
   // IViewManagerWithNativeProperties
   IMapView<hstring, ViewManagerPropertyType> XamlViewManager::NativeProps() noexcept {
     auto nativeProps = winrt::single_threaded_map<hstring, ViewManagerPropertyType>();
     nativeProps.Insert(L"type", ViewManagerPropertyType::String);
-    nativeProps.Insert(L"resources", ViewManagerPropertyType::Map);
-    nativeProps.Insert(L"gridRow", ViewManagerPropertyType::Number);
-    nativeProps.Insert(L"gridColumn", ViewManagerPropertyType::Number);
-    nativeProps.Insert(L"gridLayout", ViewManagerPropertyType::Map);
 
     m_xamlMetadata->PopulateNativeProps(nativeProps);
-
+    m_xamlMetadata->PopulateNativeEvents(nativeProps);
     return nativeProps.GetView();
   }
 
@@ -144,18 +68,6 @@ namespace winrt::ReactNativeXaml {
         else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
         }
         else if (propertyName == "type") {}
-        else if (propertyName == "resources" && propertyValue.Type() == JSValueType::Object && control.try_as<xaml::FrameworkElement>()) {
-          SetResources(control.as<xaml::FrameworkElement>(), propertyValue.AsObject());
-        }
-        else if (propertyName == "gridRow" && propertyValue.Type() == JSValueType::Int64) {
-          XamlGrid::SetGridRow(control, propertyValue);
-        }
-        else if (propertyName == "gridColumn" && propertyValue.Type() == JSValueType::Int64) {
-          XamlGrid::SetGridColumn(control, propertyValue);
-        }
-        else if (propertyName == "gridLayout" && propertyValue.Type() == JSValueType::Object) {
-          XamlGrid::SetGridLayout(control, propertyValue);
-        }
         else {
           auto className = winrt::get_class_name(e);
           assert(false && "unknown property");
@@ -171,6 +83,10 @@ namespace winrt::ReactNativeXaml {
 
   ConstantProviderDelegate XamlViewManager::ExportedCustomDirectEventTypeConstants() noexcept {
     return GetEvents;
+  }
+
+  auto GetPriority(const UIElement& u) {
+    return winrt::unbox_value<uint32_t>(u.GetValue(GetPriorityProperty()));
   }
 
   // IViewManagerWithCommands
@@ -212,65 +128,85 @@ namespace winrt::ReactNativeXaml {
     if (child.try_as<xaml::Controls::Primitives::SelectorItem>() ||
       child.try_as<NavigationView>()) { 
       // these are ContentControls too, but we shouldn't try to unwrap, so skip this 
-    } else if (auto childAsCC = child.try_as<Wrapper>()) {
-      auto childContent = childAsCC.Content();
-      childType = winrt::get_class_name(childContent);
-      auto tag = childAsCC.Tag();
-      if (auto depObj = childContent.try_as<DependencyObject>()) {
-        // tranfer the Tag from the wrapping ContentControl
-        // This is used for dispatching events and TouchEventHandler
-        depObj.SetValue(FrameworkElement::TagProperty(), tag);
-      }
-
-      if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
-        Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
-        childAsCC.DataContext(e);
-        if (auto button = e.try_as<Button>()) {
-          return button.Flyout(childFlyout);
+    }
+    else if (auto childAsCC = child.try_as<Wrapper>()) {
+      if (auto childContent = childAsCC.Content()) {
+        childType = winrt::get_class_name(childContent);
+        auto tag = childAsCC.Tag();
+        if (auto depObj = childContent.try_as<DependencyObject>()) {
+          // tranfer the Tag from the wrapping ContentControl
+          // This is used for dispatching events and TouchEventHandler
+          depObj.SetValue(FrameworkElement::TagProperty(), tag);
         }
-        else {
-          if (auto uiParent = e.try_as<UIElement>()) {
-            return uiParent.ContextFlyout(childFlyout);
+
+        if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
+          Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
+          childAsCC.DataContext(e);
+          if (auto button = e.try_as<Button>()) {
+            return button.Flyout(childFlyout);
+          }
+          else {
+            if (auto uiParent = e.try_as<UIElement>()) {
+              return uiParent.ContextFlyout(childFlyout);
+            }
+          }
+        }
+        else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
+          if (auto childBlock = childContent.try_as<Documents::Block>()) {
+            return RTBparent.Blocks().InsertAt(index, childBlock);
+          }
+        }
+        else if (auto TBparent = parent.try_as<TextBlock>()) {
+          if (auto childInline = childContent.try_as<Documents::Inline>()) {
+            return TBparent.Inlines().InsertAt(index, childInline);
+          }
+        }
+        else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
+          if (auto childInline = childContent.try_as<Documents::Inline>()) {
+            return paragraphParent.Inlines().InsertAt(index, childInline);
+          }
+        }
+        else if (auto spanParent = Unwrap<Documents::Span>(parent)) {
+          if (auto childInline = childContent.try_as<Documents::Inline>()) {
+            return spanParent.Inlines().InsertAt(index, childInline);
           }
         }
       }
-      else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
-        if (auto childBlock = childContent.try_as<Documents::Block>()) {
-          return RTBparent.Blocks().InsertAt(index, childBlock);
-        }
-      }
-      else if (auto TBparent = parent.try_as<TextBlock>()) {
-        if (auto childInline = childContent.try_as<Documents::Inline>()) {
-          return TBparent.Inlines().InsertAt(index, childInline);
-        }
-      }
-      else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
-        if (auto childInline = childContent.try_as<Documents::Inline>()) {
-          return paragraphParent.Inlines().InsertAt(index, childInline);
-        }
-      }
-      else if (auto spanParent = Unwrap<Documents::Span>(parent)) {
-        if (auto childInline = childContent.try_as<Documents::Inline>()) {
-          return spanParent.Inlines().InsertAt(index, childInline);
-        }
-      }
     }
-
 
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().InsertAt(index, child);
     }
+
     if (auto navView = e.try_as<NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
       if (auto childMI = child.try_as<NavigationViewItemBase>()) {
         return navView.MenuItems().InsertAt(index, child);
       }
     }
+
     if (auto navViewItem = e.try_as<NavigationViewItem>()) {
       if (auto childIconElement = child.try_as<IconElement>()) {
         return navViewItem.Icon(childIconElement);
       }
     }
+
+    if (auto appBarButton = e.try_as<AppBarButton>()) {
+      if (auto icon = child.try_as<IconElement>()) {
+        return appBarButton.Icon(icon);
+      }
+    }
+    if (auto commandBar = e.try_as<CommandBar>()) {
+      if (auto commandBarElement = child.try_as<ICommandBarElement>()) {
+        const auto priority = GetPriority(child);
+        if (priority == 0) {
+          return commandBar.PrimaryCommands().Append(commandBarElement);
+        } else if (priority == 1) {
+          return commandBar.SecondaryCommands().Append(commandBarElement);
+        }
+      }
+    }
+
     if (auto contentCtrl = e.try_as<Wrapper>()) {
       auto parentContent = contentCtrl.Content();
       if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
@@ -283,9 +219,11 @@ namespace winrt::ReactNativeXaml {
           return flyout.Content(child);
         }
       }
-
       if (index == 0 || contentCtrl.Content() == nullptr) {
         return contentCtrl.Content(child);
+      }
+      else {
+
       }
     }
     if (auto border = e.try_as<Border>()) {
