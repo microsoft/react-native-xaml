@@ -29,6 +29,10 @@ namespace winrt::Microsoft::ReactNative {
     value = xaml::Media::FontFamily(str);
   }
 
+  inline void ReadValue(JSValue const& jsValue, Windows::UI::Text::FontWeight& value) noexcept {
+    value.Weight = jsValue.AsInt16();
+  }
+
   inline void ReadValue(JSValue const& jsValue, xaml::Thickness& value) noexcept {
     if (auto array = jsValue.TryGetArray()) {
       if (array->size() == 4) {

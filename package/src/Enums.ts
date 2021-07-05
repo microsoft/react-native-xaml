@@ -1085,3 +1085,16 @@ export enum NavigationViewItemPriority {
 }
 
 
+export enum FontWeights {
+  ExtraBlack = 950,
+  Black = 900,
+  ExtraBold = 800,
+  Bold = 700,
+  SemiBold = 600,
+  Medium = 500,
+  Normal = 400,
+  SemiLight  =350,
+  Light = 300,
+  ExtraLight = 200,
+  Thin = 100,
+}
