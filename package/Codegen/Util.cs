@@ -152,6 +152,7 @@ namespace Codegen
             {
                 case "System.String":
                 case "System.Uri":
+                //case "Windows.Foundation.Uri":
                     return ViewManagerPropertyType.String;
                 case "System.Boolean":
                     return ViewManagerPropertyType.Boolean;
@@ -163,6 +164,8 @@ namespace Codegen
                 case $"{XamlNames.XamlNamespace}.Media.Brush":
                 case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
                     return ViewManagerPropertyType.Color;
+                case $"{XamlNames.XamlNamespace}.Media.ImageSource":
+                    return ViewManagerPropertyType.String;
                 case $"{XamlNames.XamlNamespace}.Media.FontFamily":
                     return ViewManagerPropertyType.String;
                 case "Windows.UI.Text.FontWeight":
@@ -229,7 +232,8 @@ namespace Codegen
                 case "System.String":
                 case "System.Uri":
                     return "string";
-                case "System.Boolean": return "boolean";
+                case "System.Boolean":
+                    return "boolean";
                 case "System.Int32":
                 case "System.Int64":
                 case "System.Double":
@@ -238,6 +242,8 @@ namespace Codegen
                 case $"{XamlNames.XamlNamespace}.Media.Brush":
                 case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
                     return "ColorValue";
+                case $"{XamlNames.XamlNamespace}.Media.ImageSource":
+                    return "string";
                 case $"{XamlNames.XamlNamespace}.Thickness":
                     return "Thickness";
                 case $"{XamlNames.XamlNamespace}.Media.FontFamily":

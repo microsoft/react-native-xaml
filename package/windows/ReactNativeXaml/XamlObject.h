@@ -25,5 +25,6 @@ private:
 
   template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
   void RunOnUIThread(const TLambda& code) const;
+
   facebook::jsi::Value IInspectableToValue(facebook::jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& inspectable) const;
 };

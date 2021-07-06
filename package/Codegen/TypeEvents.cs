@@ -81,15 +81,15 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
                     ", eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {\r\n      auto objSend" +
                     "er = std::make_shared<XamlObject>(senderAsFE, metadata);\r\n      auto objArgs = s" +
                     "td::make_shared<XamlObject>(args, metadata);\r\n      auto obj = std::make_shared<" +
-                    "jsi::Object>(rt);\r\n      obj->setProperty(rt, \"sender\", rt.global().createFromHo" +
-                    "stObject(rt, objSender));\r\n      obj->setProperty(rt, \"args\", rt.global().create" +
-                    "FromHostObject(rt, objArgs));\r\n\r\n      metadata->JsiDispatchEvent(rt, tag, std::" +
-                    "string(eventName), obj);\r\n      });\r\n  }\r\n  else {\r\n    XamlUIService::FromConte" +
-                    "xt(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_st" +
-                    "r(),\r\n      [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWrit" +
-                    "er& evtDataWriter) {\r\n        SerializeEventArgs(evtDataWriter, senderAsFE, args" +
-                    ");\r\n      });\r\n  }\r\n};\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEventMap[] =" +
-                    " {\r\n");
+                    "facebook::jsi::Object>(rt);\r\n      obj->setProperty(rt, \"sender\", rt.global().cr" +
+                    "eateFromHostObject(rt, objSender));\r\n      obj->setProperty(rt, \"args\", rt.globa" +
+                    "l().createFromHostObject(rt, objArgs));\r\n\r\n      metadata->JsiDispatchEvent(rt, " +
+                    "tag, std::string(eventName), obj);\r\n      });\r\n  }\r\n  else {\r\n    XamlUIService:" +
+                    ":FromContext(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>()" +
+                    ", wEN.c_str(),\r\n      [senderAsFE, args](const winrt::Microsoft::ReactNative::IJ" +
+                    "SValueWriter& evtDataWriter) {\r\n        SerializeEventArgs(evtDataWriter, sender" +
+                    "AsFE, args);\r\n      });\r\n  }\r\n};\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEv" +
+                    "entMap[] = {\r\n");
             
             #line 57 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
  foreach (var evt in Events) { 

@@ -62,6 +62,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("backgroundSizing"), AsType<winrt::Windows::UI::Xaml::Controls::RelativePanel>,  []() { return winrt::Windows::UI::Xaml::Controls::RelativePanel::BackgroundSizingProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("backgroundSizing"), AsType<winrt::Windows::UI::Xaml::Controls::StackPanel>,  []() { return winrt::Windows::UI::Xaml::Controls::StackPanel::BackgroundSizingProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("badgeGlyph"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::BadgeGlyphProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
+        { MAKE_KEY("badgeImageSource"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::BadgeImageSourceProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
         { MAKE_KEY("badgeNumber"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::BadgeNumberProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("badgeText"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::BadgeTextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("balance"), AsType<winrt::Windows::UI::Xaml::Controls::MediaElement>,  []() { return winrt::Windows::UI::Xaml::Controls::MediaElement::BalanceProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -332,6 +333,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("horizontalTextAlignment"), AsType<winrt::Windows::UI::Xaml::Controls::RichEditBox>,  []() { return winrt::Windows::UI::Xaml::Controls::RichEditBox::HorizontalTextAlignmentProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("horizontalTextAlignment"), AsType<winrt::Windows::UI::Xaml::Controls::TextBox>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBox::HorizontalTextAlignmentProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("hoverBorderBrush"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::HoverBorderBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
+        { MAKE_KEY("iconSource"), AsType<winrt::Windows::UI::Xaml::Controls::SettingsFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::SettingsFlyout::IconSourceProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
         { MAKE_KEY("incrementalLoadingThreshold"), AsType<winrt::Windows::UI::Xaml::Controls::ListViewBase>,  []() { return winrt::Windows::UI::Xaml::Controls::ListViewBase::IncrementalLoadingThresholdProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("incrementalLoadingTrigger"), AsType<winrt::Windows::UI::Xaml::Controls::ListViewBase>,  []() { return winrt::Windows::UI::Xaml::Controls::ListViewBase::IncrementalLoadingTriggerProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("indicatorMode"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ScrollBar::IndicatorModeProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -679,6 +681,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("pointerOverBackgroundMargin"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter::PointerOverBackgroundMarginProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("pointerOverBackgroundMargin"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter::PointerOverBackgroundMarginProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("pointerOverForeground"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter::PointerOverForegroundProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
+        { MAKE_KEY("posterSource"), AsType<winrt::Windows::UI::Xaml::Controls::MediaElement>,  []() { return winrt::Windows::UI::Xaml::Controls::MediaElement::PosterSourceProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
+        { MAKE_KEY("posterSource"), AsType<winrt::Windows::UI::Xaml::Controls::MediaPlayerElement>,  []() { return winrt::Windows::UI::Xaml::Controls::MediaPlayerElement::PosterSourceProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
         { MAKE_KEY("preferSmallImage"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::PreferSmallImageProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("pressedBackground"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter::PressedBackgroundProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("pressedBorderBrush"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::PressedBorderBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -688,6 +692,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("preventKeyboardDisplayOnProgrammaticFocus"), AsType<winrt::Windows::UI::Xaml::Controls::TextBox>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBox::PreventKeyboardDisplayOnProgrammaticFocusProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("primaryButtonCommandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::PrimaryButtonCommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("primaryButtonText"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::PrimaryButtonTextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
+        { MAKE_KEY("profilePicture"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::ProfilePictureProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
         { MAKE_KEY("pullDirection"), AsType<winrt::Windows::UI::Xaml::Controls::RefreshContainer>,  []() { return winrt::Windows::UI::Xaml::Controls::RefreshContainer::PullDirectionProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("queryText"), AsType<winrt::Windows::UI::Xaml::Controls::SearchBox>,  []() { return winrt::Windows::UI::Xaml::Controls::SearchBox::QueryTextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("radiusX"), AsType<winrt::Windows::UI::Xaml::Shapes::Rectangle>,  []() { return winrt::Windows::UI::Xaml::Shapes::Rectangle::RadiusXProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -775,6 +780,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("sizesContentToTemplatedParent"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter::SizesContentToTemplatedParentProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("smallChange"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::RangeBase::SmallChangeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("snapsTo"), AsType<winrt::Windows::UI::Xaml::Controls::Slider>,  []() { return winrt::Windows::UI::Xaml::Controls::Slider::SnapsToProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("source"), AsType<winrt::Windows::UI::Xaml::Controls::Image>,  []() { return winrt::Windows::UI::Xaml::Controls::Image::SourceProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
         { MAKE_KEY("source"), AsType<winrt::Windows::UI::Xaml::Controls::MediaElement>,  []() { return winrt::Windows::UI::Xaml::Controls::MediaElement::SourceProperty(); }, SetPropValue<winrt::Windows::Foundation::Uri>, ViewManagerPropertyType::String },
         { MAKE_KEY("source"), AsType<winrt::Windows::UI::Xaml::Controls::WebView>,  []() { return winrt::Windows::UI::Xaml::Controls::WebView::SourceProperty(); }, SetPropValue<winrt::Windows::Foundation::Uri>, ViewManagerPropertyType::String },
         { MAKE_KEY("spacing"), AsType<winrt::Windows::UI::Xaml::Controls::StackPanel>,  []() { return winrt::Windows::UI::Xaml::Controls::StackPanel::SpacingProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -952,6 +958,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("background"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("backgroundSizing"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("badgeGlyph"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("badgeImageSource"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("badgeNumber"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("badgeText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("balance"), ViewManagerPropertyType::Number);
@@ -1107,6 +1114,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("horizontalSourceStartOffset"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("horizontalTextAlignment"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("hoverBorderBrush"), ViewManagerPropertyType::Color);
+    nativeProps.Insert(winrt::to_hstring("iconSource"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("incrementalLoadingThreshold"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("incrementalLoadingTrigger"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("indicatorMode"), ViewManagerPropertyType::Number);
@@ -1333,6 +1341,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("pointerOverBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("pointerOverBackgroundMargin"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("pointerOverForeground"), ViewManagerPropertyType::Color);
+    nativeProps.Insert(winrt::to_hstring("posterSource"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("preferSmallImage"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("pressedBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("pressedBorderBrush"), ViewManagerPropertyType::Color);
@@ -1340,6 +1349,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("preventKeyboardDisplayOnProgrammaticFocus"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("primaryButtonCommandParameter"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("primaryButtonText"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("profilePicture"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("pullDirection"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("queryText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("radiusX"), ViewManagerPropertyType::Number);

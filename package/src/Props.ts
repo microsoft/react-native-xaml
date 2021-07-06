@@ -742,6 +742,7 @@ export interface NativeIconSourceElementProps extends NativeIconElementProps {
 export interface NativeImageProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.Image';
   stretch?: Enums.Stretch;
+  source?: string;
   nineGrid?: Thickness;
   onImageFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onImageOpened?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -991,6 +992,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   stereo3DVideoPackingMode?: Enums.Stereo3DVideoPackingMode;
   source?: string;
   realTimePlayback?: boolean;
+  posterSource?: string;
   playbackRate?: number;
   autoPlay?: boolean;
   isMuted?: boolean;
@@ -1020,6 +1022,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
 export interface NativeMediaPlayerElementProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.MediaPlayerElement';
   stretch?: Enums.Stretch;
+  posterSource?: string;
   isFullWindow?: boolean;
   autoPlay?: boolean;
   areTransportControlsEnabled?: boolean;
@@ -1232,12 +1235,14 @@ export interface NativePathIconProps extends NativeIconElementProps {
 
 export interface NativePersonPictureProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.PersonPicture';
+  profilePicture?: string;
   preferSmallImage?: boolean;
   isGroup?: boolean;
   initials?: string;
   displayName?: string;
   badgeText?: string;
   badgeNumber?: number;
+  badgeImageSource?: string;
   badgeGlyph?: string;
 }
 
@@ -1704,6 +1709,7 @@ export interface NativeSemanticZoomProps extends NativeControlProps {
 export interface NativeSettingsFlyoutProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.SettingsFlyout';
   title?: string;
+  iconSource?: string;
   headerForeground?: ColorValue;
   headerBackground?: ColorValue;
   onBackClick?: (event: NativeSyntheticEvent<undefined>) => void;

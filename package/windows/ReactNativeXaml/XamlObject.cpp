@@ -52,7 +52,7 @@ auto XamlObject::RunOnUIThread(const TLambda& code) const {
 }
 
 template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
-void RunOnUIThread(const TLambda& code) {
+void XamlObject::RunOnUIThread(const TLambda& code) const {
   std::condition_variable cv;
   std::mutex mutex;
   std::unique_lock<std::mutex> lock(mutex);
