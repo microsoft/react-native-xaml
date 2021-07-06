@@ -66,10 +66,20 @@ namespace winrt::ReactNativeXaml {
     void RemoveChildAt(xaml::FrameworkElement parent, int64_t index);
     void ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild);
 
+    static void ConnectViews(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index);
+    static void ReplaceViews(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild);
+
     const std::shared_ptr<XamlMetadata>& Metadata() const { return m_xamlMetadata; }
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
     std::shared_ptr<XamlMetadata> m_xamlMetadata;    
   };
+
+  template<typename T>
+  inline void Replace(IVector<T> coll, T oldChild, T newChild) {
+    uint32_t index{};
+    coll.IndexOf(oldChild, index);
+    coll.SetAt(index, newChild);
+  }
 
 }

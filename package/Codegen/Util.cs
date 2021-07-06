@@ -125,6 +125,7 @@ namespace Codegen
             switch (propType)
             {
                 case "GridLayout":
+                case "DropShadow":
                     return ViewManagerPropertyType.Map;
             }
             throw new ArgumentException($"Invalid property type ${propType}");
@@ -189,6 +190,8 @@ namespace Codegen
             {
                 case "GridLayout":
                     return "{ rows: GridLength[], columns: GridLength[] }";
+                case "DropShadow":
+                    return "{ blurRadius?: number, color?: ColorValue, offset?: number[], opacity?: number }";
             }
             throw new ArgumentException($"Unknown type ${typeName}");
         }

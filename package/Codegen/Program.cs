@@ -61,6 +61,7 @@ namespace Codegen
                 new SyntheticProperty{ Name = "GridLayout", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.Controls.Grid"), FakePropertyType = "GridLayout", Comment = "An object with a columns and a rows members, each of which is an array of the corresponding dimensions." },
                 new SyntheticProperty{ Name = "Priority", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "A hint of where this item should be placed within its parent." },
                 new SyntheticProperty{ Name = "Resources", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Object"), Comment = "An object of key/value pairs used for lightweight styling."},
+                new SyntheticProperty{ Name = "DropShadow", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), FakePropertyType = "DropShadow", Comment = "Enables describing a drop shadow for a UI element."},
             };
 
             var baseClassesToProject = new string[]

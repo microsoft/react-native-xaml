@@ -58,6 +58,10 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   * An object of key/value pairs used for lightweight styling.
   */
   resources?: object; // synthetic property
+  /**
+  * Enables describing a drop shadow for a UI element.
+  */
+  dropShadow?: { blurRadius?: number, color?: ColorValue, offset?: number[], opacity?: number }; // synthetic property
   onDoubleTapped?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragEnter?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragLeave?: (event: NativeSyntheticEvent<undefined>) => void;

@@ -121,6 +121,10 @@ namespace winrt::ReactNativeXaml {
   }
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
+    ConnectViews(parent, child, _index);
+  }
+
+  void XamlViewManager::ConnectViews(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
     auto index = static_cast<uint32_t>(_index);
 
     auto e = parent;
@@ -287,7 +291,23 @@ namespace winrt::ReactNativeXaml {
     }
   }
 
+
   void XamlViewManager::ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {
+    ReplaceViews(parent, oldChild, newChild);
+  }
+
+  void XamlViewManager::ReplaceViews(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {
+    if (auto panel = parent.try_as<Panel>()) {
+      Replace(panel.Children(), oldChild, newChild);
+      return;
+    }
+    //else if (auto itemsControl = parent.try_as<ItemsControl>()) {
+    //  Replace(itemsControl.Items(), oldChild, newChild);
+    //  return;
+    //}
+    else if (auto border = parent.try_as<Border>()) {
+      border.Child(newChild);
+    }
     assert(false && "nyi");
   }
 }

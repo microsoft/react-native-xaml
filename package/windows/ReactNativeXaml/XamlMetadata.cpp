@@ -14,8 +14,11 @@
 #include <JSValueWriter.h>
 #include "Serialize.h"
 #include <UI.Xaml.Documents.h>
-#include <JSI/JsiApiContext.h>
+#include <UI.Xaml.Hosting.h>
+#include <UI.Composition.h>
 
+#include <JSI/JsiApiContext.h>
+#include "XamlViewManager.h"
 
 #include "Styling.h"
 
@@ -192,7 +195,75 @@ void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::Depe
   fe.Resources(rd);
 }
 
+void AddShadowGrid(xaml::FrameworkElement fe, xaml::Controls::Border border, comp::Visual visual) {
+  if (border.Parent() != nullptr) return; // already done
+  auto parent = fe.Parent();
+  auto cn = winrt::get_class_name(parent);
+  if (auto parentFE = parent.try_as<FrameworkElement>()) {
+    Grid g{};
+    winrt::ReactNativeXaml::XamlViewManager::ReplaceViews(parentFE, fe, g);
 
+    g.Children().Append(border);
+    g.Children().Append(fe);
+
+    //winrt::ReactNativeXaml::XamlViewManager::ConnectViews(parentFE, g, 0);
+    fe.SizeChanged([visual, border](const auto& sender, const SizeChangedEventArgs& args) {
+      border.Width(args.NewSize().Width);
+      border.Height(args.NewSize().Height);
+      visual.Size(args.NewSize());
+      });
+  }
+}
+
+void SetDropShadow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+  if (v.TryGetObject()) {
+    const auto& obj = v.AsObject();
+    const auto ui = o.as<xaml::UIElement>();
+    const auto uiVisual = xaml::Hosting::ElementCompositionPreview::GetElementVisual(ui);
+    const auto compositor = uiVisual.Compositor();
+    const auto dropShadow = compositor.CreateDropShadow();
+    
+    if (obj.contains("opacity")) {
+      dropShadow.Opacity(obj["opacity"].AsSingle());
+    }
+
+    if (obj.contains("blurRadius")) {
+      dropShadow.BlurRadius(obj["blurRadius"].AsSingle());
+    }
+    
+    if (obj.contains("color")) {
+      auto brush = ColorUtils::BrushFrom(obj["color"]);
+      if (auto solidBrush = brush.try_as<xaml::Media::SolidColorBrush>()) {
+        dropShadow.Color(solidBrush.Color());
+      }
+    }
+
+    if (obj.contains("offset")) {
+      const auto& arr = obj["offset"].AsArray();
+      const Numerics::float3 offset{ arr[0].AsSingle(), arr[1].AsSingle(), arr[2].AsSingle() };
+      dropShadow.Offset(offset);
+    }
+
+    auto visual = compositor.CreateSpriteVisual();
+    visual.Size(ui.ActualSize());
+    visual.Shadow(dropShadow);
+    Border border{};
+    xaml::Hosting::ElementCompositionPreview::SetElementChildVisual(border, visual);
+
+    if (auto fe = ui.try_as<FrameworkElement>()) {
+      if (auto parent = fe.Parent()) {
+        AddShadowGrid(fe, border, visual);
+      }
+      else {
+        winrt::event_token token{};
+        token = fe.Loaded([fe, border, visual, &token](const auto&, const auto&) {
+          fe.Loaded(token);
+          AddShadowGrid(fe, border, visual);
+          });
+      }
+    }
+  }
+}
 
 const xaml::Interop::TypeName viewPanelTypeName{ winrt::hstring{L"ViewPanel"}, xaml::Interop::TypeKind::Metadata };
 
