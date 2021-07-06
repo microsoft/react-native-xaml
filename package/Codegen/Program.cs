@@ -319,11 +319,23 @@ namespace Codegen
             }
         }
 
+        /// <summary>
+        /// To determine how to set a property, we have a map of property names and a lambda that checks whether the entry is applicable to a certain object or not. 
+        /// This check basically does a cast to check if the object you pass in is of the type that the property is defined in.
+        /// Some properties names are defined on multiple types, e.g. fontSize, which is defined in Control as well as TextElement.
+        /// We need to make sure the most specific cast happens first so that we are not tricked into applying the Control property when there is a more specific one.
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+
         private static int CompareProps(MrProperty p1, MrProperty p2)
         {
 #if DEBUG
             var c = p1.GetName().CompareTo(p2.GetName());
             if (c != 0) return c;
+            var inheritanceDepthComp = Util.GetTypeInheritanceDepth(p1.DeclaringType).CompareTo(Util.GetTypeInheritanceDepth(p2.DeclaringType));
+            if (inheritanceDepthComp != 0) return inheritanceDepthComp;
             return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
 #else
             var h1 = GetPropertySortKey(p1);

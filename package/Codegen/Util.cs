@@ -165,6 +165,8 @@ namespace Codegen
                     return ViewManagerPropertyType.Color;
                 case $"{XamlNames.XamlNamespace}.Media.FontFamily":
                     return ViewManagerPropertyType.String;
+                case "Windows.UI.Text.FontWeight":
+                    return ViewManagerPropertyType.Number;
                 case $"{XamlNames.XamlNamespace}.Thickness":
                     return ViewManagerPropertyType.Map;
                 case "System.Object":
@@ -242,6 +244,8 @@ namespace Codegen
                     return "string";
                 case "System.Object":
                     return "object";
+                case "Windows.UI.Text.FontWeight":
+                    return "number";
             }
 
             return "any";
@@ -340,6 +344,18 @@ namespace Codegen
         {
             var listDerived = derived[t.GetName()].Where(t => HasCtor(t)).Select(t => $"'{t.GetFullName()}'");
             return string.Join("|", listDerived);
+        }
+        private static Dictionary<MrType, int> typeInheritanceDepth = new Dictionary<MrType, int>();
+
+        public static int GetTypeInheritanceDepth(MrType t)
+        {
+            if (typeInheritanceDepth.TryGetValue(t, out var val))
+            {
+                return val;
+            }
+            if (t.GetFullName() == "System.Object") { return 0; }
+            typeInheritanceDepth[t] = 1 + GetTypeInheritanceDepth(t.GetBaseType());
+            return typeInheritanceDepth[t];
         }
 
         public static Dictionary<string, List<MrType>> GetDerivedTypes(IEnumerable<MrType> types)

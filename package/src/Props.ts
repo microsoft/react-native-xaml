@@ -141,6 +141,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   isEnabled?: boolean;
   horizontalContentAlignment?: Enums.HorizontalAlignment;
   foreground?: ColorValue;
+  fontWeight?: number;
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
@@ -317,15 +318,18 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   horizontalFirstOfMonthLabelAlignment?: Enums.HorizontalAlignment;
   horizontalDayItemAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
+  firstOfYearDecadeLabelFontWeight?: number;
   firstOfYearDecadeLabelFontStyle?: Enums.FontStyle;
   monthYearItemFontFamily?: string;
   firstOfYearDecadeLabelFontFamily?: string;
+  firstOfMonthLabelFontWeight?: number;
   firstOfMonthLabelFontStyle?: Enums.FontStyle;
   firstOfMonthLabelFontSize?: number;
   firstOfMonthLabelFontFamily?: string;
   firstDayOfWeek?: Enums.DayOfWeek;
   blackoutForeground?: ColorValue;
   dayOfWeekFormat?: string;
+  dayItemFontWeight?: number;
   dayItemFontStyle?: Enums.FontStyle;
   dayItemFontSize?: number;
   dayItemFontFamily?: string;
@@ -340,6 +344,7 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   pressedBorderBrush?: ColorValue;
   verticalDayItemAlignment?: Enums.VerticalAlignment;
   todayForeground?: ColorValue;
+  todayFontWeight?: number;
   selectionMode?: Enums.CalendarViewSelectionMode;
   selectedHoverBorderBrush?: ColorValue;
   selectedForeground?: ColorValue;
@@ -349,6 +354,7 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   outOfScopeForeground?: ColorValue;
   outOfScopeBackground?: ColorValue;
   numberOfWeeksInView?: number;
+  monthYearItemFontWeight?: number;
   monthYearItemFontStyle?: Enums.FontStyle;
   monthYearItemFontSize?: number;
   firstOfYearDecadeLabelFontSize?: number;
@@ -513,6 +519,7 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.ContentPresenter'|'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter'|'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter'|'Windows.UI.Xaml.Controls.ScrollContentPresenter';
   foreground?: ColorValue;
+  fontWeight?: number;
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
@@ -606,6 +613,7 @@ export interface NativeFlyoutPresenterProps extends NativeContentControlProps {
 export interface NativeFontIconProps extends NativeIconElementProps {
   type: 'Windows.UI.Xaml.Controls.FontIcon';
   glyph?: string;
+  fontWeight?: number;
   fontStyle?: Enums.FontStyle;
   fontSize?: number;
   fontFamily?: string;
@@ -1593,6 +1601,7 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   textAlignment?: Enums.TextAlignment;
   padding?: Thickness;
   foreground?: ColorValue;
+  fontWeight?: number;
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
@@ -1768,6 +1777,7 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
   text?: string;
   padding?: Thickness;
   foreground?: ColorValue;
+  fontWeight?: number;
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
@@ -2002,6 +2012,7 @@ export interface NativeTextElementProps extends NativeDependencyObjectProps {
   type: 'Windows.UI.Xaml.Documents.Span'|'Windows.UI.Xaml.Documents.Bold'|'Windows.UI.Xaml.Documents.ContentLink'|'Windows.UI.Xaml.Documents.Hyperlink'|'Windows.UI.Xaml.Documents.InlineUIContainer'|'Windows.UI.Xaml.Documents.Italic'|'Windows.UI.Xaml.Documents.LineBreak'|'Windows.UI.Xaml.Documents.Paragraph'|'Windows.UI.Xaml.Documents.Run'|'Windows.UI.Xaml.Documents.Underline';
   language?: string;
   foreground?: ColorValue;
+  fontWeight?: number;
   fontStyle?: Enums.FontStyle;
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
