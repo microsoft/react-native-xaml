@@ -70,7 +70,9 @@ namespace winrt::ReactNativeXaml {
         else if (propertyName == "type") {}
         else {
           auto className = winrt::get_class_name(e);
-          assert(false && "unknown property");
+          if (IsDebuggerPresent()) {
+            assert(false && "unknown property");
+          } 
         }
       }
     }

@@ -10,6 +10,8 @@ export type Thickness = number | { left: number, top: number, right: number, bot
 
 export type GridLength = number | '*' | 'auto' | `${number}*`;
 
+export type CornerRadius = number | { topLeft: number, topRight: number, bottomLeft: number, bottomRight: number};
+
 <# var derived = Util.GetDerivedTypes(Types);
 foreach (var type in Types) { #>
 

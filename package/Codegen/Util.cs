@@ -172,6 +172,8 @@ namespace Codegen
                     return ViewManagerPropertyType.Number;
                 case $"{XamlNames.XamlNamespace}.Thickness":
                     return ViewManagerPropertyType.Map;
+                case $"{XamlNames.XamlNamespace}.CornerRadius":
+                    return ViewManagerPropertyType.Map;
                 case "System.Object":
                     return ViewManagerPropertyType.Map;
             }
@@ -246,6 +248,8 @@ namespace Codegen
                     return "string";
                 case $"{XamlNames.XamlNamespace}.Thickness":
                     return "Thickness";
+                case $"{XamlNames.XamlNamespace}.CornerRadius":
+                    return "CornerRadius";
                 case $"{XamlNames.XamlNamespace}.Media.FontFamily":
                     return "string";
                 case "System.Object":
