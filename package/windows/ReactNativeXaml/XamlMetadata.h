@@ -46,20 +46,41 @@ namespace winrt::Microsoft::ReactNative {
   inline void ReadValue(JSValue const& jsValue, xaml::Thickness& value) noexcept {
     if (auto array = jsValue.TryGetArray()) {
       if (array->size() == 4) {
-        value = Thickness{ (*array)[0].AsDouble(), (*array)[1].AsDouble(), (*array)[2].AsDouble() , (*array)[3].AsDouble() };
+        value = ThicknessHelper::FromLengths((*array)[0].AsDouble(), (*array)[1].AsDouble(), (*array)[2].AsDouble(), (*array)[3].AsDouble());
         return;
       }
     }
     else if (auto number = jsValue.TryGetDouble()) {
-      value = Thickness{ *number, *number, *number, *number };
+      value = ThicknessHelper::FromUniformLength(*number);
     }
     else if (auto numberInt = jsValue.TryGetInt64()) {
       const auto valueDbl = static_cast<double>(*numberInt);
-      value = Thickness{ valueDbl, valueDbl, valueDbl, valueDbl };
+      value = ThicknessHelper::FromUniformLength(valueDbl);
     }
     else {
       const auto& obj = jsValue.AsObject();
-      value = Thickness{ obj["left"].AsDouble(), obj["top"].AsDouble(), obj["right"].AsDouble(), obj["bottom"].AsDouble() };
+      value = ThicknessHelper::FromLengths(obj["left"].AsDouble(), obj["top"].AsDouble(), obj["right"].AsDouble(), obj["bottom"].AsDouble());
+      return;
+    }
+  }
+
+  inline void ReadValue(JSValue const& jsValue, xaml::CornerRadius& value) noexcept {
+    if (auto array = jsValue.TryGetArray()) {
+      if (array->size() == 4) {
+        value = CornerRadiusHelper::FromRadii((*array)[0].AsDouble(), (*array)[1].AsDouble(), (*array)[2].AsDouble(), (*array)[3].AsDouble());
+        return;
+      }
+    }
+    else if (auto number = jsValue.TryGetDouble()) {
+      value = CornerRadiusHelper::FromUniformRadius(*number);
+    }
+    else if (auto numberInt = jsValue.TryGetInt64()) {
+      const auto valueDbl = static_cast<double>(*numberInt);
+      value = CornerRadiusHelper::FromUniformRadius(valueDbl);
+    }
+    else {
+      const auto& obj = jsValue.AsObject();
+      value = CornerRadiusHelper::FromRadii(obj["topLeft"].AsDouble(), obj["topRight"].AsDouble(), obj["bottomRight"].AsDouble(), obj["bottomLeft"].AsDouble());
       return;
     }
   }

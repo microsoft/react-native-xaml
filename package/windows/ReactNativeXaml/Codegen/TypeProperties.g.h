@@ -149,6 +149,12 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("contentLinkForegroundColor"), AsType<winrt::Windows::UI::Xaml::Controls::RichEditBox>,  []() { return winrt::Windows::UI::Xaml::Controls::RichEditBox::ContentLinkForegroundColorProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::SolidColorBrush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("contentMargin"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter::ContentMarginProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("contentMargin"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter::ContentMarginProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::Border>,  []() { return winrt::Windows::UI::Xaml::Controls::Border::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::ContentPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentPresenter::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::Control>,  []() { return winrt::Windows::UI::Xaml::Controls::Control::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::Grid>,  []() { return winrt::Windows::UI::Xaml::Controls::Grid::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::RelativePanel>,  []() { return winrt::Windows::UI::Xaml::Controls::RelativePanel::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::StackPanel>,  []() { return winrt::Windows::UI::Xaml::Controls::StackPanel::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
         { MAKE_KEY("cursor"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::ContentLink>,  []() { return winrt::Windows::UI::Xaml::Documents::ContentLink::CursorProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dataContext"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::DataContextProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("dataFetchSize"), AsType<winrt::Windows::UI::Xaml::Controls::ListViewBase>,  []() { return winrt::Windows::UI::Xaml::Controls::ListViewBase::DataFetchSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -1014,6 +1020,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("contentLinkBackgroundColor"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("contentLinkForegroundColor"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("contentMargin"), ViewManagerPropertyType::Map);
+    nativeProps.Insert(winrt::to_hstring("cornerRadius"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("cursor"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dataContext"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("dataFetchSize"), ViewManagerPropertyType::Number);
