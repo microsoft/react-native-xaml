@@ -74,6 +74,16 @@ If you have questions about a scenario you don't see below, please [file an issu
   setIsOpen(true); }} />
 ```
 
+## Image
+
+- For Image, note that you should specify its size so that RN reserves space for it, otherwise the image won't show.
+- Supports Bitmap images and SVG files.
+
+```jsx
+<Image source="https://microsoft.github.io/react-native-windows/img/homepage/cross-platform.png" 
+  width={200} height={100} />
+```
+
 ## ComboBox
 
 ```jsx

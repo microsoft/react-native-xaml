@@ -36,7 +36,7 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
     ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
       auto objSender = std::make_shared<XamlObject>(senderAsFE, metadata);
       auto objArgs = std::make_shared<XamlObject>(args, metadata);
-      auto obj = std::make_shared<jsi::Object>(rt);
+      auto obj = std::make_shared<facebook::jsi::Object>(rt);
       obj->setProperty(rt, "sender", rt.global().createFromHostObject(rt, objSender));
       obj->setProperty(rt, "args", rt.global().createFromHostObject(rt, objArgs));
 

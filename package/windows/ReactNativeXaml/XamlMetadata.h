@@ -8,7 +8,7 @@
 
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.UI.Xaml.Controls.Maps.h>
-
+#include <UI.Xaml.Media.Imaging.h>
 #include <UI.Xaml.Media.h>
 #include "Crc32Str.h"
 #include <JSI/JsiApiContext.h>
@@ -27,6 +27,16 @@ namespace winrt::Microsoft::ReactNative {
   inline void ReadValue(JSValue const& jsValue, xaml::Media::FontFamily& value) noexcept {
     auto str = winrt::to_hstring(jsValue.AsString());
     value = xaml::Media::FontFamily(str);
+  }
+
+  inline void ReadValue(JSValue const& jsValue, xaml::Media::ImageSource& value) noexcept {
+    const auto uri = Uri{ winrt::to_hstring(jsValue.AsString()) };
+    if (jsValue.AsJSString().ends_with(".svg")) {
+      value = xaml::Media::Imaging::SvgImageSource {uri};
+    }
+    else {
+      value = xaml::Media::Imaging::BitmapImage{ uri };
+    }
   }
 
   inline void ReadValue(JSValue const& jsValue, Windows::UI::Text::FontWeight& value) noexcept {
@@ -218,7 +228,7 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;
   winrt::Microsoft::ReactNative::IReactDispatcher UIDispatcher() const { return m_reactContext.UIDispatcher(); }
 private:
-  winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const;
+  winrt::Windows::Foundation::IInspectable Create(const std::string_view& typeName) const;
   static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
   winrt::Microsoft::ReactNative::IReactContext m_reactContext;
 
