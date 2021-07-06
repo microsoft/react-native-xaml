@@ -8,7 +8,7 @@ A React Native Windows view manager that allows directly using the [Windows XAML
 -	Best of all, this solution is available *today*!
 -	The set of types/properties/events are the XAML ones, however JS libraries can wrap those to expose the Windows control in a platform-agnostic way (e.g. as a way to implement a cross-plat control for Windows).
 
-react-native-xaml works by leveraging metadata for XAML properties, types and events. This metadata is automatically generated ([code-gen](https://github.com/asklar/react-native-xaml/tree/main/codegen/Codegen)) from the Windows SDK.
+react-native-xaml works by leveraging metadata for XAML properties, types and events. This metadata is automatically generated ([code-gen](https://github.com/asklar/react-native-xaml/tree/main/package/Codegen)) from the Windows SDK.
 This means we can have a full projection of all of XAML – or any WinRT components written by app devs, that export a [UserControl](https://docs.microsoft.com/uwp/api/Windows.UI.Xaml.Controls.UserControl) – without manual intervention.
 
 ## Technical details:
