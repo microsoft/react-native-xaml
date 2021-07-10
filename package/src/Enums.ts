@@ -1084,6 +1084,12 @@ export enum NavigationViewItemPriority {
   FooterMenuItem = 1,
 }
 
+export enum ContentDialogState {
+  Popup = 0,
+  InPlace = 1,
+  Hidden = 3,
+}
+
 
 export enum FontWeights {
   ExtraBlack = 950,

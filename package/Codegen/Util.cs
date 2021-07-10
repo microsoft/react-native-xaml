@@ -118,13 +118,17 @@ namespace Codegen
         public static ViewManagerPropertyType GetVMPropertyType(SyntheticProperty prop)
         {
             if (prop.PropertyType != null) return GetVMPropertyType(prop.PropertyType);
-            var propType = prop.Name;
-            switch (propType)
+            switch (prop.Name)
             {
                 case "GridLayout":
                     return ViewManagerPropertyType.Map;
             }
-            throw new ArgumentException($"Invalid property type ${propType}");
+            var fe = fakeEnums.Where(x => x.Name == prop.FakePropertyType);
+            if (fe.Any())
+            {
+                return ViewManagerPropertyType.Number;
+            }
+            throw new ArgumentException($"Invalid property type ${prop.FakePropertyType}");
         }
 
         public static ViewManagerPropertyType GetVMPropertyType(MrProperty prop)
@@ -186,6 +190,12 @@ namespace Codegen
             {
                 case "GridLayout":
                     return "{ rows: GridLength[], columns: GridLength[] }";
+            }
+
+            var fakeEnum = fakeEnums.Where(x => x.Name == typeName);
+            if (fakeEnum.Any())
+            {
+                return $"Enums.{fakeEnum.First().Name}";
             }
             throw new ArgumentException($"Unknown type ${typeName}");
         }

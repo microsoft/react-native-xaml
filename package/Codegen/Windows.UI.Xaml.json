@@ -39,6 +39,12 @@
       "declaringType": "$xaml.UIElement",
       "propertyType": "System.Object",
       "comment": "An object of key/value pairs used for lightweight styling."
+    },
+    {
+      "name": "ShowState",
+      "declaringType": "$xaml.Controls.ContentDialog",
+      "fakePropertyType": "ContentDialogState",
+      "comment": "Whether the content dialog should be open, and how."
     }
   ],
   "fakeEnums": [
@@ -54,6 +60,14 @@
       "values": {
         "MenuItem": 0,
         "FooterMenuItem": 1
+      }
+    },
+    {
+      "name": "ContentDialogState",
+      "values": {
+        "Popup": 0,
+        "InPlace": 1,
+        "Hidden": 3
       }
     }
   ],

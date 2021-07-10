@@ -224,11 +224,6 @@ namespace Codegen
             PrintVerbose("Generating projection");
 
 
-            var propsGen = new TSProps(xamlTypes, fakeProps, syntheticProps).TransformText();
-            var typesGen = new TSTypes(xamlTypes).TransformText();
-            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
-            var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
-
             foreach (var entry in Config.RootElement.GetProperty("fakeEnums").EnumerateArray())
             {
                 var fe = new FakeEnum()
@@ -238,6 +233,12 @@ namespace Codegen
                 };
                 Util.fakeEnums.Add(fe);
             }
+
+            var propsGen = new TSProps(xamlTypes, fakeProps, syntheticProps).TransformText();
+            var typesGen = new TSTypes(xamlTypes).TransformText();
+            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
+            var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
+
 
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();

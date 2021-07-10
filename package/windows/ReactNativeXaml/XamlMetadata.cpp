@@ -192,7 +192,34 @@ void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::Depe
   fe.Resources(rd);
 }
 
+void SetShowState_ContentDialog(const xaml::DependencyObject& dobj, const xaml::DependencyProperty&, const JSValue& jsValue) {
+  if (auto cd = dobj.try_as<ContentDialog>()) {
+    auto val = jsValue.AsInt32();
+    IAsyncOperation<ContentDialogResult> op{ nullptr };
+    switch (val) {
+    case 0: // Popup
+      op = cd.ShowAsync(ContentDialogPlacement::Popup);
+      break;
+    case 1: // InPlace
+      op = cd.ShowAsync(ContentDialogPlacement::InPlace);
+      break;
+    case 3: // Hidden
+      return cd.Hide();
+    }
 
+    op.Completed([](auto& operation, auto& asyncStatus) {
+      if (asyncStatus == AsyncStatus::Completed) {
+        // TODO: dispatch an event of name "OnCompleted" or similar
+        
+        //XamlUIService::FromContext(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(),
+        //  [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {
+        //    SerializeEventArgs(evtDataWriter, senderAsFE, args);
+        //  });
+      }
+      });
+    
+  }
+}
 
 const xaml::Interop::TypeName viewPanelTypeName{ winrt::hstring{L"ViewPanel"}, xaml::Interop::TypeKind::Metadata };
 
