@@ -60,6 +60,11 @@ namespace Codegen
 
             var fakeProps = new List<MrProperty>();
 
+            foreach (var entry in Config.RootElement.GetProperty("propNameMapping").EnumerateObject())
+            {
+                Util.propNameMap[entry.Name.Replace("$xaml", XamlNames.XamlNamespace)] = entry.Value.GetString();
+            }
+
             foreach (var entry in Config.RootElement.GetProperty("fakeProps").EnumerateArray())
             {
                 var value = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
