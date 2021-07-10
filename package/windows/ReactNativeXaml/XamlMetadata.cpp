@@ -195,71 +195,140 @@ void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::Depe
   fe.Resources(rd);
 }
 
-void AddShadowGrid(xaml::FrameworkElement fe, xaml::Controls::Border border, comp::Visual visual) {
-  if (border.Parent() != nullptr) return; // already done
+
+struct DropShadowSpec {
+  std::optional<float> Opacity;
+  std::optional<float> BlurRadius;
+  std::optional<Numerics::float3> Offset;
+  std::optional<winrt::Windows::UI::Color> Color;
+};
+
+std::shared_ptr<DropShadowSpec> GetDropShadowSpec(const winrt::Microsoft::ReactNative::JSValue& v) {
+  auto spec = std::make_shared<DropShadowSpec>();
+  const auto& obj = v.AsObject();
+  if (obj.contains("opacity")) {
+    spec->Opacity = obj["opacity"].AsSingle();
+  }
+
+  if (obj.contains("blurRadius")) {
+    spec->BlurRadius = obj["blurRadius"].AsSingle();
+  }
+
+  if (obj.contains("color")) {
+    auto brush = ColorUtils::BrushFrom(obj["color"]);
+    if (auto solidBrush = brush.try_as<xaml::Media::SolidColorBrush>()) {
+      spec->Color = solidBrush.Color();
+    }
+  }
+
+  if (obj.contains("offset")) {
+    const auto& arr = obj["offset"].AsArray();
+    const Numerics::float3 offset{ arr[0].AsSingle(), arr[1].AsSingle(), arr[2].AsSingle() };
+    spec->Offset = offset;
+  }
+
+  return spec;
+}
+
+void AttachDropShadow(const xaml::FrameworkElement& fe, std::shared_ptr<DropShadowSpec> spec) {
   auto parent = fe.Parent();
   auto cn = winrt::get_class_name(parent);
   if (auto parentFE = parent.try_as<FrameworkElement>()) {
-    Grid g{};
-    winrt::ReactNativeXaml::XamlViewManager::ReplaceViews(parentFE, fe, g);
 
+    auto panel = parentFE.as<Panel>();
+    Grid g{};
+    g.Width(fe.ActualWidth());
+    g.Height(fe.ActualHeight());
+    g.Name(L"DynamicallyAddedGrid");
+    g.VerticalAlignment(VerticalAlignment::Center);
+    g.HorizontalAlignment(HorizontalAlignment::Center);
+    
+    uint32_t index{ };
+    panel.Children().IndexOf(fe, index);
+
+    //winrt::Windows::UI::Xaml::Shapes::Rectangle r{};
+    //r.Width(100);
+    //r.Height(20);
+    //r.Fill(Media::SolidColorBrush{ winrt::Windows::UI::Colors::Green() });
+    panel.Children().SetAt(index, g);
+    //g.Children().Append(r);
+//    winrt::ReactNativeXaml::XamlViewManager::ReplaceViews(parentFE, fe, g);
+
+
+    Border border{};
     g.Children().Append(border);
     g.Children().Append(fe);
 
-    //winrt::ReactNativeXaml::XamlViewManager::ConnectViews(parentFE, g, 0);
-    fe.SizeChanged([visual, border](const auto& sender, const SizeChangedEventArgs& args) {
-      border.Width(args.NewSize().Width);
-      border.Height(args.NewSize().Height);
-      visual.Size(args.NewSize());
-      });
+    //border.Background(Media::SolidColorBrush{ winrt::Windows::UI::Colors::Green() });
+    border.Loaded([=](const auto&, const auto&) {
+
+      const auto uiVisual = Hosting::ElementCompositionPreview::GetElementVisual(fe);
+      const auto compositor = uiVisual.Compositor();
+      auto visual = compositor.CreateSpriteVisual();
+      const auto dropShadow = compositor.CreateDropShadow();
+
+      visual.Shadow(dropShadow);
+
+      visual.Size(fe.ActualSize());
+
+      if (spec->BlurRadius.has_value()) {
+        dropShadow.BlurRadius(spec->BlurRadius.value());
+      }
+      if (spec->Opacity.has_value()) {
+        dropShadow.Opacity(spec->Opacity.value());
+      }
+      if (spec->Offset.has_value()) {
+        dropShadow.Offset(spec->Offset.value());
+      }
+      if (spec->Color.has_value()) {
+        dropShadow.Color(spec->Color.value());
+      }
+
+      dropShadow.Color(winrt::Windows::UI::Colors::White());
+
+      Hosting::ElementCompositionPreview::SetElementChildVisual(border, visual);
+      g.UpdateLayout();
+      //fe.SizeChanged([visual, border](const auto& sender, const SizeChangedEventArgs& args) {
+      //  border.Width(args.NewSize().Width);
+      //  border.Height(args.NewSize().Height);
+      //  visual.Size(args.NewSize());
+      //  });
+
+    });
   }
 }
 
+std::unordered_map<int64_t, winrt::event_token> dropShadowLoadedTokens;
+auto GetTag(const xaml::FrameworkElement& fe) {
+  return winrt::unbox_value<int64_t>(fe.Tag());
+}
+
 void SetDropShadow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
-  if (v.TryGetObject()) {
-    const auto& obj = v.AsObject();
-    const auto ui = o.as<xaml::UIElement>();
-    const auto uiVisual = xaml::Hosting::ElementCompositionPreview::GetElementVisual(ui);
-    const auto compositor = uiVisual.Compositor();
-    const auto dropShadow = compositor.CreateDropShadow();
-    
-    if (obj.contains("opacity")) {
-      dropShadow.Opacity(obj["opacity"].AsSingle());
-    }
-
-    if (obj.contains("blurRadius")) {
-      dropShadow.BlurRadius(obj["blurRadius"].AsSingle());
-    }
-    
-    if (obj.contains("color")) {
-      auto brush = ColorUtils::BrushFrom(obj["color"]);
-      if (auto solidBrush = brush.try_as<xaml::Media::SolidColorBrush>()) {
-        dropShadow.Color(solidBrush.Color());
-      }
-    }
-
-    if (obj.contains("offset")) {
-      const auto& arr = obj["offset"].AsArray();
-      const Numerics::float3 offset{ arr[0].AsSingle(), arr[1].AsSingle(), arr[2].AsSingle() };
-      dropShadow.Offset(offset);
-    }
-
-    auto visual = compositor.CreateSpriteVisual();
-    visual.Size(ui.ActualSize());
-    visual.Shadow(dropShadow);
-    Border border{};
-    xaml::Hosting::ElementCompositionPreview::SetElementChildVisual(border, visual);
-
-    if (auto fe = ui.try_as<FrameworkElement>()) {
-      if (auto parent = fe.Parent()) {
-        AddShadowGrid(fe, border, visual);
+  if (auto fe = o.try_as<FrameworkElement>()) {
+    if (v.TryGetObject()) {
+      auto spec = GetDropShadowSpec(v);
+      if (fe.IsLoaded()) {
+        AttachDropShadow(fe, spec);
       }
       else {
-        winrt::event_token token{};
-        token = fe.Loaded([fe, border, visual, &token](const auto&, const auto&) {
-          fe.Loaded(token);
-          AddShadowGrid(fe, border, visual);
+        auto tag = GetTag(fe);
+        dropShadowLoadedTokens[tag] = fe.Loaded([fe, tag, spec](const auto&, const auto&) {
+          fe.Loaded(dropShadowLoadedTokens[tag]);
+          dropShadowLoadedTokens.erase(tag);
+          AttachDropShadow(fe, spec);
           });
+      }
+    }
+    else {
+      // removing an existing shadow
+      auto parent = fe.Parent().try_as<Grid>();
+      if (parent && parent.Name() == L"DynamicallyAddedGrid" && parent.Children().Size() == 2) {
+        if (auto originalParent = parent.Parent().try_as<Panel>()) {
+          parent.Children().RemoveAt(1); // remove the element
+          uint32_t index{};
+          originalParent.Children().IndexOf(parent, index);
+          originalParent.Children().SetAt(index, fe);
+        }
       }
     }
   }

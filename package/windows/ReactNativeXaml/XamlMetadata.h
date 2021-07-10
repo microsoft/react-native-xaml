@@ -180,10 +180,8 @@ struct PropInfo {
 
   void SetValue(const xaml::DependencyObject& o, const winrt::Microsoft::ReactNative::JSValue& v) const {
     auto dp = xamlPropertyGetter ? xamlPropertyGetter() : nullptr;
-    if (v.IsNull()) {
-      if (dp) {
-        o.ClearValue(dp);
-      }
+    if (v.IsNull() && dp) {
+      o.ClearValue(dp);
     }
     else {
       xamlPropertySetter(o, dp, v);

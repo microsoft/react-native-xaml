@@ -131,6 +131,17 @@ namespace winrt::ReactNativeXaml {
     auto parentType = winrt::get_class_name(e);
     auto childType = winrt::get_class_name(child);
 
+    OutputDebugStringW(L"Connecting - parent = ");
+    OutputDebugStringW(parentType.c_str());
+    OutputDebugStringW(L" child = ");
+    OutputDebugStringW(childType.c_str());
+    OutputDebugStringW(L"\n");
+
+    if (auto childFE_ = child.try_as<FrameworkElement>()) {
+      if (childFE_.Name() == L"DynamicallyAddedGrid") {
+        auto x = 0;
+      }
+    }
     if (child.try_as<xaml::Controls::Primitives::SelectorItem>() ||
       child.try_as<NavigationView>()) { 
       // these are ContentControls too, but we shouldn't try to unwrap, so skip this 
