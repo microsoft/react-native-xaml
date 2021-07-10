@@ -1,7 +1,6 @@
 ﻿using MiddleweightReflection;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -60,7 +59,7 @@ namespace Codegen
             Util.LoadContext = context;
 
             var fakeProps = new List<MrProperty>();
-            
+
             foreach (var entry in Config.RootElement.GetProperty("fakeProps").EnumerateArray())
             {
                 var value = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
@@ -70,7 +69,7 @@ namespace Codegen
             };
 
             var syntheticProps = new List<SyntheticProperty>();
-            
+
             foreach (var entry in Config.RootElement.GetProperty("syntheticProps").EnumerateArray())
             {
                 var sp = new SyntheticProperty
@@ -118,7 +117,8 @@ namespace Codegen
                 if (allCreatableTypes.ContainsKey(t.GetName()))
                 {
                     list = allCreatableTypes[t.GetName()];
-                } else
+                }
+                else
                 {
                     list = new List<MrType>();
                     allCreatableTypes.Add(t.GetName(), list);
@@ -128,9 +128,12 @@ namespace Codegen
             PrintVerbose("Ensuring all types have unique names");
             foreach (var key in allCreatableTypes.Keys)
             {
-                if (allCreatableTypes[key].Count == 1) {
+                if (allCreatableTypes[key].Count == 1)
+                {
                     continue;
-                } else if (allCreatableTypes[key].Count == 2) {
+                }
+                else if (allCreatableTypes[key].Count == 2)
+                {
                     if (allCreatableTypes[key][0].GetNamespace() == XamlNames.XamlNamespace &&
                         allCreatableTypes[key][1].GetNamespace() == XamlNames.MuxNamespace)
                     {
@@ -146,7 +149,7 @@ namespace Codegen
                 }
                 // If we got here, then either we had more than 2 types with the same short name,
                 // Or we could not disambiguate between the options. Bail out.
-                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));    
+                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));
             }
 
             PrintVerbose("Sorting types");
