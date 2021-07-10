@@ -1,0 +1,64 @@
+{
+  "baseClasses": [
+    "$xaml.UIElement",
+    "$xaml.Controls.Primitives.FlyoutBase",
+    "$xaml.Documents.TextElement",
+    "$xaml.Input.KeyboardAccelerator"
+  ],
+  "fakeProps": [
+    "$xaml.Controls.Primitives.FlyoutBase.IsOpen",
+    "$xaml.Documents.Run.Text"
+  ],
+  "syntheticProps": [
+    {
+      "name": "GridRow",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Int32",
+      "comment": "The row number of this component inside an enclosing Grid."
+    },
+    {
+      "name": "GridColumn",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Int32",
+      "comment": "The column number of this component inside an enclosing Grid."
+    },
+    {
+      "name": "GridLayout",
+      "declaringType": "$xaml.Controls.Grid",
+      "fakePropertyType": "GridLayout",
+      "comment": "An object with a columns and a rows members, each of which is an array of the corresponding dimensions."
+    },
+    {
+      "name": "Priority",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Int32",
+      "comment": "A hint of where this item should be placed within its parent."
+    },
+    {
+      "name": "Resources",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Object",
+      "comment": "An object of key/value pairs used for lightweight styling."
+    }
+  ],
+  "fakeEnums": [
+    {
+      "name": "AppBarButtonPriority",
+      "values": {
+        "Primary": 0,
+        "Secondary": 1
+      }
+    },
+    {
+      "name": "NavigationViewItemPriority",
+      "values": {
+        "MenuItem": 0,
+        "FooterMenuItem": 1
+      }
+    }
+  ],
+  "propNameMapping": {
+     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
+     "$xaml.Controls.Maps.MapControl.Style": "mapStyle"
+  }
+}

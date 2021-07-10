@@ -8,10 +8,7 @@ namespace Codegen
 {
     public static class Util
     {
-        static Dictionary<string, string> propNameMap = new Dictionary<string, string> {
-            { $"{XamlNames.XamlNamespace}.Input.KeyboardAccelerator.Key", "virtualKey" },
-            { $"{XamlNames.XamlNamespace}.Controls.Maps.MapControl.Style", "mapStyle" },
-        };
+        internal static Dictionary<string, string> propNameMap = new Dictionary<string, string>();
 
         public static string ToJsName(MrProperty prop)
         {
@@ -152,7 +149,7 @@ namespace Codegen
             {
                 case "System.String":
                 case "System.Uri":
-                //case "Windows.Foundation.Uri":
+                    //case "Windows.Foundation.Uri":
                     return ViewManagerPropertyType.String;
                 case "System.Boolean":
                     return ViewManagerPropertyType.Boolean;
@@ -203,6 +200,7 @@ namespace Codegen
             }
             return tsTypeFromPropType;
         }
+
         static bool IsPropertyContentProperty(MrProperty prop)
         {
             return prop.DeclaringType.GetCustomAttributes().Any(x =>

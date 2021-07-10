@@ -1,11 +1,11 @@
 ﻿using MiddleweightReflection;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Text.Json;
 
 namespace Codegen
 {
@@ -14,6 +14,12 @@ namespace Codegen
     {
         const string Windows_winmd = @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
 
+        JsonDocument Config;
+        public string ConfigFileName
+        {
+            get; set;
+        } = "Windows.UI.Xaml.json";
+
         private static MrProperty GetProperty(MrLoadContext context, string type, string prop)
         {
             return context.GetType(type).GetProperties().First(x => x.GetName() == prop);
@@ -21,6 +27,8 @@ namespace Codegen
 
         private void DumpTypes()
         {
+            Config = JsonDocument.Parse(File.ReadAllText(ConfigFileName));
+
             var context = new MrLoadContext(true);
             context.FakeTypeRequired += (sender, e) =>
             {
@@ -50,25 +58,42 @@ namespace Codegen
             }
             Util.LoadContext = context;
 
-            var fakeProps = new List<MrProperty>{
-                GetProperty(context, $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase", "IsOpen"),
-                GetProperty(context, $"{XamlNames.XamlNamespace}.Documents.Run", "Text"),
-            };
+            var fakeProps = new List<MrProperty>();
 
-            var syntheticProps = new List<SyntheticProperty> {
-                new SyntheticProperty{ Name = "GridRow", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "The row number of this component inside an enclosing Grid." },
-                new SyntheticProperty{ Name = "GridColumn", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "The column number of this component inside an enclosing Grid." },
-                new SyntheticProperty{ Name = "GridLayout", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.Controls.Grid"), FakePropertyType = "GridLayout", Comment = "An object with a columns and a rows members, each of which is an array of the corresponding dimensions." },
-                new SyntheticProperty{ Name = "Priority", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Int32"), Comment = "A hint of where this item should be placed within its parent." },
-                new SyntheticProperty{ Name = "Resources", DeclaringType = context.GetType($"{XamlNames.XamlNamespace}.UIElement"), PropertyType = context.GetType("System.Object"), Comment = "An object of key/value pairs used for lightweight styling."},
-            };
-
-            var baseClassesToProject = new string[]
+            foreach (var entry in Config.RootElement.GetProperty("propNameMapping").EnumerateObject())
             {
-                $"{XamlNames.XamlNamespace}.UIElement",
-                $"{XamlNames.XamlNamespace}.Controls.Primitives.FlyoutBase",
-                $"{XamlNames.XamlNamespace}.Documents.TextElement",
-                $"{XamlNames.XamlNamespace}.Input.KeyboardAccelerator",
+                Util.propNameMap[entry.Name.Replace("$xaml", XamlNames.XamlNamespace)] = entry.Value.GetString();
+            }
+
+            foreach (var entry in Config.RootElement.GetProperty("fakeProps").EnumerateArray())
+            {
+                var value = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
+                var typeName = value.Substring(0, value.LastIndexOf('.'));
+                var propName = value.Substring(value.LastIndexOf('.') + 1);
+                fakeProps.Add(GetProperty(context, typeName, propName));
+            };
+
+            var syntheticProps = new List<SyntheticProperty>();
+
+            foreach (var entry in Config.RootElement.GetProperty("syntheticProps").EnumerateArray())
+            {
+                var sp = new SyntheticProperty
+                {
+                    Name = entry.GetProperty("name").GetString(),
+                    DeclaringType = context.GetType(entry.GetProperty("declaringType").GetString().Replace("$xaml", XamlNames.XamlNamespace)),
+                    PropertyType = entry.TryGetProperty("propertyType", out var propType) ? context.GetType(propType.GetString()) : null,
+                    FakePropertyType = entry.TryGetProperty("fakePropertyType", out var fakePropType) ? fakePropType.GetString() : null,
+                    Comment = entry.GetProperty("comment").GetString()
+                };
+                syntheticProps.Add(sp);
+            }
+
+            var baseClassesToProject = new List<string>();
+
+            foreach (var entry in Config.RootElement.GetProperty("baseClasses").EnumerateArray())
+            {
+                var name = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
+                baseClassesToProject.Add(name);
             };
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
@@ -97,7 +122,8 @@ namespace Codegen
                 if (allCreatableTypes.ContainsKey(t.GetName()))
                 {
                     list = allCreatableTypes[t.GetName()];
-                } else
+                }
+                else
                 {
                     list = new List<MrType>();
                     allCreatableTypes.Add(t.GetName(), list);
@@ -107,9 +133,12 @@ namespace Codegen
             PrintVerbose("Ensuring all types have unique names");
             foreach (var key in allCreatableTypes.Keys)
             {
-                if (allCreatableTypes[key].Count == 1) {
+                if (allCreatableTypes[key].Count == 1)
+                {
                     continue;
-                } else if (allCreatableTypes[key].Count == 2) {
+                }
+                else if (allCreatableTypes[key].Count == 2)
+                {
                     if (allCreatableTypes[key][0].GetNamespace() == XamlNames.XamlNamespace &&
                         allCreatableTypes[key][1].GetNamespace() == XamlNames.MuxNamespace)
                     {
@@ -125,7 +154,7 @@ namespace Codegen
                 }
                 // If we got here, then either we had more than 2 types with the same short name,
                 // Or we could not disambiguate between the options. Bail out.
-                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));    
+                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));
             }
 
             PrintVerbose("Sorting types");
@@ -200,8 +229,15 @@ namespace Codegen
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
 
-            Util.fakeEnums.Add(new FakeEnum() { Name = "AppBarButtonPriority", Values = new Dictionary<string, int>() { { "Primary", 0 }, { "Secondary", 1 } } });
-            Util.fakeEnums.Add(new FakeEnum() { Name = "NavigationViewItemPriority", Values = new Dictionary<string, int>() { { "MenuItem", 0 }, { "FooterMenuItem", 1 } } });
+            foreach (var entry in Config.RootElement.GetProperty("fakeEnums").EnumerateArray())
+            {
+                var fe = new FakeEnum()
+                {
+                    Name = entry.GetProperty("name").GetString(),
+                    Values = ToDictionary(entry.GetProperty("values").EnumerateObject())
+                };
+                Util.fakeEnums.Add(fe);
+            }
 
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events).TransformText();
@@ -220,6 +256,16 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+        }
+
+        private Dictionary<string, int> ToDictionary(JsonElement.ObjectEnumerator objectEnumerator)
+        {
+            var d = new Dictionary<string, int>();
+            foreach (var entry in objectEnumerator)
+            {
+                d[entry.Name] = entry.Value.GetInt32();
+            }
+            return d;
         }
 
         private void PrintVerbose(object o)
@@ -330,7 +376,8 @@ namespace Codegen
             { "-winmd", new OptionDef (){ Description = "Specifies a custom WinMD file. To specify multiple files, pass this option multiple times", NumberOfParams = 2, Action = (p, v) => { p.winmdPaths.Add(v); } } },
             { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
             { "-tsout", new OptionDef (){ Description = "Custom path for TS file", NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
-            { "-verbose", new OptionDef() { Description = "Output verbose info", NumberOfParams = 1, Action = (p, _) => { p.Verbose = true; }} }    
+            { "-verbose", new OptionDef() { Description = "Output verbose info", NumberOfParams = 1, Action = (p, _) => { p.Verbose = true; }} },
+            { "-config", new OptionDef() { Description = "Config json file. Default is \"Windows.UI.Xaml.json\"", NumberOfParams = 2, Action = (p, v) => { p.ConfigFileName = v; }} },
         };
 
         static void Main(string[] args)
