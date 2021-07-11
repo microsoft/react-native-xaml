@@ -39,6 +39,12 @@
       "declaringType": "$xaml.UIElement",
       "propertyType": "System.Object",
       "comment": "An object of key/value pairs used for lightweight styling."
+    },
+    {
+      "name": "ShowState",
+      "declaringType": "$xaml.Controls.ContentDialog",
+      "fakePropertyType": "ContentDialogState",
+      "comment": "Whether the content dialog should be open, and how."
     }
   ],
   "fakeEnums": [
@@ -55,8 +61,39 @@
         "MenuItem": 0,
         "FooterMenuItem": 1
       }
+    },
+    {
+      "name": "ContentDialogState",
+      "values": {
+        "Popup": 0,
+        "InPlace": 1,
+        "Hidden": 3
+      },
+    },
+    {
+      "name": "$xaml.Controls.ContentDialogResult"
+    },
+    {
+      // Windows.UI.Text.FontWeights is a class and we can't statically discover the values of its "enum-like" properties
+      "name": "FontWeights",
+      "values": {
+        "ExtraBlack": 950,
+        "Black": 900,
+        "ExtraBold": 800,
+        "Bold": 700,
+        "SemiBold": 600,
+        "Medium": 500,
+        "Normal": 400,
+        "SemiLight": 350,
+        "Light": 300,
+        "ExtraLight": 200,
+        "Thin":100
+      }
     }
   ],
+  "syntheticEvents": {
+    "$xaml.Controls.ContentDialog.ContentDialogClosed": "ContentDialogResult"
+  },
   "propNameMapping": {
      "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
      "$xaml.Controls.Maps.MapControl.Style": "mapStyle"

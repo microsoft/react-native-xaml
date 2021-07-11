@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\README.md" />
+    <None Include="..\..\..\USAGE.md" />
     <None Include="..\..\src\index.ts" />
     <None Include="..\..\src\NativeXamlControl.tsx" />
     <None Include="..\..\src\Props.ts" />

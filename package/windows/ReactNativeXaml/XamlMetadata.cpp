@@ -74,7 +74,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 }
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
-void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   auto flyout = o.try_as<Controls::Primitives::FlyoutBase>();
   if (flyout && v.Type() == JSValueType::Boolean) {
     if (v.AsBoolean()) {
@@ -92,25 +92,25 @@ void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::Dependenc
   }
 }
 
-void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   if (auto run = o.try_as<Documents::Run>()) {
     run.Text(winrt::to_hstring(v.AsString()));
   }
 }
 
-void SetNavigateUri_Hyperlink(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetNavigateUri_Hyperlink(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   if (auto hyperlink = o.try_as<Documents::Hyperlink>()) {
     hyperlink.NavigateUri(winrt::Windows::Foundation::Uri{ winrt::to_hstring(v.AsString()) });
   }
 }
 
-void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   if (auto ui = o.try_as<UIElement>()) {
     ui.SetValue(Grid::RowProperty(), winrt::box_value(v.AsInt32()));
   }
 }
 
-void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   if (auto ui = o.try_as<UIElement>()) {
     ui.SetValue(Grid::ColumnProperty(), winrt::box_value(v.AsInt32()));
   }
@@ -142,7 +142,7 @@ GridLength GetGridLength(const winrt::Microsoft::ReactNative::JSValue& v) {
   return GridLengthHelper::FromValueAndType(1, GridUnitType::Auto);
 }
 
-void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   if (auto grid = o.try_as<Grid>()) {
     const auto& cols = v.AsObject()["columns"].AsArray();
     const auto& rows = v.AsObject()["rows"].AsArray();
@@ -162,7 +162,7 @@ void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyP
   }
 }
 
-void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::DependencyProperty&, const JSValue& jsValue) {
+void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::DependencyProperty&, const JSValue& jsValue, const winrt::Microsoft::ReactNative::IReactContext&) {
   ResourceDictionary rd;
   const auto& dict = jsValue.AsObject();
 
@@ -192,7 +192,34 @@ void SetResources_UIElement(const xaml::DependencyObject& dobj, const xaml::Depe
   fe.Resources(rd);
 }
 
+void SetShowState_ContentDialog(const xaml::DependencyObject& dobj, const xaml::DependencyProperty&, const JSValue& jsValue, const winrt::Microsoft::ReactNative::IReactContext& context) {
+  if (auto cd = dobj.try_as<ContentDialog>()) {
+    auto val = jsValue.AsInt32();
+    IAsyncOperation<ContentDialogResult> op{ nullptr };
+    switch (val) {
+    case 0: // Popup
+      op = cd.ShowAsync(ContentDialogPlacement::Popup);
+      break;
+    case 1: // InPlace
+      op = cd.ShowAsync(ContentDialogPlacement::InPlace);
+      break;
+    case 3: // Hidden
+      return cd.Hide();
+    }
 
+    op.Completed([cd, context](const IAsyncOperation<ContentDialogResult>& operation, const AsyncStatus& asyncStatus) {
+      if (asyncStatus == AsyncStatus::Completed) {
+        auto result = static_cast<int32_t>(operation.GetResults());
+        
+        XamlUIService::FromContext(context).DispatchEvent(cd, L"topContentDialogClosed",
+          [result](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {
+            evtDataWriter.WriteInt64(result);
+          });
+      }
+      });
+    
+  }
+}
 
 const xaml::Interop::TypeName viewPanelTypeName{ winrt::hstring{L"ViewPanel"}, xaml::Interop::TypeKind::Metadata };
 
@@ -201,7 +228,7 @@ xaml::DependencyProperty GetPriorityProperty() {
   return priority;
 }
 
-void SetPriority_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v) {
+void SetPriority_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
   const auto priorityValue = v.AsUInt32();
   u.SetValue(GetPriorityProperty(), winrt::box_value(priorityValue));
 }
@@ -260,6 +287,10 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
   EventAttachInfo eai { context, e, "top" + evtName, *this };
   for (const auto& entry : EventInfo::xamlEventMap) {
     if (Equals(MAKE_KEY(entry.name), key)) {
+      if (!entry.attachHandler) {
+        // this is a synthetic event. it will only be raised programmatically, there is no equivalent native event
+        return &entry;
+      }
       auto attached = entry.attachHandler(eai, isWrapped, token);
       if (attached == winrt::event_token{ -1 } && !attaching) {
         return &entry;

@@ -34,6 +34,9 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
 <# } 
   foreach (var evt in type.GetEvents()) { #>
   on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
+<# } 
+  foreach (var evt in SyntheticEvents.Where(e => type == e.DeclaringType)) { #>
+  on<#= evt.Name #>?: (event: NativeSyntheticEvent<<#= Util.GetTypeScriptType(evt) #>>) => void;
 <# } #>
 }
 

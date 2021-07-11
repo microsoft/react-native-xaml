@@ -141,10 +141,30 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
             
             #line default
             #line hidden
-            this.Write("\r\n};\r\n\r\nstatic_assert(ARRAYSIZE(EventInfo::xamlEventMap) == ");
             
-            #line 75 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Events.Count()));
+            #line 72 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+ foreach (var evt in SyntheticEvents) { 
+            
+            #line default
+            #line hidden
+            this.Write("  {\"");
+            
+            #line 73 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(evt.Name));
+            
+            #line default
+            #line hidden
+            this.Write("\", nullptr /* synthetic event */},\r\n");
+            
+            #line 74 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("};\r\n\r\nstatic_assert(ARRAYSIZE(EventInfo::xamlEventMap) == ");
+            
+            #line 77 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Events.Count() + SyntheticEvents.Count()));
             
             #line default
             #line hidden

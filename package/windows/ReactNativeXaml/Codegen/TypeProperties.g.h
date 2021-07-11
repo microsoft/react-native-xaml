@@ -924,14 +924,15 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("zoomSnapPointsType"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollViewer>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollViewer::ZoomSnapPointsTypeProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
   };
 
-void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
-void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 
-void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
-void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
-void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
-void SetPriority_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
-void SetResources_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetPriority_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetResources_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetShowState_ContentDialog(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 
 /*static*/ const PropInfo fakeProps[] = {
     { MAKE_KEY("isOpen"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
@@ -941,6 +942,7 @@ void SetResources_UIElement(const xaml::DependencyObject& o, const xaml::Depende
     { MAKE_KEY("gridLayout"), AsType<winrt::Windows::UI::Xaml::Controls::Grid>, nullptr, SetGridLayout_Grid, ViewManagerPropertyType::Map },
     { MAKE_KEY("priority"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetPriority_UIElement, ViewManagerPropertyType::Number },
     { MAKE_KEY("resources"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetResources_UIElement, ViewManagerPropertyType::Map },
+    { MAKE_KEY("showState"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>, nullptr, SetShowState_ContentDialog, ViewManagerPropertyType::Number },
 
 };
 

@@ -156,6 +156,34 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 </CommandBar>
 ```
 
+## ContentDialog
+
+```jsx
+const [showState, setShowState] = useState(ContentDialogState.Hidden);
+
+<Button
+  onTapped={a => {setShowState(ContentDialogState.Popup);}}
+  content="click to open a ContentDialog" />
+
+<ContentDialog
+  showState={showState}
+  defaultButton={ContentDialogButton.Close}
+  title="the title"
+  content="this is the content"
+  closeButtonText="close"
+  primaryButtonText="primary"
+  secondaryButtonText="secondary"
+  onPrimaryButtonClick={e => {
+    alert('primary');
+  }}
+  onSecondaryButtonClick={e => {
+    alert('secondary');
+  }}
+  onContentDialogClosed={e => {
+    setShowState(ContentDialogState.Hidden);
+    alert(e.nativeEvent);
+  }} />
+```
 
 ## Lightweight styling
 

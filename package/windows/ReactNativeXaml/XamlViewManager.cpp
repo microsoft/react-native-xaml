@@ -62,7 +62,7 @@ namespace winrt::ReactNativeXaml {
         if (auto prop = m_xamlMetadata->GetProp(propertyName, control)) {
           auto realObject = prop->asType(control).as<DependencyObject>();
           auto rcn = get_class_name(realObject);
-          prop->SetValue(realObject, propertyValue);
+          prop->SetValue(realObject, propertyValue, m_reactContext);
           handled = true;
         }
         else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
@@ -230,7 +230,7 @@ namespace winrt::ReactNativeXaml {
         return contentCtrl.Content(child);
       }
       else {
-
+        assert(false && "Parent is a ContentControl, but it already has a child");
       }
     }
     if (auto border = e.try_as<Border>()) {

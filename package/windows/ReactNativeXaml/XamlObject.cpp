@@ -2,6 +2,7 @@
 #include "XamlObject.h"
 #include "../include/Shared/cdebug.h"
 
+#include <UI.Text.h>
 #include "Codegen/EventArgsTypeProperties.g.h"
 
 namespace jsi = facebook::jsi;
@@ -177,6 +178,12 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
       });
     return jsi::String::createFromUtf8(rt, winrt::to_string(name));
   }
+  else if (auto ff = o.try_as<xaml::Media::FontFamily>()) {
+    auto fontFamily = RunOnUIThread([&]() {
+      return ff.Source();
+      });
+    return jsi::String::createFromUtf8(rt, winrt::to_string(fontFamily));
+  }
   else if (auto refTN = o.try_as<IReference<xaml::Interop::TypeName>>()) {
     auto t = jsi::Object(rt);
     auto tn = refTN.Value();
@@ -185,7 +192,18 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
     t.setProperty(rt, "name", jsi::String::createFromUtf8(rt, winrt::to_string(tn.Name)));
     return t;
   }
-
+  else if (auto refFW = o.try_as<IReference<text::FontWeight>>()) {
+    return jsi::Value(static_cast<int32_t>(refFW.Value().Weight));
+  }
+  else if (auto crFF = o.try_as<IReference<xaml::CornerRadius>>()) {
+    auto t = jsi::Object(rt);
+    auto cr = crFF.Value();
+    t.setProperty(rt, "topLeft", cr.TopLeft);
+    t.setProperty(rt, "topRight", cr.TopRight);
+    t.setProperty(rt, "bottomLeft", cr.BottomLeft);
+    t.setProperty(rt, "bottomRight", cr.BottomRight);
+    return t;
+  }
 
   return jsi::Object::createFromHostObject(rt, std::make_shared<XamlObject>(o, m_metadata));
 }

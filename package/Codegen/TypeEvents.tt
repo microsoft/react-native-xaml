@@ -69,10 +69,12 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
     return winrt::event_token{0};
   } },
 <# } #>
-
+<# foreach (var evt in SyntheticEvents) { #>
+  {"<#= evt.Name #>", nullptr /* synthetic event */},
+<# } #>
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == <#= Events.Count() #>);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == <#= Events.Count() + SyntheticEvents.Count() #>);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

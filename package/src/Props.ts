@@ -511,12 +511,17 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   defaultButton?: Enums.ContentDialogButton;
   closeButtonText?: string;
   closeButtonCommandParameter?: object;
+  /**
+  * Whether the content dialog should be open, and how.
+  */
+  showState?: Enums.ContentDialogState; // synthetic property
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
   onPrimaryButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
   onSecondaryButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
   onCloseButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onContentDialogClosed?: (event: NativeSyntheticEvent<Enums.ContentDialogResult>) => void;
 }
 
 

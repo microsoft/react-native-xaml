@@ -33,11 +33,11 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 };
 
 <# foreach (var p in FakeProps) { #>
-void Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void Set<#= p.GetName() #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 <# } #>
 
 <# foreach (var p in SyntheticProps) { #>
-void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v);
+void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 <# } #>
 
 /*static*/ const PropInfo fakeProps[] = {
