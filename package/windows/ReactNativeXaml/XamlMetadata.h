@@ -39,6 +39,11 @@ namespace winrt::Microsoft::ReactNative {
     }
   }
 
+  inline void ReadValue(JSValue const& jsValue, xaml::Media::Geometry& value) noexcept {
+    const auto v = winrt::to_hstring(jsValue.AsJSString());
+    value = Markup::XamlBindingHelper::ConvertValue(winrt::xaml_typename<xaml::Media::PathGeometry>(), winrt::box_value(v)).as<xaml::Media::Geometry>();
+  }
+
   inline void ReadValue(JSValue const& jsValue, Windows::UI::Text::FontWeight& value) noexcept {
     value.Weight = jsValue.AsInt16();
   }

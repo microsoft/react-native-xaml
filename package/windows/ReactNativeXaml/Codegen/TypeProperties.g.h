@@ -156,6 +156,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::RelativePanel>,  []() { return winrt::Windows::UI::Xaml::Controls::RelativePanel::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
         { MAKE_KEY("cornerRadius"), AsType<winrt::Windows::UI::Xaml::Controls::StackPanel>,  []() { return winrt::Windows::UI::Xaml::Controls::StackPanel::CornerRadiusProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::CornerRadius>, ViewManagerPropertyType::Map },
         { MAKE_KEY("cursor"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::ContentLink>,  []() { return winrt::Windows::UI::Xaml::Documents::ContentLink::CursorProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("data"), AsType<winrt::Windows::UI::Xaml::Shapes::Path>,  []() { return winrt::Windows::UI::Xaml::Shapes::Path::DataProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Geometry>, ViewManagerPropertyType::String },
+        { MAKE_KEY("data"), AsType<winrt::Windows::UI::Xaml::Controls::PathIcon>,  []() { return winrt::Windows::UI::Xaml::Controls::PathIcon::DataProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Geometry>, ViewManagerPropertyType::String },
         { MAKE_KEY("dataContext"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::DataContextProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("dataFetchSize"), AsType<winrt::Windows::UI::Xaml::Controls::ListViewBase>,  []() { return winrt::Windows::UI::Xaml::Controls::ListViewBase::DataFetchSizeProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("dateFormat"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker::DateFormatProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -1024,6 +1026,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("contentMargin"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("cornerRadius"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("cursor"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("data"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("dataContext"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("dataFetchSize"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("dateFormat"), ViewManagerPropertyType::String);
