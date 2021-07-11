@@ -1090,6 +1090,11 @@ export enum ContentDialogState {
   Hidden = 3,
 }
 
+export enum ContentDialogResult {
+  None = 0,
+  Primary = 1,
+  Secondary = 2,
+}
 
 export enum FontWeights {
   ExtraBlack = 950,
@@ -1099,8 +1104,9 @@ export enum FontWeights {
   SemiBold = 600,
   Medium = 500,
   Normal = 400,
-  SemiLight  =350,
+  SemiLight = 350,
   Light = 300,
   ExtraLight = 200,
   Thin = 100,
 }
+

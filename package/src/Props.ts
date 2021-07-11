@@ -521,6 +521,7 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   onPrimaryButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
   onSecondaryButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
   onCloseButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onContentDialogClosed?: (event: NativeSyntheticEvent<Enums.ContentDialogResult>) => void;
 }
 
 

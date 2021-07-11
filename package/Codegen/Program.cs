@@ -27,7 +27,8 @@ namespace Codegen
 
         private void DumpTypes()
         {
-            Config = JsonDocument.Parse(File.ReadAllText(ConfigFileName));
+            var start = DateTime.Now;
+            Config = JsonDocument.Parse(File.ReadAllText(ConfigFileName), new JsonDocumentOptions() { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip });
 
             var context = new MrLoadContext(true);
             context.FakeTypeRequired += (sender, e) =>
@@ -95,6 +96,22 @@ namespace Codegen
                 var name = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
                 baseClassesToProject.Add(name);
             };
+
+            var syntheticEvents = new List<SyntheticProperty>();
+
+            foreach (var entry in Config.RootElement.GetProperty("syntheticEvents").EnumerateObject())
+            {
+                var val = entry.Name.Replace("$xaml", XamlNames.XamlNamespace);
+                var typeName = val.Substring(0, val.LastIndexOf('.'));
+                var eventName = val.Substring(val.LastIndexOf('.') + 1);
+                syntheticEvents.Add(new SyntheticProperty()
+                {
+                    Name = eventName,
+                    DeclaringType = context.GetType(typeName),
+                    FakePropertyType = entry.Value.GetString(),
+                });
+            }
+
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
                 Util.DerivesFrom(type, b)) || type.GetFullName() == XamlNames.TopLevelProjectedType);
@@ -212,8 +229,7 @@ namespace Codegen
             {
                 var props = type.GetProperties();
                 var propsToAdd = props.Where(p =>
-                    p.Getter != null &&
-                    !p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static)).ToList();
+                    IsInstanceProperty(p)).ToList();
                 eventArgProps.AddRange(propsToAdd);
             }
 
@@ -226,22 +242,45 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("fakeEnums").EnumerateArray())
             {
-                var fe = new FakeEnum()
+                var name = entry.GetProperty("name").GetString();
+                FakeEnum fe;
+                if (name.IndexOf('.') != -1)
                 {
-                    Name = entry.GetProperty("name").GetString(),
-                    Values = ToDictionary(entry.GetProperty("values").EnumerateObject())
-                };
+                    var typeName = name.Replace("$xaml", XamlNames.XamlNamespace);
+                    var type = context.GetType(typeName);
+                    if (type.IsEnum)
+                    {
+                        var values = type.GetFields().Skip(1);
+                        fe = new FakeEnum()
+                        {
+                            Name = typeName.Substring(typeName.LastIndexOf('.') + 1),
+                            Values = values.ToDictionary<MrField, string, int>(f => f.GetName(), f => (int)f.GetConstantValue(out var _)),
+                        };
+                    }
+                    else
+                    {
+                        throw new ArgumentException($"Type {typeName} is not an enum");
+                    }
+                }
+                else
+                {
+                    fe = new FakeEnum()
+                    {
+                        Name = entry.GetProperty("name").GetString(),
+                        Values = ToDictionary(entry.GetProperty("values").EnumerateObject())
+                    };
+                }
                 Util.fakeEnums.Add(fe);
             }
 
-            var propsGen = new TSProps(xamlTypes, fakeProps, syntheticProps).TransformText();
+            var propsGen = new TSProps(xamlTypes, fakeProps, syntheticProps, syntheticEvents).TransformText();
             var typesGen = new TSTypes(xamlTypes).TransformText();
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
 
 
             var tsEnumsGen = new TSEnums().TransformText();
-            var eventsGen = new TypeEvents(events).TransformText();
+            var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
 
             PrintVerbose("Updating files");
@@ -257,6 +296,14 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+
+            PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds} s");
+        }
+
+        private static bool IsInstanceProperty(MrProperty p)
+        {
+            return p.Getter != null &&
+                                !p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static);
         }
 
         private Dictionary<string, int> ToDictionary(JsonElement.ObjectEnumerator objectEnumerator)

@@ -125,9 +125,6 @@ namespace Codegen
             
             #line default
             #line hidden
-            this.Write("\r\nexport enum FontWeights {\r\n  ExtraBlack = 950,\r\n  Black = 900,\r\n  ExtraBold = 8" +
-                    "00,\r\n  Bold = 700,\r\n  SemiBold = 600,\r\n  Medium = 500,\r\n  Normal = 400,\r\n  SemiL" +
-                    "ight  =350,\r\n  Light = 300,\r\n  ExtraLight = 200,\r\n  Thin = 100,\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -55,23 +55,27 @@ namespace Codegen
 
     public partial class TypeEvents
     {
-        public TypeEvents(IEnumerable<MrEvent> events)
+        public TypeEvents(IEnumerable<MrEvent> events, IEnumerable<SyntheticProperty> fakeEvents)
         {
             Events = events;
+            SyntheticEvents = fakeEvents;
         }
         IEnumerable<MrEvent> Events { get; set; }
+        IEnumerable<SyntheticProperty> SyntheticEvents { get; set; }
     }
 
     public partial class TSProps
     {
-        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps)
+        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps, IEnumerable<SyntheticProperty> syntheticEvents)
         {
             Types = types;
             FakeProps = fakeProps;
             SyntheticProps = syntheticProps;
+            SyntheticEvents = syntheticEvents;
         }
         IEnumerable<MrProperty> FakeProps { get; set; }
         IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
+        IEnumerable<SyntheticProperty> SyntheticEvents { get; set; }
         IEnumerable<MrType> Types { get; set; }
     }
 

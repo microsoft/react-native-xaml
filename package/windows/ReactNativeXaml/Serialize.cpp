@@ -16,6 +16,23 @@ std::vector<uint32_t> VectorToIndices(const winrt::IVector<winrt::IInspectable>&
 
 namespace winrt::Microsoft::ReactNative {
 
+  bool TryWriteScalar(const winrt::Microsoft::ReactNative::IJSValueWriter& writer, const winrt::IInspectable& item) {
+    if (auto str = item.try_as<IReference<winrt::hstring>>()) {
+      writer.WriteString(str.GetString());
+      return true;
+    }
+    else if (auto i32 = item.try_as<IReference<int32_t>>()) {
+      writer.WriteInt64(i32.GetInt32());
+      return true;
+    }
+    else if (auto fw = item.try_as<IReference<Windows::UI::Text::FontWeight>>()) {
+      writer.WriteInt64(fw.GetInt32());
+      return true;
+    }
+
+    return false;
+  }
+
   void WriteValue(const winrt::Microsoft::ReactNative::IJSValueWriter& writer, const Point& p) noexcept {
     writer.WriteObjectBegin();
     WriteProperty(writer, "x", p.X);
@@ -24,8 +41,8 @@ namespace winrt::Microsoft::ReactNative {
   }
 
   void WriteIInspectable(winrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::IInspectable& item) {
-    if (auto str = item.try_as<winrt::IReference<winrt::hstring>>()) {
-      writer.WriteString(str.GetString());
+    if (TryWriteScalar(writer, item)) {
+      return;
     }
     else if (auto cc = item.try_as<xaml::Controls::ContentControl>()) {
       WriteIInspectable(writer, cc.Content());
@@ -58,6 +75,9 @@ namespace winrt::Microsoft::ReactNative {
     if (item == nullptr) {
       return writer.WriteNull();
     }
+
+    if (TryWriteScalar(writer, item)) return;
+
     auto cn = winrt::get_class_name(item);
     writer.WriteObjectBegin();
     WriteProperty(writer, L"type", cn);

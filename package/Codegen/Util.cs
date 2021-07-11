@@ -188,6 +188,9 @@ namespace Codegen
             var typeName = prop.FakePropertyType;
             switch (typeName)
             {
+                case "undefined":
+                case "any":
+                    return typeName;
                 case "GridLayout":
                     return "{ rows: GridLength[], columns: GridLength[] }";
             }
@@ -197,6 +200,7 @@ namespace Codegen
             {
                 return $"Enums.{fakeEnum.First().Name}";
             }
+
             throw new ArgumentException($"Unknown type ${typeName}");
         }
 

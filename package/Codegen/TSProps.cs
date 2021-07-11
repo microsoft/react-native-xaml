@@ -166,19 +166,41 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) {
             
             #line 37 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
  } 
+  foreach (var evt in SyntheticEvents.Where(e => type == e.DeclaringType)) { 
             
             #line default
             #line hidden
-            this.Write("}\r\n\r\n");
+            this.Write("  on");
+            
+            #line 39 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(evt.Name));
+            
+            #line default
+            #line hidden
+            this.Write("?: (event: NativeSyntheticEvent<");
+            
+            #line 39 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetTypeScriptType(evt)));
+            
+            #line default
+            #line hidden
+            this.Write(">) => void;\r\n");
             
             #line 40 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
  } 
             
             #line default
             #line hidden
+            this.Write("}\r\n\r\n");
+            
+            #line 43 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+ } 
+            
+            #line default
+            #line hidden
             this.Write("\r\nexport type XamlControlProps =");
             
-            #line 42 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+            #line 45 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
  var first = true; foreach (var type in Types) {
 	if (Util.HasCtor(type) || !type.IsSealed) {
 		if (!first) 
@@ -187,7 +209,7 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) {
             #line hidden
             this.Write(" | ");
             
-            #line 44 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+            #line 47 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
  ;
 		
 		first = false;
@@ -197,14 +219,14 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) {
             #line hidden
             this.Write(" Native");
             
-            #line 47 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+            #line 50 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
             
             #line default
             #line hidden
             this.Write("Props \r\n\t");
             
-            #line 48 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
+            #line 51 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
  }
 	} 
             

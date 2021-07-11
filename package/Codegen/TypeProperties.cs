@@ -155,7 +155,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             #line default
             #line hidden
             this.Write("(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::M" +
-                    "icrosoft::ReactNative::JSValue& v);\r\n");
+                    "icrosoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactCo" +
+                    "ntext& reactContext);\r\n");
             
             #line 37 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
@@ -184,7 +185,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             #line default
             #line hidden
             this.Write("(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::M" +
-                    "icrosoft::ReactNative::JSValue& v);\r\n");
+                    "icrosoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactCo" +
+                    "ntext& reactContext);\r\n");
             
             #line 41 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
