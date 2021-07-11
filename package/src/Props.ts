@@ -1241,6 +1241,7 @@ export interface NativePasswordBoxProps extends NativeControlProps {
 
 export interface NativePathIconProps extends NativeIconElementProps {
   type: 'Windows.UI.Xaml.Controls.PathIcon';
+  data?: string;
 }
 
 
@@ -2199,6 +2200,7 @@ export interface NativeLineProps extends NativeShapeProps {
 
 export interface NativePathProps extends NativeShapeProps {
   type: 'Windows.UI.Xaml.Shapes.Path';
+  data?: string;
 }
 
 

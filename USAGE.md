@@ -185,6 +185,19 @@ const [showState, setShowState] = useState(ContentDialogState.Hidden);
   }} />
 ```
 
+## Path & vector graphics
+
+```jsx
+<Path
+  data="M14,2H12V1H11V2H5V1H4V2H2V14H14ZM4,3V4H5V3h6V4h1V3h1V5H3V3Zm9,10H3V6H13ZM7,10V7H4v3ZM5,8H6V9H5Z"
+  width={16}
+  height={16}
+  fill="red"
+  horizontalAlignment={HorizontalAlignment.Center}
+  verticalAlignment={VerticalAlignment.Center}
+/>
+```
+
 ## Lightweight styling
 
 ```jsx

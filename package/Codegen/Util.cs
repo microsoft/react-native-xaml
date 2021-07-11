@@ -169,6 +169,8 @@ namespace Codegen
                     return ViewManagerPropertyType.String;
                 case $"{XamlNames.XamlNamespace}.Media.FontFamily":
                     return ViewManagerPropertyType.String;
+                case $"{XamlNames.XamlNamespace}.Media.Geometry":
+                    return ViewManagerPropertyType.String;
                 case "Windows.UI.Text.FontWeight":
                     return ViewManagerPropertyType.Number;
                 case $"{XamlNames.XamlNamespace}.Thickness":
@@ -263,6 +265,8 @@ namespace Codegen
                 case $"{XamlNames.XamlNamespace}.CornerRadius":
                     return "CornerRadius";
                 case $"{XamlNames.XamlNamespace}.Media.FontFamily":
+                    return "string";
+                case $"{XamlNames.XamlNamespace}.Media.Geometry":
                     return "string";
                 case "System.Object":
                     return "object";
