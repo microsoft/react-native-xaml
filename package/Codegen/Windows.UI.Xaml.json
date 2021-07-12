@@ -95,7 +95,44 @@
     "$xaml.Controls.ContentDialog.ContentDialogClosed": "ContentDialogResult"
   },
   "propNameMapping": {
-     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
-     "$xaml.Controls.Maps.MapControl.Style": "mapStyle"
-  }
+    "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
+    "$xaml.Controls.Maps.MapControl.Style": "mapStyle"
+  },
+  "typeMapping": [
+    {
+      "name": "$xaml.Media.Brush",
+      "VM": "Color",
+      "TS": "ColorValue"
+    },
+    {
+      "name": "$xaml.Media.SolidColorBrush",
+      "VM": "Color",
+      "TS": "ColorValue"
+    },
+    {
+      "name": "$xaml.Media.FontFamily",
+      "VM": "String",
+      "TS": "string"
+    },
+    {
+      "name": "$xaml.Media.ImageSource",
+      "VM": "String",
+      "TS": "string"
+    },
+    {
+      "name": "$xaml.Thickness",
+      "VM": "Map",
+      "TS": "Thickness"
+    },
+    {
+      "name": "$xaml.CornerRadius",
+      "VM": "Map",
+      "TS": "CornerRadius"
+    },
+    {
+      "name": "$xaml.Media.Geometry",
+      "VM": "String",
+      "TS": "string"
+    }
+  ]
 }

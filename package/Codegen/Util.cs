@@ -137,6 +137,9 @@ namespace Codegen
             return GetVMPropertyType(prop.GetPropertyType());
         }
 
+
+        public static Dictionary<string, TypeMapping> TypeMapping { get; set; } = new Dictionary<string, TypeMapping>();
+
         private static ViewManagerPropertyType GetVMPropertyType(MrType propType)
         {
             if (propType.IsEnum)
@@ -162,23 +165,14 @@ namespace Codegen
                 case "System.Double":
                 case "System.Single":
                     return ViewManagerPropertyType.Number;
-                case $"{XamlNames.XamlNamespace}.Media.Brush":
-                case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
-                    return ViewManagerPropertyType.Color;
-                case $"{XamlNames.XamlNamespace}.Media.ImageSource":
-                    return ViewManagerPropertyType.String;
-                case $"{XamlNames.XamlNamespace}.Media.FontFamily":
-                    return ViewManagerPropertyType.String;
-                case $"{XamlNames.XamlNamespace}.Media.Geometry":
-                    return ViewManagerPropertyType.String;
                 case "Windows.UI.Text.FontWeight":
                     return ViewManagerPropertyType.Number;
-                case $"{XamlNames.XamlNamespace}.Thickness":
-                    return ViewManagerPropertyType.Map;
-                case $"{XamlNames.XamlNamespace}.CornerRadius":
-                    return ViewManagerPropertyType.Map;
                 case "System.Object":
                     return ViewManagerPropertyType.Map;
+            }
+
+            if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping)) {
+                return mapping.VM;
             }
 
             return ViewManagerPropertyType.Unknown;
@@ -255,23 +249,15 @@ namespace Codegen
                 case "System.Double":
                 case "System.Single":
                     return "number";
-                case $"{XamlNames.XamlNamespace}.Media.Brush":
-                case $"{XamlNames.XamlNamespace}.Media.SolidColorBrush":
-                    return "ColorValue";
-                case $"{XamlNames.XamlNamespace}.Media.ImageSource":
-                    return "string";
-                case $"{XamlNames.XamlNamespace}.Thickness":
-                    return "Thickness";
-                case $"{XamlNames.XamlNamespace}.CornerRadius":
-                    return "CornerRadius";
-                case $"{XamlNames.XamlNamespace}.Media.FontFamily":
-                    return "string";
-                case $"{XamlNames.XamlNamespace}.Media.Geometry":
-                    return "string";
                 case "System.Object":
                     return "object";
                 case "Windows.UI.Text.FontWeight":
                     return "number";
+            }
+
+            if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping))
+            {
+                return mapping.TS;
             }
 
             return "any";
@@ -308,13 +294,6 @@ namespace Codegen
 
         public static bool IsReservedName(MrProperty prop)
         {
-            var fullName = $"{prop.DeclaringType.GetFullName()}.{prop.GetName()}";
-            switch (fullName)
-            {
-                case $"{XamlNames.XamlNamespace}.FrameworkElement.Style":
-                    return true;
-            }
-
             if (prop.GetName() == "Type")
             {
                 return true;

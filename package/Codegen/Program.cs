@@ -89,6 +89,15 @@ namespace Codegen
                 syntheticProps.Add(sp);
             }
 
+            foreach (var entry in Config.RootElement.GetProperty("typeMapping").EnumerateArray())
+            {
+                Util.TypeMapping[entry.GetProperty("name").GetString().Replace("$xaml", XamlNames.XamlNamespace)] = new TypeMapping()
+                {
+                    VM = Enum.Parse<ViewManagerPropertyType>(entry.GetProperty("VM").GetString()),
+                    TS = entry.GetProperty("TS").GetString(),
+                };
+            }
+
             var baseClassesToProject = new List<string>();
 
             foreach (var entry in Config.RootElement.GetProperty("baseClasses").EnumerateArray())

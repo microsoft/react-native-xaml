@@ -98,5 +98,10 @@ namespace Codegen
         }
     }
 
+    public class TypeMapping
+    {
+        public ViewManagerPropertyType VM { get; set; }
+        public string TS { get; set; }
+    }
 }
 

@@ -58,7 +58,7 @@ namespace winrt::ReactNativeXaml {
     void ReactContext(winrt::Microsoft::ReactNative::IReactContext reactContext) noexcept;
 
     // IViewManagerRequiresNativeLayout
-    bool RequiresNativeLayout() noexcept { return true; }
+    bool RequiresNativeLayout() noexcept;
 
     // IViewManagerWithChildren
     void AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t index);

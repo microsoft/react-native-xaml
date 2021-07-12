@@ -25,6 +25,10 @@ namespace winrt::ReactNativeXaml {
     return nullptr;
   }
 
+  bool XamlViewManager::RequiresNativeLayout() noexcept {
+    return true;
+  }
+
   winrt::IInspectable XamlViewManager::CreateViewWithProperties(winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept {
     m_xamlMetadata->SetupEventDispatcher(m_reactContext);
 
