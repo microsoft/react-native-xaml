@@ -51,6 +51,18 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   */
   gridColumn?: number; // synthetic property
   /**
+  * The horizontal position in the canvas, relative to its parent
+  */
+  canvasLeft?: number; // synthetic property
+  /**
+  * The vertical position in the canvas, relative to its parent
+  */
+  canvasTop?: number; // synthetic property
+  /**
+  * The Z-order in the canvas
+  */
+  canvasZIndex?: number; // synthetic property
+  /**
   * A hint of where this item should be placed within its parent.
   */
   priority?: number; // synthetic property

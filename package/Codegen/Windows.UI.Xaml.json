@@ -29,6 +29,24 @@
       "comment": "An object with a columns and a rows members, each of which is an array of the corresponding dimensions."
     },
     {
+      "name": "CanvasLeft",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Double",
+      "comment": "The horizontal position in the canvas, relative to its parent"
+    },
+    {
+      "name": "CanvasTop",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Double",
+      "comment": "The vertical position in the canvas, relative to its parent"
+    },
+    {
+      "name": "CanvasZIndex",
+      "declaringType": "$xaml.UIElement",
+      "propertyType": "System.Int32",
+      "comment": "The Z-order in the canvas"
+    },
+    {
       "name": "Priority",
       "declaringType": "$xaml.UIElement",
       "propertyType": "System.Int32",

@@ -932,6 +932,9 @@ void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty
 void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetCanvasLeft_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetCanvasTop_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetCanvasZIndex_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetPriority_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetResources_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetShowState_ContentDialog(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
@@ -942,6 +945,9 @@ void SetShowState_ContentDialog(const xaml::DependencyObject& o, const xaml::Dep
     { MAKE_KEY("gridRow"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetGridRow_UIElement, ViewManagerPropertyType::Number },
     { MAKE_KEY("gridColumn"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetGridColumn_UIElement, ViewManagerPropertyType::Number },
     { MAKE_KEY("gridLayout"), AsType<winrt::Windows::UI::Xaml::Controls::Grid>, nullptr, SetGridLayout_Grid, ViewManagerPropertyType::Map },
+    { MAKE_KEY("canvasLeft"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetCanvasLeft_UIElement, ViewManagerPropertyType::Number },
+    { MAKE_KEY("canvasTop"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetCanvasTop_UIElement, ViewManagerPropertyType::Number },
+    { MAKE_KEY("canvasZIndex"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetCanvasZIndex_UIElement, ViewManagerPropertyType::Number },
     { MAKE_KEY("priority"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetPriority_UIElement, ViewManagerPropertyType::Number },
     { MAKE_KEY("resources"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetResources_UIElement, ViewManagerPropertyType::Map },
     { MAKE_KEY("showState"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>, nullptr, SetShowState_ContentDialog, ViewManagerPropertyType::Number },

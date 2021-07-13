@@ -233,6 +233,18 @@ void SetPriority_UIElement(const DependencyObject& u, const xaml::DependencyProp
   u.SetValue(GetPriorityProperty(), winrt::box_value(priorityValue));
 }
 
+void SetCanvasLeft_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
+  u.SetValue(Controls::Canvas::LeftProperty(), winrt::box_value(v.AsDouble()));
+}
+
+void SetCanvasTop_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
+  u.SetValue(Controls::Canvas::TopProperty(), winrt::box_value(v.AsDouble()));
+}
+
+void SetCanvasZIndex_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
+  u.SetValue(Controls::Canvas::ZIndexProperty(), winrt::box_value(v.AsInt32()));
+}
+
 
 const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
   auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return Equals(entry.propName, key); });
