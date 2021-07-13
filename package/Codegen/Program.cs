@@ -63,12 +63,12 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("propNameMapping").EnumerateObject())
             {
-                Util.propNameMap[entry.Name.Replace("$xaml", XamlNames.XamlNamespace)] = entry.Value.GetString();
+                Util.propNameMap[GetTypeNameFromJsonProperty(entry)] = entry.Value.GetString();
             }
 
             foreach (var entry in Config.RootElement.GetProperty("fakeProps").EnumerateArray())
             {
-                var value = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
+                var value = GetTypeNameFromJson(entry);
                 var typeName = value.Substring(0, value.LastIndexOf('.'));
                 var propName = value.Substring(value.LastIndexOf('.') + 1);
                 fakeProps.Add(GetProperty(context, typeName, propName));
@@ -81,7 +81,7 @@ namespace Codegen
                 var sp = new SyntheticProperty
                 {
                     Name = entry.GetProperty("name").GetString(),
-                    DeclaringType = context.GetType(entry.GetProperty("declaringType").GetString().Replace("$xaml", XamlNames.XamlNamespace)),
+                    DeclaringType = context.GetType(GetTypeNameFromJson(entry.GetProperty("declaringType"))),
                     PropertyType = entry.TryGetProperty("propertyType", out var propType) ? context.GetType(propType.GetString()) : null,
                     FakePropertyType = entry.TryGetProperty("fakePropertyType", out var fakePropType) ? fakePropType.GetString() : null,
                     Comment = entry.GetProperty("comment").GetString()
@@ -91,7 +91,7 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("typeMapping").EnumerateArray())
             {
-                Util.TypeMapping[entry.GetProperty("name").GetString().Replace("$xaml", XamlNames.XamlNamespace)] = new TypeMapping()
+                Util.TypeMapping[GetTypeNameFromJson(entry)] = new TypeMapping()
                 {
                     VM = Enum.Parse<ViewManagerPropertyType>(entry.GetProperty("VM").GetString()),
                     TS = entry.GetProperty("TS").GetString(),
@@ -102,7 +102,7 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("baseClasses").EnumerateArray())
             {
-                var name = entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
+                var name = GetTypeNameFromJson(entry);
                 baseClassesToProject.Add(name);
             };
 
@@ -110,7 +110,7 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("syntheticEvents").EnumerateObject())
             {
-                var val = entry.Name.Replace("$xaml", XamlNames.XamlNamespace);
+                var val = GetTypeNameFromJsonProperty(entry);
                 var typeName = val.Substring(0, val.LastIndexOf('.'));
                 var eventName = val.Substring(val.LastIndexOf('.') + 1);
                 syntheticEvents.Add(new SyntheticProperty()
@@ -251,11 +251,10 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("fakeEnums").EnumerateArray())
             {
-                var name = entry.GetProperty("name").GetString();
+                var typeName = GetTypeNameFromJson(entry.GetProperty("name"));
                 FakeEnum fe;
-                if (name.IndexOf('.') != -1)
+                if (typeName.IndexOf('.') != -1)
                 {
-                    var typeName = name.Replace("$xaml", XamlNames.XamlNamespace);
                     var type = context.GetType(typeName);
                     if (type.IsEnum)
                     {
@@ -275,8 +274,8 @@ namespace Codegen
                 {
                     fe = new FakeEnum()
                     {
-                        Name = entry.GetProperty("name").GetString(),
-                        Values = ToDictionary(entry.GetProperty("values").EnumerateObject())
+                        Name = typeName,
+                        Values = ToDictionary(entry.GetProperty("values").EnumerateObject()),
                     };
                 }
                 Util.fakeEnums.Add(fe);
@@ -307,6 +306,22 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds} s");
+        }
+
+        private static string GetTypeNameFromJsonProperty(JsonProperty entry)
+        {
+            return entry.Name.Replace("$xaml", XamlNames.XamlNamespace);
+        }
+
+        private static string GetTypeNameFromJson(JsonElement entry)
+        {
+            if (entry.ValueKind == JsonValueKind.Object)
+            {
+                return entry.GetProperty("name").GetString().Replace("$xaml", XamlNames.XamlNamespace);
+            } else
+            {
+                return entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
+            }
         }
 
         private static bool IsInstanceProperty(MrProperty p)
