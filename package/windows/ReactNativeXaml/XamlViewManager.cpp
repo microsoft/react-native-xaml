@@ -242,6 +242,11 @@ namespace winrt::ReactNativeXaml {
         return border.Child(child);
       }
     }
+    if (auto viewbox = e.try_as<Viewbox>()) {
+      if (index == 0) {
+        return viewbox.Child(child);
+      }
+    }
     if (auto autoSuggestBox = e.try_as<AutoSuggestBox>()) {
       if (auto iconElement = child.try_as<IconElement>()) {
         return autoSuggestBox.QueryIcon(iconElement);
