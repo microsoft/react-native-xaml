@@ -197,8 +197,8 @@ struct PropInfo {
 
 template<typename T>
 T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
-  if (auto contentControl = i.try_as<winrt::ReactNativeXaml::Wrapper>()) {
-    return contentControl.WrappedObject().try_as<T>();
+  if (auto wrapper = i.try_as<winrt::ReactNativeXaml::Wrapper>()) {
+    return wrapper.WrappedObject().try_as<T>();
   }
   return nullptr;
 }
