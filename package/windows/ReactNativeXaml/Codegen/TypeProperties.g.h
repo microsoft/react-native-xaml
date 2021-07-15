@@ -94,6 +94,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("calendarItemBorderBrush"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::CalendarItemBorderBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("calendarItemBorderThickness"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::CalendarItemBorderThicknessProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Thickness>, ViewManagerPropertyType::Map },
         { MAKE_KEY("calendarItemForeground"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::CalendarItemForegroundProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
+        { MAKE_KEY("calendarViewDayItemStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::CalendarViewDayItemStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
+        { MAKE_KEY("calendarViewStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker::CalendarViewStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("canBeScrollAnchor"), AsUnwrappedType<winrt::Windows::UI::Xaml::UIElement>,  []() { return winrt::Windows::UI::Xaml::UIElement::CanBeScrollAnchorProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("canChangeViews"), AsType<winrt::Windows::UI::Xaml::Controls::SemanticZoom>,  []() { return winrt::Windows::UI::Xaml::Controls::SemanticZoom::CanChangeViewsProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("canContentRenderOutsideBounds"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter::CanContentRenderOutsideBoundsProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -125,6 +127,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("clockIdentifier"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::TimePickerFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::TimePickerFlyout::ClockIdentifierProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("clockIdentifier"), AsType<winrt::Windows::UI::Xaml::Controls::TimePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::TimePicker::ClockIdentifierProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("closeButtonCommandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::CloseButtonCommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("closeButtonStyle"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::CloseButtonStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("closeButtonText"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::CloseButtonTextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("closedDisplayMode"), AsType<winrt::Windows::UI::Xaml::Controls::AppBar>,  []() { return winrt::Windows::UI::Xaml::Controls::AppBar::ClosedDisplayModeProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("collapsedGlyph"), AsType<winrt::Windows::UI::Xaml::Controls::TreeViewItem>,  []() { return winrt::Windows::UI::Xaml::Controls::TreeViewItem::CollapsedGlyphProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -134,6 +137,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("colorSpectrumComponents"), AsType<winrt::Windows::UI::Xaml::Controls::ColorPicker>,  []() { return winrt::Windows::UI::Xaml::Controls::ColorPicker::ColorSpectrumComponentsProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("colorSpectrumShape"), AsType<winrt::Windows::UI::Xaml::Controls::ColorPicker>,  []() { return winrt::Windows::UI::Xaml::Controls::ColorPicker::ColorSpectrumShapeProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("columnSpacing"), AsType<winrt::Windows::UI::Xaml::Controls::Grid>,  []() { return winrt::Windows::UI::Xaml::Controls::Grid::ColumnSpacingProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("commandBarOverflowPresenterStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CommandBar>,  []() { return winrt::Windows::UI::Xaml::Controls::CommandBar::CommandBarOverflowPresenterStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("commandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ButtonBase::CommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("commandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem>,  []() { return winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem::CommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("commandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::SplitButton>,  []() { return winrt::Windows::UI::Xaml::Controls::SplitButton::CommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
@@ -232,6 +236,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("firstOfYearDecadeLabelFontWeight"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FirstOfYearDecadeLabelFontWeightProperty(); }, SetPropValue<winrt::Windows::UI::Text::FontWeight>, ViewManagerPropertyType::Number },
         { MAKE_KEY("flowDirection"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::FlowDirectionProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("flowDirection"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::Run>,  []() { return winrt::Windows::UI::Xaml::Documents::Run::FlowDirectionProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("flyoutPresenterStyle"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::Flyout>,  []() { return winrt::Windows::UI::Xaml::Controls::Flyout::FlyoutPresenterStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("focusBorderBrush"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::FocusBorderBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("focusBorderBrush"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter::FocusBorderBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("focusBorderBrush"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter::FocusBorderBrushProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -506,6 +511,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("isZoomEnabled"), AsType<winrt::Windows::UI::Xaml::Controls::MediaTransportControls>,  []() { return winrt::Windows::UI::Xaml::Controls::MediaTransportControls::IsZoomEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isZoomInertiaEnabled"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollViewer>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollViewer::IsZoomInertiaEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("isZoomOutButtonEnabled"), AsType<winrt::Windows::UI::Xaml::Controls::SemanticZoom>,  []() { return winrt::Windows::UI::Xaml::Controls::SemanticZoom::IsZoomOutButtonEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
+        { MAKE_KEY("itemContainerStyle"), AsType<winrt::Windows::UI::Xaml::Controls::ItemsControl>,  []() { return winrt::Windows::UI::Xaml::Controls::ItemsControl::ItemContainerStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
+        { MAKE_KEY("itemContainerStyle"), AsType<winrt::Windows::UI::Xaml::Controls::TreeView>,  []() { return winrt::Windows::UI::Xaml::Controls::TreeView::ItemContainerStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("itemHeight"), AsType<winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid>,  []() { return winrt::Windows::UI::Xaml::Controls::ItemsWrapGrid::ItemHeightProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("itemHeight"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::LoopingSelector::ItemHeightProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("itemHeight"), AsType<winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid>,  []() { return winrt::Windows::UI::Xaml::Controls::VariableSizedWrapGrid::ItemHeightProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
@@ -590,6 +597,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("maxVerticalShiftRatio"), AsType<winrt::Windows::UI::Xaml::Controls::ParallaxView>,  []() { return winrt::Windows::UI::Xaml::Controls::ParallaxView::MaxVerticalShiftRatioProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("maxWidth"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::MaxWidthProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("maxZoomFactor"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollViewer>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollViewer::MaxZoomFactorProperty(); }, SetPropValue<float>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("menuFlyoutPresenterStyle"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::MenuFlyout>,  []() { return winrt::Windows::UI::Xaml::Controls::MenuFlyout::MenuFlyoutPresenterStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
+        { MAKE_KEY("menuItemContainerStyle"), AsType<winrt::Windows::UI::Xaml::Controls::NavigationView>,  []() { return winrt::Windows::UI::Xaml::Controls::NavigationView::MenuItemContainerStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("menuItemsSource"), AsType<winrt::Windows::UI::Xaml::Controls::NavigationView>,  []() { return winrt::Windows::UI::Xaml::Controls::NavigationView::MenuItemsSourceProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
         { MAKE_KEY("minHeight"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::MinHeightProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("minHue"), AsType<winrt::Windows::UI::Xaml::Controls::ColorPicker>,  []() { return winrt::Windows::UI::Xaml::Controls::ColorPicker::MinHueProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -662,6 +671,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("panePlacement"), AsType<winrt::Windows::UI::Xaml::Controls::SplitView>,  []() { return winrt::Windows::UI::Xaml::Controls::SplitView::PanePlacementProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("panePriority"), AsType<winrt::Windows::UI::Xaml::Controls::TwoPaneView>,  []() { return winrt::Windows::UI::Xaml::Controls::TwoPaneView::PanePriorityProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("paneTitle"), AsType<winrt::Windows::UI::Xaml::Controls::NavigationView>,  []() { return winrt::Windows::UI::Xaml::Controls::NavigationView::PaneTitleProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
+        { MAKE_KEY("paneToggleButtonStyle"), AsType<winrt::Windows::UI::Xaml::Controls::NavigationView>,  []() { return winrt::Windows::UI::Xaml::Controls::NavigationView::PaneToggleButtonStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("panInteractionMode"), AsType<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>,  []() { return winrt::Windows::UI::Xaml::Controls::Maps::MapControl::PanInteractionModeProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("password"), AsType<winrt::Windows::UI::Xaml::Controls::PasswordBox>,  []() { return winrt::Windows::UI::Xaml::Controls::PasswordBox::PasswordProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("passwordChar"), AsType<winrt::Windows::UI::Xaml::Controls::PasswordBox>,  []() { return winrt::Windows::UI::Xaml::Controls::PasswordBox::PasswordCharProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
@@ -699,6 +709,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("preventKeyboardDisplayOnProgrammaticFocus"), AsType<winrt::Windows::UI::Xaml::Controls::RichEditBox>,  []() { return winrt::Windows::UI::Xaml::Controls::RichEditBox::PreventKeyboardDisplayOnProgrammaticFocusProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("preventKeyboardDisplayOnProgrammaticFocus"), AsType<winrt::Windows::UI::Xaml::Controls::TextBox>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBox::PreventKeyboardDisplayOnProgrammaticFocusProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("primaryButtonCommandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::PrimaryButtonCommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("primaryButtonStyle"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::PrimaryButtonStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("primaryButtonText"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::PrimaryButtonTextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("profilePicture"), AsType<winrt::Windows::UI::Xaml::Controls::PersonPicture>,  []() { return winrt::Windows::UI::Xaml::Controls::PersonPicture::ProfilePictureProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::ImageSource>, ViewManagerPropertyType::String },
         { MAKE_KEY("pullDirection"), AsType<winrt::Windows::UI::Xaml::Controls::RefreshContainer>,  []() { return winrt::Windows::UI::Xaml::Controls::RefreshContainer::PullDirectionProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -723,6 +734,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("searchHistoryContext"), AsType<winrt::Windows::UI::Xaml::Controls::SearchBox>,  []() { return winrt::Windows::UI::Xaml::Controls::SearchBox::SearchHistoryContextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("searchHistoryEnabled"), AsType<winrt::Windows::UI::Xaml::Controls::SearchBox>,  []() { return winrt::Windows::UI::Xaml::Controls::SearchBox::SearchHistoryEnabledProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("secondaryButtonCommandParameter"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::SecondaryButtonCommandParameterProperty(); }, SetPropValue<winrt::Windows::Foundation::IInspectable>, ViewManagerPropertyType::Map },
+        { MAKE_KEY("secondaryButtonStyle"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::SecondaryButtonStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("secondaryButtonText"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>,  []() { return winrt::Windows::UI::Xaml::Controls::ContentDialog::SecondaryButtonTextProperty(); }, SetPropValue<winrt::hstring>, ViewManagerPropertyType::String },
         { MAKE_KEY("selectedBackground"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::GridViewItemPresenter::SelectedBackgroundProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("selectedBackground"), AsType<winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter::SelectedBackgroundProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
@@ -811,6 +823,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("strokeMiterLimit"), AsType<winrt::Windows::UI::Xaml::Shapes::Shape>,  []() { return winrt::Windows::UI::Xaml::Shapes::Shape::StrokeMiterLimitProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
         { MAKE_KEY("strokeStartLineCap"), AsType<winrt::Windows::UI::Xaml::Shapes::Shape>,  []() { return winrt::Windows::UI::Xaml::Shapes::Shape::StrokeStartLineCapProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("strokeThickness"), AsType<winrt::Windows::UI::Xaml::Shapes::Shape>,  []() { return winrt::Windows::UI::Xaml::Shapes::Shape::StrokeThicknessProperty(); }, SetPropValue<double>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("styleKey"), AsType<winrt::Windows::UI::Xaml::FrameworkElement>,  []() { return winrt::Windows::UI::Xaml::FrameworkElement::StyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("mapStyle"), AsType<winrt::Windows::UI::Xaml::Controls::Maps::MapControl>,  []() { return winrt::Windows::UI::Xaml::Controls::Maps::MapControl::StyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle>, ViewManagerPropertyType::Number },
         { MAKE_KEY("styleSimulations"), AsType<winrt::Windows::UI::Xaml::Documents::Glyphs>,  []() { return winrt::Windows::UI::Xaml::Documents::Glyphs::StyleSimulationsProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("symbol"), AsType<winrt::Windows::UI::Xaml::Controls::SymbolIcon>,  []() { return winrt::Windows::UI::Xaml::Controls::SymbolIcon::SymbolProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -832,6 +845,8 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("textAlignment"), AsType<winrt::Windows::UI::Xaml::Controls::TextBlock>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBlock::TextAlignmentProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("textAlignment"), AsType<winrt::Windows::UI::Xaml::Controls::RichEditBox>,  []() { return winrt::Windows::UI::Xaml::Controls::RichEditBox::TextAlignmentProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("textAlignment"), AsType<winrt::Windows::UI::Xaml::Controls::TextBox>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBox::TextAlignmentProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
+        { MAKE_KEY("textBoxStyle"), AsType<winrt::Windows::UI::Xaml::Controls::AutoSuggestBox>,  []() { return winrt::Windows::UI::Xaml::Controls::AutoSuggestBox::TextBoxStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
+        { MAKE_KEY("textBoxStyle"), AsType<winrt::Windows::UI::Xaml::Controls::ComboBox>,  []() { return winrt::Windows::UI::Xaml::Controls::ComboBox::TextBoxStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("textDecorations"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::TextElement>,  []() { return winrt::Windows::UI::Xaml::Documents::TextElement::TextDecorationsProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("textDecorations"), AsType<winrt::Windows::UI::Xaml::Controls::RichTextBlock>,  []() { return winrt::Windows::UI::Xaml::Controls::RichTextBlock::TextDecorationsProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
         { MAKE_KEY("textDecorations"), AsType<winrt::Windows::UI::Xaml::Controls::TextBlock>,  []() { return winrt::Windows::UI::Xaml::Controls::TextBlock::TextDecorationsProperty(); }, SetPropValue<int32_t>, ViewManagerPropertyType::Number },
@@ -986,6 +1001,8 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("calendarItemBorderBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("calendarItemBorderThickness"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("calendarItemForeground"), ViewManagerPropertyType::Color);
+    nativeProps.Insert(winrt::to_hstring("calendarViewDayItemStyle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("calendarViewStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("canBeScrollAnchor"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("canChangeViews"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("canContentRenderOutsideBounds"), ViewManagerPropertyType::Boolean);
@@ -1005,6 +1022,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("clipboardCopyFormat"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("clockIdentifier"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("closeButtonCommandParameter"), ViewManagerPropertyType::Map);
+    nativeProps.Insert(winrt::to_hstring("closeButtonStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("closeButtonText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("closedDisplayMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("collapsedGlyph"), ViewManagerPropertyType::String);
@@ -1014,6 +1032,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("colorSpectrumComponents"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("colorSpectrumShape"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("columnSpacing"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("commandBarOverflowPresenterStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("commandParameter"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("compactModeThresholdWidth"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("compactPaneLength"), ViewManagerPropertyType::Number);
@@ -1073,6 +1092,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("firstOfYearDecadeLabelFontWeight"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("flowDirection"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("flyoutPresenterStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("focusBorderBrush"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("focusOnKeyboardInput"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("focusSecondaryBorderBrush"), ViewManagerPropertyType::Color);
@@ -1253,6 +1273,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("isZoomEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("isZoomInertiaEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("isZoomOutButtonEnabled"), ViewManagerPropertyType::Boolean);
+    nativeProps.Insert(winrt::to_hstring("itemContainerStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("itemHeight"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("itemsSource"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("itemWidth"), ViewManagerPropertyType::Number);
@@ -1295,6 +1316,8 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("maxVerticalShiftRatio"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("maxWidth"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("maxZoomFactor"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("menuFlyoutPresenterStyle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("menuItemContainerStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("menuItemsSource"), ViewManagerPropertyType::Map);
     nativeProps.Insert(winrt::to_hstring("minHeight"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("minHue"), ViewManagerPropertyType::Number);
@@ -1337,6 +1360,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("panePlacement"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("panePriority"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("paneTitle"), ViewManagerPropertyType::String);
+    nativeProps.Insert(winrt::to_hstring("paneToggleButtonStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("panInteractionMode"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("password"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("passwordChar"), ViewManagerPropertyType::String);
@@ -1360,6 +1384,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("pressedForeground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("preventKeyboardDisplayOnProgrammaticFocus"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("primaryButtonCommandParameter"), ViewManagerPropertyType::Map);
+    nativeProps.Insert(winrt::to_hstring("primaryButtonStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("primaryButtonText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("profilePicture"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("pullDirection"), ViewManagerPropertyType::Number);
@@ -1383,6 +1408,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("searchHistoryContext"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("searchHistoryEnabled"), ViewManagerPropertyType::Boolean);
     nativeProps.Insert(winrt::to_hstring("secondaryButtonCommandParameter"), ViewManagerPropertyType::Map);
+    nativeProps.Insert(winrt::to_hstring("secondaryButtonStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("secondaryButtonText"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("selectedBackground"), ViewManagerPropertyType::Color);
     nativeProps.Insert(winrt::to_hstring("selectedBorderBrush"), ViewManagerPropertyType::Color);
@@ -1436,6 +1462,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("strokeMiterLimit"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("strokeStartLineCap"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("strokeThickness"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("styleKey"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("mapStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("styleSimulations"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("symbol"), ViewManagerPropertyType::Number);
@@ -1446,6 +1473,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("tallModeConfiguration"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("text"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("textAlignment"), ViewManagerPropertyType::Number);
+    nativeProps.Insert(winrt::to_hstring("textBoxStyle"), ViewManagerPropertyType::String);
     nativeProps.Insert(winrt::to_hstring("textDecorations"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("textIndent"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("textLineBounds"), ViewManagerPropertyType::Number);

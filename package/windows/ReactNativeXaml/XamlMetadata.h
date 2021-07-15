@@ -19,6 +19,12 @@ using namespace xaml::Controls;
 using namespace winrt::Microsoft::ReactNative;
 
 namespace winrt::Microsoft::ReactNative {
+
+  inline void ReadValue(JSValue const& jsValue, xaml::Style& value) noexcept {
+    auto key = winrt::to_hstring(jsValue.AsJSString());
+    value = Application::Current().Resources().Lookup(winrt::box_value(key)).as<Style>();
+  }
+
   inline void ReadValue(JSValue const& jsValue, xaml::Media::SolidColorBrush& value) noexcept {
     auto color = XamlHelper::ColorFrom([&jsValue](IJSValueWriter const& writer) noexcept { jsValue.WriteTo(writer); });
     value = xaml::Media::SolidColorBrush(color);
