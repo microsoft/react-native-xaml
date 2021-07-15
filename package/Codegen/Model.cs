@@ -89,6 +89,22 @@ namespace Codegen
     {
         public bool Equals(MrTypeAndMemberBase that, MrTypeAndMemberBase other)
         {
+            if (that.GetType() != other.GetType()) return false;
+            if (that.GetType() == typeof(MrProperty))
+            {
+                var p1 = that as MrProperty;
+                var p2 = other as MrProperty;
+                string n1;
+                string n2;
+                if (!Util.propNameMap.TryGetValue($"{p1.DeclaringType.GetFullName()}.{p1.GetName()}", out n1)) {
+                    n1 = p1.GetName();
+                }
+                if (!Util.propNameMap.TryGetValue($"{p2.DeclaringType.GetFullName()}.{p2.GetName()}", out n2)) {
+                    n2 = p2.GetName();
+                }
+
+                return n1 == n2;
+            }
             return that.GetName() == other.GetName();
         }
 
