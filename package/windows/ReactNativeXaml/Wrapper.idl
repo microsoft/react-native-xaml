@@ -1,0 +1,12 @@
+#include <NamespaceRedirect.h>
+
+namespace ReactNativeXaml
+{
+    [bindable]
+    [default_interface]
+    runtimeclass Wrapper : XAML_NAMESPACE.FrameworkElement
+    {
+        Wrapper();
+        IInspectable WrappedObject;
+    }
+}
