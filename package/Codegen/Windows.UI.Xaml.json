@@ -96,7 +96,7 @@
   },
   "propNameMapping": {
     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
-    "$xaml.Controls.Maps.MapControl.Style": "mapStyle"
+    "$xaml.Controls.Maps.MapControl.Style": "mapStyle",
   },
   "typeMapping": [
     {
@@ -133,6 +133,11 @@
       "name": "$xaml.Media.Geometry",
       "VM": "String",
       "TS": "string"
+    },
+    {
+      "name": "GridLayout",
+      "VM": "Map",
+      "TS": "{ rows: GridLength[], columns: GridLength[] }"
     }
   ]
 }
