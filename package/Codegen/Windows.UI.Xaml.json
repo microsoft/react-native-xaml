@@ -139,6 +139,11 @@
       "name": "$xaml.Media.Geometry",
       "VM": "String",
       "TS": "string"
+    },
+    {
+      "name": "GridLayout",
+      "VM": "Map",
+      "TS": "{ rows: GridLength[], columns: GridLength[] }"
     }
   ]
 }
