@@ -1637,6 +1637,10 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   isTextScaleFactorEnabled?: boolean;
   textDecorations?: Enums.TextDecorations;
   horizontalTextAlignment?: Enums.TextAlignment;
+  /**
+  * 
+  */
+  capitals?: Enums.FontCapitals; // synthetic property
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1815,6 +1819,10 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
   isTextScaleFactorEnabled?: boolean;
   textDecorations?: Enums.TextDecorations;
   horizontalTextAlignment?: Enums.TextAlignment;
+  /**
+  * 
+  */
+  capitals?: Enums.FontCapitals; // synthetic property
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;

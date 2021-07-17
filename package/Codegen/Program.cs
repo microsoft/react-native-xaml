@@ -78,15 +78,39 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("syntheticProps").EnumerateArray())
             {
-                var sp = new SyntheticProperty
+                var declaringTypes = entry.GetProperty("declaringType");
+                string name = entry.GetProperty("name").GetString();
+                MrType propertyType = entry.TryGetProperty("propertyType", out var propType) ? context.GetType(GetTypeNameFromJson(propType)) : null;
+                string fakePropertyType = entry.TryGetProperty("fakePropertyType", out var fakePropType) ? fakePropType.GetString() : null;
+                string comment = entry.TryGetProperty("comment", out var commentElement) ? commentElement.GetString() : "";
+                if (declaringTypes.ValueKind == JsonValueKind.Array)
                 {
-                    Name = entry.GetProperty("name").GetString(),
-                    DeclaringType = context.GetType(GetTypeNameFromJson(entry.GetProperty("declaringType"))),
-                    PropertyType = entry.TryGetProperty("propertyType", out var propType) ? context.GetType(propType.GetString()) : null,
-                    FakePropertyType = entry.TryGetProperty("fakePropertyType", out var fakePropType) ? fakePropType.GetString() : null,
-                    Comment = entry.GetProperty("comment").GetString()
-                };
-                syntheticProps.Add(sp);
+                    foreach (var declaringType in declaringTypes.EnumerateArray())
+                    {
+                        var sp = new SyntheticProperty
+                        {
+                            Name = name,
+                            DeclaringType = context.GetType(GetTypeNameFromJson(declaringType)),
+                            PropertyType = propertyType,
+                            FakePropertyType = fakePropertyType,
+                            Comment = comment,
+                        };
+                        syntheticProps.Add(sp);
+                    }
+                }
+                else
+                {
+
+                    var sp = new SyntheticProperty
+                    {
+                        Name = name,
+                        DeclaringType = context.GetType(GetTypeNameFromJson(declaringTypes)),
+                        PropertyType = propertyType,
+                        FakePropertyType = fakePropertyType,
+                        Comment = comment,
+                    };
+                    syntheticProps.Add(sp);
+                }
             }
 
             foreach (var entry in Config.RootElement.GetProperty("typeMapping").EnumerateArray())
