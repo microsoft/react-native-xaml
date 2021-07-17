@@ -1073,6 +1073,16 @@ export enum FillRule {
   Nonzero = 1,
 }
 
+export enum FontCapitals {
+  Normal = 0,
+  AllSmallCaps = 1,
+  SmallCaps = 2,
+  AllPetiteCaps = 3,
+  PetiteCaps = 4,
+  Unicase = 5,
+  Titling = 6,
+}
+
 
 export enum AppBarButtonPriority {
   Primary = 0,
