@@ -96,9 +96,15 @@
   },
   "propNameMapping": {
     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
-    "$xaml.Controls.Maps.MapControl.Style": "mapStyle"
+    "$xaml.Controls.Maps.MapControl.Style": "mapStyle",
+    "$xaml.FrameworkElement.Style": "styleKey",
   },
   "typeMapping": [
+    {
+      "name": "$xaml.Style",
+      "VM": "String",
+      "TS": "string"
+    },
     {
       "name": "$xaml.Media.Brush",
       "VM": "Color",
@@ -133,6 +139,11 @@
       "name": "$xaml.Media.Geometry",
       "VM": "String",
       "TS": "string"
+    },
+    {
+      "name": "GridLayout",
+      "VM": "Map",
+      "TS": "{ rows: GridLength[], columns: GridLength[] }"
     }
   ]
 }

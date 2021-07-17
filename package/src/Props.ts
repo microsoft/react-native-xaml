@@ -106,6 +106,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
   width?: number;
   verticalAlignment?: Enums.VerticalAlignment;
   tag?: object;
+  styleKey?: string;
   name?: string;
   minWidth?: number;
   minHeight?: number;
@@ -249,6 +250,7 @@ export interface NativeAppBarToggleButtonProps extends NativeToggleButtonProps {
 export interface NativeItemsControlProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.ItemsControl'|'Windows.UI.Xaml.Controls.AutoSuggestBox'|'Windows.UI.Xaml.Controls.ComboBox'|'Windows.UI.Xaml.Controls.CommandBarOverflowPresenter'|'Windows.UI.Xaml.Controls.FlipView'|'Windows.UI.Xaml.Controls.GridView'|'Windows.UI.Xaml.Controls.ListBox'|'Windows.UI.Xaml.Controls.ListView'|'Windows.UI.Xaml.Controls.MenuFlyoutPresenter'|'Windows.UI.Xaml.Controls.NavigationViewList'|'Windows.UI.Xaml.Controls.Pivot'|'Windows.UI.Xaml.Controls.TreeViewList';
   itemsSource?: object;
+  itemContainerStyle?: string;
   displayMemberPath?: string;
 }
 
@@ -257,6 +259,7 @@ export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
   type: 'Windows.UI.Xaml.Controls.AutoSuggestBox';
   updateTextOnSelect?: boolean;
   textMemberPath?: string;
+  textBoxStyle?: string;
   text?: string;
   placeholderText?: string;
   maxSuggestionListHeight?: number;
@@ -307,6 +310,7 @@ export interface NativeCalendarDatePickerProps extends NativeControlProps {
   displayMode?: Enums.CalendarViewDisplayMode;
   dayOfWeekFormat?: string;
   dateFormat?: string;
+  calendarViewStyle?: string;
   calendarIdentifier?: string;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   description?: object;
@@ -350,6 +354,7 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   todayForeground?: ColorValue;
   todayFontWeight?: number;
   selectionMode?: Enums.CalendarViewSelectionMode;
+  calendarViewDayItemStyle?: string;
   selectedHoverBorderBrush?: ColorValue;
   selectedForeground?: ColorValue;
   selectedBorderBrush?: ColorValue;
@@ -442,6 +447,7 @@ export interface NativeComboBoxProps extends NativeSelectorProps {
   isTextSearchEnabled?: boolean;
   selectionChangedTrigger?: Enums.ComboBoxSelectionChangedTrigger;
   placeholderForeground?: ColorValue;
+  textBoxStyle?: string;
   text?: string;
   description?: object;
   onDropDownClosed?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -463,6 +469,7 @@ export interface NativeComboBoxItemProps extends NativeSelectorItemProps {
 
 export interface NativeCommandBarProps extends NativeAppBarProps {
   type: 'Windows.UI.Xaml.Controls.CommandBar'|'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
+  commandBarOverflowPresenterStyle?: string;
   overflowButtonVisibility?: Enums.CommandBarOverflowButtonVisibility;
   isDynamicOverflowEnabled?: boolean;
   defaultLabelPosition?: Enums.CommandBarDefaultLabelPosition;
@@ -508,8 +515,11 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   isSecondaryButtonEnabled?: boolean;
   isPrimaryButtonEnabled?: boolean;
   fullSizeDesired?: boolean;
+  secondaryButtonStyle?: string;
+  primaryButtonStyle?: string;
   defaultButton?: Enums.ContentDialogButton;
   closeButtonText?: string;
+  closeButtonStyle?: string;
   closeButtonCommandParameter?: object;
   /**
   * Whether the content dialog should be open, and how.
@@ -611,6 +621,7 @@ export interface NativeFlipViewItemProps extends NativeSelectorItemProps {
 
 export interface NativeFlyoutProps extends NativeFlyoutBaseProps {
   type: 'Windows.UI.Xaml.Controls.Flyout';
+  flyoutPresenterStyle?: string;
 }
 
 
@@ -1095,6 +1106,7 @@ export interface NativeMenuBarItemProps extends NativeControlProps {
 
 export interface NativeMenuFlyoutProps extends NativeFlyoutBaseProps {
   type: 'Windows.UI.Xaml.Controls.MenuFlyout'|'Windows.UI.Xaml.Controls.MenuBarItemFlyout';
+  menuFlyoutPresenterStyle?: string;
 }
 
 
@@ -1136,6 +1148,7 @@ export interface NativeMenuFlyoutSubItemProps extends NativeMenuFlyoutItemBasePr
 
 export interface NativeNavigationViewProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.NavigationView';
+  menuItemContainerStyle?: string;
   isSettingsVisible?: boolean;
   isPaneToggleButtonVisible?: boolean;
   isPaneOpen?: boolean;
@@ -1147,6 +1160,7 @@ export interface NativeNavigationViewProps extends NativeContentControlProps {
   openPaneLength?: number;
   alwaysShowHeader?: boolean;
   selectedItem?: object;
+  paneToggleButtonStyle?: string;
   paneTitle?: string;
   isBackEnabled?: boolean;
   isBackButtonVisible?: Enums.NavigationViewBackButtonVisible;
@@ -1926,6 +1940,7 @@ export interface NativeTreeViewProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.TreeView';
   selectionMode?: Enums.TreeViewSelectionMode;
   itemsSource?: object;
+  itemContainerStyle?: string;
   canReorderItems?: boolean;
   canDragItems?: boolean;
   onCollapsed?: (event: NativeSyntheticEvent<undefined>) => void;
