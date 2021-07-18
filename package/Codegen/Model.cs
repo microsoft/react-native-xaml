@@ -42,13 +42,13 @@ namespace Codegen
 
     public partial class TypeProperties
     {
-        public TypeProperties(IEnumerable<MrProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps)
+        public TypeProperties(IEnumerable<SyntheticProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps)
         {
             Properties = properties;
             FakeProps = fakeProps;
             SyntheticProps = syntheticProps;
         }
-        IEnumerable<MrProperty> Properties { get; set; }
+        IEnumerable<SyntheticProperty> Properties { get; set; }
         IEnumerable<MrProperty> FakeProps { get; set; }
         IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
     }
@@ -66,13 +66,15 @@ namespace Codegen
 
     public partial class TSProps
     {
-        public TSProps(IEnumerable<MrType> types, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps, IEnumerable<SyntheticProperty> syntheticEvents)
+        public TSProps(IEnumerable<MrType> types, IEnumerable<SyntheticProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps, IEnumerable<SyntheticProperty> syntheticEvents)
         {
             Types = types;
             FakeProps = fakeProps;
             SyntheticProps = syntheticProps;
             SyntheticEvents = syntheticEvents;
+            Properties = properties;
         }
+        IEnumerable<SyntheticProperty> Properties { get; set; }
         IEnumerable<MrProperty> FakeProps { get; set; }
         IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
         IEnumerable<SyntheticProperty> SyntheticEvents { get; set; }
@@ -85,16 +87,26 @@ namespace Codegen
         IEnumerable<MrType> Types { get; set; }
     }
 
-    public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase>
+    public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase>, IEqualityComparer<SyntheticProperty>
     {
         public bool Equals(MrTypeAndMemberBase that, MrTypeAndMemberBase other)
         {
             return that.GetName() == other.GetName();
         }
 
+        public bool Equals(SyntheticProperty x, SyntheticProperty y)
+        {
+            return x.SimpleName == y.SimpleName;
+        }
+
         public int GetHashCode([DisallowNull] MrTypeAndMemberBase obj)
         {
             return obj.GetName().GetHashCode();
+        }
+
+        public int GetHashCode([DisallowNull] SyntheticProperty obj)
+        {
+            return obj.SimpleName.GetHashCode();
         }
     }
 
