@@ -41,21 +41,6 @@ namespace Codegen
             return ToJsName(prop.SimpleNameForJs);
         }
 
-        public static bool IsDependencyProperty(MrProperty prop)
-        {
-            return prop.GetName().EndsWith("Property") && prop.GetPropertyType().GetName() == "DependencyProperty";
-        }
-
-        public static string ToJsName(SyntheticProperty prop)
-        {
-            if (propNameMap.TryGetValue(prop.Name, out var name)) return name;
-            if (prop.Property != null && IsDependencyProperty(prop.Property))
-            {
-                return ToJsName($"{prop.Property.DeclaringType.GetName()}{prop.SimpleName}");
-            }
-            return ToJsName(prop.SimpleNameForJs);
-        }
-
         public static string ToJsName(string name)
         {
             var specialPrefixes = new string[] { "UI", "XY" };
