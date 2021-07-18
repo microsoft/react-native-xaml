@@ -41,6 +41,21 @@ namespace Codegen
             return ToJsName(prop.SimpleNameForJs);
         }
 
+        public static bool IsDependencyProperty(MrProperty prop)
+        {
+            return prop.GetName().EndsWith("Property") && prop.GetPropertyType().GetName() == "DependencyProperty";
+        }
+
+        public static string ToJsName(SyntheticProperty prop)
+        {
+            if (propNameMap.TryGetValue(prop.Name, out var name)) return name;
+            if (prop.Property != null && IsDependencyProperty(prop.Property))
+            {
+                return ToJsName($"{prop.Property.DeclaringType.GetName()}{prop.SimpleName}");
+            }
+            return ToJsName(prop.SimpleNameForJs);
+        }
+
         public static string ToJsName(string name)
         {
             var specialPrefixes = new string[] { "UI", "XY" };
@@ -151,7 +166,6 @@ namespace Codegen
             if (prop.PropertyType != null) return GetVMPropertyType(prop.PropertyType);
             if (prop.Property != null) return GetVMPropertyType(prop.Property);
 
-            
             var fe = fakeEnums.Where(x => x.Name == prop.FakePropertyType);
             if (fe.Any())
             {
