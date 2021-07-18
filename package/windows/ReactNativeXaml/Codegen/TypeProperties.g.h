@@ -96,7 +96,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
         { MAKE_KEY("calendarItemForeground"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::CalendarItemForegroundProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Media::Brush>, ViewManagerPropertyType::Color },
         { MAKE_KEY("calendarViewDayItemStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarView>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarView::CalendarViewDayItemStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
         { MAKE_KEY("calendarViewStyle"), AsType<winrt::Windows::UI::Xaml::Controls::CalendarDatePicker>,  []() { return winrt::Windows::UI::Xaml::Controls::CalendarDatePicker::CalendarViewStyleProperty(); }, SetPropValue<winrt::Windows::UI::Xaml::Style>, ViewManagerPropertyType::String },
-        { MAKE_KEY("canBeScrollAnchor"), AsUnwrappedType<winrt::Windows::UI::Xaml::UIElement>,  []() { return winrt::Windows::UI::Xaml::UIElement::CanBeScrollAnchorProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
+        { MAKE_KEY("canBeScrollAnchor"), AsType<winrt::Windows::UI::Xaml::UIElement>,  []() { return winrt::Windows::UI::Xaml::UIElement::CanBeScrollAnchorProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("canChangeViews"), AsType<winrt::Windows::UI::Xaml::Controls::SemanticZoom>,  []() { return winrt::Windows::UI::Xaml::Controls::SemanticZoom::CanChangeViewsProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("canContentRenderOutsideBounds"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollContentPresenter::CanContentRenderOutsideBoundsProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
         { MAKE_KEY("canContentRenderOutsideBounds"), AsType<winrt::Windows::UI::Xaml::Controls::ScrollViewer>,  []() { return winrt::Windows::UI::Xaml::Controls::ScrollViewer::CanContentRenderOutsideBoundsProperty(); }, SetPropValue<bool>, ViewManagerPropertyType::Boolean },
@@ -1553,7 +1553,6 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
     nativeProps.Insert(winrt::to_hstring("strokeStartLineCap"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("strokeThickness"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("styleKey"), ViewManagerPropertyType::String);
-    nativeProps.Insert(winrt::to_hstring("mapStyle"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("styleSimulations"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("symbol"), ViewManagerPropertyType::Number);
     nativeProps.Insert(winrt::to_hstring("tabFocusNavigation"), ViewManagerPropertyType::Number);
