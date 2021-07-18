@@ -28,7 +28,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 
 /*static*/ const PropInfo xamlPropertyMap[] = {
   <# foreach (var p in Properties) { #>
-      { MAKE_KEY("<#= Util.ToJsName(p) #>"), <#= Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.DeclaringType) #>::<#= p.GetName() #>Property(); }, SetPropValue<<#= Util.GetCppWinRTType(p.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p)  #> },
+      { MAKE_KEY("<#= Util.ToJsName(p) #>"), <#= (Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") || p.DeclaringType.GetName() == "UIElement")  ? "AsType" : "AsUnwrappedType" #><<#= Util.GetCppWinRTType(p.DeclaringType) #>>,  []() { return <#= Util.GetCppWinRTType(p.Property != null ? p.Property.DeclaringType : p.DeclaringType) #>::<#= p.SimpleName #>Property(); }, SetPropValue<<#= p.PropertyType != null ? Util.GetCppWinRTType(p.PropertyType) : Util.GetCppWinRTType(p.Property.GetPropertyType()) #>>, ViewManagerPropertyType::<#= Util.GetVMPropertyType(p)  #> },
   <# } #>
 };
 
@@ -52,7 +52,7 @@ void Set<#= p.Name #>_<#= p.DeclaringType.GetName() #>(const xaml::DependencyObj
 
 #ifdef USE_CRC32
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
-<# foreach (MiddleweightReflection.MrProperty p in Properties.Distinct(new Codegen.NameEqualityComparer())) { #>
+<# foreach (var p in Properties.Distinct(new NameEqualityComparer())) { #>
     nativeProps.Insert(winrt::to_hstring("<#= Util.ToJsName(p) #>"), ViewManagerPropertyType::<#= Util.GetVMPropertyType(p)  #>);
 <# } #>
 }

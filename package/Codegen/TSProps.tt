@@ -32,6 +32,9 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
   */
   <#= Util.ToJsName(prop.Name) #>?: <#= Util.GetTypeScriptType(prop) #>; // synthetic property
 <# } 
+  foreach (var attachedDP in Util.AttachedProperties.Where(p => Properties.Any(sp => sp.Property == p && sp.DeclaringType == type))) {#>
+  <#= Util.ToJsName(attachedDP) #>?: <#= Util.GetTypeScriptType(attachedDP) #>; // attached property
+<# }
   foreach (var evt in type.GetEvents()) { #>
   on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
 <# } 

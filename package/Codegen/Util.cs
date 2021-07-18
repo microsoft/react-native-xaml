@@ -10,11 +10,35 @@ namespace Codegen
     {
         internal static Dictionary<string, string> propNameMap = new Dictionary<string, string>();
 
+        public static string GetPropFullName(MrProperty p)
+        {
+            return $"{p.DeclaringType.GetFullName()}.{p.GetName()}";
+        }
+        
         public static string ToJsName(MrProperty prop)
         {
-            var fullName = $"{prop.DeclaringType.GetFullName()}.{prop.GetName()}";
+            if (IsDependencyProperty(prop))
+            {
+                return ToJsName($"{prop.DeclaringType.GetName()}{Util.MinusPropertySuffix(prop.GetName())}");
+            }
+            var fullName = GetPropFullName(prop);
             if (propNameMap.ContainsKey(fullName)) { return propNameMap[fullName]; }
             return ToJsName(prop.GetName());
+        }
+
+        public static bool IsDependencyProperty(MrProperty prop)
+        {
+            return prop.GetName().EndsWith("Property") && prop.GetPropertyType().GetName() == "DependencyProperty";
+        }
+
+        public static string ToJsName(SyntheticProperty prop)
+        {
+            if (propNameMap.TryGetValue(prop.Name, out var name)) return name;
+            if (prop.Property != null && IsDependencyProperty(prop.Property))
+            {
+                return ToJsName($"{prop.Property.DeclaringType.GetName()}{prop.SimpleName}");
+            }
+            return ToJsName(prop.SimpleNameForJs);
         }
 
         public static string ToJsName(string name)
@@ -82,6 +106,13 @@ namespace Codegen
             }
             return d;
         }
+
+        public static string MinusPropertySuffix(string v)
+        {
+            return v.Substring(0, v.LastIndexOf("Property"));
+        }
+
+
         public static string GetCppWinRTType(MrType t)
         {
             var primitiveTypes = new Dictionary<string, string>()
@@ -118,6 +149,8 @@ namespace Codegen
         public static ViewManagerPropertyType GetVMPropertyType(SyntheticProperty prop)
         {
             if (prop.PropertyType != null) return GetVMPropertyType(prop.PropertyType);
+            if (prop.Property != null) return GetVMPropertyType(prop.Property);
+
             
             var fe = fakeEnums.Where(x => x.Name == prop.FakePropertyType);
             if (fe.Any())
@@ -141,6 +174,7 @@ namespace Codegen
 
 
         public static Dictionary<string, TypeMapping> TypeMapping { get; set; } = new Dictionary<string, TypeMapping>();
+        public static List<MrProperty> AttachedProperties { get; internal set; }
 
         private static ViewManagerPropertyType GetVMPropertyType(MrType propType)
         {
@@ -206,6 +240,12 @@ namespace Codegen
 
         public static string GetTypeScriptType(MrProperty prop)
         {
+            if (IsDependencyProperty(prop))
+            {
+                var getterName = $"Get{MinusPropertySuffix(prop.GetName())}";
+                prop.DeclaringType.GetMethodsAndConstructors(out var methods, out var ctors);
+                return GetTypeScriptType(methods.First(m => m.GetName() == getterName).ReturnType);
+            }
             var tsTypeFromPropType = GetTypeScriptType(prop.GetPropertyType());
 
             if (tsTypeFromPropType == "object" && IsPropertyContentProperty(prop))
