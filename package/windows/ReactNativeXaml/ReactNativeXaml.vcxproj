@@ -157,6 +157,10 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Serialize.h" />
     <ClInclude Include="Styling.h" />
+    <ClInclude Include="Wrapper.h">
+      <DependentUpon>Wrapper.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="XamlMetadata.h" />
     <ClInclude Include="XamlObject.h" />
     <ClInclude Include="XamlViewManager.h" />
@@ -172,12 +176,19 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="Serialize.cpp" />
     <ClCompile Include="Styling.cpp" />
+    <ClCompile Include="Wrapper.cpp">
+      <DependentUpon>Wrapper.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="XamlMetadata.cpp" />
     <ClCompile Include="XamlObject.cpp" />
     <ClCompile Include="XamlViewManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="ReactPackageProvider.idl" />
+    <Midl Include="Wrapper.idl">
+      <SubType>Designer</SubType>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\README.md" />

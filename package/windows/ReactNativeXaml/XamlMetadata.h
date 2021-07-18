@@ -13,6 +13,8 @@
 #include "Crc32Str.h"
 #include <JSI/JsiApiContext.h>
 #include "XamlObject.h"
+#include <Wrapper.h>
+
 
 using namespace xaml;
 using namespace xaml::Controls;
@@ -100,9 +102,6 @@ namespace winrt::Microsoft::ReactNative {
     value = Uri{ winrt::to_hstring(jsValue.AsString()) };
   }
 }
-
-
-using Wrapper = winrt::Windows::UI::Xaml::Controls::ContentControl;
 
 enum class XamlPropType {
   Boolean,
@@ -204,8 +203,8 @@ struct PropInfo {
 
 template<typename T>
 T Unwrap(const winrt::Windows::Foundation::IInspectable& i) {
-  if (auto contentControl = i.try_as<Wrapper>()) {
-    return contentControl.Content().try_as<T>();
+  if (auto wrapper = i.try_as<winrt::ReactNativeXaml::Wrapper>()) {
+    return wrapper.WrappedObject().try_as<T>();
   }
   return nullptr;
 }
