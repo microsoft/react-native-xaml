@@ -110,18 +110,6 @@ void SetNavigateUri_Hyperlink(const xaml::DependencyObject& o, const xaml::Depen
   }
 }
 
-void SetGridRow_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  if (auto ui = o.try_as<UIElement>()) {
-    ui.SetValue(Grid::RowProperty(), winrt::box_value(v.AsInt32()));
-  }
-}
-
-void SetGridColumn_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  if (auto ui = o.try_as<UIElement>()) {
-    ui.SetValue(Grid::ColumnProperty(), winrt::box_value(v.AsInt32()));
-  }
-}
-
 GridLength GetGridLength(const winrt::Microsoft::ReactNative::JSValue& v) {
   if (v.Type() == JSValueType::Double || v.Type() == JSValueType::Int64) {
     return GridLengthHelper::FromValueAndType(v.AsDouble(), GridUnitType::Pixel);
@@ -238,7 +226,6 @@ void SetPriority_UIElement(const DependencyObject& u, const xaml::DependencyProp
   const auto priorityValue = v.AsUInt32();
   u.SetValue(GetPriorityProperty(), winrt::box_value(priorityValue));
 }
-
 
 const PropInfo* XamlMetadata::FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size) {
   auto it = std::find_if(map, map + size, [key](const PropInfo& entry) { return Equals(entry.propName, key); });

@@ -87,7 +87,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write("\"), ");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") ? "AsType" : "AsUnwrappedType"));
+            this.Write(this.ToStringHelper.ToStringWithCulture((Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") || p.DeclaringType.GetName() == "UIElement")  ? "AsType" : "AsUnwrappedType"));
             
             #line default
             #line hidden
@@ -101,21 +101,21 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
             this.Write(">,  []() { return ");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.DeclaringType)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.Property != null ? p.Property.DeclaringType : p.DeclaringType)));
             
             #line default
             #line hidden
             this.Write("::");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(p.GetName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(p.SimpleName));
             
             #line default
             #line hidden
             this.Write("Property(); }, SetPropValue<");
             
             #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.GetPropertyType())));
+            this.Write(this.ToStringHelper.ToStringWithCulture(p.PropertyType != null ? Util.GetCppWinRTType(p.PropertyType) : Util.GetCppWinRTType(p.Property.GetPropertyType())));
             
             #line default
             #line hidden
@@ -295,7 +295,7 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
                     "ops) const {\r\n");
             
             #line 55 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeProperties.tt"
- foreach (MiddleweightReflection.MrProperty p in Properties.Distinct(new Codegen.NameEqualityComparer())) { 
+ foreach (var p in Properties.Distinct(new NameEqualityComparer())) { 
             
             #line default
             #line hidden

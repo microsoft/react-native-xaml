@@ -59,6 +59,9 @@ namespace Codegen
             }
             Util.LoadContext = context;
 
+
+
+
             var fakeProps = new List<MrProperty>();
 
             foreach (var entry in Config.RootElement.GetProperty("propNameMapping").EnumerateObject())
@@ -78,15 +81,110 @@ namespace Codegen
 
             foreach (var entry in Config.RootElement.GetProperty("syntheticProps").EnumerateArray())
             {
-                var sp = new SyntheticProperty
+                var declaringTypes = entry.GetProperty("declaringType");
+                string name = entry.GetProperty("name").GetString();
+
+                MrType propertyType = entry.TryGetProperty("propertyType", out var propTypeJson) ? context.GetType(GetTypeNameFromJson(propTypeJson)) : null;
+
+                if (name.IndexOf('.') != -1)
                 {
-                    Name = entry.GetProperty("name").GetString(),
-                    DeclaringType = context.GetType(GetTypeNameFromJson(entry.GetProperty("declaringType"))),
-                    PropertyType = entry.TryGetProperty("propertyType", out var propType) ? context.GetType(propType.GetString()) : null,
-                    FakePropertyType = entry.TryGetProperty("fakePropertyType", out var fakePropType) ? fakePropType.GetString() : null,
-                    Comment = entry.GetProperty("comment").GetString()
-                };
-                syntheticProps.Add(sp);
+                    var propTypeName = name.Substring(0, name.LastIndexOf('.'));
+                    var propName = name.Substring(name.LastIndexOf('.') + 1);
+                    var propType = context.GetType(propTypeName);
+                    var prop = propType.GetProperties().First(p => p.GetName() == propName);
+                    if (prop.GetPropertyType() != propertyType)
+                    {
+                        throw new ArgumentException($"The property type for {name} was expected to be {prop.GetPropertyType()}, but was specified as {propertyType}");
+                    }
+                }
+                string fakePropertyType = entry.TryGetProperty("fakePropertyType", out var fakePropType) ? fakePropType.GetString() : null;
+                string comment = entry.TryGetProperty("comment", out var commentElement) ? commentElement.GetString() : "";
+                if (declaringTypes.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (var declaringType in declaringTypes.EnumerateArray())
+                    {
+                        var sp = new SyntheticProperty
+                        {
+                            Name = name,
+                            DeclaringType = context.GetType(GetTypeNameFromJson(declaringType)),
+                            PropertyType = propertyType,
+                            FakePropertyType = fakePropertyType,
+                            Comment = comment,
+                        };
+                        syntheticProps.Add(sp);
+                    }
+                }
+                else
+                {
+
+                    var sp = new SyntheticProperty
+                    {
+                        Name = name,
+                        DeclaringType = context.GetType(GetTypeNameFromJson(declaringTypes)),
+                        PropertyType = propertyType,
+                        FakePropertyType = fakePropertyType,
+                        Comment = comment,
+                    };
+                    syntheticProps.Add(sp);
+                }
+            }
+
+            Console.WriteLine("Generating projections for the following WinMD files:");
+            Console.WriteLine($"- {Windows_winmd}");
+            foreach (var path in winmdPaths)
+            {
+                Console.WriteLine($"- {Path.GetFullPath(path)}");
+            }
+            Console.WriteLine();
+
+            var properties = new List<SyntheticProperty>();
+
+            PrintVerbose("Enumerating attached properties");
+            DiscoverAttachedProperties(context, types);
+
+            PrintVerbose($"Parsing configuration from {ConfigFileName}");
+
+            foreach (var entry in Config.RootElement.GetProperty("attachedProps").EnumerateObject()) {
+                var propName = GetTypeNameFromJsonProperty(entry);
+                var attachedDPs = Util.AttachedProperties.Where(p => Util.MinusPropertySuffix(Util.GetPropFullName(p)).StartsWith(propName));
+
+                foreach (var attachedDP in attachedDPs)
+                {
+                    var type = attachedDP.DeclaringType;
+                    var simpleName = attachedDP.GetName().Substring(0, attachedDP.GetName().LastIndexOf("Property"));
+                    type.GetMethodsAndConstructors(out var methods, out var ctors);
+                    var propType = methods.First(m => m.GetName() == $"Get{simpleName}").ReturnType;
+
+                    if (entry.Value.ValueKind == JsonValueKind.Array)
+                    {
+                        foreach (var onTypeEntry in entry.Value.EnumerateArray())
+                        {
+                            var sp = new SyntheticProperty
+                            {
+                                Name = simpleName,
+                                DeclaringType = context.GetType(GetTypeNameFromJson(onTypeEntry)),
+                                PropertyType = propType,
+                                Property = attachedDP,
+                                Comment = $"Attached property: ${propName}",
+                            };
+                            properties.Add(sp);
+                        }
+                    }
+                    else
+                    {
+                        var onType = GetTypeNameFromJson(entry.Value);
+
+                        var sp = new SyntheticProperty
+                        {
+                            Name = simpleName,
+                            DeclaringType = context.GetType(onType),
+                            PropertyType = propType,
+                            Property = attachedDP,
+                            Comment = $"Attached property: {propName}",
+                        };
+                        properties.Add(sp);
+                    }
+                }
             }
 
             foreach (var entry in Config.RootElement.GetProperty("typeMapping").EnumerateArray())
@@ -128,13 +226,6 @@ namespace Codegen
             var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
             var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(PackageRoot, @"src"));
 
-            Console.WriteLine("Generating projections for the following WinMD files:");
-            Console.WriteLine($"- {Windows_winmd}");
-            foreach (var path in winmdPaths)
-            {
-                Console.WriteLine($"- {Path.GetFullPath(path)}");
-            }
-            Console.WriteLine();
 
             PrintVerbose("Filtering types");
             var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
@@ -188,7 +279,6 @@ namespace Codegen
 
 
 
-            var properties = new List<MrProperty>();
             var events = new List<MrEvent>();
 
             var eventArgTypes = new HashSet<MrType>(new NameEqualityComparer());
@@ -198,7 +288,15 @@ namespace Codegen
             {
                 var props = type.GetProperties();
                 var propsToAdd = props.Where(p => Util.ShouldEmitPropertyMetadata(p));
-                properties.AddRange(propsToAdd);
+                foreach (var p in propsToAdd)
+                {
+                    properties.Add(new SyntheticProperty()
+                    {
+                        Name = Util.GetPropFullName(p),
+                        DeclaringType = p.DeclaringType,
+                        Property = p,
+                    });
+                }
 
                 var eventsToAdd = type.GetEvents().Where(e => Util.ShouldEmitEventMetadata(e));
                 foreach (var e in eventsToAdd)
@@ -281,7 +379,7 @@ namespace Codegen
                 Util.fakeEnums.Add(fe);
             }
 
-            var propsGen = new TSProps(xamlTypes, fakeProps, syntheticProps, syntheticEvents).TransformText();
+            var propsGen = new TSProps(xamlTypes, properties, fakeProps, syntheticProps, syntheticEvents).TransformText();
             var typesGen = new TSTypes(xamlTypes).TransformText();
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
@@ -306,6 +404,32 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds} s");
+        }
+
+        private void DiscoverAttachedProperties(MrLoadContext context, IEnumerable<MrType> types)
+        {
+            var attached = new List<MrProperty>();
+            var dpType = context.GetType($"{XamlNames.XamlNamespace}.DependencyProperty");
+            foreach (var type in types)
+            {
+                attached.AddRange(GetAttachedDPCandidates(dpType, type));
+            }
+            Util.AttachedProperties = attached;
+        }
+
+        private static IEnumerable<MrProperty> GetAttachedDPCandidates(MrType dpType, MrType type)
+        {
+            type.GetMethodsAndConstructors(out var methods, out var ctors);
+            return type.GetProperties().Where(prop =>
+            {
+                if (prop.GetName().EndsWith("Property") && prop.GetPropertyType() == dpType)
+                {
+                    var propName = prop.GetName().Substring(0, prop.GetName().LastIndexOf("Property"));
+                    return methods.Any(x => x.GetName() == $"Set{propName}" && x.GetParsedMethodAttributes().IsStatic);
+                }
+
+                return false;
+            });
         }
 
         private static string GetTypeNameFromJsonProperty(JsonProperty entry)
@@ -357,6 +481,15 @@ namespace Codegen
         /// <param name="p1"></param>
         /// <param name="p2"></param>
         /// <returns></returns>
+
+        private static int CompareProps(SyntheticProperty p1, SyntheticProperty p2)
+        {
+            var c = p1.SimpleNameForJs.CompareTo(p2.SimpleNameForJs);
+            if (c != 0) return c;
+            var inheritanceDepthComp = Util.GetTypeInheritanceDepth(p1.DeclaringType).CompareTo(Util.GetTypeInheritanceDepth(p2.DeclaringType));
+            if (inheritanceDepthComp != 0) return inheritanceDepthComp;
+            return p1.DeclaringType.GetName().CompareTo(p2.DeclaringType.GetName());
+        }
 
         private static int CompareProps(MrProperty p1, MrProperty p2)
         {

@@ -9,19 +9,11 @@
     "$xaml.Controls.Primitives.FlyoutBase.IsOpen",
     "$xaml.Documents.Run.Text"
   ],
+  "attachedProps": {
+    "$xaml.Controls.Grid": "$xaml.UIElement",
+    "$xaml.Documents.Typography": [ "$xaml.Controls.TextBlock", "$xaml.Controls.RichTextBlock" ],
+  },
   "syntheticProps": [
-    {
-      "name": "GridRow",
-      "declaringType": "$xaml.UIElement",
-      "propertyType": "System.Int32",
-      "comment": "The row number of this component inside an enclosing Grid."
-    },
-    {
-      "name": "GridColumn",
-      "declaringType": "$xaml.UIElement",
-      "propertyType": "System.Int32",
-      "comment": "The column number of this component inside an enclosing Grid."
-    },
     {
       "name": "GridLayout",
       "declaringType": "$xaml.Controls.Grid",

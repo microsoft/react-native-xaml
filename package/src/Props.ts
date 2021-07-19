@@ -43,14 +43,6 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   keyboardAcceleratorPlacementMode?: Enums.KeyboardAcceleratorPlacementMode;
   canBeScrollAnchor?: boolean;
   /**
-  * The row number of this component inside an enclosing Grid.
-  */
-  gridRow?: number; // synthetic property
-  /**
-  * The column number of this component inside an enclosing Grid.
-  */
-  gridColumn?: number; // synthetic property
-  /**
   * A hint of where this item should be placed within its parent.
   */
   priority?: number; // synthetic property
@@ -58,6 +50,10 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   * An object of key/value pairs used for lightweight styling.
   */
   resources?: object; // synthetic property
+  gridColumn?: number; // attached property
+  gridColumnSpan?: number; // attached property
+  gridRow?: number; // attached property
+  gridRowSpan?: number; // attached property
   onDoubleTapped?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragEnter?: (event: NativeSyntheticEvent<undefined>) => void;
   onDragLeave?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1651,6 +1647,49 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   isTextScaleFactorEnabled?: boolean;
   textDecorations?: Enums.TextDecorations;
   horizontalTextAlignment?: Enums.TextAlignment;
+  typographyAnnotationAlternates?: number; // attached property
+  typographyCapitalSpacing?: boolean; // attached property
+  typographyCapitals?: Enums.FontCapitals; // attached property
+  typographyCaseSensitiveForms?: boolean; // attached property
+  typographyContextualAlternates?: boolean; // attached property
+  typographyContextualLigatures?: boolean; // attached property
+  typographyContextualSwashes?: number; // attached property
+  typographyDiscretionaryLigatures?: boolean; // attached property
+  typographyEastAsianExpertForms?: boolean; // attached property
+  typographyEastAsianLanguage?: Enums.FontEastAsianLanguage; // attached property
+  typographyEastAsianWidths?: Enums.FontEastAsianWidths; // attached property
+  typographyFraction?: Enums.FontFraction; // attached property
+  typographyHistoricalForms?: boolean; // attached property
+  typographyHistoricalLigatures?: boolean; // attached property
+  typographyKerning?: boolean; // attached property
+  typographyMathematicalGreek?: boolean; // attached property
+  typographyNumeralAlignment?: Enums.FontNumeralAlignment; // attached property
+  typographyNumeralStyle?: Enums.FontNumeralStyle; // attached property
+  typographySlashedZero?: boolean; // attached property
+  typographyStandardLigatures?: boolean; // attached property
+  typographyStandardSwashes?: number; // attached property
+  typographyStylisticAlternates?: number; // attached property
+  typographyStylisticSet10?: boolean; // attached property
+  typographyStylisticSet11?: boolean; // attached property
+  typographyStylisticSet12?: boolean; // attached property
+  typographyStylisticSet13?: boolean; // attached property
+  typographyStylisticSet14?: boolean; // attached property
+  typographyStylisticSet15?: boolean; // attached property
+  typographyStylisticSet16?: boolean; // attached property
+  typographyStylisticSet17?: boolean; // attached property
+  typographyStylisticSet18?: boolean; // attached property
+  typographyStylisticSet19?: boolean; // attached property
+  typographyStylisticSet1?: boolean; // attached property
+  typographyStylisticSet20?: boolean; // attached property
+  typographyStylisticSet2?: boolean; // attached property
+  typographyStylisticSet3?: boolean; // attached property
+  typographyStylisticSet4?: boolean; // attached property
+  typographyStylisticSet5?: boolean; // attached property
+  typographyStylisticSet6?: boolean; // attached property
+  typographyStylisticSet7?: boolean; // attached property
+  typographyStylisticSet8?: boolean; // attached property
+  typographyStylisticSet9?: boolean; // attached property
+  typographyVariants?: Enums.FontVariants; // attached property
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -1829,6 +1868,49 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
   isTextScaleFactorEnabled?: boolean;
   textDecorations?: Enums.TextDecorations;
   horizontalTextAlignment?: Enums.TextAlignment;
+  typographyAnnotationAlternates?: number; // attached property
+  typographyCapitalSpacing?: boolean; // attached property
+  typographyCapitals?: Enums.FontCapitals; // attached property
+  typographyCaseSensitiveForms?: boolean; // attached property
+  typographyContextualAlternates?: boolean; // attached property
+  typographyContextualLigatures?: boolean; // attached property
+  typographyContextualSwashes?: number; // attached property
+  typographyDiscretionaryLigatures?: boolean; // attached property
+  typographyEastAsianExpertForms?: boolean; // attached property
+  typographyEastAsianLanguage?: Enums.FontEastAsianLanguage; // attached property
+  typographyEastAsianWidths?: Enums.FontEastAsianWidths; // attached property
+  typographyFraction?: Enums.FontFraction; // attached property
+  typographyHistoricalForms?: boolean; // attached property
+  typographyHistoricalLigatures?: boolean; // attached property
+  typographyKerning?: boolean; // attached property
+  typographyMathematicalGreek?: boolean; // attached property
+  typographyNumeralAlignment?: Enums.FontNumeralAlignment; // attached property
+  typographyNumeralStyle?: Enums.FontNumeralStyle; // attached property
+  typographySlashedZero?: boolean; // attached property
+  typographyStandardLigatures?: boolean; // attached property
+  typographyStandardSwashes?: number; // attached property
+  typographyStylisticAlternates?: number; // attached property
+  typographyStylisticSet10?: boolean; // attached property
+  typographyStylisticSet11?: boolean; // attached property
+  typographyStylisticSet12?: boolean; // attached property
+  typographyStylisticSet13?: boolean; // attached property
+  typographyStylisticSet14?: boolean; // attached property
+  typographyStylisticSet15?: boolean; // attached property
+  typographyStylisticSet16?: boolean; // attached property
+  typographyStylisticSet17?: boolean; // attached property
+  typographyStylisticSet18?: boolean; // attached property
+  typographyStylisticSet19?: boolean; // attached property
+  typographyStylisticSet1?: boolean; // attached property
+  typographyStylisticSet20?: boolean; // attached property
+  typographyStylisticSet2?: boolean; // attached property
+  typographyStylisticSet3?: boolean; // attached property
+  typographyStylisticSet4?: boolean; // attached property
+  typographyStylisticSet5?: boolean; // attached property
+  typographyStylisticSet6?: boolean; // attached property
+  typographyStylisticSet7?: boolean; // attached property
+  typographyStylisticSet8?: boolean; // attached property
+  typographyStylisticSet9?: boolean; // attached property
+  typographyVariants?: Enums.FontVariants; // attached property
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
