@@ -254,19 +254,28 @@ namespace Codegen
             return tsTypeFromPropType;
         }
 
+        public static MrProperty GetContentProperty(MrType type)
+        {
+            var contentPropertyCustomAttribute = type.GetCustomAttributes().FirstOrDefault(ca =>
+            {
+                ca.GetNameAndNamespace(out var name, out var ns);
+                return name == "ContentPropertyAttribute";
+            });
+
+            if (contentPropertyCustomAttribute != null)
+            {
+                contentPropertyCustomAttribute.GetArguments(out var fixedArgs, out var namedArgs);
+                var na = namedArgs.First(n => n.Name == "Name");
+                return type.GetProperties().FirstOrDefault(p => p.GetName() == (string)na.Value);
+            }
+
+            return null;
+        }
+
         static bool IsPropertyContentProperty(MrProperty prop)
         {
-            return prop.DeclaringType.GetCustomAttributes().Any(x =>
-            {
-                x.GetNameAndNamespace(out var name, out var ns);
-                if (name == "ContentPropertyAttribute")
-                {
-                    x.GetArguments(out var fixedArgs, out var namedArgs);
-                    var na = namedArgs.Where(n => n.Name == "Name").First();
-                    return (string)na.Value == prop.GetName();
-                }
-                return false;
-            });
+            // properties obtained via GetContentProperty might not be the same instance, but represent the same value, so just compare the name.
+            return prop.GetName() == GetContentProperty(prop.DeclaringType)?.GetName();
         }
 
         private static string GetTypeScriptType(MrType propType)
@@ -348,13 +357,17 @@ namespace Codegen
         {
             if (IsReservedName(p)) return false;
             if (p.Setter == null) return false;
-            bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
+            bool isStatic = p.Setter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
             if (!isStatic)
             {
                 var staticDPName = p.GetName() + "Property";
-                var staticDP = p.DeclaringType.GetProperties().Where(staticProp => !staticProp.Getter.MethodSignature.Header.IsInstance && (staticProp.GetName() == staticDPName));
+                var staticDP = p.DeclaringType.GetProperties().Where(
+                    staticProp => staticProp.Getter != null &&
+                        !staticProp.Getter.MethodSignature.Header.IsInstance && 
+                        (staticProp.GetName() == staticDPName));
                 System.Diagnostics.Debug.Assert(staticDP.Count() <= 1);
-                return staticDP.Count() == 1 && Util.GetVMPropertyType(p.GetPropertyType()) != ViewManagerPropertyType.Unknown;
+                return staticDP.Count() == 1 && 
+                    Util.GetVMPropertyType(p.GetPropertyType()) != ViewManagerPropertyType.Unknown;
             }
             return false;
         }

@@ -6,14 +6,27 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Text.Json;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace Codegen
 {
 
+    static class Extensions
+    {
+        public static void AddToListDictionary<Key, Value>(this IDictionary<Key, List<Value>> map, Key key, Value value)
+        {
+            if (!map.ContainsKey(key))
+            {
+                map[key] = new List<Value>();
+            }
+            map[key].Add(value);
+        }
+    }
     class Program
     {
         const string Windows_winmd = @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
-
+        private const string IListName = "System.Collections.Generic.IList`1";
         JsonDocument Config;
         public string ConfigFileName
         {
@@ -389,6 +402,8 @@ namespace Codegen
             var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
 
+            DiscoverChildParentRelationships(context, types, creatableTypes);
+
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))
             {
@@ -404,6 +419,126 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds} s");
+        }
+
+        [DebuggerDisplay("{Property.GetName()} ({ChildType.GetName()})")]
+        public class ChildParentRelationship
+        {
+            public MrType ChildType { get; set; }
+            public MrProperty Property { get; set; }
+            public bool IsCollection { get; set; }
+        }
+
+        private ChildParentRelationship GetChildRelationship(MrLoadContext context, MrProperty property)
+        {
+            var type = property.GetPropertyType();
+            var isCollection = false;
+            MrType childType = type;
+            var listInterface = type.GetInterfaces().Where(iface => iface.GetFullName() == IListName);
+            if (listInterface.Any())
+            {
+                isCollection = true;
+                childType = listInterface.First().GetGenericArguments().First();
+            }
+            else if 
+            else
+            {
+                switch (type.GetName())
+                {
+                    case $"{XamlNames.XamlNamespace}.UIElementCollection":
+                        isCollection = true;
+                        childType = context.GetType($"{XamlNames.XamlNamespace}.UIElement");
+                        break;
+                }
+            }
+            return new ChildParentRelationship()
+            {
+                ChildType = childType,
+                IsCollection = isCollection,
+                Property = property,
+            };
+        }
+
+        public class MrTypeKeyJsonConverter : JsonConverter<Dictionary<MrType, List<ChildParentRelationship>>>
+        {
+            public override Dictionary<MrType, List<ChildParentRelationship>> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Write(Utf8JsonWriter writer, Dictionary<MrType, List<ChildParentRelationship>> value, JsonSerializerOptions options)
+            {
+                writer.WriteStartObject();
+                foreach (var entry in value)
+                {
+                    writer.WritePropertyName(entry.Key.GetFullName());
+                    JsonSerializer.Serialize(entry.Value, options);
+                }
+                writer.WriteEndObject();
+            }
+        }
+        public class MrTypeAndMemberBaseJsonConverter : JsonConverter<MrTypeAndMemberBase>
+        {
+            public override MrTypeAndMemberBase Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override void Write(Utf8JsonWriter writer, MrTypeAndMemberBase value, JsonSerializerOptions options)
+            {
+                writer.WriteStringValue(value.GetName());
+            }
+        }
+
+        private bool IsExclusiveInterface(MrType type)
+        {
+            var exclTo = type.GetCustomAttributes().FirstOrDefault(ca =>
+            {
+                ca.GetNameAndNamespace(out var name, out var ns);
+                return name == "ExclusiveToAttribute";
+            });
+
+            return exclTo != null;
+        }
+        private void DiscoverChildParentRelationships(MrLoadContext context, IEnumerable<MrType> allTypes, IEnumerable<MrType> creatableTypes)
+        {
+            PrintVerbose("Discovering parent-child relationships");
+            var relationship = new Dictionary<MrType, List<ChildParentRelationship>>();
+            foreach (var type in allTypes.Where(t => 
+                t.GetNamespace().StartsWith(XamlNames.XamlNamespace) &&
+                (t.IsClass || (t.IsInterface && !IsExclusiveInterface(t)))
+                ))
+            {
+                var contentProperty = Util.GetContentProperty(type);
+                if (contentProperty != null)
+                {
+                    relationship.AddToListDictionary(type, GetChildRelationship(context, contentProperty));
+                }
+                var props = type.GetProperties().Where(p =>
+                    p.GetName() != contentProperty?.GetName() &&
+                    ((p.Setter != null &&
+                    !p.Setter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static)) || 
+                    ((p.Getter != null &&
+                    !p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static)
+                    )
+                )));
+                foreach (var prop in props)
+                {
+                    var typeCode = prop.GetPropertyType().TypeCode;
+                    if (typeCode != 0 && typeCode != System.Reflection.Metadata.PrimitiveTypeCode.Object || prop.GetPropertyType().IsEnum)
+                    {
+                        continue;
+                    }
+                    relationship.AddToListDictionary(type, GetChildRelationship(context, prop));
+                }
+
+            }
+            //var s = JsonSerializer.Serialize(relationship, new JsonSerializerOptions() { 
+            //    Converters = { 
+            //        new MrTypeAndMemberBaseJsonConverter(),
+            //        new MrTypeKeyJsonConverter(),
+            //    } 
+            //} );
         }
 
         private void DiscoverAttachedProperties(MrLoadContext context, IEnumerable<MrType> types)
@@ -424,7 +559,7 @@ namespace Codegen
             {
                 if (prop.GetName().EndsWith("Property") && prop.GetPropertyType() == dpType)
                 {
-                    var propName = prop.GetName().Substring(0, prop.GetName().LastIndexOf("Property"));
+                    var propName = Util.MinusPropertySuffix(prop.GetName());
                     return methods.Any(x => x.GetName() == $"Set{propName}" && x.GetParsedMethodAttributes().IsStatic);
                 }
 
@@ -530,29 +665,6 @@ namespace Codegen
                 Console.WriteLine($" Writing {path}");
                 File.WriteAllText(path, newContent);
             }
-        }
-
-        private static uint HashName(string input)
-        {
-            var accum = 5381u;
-            for (var i = input.Length - 1; i >= 0; i--)
-            {
-                var c = (uint)input[i];
-                if (i == input.Length - 1)
-                {
-                    accum += c;
-                }
-                else
-                {
-                    accum = c + 33 * accum;
-                }
-            }
-            return accum;
-        }
-
-        private static uint GetPropertySortKey(MrProperty p1)
-        {
-            return HashName(p1.GetName());
         }
 
         private List<string> winmdPaths { get; } = new List<string>();
