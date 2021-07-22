@@ -7,6 +7,7 @@
 #include <winrt/Windows.UI.Xaml.Core.Direct.h>
 #include <UI.Xaml.Input.h>
 #include <UI.Xaml.Documents.h>
+#include <cdebug.h>
 
 using namespace winrt;
 using namespace Microsoft::ReactNative;
@@ -80,6 +81,8 @@ namespace winrt::ReactNativeXaml {
         }
       }
     }
+
+    cdebug << "[react-native-xaml] Unhandled call to UpdateProperties with view: " << cn << "\n";
   }
 
   // IViewManagerWithExportedEventTypeConstants
@@ -112,6 +115,9 @@ namespace winrt::ReactNativeXaml {
         // Execute command
       }
     }
+
+    auto viewType = get_class_name(view);
+    cdebug << "[react-native-xaml] Unhandled call to DispatchCommand with view: " << viewType << "\n";
   }
 
   // IViewManagerWithReactContext
@@ -280,6 +286,10 @@ namespace winrt::ReactNativeXaml {
     else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().Clear();
     }
+
+    auto parentType = get_class_name(e);
+    cdebug << "[react-native-xaml] Unhandled call to RemoveAllChildren with parent: " << parentType
+           << "\n";
   }
 
   void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
@@ -298,6 +308,10 @@ namespace winrt::ReactNativeXaml {
         return border.Child(nullptr);
       }
     }
+
+    auto parentType = get_class_name(e);
+    cdebug << "[react-native-xaml] Unhandled call to RemoveChildAt with parent: " << parentType
+           << ", index: " << index << "\n";
   }
 
   void XamlViewManager::ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {
