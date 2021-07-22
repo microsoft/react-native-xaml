@@ -1,6 +1,6 @@
 #include <pch.h>
 #include "Styling.h"
-
+#include <UI.Xaml.Media.h>
 /// from RNW ValueUtils.cpp
 #pragma region Copied from RNW ValueUtils.cpp
 namespace ColorUtils {

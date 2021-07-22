@@ -440,7 +440,11 @@ namespace Codegen
                 isCollection = true;
                 childType = listInterface.First().GetGenericArguments().First();
             }
-            else if 
+            else if (type.GetFullName() == IListName)
+            {
+                isCollection = true;
+                childType = type.GetGenericArguments().First();
+            }
             else
             {
                 switch (type.GetName())
