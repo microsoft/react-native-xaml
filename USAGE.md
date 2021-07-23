@@ -181,6 +181,43 @@ const [showState, setShowState] = useState(ContentDialogState.Hidden);
   }} />
 ```
 
+## SplitView
+
+```jsx
+  const [isOpen, setIsOpen] = useState(false);
+// ...
+<SplitView
+  isPaneOpen={isOpen}
+  onPaneClosed={() => {
+    setIsOpen(false);
+  }}
+  width={800}
+  height={300}
+  paneBackground="red"
+  panePlacement={SplitViewPanePlacement.Left}>
+  <TextBlock
+    text="this is in the pane"
+    priority={SplitViewPriority.Pane}
+    foreground="white"
+  />
+  <Grid
+    background="green"
+    priority={SplitViewPriority.Content}
+    gridLayout={{rows: [200], columns: [200]}}>
+    <TextBlock text="this is in the content" foreground="white" />
+  </Grid>
+</SplitView>
+
+
+  <Button
+    foreground="#992222"
+    onTapped={a => {
+      setIsOpen(!isOpen);
+    }}
+    content="button"
+  />
+```
+
 ## Path & vector graphics
 
 ```jsx

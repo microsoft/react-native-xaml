@@ -19,6 +19,6 @@
 #include <winrt/Windows.UI.Xaml.h>
 
 #include <winrt/Microsoft.ReactNative.h>
-
+#include <winrt/Microsoft.UI.Xaml.Controls.h>
 using namespace winrt::Windows::Foundation;
 #include "CppWinRTIncludes.h"

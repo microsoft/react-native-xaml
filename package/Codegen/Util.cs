@@ -459,7 +459,10 @@ namespace Codegen
                     {
                         derivedClasses[baseType.GetFullName()] = new List<MrType>();
                     }
-                    derivedClasses[baseType.GetFullName()].Add(type);
+                    if (!derivedClasses[baseType.GetFullName()].Contains(type))
+                    {
+                        derivedClasses[baseType.GetFullName()].Add(type);
+                    }
                 }
             }
             return derivedClasses;

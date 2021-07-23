@@ -55,6 +55,10 @@ import {
   HorizontalAlignment,
   Visibility,
   WinUIEnums,
+  SplitView,
+  SplitViewPriority,
+  SplitViewPanePlacement,
+  Grid,
 } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
@@ -117,6 +121,28 @@ const App: () => Node = () => {
             Welcome to React Native XAML
           </Text>
         </View>
+        <SplitView
+          isPaneOpen={isOpen}
+          onPaneClosed={() => {
+            setIsOpen(false);
+          }}
+          width={800}
+          height={300}
+          paneBackground="red"
+          panePlacement={SplitViewPanePlacement.Left}>
+          <TextBlock
+            text="this is in the pane"
+            priority={SplitViewPriority.Pane}
+            foreground="white"
+          />
+          <Grid
+            background="green"
+            priority={SplitViewPriority.Content}
+            gridLayout={{rows: [200], columns: [200]}}>
+            <TextBlock text="this is in the content" foreground="white" />
+          </Grid>
+        </SplitView>
+
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -124,7 +150,7 @@ const App: () => Node = () => {
           <Button
             foreground="#992222"
             onTapped={a => {
-              setOption(JSON.stringify(a.nativeEvent));
+              setIsOpen(!isOpen);
             }}
             content={{string: 'button'}}
           />
