@@ -5,7 +5,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 import type {
 <# foreach (var type in Types.Where(t => Util.HasCtor(t))) { #>
-    Native<#= type.GetName() #>Props,
+    Native<#= Util.ToJsName(type) #>Props,
 <# } #>
 } from './Props';
 import React from 'react';
@@ -13,9 +13,9 @@ import { NativeXamlControl } from './NativeXamlControl';
 
 
 <# foreach (var type in Types.Where(t => Util.HasCtor(t))) { #>
-export type <#= type.GetName() #>Props = Omit<Native<#= type.GetName()#>Props, 'type'>;
+export type <#= Util.ToJsName(type) #>Props = Omit<Native<#= Util.ToJsName(type) #>Props, 'type'>;
 
-export const <#= type.GetName() #>: React.FC<<#= type.GetName() #>Props> = (props: <#= type.GetName() #>Props) => {
+export const <#= Util.ToJsName(type) #>: React.FC<<#= Util.ToJsName(type) #>Props> = (props: <#= Util.ToJsName(type) #>Props) => {
     return (
         <NativeXamlControl type="<#= type.GetFullName() #>" {...props} />
     );

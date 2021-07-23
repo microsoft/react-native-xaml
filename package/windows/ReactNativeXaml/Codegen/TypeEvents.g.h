@@ -8,6 +8,8 @@
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
+#include <winrt/Microsoft.UI.Xaml.Controls.h>
+#include <winrt/Microsoft.UI.Xaml.Controls.Primitives.h>
 #include <winrt/Windows.UI.Xaml.h>
 #include <winrt/Windows.UI.Xaml.Controls.h>
 #include <winrt/Windows.UI.Xaml.Controls.Primitives.h>
@@ -52,6 +54,656 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
 };
 
 /*static*/ const EventInfo EventInfo::xamlEventMap[] = {
+  {"ItemClicked", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::BreadcrumbBar>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ItemClicked([eai] (const winrt::Microsoft::UI::Xaml::Controls::BreadcrumbBar& sender, const winrt::Microsoft::UI::Xaml::Controls::BreadcrumbBarItemClickedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ItemClicked(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ColorChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::ColorPicker>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ColorChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::ColorPicker& sender, const winrt::Microsoft::UI::Xaml::Controls::ColorChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ColorChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Collapsed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::Expander>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Collapsed([eai] (const winrt::Microsoft::UI::Xaml::Controls::Expander& sender, const winrt::Microsoft::UI::Xaml::Controls::ExpanderCollapsedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Collapsed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Expanding", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::Expander>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Expanding([eai] (const winrt::Microsoft::UI::Xaml::Controls::Expander& sender, const winrt::Microsoft::UI::Xaml::Controls::ExpanderExpandingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Expanding(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CloseButtonClick", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::InfoBar>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CloseButtonClick([eai] (const winrt::Microsoft::UI::Xaml::Controls::InfoBar& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CloseButtonClick(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::InfoBar>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Closed([eai] (const winrt::Microsoft::UI::Xaml::Controls::InfoBar& sender, const winrt::Microsoft::UI::Xaml::Controls::InfoBarClosedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Closed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Closing", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::InfoBar>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Closing([eai] (const winrt::Microsoft::UI::Xaml::Controls::InfoBar& sender, const winrt::Microsoft::UI::Xaml::Controls::InfoBarClosingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Closing(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ElementClearing", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ElementClearing([eai] (const winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater& sender, const winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementClearingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ElementClearing(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ElementIndexChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ElementIndexChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater& sender, const winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementIndexChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ElementIndexChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ElementPrepared", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ElementPrepared([eai] (const winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater& sender, const winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementPreparedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ElementPrepared(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"DisplayModeChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.DisplayModeChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewDisplayModeChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.DisplayModeChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ItemInvoked", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ItemInvoked([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ItemInvoked(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.SelectionChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewSelectionChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.SelectionChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"BackRequested", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.BackRequested([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.BackRequested(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Collapsed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Collapsed([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemCollapsedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Collapsed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Expanding", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Expanding([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemExpandingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Expanding(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"PaneClosed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.PaneClosed([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.PaneClosed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"PaneClosing", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.PaneClosing([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Microsoft::UI::Xaml::Controls::NavigationViewPaneClosingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.PaneClosing(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"PaneOpened", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.PaneOpened([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.PaneOpened(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"PaneOpening", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NavigationView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.PaneOpening([eai] (const winrt::Microsoft::UI::Xaml::Controls::NavigationView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.PaneOpening(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ValueChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::NumberBox>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ValueChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::NumberBox& sender, const winrt::Microsoft::UI::Xaml::Controls::NumberBoxValueChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ValueChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"SelectedIndexChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::PipsPager>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.SelectedIndexChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::PipsPager& sender, const winrt::Microsoft::UI::Xaml::Controls::PipsPagerSelectedIndexChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.SelectedIndexChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ColorChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::Primitives::ColorSpectrum>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ColorChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::Primitives::ColorSpectrum& sender, const winrt::Microsoft::UI::Xaml::Controls::ColorChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ColorChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::RadioButtons>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.SelectionChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ValueChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::RatingControl>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ValueChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::RatingControl& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ValueChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"RefreshRequested", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::RefreshContainer>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.RefreshRequested([eai] (const winrt::Microsoft::UI::Xaml::Controls::RefreshContainer& sender, const winrt::Microsoft::UI::Xaml::Controls::RefreshRequestedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.RefreshRequested(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"RefreshRequested", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::RefreshVisualizer>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.RefreshRequested([eai] (const winrt::Microsoft::UI::Xaml::Controls::RefreshVisualizer& sender, const winrt::Microsoft::UI::Xaml::Controls::RefreshRequestedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.RefreshRequested(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"RefreshStateChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::RefreshVisualizer>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.RefreshStateChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::RefreshVisualizer& sender, const winrt::Microsoft::UI::Xaml::Controls::RefreshStateChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.RefreshStateChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Click", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::SplitButton>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Click([eai] (const winrt::Microsoft::UI::Xaml::Controls::SplitButton& sender, const winrt::Microsoft::UI::Xaml::Controls::SplitButtonClickEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Click(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"AddTabButtonClick", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.AddTabButtonClick([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.AddTabButtonClick(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"SelectionChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.SelectionChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.SelectionChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabCloseRequested", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabCloseRequested([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabView& sender, const winrt::Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabCloseRequested(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabDragCompleted", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabDragCompleted([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabView& sender, const winrt::Microsoft::UI::Xaml::Controls::TabViewTabDragCompletedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabDragCompleted(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabDragStarting", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabDragStarting([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabView& sender, const winrt::Microsoft::UI::Xaml::Controls::TabViewTabDragStartingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabDragStarting(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabDroppedOutside", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabDroppedOutside([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabView& sender, const winrt::Microsoft::UI::Xaml::Controls::TabViewTabDroppedOutsideEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabDroppedOutside(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabItemsChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabItemsChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabView& sender, const winrt::Windows::Foundation::Collections::IVectorChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabItemsChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabStripDragOver", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabStripDragOver([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabStripDragOver(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TabStripDrop", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TabStripDrop([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::UI::Xaml::DragEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TabStripDrop(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CloseRequested", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TabViewItem>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CloseRequested([eai] (const winrt::Microsoft::UI::Xaml::Controls::TabViewItem& sender, const winrt::Microsoft::UI::Xaml::Controls::TabViewTabCloseRequestedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CloseRequested(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ActionButtonClick", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TeachingTip>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ActionButtonClick([eai] (const winrt::Microsoft::UI::Xaml::Controls::TeachingTip& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ActionButtonClick(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CloseButtonClick", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TeachingTip>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CloseButtonClick([eai] (const winrt::Microsoft::UI::Xaml::Controls::TeachingTip& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CloseButtonClick(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Closed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TeachingTip>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Closed([eai] (const winrt::Microsoft::UI::Xaml::Controls::TeachingTip& sender, const winrt::Microsoft::UI::Xaml::Controls::TeachingTipClosedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Closed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Closing", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TeachingTip>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Closing([eai] (const winrt::Microsoft::UI::Xaml::Controls::TeachingTip& sender, const winrt::Microsoft::UI::Xaml::Controls::TeachingTipClosingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Closing(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"IsCheckedChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::ToggleSplitButton>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.IsCheckedChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::ToggleSplitButton& sender, const winrt::Microsoft::UI::Xaml::Controls::ToggleSplitButtonIsCheckedChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.IsCheckedChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Collapsed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Collapsed([eai] (const winrt::Microsoft::UI::Xaml::Controls::TreeView& sender, const winrt::Microsoft::UI::Xaml::Controls::TreeViewCollapsedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Collapsed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"Expanding", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.Expanding([eai] (const winrt::Microsoft::UI::Xaml::Controls::TreeView& sender, const winrt::Microsoft::UI::Xaml::Controls::TreeViewExpandingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.Expanding(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ItemInvoked", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ItemInvoked([eai] (const winrt::Microsoft::UI::Xaml::Controls::TreeView& sender, const winrt::Microsoft::UI::Xaml::Controls::TreeViewItemInvokedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ItemInvoked(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"DragItemsCompleted", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.DragItemsCompleted([eai] (const winrt::Microsoft::UI::Xaml::Controls::TreeView& sender, const winrt::Microsoft::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.DragItemsCompleted(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"DragItemsStarting", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TreeView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.DragItemsStarting([eai] (const winrt::Microsoft::UI::Xaml::Controls::TreeView& sender, const winrt::Microsoft::UI::Xaml::Controls::TreeViewDragItemsStartingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.DragItemsStarting(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ModeChanged", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::TwoPaneView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ModeChanged([eai] (const winrt::Microsoft::UI::Xaml::Controls::TwoPaneView& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ModeChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
   {"DoubleTapped", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
     if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::UIElement>(eai.obj, isWrapped)) {
       if (!token) {
@@ -3695,7 +4347,7 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
   {"ContentDialogClosed", nullptr /* synthetic event */},
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 281);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 331);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

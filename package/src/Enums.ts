@@ -1,3 +1,185 @@
+
+export enum Stretch {
+  None = 0,
+  Fill = 1,
+  Uniform = 2,
+  UniformToFill = 3,
+}
+
+export enum WinUI_ColorSpectrumShape {
+  Box = 0,
+  Ring = 1,
+}
+
+export enum WinUI_ColorSpectrumComponents {
+  HueValue = 0,
+  ValueHue = 1,
+  HueSaturation = 2,
+  SaturationHue = 3,
+  SaturationValue = 4,
+  ValueSaturation = 5,
+}
+
+export enum WinUI_ExpandDirection {
+  Down = 0,
+  Up = 1,
+}
+
+export enum WinUI_InfoBarSeverity {
+  Informational = 0,
+  Success = 1,
+  Warning = 2,
+  Error = 3,
+}
+
+export enum WinUI_NavigationViewShoulderNavigationEnabled {
+  WhenSelectionFollowsFocus = 0,
+  Always = 1,
+  Never = 2,
+}
+
+export enum WinUI_NavigationViewSelectionFollowsFocus {
+  Disabled = 0,
+  Enabled = 1,
+}
+
+export enum WinUI_NavigationViewPaneDisplayMode {
+  Auto = 0,
+  Left = 1,
+  Top = 2,
+  LeftCompact = 3,
+  LeftMinimal = 4,
+}
+
+export enum WinUI_NavigationViewOverflowLabelMode {
+  MoreLabel = 0,
+  NoLabel = 1,
+}
+
+export enum WinUI_NavigationViewBackButtonVisible {
+  Collapsed = 0,
+  Visible = 1,
+  Auto = 2,
+}
+
+export enum WinUI_NumberBoxValidationMode {
+  InvalidInputOverwritten = 0,
+  Disabled = 1,
+}
+
+export enum TextReadingOrder {
+  Default = 0,
+  UseFlowDirection = 0,
+  DetectFromContent = 1,
+}
+
+export enum WinUI_NumberBoxSpinButtonPlacementMode {
+  Hidden = 0,
+  Compact = 1,
+  Inline = 2,
+}
+
+export enum WinUI_ParallaxSourceOffsetKind {
+  Absolute = 0,
+  Relative = 1,
+}
+
+export enum WinUI_PipsPagerButtonVisibility {
+  Visible = 0,
+  VisibleOnPointerOver = 1,
+  Collapsed = 2,
+}
+
+export enum Orientation {
+  Vertical = 0,
+  Horizontal = 1,
+}
+
+export enum WinUI_ColorPickerHsvChannel {
+  Hue = 0,
+  Saturation = 1,
+  Value = 2,
+  Alpha = 3,
+}
+
+export enum WinUI_RefreshPullDirection {
+  LeftToRight = 0,
+  TopToBottom = 1,
+  RightToLeft = 2,
+  BottomToTop = 3,
+}
+
+export enum WinUI_RefreshVisualizerOrientation {
+  Auto = 0,
+  Normal = 1,
+  Rotate90DegreesCounterclockwise = 2,
+  Rotate270DegreesCounterclockwise = 3,
+}
+
+export enum WinUI_TabViewWidthMode {
+  Equal = 0,
+  SizeToContent = 1,
+  Compact = 2,
+}
+
+export enum WinUI_TabViewCloseButtonOverlayMode {
+  Auto = 0,
+  OnPointerOver = 1,
+  Always = 2,
+}
+
+export enum WinUI_TeachingTipTailVisibility {
+  Auto = 0,
+  Visible = 1,
+  Collapsed = 2,
+}
+
+export enum WinUI_TeachingTipPlacementMode {
+  Auto = 0,
+  Top = 1,
+  Bottom = 2,
+  Left = 3,
+  Right = 4,
+  TopRight = 5,
+  TopLeft = 6,
+  BottomRight = 7,
+  BottomLeft = 8,
+  LeftTop = 9,
+  LeftBottom = 10,
+  RightTop = 11,
+  RightBottom = 12,
+  Center = 13,
+}
+
+export enum WinUI_TeachingTipHeroContentPlacementMode {
+  Auto = 0,
+  Top = 1,
+  Bottom = 2,
+}
+
+export enum WinUI_TreeViewSelectionMode {
+  None = 0,
+  Single = 1,
+  Multiple = 2,
+}
+
+export enum WinUI_TwoPaneViewWideModeConfiguration {
+  SinglePane = 0,
+  LeftRight = 1,
+  RightLeft = 2,
+}
+
+export enum WinUI_TwoPaneViewTallModeConfiguration {
+  SinglePane = 0,
+  TopBottom = 1,
+  BottomTop = 2,
+}
+
+export enum WinUI_TwoPaneViewPriority {
+  Pane1 = 0,
+  Pane2 = 1,
+}
+
 export enum ManipulationModes {
   None = 0,
   TranslateX = 1,
@@ -170,13 +352,6 @@ export enum CalendarViewSelectionMode {
   Multiple = 2,
 }
 
-export enum Stretch {
-  None = 0,
-  Fill = 1,
-  Uniform = 2,
-  UniformToFill = 3,
-}
-
 export enum ColorSpectrumShape {
   Box = 0,
   Ring = 1,
@@ -261,11 +436,6 @@ export enum LineStackingStrategy {
   MaxHeight = 0,
   BlockLineHeight = 1,
   BaselineToBaseline = 2,
-}
-
-export enum Orientation {
-  Vertical = 0,
-  Horizontal = 1,
 }
 
 export enum ListViewSelectionMode {
@@ -449,12 +619,6 @@ export enum NavigationViewOverflowLabelMode {
 export enum ParallaxSourceOffsetKind {
   Absolute = 0,
   Relative = 1,
-}
-
-export enum TextReadingOrder {
-  Default = 0,
-  UseFlowDirection = 0,
-  DetectFromContent = 1,
 }
 
 export enum PasswordRevealMode {
@@ -1133,39 +1297,72 @@ export enum FontVariants {
 }
 
 
+
+
 export enum AppBarButtonPriority {
+
   Primary = 0,
+
   Secondary = 1,
+
 }
+
 
 export enum NavigationViewItemPriority {
+
   MenuItem = 0,
+
   FooterMenuItem = 1,
+
 }
+
 
 export enum ContentDialogState {
+
   Popup = 0,
+
   InPlace = 1,
+
   Hidden = 3,
+
 }
+
 
 export enum ContentDialogResult {
+
   None = 0,
+
   Primary = 1,
+
   Secondary = 2,
+
 }
 
+
 export enum FontWeights {
+
   ExtraBlack = 950,
+
   Black = 900,
+
   ExtraBold = 800,
+
   Bold = 700,
+
   SemiBold = 600,
+
   Medium = 500,
+
   Normal = 400,
+
   SemiLight = 350,
+
   Light = 300,
+
   ExtraLight = 200,
+
   Thin = 100,
+
 }
+
 

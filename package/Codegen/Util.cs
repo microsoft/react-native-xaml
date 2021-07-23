@@ -41,19 +41,26 @@ namespace Codegen
             return ToJsName(prop.SimpleNameForJs);
         }
 
-        public static string ToJsName(string name)
+        public static string ToJsName(string name, bool leadingLowercase = true)
         {
             var specialPrefixes = new string[] { "UI", "XY" };
-            foreach (var p in specialPrefixes)
+
+            if (leadingLowercase)
             {
-                if (name.StartsWith(p))
+
+                foreach (var p in specialPrefixes)
                 {
-                    return p.ToLower() + name.Substring(p.Length);
+                    if (name.StartsWith(p))
+                    {
+                        return p.ToLower() + name.Substring(p.Length);
+                    }
                 }
+                return name[0].ToString().ToLower() + name.Substring(1);
             }
-
-
-            return name[0].ToString().ToLower() + name.Substring(1);
+            else
+            {
+                return name;
+            }
         }
 
         public static MrType GetComposableFactoryType(MrType type)
@@ -273,7 +280,7 @@ namespace Codegen
         {
             if (propType.IsEnum)
             {
-                return $"Enums.{propType.GetName()}";
+                return $"Enums.{ToJsName(propType)}";
             }
             else if (propType.IsArray)
             {
@@ -314,7 +321,7 @@ namespace Codegen
                 case "DependencyObject":
                     return "ViewProps";
                 default:
-                    return $"Native{type.GetBaseType().GetName()}Props";
+                    return $"Native{ToJsName(type.GetBaseType())}Props";
             }
         }
 
@@ -376,6 +383,35 @@ namespace Codegen
             }
         }
 
+        private static bool IsInNamespace(MrType type, string NS)
+        {
+            return type.GetNamespace().StartsWith(NS + ".") || type.GetNamespace() == NS;
+        }
+
+
+        public static string ToJsName(MrType type)
+        {
+             string ret = null;
+            if (IsInNamespace(type, XamlNames.XamlNamespace))
+            {
+
+                ret = ToJsName(type.GetName(), false);
+            }
+            else if (IsInNamespace(type, XamlNames.MuxNamespace))
+            {
+                ret = "WinUI_" + ToJsName(type.GetName(), false);
+            }
+            else if (IsInNamespace(type, "Windows"))
+            {
+                ret = type.GetName();
+            } else
+            {
+                ret = ToJsName(type.GetFullName().Replace(".", ""), false);
+            }
+
+            return ret;
+        }
+
         public static bool DerivesFrom(MrType type, string baseName)
         {
             if (type.GetFullName() == baseName) return true;
@@ -390,13 +426,23 @@ namespace Codegen
         }
         public static string GetJsTypeProperty(MrType t, Dictionary<string, List<MrType>> derived)
         {
-            var listDerived = derived[t.GetName()].Where(t => HasCtor(t)).Select(t => $"'{t.GetFullName()}'");
-            return string.Join("|", listDerived);
+            var listDerived = derived[t.GetFullName()].Select(t => $"'{t.GetFullName()}'");// .Where(t => HasCtor(t)).Select(t => $"'{t.GetFullName()}'");
+            if (listDerived.Count() < 5)
+            {
+                return string.Join(" | ", listDerived);
+            } else
+            {
+                return string.Join(" |\n        ", listDerived);
+            }
         }
         private static Dictionary<MrType, int> typeInheritanceDepth = new Dictionary<MrType, int>();
 
         public static int GetTypeInheritanceDepth(MrType t)
         {
+            if (t == null)
+            {
+                return 0; // sometimes we get empty base classes e.g. base class of Windows.Foundation.Collections.IVectorChangedEventArgs
+            }
             if (typeInheritanceDepth.TryGetValue(t, out var val))
             {
                 return val;
@@ -411,18 +457,18 @@ namespace Codegen
             var derivedClasses = new Dictionary<string, List<MrType>>();
             foreach (var type in types)
             {
-                if (!derivedClasses.ContainsKey(type.GetName()))
+                if (!derivedClasses.ContainsKey(type.GetFullName()))
                 {
-                    derivedClasses[type.GetName()] = new List<MrType>() { type };
+                    derivedClasses[type.GetFullName()] = new List<MrType>() { type };
                 }
 
                 for (var baseType = type.GetBaseType(); baseType != null && baseType.GetName() != XamlNames.TopLevelProjectedType; baseType = baseType.GetBaseType())
                 {
-                    if (!derivedClasses.ContainsKey(baseType.GetName()))
+                    if (!derivedClasses.ContainsKey(baseType.GetFullName()))
                     {
-                        derivedClasses[baseType.GetName()] = new List<MrType>();
+                        derivedClasses[baseType.GetFullName()] = new List<MrType>();
                     }
-                    derivedClasses[baseType.GetName()].Add(type);
+                    derivedClasses[baseType.GetFullName()].Add(type);
                 }
             }
             return derivedClasses;
