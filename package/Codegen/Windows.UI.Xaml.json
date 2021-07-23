@@ -55,6 +55,13 @@
       }
     },
     {
+      "name": "SplitViewPriority",
+      "values": {
+        "Content": 0,
+        "Pane": 1
+      }
+    },
+    {
       "name": "ContentDialogState",
       "values": {
         "Popup": 0,

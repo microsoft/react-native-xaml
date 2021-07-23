@@ -1244,6 +1244,11 @@ export enum NavigationViewItemPriority {
   FooterMenuItem = 1,
 }
 
+export enum SplitViewPriority {
+  Content = 0,
+  Pane = 1,
+}
+
 export enum ContentDialogState {
   Popup = 0,
   InPlace = 1,

@@ -205,25 +205,12 @@ namespace winrt::ReactNativeXaml {
     }
 
     if (auto splitview = e.try_as<SplitView>()) {
-      if (index == 0) {
-        auto priority = GetPriority(child);
-        if (priority == 0) {
-          return splitview.Content(child);
-        }
-        else if (priority == 1) {
-          return splitview.Pane(child);
-        }
+      auto priority = GetPriority(child);
+      if (priority == 0 && splitview.Content() == nullptr) {
+        return splitview.Content(child);
       }
-    }
-    else if (auto splitview2 = e.try_as<mux::Controls::SplitView>()) {
-      if (index == 0) {
-        auto priority = GetPriority(child);
-        if (priority == 0) {
-          return splitview2.Content(child);
-        }
-        else if (priority == 1) {
-          return splitview2.Pane(child);
-        }
+      else if (priority == 1 && splitview.Pane() == nullptr) {
+        return splitview.Pane(child);
       }
     }
 
