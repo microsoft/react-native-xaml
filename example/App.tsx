@@ -52,6 +52,9 @@ import {
   NavigationViewItemHeader,
   FontIcon,
   WinUI_InfoBar,
+  WinUI_ProgressRing,
+  HorizontalAlignment,
+  Visibility,
 } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
@@ -90,12 +93,23 @@ const App: () => Node = () => {
   const [count, setCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [option, setOption] = useState('');
+  const [visible, setVisible] = useState(Visibility.Visible);
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
+        <WinUI_ProgressRing isActive={true} width={40} />
+        <WinUI_InfoBar
+          message="the message"
+          title="the title"
+          isOpen={true}
+          visibility={visible}
+          onClosed={() => {
+            setVisible(Visibility.Collapsed);
+          }}
+        />
         <View>
           <Text style={{fontSize: 36, textAlign: 'center', padding: 42}}>
             Welcome to React Native XAML
@@ -105,10 +119,6 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <TextBox text={option} focusable={true} />
-          <WinUI_InfoBar title="title">
-            <TextBlock text="asd"/>
-          </WinUI_InfoBar>
           <Button
             foreground="#992222"
             onTapped={a => {

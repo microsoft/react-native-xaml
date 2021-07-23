@@ -18,7 +18,7 @@ If either of these are true, you will want to generate a custom projection for y
 
 For more information on generating a custom projection, please see the [Technical Guide](TechnicalGuide.md).
 
-# Sample usage
+# Sample usage - UWP XAML
 
 Below are  usage examples of some controls and features of react-native-xaml.
 If you have questions about a scenario you don't see below, please [file an issue](https://github.com/asklar/react-native-xaml/issues/new)!
@@ -408,3 +408,21 @@ In order to enable Direct debugging for your app, make sure that your App.cpp/Ap
 ```cs
   InstanceSettings.UseWebDebugger = false;
 ```
+
+# Sample usage - WinUI controls
+
+WinUI controls are available with the `WinUI_` prefix.
+
+## InfoBar
+
+const [visible, setVisible] = useState(Visibility.Visible);
+//...
+<WinUI_InfoBar
+  message="the message"
+  title="the title"
+  isOpen={true}
+  visibility={visible}
+  onClosed={() => {
+    setVisible(Visibility.Collapsed);
+  }}
+
