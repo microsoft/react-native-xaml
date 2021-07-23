@@ -1,4 +1,3 @@
-
 export enum Stretch {
   None = 0,
   Fill = 1,
@@ -1297,72 +1296,39 @@ export enum FontVariants {
 }
 
 
-
-
 export enum AppBarButtonPriority {
-
   Primary = 0,
-
   Secondary = 1,
-
 }
-
 
 export enum NavigationViewItemPriority {
-
   MenuItem = 0,
-
   FooterMenuItem = 1,
-
 }
-
 
 export enum ContentDialogState {
-
   Popup = 0,
-
   InPlace = 1,
-
   Hidden = 3,
-
 }
-
 
 export enum ContentDialogResult {
-
   None = 0,
-
   Primary = 1,
-
   Secondary = 2,
-
 }
-
 
 export enum FontWeights {
-
   ExtraBlack = 950,
-
   Black = 900,
-
   ExtraBold = 800,
-
   Bold = 700,
-
   SemiBold = 600,
-
   Medium = 500,
-
   Normal = 400,
-
   SemiLight = 350,
-
   Light = 300,
-
   ExtraLight = 200,
-
   Thin = 100,
-
 }
-
 
