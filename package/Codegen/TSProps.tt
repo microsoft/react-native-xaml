@@ -14,7 +14,10 @@ export type CornerRadius = number | { topLeft: number, topRight: number, bottomL
 
 <# var derived = Util.GetDerivedTypes(Types);
 foreach (var type in Types) { #>
-
+<# var ns = Util.GetTSNamespace(type);
+if (ns != "") { #>
+export namespace Native<#= ns #> {
+<# } #>
 export interface Native<#= Util.ToJsName(type) #>Props extends <#= Util.GetBaseClassProps(type) #> {
 <# var typeProp = Util.GetJsTypeProperty(type, derived);
 if (typeProp != "") { #>
@@ -42,7 +45,9 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
   on<#= evt.Name #>?: (event: NativeSyntheticEvent<<#= Util.GetTypeScriptType(evt) #>>) => void;
 <# } #>
 }
-
+<# if (ns != "") { #>
+}
+<# } #>
 <# } #>
 
 export type XamlControlProps =<# var first = true; foreach (var type in Types) {
@@ -50,7 +55,7 @@ export type XamlControlProps =<# var first = true; foreach (var type in Types) {
 		if (!first) #> | <# ;
 		
 		first = false;
-		#> Native<#= Util.ToJsName(type) #>Props 
+		#> <#= Util.GetNativePropsName(type) #>
 	<# }
 	} #>;
 

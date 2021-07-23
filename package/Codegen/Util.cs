@@ -280,7 +280,16 @@ namespace Codegen
         {
             if (propType.IsEnum)
             {
-                return $"Enums.{ToJsName(propType)}";
+                var ns = GetTSNamespace(propType);
+                var prefix = ns == "" ? "" : ns + ".";
+                if (ns == "")
+                {
+                    return $"Enums.{ToJsName(propType)}";
+                }
+                else
+                {
+                    return $"Enums.{ns}Enums.{ToJsName(propType)}";
+                }
             }
             else if (propType.IsArray)
             {
@@ -321,7 +330,7 @@ namespace Codegen
                 case "DependencyObject":
                     return "ViewProps";
                 default:
-                    return $"Native{ToJsName(type.GetBaseType())}Props";
+                    return GetNativePropsName(type.GetBaseType());
             }
         }
 
@@ -391,25 +400,7 @@ namespace Codegen
 
         public static string ToJsName(MrType type)
         {
-             string ret = null;
-            if (IsInNamespace(type, XamlNames.XamlNamespace))
-            {
-
-                ret = ToJsName(type.GetName(), false);
-            }
-            else if (IsInNamespace(type, XamlNames.MuxNamespace))
-            {
-                ret = "WinUI_" + ToJsName(type.GetName(), false);
-            }
-            else if (IsInNamespace(type, "Windows"))
-            {
-                ret = type.GetName();
-            } else
-            {
-                ret = ToJsName(type.GetFullName().Replace(".", ""), false);
-            }
-
-            return ret;
+            return ToJsName(type.GetName(), false);
         }
 
         public static bool DerivesFrom(MrType type, string baseName)
@@ -505,6 +496,30 @@ namespace Codegen
             var args = argList.Select(t => $"const {GetCppWinRTType(t.Type)}& {t.Name}");
             return string.Join(", ", args);
         }
-    }
+
+        public static string GetTSNamespace(MrType type)
+        {
+            if (IsInNamespace(type, XamlNames.XamlNamespace) || IsInNamespace(type, "Windows"))
+            {
+                return "";
+            }
+            else if (IsInNamespace(type, XamlNames.MuxNamespace))
+            {
+                return "WinUI";
+            }
+            else
+            {
+                // return the top level namespace
+                var ns = type.GetNamespace();
+                return ns.Substring(0, ns.IndexOf('.'));
+            }
+        }
+        public static string GetNativePropsName(MrType type)
+        {
+            var ns = GetTSNamespace(type);
+            var prefix = ns == "" ? "" : $"Native{ns}.";
+            return $"{prefix}Native{type.GetName()}Props";
+        }
+    }    
 }
 

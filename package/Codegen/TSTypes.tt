@@ -4,20 +4,33 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 import type {
-<# foreach (var type in Types.Where(t => Util.HasCtor(t))) { #>
-    Native<#= Util.ToJsName(type) #>Props,
+<# foreach (var type in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) == "")) { #>
+    <#= Util.GetNativePropsName(type) #>,
 <# } #>
 } from './Props';
+
+<# foreach (var ns in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) != "").Select(t => Util.GetTSNamespace(t)).Distinct()) { #>
+import type { Native<#= ns #> } from './Props';
+<# } #>
+
 import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 
 
-<# foreach (var type in Types.Where(t => Util.HasCtor(t))) { #>
-export type <#= Util.ToJsName(type) #>Props = Omit<Native<#= Util.ToJsName(type) #>Props, 'type'>;
+<# 
+foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
+var ns = Util.GetTSNamespace(type);
+if (ns != "") { #>
+export namespace <#= ns #> {
+<# } #>
+export type <#= Util.ToJsName(type) #>Props = Omit<<#= Util.GetNativePropsName(type) #>, 'type'>;
 
 export const <#= Util.ToJsName(type) #>: React.FC<<#= Util.ToJsName(type) #>Props> = (props: <#= Util.ToJsName(type) #>Props) => {
     return (
         <NativeXamlControl type="<#= type.GetFullName() #>" {...props} />
     );
 };
+<# if (ns != "") { #>
+}
+<# } #>
 <# } #>

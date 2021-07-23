@@ -1,53 +1,4 @@
 import type {
-    NativeWinUI_AnimatedIconProps,
-    NativeWinUI_AnimatedVisualPlayerProps,
-    NativeWinUI_BreadcrumbBarProps,
-    NativeWinUI_BreadcrumbBarItemProps,
-    NativeWinUI_ColorPickerProps,
-    NativeWinUI_CommandBarFlyoutProps,
-    NativeWinUI_DropDownButtonProps,
-    NativeWinUI_ExpanderProps,
-    NativeWinUI_ImageIconProps,
-    NativeWinUI_InfoBarProps,
-    NativeWinUI_ItemsRepeaterProps,
-    NativeWinUI_ItemsRepeaterScrollHostProps,
-    NativeWinUI_MenuBarProps,
-    NativeWinUI_MenuBarItemProps,
-    NativeWinUI_MenuBarItemFlyoutProps,
-    NativeWinUI_NavigationViewProps,
-    NativeWinUI_NavigationViewItemProps,
-    NativeWinUI_NavigationViewItemHeaderProps,
-    NativeWinUI_NavigationViewItemSeparatorProps,
-    NativeWinUI_NumberBoxProps,
-    NativeWinUI_ParallaxViewProps,
-    NativeWinUI_PersonPictureProps,
-    NativeWinUI_PipsPagerProps,
-    NativeWinUI_ColorPickerSliderProps,
-    NativeWinUI_ColorSpectrumProps,
-    NativeWinUI_CommandBarFlyoutCommandBarProps,
-    NativeWinUI_InfoBarPanelProps,
-    NativeWinUI_MonochromaticOverlayPresenterProps,
-    NativeWinUI_NavigationViewItemPresenterProps,
-    NativeWinUI_TabViewListViewProps,
-    NativeWinUI_ProgressBarProps,
-    NativeWinUI_ProgressRingProps,
-    NativeWinUI_RadioButtonsProps,
-    NativeWinUI_RadioMenuFlyoutItemProps,
-    NativeWinUI_RatingControlProps,
-    NativeWinUI_RefreshContainerProps,
-    NativeWinUI_RefreshVisualizerProps,
-    NativeWinUI_RevealListViewItemPresenterProps,
-    NativeWinUI_SplitButtonProps,
-    NativeWinUI_SwipeControlProps,
-    NativeWinUI_TabViewProps,
-    NativeWinUI_TabViewItemProps,
-    NativeWinUI_TeachingTipProps,
-    NativeWinUI_TextCommandBarFlyoutProps,
-    NativeWinUI_ToggleSplitButtonProps,
-    NativeWinUI_TreeViewProps,
-    NativeWinUI_TreeViewItemProps,
-    NativeWinUI_TreeViewListProps,
-    NativeWinUI_TwoPaneViewProps,
     NativeContentControlProps,
     NativeAppBarProps,
     NativeButtonProps,
@@ -219,353 +170,454 @@ import type {
     NativePolylineProps,
     NativeRectangleProps,
 } from './Props';
+
+import type { NativeWinUI } from './Props';
+
 import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 
 
-export type WinUI_AnimatedIconProps = Omit<NativeWinUI_AnimatedIconProps, 'type'>;
+export namespace WinUI {
+export type AnimatedIconProps = Omit<NativeWinUI.NativeAnimatedIconProps, 'type'>;
 
-export const WinUI_AnimatedIcon: React.FC<WinUI_AnimatedIconProps> = (props: WinUI_AnimatedIconProps) => {
+export const AnimatedIcon: React.FC<AnimatedIconProps> = (props: AnimatedIconProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.AnimatedIcon" {...props} />
     );
 };
-export type WinUI_AnimatedVisualPlayerProps = Omit<NativeWinUI_AnimatedVisualPlayerProps, 'type'>;
+}
+export namespace WinUI {
+export type AnimatedVisualPlayerProps = Omit<NativeWinUI.NativeAnimatedVisualPlayerProps, 'type'>;
 
-export const WinUI_AnimatedVisualPlayer: React.FC<WinUI_AnimatedVisualPlayerProps> = (props: WinUI_AnimatedVisualPlayerProps) => {
+export const AnimatedVisualPlayer: React.FC<AnimatedVisualPlayerProps> = (props: AnimatedVisualPlayerProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer" {...props} />
     );
 };
-export type WinUI_BreadcrumbBarProps = Omit<NativeWinUI_BreadcrumbBarProps, 'type'>;
+}
+export namespace WinUI {
+export type BreadcrumbBarProps = Omit<NativeWinUI.NativeBreadcrumbBarProps, 'type'>;
 
-export const WinUI_BreadcrumbBar: React.FC<WinUI_BreadcrumbBarProps> = (props: WinUI_BreadcrumbBarProps) => {
+export const BreadcrumbBar: React.FC<BreadcrumbBarProps> = (props: BreadcrumbBarProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.BreadcrumbBar" {...props} />
     );
 };
-export type WinUI_BreadcrumbBarItemProps = Omit<NativeWinUI_BreadcrumbBarItemProps, 'type'>;
+}
+export namespace WinUI {
+export type BreadcrumbBarItemProps = Omit<NativeWinUI.NativeBreadcrumbBarItemProps, 'type'>;
 
-export const WinUI_BreadcrumbBarItem: React.FC<WinUI_BreadcrumbBarItemProps> = (props: WinUI_BreadcrumbBarItemProps) => {
+export const BreadcrumbBarItem: React.FC<BreadcrumbBarItemProps> = (props: BreadcrumbBarItemProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.BreadcrumbBarItem" {...props} />
     );
 };
-export type WinUI_ColorPickerProps = Omit<NativeWinUI_ColorPickerProps, 'type'>;
+}
+export namespace WinUI {
+export type ColorPickerProps = Omit<NativeWinUI.NativeColorPickerProps, 'type'>;
 
-export const WinUI_ColorPicker: React.FC<WinUI_ColorPickerProps> = (props: WinUI_ColorPickerProps) => {
+export const ColorPicker: React.FC<ColorPickerProps> = (props: ColorPickerProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ColorPicker" {...props} />
     );
 };
-export type WinUI_CommandBarFlyoutProps = Omit<NativeWinUI_CommandBarFlyoutProps, 'type'>;
+}
+export namespace WinUI {
+export type CommandBarFlyoutProps = Omit<NativeWinUI.NativeCommandBarFlyoutProps, 'type'>;
 
-export const WinUI_CommandBarFlyout: React.FC<WinUI_CommandBarFlyoutProps> = (props: WinUI_CommandBarFlyoutProps) => {
+export const CommandBarFlyout: React.FC<CommandBarFlyoutProps> = (props: CommandBarFlyoutProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.CommandBarFlyout" {...props} />
     );
 };
-export type WinUI_DropDownButtonProps = Omit<NativeWinUI_DropDownButtonProps, 'type'>;
+}
+export namespace WinUI {
+export type DropDownButtonProps = Omit<NativeWinUI.NativeDropDownButtonProps, 'type'>;
 
-export const WinUI_DropDownButton: React.FC<WinUI_DropDownButtonProps> = (props: WinUI_DropDownButtonProps) => {
+export const DropDownButton: React.FC<DropDownButtonProps> = (props: DropDownButtonProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.DropDownButton" {...props} />
     );
 };
-export type WinUI_ExpanderProps = Omit<NativeWinUI_ExpanderProps, 'type'>;
+}
+export namespace WinUI {
+export type ExpanderProps = Omit<NativeWinUI.NativeExpanderProps, 'type'>;
 
-export const WinUI_Expander: React.FC<WinUI_ExpanderProps> = (props: WinUI_ExpanderProps) => {
+export const Expander: React.FC<ExpanderProps> = (props: ExpanderProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Expander" {...props} />
     );
 };
-export type WinUI_ImageIconProps = Omit<NativeWinUI_ImageIconProps, 'type'>;
+}
+export namespace WinUI {
+export type ImageIconProps = Omit<NativeWinUI.NativeImageIconProps, 'type'>;
 
-export const WinUI_ImageIcon: React.FC<WinUI_ImageIconProps> = (props: WinUI_ImageIconProps) => {
+export const ImageIcon: React.FC<ImageIconProps> = (props: ImageIconProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ImageIcon" {...props} />
     );
 };
-export type WinUI_InfoBarProps = Omit<NativeWinUI_InfoBarProps, 'type'>;
+}
+export namespace WinUI {
+export type InfoBarProps = Omit<NativeWinUI.NativeInfoBarProps, 'type'>;
 
-export const WinUI_InfoBar: React.FC<WinUI_InfoBarProps> = (props: WinUI_InfoBarProps) => {
+export const InfoBar: React.FC<InfoBarProps> = (props: InfoBarProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.InfoBar" {...props} />
     );
 };
-export type WinUI_ItemsRepeaterProps = Omit<NativeWinUI_ItemsRepeaterProps, 'type'>;
+}
+export namespace WinUI {
+export type ItemsRepeaterProps = Omit<NativeWinUI.NativeItemsRepeaterProps, 'type'>;
 
-export const WinUI_ItemsRepeater: React.FC<WinUI_ItemsRepeaterProps> = (props: WinUI_ItemsRepeaterProps) => {
+export const ItemsRepeater: React.FC<ItemsRepeaterProps> = (props: ItemsRepeaterProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ItemsRepeater" {...props} />
     );
 };
-export type WinUI_ItemsRepeaterScrollHostProps = Omit<NativeWinUI_ItemsRepeaterScrollHostProps, 'type'>;
+}
+export namespace WinUI {
+export type ItemsRepeaterScrollHostProps = Omit<NativeWinUI.NativeItemsRepeaterScrollHostProps, 'type'>;
 
-export const WinUI_ItemsRepeaterScrollHost: React.FC<WinUI_ItemsRepeaterScrollHostProps> = (props: WinUI_ItemsRepeaterScrollHostProps) => {
+export const ItemsRepeaterScrollHost: React.FC<ItemsRepeaterScrollHostProps> = (props: ItemsRepeaterScrollHostProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost" {...props} />
     );
 };
-export type WinUI_MenuBarProps = Omit<NativeWinUI_MenuBarProps, 'type'>;
+}
+export namespace WinUI {
+export type MenuBarProps = Omit<NativeWinUI.NativeMenuBarProps, 'type'>;
 
-export const WinUI_MenuBar: React.FC<WinUI_MenuBarProps> = (props: WinUI_MenuBarProps) => {
+export const MenuBar: React.FC<MenuBarProps> = (props: MenuBarProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.MenuBar" {...props} />
     );
 };
-export type WinUI_MenuBarItemProps = Omit<NativeWinUI_MenuBarItemProps, 'type'>;
+}
+export namespace WinUI {
+export type MenuBarItemProps = Omit<NativeWinUI.NativeMenuBarItemProps, 'type'>;
 
-export const WinUI_MenuBarItem: React.FC<WinUI_MenuBarItemProps> = (props: WinUI_MenuBarItemProps) => {
+export const MenuBarItem: React.FC<MenuBarItemProps> = (props: MenuBarItemProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.MenuBarItem" {...props} />
     );
 };
-export type WinUI_MenuBarItemFlyoutProps = Omit<NativeWinUI_MenuBarItemFlyoutProps, 'type'>;
+}
+export namespace WinUI {
+export type MenuBarItemFlyoutProps = Omit<NativeWinUI.NativeMenuBarItemFlyoutProps, 'type'>;
 
-export const WinUI_MenuBarItemFlyout: React.FC<WinUI_MenuBarItemFlyoutProps> = (props: WinUI_MenuBarItemFlyoutProps) => {
+export const MenuBarItemFlyout: React.FC<MenuBarItemFlyoutProps> = (props: MenuBarItemFlyoutProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.MenuBarItemFlyout" {...props} />
     );
 };
-export type WinUI_NavigationViewProps = Omit<NativeWinUI_NavigationViewProps, 'type'>;
+}
+export namespace WinUI {
+export type NavigationViewProps = Omit<NativeWinUI.NativeNavigationViewProps, 'type'>;
 
-export const WinUI_NavigationView: React.FC<WinUI_NavigationViewProps> = (props: WinUI_NavigationViewProps) => {
+export const NavigationView: React.FC<NavigationViewProps> = (props: NavigationViewProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.NavigationView" {...props} />
     );
 };
-export type WinUI_NavigationViewItemProps = Omit<NativeWinUI_NavigationViewItemProps, 'type'>;
+}
+export namespace WinUI {
+export type NavigationViewItemProps = Omit<NativeWinUI.NativeNavigationViewItemProps, 'type'>;
 
-export const WinUI_NavigationViewItem: React.FC<WinUI_NavigationViewItemProps> = (props: WinUI_NavigationViewItemProps) => {
+export const NavigationViewItem: React.FC<NavigationViewItemProps> = (props: NavigationViewItemProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.NavigationViewItem" {...props} />
     );
 };
-export type WinUI_NavigationViewItemHeaderProps = Omit<NativeWinUI_NavigationViewItemHeaderProps, 'type'>;
+}
+export namespace WinUI {
+export type NavigationViewItemHeaderProps = Omit<NativeWinUI.NativeNavigationViewItemHeaderProps, 'type'>;
 
-export const WinUI_NavigationViewItemHeader: React.FC<WinUI_NavigationViewItemHeaderProps> = (props: WinUI_NavigationViewItemHeaderProps) => {
+export const NavigationViewItemHeader: React.FC<NavigationViewItemHeaderProps> = (props: NavigationViewItemHeaderProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.NavigationViewItemHeader" {...props} />
     );
 };
-export type WinUI_NavigationViewItemSeparatorProps = Omit<NativeWinUI_NavigationViewItemSeparatorProps, 'type'>;
+}
+export namespace WinUI {
+export type NavigationViewItemSeparatorProps = Omit<NativeWinUI.NativeNavigationViewItemSeparatorProps, 'type'>;
 
-export const WinUI_NavigationViewItemSeparator: React.FC<WinUI_NavigationViewItemSeparatorProps> = (props: WinUI_NavigationViewItemSeparatorProps) => {
+export const NavigationViewItemSeparator: React.FC<NavigationViewItemSeparatorProps> = (props: NavigationViewItemSeparatorProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator" {...props} />
     );
 };
-export type WinUI_NumberBoxProps = Omit<NativeWinUI_NumberBoxProps, 'type'>;
+}
+export namespace WinUI {
+export type NumberBoxProps = Omit<NativeWinUI.NativeNumberBoxProps, 'type'>;
 
-export const WinUI_NumberBox: React.FC<WinUI_NumberBoxProps> = (props: WinUI_NumberBoxProps) => {
+export const NumberBox: React.FC<NumberBoxProps> = (props: NumberBoxProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.NumberBox" {...props} />
     );
 };
-export type WinUI_ParallaxViewProps = Omit<NativeWinUI_ParallaxViewProps, 'type'>;
+}
+export namespace WinUI {
+export type ParallaxViewProps = Omit<NativeWinUI.NativeParallaxViewProps, 'type'>;
 
-export const WinUI_ParallaxView: React.FC<WinUI_ParallaxViewProps> = (props: WinUI_ParallaxViewProps) => {
+export const ParallaxView: React.FC<ParallaxViewProps> = (props: ParallaxViewProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ParallaxView" {...props} />
     );
 };
-export type WinUI_PersonPictureProps = Omit<NativeWinUI_PersonPictureProps, 'type'>;
+}
+export namespace WinUI {
+export type PersonPictureProps = Omit<NativeWinUI.NativePersonPictureProps, 'type'>;
 
-export const WinUI_PersonPicture: React.FC<WinUI_PersonPictureProps> = (props: WinUI_PersonPictureProps) => {
+export const PersonPicture: React.FC<PersonPictureProps> = (props: PersonPictureProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.PersonPicture" {...props} />
     );
 };
-export type WinUI_PipsPagerProps = Omit<NativeWinUI_PipsPagerProps, 'type'>;
+}
+export namespace WinUI {
+export type PipsPagerProps = Omit<NativeWinUI.NativePipsPagerProps, 'type'>;
 
-export const WinUI_PipsPager: React.FC<WinUI_PipsPagerProps> = (props: WinUI_PipsPagerProps) => {
+export const PipsPager: React.FC<PipsPagerProps> = (props: PipsPagerProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.PipsPager" {...props} />
     );
 };
-export type WinUI_ColorPickerSliderProps = Omit<NativeWinUI_ColorPickerSliderProps, 'type'>;
+}
+export namespace WinUI {
+export type ColorPickerSliderProps = Omit<NativeWinUI.NativeColorPickerSliderProps, 'type'>;
 
-export const WinUI_ColorPickerSlider: React.FC<WinUI_ColorPickerSliderProps> = (props: WinUI_ColorPickerSliderProps) => {
+export const ColorPickerSlider: React.FC<ColorPickerSliderProps> = (props: ColorPickerSliderProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider" {...props} />
     );
 };
-export type WinUI_ColorSpectrumProps = Omit<NativeWinUI_ColorSpectrumProps, 'type'>;
+}
+export namespace WinUI {
+export type ColorSpectrumProps = Omit<NativeWinUI.NativeColorSpectrumProps, 'type'>;
 
-export const WinUI_ColorSpectrum: React.FC<WinUI_ColorSpectrumProps> = (props: WinUI_ColorSpectrumProps) => {
+export const ColorSpectrum: React.FC<ColorSpectrumProps> = (props: ColorSpectrumProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.ColorSpectrum" {...props} />
     );
 };
-export type WinUI_CommandBarFlyoutCommandBarProps = Omit<NativeWinUI_CommandBarFlyoutCommandBarProps, 'type'>;
+}
+export namespace WinUI {
+export type CommandBarFlyoutCommandBarProps = Omit<NativeWinUI.NativeCommandBarFlyoutCommandBarProps, 'type'>;
 
-export const WinUI_CommandBarFlyoutCommandBar: React.FC<WinUI_CommandBarFlyoutCommandBarProps> = (props: WinUI_CommandBarFlyoutCommandBarProps) => {
+export const CommandBarFlyoutCommandBar: React.FC<CommandBarFlyoutCommandBarProps> = (props: CommandBarFlyoutCommandBarProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar" {...props} />
     );
 };
-export type WinUI_InfoBarPanelProps = Omit<NativeWinUI_InfoBarPanelProps, 'type'>;
+}
+export namespace WinUI {
+export type InfoBarPanelProps = Omit<NativeWinUI.NativeInfoBarPanelProps, 'type'>;
 
-export const WinUI_InfoBarPanel: React.FC<WinUI_InfoBarPanelProps> = (props: WinUI_InfoBarPanelProps) => {
+export const InfoBarPanel: React.FC<InfoBarPanelProps> = (props: InfoBarPanelProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.InfoBarPanel" {...props} />
     );
 };
-export type WinUI_MonochromaticOverlayPresenterProps = Omit<NativeWinUI_MonochromaticOverlayPresenterProps, 'type'>;
+}
+export namespace WinUI {
+export type MonochromaticOverlayPresenterProps = Omit<NativeWinUI.NativeMonochromaticOverlayPresenterProps, 'type'>;
 
-export const WinUI_MonochromaticOverlayPresenter: React.FC<WinUI_MonochromaticOverlayPresenterProps> = (props: WinUI_MonochromaticOverlayPresenterProps) => {
+export const MonochromaticOverlayPresenter: React.FC<MonochromaticOverlayPresenterProps> = (props: MonochromaticOverlayPresenterProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter" {...props} />
     );
 };
-export type WinUI_NavigationViewItemPresenterProps = Omit<NativeWinUI_NavigationViewItemPresenterProps, 'type'>;
+}
+export namespace WinUI {
+export type NavigationViewItemPresenterProps = Omit<NativeWinUI.NativeNavigationViewItemPresenterProps, 'type'>;
 
-export const WinUI_NavigationViewItemPresenter: React.FC<WinUI_NavigationViewItemPresenterProps> = (props: WinUI_NavigationViewItemPresenterProps) => {
+export const NavigationViewItemPresenter: React.FC<NavigationViewItemPresenterProps> = (props: NavigationViewItemPresenterProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter" {...props} />
     );
 };
-export type WinUI_TabViewListViewProps = Omit<NativeWinUI_TabViewListViewProps, 'type'>;
+}
+export namespace WinUI {
+export type TabViewListViewProps = Omit<NativeWinUI.NativeTabViewListViewProps, 'type'>;
 
-export const WinUI_TabViewListView: React.FC<WinUI_TabViewListViewProps> = (props: WinUI_TabViewListViewProps) => {
+export const TabViewListView: React.FC<TabViewListViewProps> = (props: TabViewListViewProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.Primitives.TabViewListView" {...props} />
     );
 };
-export type WinUI_ProgressBarProps = Omit<NativeWinUI_ProgressBarProps, 'type'>;
+}
+export namespace WinUI {
+export type ProgressBarProps = Omit<NativeWinUI.NativeProgressBarProps, 'type'>;
 
-export const WinUI_ProgressBar: React.FC<WinUI_ProgressBarProps> = (props: WinUI_ProgressBarProps) => {
+export const ProgressBar: React.FC<ProgressBarProps> = (props: ProgressBarProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ProgressBar" {...props} />
     );
 };
-export type WinUI_ProgressRingProps = Omit<NativeWinUI_ProgressRingProps, 'type'>;
+}
+export namespace WinUI {
+export type ProgressRingProps = Omit<NativeWinUI.NativeProgressRingProps, 'type'>;
 
-export const WinUI_ProgressRing: React.FC<WinUI_ProgressRingProps> = (props: WinUI_ProgressRingProps) => {
+export const ProgressRing: React.FC<ProgressRingProps> = (props: ProgressRingProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ProgressRing" {...props} />
     );
 };
-export type WinUI_RadioButtonsProps = Omit<NativeWinUI_RadioButtonsProps, 'type'>;
+}
+export namespace WinUI {
+export type RadioButtonsProps = Omit<NativeWinUI.NativeRadioButtonsProps, 'type'>;
 
-export const WinUI_RadioButtons: React.FC<WinUI_RadioButtonsProps> = (props: WinUI_RadioButtonsProps) => {
+export const RadioButtons: React.FC<RadioButtonsProps> = (props: RadioButtonsProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.RadioButtons" {...props} />
     );
 };
-export type WinUI_RadioMenuFlyoutItemProps = Omit<NativeWinUI_RadioMenuFlyoutItemProps, 'type'>;
+}
+export namespace WinUI {
+export type RadioMenuFlyoutItemProps = Omit<NativeWinUI.NativeRadioMenuFlyoutItemProps, 'type'>;
 
-export const WinUI_RadioMenuFlyoutItem: React.FC<WinUI_RadioMenuFlyoutItemProps> = (props: WinUI_RadioMenuFlyoutItemProps) => {
+export const RadioMenuFlyoutItem: React.FC<RadioMenuFlyoutItemProps> = (props: RadioMenuFlyoutItemProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem" {...props} />
     );
 };
-export type WinUI_RatingControlProps = Omit<NativeWinUI_RatingControlProps, 'type'>;
+}
+export namespace WinUI {
+export type RatingControlProps = Omit<NativeWinUI.NativeRatingControlProps, 'type'>;
 
-export const WinUI_RatingControl: React.FC<WinUI_RatingControlProps> = (props: WinUI_RatingControlProps) => {
+export const RatingControl: React.FC<RatingControlProps> = (props: RatingControlProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.RatingControl" {...props} />
     );
 };
-export type WinUI_RefreshContainerProps = Omit<NativeWinUI_RefreshContainerProps, 'type'>;
+}
+export namespace WinUI {
+export type RefreshContainerProps = Omit<NativeWinUI.NativeRefreshContainerProps, 'type'>;
 
-export const WinUI_RefreshContainer: React.FC<WinUI_RefreshContainerProps> = (props: WinUI_RefreshContainerProps) => {
+export const RefreshContainer: React.FC<RefreshContainerProps> = (props: RefreshContainerProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.RefreshContainer" {...props} />
     );
 };
-export type WinUI_RefreshVisualizerProps = Omit<NativeWinUI_RefreshVisualizerProps, 'type'>;
+}
+export namespace WinUI {
+export type RefreshVisualizerProps = Omit<NativeWinUI.NativeRefreshVisualizerProps, 'type'>;
 
-export const WinUI_RefreshVisualizer: React.FC<WinUI_RefreshVisualizerProps> = (props: WinUI_RefreshVisualizerProps) => {
+export const RefreshVisualizer: React.FC<RefreshVisualizerProps> = (props: RefreshVisualizerProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.RefreshVisualizer" {...props} />
     );
 };
-export type WinUI_RevealListViewItemPresenterProps = Omit<NativeWinUI_RevealListViewItemPresenterProps, 'type'>;
+}
+export namespace WinUI {
+export type RevealListViewItemPresenterProps = Omit<NativeWinUI.NativeRevealListViewItemPresenterProps, 'type'>;
 
-export const WinUI_RevealListViewItemPresenter: React.FC<WinUI_RevealListViewItemPresenterProps> = (props: WinUI_RevealListViewItemPresenterProps) => {
+export const RevealListViewItemPresenter: React.FC<RevealListViewItemPresenterProps> = (props: RevealListViewItemPresenterProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter" {...props} />
     );
 };
-export type WinUI_SplitButtonProps = Omit<NativeWinUI_SplitButtonProps, 'type'>;
+}
+export namespace WinUI {
+export type SplitButtonProps = Omit<NativeWinUI.NativeSplitButtonProps, 'type'>;
 
-export const WinUI_SplitButton: React.FC<WinUI_SplitButtonProps> = (props: WinUI_SplitButtonProps) => {
+export const SplitButton: React.FC<SplitButtonProps> = (props: SplitButtonProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.SplitButton" {...props} />
     );
 };
-export type WinUI_SwipeControlProps = Omit<NativeWinUI_SwipeControlProps, 'type'>;
+}
+export namespace WinUI {
+export type SwipeControlProps = Omit<NativeWinUI.NativeSwipeControlProps, 'type'>;
 
-export const WinUI_SwipeControl: React.FC<WinUI_SwipeControlProps> = (props: WinUI_SwipeControlProps) => {
+export const SwipeControl: React.FC<SwipeControlProps> = (props: SwipeControlProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.SwipeControl" {...props} />
     );
 };
-export type WinUI_TabViewProps = Omit<NativeWinUI_TabViewProps, 'type'>;
+}
+export namespace WinUI {
+export type TabViewProps = Omit<NativeWinUI.NativeTabViewProps, 'type'>;
 
-export const WinUI_TabView: React.FC<WinUI_TabViewProps> = (props: WinUI_TabViewProps) => {
+export const TabView: React.FC<TabViewProps> = (props: TabViewProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TabView" {...props} />
     );
 };
-export type WinUI_TabViewItemProps = Omit<NativeWinUI_TabViewItemProps, 'type'>;
+}
+export namespace WinUI {
+export type TabViewItemProps = Omit<NativeWinUI.NativeTabViewItemProps, 'type'>;
 
-export const WinUI_TabViewItem: React.FC<WinUI_TabViewItemProps> = (props: WinUI_TabViewItemProps) => {
+export const TabViewItem: React.FC<TabViewItemProps> = (props: TabViewItemProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TabViewItem" {...props} />
     );
 };
-export type WinUI_TeachingTipProps = Omit<NativeWinUI_TeachingTipProps, 'type'>;
+}
+export namespace WinUI {
+export type TeachingTipProps = Omit<NativeWinUI.NativeTeachingTipProps, 'type'>;
 
-export const WinUI_TeachingTip: React.FC<WinUI_TeachingTipProps> = (props: WinUI_TeachingTipProps) => {
+export const TeachingTip: React.FC<TeachingTipProps> = (props: TeachingTipProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TeachingTip" {...props} />
     );
 };
-export type WinUI_TextCommandBarFlyoutProps = Omit<NativeWinUI_TextCommandBarFlyoutProps, 'type'>;
+}
+export namespace WinUI {
+export type TextCommandBarFlyoutProps = Omit<NativeWinUI.NativeTextCommandBarFlyoutProps, 'type'>;
 
-export const WinUI_TextCommandBarFlyout: React.FC<WinUI_TextCommandBarFlyoutProps> = (props: WinUI_TextCommandBarFlyoutProps) => {
+export const TextCommandBarFlyout: React.FC<TextCommandBarFlyoutProps> = (props: TextCommandBarFlyoutProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TextCommandBarFlyout" {...props} />
     );
 };
-export type WinUI_ToggleSplitButtonProps = Omit<NativeWinUI_ToggleSplitButtonProps, 'type'>;
+}
+export namespace WinUI {
+export type ToggleSplitButtonProps = Omit<NativeWinUI.NativeToggleSplitButtonProps, 'type'>;
 
-export const WinUI_ToggleSplitButton: React.FC<WinUI_ToggleSplitButtonProps> = (props: WinUI_ToggleSplitButtonProps) => {
+export const ToggleSplitButton: React.FC<ToggleSplitButtonProps> = (props: ToggleSplitButtonProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.ToggleSplitButton" {...props} />
     );
 };
-export type WinUI_TreeViewProps = Omit<NativeWinUI_TreeViewProps, 'type'>;
+}
+export namespace WinUI {
+export type TreeViewProps = Omit<NativeWinUI.NativeTreeViewProps, 'type'>;
 
-export const WinUI_TreeView: React.FC<WinUI_TreeViewProps> = (props: WinUI_TreeViewProps) => {
+export const TreeView: React.FC<TreeViewProps> = (props: TreeViewProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TreeView" {...props} />
     );
 };
-export type WinUI_TreeViewItemProps = Omit<NativeWinUI_TreeViewItemProps, 'type'>;
+}
+export namespace WinUI {
+export type TreeViewItemProps = Omit<NativeWinUI.NativeTreeViewItemProps, 'type'>;
 
-export const WinUI_TreeViewItem: React.FC<WinUI_TreeViewItemProps> = (props: WinUI_TreeViewItemProps) => {
+export const TreeViewItem: React.FC<TreeViewItemProps> = (props: TreeViewItemProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TreeViewItem" {...props} />
     );
 };
-export type WinUI_TreeViewListProps = Omit<NativeWinUI_TreeViewListProps, 'type'>;
+}
+export namespace WinUI {
+export type TreeViewListProps = Omit<NativeWinUI.NativeTreeViewListProps, 'type'>;
 
-export const WinUI_TreeViewList: React.FC<WinUI_TreeViewListProps> = (props: WinUI_TreeViewListProps) => {
+export const TreeViewList: React.FC<TreeViewListProps> = (props: TreeViewListProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TreeViewList" {...props} />
     );
 };
-export type WinUI_TwoPaneViewProps = Omit<NativeWinUI_TwoPaneViewProps, 'type'>;
+}
+export namespace WinUI {
+export type TwoPaneViewProps = Omit<NativeWinUI.NativeTwoPaneViewProps, 'type'>;
 
-export const WinUI_TwoPaneView: React.FC<WinUI_TwoPaneViewProps> = (props: WinUI_TwoPaneViewProps) => {
+export const TwoPaneView: React.FC<TwoPaneViewProps> = (props: TwoPaneViewProps) => {
     return (
         <NativeXamlControl type="Microsoft.UI.Xaml.Controls.TwoPaneView" {...props} />
     );
 };
+}
 export type ContentControlProps = Omit<NativeContentControlProps, 'type'>;
 
 export const ContentControl: React.FC<ContentControlProps> = (props: ContentControlProps) => {

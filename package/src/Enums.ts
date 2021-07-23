@@ -4,13 +4,15 @@ export enum Stretch {
   Uniform = 2,
   UniformToFill = 3,
 }
-
-export enum WinUI_ColorSpectrumShape {
+export namespace WinUIEnums {
+export enum ColorSpectrumShape {
   Box = 0,
   Ring = 1,
 }
+}
 
-export enum WinUI_ColorSpectrumComponents {
+export namespace WinUIEnums {
+export enum ColorSpectrumComponents {
   HueValue = 0,
   ValueHue = 1,
   HueSaturation = 2,
@@ -18,52 +20,69 @@ export enum WinUI_ColorSpectrumComponents {
   SaturationValue = 4,
   ValueSaturation = 5,
 }
+}
 
-export enum WinUI_ExpandDirection {
+export namespace WinUIEnums {
+export enum ExpandDirection {
   Down = 0,
   Up = 1,
 }
+}
 
-export enum WinUI_InfoBarSeverity {
+export namespace WinUIEnums {
+export enum InfoBarSeverity {
   Informational = 0,
   Success = 1,
   Warning = 2,
   Error = 3,
 }
+}
 
-export enum WinUI_NavigationViewShoulderNavigationEnabled {
+export namespace WinUIEnums {
+export enum NavigationViewShoulderNavigationEnabled {
   WhenSelectionFollowsFocus = 0,
   Always = 1,
   Never = 2,
 }
+}
 
-export enum WinUI_NavigationViewSelectionFollowsFocus {
+export namespace WinUIEnums {
+export enum NavigationViewSelectionFollowsFocus {
   Disabled = 0,
   Enabled = 1,
 }
+}
 
-export enum WinUI_NavigationViewPaneDisplayMode {
+export namespace WinUIEnums {
+export enum NavigationViewPaneDisplayMode {
   Auto = 0,
   Left = 1,
   Top = 2,
   LeftCompact = 3,
   LeftMinimal = 4,
 }
+}
 
-export enum WinUI_NavigationViewOverflowLabelMode {
+export namespace WinUIEnums {
+export enum NavigationViewOverflowLabelMode {
   MoreLabel = 0,
   NoLabel = 1,
 }
+}
 
-export enum WinUI_NavigationViewBackButtonVisible {
+export namespace WinUIEnums {
+export enum NavigationViewBackButtonVisible {
   Collapsed = 0,
   Visible = 1,
   Auto = 2,
 }
+}
 
-export enum WinUI_NumberBoxValidationMode {
+export namespace WinUIEnums {
+export enum NumberBoxValidationMode {
   InvalidInputOverwritten = 0,
   Disabled = 1,
+}
 }
 
 export enum TextReadingOrder {
@@ -71,69 +90,86 @@ export enum TextReadingOrder {
   UseFlowDirection = 0,
   DetectFromContent = 1,
 }
-
-export enum WinUI_NumberBoxSpinButtonPlacementMode {
+export namespace WinUIEnums {
+export enum NumberBoxSpinButtonPlacementMode {
   Hidden = 0,
   Compact = 1,
   Inline = 2,
 }
+}
 
-export enum WinUI_ParallaxSourceOffsetKind {
+export namespace WinUIEnums {
+export enum ParallaxSourceOffsetKind {
   Absolute = 0,
   Relative = 1,
 }
+}
 
-export enum WinUI_PipsPagerButtonVisibility {
+export namespace WinUIEnums {
+export enum PipsPagerButtonVisibility {
   Visible = 0,
   VisibleOnPointerOver = 1,
   Collapsed = 2,
+}
 }
 
 export enum Orientation {
   Vertical = 0,
   Horizontal = 1,
 }
-
-export enum WinUI_ColorPickerHsvChannel {
+export namespace WinUIEnums {
+export enum ColorPickerHsvChannel {
   Hue = 0,
   Saturation = 1,
   Value = 2,
   Alpha = 3,
 }
+}
 
-export enum WinUI_RefreshPullDirection {
+export namespace WinUIEnums {
+export enum RefreshPullDirection {
   LeftToRight = 0,
   TopToBottom = 1,
   RightToLeft = 2,
   BottomToTop = 3,
 }
+}
 
-export enum WinUI_RefreshVisualizerOrientation {
+export namespace WinUIEnums {
+export enum RefreshVisualizerOrientation {
   Auto = 0,
   Normal = 1,
   Rotate90DegreesCounterclockwise = 2,
   Rotate270DegreesCounterclockwise = 3,
 }
+}
 
-export enum WinUI_TabViewWidthMode {
+export namespace WinUIEnums {
+export enum TabViewWidthMode {
   Equal = 0,
   SizeToContent = 1,
   Compact = 2,
 }
+}
 
-export enum WinUI_TabViewCloseButtonOverlayMode {
+export namespace WinUIEnums {
+export enum TabViewCloseButtonOverlayMode {
   Auto = 0,
   OnPointerOver = 1,
   Always = 2,
 }
+}
 
-export enum WinUI_TeachingTipTailVisibility {
+export namespace WinUIEnums {
+export enum TeachingTipTailVisibility {
   Auto = 0,
   Visible = 1,
   Collapsed = 2,
 }
+}
 
-export enum WinUI_TeachingTipPlacementMode {
+export namespace WinUIEnums {
+export enum TeachingTipPlacementMode {
   Auto = 0,
   Top = 1,
   Bottom = 2,
@@ -149,34 +185,45 @@ export enum WinUI_TeachingTipPlacementMode {
   RightBottom = 12,
   Center = 13,
 }
+}
 
-export enum WinUI_TeachingTipHeroContentPlacementMode {
+export namespace WinUIEnums {
+export enum TeachingTipHeroContentPlacementMode {
   Auto = 0,
   Top = 1,
   Bottom = 2,
 }
+}
 
-export enum WinUI_TreeViewSelectionMode {
+export namespace WinUIEnums {
+export enum TreeViewSelectionMode {
   None = 0,
   Single = 1,
   Multiple = 2,
 }
+}
 
-export enum WinUI_TwoPaneViewWideModeConfiguration {
+export namespace WinUIEnums {
+export enum TwoPaneViewWideModeConfiguration {
   SinglePane = 0,
   LeftRight = 1,
   RightLeft = 2,
 }
+}
 
-export enum WinUI_TwoPaneViewTallModeConfiguration {
+export namespace WinUIEnums {
+export enum TwoPaneViewTallModeConfiguration {
   SinglePane = 0,
   TopBottom = 1,
   BottomTop = 2,
 }
+}
 
-export enum WinUI_TwoPaneViewPriority {
+export namespace WinUIEnums {
+export enum TwoPaneViewPriority {
   Pane1 = 0,
   Pane2 = 1,
+}
 }
 
 export enum ManipulationModes {
@@ -193,43 +240,36 @@ export enum ManipulationModes {
   All = 65535,
   System = 65536,
 }
-
 export enum Visibility {
   Visible = 0,
   Collapsed = 1,
 }
-
 export enum ElementCompositeMode {
   Inherit = 0,
   SourceOver = 1,
   MinBlend = 2,
 }
-
 export enum ElementHighContrastAdjustment {
   None = 0,
   Application = -2147483648,
   Auto = -1,
 }
-
 export enum XYFocusNavigationStrategy {
   Auto = 0,
   Projection = 1,
   NavigationDirectionDistance = 2,
   RectilinearDistance = 3,
 }
-
 export enum XYFocusKeyboardNavigationMode {
   Auto = 0,
   Enabled = 1,
   Disabled = 2,
 }
-
 export enum KeyboardNavigationMode {
   Local = 0,
   Cycle = 1,
   Once = 2,
 }
-
 export enum KeyTipPlacementMode {
   Auto = 0,
   Bottom = 1,
@@ -239,43 +279,36 @@ export enum KeyTipPlacementMode {
   Center = 5,
   Hidden = 6,
 }
-
 export enum KeyboardAcceleratorPlacementMode {
   Auto = 0,
   Hidden = 1,
 }
-
 export enum VerticalAlignment {
   Top = 0,
   Center = 1,
   Bottom = 2,
   Stretch = 3,
 }
-
 export enum HorizontalAlignment {
   Left = 0,
   Center = 1,
   Right = 2,
   Stretch = 3,
 }
-
 export enum FlowDirection {
   LeftToRight = 0,
   RightToLeft = 1,
 }
-
 export enum ElementTheme {
   Default = 0,
   Light = 1,
   Dark = 2,
 }
-
 export enum FontStyle {
   Normal = 0,
   Oblique = 1,
   Italic = 2,
 }
-
 export enum FontStretch {
   Undefined = 0,
   UltraCondensed = 1,
@@ -288,47 +321,39 @@ export enum FontStretch {
   ExtraExpanded = 8,
   UltraExpanded = 9,
 }
-
 export enum RequiresPointer {
   Never = 0,
   WhenEngaged = 1,
   WhenFocused = 2,
 }
-
 export enum ElementSoundMode {
   Default = 0,
   FocusOnly = 1,
   Off = 2,
 }
-
 export enum BackgroundSizing {
   InnerBorderEdge = 0,
   OuterBorderEdge = 1,
 }
-
 export enum AppBarClosedDisplayMode {
   Compact = 0,
   Minimal = 1,
   Hidden = 2,
 }
-
 export enum LightDismissOverlayMode {
   Auto = 0,
   On = 1,
   Off = 2,
 }
-
 export enum ClickMode {
   Release = 0,
   Press = 1,
   Hover = 2,
 }
-
 export enum CommandBarLabelPosition {
   Default = 0,
   Collapsed = 1,
 }
-
 export enum DayOfWeek {
   Sunday = 0,
   Monday = 1,
@@ -338,24 +363,20 @@ export enum DayOfWeek {
   Friday = 5,
   Saturday = 6,
 }
-
 export enum CalendarViewDisplayMode {
   Month = 0,
   Year = 1,
   Decade = 2,
 }
-
 export enum CalendarViewSelectionMode {
   None = 0,
   Single = 1,
   Multiple = 2,
 }
-
 export enum ColorSpectrumShape {
   Box = 0,
   Ring = 1,
 }
-
 export enum ColorSpectrumComponents {
   HueValue = 0,
   ValueHue = 1,
@@ -364,24 +385,20 @@ export enum ColorSpectrumComponents {
   SaturationValue = 4,
   ValueSaturation = 5,
 }
-
 export enum ComboBoxSelectionChangedTrigger {
   Committed = 0,
   Always = 1,
 }
-
 export enum CommandBarOverflowButtonVisibility {
   Auto = 0,
   Visible = 1,
   Collapsed = 2,
 }
-
 export enum CommandBarDefaultLabelPosition {
   Bottom = 0,
   Right = 1,
   Collapsed = 2,
 }
-
 export enum FlyoutPlacementMode {
   Top = 0,
   Bottom = 1,
@@ -398,62 +415,52 @@ export enum FlyoutPlacementMode {
   RightEdgeAlignedBottom = 12,
   Auto = 13,
 }
-
 export enum FlyoutShowMode {
   Auto = 0,
   Standard = 1,
   Transient = 2,
   TransientWithDismissOnPointerMoveAway = 3,
 }
-
 export enum ContentDialogButton {
   None = 0,
   Primary = 1,
   Secondary = 2,
   Close = 3,
 }
-
 export enum TextLineBounds {
   Full = 0,
   TrimToCapHeight = 1,
   TrimToBaseline = 2,
   Tight = 3,
 }
-
 export enum OpticalMarginAlignment {
   None = 0,
   TrimSideBearings = 1,
 }
-
 export enum TextWrapping {
   NoWrap = 1,
   Wrap = 2,
   WrapWholeWords = 3,
 }
-
 export enum LineStackingStrategy {
   MaxHeight = 0,
   BlockLineHeight = 1,
   BaselineToBaseline = 2,
 }
-
 export enum ListViewSelectionMode {
   None = 0,
   Single = 1,
   Multiple = 2,
   Extended = 3,
 }
-
 export enum IncrementalLoadingTrigger {
   None = 0,
   Edge = 1,
 }
-
 export enum ListViewReorderMode {
   Disabled = 0,
   Enabled = 1,
 }
-
 export enum HandwritingPanelPlacementAlignment {
   Auto = 0,
   TopLeft = 1,
@@ -461,14 +468,12 @@ export enum HandwritingPanelPlacementAlignment {
   BottomLeft = 3,
   BottomRight = 4,
 }
-
 export enum InkToolbarInitialControls {
   All = 0,
   None = 1,
   PensOnly = 2,
   AllExceptPens = 3,
 }
-
 export enum InkToolbarButtonFlyoutPlacement {
   Auto = 0,
   Top = 1,
@@ -476,40 +481,33 @@ export enum InkToolbarButtonFlyoutPlacement {
   Left = 3,
   Right = 4,
 }
-
 export enum InkToolbarFlyoutItemKind {
   Simple = 0,
   Radio = 1,
   Check = 2,
   RadioCheck = 3,
 }
-
 export enum InkToolbarStencilKind {
   Ruler = 0,
   Protractor = 1,
 }
-
 export enum GroupHeaderPlacement {
   Top = 0,
   Left = 1,
 }
-
 export enum SelectionMode {
   Single = 0,
   Multiple = 1,
   Extended = 2,
 }
-
 export enum ListPickerFlyoutSelectionMode {
   Single = 0,
   Multiple = 1,
 }
-
 export enum MapWatermarkMode {
   Automatic = 0,
   On = 1,
 }
-
 export enum MapStyle {
   None = 0,
   Road = 1,
@@ -520,12 +518,10 @@ export enum MapStyle {
   Aerial3DWithRoads = 6,
   Custom = 7,
 }
-
 export enum MapColorScheme {
   Light = 0,
   Dark = 1,
 }
-
 export enum MapInteractionMode {
   Auto = 0,
   Disabled = 1,
@@ -536,34 +532,28 @@ export enum MapInteractionMode {
   PointerKeyboardAndControl = 4,
   PointerOnly = 5,
 }
-
 export enum MapPanInteractionMode {
   Auto = 0,
   Disabled = 1,
 }
-
 export enum MapProjection {
   WebMercator = 0,
   Globe = 1,
 }
-
 export enum Stereo3DVideoRenderMode {
   Mono = 0,
   Stereo = 1,
 }
-
 export enum Stereo3DVideoPackingMode {
   None = 0,
   SideBySide = 1,
   TopBottom = 2,
 }
-
 export enum AudioDeviceType {
   Console = 0,
   Multimedia = 1,
   Communications = 2,
 }
-
 export enum AudioCategory {
   Other = 0,
   ForegroundOnlyMedia = 1,
@@ -578,30 +568,25 @@ export enum AudioCategory {
   Movie = 10,
   Media = 11,
 }
-
 export enum FastPlayFallbackBehaviour {
   Skip = 0,
   Hide = 1,
   Disable = 2,
 }
-
 export enum NavigationViewBackButtonVisible {
   Collapsed = 0,
   Visible = 1,
   Auto = 2,
 }
-
 export enum NavigationViewShoulderNavigationEnabled {
   WhenSelectionFollowsFocus = 0,
   Always = 1,
   Never = 2,
 }
-
 export enum NavigationViewSelectionFollowsFocus {
   Disabled = 0,
   Enabled = 1,
 }
-
 export enum NavigationViewPaneDisplayMode {
   Auto = 0,
   Left = 1,
@@ -609,28 +594,23 @@ export enum NavigationViewPaneDisplayMode {
   LeftCompact = 3,
   LeftMinimal = 4,
 }
-
 export enum NavigationViewOverflowLabelMode {
   MoreLabel = 0,
   NoLabel = 1,
 }
-
 export enum ParallaxSourceOffsetKind {
   Absolute = 0,
   Relative = 1,
 }
-
 export enum PasswordRevealMode {
   Peek = 0,
   Hidden = 1,
   Visible = 2,
 }
-
 export enum PivotHeaderFocusVisualPlacement {
   ItemHeaders = 0,
   SelectedItemHeader = 1,
 }
-
 export enum TickPlacement {
   None = 0,
   TopLeft = 1,
@@ -638,44 +618,37 @@ export enum TickPlacement {
   Outside = 3,
   Inline = 4,
 }
-
 export enum SliderSnapsTo {
   StepValues = 0,
   Ticks = 1,
 }
-
 export enum ColorPickerHsvChannel {
   Hue = 0,
   Saturation = 1,
   Value = 2,
   Alpha = 3,
 }
-
 export enum ListViewItemPresenterCheckMode {
   Inline = 0,
   Overlay = 1,
 }
-
 export enum ScrollingIndicatorMode {
   None = 0,
   TouchIndicator = 1,
   MouseIndicator = 2,
 }
-
 export enum RefreshPullDirection {
   LeftToRight = 0,
   TopToBottom = 1,
   RightToLeft = 2,
   BottomToTop = 3,
 }
-
 export enum RefreshVisualizerOrientation {
   Auto = 0,
   Normal = 1,
   Rotate90DegreesCounterclockwise = 2,
   Rotate270DegreesCounterclockwise = 3,
 }
-
 export enum TextAlignment {
   Center = 0,
   Left = 1,
@@ -685,17 +658,14 @@ export enum TextAlignment {
   Justify = 3,
   DetectFromContent = 4,
 }
-
 export enum CandidateWindowAlignment {
   Default = 0,
   BottomEdge = 1,
 }
-
 export enum RichEditClipboardFormat {
   AllFormats = 0,
   PlainText = 1,
 }
-
 export enum DisabledFormattingAccelerators {
   None = 0,
   Bold = 1,
@@ -703,26 +673,22 @@ export enum DisabledFormattingAccelerators {
   Underline = 4,
   All = -1,
 }
-
 export enum CharacterCasing {
   Normal = 0,
   Lower = 1,
   Upper = 2,
 }
-
 export enum TextTrimming {
   None = 0,
   CharacterEllipsis = 1,
   WordEllipsis = 2,
   Clip = 3,
 }
-
 export enum TextDecorations {
   None = 0,
   Underline = 1,
   Strikethrough = 2,
 }
-
 export enum SnapPointsType {
   None = 0,
   Optional = 1,
@@ -730,43 +696,36 @@ export enum SnapPointsType {
   OptionalSingle = 3,
   MandatorySingle = 4,
 }
-
 export enum SnapPointsAlignment {
   Near = 0,
   Center = 1,
   Far = 2,
 }
-
 export enum ScrollMode {
   Disabled = 0,
   Enabled = 1,
   Auto = 2,
 }
-
 export enum ScrollBarVisibility {
   Disabled = 0,
   Auto = 1,
   Hidden = 2,
   Visible = 3,
 }
-
 export enum ZoomMode {
   Disabled = 0,
   Enabled = 1,
 }
-
 export enum SplitViewPanePlacement {
   Left = 0,
   Right = 1,
 }
-
 export enum SplitViewDisplayMode {
   Overlay = 0,
   Inline = 1,
   CompactOverlay = 2,
   CompactInline = 3,
 }
-
 export enum Symbol {
   Previous = 57600,
   Next = 57601,
@@ -966,7 +925,6 @@ export enum Symbol {
   Print = 59209,
   XboxOneConsole = 59792,
 }
-
 export enum PlacementMode {
   Bottom = 2,
   Left = 9,
@@ -974,36 +932,30 @@ export enum PlacementMode {
   Right = 4,
   Top = 10,
 }
-
 export enum TreeViewSelectionMode {
   None = 0,
   Single = 1,
   Multiple = 2,
 }
-
 export enum TwoPaneViewWideModeConfiguration {
   SinglePane = 0,
   LeftRight = 1,
   RightLeft = 2,
 }
-
 export enum TwoPaneViewTallModeConfiguration {
   SinglePane = 0,
   TopBottom = 1,
   BottomTop = 2,
 }
-
 export enum TwoPaneViewPriority {
   Pane1 = 0,
   Pane2 = 1,
 }
-
 export enum StretchDirection {
   UpOnly = 0,
   DownOnly = 1,
   Both = 2,
 }
-
 export enum CoreCursorType {
   Arrow = 0,
   Cross = 1,
@@ -1022,19 +974,16 @@ export enum CoreCursorType {
   Pin = 14,
   Person = 15,
 }
-
 export enum StyleSimulations {
   None = 0,
   BoldSimulation = 1,
   ItalicSimulation = 2,
   BoldItalicSimulation = 3,
 }
-
 export enum UnderlineStyle {
   None = 0,
   Single = 1,
 }
-
 export enum VirtualKeyModifiers {
   None = 0,
   Control = 1,
@@ -1042,7 +991,6 @@ export enum VirtualKeyModifiers {
   Shift = 4,
   Windows = 8,
 }
-
 export enum VirtualKey {
   None = 0,
   LeftButton = 1,
@@ -1217,25 +1165,21 @@ export enum VirtualKey {
   GamepadRightThumbstickRight = 217,
   GamepadRightThumbstickLeft = 218,
 }
-
 export enum PenLineCap {
   Flat = 0,
   Square = 1,
   Round = 2,
   Triangle = 3,
 }
-
 export enum PenLineJoin {
   Miter = 0,
   Bevel = 1,
   Round = 2,
 }
-
 export enum FillRule {
   EvenOdd = 0,
   Nonzero = 1,
 }
-
 export enum FontCapitals {
   Normal = 0,
   AllSmallCaps = 1,
@@ -1245,7 +1189,6 @@ export enum FontCapitals {
   Unicase = 5,
   Titling = 6,
 }
-
 export enum FontEastAsianLanguage {
   Normal = 0,
   HojoKanji = 1,
@@ -1258,7 +1201,6 @@ export enum FontEastAsianLanguage {
   Traditional = 8,
   TraditionalNames = 9,
 }
-
 export enum FontEastAsianWidths {
   Normal = 0,
   Full = 1,
@@ -1267,25 +1209,21 @@ export enum FontEastAsianWidths {
   Quarter = 4,
   Third = 5,
 }
-
 export enum FontFraction {
   Normal = 0,
   Stacked = 1,
   Slashed = 2,
 }
-
 export enum FontNumeralAlignment {
   Normal = 0,
   Proportional = 1,
   Tabular = 2,
 }
-
 export enum FontNumeralStyle {
   Normal = 0,
   Lining = 1,
   OldStyle = 2,
 }
-
 export enum FontVariants {
   Normal = 0,
   Superscript = 1,

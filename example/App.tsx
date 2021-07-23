@@ -51,10 +51,10 @@ import {
   NavigationViewItem,
   NavigationViewItemHeader,
   FontIcon,
-  WinUI_InfoBar,
-  WinUI_ProgressRing,
+  WinUI,
   HorizontalAlignment,
   Visibility,
+  WinUIEnums,
 } from 'react-native-xaml';
 
 const Section = ({children, title}): Node => {
@@ -100,8 +100,8 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <WinUI_ProgressRing isActive={true} width={40} />
-        <WinUI_InfoBar
+        <WinUI.ProgressRing isActive={true} width={40} />
+        <WinUI.InfoBar
           message="the message"
           title="the title"
           isOpen={true}
@@ -109,6 +109,8 @@ const App: () => Node = () => {
           onClosed={() => {
             setVisible(Visibility.Collapsed);
           }}
+          severity={WinUIEnums.InfoBarSeverity.Success}
+          horizontalAlignment={HorizontalAlignment.Center}
         />
         <View>
           <Text style={{fontSize: 36, textAlign: 'center', padding: 42}}>
