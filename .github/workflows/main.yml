@@ -17,8 +17,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - uses: nuget/setup-nuget@v1
+
+    - name: NuGet restore
+      run: nuget restore example\windows\example.sln
+
     - name: run CodeGen
-      run: dotnet run 
+      run: dotnet run -verbose -winmd ..\..\example\windows\packages\Microsoft.UI.Xaml.2.6.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
       working-directory: package\Codegen
 
     - name: verify no changes from CodeGen

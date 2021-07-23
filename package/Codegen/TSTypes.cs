@@ -31,77 +31,128 @@ namespace Codegen
             this.Write("import type {\r\n");
             
             #line 7 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
- foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
+ foreach (var type in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) == "")) { 
             
             #line default
             #line hidden
-            this.Write("    Native");
+            this.Write("    ");
             
             #line 8 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetNativePropsName(type)));
             
             #line default
             #line hidden
-            this.Write("Props,\r\n");
+            this.Write(",\r\n");
             
             #line 9 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("} from \'./Props\';\r\nimport React from \'react\';\r\nimport { NativeXamlControl } from " +
-                    "\'./NativeXamlControl\';\r\n\r\n\r\n");
+            this.Write("} from \'./Props\';\r\n\r\n");
             
-            #line 15 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
- foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
+            #line 12 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+ foreach (var ns in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) != "").Select(t => Util.GetTSNamespace(t)).Distinct()) { 
+            
+            #line default
+            #line hidden
+            this.Write("import type { Native");
+            
+            #line 13 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ns));
+            
+            #line default
+            #line hidden
+            this.Write(" } from \'./Props\';\r\n");
+            
+            #line 14 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nimport React from \'react\';\r\nimport { NativeXamlControl } from \'./NativeXamlCont" +
+                    "rol\';\r\n\r\n\r\n");
+            
+            #line 20 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+ 
+foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
+var ns = Util.GetTSNamespace(type);
+if (ns != "") { 
+            
+            #line default
+            #line hidden
+            this.Write("export namespace ");
+            
+            #line 24 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(ns));
+            
+            #line default
+            #line hidden
+            this.Write(" {\r\n");
+            
+            #line 25 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+ } 
             
             #line default
             #line hidden
             this.Write("export type ");
             
-            #line 16 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
+            #line 26 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type)));
             
             #line default
             #line hidden
-            this.Write("Props = Omit<Native");
+            this.Write("Props = Omit<");
             
-            #line 16 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
+            #line 26 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetNativePropsName(type)));
             
             #line default
             #line hidden
-            this.Write("Props, \'type\'>;\r\n\r\nexport const ");
+            this.Write(", \'type\'>;\r\n\r\nexport const ");
             
-            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
+            #line 28 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type)));
             
             #line default
             #line hidden
             this.Write(": React.FC<");
             
-            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
+            #line 28 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type)));
             
             #line default
             #line hidden
             this.Write("Props> = (props: ");
             
-            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
+            #line 28 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type)));
             
             #line default
             #line hidden
             this.Write("Props) => {\r\n    return (\r\n        <NativeXamlControl type=\"");
             
-            #line 20 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            #line 30 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type.GetFullName()));
             
             #line default
             #line hidden
             this.Write("\" {...props} />\r\n    );\r\n};\r\n");
             
-            #line 23 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+            #line 33 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+ if (ns != "") { 
+            
+            #line default
+            #line hidden
+            this.Write("}\r\n");
+            
+            #line 35 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 36 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSTypes.tt"
  } 
             
             #line default

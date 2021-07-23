@@ -11,14 +11,10 @@ Then autolinking will take care of the rest!
 
 The stock react-native-xaml package includes projections for all XAML types (i.e. "system XAML").
 
-If either of these are true, you will want to generate a custom projection for your project:
-
-- you want to use types from the [WinUI 2.x library](https://docs.microsoft.com/windows/apps/winui/).
-- you want to use an existing `UserControl` (e.g. from a library you've already written).
-
+If you want to use an existing `UserControl` (e.g. from a library you've already written), you will want to generate a custom projection for your project.
 For more information on generating a custom projection, please see the [Technical Guide](TechnicalGuide.md).
 
-# Sample usage
+# Sample usage - UWP XAML
 
 Below are  usage examples of some controls and features of react-native-xaml.
 If you have questions about a scenario you don't see below, please [file an issue](https://github.com/asklar/react-native-xaml/issues/new)!
@@ -408,3 +404,23 @@ In order to enable Direct debugging for your app, make sure that your App.cpp/Ap
 ```cs
   InstanceSettings.UseWebDebugger = false;
 ```
+
+# Sample usage - WinUI controls
+
+WinUI controls are available in the `WinUI` namespace.
+
+## InfoBar
+
+const [visible, setVisible] = useState(Visibility.Visible);
+// ...
+<WinUI.InfoBar
+  message="the message"
+  title="the title"
+  isOpen={true}
+  visibility={visible}
+  onClosed={() => {
+    setVisible(Visibility.Collapsed);
+  }}
+  severity={WinUIEnums.InfoBarSeverity.Success}
+/>
+

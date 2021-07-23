@@ -221,7 +221,7 @@ namespace Codegen
 
 
             var xamlTypes = types.Where(type => baseClassesToProject.Any(b =>
-                Util.DerivesFrom(type, b)) || type.GetFullName() == XamlNames.TopLevelProjectedType);
+                Util.DerivesFrom(type, b)) || type.GetFullName() == XamlNames.TopLevelProjectedType).ToList();
 
             var generatedDirPath = Path.GetFullPath(cppOutPath ?? Path.Join(PackageRoot, @"windows\ReactNativeXaml\Codegen"));
             var packageSrcPath = Path.GetFullPath(tsOutPath ?? Path.Join(PackageRoot, @"src"));
@@ -229,53 +229,9 @@ namespace Codegen
 
             PrintVerbose("Filtering types");
             var creatableTypes = xamlTypes.Where(x => Util.HasCtor(x)).ToList();
-            // The same type name may exist in multiple namespaces. The TS names don't support that as they are only short names
-            // So we need to make sure only one type has a given name, and if the options are WUX or MUX, we should pick MUX
-            // If there are more options than that, we should error out.
-            var allCreatableTypes = new Dictionary<string, List<MrType>>();
-            foreach (var t in creatableTypes)
-            {
-                List<MrType> list = null;
-                if (allCreatableTypes.ContainsKey(t.GetName()))
-                {
-                    list = allCreatableTypes[t.GetName()];
-                }
-                else
-                {
-                    list = new List<MrType>();
-                    allCreatableTypes.Add(t.GetName(), list);
-                }
-                list.Add(t);
-            }
-            PrintVerbose("Ensuring all types have unique names");
-            foreach (var key in allCreatableTypes.Keys)
-            {
-                if (allCreatableTypes[key].Count == 1)
-                {
-                    continue;
-                }
-                else if (allCreatableTypes[key].Count == 2)
-                {
-                    if (allCreatableTypes[key][0].GetNamespace() == XamlNames.XamlNamespace &&
-                        allCreatableTypes[key][1].GetNamespace() == XamlNames.MuxNamespace)
-                    {
-                        creatableTypes.Remove(allCreatableTypes[key][0]);
-                        continue;
-                    }
-                    else if (allCreatableTypes[key][1].GetNamespace() == XamlNames.XamlNamespace &&
-                        allCreatableTypes[key][0].GetNamespace() == XamlNames.MuxNamespace)
-                    {
-                        creatableTypes.Remove(allCreatableTypes[key][1]);
-                        continue;
-                    }
-                }
-                // If we got here, then either we had more than 2 types with the same short name,
-                // Or we could not disambiguate between the options. Bail out.
-                throw new ArgumentException("More than one type with the same short name was supplied: " + string.Join(", ", allCreatableTypes[key].Select(t => t.GetFullName())));
-            }
 
             PrintVerbose("Sorting types");
-            creatableTypes.Sort((a, b) => a.GetName().CompareTo(b.GetName()));
+            creatableTypes.Sort((a, b) => a.GetFullName().CompareTo(b.GetFullName()));
 
 
 

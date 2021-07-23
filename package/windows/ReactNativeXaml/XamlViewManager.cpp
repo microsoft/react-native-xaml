@@ -56,7 +56,7 @@ namespace winrt::ReactNativeXaml {
 
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
 
-    auto e = view;
+    auto e = view;  
     auto cn = get_class_name(e);
     if (auto control = e.try_as<DependencyObject>()) {
       for (auto const& pair : propertyMap) {
@@ -69,11 +69,14 @@ namespace winrt::ReactNativeXaml {
           auto rcn = get_class_name(realObject);
           prop->SetValue(realObject, propertyValue, m_reactContext);
           handled = true;
+          continue;
         }
         else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
+          continue;
         }
-        else if (propertyName == "type") {}
+        else if (propertyName == "type") { return; }
         else {
+          cdebug << "[react-native-xaml] Unhandled call to UpdateProperties " << propertyName << " on view: " << cn << "\n";
           auto className = winrt::get_class_name(e);
           if (IsDebuggerPresent()) {
             assert(false && "unknown property");
@@ -81,8 +84,6 @@ namespace winrt::ReactNativeXaml {
         }
       }
     }
-
-    cdebug << "[react-native-xaml] Unhandled call to UpdateProperties with view: " << cn << "\n";
   }
 
   // IViewManagerWithExportedEventTypeConstants
@@ -109,13 +110,6 @@ namespace winrt::ReactNativeXaml {
     FrameworkElement const& view,
     winrt::hstring const& commandId,
     winrt::Microsoft::ReactNative::IJSValueReader const& /*commandArgsReader*/) noexcept {
-    if (auto control = view.try_as<winrt::Windows::UI::Xaml::Controls::HyperlinkButton>()) {
-      if (commandId == L"CustomCommand") {
-        // const JSValueArray& commandArgs = JSValue::ReadArrayFrom(commandArgsReader);
-        // Execute command
-      }
-    }
-
     auto viewType = get_class_name(view);
     cdebug << "[react-native-xaml] Unhandled call to DispatchCommand with view: " << viewType << "\n";
   }
