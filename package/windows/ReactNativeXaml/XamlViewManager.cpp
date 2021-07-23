@@ -13,6 +13,7 @@ using namespace winrt;
 using namespace Microsoft::ReactNative;
 using namespace xaml;
 using namespace xaml::Controls;
+namespace mux = winrt::Microsoft::UI::Xaml;
 
 namespace winrt::ReactNativeXaml {
 
@@ -200,6 +201,29 @@ namespace winrt::ReactNativeXaml {
     if (auto navViewItem = e.try_as<NavigationViewItem>()) {
       if (auto childIconElement = child.try_as<IconElement>()) {
         return navViewItem.Icon(childIconElement);
+      }
+    }
+
+    if (auto splitview = e.try_as<SplitView>()) {
+      if (index == 0) {
+        auto priority = GetPriority(child);
+        if (priority == 0) {
+          return splitview.Content(child);
+        }
+        else if (priority == 1) {
+          return splitview.Pane(child);
+        }
+      }
+    }
+    else if (auto splitview2 = e.try_as<mux::Controls::SplitView>()) {
+      if (index == 0) {
+        auto priority = GetPriority(child);
+        if (priority == 0) {
+          return splitview2.Content(child);
+        }
+        else if (priority == 1) {
+          return splitview2.Pane(child);
+        }
       }
     }
 
