@@ -2,14 +2,17 @@
 
 ## Requirements
 
-react-native-xaml requires react-native-windows 0.64.2.
+react-native-xaml works best on the latest supported react-native-windows version.
 
 To include react-native-xaml in your app, just add it to your package.json:
 `yarn add react-native-xaml --save`
 
 Then autolinking will take care of the rest!
 
-The stock react-native-xaml package includes projections for all XAML types (i.e. "system XAML").
+The stock react-native-xaml package includes projections for all XAML types (i.e. "system XAML") as well as WinUI 2.6.
+
+## :exclamation: **Important**
+You must update your app to use WinUI 2.6 or later. See the instructions at https://microsoft.github.io/react-native-windows/docs/customizing-sdk-versions.
 
 If you want to use an existing `UserControl` (e.g. from a library you've already written), you will want to generate a custom projection for your project.
 For more information on generating a custom projection, please see the [Technical Guide](TechnicalGuide.md).
