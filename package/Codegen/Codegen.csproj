@@ -17,6 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="TypeEnums.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TypeEnums.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MikeHillberg.MiddleweightReflection" Version="1.0.3" />
     <PackageReference Include="System.CodeDom" Version="6.0.0-preview.1.21102.12" />
   </ItemGroup>
@@ -45,6 +53,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>TypeCreator.tt</DependentUpon>
+    </Compile>
+    <Compile Update="TypeEnums.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TypeEnums.tt</DependentUpon>
     </Compile>
     <Compile Update="TypeEvents.cs">
       <DesignTime>True</DesignTime>
@@ -79,6 +92,10 @@
     <None Update="TypeCreator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>TypeCreator.cs</LastGenOutput>
+    </None>
+    <None Update="TypeEnums.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TypeEnums.cs</LastGenOutput>
     </None>
     <None Update="TypeEvents.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>

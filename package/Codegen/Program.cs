@@ -339,7 +339,7 @@ namespace Codegen
             var typesGen = new TSTypes(xamlTypes).TransformText();
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
-
+            var enumsGen = new TypeEnums().TransformText();
 
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();
@@ -354,6 +354,7 @@ namespace Codegen
             UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
             UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
+            UpdateFile(Path.Join(generatedDirPath, "TypeEnums.g.h"), enumsGen);
 
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);

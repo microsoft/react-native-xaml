@@ -36,6 +36,9 @@
     <ClInclude Include="Codegen\EventArgsTypeProperties.g.h">
       <Filter>Codegen</Filter>
     </ClInclude>
+    <ClInclude Include="Codegen\TypeEnums.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />

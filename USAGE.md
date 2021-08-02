@@ -131,7 +131,7 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 ```jsx
 <CommandBar isOpen={true} style={{ height: 56 }}>
   <AppBarButton
-    priority={AppBarButtonPriority.Primary}
+    priority={CommandBarPriority.PrimaryCommand}
     label="Search"
     onClick={() => { alert('search'); }}>
     <SymbolIcon symbol={Symbol.Find} />
@@ -140,16 +140,16 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
         modifiers={VirtualKeyModifiers.Menu} />
   </AppBarButton>
   <AppBarButton
-    priority={AppBarButtonPriority.Primary}
+    priority={CommandBarPriority.PrimaryCommand}
     label="Calendar">
     <SymbolIcon symbol={Symbol.Calendar} />
   </AppBarButton>
-  <AppBarButton label="Audio" priority={AppBarButtonPriority.Secondary}>
+  <AppBarButton label="Audio" priority={CommandBarPriority.SecondaryCommand}>
     <SymbolIcon symbol={Symbol.Audio} />
   </AppBarButton>
   <AppBarButton
     label="Calculator"
-    priority={AppBarButtonPriority.Secondary}>
+    priority={CommandBarPriority.SecondaryCommand}>
     <SymbolIcon symbol={Symbol.Calculator} />
   </AppBarButton>
 </CommandBar>
