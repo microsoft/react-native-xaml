@@ -9,6 +9,7 @@
 #include <UI.Xaml.Documents.h>
 #include <cdebug.h>
 #include "Codegen/TypeEnums.g.h"
+#include "WinUISupport.h"
 
 using namespace winrt;
 using namespace Microsoft::ReactNative;

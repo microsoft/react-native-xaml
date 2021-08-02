@@ -39,6 +39,7 @@
     <ClInclude Include="Codegen\TypeEnums.g.h">
       <Filter>Codegen</Filter>
     </ClInclude>
+    <ClInclude Include="WinUISupport.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
