@@ -41,17 +41,24 @@
   ],
   "fakeEnums": [
     {
-      "name": "AppBarButtonPriority",
-      "values": {
-        "Primary": 0,
-        "Secondary": 1
-      }
-    },
-    {
       "name": "NavigationViewItemPriority",
       "values": {
         "MenuItem": 0,
         "FooterMenuItem": 1
+      }
+    },
+    {
+      "name": "ExpanderPriority",
+      "values": {
+        "Header": 0,
+        "Content": 1
+      }
+    },
+    {
+      "name": "CommandBarPriority",
+      "values": {
+        "PrimaryCommand": 0,
+        "SecondaryCommand": 1
       }
     },
     {
@@ -67,7 +74,7 @@
         "Popup": 0,
         "InPlace": 1,
         "Hidden": 3
-      },
+      }
     },
     {
       "name": "$xaml.Controls.ContentDialogResult"
@@ -86,7 +93,7 @@
         "SemiLight": 350,
         "Light": 300,
         "ExtraLight": 200,
-        "Thin":100
+        "Thin": 100
       }
     }
   ],

@@ -1234,14 +1234,19 @@ export enum FontVariants {
 }
 
 
-export enum AppBarButtonPriority {
-  Primary = 0,
-  Secondary = 1,
-}
-
 export enum NavigationViewItemPriority {
   MenuItem = 0,
   FooterMenuItem = 1,
+}
+
+export enum ExpanderPriority {
+  Header = 0,
+  Content = 1,
+}
+
+export enum CommandBarPriority {
+  PrimaryCommand = 0,
+  SecondaryCommand = 1,
 }
 
 export enum SplitViewPriority {

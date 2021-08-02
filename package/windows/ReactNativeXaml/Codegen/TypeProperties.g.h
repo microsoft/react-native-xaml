@@ -1931,5 +1931,3 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
 }
 #endif
 
-
-

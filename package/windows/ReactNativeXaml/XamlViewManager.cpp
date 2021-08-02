@@ -8,6 +8,7 @@
 #include <UI.Xaml.Input.h>
 #include <UI.Xaml.Documents.h>
 #include <cdebug.h>
+#include "Codegen/TypeEnums.g.h"
 
 using namespace winrt;
 using namespace Microsoft::ReactNative;
@@ -96,8 +97,9 @@ namespace winrt::ReactNativeXaml {
     return GetEvents;
   }
 
+  template<typename PriorityEnum>
   auto GetPriority(const UIElement& u) {
-    return winrt::unbox_value<uint32_t>(u.GetValue(GetPriorityProperty()));
+    return static_cast<PriorityEnum>(winrt::unbox_value<uint32_t>(u.GetValue(GetPriorityProperty())));
   }
 
   // IViewManagerWithCommands
@@ -193,8 +195,23 @@ namespace winrt::ReactNativeXaml {
 
     if (auto navView = e.try_as<NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
+      auto priority = GetPriority<NavigationViewItemPriority>(child);
       if (auto childMI = child.try_as<NavigationViewItemBase>()) {
-        return navView.MenuItems().InsertAt(index, child);
+        if (priority == NavigationViewItemPriority::MenuItem) {
+          return navView.MenuItems().InsertAt(index, child);
+        }
+      }
+    }
+    else if (auto navViewMUX = e.try_as<mux::Controls::NavigationView>()) {
+      auto childCN = winrt::get_class_name(child);
+      if (auto childVIB = child.try_as<mux::Controls::NavigationViewItemBase>()) {
+        auto priority = GetPriority<NavigationViewItemPriority>(child);
+        if (priority == NavigationViewItemPriority::MenuItem) {
+          return navViewMUX.MenuItems().InsertAt(index, child);
+        }
+        else if (priority == NavigationViewItemPriority::FooterMenuItem) {
+          return navViewMUX.FooterMenuItems().InsertAt(index, child);
+        }
       }
     }
 
@@ -205,11 +222,11 @@ namespace winrt::ReactNativeXaml {
     }
 
     if (auto splitview = e.try_as<SplitView>()) {
-      auto priority = GetPriority(child);
-      if (priority == 0 && splitview.Content() == nullptr) {
+      const auto priority = GetPriority<SplitViewPriority>(child);
+      if (priority == SplitViewPriority::Content && splitview.Content() == nullptr) {
         return splitview.Content(child);
       }
-      else if (priority == 1 && splitview.Pane() == nullptr) {
+      else if (priority == SplitViewPriority::Pane && splitview.Pane() == nullptr) {
         return splitview.Pane(child);
       }
     }
@@ -221,10 +238,10 @@ namespace winrt::ReactNativeXaml {
     }
     if (auto commandBar = e.try_as<CommandBar>()) {
       if (auto commandBarElement = child.try_as<ICommandBarElement>()) {
-        const auto priority = GetPriority(child);
-        if (priority == 0) {
+        const auto priority = GetPriority<CommandBarPriority>(child);
+        if (priority == CommandBarPriority::PrimaryCommand) {
           return commandBar.PrimaryCommands().Append(commandBarElement);
-        } else if (priority == 1) {
+        } else if (priority == CommandBarPriority::SecondaryCommand) {
           return commandBar.SecondaryCommands().Append(commandBarElement);
         }
       }
