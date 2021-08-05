@@ -2,6 +2,9 @@
 # react-native-xaml
 A React Native Windows view manager that allows directly using the [Windows XAML](https://docs.microsoft.com/windows/uwp/xaml-platform/xaml-overview) framework.
 
+## Cheat sheet
+To see examples of the syntax and available controls, check out the [Usage guide](https://github.com/asklar/react-native-xaml/tree/main/USAGE.md).
+
 ## Main advantages
 -	Allows developers writing [react-native-windows](https://microsoft.github.io/react-native-windows/) apps (React Native apps targeting Windows 10) to quickly get started, if they are familiar with XAML.
 -	Developers are not limited by the set of controls present today in RNW and community modules that support Windows. 
