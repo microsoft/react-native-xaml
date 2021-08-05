@@ -451,6 +451,7 @@ WinUI controls are available in the `WinUI` namespace.
 
 ## InfoBar
 
+```jsx
 const [visible, setVisible] = useState(Visibility.Visible);
 // ...
 <WinUI.InfoBar
@@ -463,4 +464,4 @@ const [visible, setVisible] = useState(Visibility.Visible);
   }}
   severity={WinUIEnums.InfoBarSeverity.Success}
 />
-
+```
