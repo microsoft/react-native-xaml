@@ -11,8 +11,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asklar/react-native-xaml.git",
-    "baseUrl": "https://github.com/asklar/react-native-xaml"
+    "url": "git+https://github.com/microsoft/react-native-xaml.git",
+    "baseUrl": "https://github.com/microsoft/react-native-xaml"
   },
   "keywords": [
     "react-native",
