@@ -204,6 +204,15 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
     t.setProperty(rt, "bottomRight", cr.BottomRight);
     return t;
   }
+  else if (auto color_ = o.try_as<IReference<ui::Color>>()) {
+    auto t = jsi::Object(rt);
+    auto color = color_.Value();
+    t.setProperty(rt, "a", (double)color.A);
+    t.setProperty(rt, "r", (double)color.R);
+    t.setProperty(rt, "g", (double)color.G);
+    t.setProperty(rt, "b", (double)color.B);
+    return t;
+  }
 
   return jsi::Object::createFromHostObject(rt, std::make_shared<XamlObject>(o, m_metadata));
 }
