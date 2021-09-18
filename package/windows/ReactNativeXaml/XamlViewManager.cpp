@@ -196,28 +196,29 @@ namespace winrt::ReactNativeXaml {
     if (auto navView = e.try_as<NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
       auto priority = GetPriority<NavigationViewItemPriority>(child);
-      if (auto childMI = child.try_as<NavigationViewItemBase>()) {
-        if (priority == NavigationViewItemPriority::MenuItem) {
-          return navView.MenuItems().InsertAt(index, child);
-        }
+      if (priority == NavigationViewItemPriority::MenuItem) {
+        return navView.MenuItems().InsertAt(index, child);
       }
     }
     else if (auto navViewMUX = e.try_as<mux::Controls::NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
-      if (auto childVIB = child.try_as<mux::Controls::NavigationViewItemBase>()) {
-        auto priority = GetPriority<NavigationViewItemPriority>(child);
-        if (priority == NavigationViewItemPriority::MenuItem) {
-          return navViewMUX.MenuItems().InsertAt(index, child);
-        }
-        else if (priority == NavigationViewItemPriority::FooterMenuItem) {
-          return navViewMUX.FooterMenuItems().InsertAt(index, child);
-        }
+      auto priority = GetPriority<NavigationViewItemPriority>(child);
+      if (priority == NavigationViewItemPriority::MenuItem) {
+        return navViewMUX.MenuItems().InsertAt(index, child);
+      }
+      else if (priority == NavigationViewItemPriority::FooterMenuItem) {
+        return navViewMUX.FooterMenuItems().InsertAt(index, child);
       }
     }
 
     if (auto navViewItem = e.try_as<NavigationViewItem>()) {
       if (auto childIconElement = child.try_as<IconElement>()) {
         return navViewItem.Icon(childIconElement);
+      }
+    }
+    else if (auto muxNavViewItem = e.try_as<mux::Controls::NavigationViewItem>()) {
+      if (auto childIconElement = child.try_as<IconElement>()) {
+        return muxNavViewItem.Icon(childIconElement);
       }
     }
 

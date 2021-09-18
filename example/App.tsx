@@ -152,10 +152,10 @@ const App: () => Node = () => {
             onTapped={a => {
               setIsOpen(!isOpen);
             }}
-            content={{string: 'button'}}
+            content='button'
           />
           {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
-          {/* <Button content={{ string: `Last selected option = ${option} ${count}` }}
+          {/* <Button content={`Last selected option = ${option} ${count}`}
                       onClick={(a) => { 
                         alert(JSON.stringify(a.nativeEvent)); 
                         setCount(count + 1); 
@@ -178,20 +178,20 @@ const App: () => Node = () => {
           </TextBlock>
           <NavigationView
             style={{height: 200, width: 120, margin: 20, padding: 40}}>
-            <NavigationViewItem content={{string: 'item 1'}}>
+            <NavigationViewItem content='item 1'>
               <FontIcon glyph="&#xE790;" />
             </NavigationViewItem>
-            <NavigationViewItem content={{string: 'item 2'}} />
+            <NavigationViewItem content='item 2' />
           </NavigationView>
           {/*<StackPanel orientation="horizontal">*/}
-          {/*    <HyperlinkButton content={{ string: "Click me!" }} onClick={(args) => {*/}
+          {/*    <HyperlinkButton content="Click me!" onClick={(args) => {*/}
           {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
           {/*    }} />*/}
           {/*    <Border verticalAlignment="center" background="paleturquoise" >*/}
           {/*        <TextBlock text="this is a textblock" foreground='red' textAlignment="center" />*/}
           {/*    </Border>*/}
           {/*    <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />*/}
-          {/*    <Button content={{ string: "this is a button" }} onClick={() => { alert("you clicked the button!"); }} />*/}
+          {/*    <Button content="this is a button" onClick={() => { alert("you clicked the button!"); }} />*/}
           {/*</StackPanel>*/}
           <ComboBox
             text="this is a combobox"
@@ -203,8 +203,8 @@ const App: () => Node = () => {
                 )}`,
               );
             }}>
-            <ComboBoxItem content={{string: 'garfield'}} foreground="black" />
-            <ComboBoxItem content={{string: 'snoopy'}} foreground="black" />
+            <ComboBoxItem content='garfield' foreground="black" />
+            <ComboBoxItem content='snoopy' foreground="black" />
           </ComboBox>
           {/* <TextBox text="this is a textbox with a menuFlyout" foreground="red">
                       <MenuFlyout isOpen={isOpen} onClosed={() => {
@@ -218,7 +218,7 @@ const App: () => Node = () => {
           {/*<TextBox text="this is a textbox with a flyout" */}
           {/*  foreground="red" >*/}
           {/*  <NativeXamlControl type="flyout" >*/}
-          {/*    <Button content={{string: "click me"}} />*/}
+          {/*    <Button content="click me" />*/}
           {/*  </NativeXamlControl>*/}
           {/*</TextBox>*/}
 
