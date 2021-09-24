@@ -6,11 +6,11 @@
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 import type * as Enums from './Enums';
 
-export type Thickness = number | { left: number, top: number, right: number, bottom: number };
+export type Thickness = number | { left?: number, top?: number, right?: number, bottom?: number };
 
 export type GridLength = number | '*' | 'auto' | `${number}*`;
 
-export type CornerRadius = number | { topLeft: number, topRight: number, bottomLeft: number, bottomRight: number};
+export type CornerRadius = number | { topLeft?: number, topRight?: number, bottomLeft?: number, bottomRight?: number};
 
 <# var derived = Util.GetDerivedTypes(Types);
 foreach (var type in Types) { #>

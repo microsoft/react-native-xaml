@@ -17,7 +17,13 @@ namespace Codegen
         {
             get
             {
-                if (Property != null && Util.IsDependencyProperty(Property))
+                var fullPropertyName = Property.DeclaringType.GetFullName() + "." + Property.GetName();
+
+                if (Util.propNameMap.TryGetValue(fullPropertyName, out string realName))
+                {
+                    return realName;
+                }
+                else if (Property != null && Util.IsDependencyProperty(Property))
                 {
                     return Property.DeclaringType.GetName() + SimpleName;
                 }

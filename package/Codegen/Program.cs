@@ -441,7 +441,9 @@ namespace Codegen
 
         private static int CompareProps(SyntheticProperty p1, SyntheticProperty p2)
         {
-            var c = p1.SimpleNameForJs.CompareTo(p2.SimpleNameForJs);
+            var realName1 = p1.SimpleNameForJs;
+            var realName2 = p2.SimpleNameForJs;
+            var c = realName1.CompareTo(realName2);
             if (c != 0) return c;
             var inheritanceDepthComp = Util.GetTypeInheritanceDepth(p1.DeclaringType).CompareTo(Util.GetTypeInheritanceDepth(p2.DeclaringType));
             if (inheritanceDepthComp != 0) return inheritanceDepthComp;

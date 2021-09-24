@@ -1,11 +1,11 @@
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
 import type * as Enums from './Enums';
 
-export type Thickness = number | { left: number, top: number, right: number, bottom: number };
+export type Thickness = number | { left?: number, top?: number, right?: number, bottom?: number };
 
 export type GridLength = number | '*' | 'auto' | `${number}*`;
 
-export type CornerRadius = number | { topLeft: number, topRight: number, bottomLeft: number, bottomRight: number};
+export type CornerRadius = number | { topLeft?: number, topRight?: number, bottomLeft?: number, bottomRight?: number};
 
 export namespace NativeWinUI {
 export interface NativeAnimatedIconProps extends NativeIconElementProps {
@@ -1301,7 +1301,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
   minHeight?: number;
   maxWidth?: number;
   maxHeight?: number;
-  margin?: Thickness;
+  xamlMargin?: Thickness;
   language?: string;
   horizontalAlignment?: Enums.HorizontalAlignment;
   height?: number;
@@ -1485,7 +1485,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
         'Windows.UI.Xaml.Controls.TreeViewItem' |
         'Windows.UI.Xaml.Controls.TreeViewList' |
         'Windows.UI.Xaml.Controls.TwoPaneView';
-  padding?: Thickness;
+  xamlPadding?: Thickness;
   isTabStop?: boolean;
   isEnabled?: boolean;
   horizontalContentAlignment?: Enums.HorizontalAlignment;

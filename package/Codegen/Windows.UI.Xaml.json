@@ -104,6 +104,8 @@
     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",
     "$xaml.Controls.Maps.MapControl.Style": "mapStyle",
     "$xaml.FrameworkElement.Style": "styleKey",
+    "$xaml.FrameworkElement.Margin": "xamlMargin",
+    "$xaml.Controls.Control.Padding":  "xamlPadding"
   },
   "typeMapping": [
     {

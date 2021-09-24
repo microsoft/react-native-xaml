@@ -76,13 +76,13 @@ namespace winrt::ReactNativeXaml {
         else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
           continue;
         }
-        else if (propertyName == "type") { return; }
+        else if (propertyName == "type") { continue; }
         else {
-          cdebug << "[react-native-xaml] Unhandled call to UpdateProperties " << propertyName << " on view: " << cn << "\n";
-          auto className = winrt::get_class_name(e);
-          if (IsDebuggerPresent()) {
-            assert(false && "unknown property");
-          } 
+          //cdebug << "[react-native-xaml] Unhandled call to UpdateProperties " << propertyName << " on view: " << cn << "\n";
+          //auto className = winrt::get_class_name(e);
+          //if (IsDebuggerPresent()) {
+          //  assert(false && "unknown property"); // this can happen e.g. for layout / style props, ignore unless debugging an issue
+          //} 
         }
       }
     }
