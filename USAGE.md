@@ -42,7 +42,7 @@ If you have questions about a scenario you don't see below, please [file an issu
 ## Text
 
 ```jsx
-<TextBlock foreground="black" padding={20} margin={20}>
+<TextBlock foreground="black" xamlPadding={20} xamlMargin={20}>
   <Run text="hello world!"/>
   <LineBreak />
   <Italic>
