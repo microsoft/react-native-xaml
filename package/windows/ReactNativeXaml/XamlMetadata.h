@@ -217,10 +217,12 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   void SetupEventDispatcher(const winrt::Microsoft::ReactNative::IReactContext& context);
   const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const;
   const EventInfo* AttachEvent(const winrt::Microsoft::ReactNative::IReactContext& context, const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj, bool attaching);
+  void DispatchCommand(FrameworkElement const& view, winrt::hstring const& commandId, const winrt::Microsoft::ReactNative::JSValueArray& args) const noexcept;
 
   void PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
   void PopulateNativeEvents(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const;
   void PopulateNativeProps(std::vector<std::string>& names, const winrt::Windows::Foundation::IInspectable& obj) const;
+  void PopulateCommands(const winrt::Windows::Foundation::Collections::IVector<winrt::hstring>& commands) const;
 
   void JsiDispatchEvent(facebook::jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept;
   std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;

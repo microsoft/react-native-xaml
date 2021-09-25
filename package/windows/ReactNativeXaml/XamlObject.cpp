@@ -253,3 +253,6 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
   return pnames;
 }
 
+void CustomCommandCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept {
+  OutputDebugStringA("Custom command was called\n");
+}

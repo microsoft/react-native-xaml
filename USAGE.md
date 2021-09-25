@@ -452,6 +452,25 @@ In order to enable Direct debugging for your app, make sure that your App.cpp/Ap
   InstanceSettings.UseWebDebugger = false;
 ```
 
+# Calling methods on XAML objects ("commands")
+Some types support custom commands to expose some functionality of the underlying platform. For example, this allows calling the `MediaPlayerElement.Play()` method in response to some other action.
+
+```jsx
+  const _tbRef = React.useRef<TextBlock>(null);
+
+  // ...
+  return
+        <TextBlock
+          text="hello world"
+          ref={t => {
+            _tbRef.current = t;
+          }}
+          onTapped={() => {
+            TextBlock.CustomCommand(_tbRef, ['foo']);
+          }} 
+        />;
+```
+
 # Sample usage - WinUI controls
 
 WinUI controls are available in the `WinUI` namespace.

@@ -133,6 +133,11 @@ namespace Codegen
         public string TS { get; set; }
     }
 
+    public class Command
+    {
+        public string Name { get; set; }
+    }
+
     public partial class VersionHeader
     {
         public Version Version { get; set; }

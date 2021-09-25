@@ -517,7 +517,8 @@ export interface NativeTwoPaneViewProps extends NativeControlProps {
 }
 }
 export interface NativeDependencyObjectProps extends ViewProps {
-  type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
+  type: 'Windows.UI.Xaml.DependencyObject' |
+        'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
         'Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBar' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' |
@@ -775,7 +776,8 @@ export interface NativeDependencyObjectProps extends ViewProps {
   priority?: number; // synthetic property
 }
 export interface NativeUIElementProps extends NativeDependencyObjectProps {
-  type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
+  type: 'Windows.UI.Xaml.UIElement' |
+        'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
         'Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBar' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' |
@@ -1075,7 +1077,8 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   onBringIntoViewRequested?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeFrameworkElementProps extends NativeUIElementProps {
-  type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
+  type: 'Windows.UI.Xaml.FrameworkElement' |
+        'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
         'Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBar' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' |
@@ -1330,7 +1333,8 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
   onEffectiveViewportChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeControlProps extends NativeFrameworkElementProps {
-  type: 'Microsoft.UI.Xaml.Controls.BreadcrumbBar' |
+  type: 'Windows.UI.Xaml.Controls.Control' |
+        'Microsoft.UI.Xaml.Controls.BreadcrumbBar' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' |
         'Microsoft.UI.Xaml.Controls.ColorPicker' |
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
@@ -1522,7 +1526,8 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   onFocusEngaged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeContentControlProps extends NativeControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' |
+  type: 'Windows.UI.Xaml.Controls.ContentControl' |
+        'Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' |
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.NavigationView' |
@@ -1601,7 +1606,7 @@ export interface NativeContentControlProps extends NativeControlProps {
   content?: string;
 }
 export interface NativeAppBarProps extends NativeContentControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' | 'Windows.UI.Xaml.Controls.CommandBar' | 'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
+  type: 'Windows.UI.Xaml.Controls.AppBar' | 'Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' | 'Windows.UI.Xaml.Controls.CommandBar' | 'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
   isSticky?: boolean;
   isOpen?: boolean;
   closedDisplayMode?: Enums.AppBarClosedDisplayMode;
@@ -1612,7 +1617,8 @@ export interface NativeAppBarProps extends NativeContentControlProps {
   onOpening?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeButtonBaseProps extends NativeContentControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.DropDownButton' |
+  type: 'Windows.UI.Xaml.Controls.Primitives.ButtonBase' |
+        'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Windows.UI.Xaml.Controls.Button' |
         'Windows.UI.Xaml.Controls.AppBarButton' |
         'Windows.UI.Xaml.Controls.Primitives.ToggleButton' |
@@ -1641,7 +1647,7 @@ export interface NativeButtonBaseProps extends NativeContentControlProps {
   onClick?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeButtonProps extends NativeButtonBaseProps {
-  type: 'Microsoft.UI.Xaml.Controls.DropDownButton' | 'Windows.UI.Xaml.Controls.AppBarButton' | 'Windows.UI.Xaml.Controls.DropDownButton';
+  type: 'Windows.UI.Xaml.Controls.Button' | 'Microsoft.UI.Xaml.Controls.DropDownButton' | 'Windows.UI.Xaml.Controls.AppBarButton' | 'Windows.UI.Xaml.Controls.DropDownButton';
 }
 export interface NativeAppBarButtonProps extends NativeButtonProps {
   type: 'Windows.UI.Xaml.Controls.AppBarButton';
@@ -1693,7 +1699,8 @@ export interface NativeAppBarToggleButtonProps extends NativeToggleButtonProps {
   dynamicOverflowOrder?: number;
 }
 export interface NativeItemsControlProps extends NativeControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
+  type: 'Windows.UI.Xaml.Controls.ItemsControl' |
+        'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Windows.UI.Xaml.Controls.AutoSuggestBox' |
         'Windows.UI.Xaml.Controls.Primitives.Selector' |
@@ -1730,7 +1737,8 @@ export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
   onQuerySubmitted?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeIconElementProps extends NativeFrameworkElementProps {
-  type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
+  type: 'Windows.UI.Xaml.Controls.IconElement' |
+        'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
         'Windows.UI.Xaml.Controls.BitmapIcon' |
         'Windows.UI.Xaml.Controls.FontIcon' |
@@ -1831,7 +1839,8 @@ export interface NativeCalendarViewDayItemProps extends NativeControlProps {
   isBlackout?: boolean;
 }
 export interface NativePanelProps extends NativeFrameworkElementProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.InfoBarPanel' |
+  type: 'Windows.UI.Xaml.Controls.Panel' |
+        'Microsoft.UI.Xaml.Controls.Primitives.InfoBarPanel' |
         'Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter' |
         'Windows.UI.Xaml.Controls.Canvas' |
         'Windows.UI.Xaml.Controls.Grid' |
@@ -1885,7 +1894,8 @@ export interface NativeColorPickerProps extends NativeControlProps {
   onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeSelectorProps extends NativeItemsControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
+  type: 'Windows.UI.Xaml.Controls.Primitives.Selector' |
+        'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Windows.UI.Xaml.Controls.ComboBox' |
         'Windows.UI.Xaml.Controls.FlipView' |
@@ -1920,7 +1930,8 @@ export interface NativeComboBoxProps extends NativeSelectorProps {
   onTextSubmitted?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeSelectorItemProps extends NativeContentControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.TabViewItem' |
+  type: 'Windows.UI.Xaml.Controls.Primitives.SelectorItem' |
+        'Microsoft.UI.Xaml.Controls.TabViewItem' |
         'Microsoft.UI.Xaml.Controls.TreeViewItem' |
         'Windows.UI.Xaml.Controls.ComboBoxItem' |
         'Windows.UI.Xaml.Controls.FlipViewItem' |
@@ -1938,7 +1949,7 @@ export interface NativeComboBoxItemProps extends NativeSelectorItemProps {
   type: 'Windows.UI.Xaml.Controls.ComboBoxItem';
 }
 export interface NativeCommandBarProps extends NativeAppBarProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' | 'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
+  type: 'Windows.UI.Xaml.Controls.CommandBar' | 'Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' | 'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
   commandBarOverflowPresenterStyle?: string;
   overflowButtonVisibility?: Enums.CommandBarOverflowButtonVisibility;
   isDynamicOverflowEnabled?: boolean;
@@ -1946,7 +1957,8 @@ export interface NativeCommandBarProps extends NativeAppBarProps {
   onDynamicOverflowItemsChanging?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
-  type: 'Microsoft.UI.Xaml.Controls.CommandBarFlyout' |
+  type: 'Windows.UI.Xaml.Controls.Primitives.FlyoutBase' |
+        'Microsoft.UI.Xaml.Controls.CommandBarFlyout' |
         'Microsoft.UI.Xaml.Controls.MenuBarItemFlyout' |
         'Microsoft.UI.Xaml.Controls.TextCommandBarFlyout' |
         'Windows.UI.Xaml.Controls.CommandBarFlyout' |
@@ -2008,7 +2020,11 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   onContentDialogClosed?: (event: NativeSyntheticEvent<Enums.ContentDialogResult>) => void;
 }
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
-  type: 'Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter' | 'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter' | 'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter' | 'Windows.UI.Xaml.Controls.ScrollContentPresenter';
+  type: 'Windows.UI.Xaml.Controls.ContentPresenter' |
+        'Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter' |
+        'Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter' |
+        'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter' |
+        'Windows.UI.Xaml.Controls.ScrollContentPresenter';
   foreground?: ColorValue;
   fontWeight?: number;
   fontStyle?: Enums.FontStyle;
@@ -2108,7 +2124,7 @@ export interface NativeFrameProps extends NativeContentControlProps {
   onNavigationStopped?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeGridProps extends NativePanelProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter' | 'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel' | 'Windows.UI.Xaml.Controls.SwapChainPanel';
+  type: 'Windows.UI.Xaml.Controls.Grid' | 'Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter' | 'Windows.UI.Xaml.Controls.SwapChainBackgroundPanel' | 'Windows.UI.Xaml.Controls.SwapChainPanel';
   padding?: Thickness;
   cornerRadius?: CornerRadius;
   borderThickness?: Thickness;
@@ -2122,7 +2138,8 @@ export interface NativeGridProps extends NativePanelProps {
   gridLayout?: { rows: GridLength[], columns: GridLength[] }; // synthetic property
 }
 export interface NativeListViewBaseProps extends NativeSelectorProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
+  type: 'Windows.UI.Xaml.Controls.ListViewBase' |
+        'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Windows.UI.Xaml.Controls.GridView' |
         'Windows.UI.Xaml.Controls.ListView' |
@@ -2351,13 +2368,18 @@ export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps
   type: 'Windows.UI.Xaml.Controls.ListPickerFlyoutPresenter';
 }
 export interface NativeListViewProps extends NativeListViewBaseProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' | 'Microsoft.UI.Xaml.Controls.TreeViewList' | 'Windows.UI.Xaml.Controls.NavigationViewList' | 'Windows.UI.Xaml.Controls.TreeViewList';
+  type: 'Windows.UI.Xaml.Controls.ListView' |
+        'Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' |
+        'Microsoft.UI.Xaml.Controls.TreeViewList' |
+        'Windows.UI.Xaml.Controls.NavigationViewList' |
+        'Windows.UI.Xaml.Controls.TreeViewList';
 }
 export interface NativeListViewHeaderItemProps extends NativeListViewBaseHeaderItemProps {
   type: 'Windows.UI.Xaml.Controls.ListViewHeaderItem';
 }
 export interface NativeListViewItemProps extends NativeSelectorItemProps {
-  type: 'Microsoft.UI.Xaml.Controls.TabViewItem' |
+  type: 'Windows.UI.Xaml.Controls.ListViewItem' |
+        'Microsoft.UI.Xaml.Controls.TabViewItem' |
         'Microsoft.UI.Xaml.Controls.TreeViewItem' |
         'Windows.UI.Xaml.Controls.NavigationViewItemBase' |
         'Windows.UI.Xaml.Controls.NavigationViewItem' |
@@ -2493,21 +2515,22 @@ export interface NativeMenuBarItemProps extends NativeControlProps {
   title?: string;
 }
 export interface NativeMenuFlyoutProps extends NativeFlyoutBaseProps {
-  type: 'Microsoft.UI.Xaml.Controls.MenuBarItemFlyout' | 'Windows.UI.Xaml.Controls.MenuBarItemFlyout';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyout' | 'Microsoft.UI.Xaml.Controls.MenuBarItemFlyout' | 'Windows.UI.Xaml.Controls.MenuBarItemFlyout';
   menuFlyoutPresenterStyle?: string;
 }
 export interface NativeMenuBarItemFlyoutProps extends NativeMenuFlyoutProps {
   type: 'Windows.UI.Xaml.Controls.MenuBarItemFlyout';
 }
 export interface NativeMenuFlyoutItemBaseProps extends NativeControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem' |
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutItemBase' |
+        'Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem' |
         'Windows.UI.Xaml.Controls.MenuFlyoutItem' |
         'Windows.UI.Xaml.Controls.MenuFlyoutSeparator' |
         'Windows.UI.Xaml.Controls.MenuFlyoutSubItem' |
         'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem';
 }
 export interface NativeMenuFlyoutItemProps extends NativeMenuFlyoutItemBaseProps {
-  type: 'Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem' | 'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem';
+  type: 'Windows.UI.Xaml.Controls.MenuFlyoutItem' | 'Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem' | 'Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem';
   text?: string;
   commandParameter?: object;
   keyboardAcceleratorTextOverride?: string;
@@ -2671,7 +2694,8 @@ export interface NativeCarouselPanelProps extends NativeVirtualizingPanelProps {
   onVerticalSnapPointsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeRangeBaseProps extends NativeControlProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider' |
+  type: 'Windows.UI.Xaml.Controls.Primitives.RangeBase' |
+        'Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider' |
         'Microsoft.UI.Xaml.Controls.ProgressBar' |
         'Windows.UI.Xaml.Controls.Slider' |
         'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider' |
@@ -2685,7 +2709,7 @@ export interface NativeRangeBaseProps extends NativeControlProps {
   onValueChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeSliderProps extends NativeRangeBaseProps {
-  type: 'Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider' | 'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider';
+  type: 'Windows.UI.Xaml.Controls.Slider' | 'Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider' | 'Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider';
   tickPlacement?: Enums.TickPlacement;
   tickFrequency?: number;
   stepFrequency?: number;
@@ -2741,7 +2765,7 @@ export interface NativeGridViewItemPresenterProps extends NativeContentPresenter
   checkBrush?: ColorValue;
 }
 export interface NativeListViewItemPresenterProps extends NativeContentPresenterProps {
-  type: 'Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter';
+  type: 'Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter' | 'Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter';
   selectionCheckMarkVisualEnabled?: boolean;
   selectedPointerOverBorderBrush?: ColorValue;
   selectedPointerOverBackground?: ColorValue;
