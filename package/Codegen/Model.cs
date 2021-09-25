@@ -131,5 +131,10 @@ namespace Codegen
         public ViewManagerPropertyType VM { get; set; }
         public string TS { get; set; }
     }
+
+    public class Command
+    {
+        public string Name { get; set; }
+    }
 }
 

@@ -15,7 +15,9 @@ import type { Native<#= ns #> } from './Props';
 
 import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
+import { findNodeHandle, UIManager } from 'react-native';
 
+const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
 
 <# 
 foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
@@ -25,10 +27,16 @@ export namespace <#= ns #> {
 <# } #>
 export type <#= Util.ToJsName(type) #>Props = Omit<<#= Util.GetNativePropsName(type) #>, 'type'>;
 
-export const <#= Util.ToJsName(type) #>: React.FC<<#= Util.ToJsName(type) #>Props> = (props: <#= Util.ToJsName(type) #>Props) => {
-    return (
-        <NativeXamlControl type="<#= type.GetFullName() #>" {...props} />
-    );
+export class <#= Util.ToJsName(type) #> extends React.Component<<#= Util.ToJsName(type) #>Props> {
+  render() {
+    return <NativeXamlControl {...this.props} type='<#= type.GetFullName() #>' />;
+  }
+<# foreach (var command in Util.GetCommands(type.GetFullName())) { #>
+  static <#= command.Name #>(ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: any[]) {
+    const tag = findNodeHandle(ref.current);
+    UIManager.dispatchViewManagerCommand(tag, xamlCommands.<#= command.Name #>, args);
+  }
+<# } #>
 };
 <# if (ns != "") { #>
 }

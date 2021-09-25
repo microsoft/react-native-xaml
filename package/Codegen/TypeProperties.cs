@@ -332,7 +332,83 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
 }
 #endif
 
+
+struct XamlCommand {
+    const char* name;
+    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept;
+};
+
 ");
+            
+            #line 76 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+ foreach (var kv in Util.commands) { 
+            
+            #line default
+            #line hidden
+            
+            #line 77 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+   foreach (var command in kv.Value) { 
+            
+            #line default
+            #line hidden
+            this.Write("void ");
+            
+            #line 78 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
+            
+            #line default
+            #line hidden
+            this.Write("Command(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /" +
+                    "* args */) noexcept;\r\n");
+            
+            #line 79 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+ } } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nconst XamlCommand xamlCommands[] = {\r\n");
+            
+            #line 82 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+ foreach (var kv in Util.commands) { 
+            
+            #line default
+            #line hidden
+            
+            #line 83 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+   foreach (var command in kv.Value) { 
+            
+            #line default
+            #line hidden
+            this.Write("  { \"");
+            
+            #line 84 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
+            
+            #line default
+            #line hidden
+            this.Write("\", ");
+            
+            #line 84 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
+            
+            #line default
+            #line hidden
+            this.Write("Command},\r\n");
+            
+            #line 85 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+   } 
+            
+            #line default
+            #line hidden
+            
+            #line 86 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("};\r\n\r\nvoid XamlMetadata::PopulateCommands(const winrt::Windows::Foundation::Colle" +
+                    "ctions::IVector<winrt::hstring>& commands) const {\r\n  for (auto const& entry : x" +
+                    "amlCommands) {\r\n    commands.Append(winrt::to_hstring(entry.name));\r\n  }\r\n}\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

@@ -59,8 +59,7 @@ namespace Codegen
             }
             Util.LoadContext = context;
 
-
-
+            Util.commands["Windows.UI.Xaml.Controls.TextBlock"] = new[] { new Command { Name = "CustomCommand" } };
 
             var fakeProps = new List<MrProperty>();
 

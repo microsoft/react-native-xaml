@@ -324,3 +324,11 @@ void XamlMetadata::PopulateNativeProps(std::vector<std::string>& names, const wi
     auto trea = rea.try_as<xaml::Input::TappedRoutedEventArgs>();
   }
 }
+
+void XamlMetadata::DispatchCommand(FrameworkElement const& view, winrt::hstring const& commandId, const winrt::Microsoft::ReactNative::JSValueArray& args) const noexcept {
+  const std::string name = winrt::to_string(commandId);
+  auto it = std::find_if(xamlCommands, xamlCommands + std::size(xamlCommands), [name](const XamlCommand& entry) { return Equals(entry.name, name.c_str()); });
+  if (it != xamlCommands + std::size(xamlCommands)) {
+    it->pfn(view, args);
+  }
+}

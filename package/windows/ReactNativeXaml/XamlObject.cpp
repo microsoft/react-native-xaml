@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "XamlObject.h"
 #include "../include/Shared/cdebug.h"
-
 #include <UI.Text.h>
 #include "Codegen/EventArgsTypeProperties.g.h"
 
@@ -248,3 +247,6 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
   return pnames;
 }
 
+void CustomCommandCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept {
+  OutputDebugStringA("Custom command was called\n");
+}
