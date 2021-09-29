@@ -514,7 +514,8 @@ namespace Codegen
             {
                 // return the top level namespace
                 var ns = type.GetNamespace();
-                return ns.Substring(0, ns.IndexOf('.'));
+                var sep = ns.IndexOf('.');
+                return (sep != -1) ? ns.Substring(0, ns.IndexOf('.')) : ns;
             }
         }
         public static string GetNativePropsName(MrType type)
