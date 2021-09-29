@@ -18,7 +18,7 @@ namespace Codegen
         public string ConfigFileName
         {
             get; set;
-        } = "Windows.UI.Xaml.json";
+        } = Path.Join(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Windows.UI.Xaml.json");
 
         private static MrProperty GetProperty(MrLoadContext context, string type, string prop)
         {
@@ -541,7 +541,7 @@ namespace Codegen
             { "-cppout", new OptionDef (){ Description = "Custom path for C++ metadata files",   NumberOfParams = 2, Action = (p, v) => { p.cppOutPath = v; } } },
             { "-tsout", new OptionDef (){ Description = "Custom path for TS file", NumberOfParams = 2, Action = (p, v) => { p.tsOutPath = v; } } },
             { "-verbose", new OptionDef() { Description = "Output verbose info", NumberOfParams = 1, Action = (p, _) => { p.Verbose = true; }} },
-            { "-config", new OptionDef() { Description = "Config json file. Default is \"Windows.UI.Xaml.json\"", NumberOfParams = 2, Action = (p, v) => { p.ConfigFileName = v; }} },
+            { "-config", new OptionDef() { Description = "Config json file path. By default uses \"Windows.UI.Xaml.json\" in the same directory as this program", NumberOfParams = 2, Action = (p, v) => { p.ConfigFileName = v; }} },
         };
 
         static void Main(string[] args)
@@ -559,7 +559,7 @@ namespace Codegen
             }
             catch { }
             Console.WriteLine($"React-native-xaml Code generator {version}");
-            Console.WriteLine("https://github.com/asklar/react-native-xaml");
+            Console.WriteLine("https://github.com/microsoft/react-native-xaml");
             Console.WriteLine();
             var p = new Program();
             for (int i = 0; i < args.Length;)
