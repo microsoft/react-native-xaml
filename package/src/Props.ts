@@ -2459,6 +2459,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
 export interface NativeMediaPlayerElementProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.MediaPlayerElement';
   stretch?: Enums.Stretch;
+  source?: string;
   posterSource?: string;
   isFullWindow?: boolean;
   autoPlay?: boolean;

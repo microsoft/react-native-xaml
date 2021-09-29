@@ -14,7 +14,8 @@
 #include <JSI/JsiApiContext.h>
 #include "XamlObject.h"
 #include <Wrapper.h>
-
+#include <winrt/Windows.Media.Playback.h>
+#include <winrt/Windows.Media.Core.h>
 
 using namespace xaml;
 using namespace xaml::Controls;
@@ -45,6 +46,12 @@ namespace winrt::Microsoft::ReactNative {
     else {
       value = xaml::Media::Imaging::BitmapImage{ uri };
     }
+  }
+
+  inline void ReadValue(JSValue const& jsValue, Windows::Media::Playback::IMediaPlaybackSource& value) noexcept {
+    const auto uri = Uri{ winrt::to_hstring(jsValue.AsString()) };
+    auto source = Windows::Media::Core::MediaSource::CreateFromUri(uri);
+    value = source;
   }
 
   inline void ReadValue(JSValue const& jsValue, xaml::Media::Geometry& value) noexcept {

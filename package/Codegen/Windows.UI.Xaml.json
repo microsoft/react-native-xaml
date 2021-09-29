@@ -134,6 +134,11 @@
       "TS": "string"
     },
     {
+      "name": "Windows.Media.Playback.IMediaPlaybackSource",
+      "VM": "String",
+      "TS": "string"
+    },
+    {
       "name": "$xaml.Thickness",
       "VM": "Map",
       "TS": "Thickness"
