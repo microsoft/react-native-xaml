@@ -55,6 +55,7 @@
     "CodeGen/*.cs*",
     "CodeGen/*.json",
     "CodeGen/tsconfig.json",
+    "*.cmd",
     "windows/",
     "lib/",
     "src/",
