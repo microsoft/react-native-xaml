@@ -151,6 +151,7 @@
     <ClInclude Include="Codegen\TypeEvents.g.h" />
     <ClInclude Include="Codegen\TypeProperties.g.h" />
     <ClInclude Include="Crc32Str.h" />
+    <ClInclude Include="JSValueXaml_local.h" />
     <ClInclude Include="ReactPackageProvider.h">
       <DependentUpon>ReactPackageProvider.idl</DependentUpon>
     </ClInclude>
