@@ -1,7 +1,7 @@
 {
   "name": "react-native-xaml",
   "title": "React Native Xaml",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "description": "Allows using XAML directly, inside of a React Native Windows app",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
