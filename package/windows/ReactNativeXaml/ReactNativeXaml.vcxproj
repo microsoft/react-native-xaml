@@ -202,6 +202,7 @@
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
   </ItemGroup>
+  <Import Project="$(SolutionDir)\ReactNativeXaml.Imports.props" Condition="Exists('$(SolutionDir)\ReactNativeXaml.Imports.props')" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ReactNativeWindowsTargets">
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.targets" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.targets')" />
