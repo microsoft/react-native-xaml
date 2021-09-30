@@ -1,7 +1,7 @@
 {
   "name": "react-native-xaml",
   "title": "React Native Xaml",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "description": "Allows using XAML directly, inside of a React Native Windows app",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -31,27 +31,30 @@
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
+  "dependencies": {
+    "@types/react": "*",
+    "@types/react-native": "*"
+  },
   "peerDependencies": {
     "react": ">= 17.0.1",
     "react-native": ">= 0.64.2",
-    "react-native-windows": ">= 0.64.5"
+    "react-native-windows": ">= 0.64.5",
+    "typescript": "^4.1.2"
   },
   "devDependencies": {
     "@types/jest": "*",
-    "@types/react": "*",
-    "@types/react-native": "*",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "react": "17.0.1",
     "react-native": ">=0.64.2",
     "react-native-typescript-transformer": "*",
-    "react-native-windows": ">=0.64.14",
-    "typescript": "^4.1.2"
+    "react-native-windows": ">=0.64.14"
   },
   "files": [
     "!*.tgz",
     "CodeGen/*.cs*",
     "CodeGen/*.json",
+    "CodeGen/tsconfig.json",
     "windows/",
     "lib/",
     "src/",
