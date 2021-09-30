@@ -4,7 +4,7 @@
 #include <string>
 #include <JSValue.h>
 #include <JSValueReader.h>
-#include <JSValueXaml.h>
+#include <JSValueXaml_local.h>
 
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.UI.Xaml.Controls.Maps.h>

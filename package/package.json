@@ -33,7 +33,8 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "@types/react": "*",
-    "@types/react-native": "*"
+    "@types/react-native": "*",
+    "typescript": "^4.4.3"
   },
   "peerDependencies": {
     "react": ">= 17.0.1",
@@ -54,7 +55,7 @@
     "!*.tgz",
     "CodeGen/*.cs*",
     "CodeGen/*.json",
-    "CodeGen/tsconfig.json",
+    "tsconfig.json",
     "*.cmd",
     "windows/",
     "lib/",
