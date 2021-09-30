@@ -18,7 +18,7 @@ const EventArgsProperty* GetProp(const std::string& name, const winrt::Windows::
   return nullptr;
 }
 
-template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
+template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int>>
 auto XamlObject::RunOnUIThread(const TLambda& code) const {
   std::condition_variable cv;
   std::mutex mutex;
@@ -52,7 +52,7 @@ auto XamlObject::RunOnUIThread(const TLambda& code) const {
   return result.value();
 }
 
-template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
+template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int>>
 void XamlObject::RunOnUIThread(const TLambda& code) const {
   std::condition_variable cv;
   std::mutex mutex;
