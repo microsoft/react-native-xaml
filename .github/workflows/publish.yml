@@ -25,9 +25,6 @@ jobs:
         registry-url: https://registry.npmjs.org/
 
 
-    - name: build TS
-      run: yarn build
-
     - name: whoami
       run: npm whoami
       
@@ -56,3 +53,6 @@ jobs:
         $changed = git status --porcelain=v1
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
+
+    - name: build TS
+      run: yarn build
