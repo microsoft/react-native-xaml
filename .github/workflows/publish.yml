@@ -18,10 +18,10 @@ jobs:
     - uses: nuget/setup-nuget@v1
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
-    - name: Use Node.js 14
-      uses: actions/setup-node@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
       with:
-        node-version: 14
+        node-version: 12
         registry-url: https://registry.npmjs.org/
 
 
@@ -47,5 +47,5 @@ jobs:
     - name: publish to npmjs
       run: yarn publish package
       env:
-        NODE_AUTH_TOKEN: bloop
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         
