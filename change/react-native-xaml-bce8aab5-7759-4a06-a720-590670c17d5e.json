@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Use beachball",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
