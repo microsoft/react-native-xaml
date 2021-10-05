@@ -27,10 +27,14 @@ jobs:
 
     - name: whoami
       run: npm whoami
-      
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
     - name: config
       run: npm config list --all
-
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
     - name: publish to npmjs
       run: cd package && npm publish --access public && cd ..
       env:
