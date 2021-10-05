@@ -25,6 +25,21 @@ jobs:
         registry-url: https://registry.npmjs.org/
 
 
+    - name: build TS
+      run: yarn build
+
+    - name: whoami
+      run: npm whoami
+      
+    - name: config
+      run: npm config list --all
+
+    - name: publish to npmjs
+      run: cd package && npm publish --access public && cd ..
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
+
     - name: yarn install
       run: yarn install
 
@@ -41,11 +56,3 @@ jobs:
         $changed = git status --porcelain=v1
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
-    - name: build TS
-      run: yarn build
-    
-    - name: publish to npmjs
-      run: cd package && npm publish --access public && cd ..
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
