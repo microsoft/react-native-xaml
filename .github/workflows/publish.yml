@@ -25,6 +25,11 @@ jobs:
         registry-url: https://registry.npmjs.org/
 
 
+    - name: login
+      run: npm login
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
     - name: whoami
       run: npm whoami
       env:
