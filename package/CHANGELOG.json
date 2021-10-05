@@ -1,0 +1,20 @@
+{
+  "name": "react-native-xaml",
+  "entries": [
+    {
+      "date": "Tue, 05 Oct 2021 19:13:22 GMT",
+      "tag": "react-native-xaml_v0.0.46",
+      "version": "0.0.46",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Use beachball",
+            "commit": "6a4f65a48bc47dbda3268d9f17862100cf3ab557"
+          }
+        ]
+      }
+    }
+  ]
+}
