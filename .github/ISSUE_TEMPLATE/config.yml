@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+    - name: React Native for Windows
+      url: https://github.com/microsoft/react-native-windows/issues/new/choose
+      about: I have an issue with React Native for Windows that is not specific to react-native-xaml
