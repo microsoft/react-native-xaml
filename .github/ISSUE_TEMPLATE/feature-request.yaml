@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest a new feature or idea
+title: Your feature request
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Your issue will be triaged by the team according to [this process](https://github.com/microsoft/react-native-windows/wiki/Triage-Process).
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Summary
+      description: Brief explanation of the new API or change.
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Motivation
+      description: |
+        Why do this? What use cases does it support? What is the expected outcome?
+  - type: textarea
+    attributes:
+      label: Basic Example
+      description: |
+        If the proposal involves a new or changed API, include a basic code example. Omit this section if it's not applicable.
+  - type: textarea
+    attributes:
+      label: Open Questions
+      description: |
+        Please list any open issues that you think still need to be addressed.
