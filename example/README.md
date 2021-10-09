@@ -3,10 +3,13 @@
 1. Clone this repo
 1. `cd react-native-xaml`
 1. `yarn`
+3. `cd package`
+4. `yarn build` 
 
 # Running the example app
 
 ## Using Visual Studio
+1. From the root folder
 1. `cd example`
 1. `yarn start`
 
