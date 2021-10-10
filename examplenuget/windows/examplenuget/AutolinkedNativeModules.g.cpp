@@ -2,13 +2,17 @@
 // clang-format off
 #include "pch.h"
 #include "AutolinkedNativeModules.g.h"
+
+// Includes from react-native-xaml
 #include <winrt/ReactNativeXaml.h>
+
 namespace winrt::Microsoft::ReactNative
 {
 
 void RegisterAutolinkedNativeModulePackages(winrt::Windows::Foundation::Collections::IVector<winrt::Microsoft::ReactNative::IReactPackageProvider> const& packageProviders)
-{
-  packageProviders.Append(winrt::make<ReactNativeXaml::ReactPackageProvider>());
+{ 
+    // IReactPackageProviders from react-native-xaml
+    packageProviders.Append(winrt::ReactNativeXaml::ReactPackageProvider());
 }
 
 }
