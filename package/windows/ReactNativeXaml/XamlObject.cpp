@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "XamlObject.h"
-#include "../include/Shared/cdebug.h"
+
+#if __has_include(<../include/shared/cdebug.h>)
+#include "..include/Shared/cdebug.h"
+#else
+#include <cdebug.h>
+#endif
 
 #include <UI.Text.h>
 #include "Codegen/EventArgsTypeProperties.g.h"
