@@ -6154,7 +6154,7 @@ react-native-typescript-transformer@*:
     semver "^5.4.1"
     source-map "^0.5.6"
 
-react-native-windows@>=0.64.2, react-native-windows@>=0.65.2, react-native-windows@>=0.65.4:
+react-native-windows@>=0.64.14, react-native-windows@>=0.64.2, react-native-windows@>=0.65.4:
   version "0.65.4"
   resolved "https://registry.yarnpkg.com/react-native-windows/-/react-native-windows-0.65.4.tgz#706cf8fc5fe94405e0081d52f656f8bdf564049e"
   integrity sha512-qKTeZ68pQn35LI+dPdHGvgn/jJc0x2xbWT2wTfWbrk9XatNq1qXeAxAeD/7iYxsLSdCnOpbrfLbZ5M4nHM70jQ==
@@ -6193,7 +6193,7 @@ react-native-windows@>=0.64.2, react-native-windows@>=0.65.2, react-native-windo
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
 
-react-native@>=0.64.0, react-native@>=0.65.0:
+react-native@>=0.64.0, react-native@>=0.64.2, react-native@>=0.65.0:
   version "0.66.0"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.66.0.tgz#99bdd83a9a612a71b94242767989d666d445b007"
   integrity sha512-m26TKwzsfHVdZ1hDG+7mZ4M4ftxFFZrhtiT0OXuwfBzmNtB3xhsJtYszPeizw33c9YNp8rvehKT3c4ldDCW6kA==
