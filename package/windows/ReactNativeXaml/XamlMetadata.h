@@ -15,6 +15,8 @@
 #include "XamlObject.h"
 #include <Wrapper.h>
 
+#include <winrt/Windows.Storage.Streams.h>
+#include <winrt/Windows.Security.Cryptography.h>
 
 using namespace xaml;
 using namespace xaml::Controls;
@@ -37,9 +39,51 @@ namespace winrt::Microsoft::ReactNative {
     value = xaml::Media::FontFamily(str);
   }
 
+  // copied from RNW
+  winrt::IAsyncOperation<Windows::Storage::Streams::InMemoryRandomAccessStream> GetImageInlineDataAsync(std::string uri) {
+    size_t start = uri.find(',');
+    if (start == std::string::npos || start + 1 > uri.length())
+      co_return nullptr;
+
+    try {
+      co_await winrt::resume_background();
+
+      std::string_view base64String(uri.c_str() + start + 1, uri.length() - start - 1);
+      auto buffer =
+        winrt::Windows::Security::Cryptography::CryptographicBuffer::DecodeFromBase64String(winrt::to_hstring(base64String));
+
+      Windows::Storage::Streams::InMemoryRandomAccessStream memoryStream;
+      co_await memoryStream.WriteAsync(buffer);
+      memoryStream.Seek(0);
+
+      co_return memoryStream;
+    }
+    catch (winrt::hresult_error const&) {
+      // Base64 decode failed
+    }
+
+    co_return nullptr;
+  }
+
   inline void ReadValue(JSValue const& jsValue, xaml::Media::ImageSource& value) noexcept {
-    const auto uri = Uri{ winrt::to_hstring(jsValue.AsString()) };
-    if (jsValue.AsJSString().ends_with(".svg")) {
+    const auto str = jsValue.AsString();
+    const auto uri = Uri{ winrt::to_hstring(str) };
+
+    if (uri.SchemeName() == L"data") {
+      // inline data
+      const auto stream = GetImageInlineDataAsync(str).GetResults();
+      if (str.find("image/svg+xml;base64") != std::string::npos) {
+        auto src = xaml::Media::Imaging::SvgImageSource();
+        src.SetSourceAsync(stream).GetResults();
+        value = src;
+      }
+      else if (str.find("image/png;base64") != std::string::npos) {
+        auto src = xaml::Media::Imaging::BitmapImage();
+        src.SetSource(stream);
+        value = src;
+      }
+      
+    } else if (str.ends_with(".svg") || str.ends_with(".svgz")) {
       value = xaml::Media::Imaging::SvgImageSource {uri};
     }
     else {
