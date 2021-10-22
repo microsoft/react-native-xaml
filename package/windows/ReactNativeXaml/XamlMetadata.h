@@ -15,7 +15,6 @@
 #include "XamlObject.h"
 #include <Wrapper.h>
 
-
 using namespace xaml;
 using namespace xaml::Controls;
 using namespace winrt::Microsoft::ReactNative;
@@ -37,13 +36,55 @@ namespace winrt::Microsoft::ReactNative {
     value = xaml::Media::FontFamily(str);
   }
 
-  inline void ReadValue(JSValue const& jsValue, xaml::Media::ImageSource& value) noexcept {
-    const auto uri = Uri{ winrt::to_hstring(jsValue.AsString()) };
-    if (jsValue.AsJSString().ends_with(".svg")) {
-      value = xaml::Media::Imaging::SvgImageSource {uri};
+  winrt::fire_and_forget SetImageSourceForInlineData(std::string str, xaml::DependencyObject o, xaml::DependencyProperty dp);
+
+  enum class XamlPropType {
+    Boolean,
+    Int,
+    Double,
+    String,
+    Object,
+    Enum,
+  };
+
+  template <typename T> bool IsType(const winrt::Windows::Foundation::IInspectable& i) { return i.try_as<T>() != nullptr; }
+
+  template<typename T, std::enable_if_t<std::is_enum<T>::value, int> = 0>
+  void SetPropValue(const xaml::DependencyObject o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
+    auto valueEnum = MakeEnum<T>(v.AsInt32());
+    o.SetValue(prop, valueEnum);
+  }
+
+  template<typename T, std::enable_if_t<
+    !std::is_enum<T>::value &&
+    !std::is_same<winrt::hstring, T>::value &&
+    !std::is_same<winrt::Windows::Foundation::IInspectable, T>::value &&
+    !std::is_same<winrt::Windows::Foundation::Uri, T>::value &&
+    !std::is_same<xaml::Media::ImageSource, T>::value
+    , int> = 0>
+    void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
+    auto b = v.To<T>();
+    o.SetValue(prop, winrt::box_value(b));
+  }
+
+  template<typename T, std::enable_if_t<
+    std::is_same<xaml::Media::ImageSource, T>::value, int> = 0>
+    void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
+
+    const auto str = v.AsString();
+    const auto uri = Uri{ winrt::to_hstring(str) };
+
+    xaml::Media::ImageSource value{ nullptr };
+    if (uri.SchemeName() == L"data") {
+      SetImageSourceForInlineData(str, o, prop);
+    }
+    else if (str.ends_with(".svg") || str.ends_with(".svgz")) {
+      value = xaml::Media::Imaging::SvgImageSource{ uri };
+      o.SetValue(prop, value);
     }
     else {
       value = xaml::Media::Imaging::BitmapImage{ uri };
+      o.SetValue(prop, value);
     }
   }
 
@@ -55,34 +96,6 @@ namespace winrt::Microsoft::ReactNative {
   inline void ReadValue(JSValue const& jsValue, Windows::UI::Text::FontWeight& value) noexcept {
     value.Weight = jsValue.AsInt16();
   }
-}
-
-enum class XamlPropType {
-  Boolean,
-  Int,
-  Double,
-  String,
-  Object,
-  Enum,
-};
-
-template <typename T> bool IsType(const winrt::Windows::Foundation::IInspectable& i) { return i.try_as<T>() != nullptr; }
-
-template<typename T, std::enable_if_t<std::is_enum<T>::value, int> = 0>
-void SetPropValue(const xaml::DependencyObject o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  auto valueEnum = MakeEnum<T>(v.AsInt32());
-  o.SetValue(prop, valueEnum);
-}
-
-template<typename T, std::enable_if_t<
-  !std::is_enum<T>::value && 
-  !std::is_same<winrt::hstring, T>::value && 
-  !std::is_same<winrt::Windows::Foundation::IInspectable, T>::value &&
-  !std::is_same<winrt::Windows::Foundation::Uri, T>::value
-  , int> = 0>
-void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  auto b = v.To<T>();
-  o.SetValue(prop, winrt::box_value(b));
 }
 
 
