@@ -19,9 +19,11 @@
 
 #include "Styling.h"
 
+#include <winrt/Windows.Storage.Streams.h>
+#include <winrt/Windows.Security.Cryptography.h>
 
 namespace jsi = facebook::jsi;
-
+using namespace winrt;
 using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
@@ -323,4 +325,50 @@ void XamlMetadata::PopulateNativeProps(std::vector<std::string>& names, const wi
     auto cn = winrt::get_class_name(rea);
     auto trea = rea.try_as<xaml::Input::TappedRoutedEventArgs>();
   }
+}
+
+winrt::IAsyncOperation<winrt::Windows::Storage::Streams::InMemoryRandomAccessStream> GetImageInlineDataAsync(const std::string& uri) {
+  size_t start = uri.find(',');
+  if (start == std::string::npos || start + 1 > uri.length())
+    co_return nullptr;
+
+  try {
+    co_await winrt::resume_background();
+
+    std::string_view base64String(uri.c_str() + start + 1, uri.length() - start - 1);
+    auto buffer =
+      winrt::Windows::Security::Cryptography::CryptographicBuffer::DecodeFromBase64String(winrt::to_hstring(base64String));
+
+    winrt::Windows::Storage::Streams::InMemoryRandomAccessStream memoryStream;
+    auto b = memoryStream.CanWrite();
+    co_await memoryStream.WriteAsync(buffer);
+    memoryStream.Seek(0);
+
+    co_return memoryStream;
+  }
+  catch (winrt::hresult_error const&) {
+    // Base64 decode failed
+  }
+
+  co_return nullptr;
+}
+
+winrt::fire_and_forget winrt::Microsoft::ReactNative::SetImageSourceForInlineData(std::string str, xaml::DependencyObject o, xaml::DependencyProperty dp) {
+  // inline data
+  const auto streamOp = GetImageInlineDataAsync(str);
+  auto stream = co_await streamOp;
+
+  xaml::Media::ImageSource source{ nullptr };
+  if (str.find("image/svg+xml;base64") != std::string::npos) {
+    auto src = xaml::Media::Imaging::SvgImageSource();
+    co_await src.SetSourceAsync(stream);
+    source = src;
+  }
+  else if (str.find("image/png;base64") != std::string::npos) {
+    auto src = xaml::Media::Imaging::BitmapImage();
+    co_await src.SetSourceAsync(stream);
+    source = src;
+  }
+
+  o.SetValue(dp, source);
 }

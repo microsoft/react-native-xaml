@@ -76,12 +76,19 @@ If you have questions about a scenario you don't see below, please [file an issu
 ## Image
 
 - For Image, note that you should specify its size so that RN reserves space for it, otherwise the image won't show.
-- Supports Bitmap images and SVG files.
+- Supports Bitmap images and SVG files URIs, as well as inline Base64-encoded data:
 
 ```jsx
 <Image source="https://microsoft.github.io/react-native-windows/img/homepage/cross-platform.png" 
   width={200} height={100} />
 ```
+
+```jsx
+<Image
+  source="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEzLjEyNSAwSDBWMTMuMTI1SDEzLjEyNVYwWiIgZmlsbD0iI0YyNTAyMiI+PC9wYXRoPjxwYXRoIGQ9Ik0yOCAwSDE0Ljg3NVYxMy4xMjVIMjhWMFoiIGZpbGw9IiM3RkJBMDAiPjwvcGF0aD48cGF0aCBkPSJNMTMuMTI1IDE0Ljg3NUgwVjI4SDEzLjEyNVYxNC44NzVaIiBmaWxsPSIjMDBBNEVGIj48L3BhdGg+PHBhdGggZD0iTTI4IDE0Ljg3NUgxNC44NzVWMjhIMjhWMTQuODc1WiIgZmlsbD0iI0ZGQjkwMCI+PC9wYXRoPjwvc3ZnPiA="
+  width={80}
+  height={80} />
+``` 
 
 ## ComboBox
 
