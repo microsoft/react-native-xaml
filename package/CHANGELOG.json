@@ -2,6 +2,33 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Fri, 05 Nov 2021 04:42:35 GMT",
+      "tag": "react-native-xaml_v0.0.47",
+      "version": "0.0.47",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "MenuFlyoutItem Icon support",
+            "commit": "86d12bb0fc6a4b4845589398d66c5a748a039619"
+          },
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Support SVG and PNG inline data",
+            "commit": "86d12bb0fc6a4b4845589398d66c5a748a039619"
+          },
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "MenuFlyoutItem Icon support",
+            "commit": "86d12bb0fc6a4b4845589398d66c5a748a039619"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 05 Oct 2021 19:13:22 GMT",
       "tag": "react-native-xaml_v0.0.46",
       "version": "0.0.46",

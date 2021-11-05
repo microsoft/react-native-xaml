@@ -3,7 +3,9 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "build": "tsc --project package"
+    "build": "tsc --project package",
+    "change": "beachball change",
+    "bump": "beachball bump"
   },
   "repository": {
     "type": "git",
