@@ -288,6 +288,11 @@ namespace winrt::ReactNativeXaml {
     if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().InsertAt(index, child);
     }
+    if (auto menuFlyoutItem = e.try_as<MenuFlyoutItem>()) {
+      if (auto childIcon = child.try_as<IconElement>()) {
+        return menuFlyoutItem.Icon(childIcon);
+      }
+    }
     //else 
     {
       auto cn = winrt::get_class_name(e);
