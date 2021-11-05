@@ -1,3 +1,8 @@
+
+/*************************************************************
+THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+**************************************************************/
+
 import type {
     NativeContentControlProps,
     NativeAppBarProps,

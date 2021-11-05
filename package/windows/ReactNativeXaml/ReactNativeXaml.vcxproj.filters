@@ -40,6 +40,11 @@
       <Filter>Codegen</Filter>
     </ClInclude>
     <ClInclude Include="JSValueXaml_local.h" />
+    <ClInclude Include="Version.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Codegen\Version.g.h">
+      <Filter>Codegen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props" />
@@ -67,5 +72,8 @@
     <Filter Include="TS">
       <UniqueIdentifier>{5c572e8a-9a91-412d-8a35-4bd65c3cfa2b}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ReactNativeXaml.rc" />
   </ItemGroup>
 </Project>

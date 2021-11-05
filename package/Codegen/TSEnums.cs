@@ -28,8 +28,11 @@ namespace Codegen
         /// </summary>
         public virtual string TransformText()
         {
+            this.Write("\r\n/*************************************************************\r\nTHIS FILE WAS A" +
+                    "UTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\n********************************" +
+                    "******************************/\r\n\r\n");
             
-            #line 6 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 11 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  foreach (var enumType in Util.enumsToGenerateConvertersFor) { 
 var ns = Util.GetTSNamespace(enumType);
 if (ns != "") { 
@@ -38,118 +41,118 @@ if (ns != "") {
             #line hidden
             this.Write("export namespace ");
             
-            #line 9 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 14 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
             
             #line default
             #line hidden
             this.Write("Enums {\r\n");
             
-            #line 10 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 15 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  } 
             
             #line default
             #line hidden
             this.Write("export enum ");
             
-            #line 11 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 16 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(enumType)));
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 12 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 17 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  foreach (var value in enumType.GetFields().Skip(1)) { 
             
             #line default
             #line hidden
             this.Write("  ");
             
-            #line 13 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(value.GetName()));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 13 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture((int)value.GetConstantValue(out System.Reflection.Metadata.ConstantTypeCode typeCode)));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 14 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 19 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  } 
             
             #line default
             #line hidden
             this.Write("}\r\n");
             
-            #line 15 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 20 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  if (ns != "") { 
             
             #line default
             #line hidden
             this.Write("}\r\n\r\n");
             
-            #line 18 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 23 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 19 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 24 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n\r\n");
             
-            #line 22 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 27 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  foreach (var enumType in Util.fakeEnums) { 
             
             #line default
             #line hidden
             this.Write("export enum ");
             
-            #line 23 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 28 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(enumType.Name));
             
             #line default
             #line hidden
             this.Write(" {\r\n");
             
-            #line 24 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 29 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  foreach (var value in enumType.Values) { 
             
             #line default
             #line hidden
             this.Write("  ");
             
-            #line 25 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 30 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(value.Key));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 25 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 30 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(value.Value));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 26 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 31 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  } 
             
             #line default
             #line hidden
             this.Write("}\r\n\r\n");
             
-            #line 29 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
+            #line 34 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSEnums.tt"
  } 
             
             #line default

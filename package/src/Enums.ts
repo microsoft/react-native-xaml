@@ -1,3 +1,8 @@
+
+/*************************************************************
+THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+**************************************************************/
+
 export enum Stretch {
   None = 0,
   Fill = 1,
