@@ -225,11 +225,13 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   void JsiDispatchEvent(facebook::jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept;
   std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;
   winrt::Microsoft::ReactNative::IReactDispatcher UIDispatcher() const { return m_reactContext.UIDispatcher(); }
+
+  FrameworkElement GetFlyoutTarget(winrt::Windows::Foundation::IInspectable wrapper);
+
 private:
   winrt::Windows::Foundation::IInspectable Create(const std::string_view& typeName) const;
   static const PropInfo* FindFirstMatch(const stringKey& key, const winrt::Windows::Foundation::IInspectable& obj, const PropInfo* map, size_t size);
   winrt::Microsoft::ReactNative::IReactContext m_reactContext;
-
   std::map<xaml::FrameworkElement, WrapperInfo> wrapperToWrapped;
 };
 

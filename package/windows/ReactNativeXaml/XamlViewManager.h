@@ -66,6 +66,10 @@ namespace winrt::ReactNativeXaml {
     void RemoveChildAt(xaml::FrameworkElement parent, int64_t index);
     void ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild);
 
+    static winrt::Microsoft::ReactNative::ReactPropertyId<IViewManager> XamlViewManagerProperty() {
+      return { L"ReactNativeXaml", L"ViewManager" };
+    }
+
     const std::shared_ptr<XamlMetadata>& Metadata() const { return m_xamlMetadata; }
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };

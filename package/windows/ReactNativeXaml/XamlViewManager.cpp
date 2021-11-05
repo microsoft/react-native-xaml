@@ -122,9 +122,14 @@ namespace winrt::ReactNativeXaml {
     return m_reactContext;
   }
 
+
   void XamlViewManager::ReactContext(IReactContext reactContext) noexcept {
     m_reactContext = reactContext;
     m_xamlMetadata = std::make_shared<XamlMetadata>();
+    
+    React::ReactContext ctx(reactContext);
+    auto vm = this->get_strong().as<IViewManager>();
+    ctx.Properties().Set(XamlViewManagerProperty(), vm);
   }
 
   void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement child, int64_t _index) {
@@ -144,14 +149,15 @@ namespace winrt::ReactNativeXaml {
         auto childFE = child.as<FrameworkElement>();
         auto tag = childFE.Tag();
         if (auto depObj = childContent.try_as<DependencyObject>()) {
-          // tranfer the Tag from the wrapping ContentControl
+          // transfer the Tag from the wrapper
           // This is used for dispatching events and TouchEventHandler
           depObj.SetValue(FrameworkElement::TagProperty(), tag);
         }
 
         if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
           Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
-          childFE.DataContext(e);
+          
+          wrappedChild.DataContext(e);
           if (auto button = e.try_as<Button>()) {
             return button.Flyout(childFlyout);
           }

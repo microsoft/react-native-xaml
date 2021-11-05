@@ -15,12 +15,13 @@
 #include "Serialize.h"
 #include <UI.Xaml.Documents.h>
 #include <JSI/JsiApiContext.h>
-
+#include "XamlViewManager.h"
 
 #include "Styling.h"
 
 #include <winrt/Windows.Storage.Streams.h>
 #include <winrt/Windows.Security.Cryptography.h>
+#include <cdebug.h>
 
 namespace jsi = facebook::jsi;
 using namespace winrt;
@@ -77,22 +78,38 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   return e;
 }
 
-FrameworkElement GetDataContext_Flyout(winrt::Windows::Foundation::IInspectable wrapper) {
-  return wrapper.as<winrt::ReactNativeXaml::Wrapper>().DataContext().as<xaml::FrameworkElement>();
+FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInspectable flyout) {
+  auto it = std::find_if(wrapperToWrapped.begin(), wrapperToWrapped.end(), [flyout](auto& entry) {
+    WrapperInfo wrapperInfo = entry.second;
+    return wrapperInfo.wrappedObject == flyout;
+    });
+  if (it != wrapperToWrapped.end()) {
+    auto parent = it->first.as<ReactNativeXaml::Wrapper>().DataContext();
+    return parent.as<FrameworkElement>();
+  }
+  return nullptr;
+  //return wrapper.as<winrt::ReactNativeXaml::Wrapper>().DataContext().as<xaml::FrameworkElement>();
 }
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
-void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
+void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& context) {
+  
+  const auto& xaml = context.Properties().Get(ReactNativeXaml::XamlViewManager::XamlViewManagerProperty().Handle()).as<ReactNativeXaml::XamlViewManager>();
   auto flyout = o.try_as<Controls::Primitives::FlyoutBase>();
   if (flyout && v.Type() == JSValueType::Boolean) {
     if (v.AsBoolean()) {
       auto target = flyout.Target();
 
-      // Go from the wrapping ContentControl to the flyout's parent. 
-      // We can't use Parent() since we unparent the CC once we add the flyout to the tree
-      if (!target) target = GetDataContext_Flyout(o);
-      auto cn = winrt::get_class_name(target);
-      flyout.ShowAt(target);
+      if (!target) {
+        target = xaml->Metadata()->GetFlyoutTarget(o);
+      }
+      if (target) {
+        auto cn = winrt::get_class_name(target);
+        flyout.ShowAt(target);
+      }
+      else {
+        cdebug << "Couldn't determine flyout target\n";
+      }
     }
     else {
       flyout.Hide();
@@ -257,8 +274,7 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
   return nullptr;
 }
 
-// contentControl -> parent   via DataContext
-// contentControl -> flyout   via wrapperToWrapped
+// wrapper -> flyout   via wrapperToWrapped
 
 const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::IReactContext& context, 
   const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj, bool attaching) {
