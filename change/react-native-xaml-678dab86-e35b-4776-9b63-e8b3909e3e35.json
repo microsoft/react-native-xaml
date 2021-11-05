@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Introduce MenuFlyoutPriority",
+  "comment": "Include version information in the DLL",
   "packageName": "react-native-xaml",
   "email": "asklar@microsoft.com",
   "dependentChangeType": "patch"
