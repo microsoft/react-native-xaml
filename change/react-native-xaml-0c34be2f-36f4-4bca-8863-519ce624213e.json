@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Introduce MenuFlyoutPriority",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
