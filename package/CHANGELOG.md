@@ -1,8 +1,24 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Fri, 05 Nov 2021 16:43:47 GMT and should not be manually modified.
+This log was last generated on Fri, 05 Nov 2021 22:29:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.50
+
+Fri, 05 Nov 2021 22:29:53 GMT
+
+### Patches
+
+- Include version information in the DLL (asklar@microsoft.com)
+
+## 0.0.49
+
+Fri, 05 Nov 2021 17:42:39 GMT
+
+### Patches
+
+- Introduce MenuFlyoutPriority (asklar@microsoft.com)
 
 ## 0.0.48
 

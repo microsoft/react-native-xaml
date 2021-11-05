@@ -2,6 +2,36 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Fri, 05 Nov 2021 22:29:53 GMT",
+      "tag": "react-native-xaml_v0.0.50",
+      "version": "0.0.50",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "2708706eb210e395c5681016f518ef66e2e23a6b",
+            "comment": "Include version information in the DLL"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 05 Nov 2021 17:42:39 GMT",
+      "tag": "react-native-xaml_v0.0.49",
+      "version": "0.0.49",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "7c1e9025625f1901c3c60952a644f2b19a4a4083",
+            "comment": "Introduce MenuFlyoutPriority"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Nov 2021 16:43:47 GMT",
       "tag": "react-native-xaml_v0.0.48",
       "version": "0.0.48",
