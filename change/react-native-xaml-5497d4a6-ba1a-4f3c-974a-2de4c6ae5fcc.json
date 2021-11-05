@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "MenuFlyoutItem Icon support",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
