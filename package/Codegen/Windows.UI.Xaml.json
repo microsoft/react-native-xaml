@@ -22,7 +22,7 @@
     },
     {
       "name": "Priority",
-      "declaringType": "$xaml.UIElement",
+      "declaringType": "$xaml.DependencyObject",
       "propertyType": "System.Int32",
       "comment": "A hint of where this item should be placed within its parent."
     },
@@ -66,6 +66,13 @@
       "values": {
         "Content": 0,
         "Pane": 1
+      }
+    },
+    {
+      "name": "MenuFlyoutPriority",
+      "values": {
+        "Attached": 0,
+        "Context": 1
       }
     },
     {

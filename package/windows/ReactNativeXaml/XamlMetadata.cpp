@@ -241,7 +241,7 @@ xaml::DependencyProperty GetPriorityProperty() {
   return priority;
 }
 
-void SetPriority_UIElement(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
+void SetPriority_DependencyObject(const DependencyObject& u, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext) {
   const auto priorityValue = v.AsUInt32();
   u.SetValue(GetPriorityProperty(), winrt::box_value(priorityValue));
 }

@@ -19,3 +19,8 @@ enum class SplitViewPriority {
     Pane = 1,
 };
 
+enum class MenuFlyoutPriority {
+    Attached = 0,
+    Context = 1,
+};
+

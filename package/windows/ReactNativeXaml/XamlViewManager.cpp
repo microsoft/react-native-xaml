@@ -143,8 +143,8 @@ namespace winrt::ReactNativeXaml {
       child.try_as<NavigationView>()) { 
       // these are ContentControls too, but we shouldn't try to unwrap, so skip this 
     }
-    else if (auto wrappedChild = child.try_as<Wrapper>()) {
-      if (auto childContent = wrappedChild.WrappedObject()) {
+    else if (auto wrapper = child.try_as<Wrapper>()) {
+      if (auto childContent = wrapper.WrappedObject()) {
         childType = winrt::get_class_name(childContent);
         auto childFE = child.as<FrameworkElement>();
         auto tag = childFE.Tag();
@@ -155,16 +155,22 @@ namespace winrt::ReactNativeXaml {
         }
 
         if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
-          Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
           
-          wrappedChild.DataContext(e);
-          if (auto button = e.try_as<Button>()) {
-            return button.Flyout(childFlyout);
+          wrapper.DataContext(e);
+          const auto& childUI = childFE.as<UIElement>();
+          auto priority = GetPriority<MenuFlyoutPriority>(childUI);
+          if (priority == MenuFlyoutPriority::Context) {
+            if (auto button = e.try_as<Button>()) {
+              return button.Flyout(childFlyout);
+            }
+            else {
+              if (auto uiParent = e.try_as<UIElement>()) {
+                return uiParent.ContextFlyout(childFlyout);
+              }
+            }
           }
           else {
-            if (auto uiParent = e.try_as<UIElement>()) {
-              return uiParent.ContextFlyout(childFlyout);
-            }
+            return Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
           }
         }
         else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
