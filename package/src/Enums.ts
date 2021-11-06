@@ -1254,6 +1254,11 @@ export enum SplitViewPriority {
   Pane = 1,
 }
 
+export enum MenuFlyoutPriority {
+  Attached = 0,
+  Context = 1,
+}
+
 export enum ContentDialogState {
   Popup = 0,
   InPlace = 1,

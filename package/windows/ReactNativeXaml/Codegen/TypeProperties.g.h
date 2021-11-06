@@ -1241,7 +1241,7 @@ void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::Dependenc
 void SetText_Run(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 
 void SetGridLayout_Grid(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
-void SetPriority_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
+void SetPriority_DependencyObject(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetResources_UIElement(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 void SetShowState_ContentDialog(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& reactContext);
 
@@ -1249,7 +1249,7 @@ void SetShowState_ContentDialog(const xaml::DependencyObject& o, const xaml::Dep
     { MAKE_KEY("isOpen"), AsUnwrappedType<winrt::Windows::UI::Xaml::Controls::Primitives::FlyoutBase>, nullptr, SetIsOpen_FlyoutBase, ViewManagerPropertyType::Boolean },
     { MAKE_KEY("text"), AsUnwrappedType<winrt::Windows::UI::Xaml::Documents::Run>, nullptr, SetText_Run, ViewManagerPropertyType::String },
     { MAKE_KEY("gridLayout"), AsType<winrt::Windows::UI::Xaml::Controls::Grid>, nullptr, SetGridLayout_Grid, ViewManagerPropertyType::Map },
-    { MAKE_KEY("priority"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetPriority_UIElement, ViewManagerPropertyType::Number },
+    { MAKE_KEY("priority"), AsType<winrt::Windows::UI::Xaml::DependencyObject>, nullptr, SetPriority_DependencyObject, ViewManagerPropertyType::Number },
     { MAKE_KEY("resources"), AsType<winrt::Windows::UI::Xaml::UIElement>, nullptr, SetResources_UIElement, ViewManagerPropertyType::Map },
     { MAKE_KEY("showState"), AsType<winrt::Windows::UI::Xaml::Controls::ContentDialog>, nullptr, SetShowState_ContentDialog, ViewManagerPropertyType::Number },
 

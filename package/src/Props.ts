@@ -764,6 +764,10 @@ export interface NativeDependencyObjectProps extends ViewProps {
         'Windows.UI.Xaml.Shapes.Polygon' |
         'Windows.UI.Xaml.Shapes.Polyline' |
         'Windows.UI.Xaml.Shapes.Rectangle';
+  /**
+  * A hint of where this item should be placed within its parent.
+  */
+  priority?: number; // synthetic property
 }
 export interface NativeUIElementProps extends NativeDependencyObjectProps {
   type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
@@ -1016,10 +1020,6 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   keyboardAcceleratorPlacementMode?: Enums.KeyboardAcceleratorPlacementMode;
   canBeScrollAnchor?: boolean;
-  /**
-  * A hint of where this item should be placed within its parent.
-  */
-  priority?: number; // synthetic property
   /**
   * An object of key/value pairs used for lightweight styling.
   */
