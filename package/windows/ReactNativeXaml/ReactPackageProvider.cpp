@@ -16,7 +16,10 @@ namespace winrt::ReactNativeXaml::implementation
   {
     AddAttributedModules(packageBuilder);
     packageBuilder.AddViewManager(
-      L"XamlControl", []() {return winrt::make<XamlViewManager>(); }
+      L"XamlControl", []() {
+        auto vm = winrt::make<XamlViewManager>();
+        return vm;
+      }
     );
   }
 

@@ -2,6 +2,27 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Fri, 05 Nov 2021 16:43:47 GMT",
+      "tag": "react-native-xaml_v0.0.48",
+      "version": "0.0.48",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "ea489b27b7b63d477321ba6560b342a8467beb06",
+            "comment": "Fix isOpen"
+          },
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "310705a5455a7e1b215243eac35781552ecac423",
+            "comment": "MenuFlyoutItem Icon support"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Nov 2021 04:42:35 GMT",
       "tag": "react-native-xaml_v0.0.47",
       "version": "0.0.47",
