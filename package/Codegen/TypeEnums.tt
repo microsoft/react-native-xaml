@@ -4,6 +4,10 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".h" #>
+#pragma once
+/*************************************************************
+THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+**************************************************************/
 
 <# foreach (var p in Util.fakeEnums.Where(p => p.Name.EndsWith("Priority"))) { #>
 enum class <#= p.Name #> {

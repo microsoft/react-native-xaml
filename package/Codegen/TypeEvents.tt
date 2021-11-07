@@ -3,6 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+#pragma once
 #include "pch.h"
 #include "XamlMetadata.h"
 #include "Serialize.h"

@@ -1,3 +1,4 @@
+#pragma once
 #include "pch.h"
 #include "XamlMetadata.h"
 #include "Serialize.h"

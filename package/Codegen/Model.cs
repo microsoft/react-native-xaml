@@ -1,4 +1,5 @@
 ﻿using MiddleweightReflection;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -130,6 +131,11 @@ namespace Codegen
     {
         public ViewManagerPropertyType VM { get; set; }
         public string TS { get; set; }
+    }
+
+    public partial class VersionHeader
+    {
+        public Version Version { get; set; }
     }
 }
 

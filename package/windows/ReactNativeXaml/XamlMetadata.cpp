@@ -88,7 +88,6 @@ FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInsp
     return parent.as<FrameworkElement>();
   }
   return nullptr;
-  //return wrapper.as<winrt::ReactNativeXaml::Wrapper>().DataContext().as<xaml::FrameworkElement>();
 }
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up

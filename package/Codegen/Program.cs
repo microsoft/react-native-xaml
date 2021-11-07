@@ -25,7 +25,7 @@ namespace Codegen
             return context.GetType(type).GetProperties().First(x => x.GetName() == prop);
         }
 
-        private void DumpTypes()
+        private void DumpTypes(Version version)
         {
             var start = DateTime.Now;
             Config = JsonDocument.Parse(File.ReadAllText(ConfigFileName), new JsonDocumentOptions() { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip });
@@ -344,6 +344,7 @@ namespace Codegen
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
+            var versionGen = new VersionHeader() { Version = version }.TransformText();
 
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))
@@ -355,6 +356,8 @@ namespace Codegen
             UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
             UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
             UpdateFile(Path.Join(generatedDirPath, "TypeEnums.g.h"), enumsGen);
+
+            UpdateFile(Path.Join(generatedDirPath, "Version.g.h"), versionGen);
 
             UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
             UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
@@ -580,7 +583,7 @@ namespace Codegen
                     throw new ArgumentException($"Unknown option {args[i]}");
                 }
             }
-            p.DumpTypes();
+            p.DumpTypes(Version.Parse(version));
         }
     }
 }

@@ -119,6 +119,18 @@
     <Link>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DebugFull</GenerateDebugInformation>
     </Link>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
@@ -144,12 +156,25 @@
       <LinkTimeCodeGeneration Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableCOMDATFolding Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableCOMDATFolding>
     </Link>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
+    <ResourceCompile>
+      <ResourceOutputFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\ReactNativeXaml.res</ResourceOutputFileName>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Codegen\EventArgsTypeProperties.g.h" />
     <ClInclude Include="Codegen\TypeEnums.g.h" />
     <ClInclude Include="Codegen\TypeEvents.g.h" />
     <ClInclude Include="Codegen\TypeProperties.g.h" />
+    <ClInclude Include="Codegen\Version.g.h" />
     <ClInclude Include="Crc32Str.h" />
     <ClInclude Include="JSValueXaml_local.h" />
     <ClInclude Include="ReactPackageProvider.h">
@@ -157,8 +182,10 @@
     </ClInclude>
     <ClInclude Include="ReactNativeModule.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Serialize.h" />
     <ClInclude Include="Styling.h" />
+    <ClInclude Include="Version.h" />
     <ClInclude Include="Wrapper.h">
       <DependentUpon>Wrapper.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -202,6 +229,9 @@
     <None Include="..\..\src\Enums.ts" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ReactNativeXaml.rc" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\ReactNativeXaml.Imports.props" Condition="Exists('$(SolutionDir)\ReactNativeXaml.Imports.props')" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

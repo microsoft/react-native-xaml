@@ -1,3 +1,7 @@
+#pragma once
+/*************************************************************
+THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+**************************************************************/
 
 enum class NavigationViewItemPriority {
     MenuItem = 0,
