@@ -164,6 +164,7 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
+    <None Include="examplenuget_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
     <Text Include="readme.txt">
@@ -194,7 +195,6 @@
   <ItemGroup>
     <CppWinRTMdMergeInputs Remove="$(SolutionDir)\$(Configuration)\ReactNativeXaml\Microsoft.ReactNative.winmd" />
   </ItemGroup>
-
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.210312.4\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.210312.4\build\native\Microsoft.Windows.CppWinRT.targets')" />
     <Import Project="..\packages\Microsoft.ReactNative.$(ReactNativeWindowsVersion)\build\native\Microsoft.ReactNative.targets" Condition="Exists('..\packages\Microsoft.ReactNative.$(ReactNativeWindowsVersion)\build\native\Microsoft.ReactNative.targets')" />
@@ -213,7 +213,7 @@
   </Target>
   <ItemDefinitionGroup>
     <Reference>
-        <Private Condition="'$(ConfigurationType)' != 'Application'">false</Private>
+      <Private Condition="'$(ConfigurationType)' != 'Application'">false</Private>
     </Reference>
   </ItemDefinitionGroup>
 </Project>
