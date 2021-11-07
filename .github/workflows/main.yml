@@ -63,7 +63,7 @@ jobs:
     - name: build TS
       run: yarn build
       
-    - name: build ExampleNugt
+    - name: build ExampleNuget
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: examplenuget
 

@@ -2,7 +2,7 @@
 #include "XamlObject.h"
 
 #if __has_include(<../include/shared/cdebug.h>)
-#include "..include/Shared/cdebug.h"
+#include "../include/Shared/cdebug.h"
 #else
 #include <cdebug.h>
 #endif
