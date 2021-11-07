@@ -32,7 +32,28 @@ jobs:
         $changed = git status --porcelain=v1
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
-  example:
+  # example:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: yarn install
+  #     run: yarn install
+
+  #   - name: build TS
+  #     run: yarn build
+
+  #   - name: build example
+  #     run: yarn windows --no-launch --no-deploy --no-packager --logging
+  #     working-directory: example
+
+  #   - name: Upload appx
+  #     uses: actions/upload-artifact@v2
+  #     with:
+  #       name: Example appx
+  #       path: example\windows\AppPackages\example\example_1.0.0.0_Win32_Debug_Test
+  #       if-no-files-found: error
+
+  examplenuget:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -42,15 +63,15 @@ jobs:
     - name: build TS
       run: yarn build
       
-    - name: build example
+    - name: build ExampleNugt
       run: yarn windows --no-launch --no-deploy --no-packager --logging
-      working-directory: example
+      working-directory: examplenuget
 
     - name: Upload appx
       uses: actions/upload-artifact@v2
       with:
-        name: Example appx
-        path: example\windows\AppPackages\example\example_1.0.0.0_Win32_Debug_Test
+        name: ExampleNuget appx
+        path: exampleNuget\windows\AppPackagesNuget\example\exampleNuget_1.0.0.0_Win32_Debug_Test
         if-no-files-found: error
 
   package:
