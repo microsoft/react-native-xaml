@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "ado pipeline builds nuget example",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
