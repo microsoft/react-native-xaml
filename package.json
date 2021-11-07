@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc --project package",
     "change": "beachball change",
-    "bump": "beachball bump"
+    "bump": "beachball bump && pushd package && yarn codegen && popd"
   },
   "repository": {
     "type": "git",
