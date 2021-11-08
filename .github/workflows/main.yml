@@ -151,7 +151,7 @@ jobs:
       working-directory: testrnx
 
     - name: update WinUI package version and mark for NuGet package consumption
-      run: SetUpAppForNuget.ps1 -UseNuGet
+      run: ..\.github\workflows\SetUpAppForNuget.ps1 -UseNuGet
       working-directory: testrnx
 
     - name: build app
