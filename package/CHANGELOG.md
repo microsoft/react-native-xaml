@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Fri, 05 Nov 2021 22:29:53 GMT and should not be manually modified.
+This log was last generated on Sun, 07 Nov 2021 21:01:35 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.51
+
+Sun, 07 Nov 2021 21:01:35 GMT
+
+### Patches
+
+- ado pipeline builds nuget example (asklar@microsoft.com)
 
 ## 0.0.50
 

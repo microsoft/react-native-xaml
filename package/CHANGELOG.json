@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Sun, 07 Nov 2021 21:01:35 GMT",
+      "tag": "react-native-xaml_v0.0.51",
+      "version": "0.0.51",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "ado pipeline builds nuget example",
+            "commit": "bd59126273dc857ce3c2af57f3bd00ebcd9dbf2a"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Nov 2021 22:29:53 GMT",
       "tag": "react-native-xaml_v0.0.50",
       "version": "0.0.50",
