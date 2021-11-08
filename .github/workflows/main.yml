@@ -62,7 +62,7 @@ jobs:
 
     - name: build TS
       run: yarn build
-      
+
     - name: build ExampleNuget
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: examplenuget
@@ -73,6 +73,90 @@ jobs:
         name: ExampleNuget appx
         path: exampleNuget\windows\AppPackages\exampleNuget\exampleNuget_1.0.0.0_Win32_Debug_Test
         if-no-files-found: error
+
+
+  testcli:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+
+    - name: build TS
+      run: yarn build
+
+    - name: yarn link
+      run: yarn link
+      working-directory: package
+
+    - name: create 0.64 app
+      run: npx react-native init testrnx --template react-native@^0.64
+
+    - name: add Windows
+      run: npx -y react-native-windows-init --overwrite
+      working-directory: testrnx
+
+    - name: link react-native-xaml
+      run: yarn link react-native-xaml
+      working-directory: testrnx
+
+    - name: add react-native-xaml
+      run: yarn add react-native-xaml
+      working-directory: testrnx
+
+    - name: autolink
+      run: npx react-native autolink-windows --logging
+      working-directory: testrnx
+
+    - name: update WinUI package version
+      run: SetUpAppForNuget.ps1
+      working-directory: testrnx
+
+    - name: build app
+      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
+      working-directory: testrnx
+
+
+  testcliNuGet:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: yarn install
+      run: yarn install
+
+    - name: build TS
+      run: yarn build
+
+    - name: yarn link
+      run: yarn link
+      working-directory: package
+
+    - name: create 0.64 app
+      run: npx react-native init testrnx --template react-native@^0.64
+
+    - name: add Windows
+      run: npx -y react-native-windows-init --overwrite --experimentalNuGetDependency true
+      working-directory: testrnx
+
+    - name: link react-native-xaml
+      run: yarn link react-native-xaml
+      working-directory: testrnx
+
+    - name: add react-native-xaml
+      run: yarn add react-native-xaml
+      working-directory: testrnx
+
+    - name: autolink
+      run: npx react-native autolink-windows --logging
+      working-directory: testrnx
+
+    - name: update WinUI package version and mark for NuGet package consumption
+      run: SetUpAppForNuget.ps1 -UseNuGet
+      working-directory: testrnx
+
+    - name: build app
+      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
+      working-directory: testrnx
 
   package:
     runs-on: windows-latest
