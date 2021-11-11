@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Sun, 07 Nov 2021 21:01:35 GMT and should not be manually modified.
+This log was last generated on Thu, 11 Nov 2021 22:24:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.52
+
+Thu, 11 Nov 2021 22:24:47 GMT
+
+### Patches
+
+- Support infobar ActionButton (asklar@microsoft.com)
 
 ## 0.0.51
 
