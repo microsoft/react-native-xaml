@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Support infobar ActionButton",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
