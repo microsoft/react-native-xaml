@@ -20,7 +20,7 @@
     <UseHermes>false</UseHermes>
 
     <UseExperimentalNuget>true</UseExperimentalNuget>
-    <ReactNativeWindowsVersion>0.65.4</ReactNativeWindowsVersion>
+    <ReactNativeWindowsVersion>0.65.7</ReactNativeWindowsVersion>
     <WinUI2xVersion>2.6.0</WinUI2xVersion>
 
 
