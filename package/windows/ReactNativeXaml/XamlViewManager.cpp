@@ -305,6 +305,11 @@ namespace winrt::ReactNativeXaml {
         return menuFlyoutItem.Icon(childIcon);
       }
     }
+    if (auto infoBar = e.try_as<mux::Controls::InfoBar>()) {
+      if (auto buttonBase = child.try_as<Controls::Primitives::ButtonBase>()) {
+        return infoBar.ActionButton(buttonBase);
+      }
+    }
     //else 
     {
       auto cn = winrt::get_class_name(e);
