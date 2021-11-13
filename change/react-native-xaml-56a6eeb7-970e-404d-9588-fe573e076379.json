@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "MenuFlyout ShowAt command",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
