@@ -22,6 +22,8 @@ import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 import { findNodeHandle, UIManager } from 'react-native';
 
+import type { Point } from './Props';
+
 const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
 
 <# 
@@ -37,9 +39,9 @@ export class <#= Util.ToJsName(type) #> extends React.Component<<#= Util.ToJsNam
     return <NativeXamlControl {...this.props} type='<#= type.GetFullName() #>' />;
   }
 <# foreach (var command in Util.GetCommands(type.GetFullName())) { #>
-  static <#= command.Name #>(ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: any[]) {
+  static <#= command.Name #>(ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) {
     const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, xamlCommands.<#= command.Name #>, args);
+    UIManager.dispatchViewManagerCommand(tag, xamlCommands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
   }
 <# } #>
 };

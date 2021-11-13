@@ -105,7 +105,7 @@ namespace winrt::ReactNativeXaml {
   // IViewManagerWithCommands
   IVectorView<hstring> XamlViewManager::Commands() noexcept {
     auto commands = winrt::single_threaded_vector<hstring>();
-    commands.Append(L"CustomCommand");
+    m_xamlMetadata->PopulateCommands(commands);
     return commands.GetView();
   }
 

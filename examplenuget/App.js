@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useRef} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -19,7 +19,10 @@ import {
 } from 'react-native';
 
 import {
-    TextBlock
+  TextBox,
+  MenuFlyout,
+  MenuFlyoutItem,
+  TextBlock,
 } from 'react-native-xaml';
 import {
   Colors,
@@ -62,6 +65,11 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const menu = useRef<MenuFlyout>(null);
+  const _tbRef = React.useRef<TextBlock>(null);
+
+  const [x, setX] = React.useState(100);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -72,8 +80,28 @@ const App: () => Node = () => {
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                  }}>
-        <TextBlock text="Hello" />
+          }}>
+          <TextBox
+            text={x}
+            onBeforeTextChanging={e => {
+              setX(e.nativeEvent.args.newText);
+            }}
+          />
+          <TextBlock
+            text="Hello"
+            onTapped={e => {
+              MenuFlyout.ShowAt(menu, {point: {x: x, y: 42}});
+            }}
+            ref={t => {
+              _tbRef.current = t;
+            }}>
+            <MenuFlyout
+              ref={m => {
+                menu.current = m;
+              }}>
+              <MenuFlyoutItem text="menu option" />
+            </MenuFlyout>
+          </TextBlock>
         </View>
       </ScrollView>
     </SafeAreaView>

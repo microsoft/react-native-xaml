@@ -228,7 +228,7 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;
   winrt::Microsoft::ReactNative::IReactDispatcher UIDispatcher() const { return m_reactContext.UIDispatcher(); }
 
-  FrameworkElement GetFlyoutTarget(winrt::Windows::Foundation::IInspectable wrapper);
+  FrameworkElement GetFlyoutTarget(winrt::Windows::Foundation::IInspectable wrapper) const;
 
 private:
   winrt::Windows::Foundation::IInspectable Create(const std::string_view& typeName) const;

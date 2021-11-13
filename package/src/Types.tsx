@@ -182,6 +182,8 @@ import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 import { findNodeHandle, UIManager } from 'react-native';
 
+import type { Point } from './Props';
+
 const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
 
 export namespace WinUI {
@@ -1162,6 +1164,10 @@ export type MenuFlyoutProps = Omit<NativeMenuFlyoutProps, 'type'>;
 export class MenuFlyout extends React.Component<MenuFlyoutProps> {
   render() {
     return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuFlyout' />;
+  }
+  static ShowAt(ref: React.MutableRefObject<MenuFlyout>, args: { point: Point,  }) {
+    const tag = findNodeHandle(ref.current);
+    UIManager.dispatchViewManagerCommand(tag, xamlCommands.ShowAt, [args]);
   }
 };
 export type MenuBarItemFlyoutProps = Omit<NativeMenuBarItemFlyoutProps, 'type'>;

@@ -12,6 +12,8 @@ export type GridLength = number | '*' | 'auto' | `${number}*`;
 
 export type CornerRadius = number | { topLeft?: number, topRight?: number, bottomLeft?: number, bottomRight?: number};
 
+export type Point = { x: number, y: number };
+
 export namespace NativeWinUI {
 export interface NativeAnimatedIconProps extends NativeIconElementProps {
   type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon';

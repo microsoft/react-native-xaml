@@ -1934,13 +1934,15 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
 
 struct XamlCommand {
     const char* name;
-    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept;
+    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept;
 };
 
-void CustomCommandCommand(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */) noexcept;
+void CustomCommandCommand(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */, const XamlMetadata& xaml) noexcept;
+void ShowAtCommand(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */, const XamlMetadata& xaml) noexcept;
 
 const XamlCommand xamlCommands[] = {
   { "CustomCommand", CustomCommandCommand},
+  { "ShowAt", ShowAtCommand},
 };
 
 void XamlMetadata::PopulateCommands(const winrt::Windows::Foundation::Collections::IVector<winrt::hstring>& commands) const {

@@ -70,12 +70,12 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
 
 struct XamlCommand {
     const char* name;
-    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept;
+    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept;
 };
 
 <# foreach (var kv in Util.commands) { #>
 <#   foreach (var command in kv.Value) { #>
-void <#= command.Name #>Command(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */) noexcept;
+void <#= command.Name #>Command(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */, const XamlMetadata& xaml) noexcept;
 <# } } #>
 
 const XamlCommand xamlCommands[] = {

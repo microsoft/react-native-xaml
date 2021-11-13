@@ -64,7 +64,12 @@ namespace Codegen
                 var commands = new List<Command>();
                 foreach (var c in entry.Value.EnumerateArray())
                 {
-                    commands.Add(new Command { Name = c.GetProperty("name").GetString() });
+                    var command = new Command { Name = c.GetProperty("name").GetString() };
+                    if (c.TryGetProperty("args", out var value))
+                    {
+                        command.TSArgTypes = ConvertJSONToTSType(value);
+                    }
+                    commands.Add(command);
                 }
                 Util.commands[GetTypeNameFromJsonProperty(entry)] = commands;
             }
@@ -371,6 +376,29 @@ namespace Codegen
             UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
 
             PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds} s");
+        }
+
+        private string ConvertJSONToTSType(JsonElement value)
+        {
+            switch (value.ValueKind)
+            {
+                case JsonValueKind.String:
+                    return "string";
+                case JsonValueKind.Number:
+                    return "number";
+                case JsonValueKind.Object:
+                    {
+                        var tsType = "{ ";
+                        foreach (var entry in value.EnumerateObject())
+                        {
+                            tsType += $"{entry.Name}: {entry.Value.GetString()}, ";
+                        }
+                        tsType += " }";
+                        return tsType;
+                    }
+                default:
+                    throw new ArgumentException("Unexpected JSON type");
+            }
         }
 
         private void DiscoverAttachedProperties(MrLoadContext context, IEnumerable<MrType> types)

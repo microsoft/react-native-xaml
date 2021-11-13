@@ -166,6 +166,14 @@
       {
         "name": "CustomCommand"
       }
+    ],
+    "$xaml.Controls.MenuFlyout": [
+      {
+        "name": "ShowAt",
+        "args": {
+          "point":  "Point"
+        }
+      }
     ]
   }
 }

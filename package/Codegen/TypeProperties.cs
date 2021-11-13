@@ -335,7 +335,7 @@ void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::
 
 struct XamlCommand {
     const char* name;
-    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept;
+    void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept;
 };
 
 ");
@@ -359,7 +359,7 @@ struct XamlCommand {
             #line default
             #line hidden
             this.Write("Command(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /" +
-                    "* args */) noexcept;\r\n");
+                    "* args */, const XamlMetadata& xaml) noexcept;\r\n");
             
             #line 79 "F:\react-native-xaml\package\Codegen\TypeProperties.tt"
  } } 

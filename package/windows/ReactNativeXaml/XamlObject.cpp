@@ -9,6 +9,7 @@
 
 #include <UI.Text.h>
 #include "Codegen/EventArgsTypeProperties.g.h"
+#include "XamlViewManager.h"
 
 namespace jsi = facebook::jsi;
 
@@ -253,6 +254,21 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
   return pnames;
 }
 
-void CustomCommandCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args) noexcept {
+void CustomCommandCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept {
   OutputDebugStringA("Custom command was called\n");
+}
+
+auto ReadPoint(const JSValueObject& o) {
+  const auto& x = o["x"];
+  
+  return winrt::Windows::Foundation::Point{ o["x"].AsSingle(), o["y"].AsSingle() };
+}
+
+void ShowAtCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept {
+  const auto& point = ReadPoint(args[0].GetObjectProperty("point").AsObject());
+  if (auto menuFlyout = Unwrap<MenuFlyout>(fe)) {
+    auto target = xaml.GetFlyoutTarget(menuFlyout);
+    menuFlyout.ShowAt(target, point);
+  }
+  OutputDebugStringA("ShowAt ***************\n");
 }
