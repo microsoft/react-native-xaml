@@ -18,7 +18,7 @@ namespace Codegen
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "F:\react-native-xaml\package\Codegen\VersionHeader.tt"
+    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\VersionHeader.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "16.0.0.0")]
     public partial class VersionHeader : VersionHeaderBase
     {
@@ -28,43 +28,38 @@ namespace Codegen
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\n");
-            this.Write("\n");
-            this.Write("\n");
-            this.Write("\n");
-            this.Write("\n");
-            this.Write("\n#pragma once\n\n/*************************************************************\nTHI" +
-                    "S FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\n*********************" +
-                    "*****************************************/\n\n#define VERSION_MAJOR               " +
-                    "");
+            this.Write("#pragma once\r\n\r\n/*************************************************************\r\nT" +
+                    "HIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\n******************" +
+                    "********************************************/\r\n\r\n#define VERSION_MAJOR          " +
+                    "     ");
             
-            #line 1 "F:\react-native-xaml\package\Codegen\VersionHeader.tt"
+            #line 13 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\VersionHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Version.Major));
             
             #line default
             #line hidden
-            this.Write("\n#define VERSION_MINOR               ");
+            this.Write("\r\n#define VERSION_MINOR               ");
             
-            #line 1 "F:\react-native-xaml\package\Codegen\VersionHeader.tt"
+            #line 14 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\VersionHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Version.Minor));
             
             #line default
             #line hidden
-            this.Write("\n#define VERSION_REVISION            ");
+            this.Write("\r\n#define VERSION_REVISION            ");
             
-            #line 1 "F:\react-native-xaml\package\Codegen\VersionHeader.tt"
+            #line 15 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\VersionHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Version.Revision == -1 ? 0 : Version.Revision));
             
             #line default
             #line hidden
-            this.Write("\n#define VERSION_BUILD               ");
+            this.Write("\r\n#define VERSION_BUILD               ");
             
-            #line 1 "F:\react-native-xaml\package\Codegen\VersionHeader.tt"
+            #line 16 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\VersionHeader.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Version.Build));
             
             #line default
             #line hidden
-            this.Write("\n");
+            this.Write("\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
