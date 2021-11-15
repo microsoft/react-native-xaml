@@ -453,22 +453,37 @@ In order to enable Direct debugging for your app, make sure that your App.cpp/Ap
 ```
 
 # Calling methods on XAML objects ("commands")
-Some types support custom commands to expose some functionality of the underlying platform. For example, this allows calling the `MediaPlayerElement.Play()` method in response to some other action.
+Some types support custom commands to expose some functionality of the underlying platform. 
+For example, this allows calling the `MediaPlayerElement.Play()` method in response to some other action, or programatically showing a flyout menu:
 
 ```jsx
   const _tbRef = React.useRef<TextBlock>(null);
+  const _menuRef = useRef<MenuFlyout>(null);
 
+  const [x, setX] = React.useState(100);
   // ...
   return
-        <TextBlock
-          text="hello world"
-          ref={t => {
-            _tbRef.current = t;
-          }}
-          onTapped={() => {
-            TextBlock.CustomCommand(_tbRef, ['foo']);
-          }} 
-        />;
+<TextBox
+  text={x}
+  onBeforeTextChanging={e => {
+    setX(e.nativeEvent.args.newText);
+}}
+/>
+<TextBlock
+  text="Hello"
+  onTapped={e => {
+    MenuFlyout.ShowAt(_menuRef, {point: {x: x, y: 42}});
+  }}
+  ref={t => {
+    _tbRef.current = t;
+  }}>
+    <MenuFlyout
+      ref={m => {
+        _menuRef.current = m;
+      }}>
+      <MenuFlyoutItem text="menu option" />
+    </MenuFlyout>
+</TextBlock>
 ```
 
 # Sample usage - WinUI controls
