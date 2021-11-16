@@ -162,11 +162,6 @@
     }
   ],
   "commands": {
-    "$xaml.Controls.TextBlock": [
-      {
-        "name": "CustomCommand"
-      }
-    ],
     "$xaml.Controls.MenuFlyout": [
       {
         "name": "ShowAt",

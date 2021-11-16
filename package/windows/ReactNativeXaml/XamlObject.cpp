@@ -254,10 +254,6 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
   return pnames;
 }
 
-void CustomCommandCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept {
-  OutputDebugStringA("Custom command was called\n");
-}
-
 auto ReadPoint(const JSValueObject& o) {
   const auto& x = o["x"];
   
@@ -270,5 +266,4 @@ void ShowAtCommand(xaml::FrameworkElement fe, const winrt::Microsoft::ReactNativ
     auto target = xaml.GetFlyoutTarget(menuFlyout);
     menuFlyout.ShowAt(target, point);
   }
-  OutputDebugStringA("ShowAt ***************\n");
 }

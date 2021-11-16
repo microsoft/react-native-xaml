@@ -1575,10 +1575,6 @@ export class TextBlock extends React.Component<TextBlockProps> {
   render() {
     return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TextBlock' />;
   }
-  static CustomCommand(ref: React.MutableRefObject<TextBlock>, args: any[]) {
-    const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, xamlCommands.CustomCommand, args);
-  }
 };
 export type TextBoxProps = Omit<NativeTextBoxProps, 'type'>;
 

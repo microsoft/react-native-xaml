@@ -1937,11 +1937,9 @@ struct XamlCommand {
     void (*pfn)(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& args, const XamlMetadata& xaml) noexcept;
 };
 
-void CustomCommandCommand(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */, const XamlMetadata& xaml) noexcept;
 void ShowAtCommand(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /* args */, const XamlMetadata& xaml) noexcept;
 
 const XamlCommand xamlCommands[] = {
-  { "CustomCommand", CustomCommandCommand},
   { "ShowAt", ShowAtCommand},
 };
 
