@@ -4,14 +4,23 @@
 
 `$ npm install react-native-xaml --save`
 
+Ensure your app is using WinUI 2.6+. For details about customizing WinUI versions in your React Native for Windows app, see [Customizing SDK versions](https://microsoft.github.io/react-native-windows/docs/customizing-sdk-versions).
+
 ### Mostly automatic installation
 
 `$ react-native link react-native-xaml`
 
 ## Usage
+
+See the [Usage guide](https://github.com/microsoft/react-native-xaml/blob/main/USAGE.md) for details and lots of examples.
+
 ```javascript
 import { HyperlinkButton, } from 'react-native-xaml';
 
-// TODO: What to do with the module?
-<HyperlinkButton text="Hello World" style={{width:150,height:40}} onClick={()=>{alert("clicked!");} } />
+<HyperlinkButton 
+  text="Hello from XAML" 
+  style={{ width:150, height:40 }} 
+  onClick={() => {
+    alert("clicked!");
+  }} />
 ```

@@ -78,7 +78,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   return e;
 }
 
-FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInspectable flyout) {
+FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInspectable flyout) const {
   auto it = std::find_if(wrapperToWrapped.begin(), wrapperToWrapped.end(), [flyout](auto& entry) {
     WrapperInfo wrapperInfo = entry.second;
     return wrapperInfo.wrappedObject == flyout;
@@ -386,4 +386,12 @@ winrt::fire_and_forget winrt::Microsoft::ReactNative::SetImageSourceForInlineDat
   }
 
   o.SetValue(dp, source);
+}
+
+void XamlMetadata::DispatchCommand(FrameworkElement const& view, winrt::hstring const& commandId, const winrt::Microsoft::ReactNative::JSValueArray& args) const noexcept {
+  const std::string name = winrt::to_string(commandId);
+  auto it = std::find_if(xamlCommands, xamlCommands + std::size(xamlCommands), [name](const XamlCommand& entry) { return Equals(entry.name, name.c_str()); });
+  if (it != xamlCommands + std::size(xamlCommands)) {
+    it->pfn(view, args, *this);
+  }
 }

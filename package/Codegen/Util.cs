@@ -418,6 +418,7 @@ namespace Codegen
         public static string GetJsTypeProperty(MrType t, Dictionary<string, List<MrType>> derived)
         {
             var listDerived = derived[t.GetFullName()].Select(t => $"'{t.GetFullName()}'");// .Where(t => HasCtor(t)).Select(t => $"'{t.GetFullName()}'");
+            listDerived = listDerived.Prepend($"'{t.GetFullName()}'").Distinct();
             if (listDerived.Count() < 5)
             {
                 return string.Join(" | ", listDerived);
@@ -523,6 +524,16 @@ namespace Codegen
             var ns = GetTSNamespace(type);
             var prefix = ns == "" ? "" : $"Native{ns}.";
             return $"{prefix}Native{type.GetName()}Props";
+        }
+
+        public static Dictionary<string, IEnumerable<Command>> commands { get; private set; } = new Dictionary<string, IEnumerable<Command>>();
+        public static IEnumerable<Command> GetCommands(string typeName)
+        {
+            if (Util.commands.TryGetValue(typeName, out var commands))
+            {
+                return commands;
+            }
+            return new Command[] { };
         }
     }    
 }

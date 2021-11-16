@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Thu, 11 Nov 2021 22:24:47 GMT and should not be manually modified.
+This log was last generated on Sat, 13 Nov 2021 02:37:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.53
+
+Sat, 13 Nov 2021 02:37:41 GMT
+
+### Patches
+
+- MenuFlyout ShowAt command (asklar@microsoft.com)
 
 ## 0.0.52
 

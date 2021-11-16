@@ -1,13 +1,13 @@
 {
   "name": "react-native-xaml",
   "title": "React Native Xaml",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "description": "Allows using XAML directly, inside of a React Native Windows app",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -b",
-    "codegen": "dotnet run -p codegen -verbose -winmd ..\\example\\windows\\packages\\Microsoft.UI.Xaml.2.6.0\\lib\\uap10.0\\Microsoft.UI.Xaml.winmd"
+    "codegen": "dotnet run --project codegen -verbose -winmd ..\\example\\windows\\packages\\Microsoft.UI.Xaml.2.6.0\\lib\\uap10.0\\Microsoft.UI.Xaml.winmd && yarn build"
   },
   "repository": {
     "type": "git",

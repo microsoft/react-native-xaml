@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Sat, 13 Nov 2021 02:37:41 GMT",
+      "tag": "react-native-xaml_v0.0.53",
+      "version": "0.0.53",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "MenuFlyout ShowAt command",
+            "commit": "f67940ad93e422339431dad57e4c4adcb2038357"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 Nov 2021 22:24:47 GMT",
       "tag": "react-native-xaml_v0.0.52",
       "version": "0.0.52",

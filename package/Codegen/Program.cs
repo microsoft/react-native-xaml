@@ -59,8 +59,20 @@ namespace Codegen
             }
             Util.LoadContext = context;
 
-
-
+            foreach (var entry in Config.RootElement.GetProperty("commands").EnumerateObject())
+            {
+                var commands = new List<Command>();
+                foreach (var c in entry.Value.EnumerateArray())
+                {
+                    var command = new Command { Name = c.GetProperty("name").GetString() };
+                    if (c.TryGetProperty("args", out var value))
+                    {
+                        command.TSArgTypes = ConvertJSONToTSType(value);
+                    }
+                    commands.Add(command);
+                }
+                Util.commands[GetTypeNameFromJsonProperty(entry)] = commands;
+            }
 
             var fakeProps = new List<MrProperty>();
 
@@ -351,19 +363,48 @@ namespace Codegen
             {
                 Directory.CreateDirectory(generatedDirPath);
             }
-            UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
-            UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
-            UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
-            UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
-            UpdateFile(Path.Join(generatedDirPath, "TypeEnums.g.h"), enumsGen);
 
-            UpdateFile(Path.Join(generatedDirPath, "Version.g.h"), versionGen);
+            var changes = false;
+            changes |= UpdateFile(Path.Join(generatedDirPath, "TypeCreator.g.cpp"), typeCreatorGen);
+            changes |= UpdateFile(Path.Join(generatedDirPath, "TypeProperties.g.h"), propertiesGen);
+            changes |= UpdateFile(Path.Join(generatedDirPath, "TypeEvents.g.h"), eventsGen);
+            changes |= UpdateFile(Path.Join(generatedDirPath, "EventArgsTypeProperties.g.h"), eventPropsGen);
+            changes |= UpdateFile(Path.Join(generatedDirPath, "TypeEnums.g.h"), enumsGen);
 
-            UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
-            UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
-            UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+            changes |= UpdateFile(Path.Join(generatedDirPath, "Version.g.h"), versionGen);
 
-            PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds} s");
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+
+            if (!changes)
+            {
+                PrintVerbose("\nNo changes were required.");
+            }
+            PrintVerbose($"Done in {(DateTime.Now - start).TotalSeconds}s.");
+        }
+
+        private string ConvertJSONToTSType(JsonElement value)
+        {
+            switch (value.ValueKind)
+            {
+                case JsonValueKind.String:
+                    return "string";
+                case JsonValueKind.Number:
+                    return "number";
+                case JsonValueKind.Object:
+                    {
+                        var tsType = "{ ";
+                        foreach (var entry in value.EnumerateObject())
+                        {
+                            tsType += $"{entry.Name}: {entry.Value.GetString()}, ";
+                        }
+                        tsType += " }";
+                        return tsType;
+                    }
+                default:
+                    throw new ArgumentException("Unexpected JSON type");
+            }
         }
 
         private void DiscoverAttachedProperties(MrLoadContext context, IEnumerable<MrType> types)
@@ -484,14 +525,17 @@ namespace Codegen
             }
         }
 
-        private static void UpdateFile(string path, string newContent)
+        private static bool UpdateFile(string path, string newContent)
         {
+            newContent = newContent.Replace("\r", "");
             var existing = File.Exists(path) ? File.ReadAllText(path) : "";
             if (existing != newContent)
             {
                 Console.WriteLine($" Writing {path}");
                 File.WriteAllText(path, newContent);
+                return true;
             }
+            return false;
         }
 
         private static uint HashName(string input)

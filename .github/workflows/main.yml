@@ -15,6 +15,11 @@ jobs:
   codegen:
     runs-on: windows-latest
     steps:
+    - name: setup git
+      run: |
+        git config --global core.autocrlf false
+        git config --global core.filemode false
+
     - uses: actions/checkout@v2
 
     - uses: nuget/setup-nuget@v1
@@ -30,28 +35,8 @@ jobs:
       shell: powershell
       run: |
         $changed = git status --porcelain=v1
+        $changed
         if ($changed -ne $null) { throw "CodeGen detected changes" }
-
-  # example:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: yarn install
-  #     run: yarn install
-
-  #   - name: build TS
-  #     run: yarn build
-
-  #   - name: build example
-  #     run: yarn windows --no-launch --no-deploy --no-packager --logging
-  #     working-directory: example
-
-  #   - name: Upload appx
-  #     uses: actions/upload-artifact@v2
-  #     with:
-  #       name: Example appx
-  #       path: example\windows\AppPackages\example\example_1.0.0.0_Win32_Debug_Test
-  #       if-no-files-found: error
 
   examplenuget:
     runs-on: windows-latest

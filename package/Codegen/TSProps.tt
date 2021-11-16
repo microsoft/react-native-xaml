@@ -17,6 +17,8 @@ export type GridLength = number | '*' | 'auto' | `${number}*`;
 
 export type CornerRadius = number | { topLeft?: number, topRight?: number, bottomLeft?: number, bottomRight?: number};
 
+export type Point = { x: number, y: number };
+
 <# var derived = Util.GetDerivedTypes(Types);
 foreach (var type in Types) { #>
 <# var ns = Util.GetTSNamespace(type);

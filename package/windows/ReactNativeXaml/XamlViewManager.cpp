@@ -105,16 +105,17 @@ namespace winrt::ReactNativeXaml {
   // IViewManagerWithCommands
   IVectorView<hstring> XamlViewManager::Commands() noexcept {
     auto commands = winrt::single_threaded_vector<hstring>();
-    commands.Append(L"CustomCommand");
+    m_xamlMetadata->PopulateCommands(commands);
     return commands.GetView();
   }
 
   void XamlViewManager::DispatchCommand(
     FrameworkElement const& view,
     winrt::hstring const& commandId,
-    winrt::Microsoft::ReactNative::IJSValueReader const& /*commandArgsReader*/) noexcept {
-    auto viewType = get_class_name(view);
-    cdebug << "[react-native-xaml] Unhandled call to DispatchCommand with view: " << viewType << "\n";
+    winrt::Microsoft::ReactNative::IJSValueReader const& commandArgsReader) noexcept {
+
+    const auto args = JSValue::ReadArrayFrom(commandArgsReader);
+    m_xamlMetadata->DispatchCommand(view, commandId, args);
   }
 
   // IViewManagerWithReactContext

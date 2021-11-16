@@ -160,5 +160,15 @@
       "VM": "Map",
       "TS": "{ rows: GridLength[], columns: GridLength[] }"
     }
-  ]
+  ],
+  "commands": {
+    "$xaml.Controls.MenuFlyout": [
+      {
+        "name": "ShowAt",
+        "args": {
+          "point":  "Point"
+        }
+      }
+    ]
+  }
 }
