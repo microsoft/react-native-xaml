@@ -125,12 +125,15 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 ## NavigationView
 
 ```jsx
-<NavigationView style={{ height: 200, width: 120 }}>
-  <NavigationViewItem content="item 1">
+  const [text, setText] = React.useState('initial text');
+
+<WinUI.NavigationView width={700} height={700}>
+  <WinUI.NavigationViewItem content='Item 1' onTapped={() => setText('text #1')} priority={NavigationViewPriority.MenuItem}>
     <FontIcon glyph="&#xE790;" />
-  </NavigationViewItem>
-  <NavigationViewItem content="item 2" />
-</NavigationView>
+  </WinUI.NavigationViewItem>
+  <WinUI.NavigationViewItem content='Item 2' onTapped={() => setText('text #2')} priority={NavigationViewPriority.FooterMenuItem}/>
+  <TextBlock text={text} priority={NavigationViewPriority.Content}/>
+</WinUI.NavigationView>
 ```
 
 ## CommandBar with AppBarButtons and KeyboardAccelerators

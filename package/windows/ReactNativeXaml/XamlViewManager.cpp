@@ -140,11 +140,7 @@ namespace winrt::ReactNativeXaml {
     auto parentType = winrt::get_class_name(e);
     auto childType = winrt::get_class_name(child);
 
-    if (child.try_as<xaml::Controls::Primitives::SelectorItem>() ||
-      child.try_as<NavigationView>()) { 
-      // these are ContentControls too, but we shouldn't try to unwrap, so skip this 
-    }
-    else if (auto wrapper = child.try_as<Wrapper>()) {
+    if (auto wrapper = child.try_as<Wrapper>()) {
       if (auto childContent = wrapper.WrappedObject()) {
         childType = winrt::get_class_name(childContent);
         auto childFE = child.as<FrameworkElement>();
@@ -208,19 +204,19 @@ namespace winrt::ReactNativeXaml {
 
     if (auto navView = e.try_as<NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
-      auto priority = GetPriority<NavigationViewItemPriority>(child);
-      if (priority == NavigationViewItemPriority::MenuItem) {
-        return navView.MenuItems().InsertAt(index, child);
+      auto priority = GetPriority<NavigationViewPriority>(child);
+      if (priority == NavigationViewPriority::MenuItem) {
+        return navView.MenuItems().Append(child);
       }
     }
     else if (auto navViewMUX = e.try_as<mux::Controls::NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
-      auto priority = GetPriority<NavigationViewItemPriority>(child);
-      if (priority == NavigationViewItemPriority::MenuItem) {
-        return navViewMUX.MenuItems().InsertAt(index, child);
+      auto priority = GetPriority<NavigationViewPriority>(child);
+      if (priority == NavigationViewPriority::MenuItem) {
+        return navViewMUX.MenuItems().Append(child);
       }
-      else if (priority == NavigationViewItemPriority::FooterMenuItem) {
-        return navViewMUX.FooterMenuItems().InsertAt(index, child);
+      else if (priority == NavigationViewPriority::FooterMenuItem) {
+        return navViewMUX.FooterMenuItems().Append(child);
       }
     }
 

@@ -3,9 +3,10 @@
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
-enum class NavigationViewItemPriority {
+enum class NavigationViewPriority {
     MenuItem = 0,
     FooterMenuItem = 1,
+    Content = 2,
 };
 
 enum class ExpanderPriority {
