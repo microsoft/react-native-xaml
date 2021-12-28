@@ -41,10 +41,11 @@
   ],
   "fakeEnums": [
     {
-      "name": "NavigationViewItemPriority",
+      "name": "NavigationViewPriority",
       "values": {
         "MenuItem": 0,
-        "FooterMenuItem": 1
+        "FooterMenuItem": 1,
+        "Content": 2
       }
     },
     {

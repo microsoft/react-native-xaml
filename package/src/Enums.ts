@@ -1239,9 +1239,10 @@ export enum FontVariants {
 }
 
 
-export enum NavigationViewItemPriority {
+export enum NavigationViewPriority {
   MenuItem = 0,
   FooterMenuItem = 1,
+  Content = 2,
 }
 
 export enum ExpanderPriority {
