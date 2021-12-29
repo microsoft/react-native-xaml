@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "NavigationView Content property (#165)",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}

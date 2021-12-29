@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Wed, 29 Dec 2021 05:18:15 GMT",
+      "tag": "react-native-xaml_v0.0.54",
+      "version": "0.0.54",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "NavigationView Content property (#165)",
+            "commit": "34b33056a28b13192344caed626356199419cbb4"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 13 Nov 2021 02:37:41 GMT",
       "tag": "react-native-xaml_v0.0.53",
       "version": "0.0.53",
