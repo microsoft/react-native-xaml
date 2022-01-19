@@ -29,9 +29,4 @@ struct XamlObject : std::enable_shared_from_this<XamlObject>, facebook::jsi::Hos
   std::shared_ptr<const XamlMetadata> m_metadata;
 private:
   winrt::Windows::Foundation::IInspectable m_obj;
-  
-
-
-
-
 };
