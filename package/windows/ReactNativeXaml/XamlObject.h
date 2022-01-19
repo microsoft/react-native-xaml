@@ -15,10 +15,10 @@ struct XamlObject : std::enable_shared_from_this<XamlObject>, facebook::jsi::Hos
   XamlObject() = default;
   XamlObject(winrt::Windows::Foundation::IInspectable obj, std::shared_ptr<const XamlMetadata> metadata) : m_obj(obj), m_metadata(metadata) {}
   XamlObject(const XamlObject&) = default;
-private:
-  winrt::Windows::Foundation::IInspectable m_obj;
-  std::vector<facebook::jsi::PropNameID> m_propNames;
-  std::shared_ptr<const XamlMetadata> m_metadata;
+  template<typename T = winrt::Windows::Foundation::IInspectable>
+  T try_as() const { return m_obj.try_as<T>(); }
+
+  facebook::jsi::Value IInspectableToValue(facebook::jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& inspectable) const;
 
   template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
   auto RunOnUIThread(const TLambda& code) const;
@@ -26,5 +26,12 @@ private:
   template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int> = 0>
   void RunOnUIThread(const TLambda& code) const;
 
-  facebook::jsi::Value IInspectableToValue(facebook::jsi::Runtime& rt, const winrt::Windows::Foundation::IInspectable& inspectable) const;
+  std::shared_ptr<const XamlMetadata> m_metadata;
+private:
+  winrt::Windows::Foundation::IInspectable m_obj;
+  
+
+
+
+
 };

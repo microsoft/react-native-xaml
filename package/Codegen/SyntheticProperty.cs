@@ -17,20 +17,20 @@ namespace Codegen
         {
             get
             {
-                var fullPropertyName = Property.DeclaringType.GetFullName() + "." + Property.GetName();
+                if (Property != null)
+                {
+                    string fullPropertyName = Property.DeclaringType.GetFullName() + "." + Property.GetName();
 
-                if (Util.propNameMap.TryGetValue(fullPropertyName, out string realName))
-                {
-                    return realName;
+                    if (Util.propNameMap.TryGetValue(fullPropertyName, out string realName))
+                    {
+                        return realName.Substring(realName.LastIndexOf('.') + 1);
+                    }
+                    else if (Util.IsDependencyProperty(Property))
+                    {
+                        return Property.DeclaringType.GetName() + SimpleName;
+                    }
                 }
-                else if (Property != null && Util.IsDependencyProperty(Property))
-                {
-                    return Property.DeclaringType.GetName() + SimpleName;
-                }
-                else
-                {
-                    return SimpleName;
-                }
+                return SimpleName;
             }
         }
 

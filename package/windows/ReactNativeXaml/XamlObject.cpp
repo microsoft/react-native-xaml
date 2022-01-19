@@ -8,6 +8,12 @@
 #endif
 
 #include <UI.Text.h>
+#include <UI.Xaml.Input.h>
+//
+//winrt::Windows::Foundation::IInspectable Get_Location_ContextRequestedEventArgs(const winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs& args) {
+//    args.TryGetPosition()
+//}
+
 #include "Codegen/EventArgsTypeProperties.g.h"
 #include "XamlViewManager.h"
 
@@ -26,65 +32,123 @@ const EventArgsProperty* GetProp(const std::string& name, const winrt::Windows::
 
 template <typename TLambda, std::enable_if_t<!std::is_void<std::invoke_result_t<TLambda>>::value, int>>
 auto XamlObject::RunOnUIThread(const TLambda& code) const {
-  std::condition_variable cv;
-  std::mutex mutex;
-  std::optional<decltype(code())> result{};
-  std::unique_lock<std::mutex> lock(mutex);
-
-  m_metadata->UIDispatcher().Post([&]() {
-    try {
-      result = code();
-    }
-    catch (const winrt::hresult& h) {
-      OutputDebugStringA(std::to_string(h.value).c_str());
-      OutputDebugStringA("\n");
-    }
-    catch (...) { }
+    std::condition_variable cv;
+    std::mutex mutex;
+    std::optional<decltype(code())> result{};
     std::unique_lock<std::mutex> lock(mutex);
+
+    m_metadata->UIDispatcher().Post([&]() {
+        try {
+            result = code();
+        }
+        catch (const winrt::hresult& h) {
+            OutputDebugStringA(std::to_string(h.value).c_str());
+            OutputDebugStringA("\n");
+        }
+        catch (...) {}
+        std::unique_lock<std::mutex> lock(mutex);
 #ifdef DEBUG
-    OutputDebugStringA("Notify from ");
+        OutputDebugStringA("Notify from ");
+        OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
+        OutputDebugStringA("\n");
+#endif
+        cv.notify_all();
+        });
+#ifdef DEBUG
+    OutputDebugStringA("Wait from ");
     OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
     OutputDebugStringA("\n");
 #endif
-    cv.notify_all();
-    });
-#ifdef DEBUG
-  OutputDebugStringA("Wait from ");
-  OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
-  OutputDebugStringA("\n");
-#endif
-  cv.wait(lock);
-  assert(result.has_value());
-  return result.value();
+    cv.wait(lock);
+    assert(result.has_value());
+    return std::move(result.value());
 }
 
 template <typename TLambda, std::enable_if_t<std::is_void<std::invoke_result_t<TLambda>>::value, int>>
 void XamlObject::RunOnUIThread(const TLambda& code) const {
-  std::condition_variable cv;
-  std::mutex mutex;
-  std::unique_lock<std::mutex> lock(mutex);
-  m_metadata->UIDispatcher().Post([&]() {
-    try {
-      code();
-    }
-    catch (const winrt::hresult&) { }
-    catch (...) { }
+    std::condition_variable cv;
+    std::mutex mutex;
     std::unique_lock<std::mutex> lock(mutex);
+    m_metadata->UIDispatcher().Post([&]() {
+        try {
+            code();
+        }
+        catch (const winrt::hresult&) {}
+        catch (...) {}
+        std::unique_lock<std::mutex> lock(mutex);
 #ifdef DEBUG
-    OutputDebugStringA("Notify from ");
+        OutputDebugStringA("Notify from ");
+        OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
+        OutputDebugStringA("\n");
+#endif
+        cv.notify_all();
+        });
+
+#ifdef DEBUG
+    OutputDebugStringA("Wait from ");
     OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
     OutputDebugStringA("\n");
 #endif
-    cv.notify_all();
-    });
-
-#ifdef DEBUG
-  OutputDebugStringA("Wait from ");
-  OutputDebugStringA(std::to_string(GetCurrentThreadId()).c_str());
-  OutputDebugStringA("\n");
-#endif
-  cv.wait(lock);
+    cv.wait(lock);
 }
+
+
+
+jsi::Value CREA_TryGetPosition(jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count) {
+    std::optional<bool> retVal;
+    int64_t tag{ 0 };
+    if (args && count == 1 && args[0].isNumber()) {
+        tag = static_cast<int64_t>(args[0].asNumber());
+    }
+
+    auto pt = thisVal->RunOnUIThread([&]() {
+        xaml::UIElement el{ nullptr };
+        if (tag) {  
+            auto depObj = thisVal->m_metadata->ElementFromTag(tag);
+            el = depObj.try_as<xaml::UIElement>();
+        }
+        auto crea = thisVal->try_as<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>();
+        winrt::Windows::Foundation::Point pt;
+        retVal = crea.TryGetPosition(el, pt);
+        return pt;
+        });
+
+    auto ret = jsi::Object(rt);
+    ret.setProperty(rt, "point", thisVal->IInspectableToValue(rt, winrt::box_value(pt)));
+    ret.setProperty(rt, "returnValue", retVal.value());
+    return ret;
+}
+
+
+struct EventArgsMethod {
+    const char* const name;
+
+    using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
+    const isType_t isType;
+
+    using getter_t = jsi::Value (*) (jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count);
+    const getter_t getter;
+};
+
+
+const EventArgsMethod eventArgsMethods[] = {
+    { "TryGetPosition", IsType<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>, CREA_TryGetPosition, },
+};
+
+const EventArgsMethod* GetEventArgsMethod(const std::string& name, const winrt::Windows::Foundation::IInspectable& obj) {
+    auto it = std::find_if(eventArgsMethods, eventArgsMethods + ARRAYSIZE(eventArgsMethods), [name](const EventArgsMethod& e) { return e.name == name; });
+    while ((it != eventArgsMethods + ARRAYSIZE(eventArgsMethods)) && (it->name == name)) {
+        if (it->isType(obj)) {
+            return it;
+        }
+        it++;
+    }
+    return nullptr;
+}
+
+
+
+
 
 jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noexcept {
   try {
@@ -92,6 +156,16 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
     if (name == "className") {
       auto cn = winrt::to_string(winrt::get_class_name(m_obj));
       return jsi::String::createFromUtf8(rt, cn);
+    }
+    else if (auto evtMethod = GetEventArgsMethod(name, m_obj)) {
+        return jsi::Function::createFromHostFunction(rt, jsi::PropNameID::forAscii(rt, name), 1,
+            [evtMethod](jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count)->jsi::Value {
+                auto xamlObject = std::static_pointer_cast<XamlObject>(thisVal.asObject(rt).getHostObject(rt));
+
+                auto result = evtMethod->getter(rt, xamlObject, args, count);
+                return result;
+            }
+        );
     }
     else {
       auto res = RunOnUIThread([&]() {
@@ -243,7 +317,11 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
         names.push_back(e.name);
       }
     }
-
+    for (const auto& eam : eventArgsMethods) {
+      if (eam.isType(m_obj)) {
+          names.push_back(eam.name);
+      }
+    }
     return names;
     });
 
