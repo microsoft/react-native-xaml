@@ -88,8 +88,6 @@ void XamlObject::RunOnUIThread(const TLambda& code) const {
   cv.wait(lock);
 }
 
-
-
 jsi::Value CREA_TryGetPosition(jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count) {
   std::optional<bool> retVal;
   int64_t tag{ 0 };
@@ -115,7 +113,6 @@ jsi::Value CREA_TryGetPosition(jsi::Runtime& rt, std::shared_ptr<XamlObject> thi
   return ret;
 }
 
-
 struct EventArgsMethod {
   const char* const name;
 
@@ -125,7 +122,6 @@ struct EventArgsMethod {
   using getter_t = jsi::Value(*) (jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count);
   const getter_t getter;
 };
-
 
 const EventArgsMethod eventArgsMethods[] = {
     { "TryGetPosition", IsType<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>, CREA_TryGetPosition, },
@@ -141,10 +137,6 @@ const EventArgsMethod* GetEventArgsMethod(const std::string& name, const winrt::
   }
   return nullptr;
 }
-
-
-
-
 
 jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noexcept {
   try {
@@ -329,8 +321,6 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime& rt) noex
 }
 
 auto ReadPoint(const JSValueObject& o) {
-  const auto& x = o["x"];
-
   return winrt::Windows::Foundation::Point{ o["x"].AsSingle(), o["y"].AsSingle() };
 }
 
