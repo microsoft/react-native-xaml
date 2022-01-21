@@ -26,12 +26,12 @@ jobs:
 
 
     - name: login
-      run: npm login
+      run: npm login --verbose
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: whoami
-      run: npm whoami
+      run: npm whoami --verbose
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         
