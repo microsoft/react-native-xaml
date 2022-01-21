@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update version",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}
