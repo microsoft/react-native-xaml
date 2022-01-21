@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Enable calling some methods on EventArgs objects",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}

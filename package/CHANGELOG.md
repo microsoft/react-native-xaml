@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Sat, 13 Nov 2021 02:37:41 GMT and should not be manually modified.
+This log was last generated on Fri, 21 Jan 2022 02:47:33 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.54
+
+Fri, 21 Jan 2022 02:47:33 GMT
+
+### Patches
+
+- Enable calling some methods on EventArgs objects (asklar@microsoft.com)
 
 ## 0.0.53
 
