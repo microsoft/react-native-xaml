@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  publish:
 
     runs-on: windows-latest
 
@@ -18,10 +18,10 @@ jobs:
     - uses: nuget/setup-nuget@v1
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
-    - name: Use Node.js 12
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 16
         registry-url: https://registry.npmjs.org/
 
 
