@@ -45,6 +45,13 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         
+    - name: upload node logs
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: node-logs
+        path: C:\npm\cache\_logs
+      continue-on-error: true
+      if: always()
 
     - name: yarn install
       run: yarn install
