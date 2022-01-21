@@ -34,11 +34,11 @@ namespace Codegen
 
     public partial class EventArgsTypeProperties
     {
-        public EventArgsTypeProperties(IEnumerable<MrProperty> properties)
+        public EventArgsTypeProperties(IEnumerable<SyntheticProperty> properties)
         {
             Properties = properties;
         }
-        IEnumerable<MrProperty> Properties { get; set; }
+        IEnumerable<SyntheticProperty> Properties { get; set; }
     }
 
     public partial class TypeProperties

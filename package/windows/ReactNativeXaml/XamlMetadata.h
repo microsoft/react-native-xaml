@@ -102,7 +102,7 @@ namespace winrt::Microsoft::ReactNative {
 // MapStyle has a bug where it expects the property to be set as an IReference<MapStyle> always, and does not support IReference<uint32_t>
 template<typename T, std::enable_if_t<
   std::is_same<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle, T>::value, int> = 0>
-void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
+  void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
   auto boxed = v.To<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle>();
   o.SetValue(prop, winrt::box_value(boxed));
 }
@@ -140,7 +140,7 @@ void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyPropert
 struct PropInfo {
   stringKey propName;
 
-  using asType_t = winrt::Windows::Foundation::IInspectable (__cdecl *) (const winrt::Windows::Foundation::IInspectable&);
+  using asType_t = winrt::Windows::Foundation::IInspectable(__cdecl*) (const winrt::Windows::Foundation::IInspectable&);
   asType_t asType;
 
   using xamlPropertyGetter_t = xaml::DependencyProperty(*)();
@@ -227,7 +227,7 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   void JsiDispatchEvent(facebook::jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept;
   std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;
   winrt::Microsoft::ReactNative::IReactDispatcher UIDispatcher() const { return m_reactContext.UIDispatcher(); }
-
+  xaml::DependencyObject ElementFromTag(int64_t tag) const { return winrt::Microsoft::ReactNative::XamlUIService::FromContext(m_reactContext).ElementFromReactTag(tag); }
   FrameworkElement GetFlyoutTarget(winrt::Windows::Foundation::IInspectable wrapper) const;
 
 private:

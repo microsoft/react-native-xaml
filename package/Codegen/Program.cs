@@ -250,7 +250,7 @@ namespace Codegen
             var events = new List<MrEvent>();
 
             var eventArgTypes = new HashSet<MrType>(new NameEqualityComparer());
-            var eventArgProps = new List<MrProperty>();
+            var eventArgProps = new List<SyntheticProperty>();
             PrintVerbose("Enumerating properties and events");
             foreach (var type in xamlTypes)
             {
@@ -303,11 +303,16 @@ namespace Codegen
             foreach (var type in eventArgTypes)
             {
                 var props = type.GetProperties();
-                var propsToAdd = props.Where(p =>
-                    IsInstanceProperty(p)).ToList();
+                var propsToAdd = props
+                    .Where(p => IsInstanceProperty(p))
+                    .Select(p => new SyntheticProperty()
+                    {
+                        Name = p.GetName(),
+                        DeclaringType = p.DeclaringType,
+                        Property = p,
+                    });
                 eventArgProps.AddRange(propsToAdd);
             }
-
 
             properties.Sort(CompareProps);
             eventArgProps.Sort(CompareProps);

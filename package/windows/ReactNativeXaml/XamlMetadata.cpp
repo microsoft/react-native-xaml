@@ -31,7 +31,6 @@ using namespace winrt::Microsoft::ReactNative;
 
 void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
   m_reactContext = reactContext;
-  
   std::once_flag inited;
   std::call_once(inited, [ctx = reactContext, this]() {
     ExecuteJsi(ctx, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
@@ -62,7 +61,6 @@ FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
 }
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context) {
-  
   auto key = COMPILE_TIME_CRC32_STR(typeName.c_str());
   auto obj = Create(typeName);
   auto e = obj.try_as<FrameworkElement>();
@@ -92,7 +90,6 @@ FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInsp
 
 // FlyoutBase.IsOpen is read-only but we need a way to call ShowAt/Hide, so this hooks it up
 void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& context) {
-  
   const auto& xaml = context.Properties().Get(ReactNativeXaml::XamlViewManager::XamlViewManagerProperty().Handle()).as<ReactNativeXaml::XamlViewManager>();
   auto flyout = o.try_as<Controls::Primitives::FlyoutBase>();
   if (flyout && v.Type() == JSValueType::Boolean) {
@@ -222,14 +219,13 @@ void SetShowState_ContentDialog(const xaml::DependencyObject& dobj, const xaml::
     op.Completed([cd, context](const IAsyncOperation<ContentDialogResult>& operation, const AsyncStatus& asyncStatus) {
       if (asyncStatus == AsyncStatus::Completed) {
         auto result = static_cast<int32_t>(operation.GetResults());
-        
+
         XamlUIService::FromContext(context).DispatchEvent(cd, L"topContentDialogClosed",
           [result](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {
             evtDataWriter.WriteInt64(result);
           });
       }
       });
-    
   }
 }
 
@@ -275,7 +271,7 @@ const PropInfo* XamlMetadata::GetProp(const std::string& propertyName, const win
 
 // wrapper -> flyout   via wrapperToWrapped
 
-const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::IReactContext& context, 
+const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::IReactContext& context,
   const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj, bool attaching) {
   // obj is always a FrameworkElement (either a control or a wrapped control)
   if (!propertyName._Starts_with("on")) return nullptr;
@@ -294,7 +290,7 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
   if (!attaching) {
     wrapper->second.events.erase(attachedEvt);
   }
-  EventAttachInfo eai { context, e, "top" + evtName, *this };
+  EventAttachInfo eai{ context, e, "top" + evtName, *this };
   for (const auto& entry : EventInfo::xamlEventMap) {
     if (Equals(MAKE_KEY(entry.name), key)) {
       if (!entry.attachHandler) {

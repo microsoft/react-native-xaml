@@ -73,7 +73,7 @@ namespace winrt::ReactNativeXaml {
     const std::shared_ptr<XamlMetadata>& Metadata() const { return m_xamlMetadata; }
   private:
     winrt::Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
-    std::shared_ptr<XamlMetadata> m_xamlMetadata;    
+    std::shared_ptr<XamlMetadata> m_xamlMetadata;
   };
 
 }

@@ -28,7 +28,12 @@ namespace Codegen
 
         public static bool IsDependencyProperty(MrProperty prop)
         {
-            return prop.GetName().EndsWith("Property") && prop.GetPropertyType().GetName() == "DependencyProperty";
+            if (prop.GetName() == "Property")
+            {
+                return false; // special case Windows.UI.Xaml.DependencyPropertyChangedEventArgs.Property
+            }
+            return prop.GetName().EndsWith("Property") && 
+                prop.GetPropertyType().GetName() == "DependencyProperty";
         }
 
         public static string ToJsName(SyntheticProperty prop)
@@ -377,7 +382,7 @@ namespace Codegen
 
         public static string MaybeBox(string varName, MrProperty prop)
         {
-            var unboxed = $"ea.{prop.GetName()}()";
+            var unboxed = $"{varName}.{prop.GetName()}()";
             var type = prop.GetPropertyType();
             if (type.IsEnum)
             {

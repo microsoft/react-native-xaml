@@ -9,6 +9,7 @@
 import React, {useRef} from 'react';
 import type {Node} from 'react';
 import {
+  findNodeHandle,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -94,11 +95,18 @@ const App: () => Node = () => {
             }}
             ref={t => {
               _tbRef.current = t;
-            }}>
+            }}
+            onContextRequested={e => {
+              const tag = findNodeHandle(_tbRef.current);
+              const { point, returnValue } = e.nativeEvent.args.TryGetPosition(tag);
+              MenuFlyout.ShowAt(menu, { point: point });
+            }}
+            >
             <MenuFlyout
               ref={m => {
                 menu.current = m;
-              }}>
+              }}
+              >
               <MenuFlyoutItem text="menu option" />
             </MenuFlyout>
           </TextBlock>
