@@ -19,6 +19,19 @@ export type CornerRadius = number | { topLeft?: number, topRight?: number, botto
 
 export type Point = { x: number, y: number };
 
+export type TypedEvent<TArgs> = {
+  sender: any;
+  args: TArgs;
+}
+
+<# foreach (var t in Util.eventArgsMethods) { #>
+export type <#= Util.ToJsName(t.Key) #> = {
+<#	foreach (var m in t.Value) { #>
+  <#= m #>(<#= Util.GetEventArgsMethodArgs(t.Key, m) #>): <#= Util.GetEventArgsMethodReturnType(t.Key, m) #>
+<#  } #>
+}
+<# } #>
+
 <# var derived = Util.GetDerivedTypes(Types);
 foreach (var type in Types) { #>
 <# var ns = Util.GetTSNamespace(type);
@@ -46,7 +59,7 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
   <#= Util.ToJsName(attachedDP) #>?: <#= Util.GetTypeScriptType(attachedDP) #>; // attached property
 <# }
   foreach (var evt in type.GetEvents()) { #>
-  on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<undefined>) => void;
+  on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<<#= Util.GetEventArgsTSName(evt) #>>) => void;
 <# } 
   foreach (var evt in SyntheticEvents.Where(e => type == e.DeclaringType)) { #>
   on<#= evt.Name #>?: (event: NativeSyntheticEvent<<#= Util.GetTypeScriptType(evt) #>>) => void;

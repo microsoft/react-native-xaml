@@ -14,6 +14,15 @@ export type CornerRadius = number | { topLeft?: number, topRight?: number, botto
 
 export type Point = { x: number, y: number };
 
+export type TypedEvent<TArgs> = {
+  sender: any;
+  args: TArgs;
+}
+
+export type ContextRequestedEventArgs = {
+  TryGetPosition(tag: number): { point: Point, returnValue: boolean }
+}
+
 export namespace NativeWinUI {
 export interface NativeAnimatedIconProps extends NativeIconElementProps {
   type: 'Microsoft.UI.Xaml.Controls.AnimatedIcon';
@@ -33,7 +42,7 @@ export interface NativeBreadcrumbBarProps extends NativeControlProps {
   type: 'Microsoft.UI.Xaml.Controls.BreadcrumbBar';
   itemsSource?: object;
   itemTemplate?: object;
-  onItemClicked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onItemClicked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -61,7 +70,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
   isAlphaEnabled?: boolean;
   colorSpectrumShape?: Enums.WinUIEnums.ColorSpectrumShape;
   colorSpectrumComponents?: Enums.WinUIEnums.ColorSpectrumComponents;
-  onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -80,8 +89,8 @@ export interface NativeExpanderProps extends NativeContentControlProps {
   isExpanded?: boolean;
   header?: object;
   expandDirection?: Enums.WinUIEnums.ExpandDirection;
-  onCollapsed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onExpanding?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCollapsed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onExpanding?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -102,9 +111,9 @@ export interface NativeInfoBarProps extends NativeControlProps {
   content?: string;
   closeButtonStyle?: string;
   closeButtonCommandParameter?: object;
-  onCloseButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCloseButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -115,9 +124,9 @@ export interface NativeItemsRepeaterProps extends NativeFrameworkElementProps {
   itemTemplate?: string;
   horizontalCacheLength?: number;
   background?: ColorValue;
-  onElementClearing?: (event: NativeSyntheticEvent<undefined>) => void;
-  onElementIndexChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onElementPrepared?: (event: NativeSyntheticEvent<undefined>) => void;
+  onElementClearing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onElementIndexChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onElementPrepared?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -167,16 +176,16 @@ export interface NativeNavigationViewProps extends NativeContentControlProps {
   isPaneVisible?: boolean;
   isBackEnabled?: boolean;
   isBackButtonVisible?: Enums.WinUIEnums.NavigationViewBackButtonVisible;
-  onDisplayModeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onItemInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onBackRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCollapsed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onExpanding?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneClosing?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneOpened?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneOpening?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDisplayModeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onItemInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSelectionChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onBackRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCollapsed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onExpanding?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneOpened?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneOpening?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -224,7 +233,7 @@ export interface NativeNumberBoxProps extends NativeControlProps {
   header?: object;
   description?: object;
   acceptsExpression?: boolean;
-  onValueChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onValueChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -271,7 +280,7 @@ export interface NativePipsPagerProps extends NativeControlProps {
   nextButtonVisibility?: Enums.WinUIEnums.PipsPagerButtonVisibility;
   nextButtonStyle?: string;
   maxVisiblePips?: number;
-  onSelectedIndexChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onSelectedIndexChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -291,7 +300,7 @@ export interface NativeColorSpectrumProps extends NativeControlProps {
   maxSaturation?: number;
   maxHue?: number;
   components?: Enums.WinUIEnums.ColorSpectrumComponents;
-  onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -368,22 +377,22 @@ export interface NativeRatingControlProps extends NativeControlProps {
   isClearEnabled?: boolean;
   initialSetValue?: number;
   caption?: string;
-  onValueChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onValueChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
 export interface NativeRefreshContainerProps extends NativeContentControlProps {
   type: 'Microsoft.UI.Xaml.Controls.RefreshContainer';
   pullDirection?: Enums.WinUIEnums.RefreshPullDirection;
-  onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onRefreshRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
 export interface NativeRefreshVisualizerProps extends NativeControlProps {
   type: 'Microsoft.UI.Xaml.Controls.RefreshVisualizer';
   orientation?: Enums.WinUIEnums.RefreshVisualizerOrientation;
-  onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onRefreshStateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onRefreshRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onRefreshStateChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -395,7 +404,7 @@ export namespace NativeWinUI {
 export interface NativeSplitButtonProps extends NativeContentControlProps {
   type: 'Microsoft.UI.Xaml.Controls.SplitButton' | 'Microsoft.UI.Xaml.Controls.ToggleSplitButton';
   commandParameter?: object;
-  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -418,13 +427,13 @@ export interface NativeTabViewProps extends NativeControlProps {
   canDragTabs?: boolean;
   allowDropTabs?: boolean;
   addTabButtonCommandParameter?: object;
-  onAddTabButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAddTabButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTabCloseRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTabDragCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTabDragStarting?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTabDroppedOutside?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTabItemsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onTabCloseRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTabDragCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTabDragStarting?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTabDroppedOutside?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTabItemsChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onTabStripDragOver?: (event: NativeSyntheticEvent<undefined>) => void;
   onTabStripDrop?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -434,7 +443,7 @@ export interface NativeTabViewItemProps extends NativeListViewItemProps {
   type: 'Microsoft.UI.Xaml.Controls.TabViewItem';
   isClosable?: boolean;
   header?: object;
-  onCloseRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCloseRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -455,10 +464,10 @@ export interface NativeTeachingTipProps extends NativeContentControlProps {
   actionButtonStyle?: string;
   actionButtonContent?: object;
   actionButtonCommandParameter?: object;
-  onActionButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCloseButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
+  onActionButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCloseButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -470,7 +479,7 @@ export namespace NativeWinUI {
 export interface NativeToggleSplitButtonProps extends NativeWinUI.NativeSplitButtonProps {
   type: 'Microsoft.UI.Xaml.Controls.ToggleSplitButton';
   isChecked?: boolean;
-  onIsCheckedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onIsCheckedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -482,11 +491,11 @@ export interface NativeTreeViewProps extends NativeControlProps {
   itemContainerStyle?: string;
   canReorderItems?: boolean;
   canDragItems?: boolean;
-  onCollapsed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onExpanding?: (event: NativeSyntheticEvent<undefined>) => void;
-  onItemInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDragItemsCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDragItemsStarting?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCollapsed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onExpanding?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onItemInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDragItemsCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDragItemsStarting?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export namespace NativeWinUI {
@@ -515,7 +524,7 @@ export interface NativeTwoPaneViewProps extends NativeControlProps {
   panePriority?: Enums.WinUIEnums.TwoPaneViewPriority;
   minWideModeWidth?: number;
   minTallModeHeight?: number;
-  onModeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onModeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
 export interface NativeDependencyObjectProps extends ViewProps {
@@ -1062,21 +1071,21 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
   onPointerWheelChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onRightTapped?: (event: NativeSyntheticEvent<undefined>) => void;
   onTapped?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDragStarting?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDropCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAccessKeyDisplayDismissed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAccessKeyDisplayRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAccessKeyInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContextCanceled?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContextRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onGettingFocus?: (event: NativeSyntheticEvent<undefined>) => void;
-  onLosingFocus?: (event: NativeSyntheticEvent<undefined>) => void;
-  onNoFocusCandidateFound?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCharacterReceived?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDragStarting?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDropCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onAccessKeyDisplayDismissed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onAccessKeyDisplayRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onAccessKeyInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onContextCanceled?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onContextRequested?: (event: NativeSyntheticEvent<TypedEvent<ContextRequestedEventArgs>>) => void;
+  onGettingFocus?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onLosingFocus?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onNoFocusCandidateFound?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCharacterReceived?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onPreviewKeyDown?: (event: NativeSyntheticEvent<undefined>) => void;
   onPreviewKeyUp?: (event: NativeSyntheticEvent<undefined>) => void;
-  onProcessKeyboardAccelerators?: (event: NativeSyntheticEvent<undefined>) => void;
-  onBringIntoViewRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onProcessKeyboardAccelerators?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onBringIntoViewRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeFrameworkElementProps extends NativeUIElementProps {
   type: 'Windows.UI.Xaml.FrameworkElement' |
@@ -1329,10 +1338,10 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
   onLoaded?: (event: NativeSyntheticEvent<undefined>) => void;
   onSizeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onUnloaded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDataContextChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onLoading?: (event: NativeSyntheticEvent<undefined>) => void;
-  onActualThemeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onEffectiveViewportChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDataContextChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onLoading?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onActualThemeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onEffectiveViewportChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeControlProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.Control' |
@@ -1524,8 +1533,8 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   backgroundSizing?: Enums.BackgroundSizing;
   defaultStyleKey?: object;
   onIsEnabledChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onFocusDisengaged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onFocusEngaged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onFocusDisengaged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onFocusEngaged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeContentControlProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.ContentControl' |
@@ -1734,9 +1743,9 @@ export interface NativeAutoSuggestBoxProps extends NativeItemsControlProps {
   autoMaximizeSuggestionArea?: boolean;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   description?: object;
-  onSuggestionChosen?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onQuerySubmitted?: (event: NativeSyntheticEvent<undefined>) => void;
+  onSuggestionChosen?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onQuerySubmitted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeIconElementProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.IconElement' |
@@ -1781,7 +1790,7 @@ export interface NativeCalendarDatePickerProps extends NativeControlProps {
   description?: object;
   onCalendarViewDayItemChanging?: (event: NativeSyntheticEvent<undefined>) => void;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDateChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeCalendarViewProps extends NativeControlProps {
@@ -1833,8 +1842,8 @@ export interface NativeCalendarViewProps extends NativeControlProps {
   isTodayHighlighted?: boolean;
   isOutOfScopeEnabled?: boolean;
   isGroupLabelVisible?: boolean;
-  onCalendarViewDayItemChanging?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectedDatesChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCalendarViewDayItemChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSelectedDatesChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeCalendarViewDayItemProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.CalendarViewDayItem';
@@ -1893,7 +1902,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
   isAlphaEnabled?: boolean;
   colorSpectrumShape?: Enums.ColorSpectrumShape;
   colorSpectrumComponents?: Enums.ColorSpectrumComponents;
-  onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeSelectorProps extends NativeItemsControlProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.Selector' |
@@ -1929,7 +1938,7 @@ export interface NativeComboBoxProps extends NativeSelectorProps {
   description?: object;
   onDropDownClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onDropDownOpened?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextSubmitted?: (event: NativeSyntheticEvent<undefined>) => void;
+  onTextSubmitted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeSelectorItemProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.SelectorItem' |
@@ -1956,7 +1965,7 @@ export interface NativeCommandBarProps extends NativeAppBarProps {
   overflowButtonVisibility?: Enums.CommandBarOverflowButtonVisibility;
   isDynamicOverflowEnabled?: boolean;
   defaultLabelPosition?: Enums.CommandBarDefaultLabelPosition;
-  onDynamicOverflowItemsChanging?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDynamicOverflowItemsChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.FlyoutBase' |
@@ -1985,7 +1994,7 @@ export interface NativeFlyoutBaseProps extends NativeDependencyObjectProps {
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpening?: (event: NativeSyntheticEvent<undefined>) => void;
-  onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeCommandBarFlyoutProps extends NativeFlyoutBaseProps {
   type: 'Windows.UI.Xaml.Controls.CommandBarFlyout' | 'Windows.UI.Xaml.Controls.TextCommandBarFlyout';
@@ -2013,12 +2022,12 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   * Whether the content dialog should be open, and how.
   */
   showState?: Enums.ContentDialogState; // synthetic property
-  onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onClosing?: (event: NativeSyntheticEvent<undefined>) => void;
-  onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPrimaryButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSecondaryButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCloseButtonClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onOpened?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPrimaryButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSecondaryButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCloseButtonClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onContentDialogClosed?: (event: NativeSyntheticEvent<Enums.ContentDialogResult>) => void;
 }
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
@@ -2064,7 +2073,7 @@ export interface NativeDatePickerProps extends NativeControlProps {
   calendarIdentifier?: string;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onDateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectedDateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onSelectedDateChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativePickerFlyoutBaseProps extends NativeFlyoutBaseProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase' |
@@ -2082,7 +2091,7 @@ export interface NativeDatePickerFlyoutProps extends NativePickerFlyoutBaseProps
   yearFormat?: string;
   monthFormat?: string;
   dayFormat?: string;
-  onDatePicked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDatePicked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeDatePickerFlyoutPresenterProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.DatePickerFlyoutPresenter';
@@ -2165,10 +2174,10 @@ export interface NativeListViewBaseProps extends NativeSelectorProps {
   isActiveView?: boolean;
   onDragItemsStarting?: (event: NativeSyntheticEvent<undefined>) => void;
   onItemClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContainerContentChanging?: (event: NativeSyntheticEvent<undefined>) => void;
-  onChoosingGroupHeaderContainer?: (event: NativeSyntheticEvent<undefined>) => void;
-  onChoosingItemContainer?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDragItemsCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
+  onContainerContentChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onChoosingGroupHeaderContainer?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onChoosingItemContainer?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDragItemsCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeGridViewProps extends NativeListViewBaseProps {
   type: 'Windows.UI.Xaml.Controls.GridView';
@@ -2189,8 +2198,8 @@ export interface NativeHandwritingViewProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.HandwritingView';
   placementAlignment?: Enums.HandwritingPanelPlacementAlignment;
   areCandidatesEnabled?: boolean;
-  onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onOpened?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeHubProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.Hub';
@@ -2232,11 +2241,11 @@ export interface NativeInkToolbarProps extends NativeControlProps {
   orientation?: Enums.Orientation;
   isStencilButtonChecked?: boolean;
   buttonFlyoutPlacement?: Enums.InkToolbarButtonFlyoutPlacement;
-  onActiveToolChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onEraseAllClicked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onInkDrawingAttributesChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onIsRulerButtonCheckedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onIsStencilButtonCheckedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onActiveToolChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onEraseAllClicked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onInkDrawingAttributesChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onIsRulerButtonCheckedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onIsStencilButtonCheckedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeRadioButtonProps extends NativeToggleButtonProps {
   type: 'Windows.UI.Xaml.Controls.RadioButton' |
@@ -2295,8 +2304,8 @@ export interface NativeInkToolbarFlyoutItemProps extends NativeButtonBaseProps {
   type: 'Windows.UI.Xaml.Controls.InkToolbarFlyoutItem';
   kind?: Enums.InkToolbarFlyoutItemKind;
   isChecked?: boolean;
-  onChecked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onUnchecked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onChecked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onUnchecked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeInkToolbarHighlighterButtonProps extends NativeInkToolbarPenButtonProps {
   type: 'Windows.UI.Xaml.Controls.InkToolbarHighlighterButton';
@@ -2364,7 +2373,7 @@ export interface NativeListPickerFlyoutProps extends NativePickerFlyoutBaseProps
   selectedIndex?: number;
   itemsSource?: object;
   displayMemberPath?: string;
-  onItemsPicked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onItemsPicked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeListPickerFlyoutPresenterProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.ListPickerFlyoutPresenter';
@@ -2412,24 +2421,24 @@ export interface NativeMapControlProps extends NativeControlProps {
   viewPadding?: Thickness;
   mapProjection?: Enums.MapProjection;
   region?: string;
-  onCenterChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onHeadingChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onLoadingStatusChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapDoubleTapped?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapHolding?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapTapped?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPitchChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTransformOriginChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onZoomLevelChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onActualCameraChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onActualCameraChanging?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCustomExperienceChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapElementClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapElementPointerEntered?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapElementPointerExited?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTargetCameraChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapRightTapped?: (event: NativeSyntheticEvent<undefined>) => void;
-  onMapContextRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCenterChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onHeadingChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onLoadingStatusChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapDoubleTapped?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapHolding?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapTapped?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPitchChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTransformOriginChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onZoomLevelChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onActualCameraChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onActualCameraChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCustomExperienceChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapElementClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapElementPointerEntered?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapElementPointerExited?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTargetCameraChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapRightTapped?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onMapContextRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.MediaElement';
@@ -2461,11 +2470,12 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   onRateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onSeekCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onVolumeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPartialMediaFailureDetected?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPartialMediaFailureDetected?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeMediaPlayerElementProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.MediaPlayerElement';
   stretch?: Enums.Stretch;
+  source?: string;
   posterSource?: string;
   isFullWindow?: boolean;
   autoPlay?: boolean;
@@ -2507,7 +2517,7 @@ export interface NativeMediaTransportControlsProps extends NativeControlProps {
   isRepeatButtonVisible?: boolean;
   isCompactOverlayEnabled?: boolean;
   isCompactOverlayButtonVisible?: boolean;
-  onThumbnailRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onThumbnailRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeMenuBarProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.MenuBar';
@@ -2572,14 +2582,14 @@ export interface NativeNavigationViewProps extends NativeContentControlProps {
   paneDisplayMode?: Enums.NavigationViewPaneDisplayMode;
   overflowLabelMode?: Enums.NavigationViewOverflowLabelMode;
   isPaneVisible?: boolean;
-  onDisplayModeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onItemInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onBackRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneClosing?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneOpened?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneOpening?: (event: NativeSyntheticEvent<undefined>) => void;
+  onDisplayModeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onItemInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSelectionChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onBackRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneOpened?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneOpening?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeNavigationViewItemBaseProps extends NativeListViewItemProps {
   type: 'Windows.UI.Xaml.Controls.NavigationViewItemBase' | 'Windows.UI.Xaml.Controls.NavigationViewItem' | 'Windows.UI.Xaml.Controls.NavigationViewItemHeader' | 'Windows.UI.Xaml.Controls.NavigationViewItemSeparator';
@@ -2634,7 +2644,7 @@ export interface NativePasswordBoxProps extends NativeControlProps {
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onPasswordChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onPaste?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPasswordChanging?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPasswordChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativePathIconProps extends NativeIconElementProps {
   type: 'Windows.UI.Xaml.Controls.PathIcon';
@@ -2655,7 +2665,7 @@ export interface NativePersonPictureProps extends NativeControlProps {
 export interface NativePickerFlyoutProps extends NativePickerFlyoutBaseProps {
   type: 'Windows.UI.Xaml.Controls.PickerFlyout';
   confirmationButtonsVisible?: boolean;
-  onConfirmed?: (event: NativeSyntheticEvent<undefined>) => void;
+  onConfirmed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativePickerFlyoutPresenterProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.PickerFlyoutPresenter';
@@ -2670,10 +2680,10 @@ export interface NativePivotProps extends NativeItemsControlProps {
   leftHeader?: object;
   isHeaderItemsCarouselEnabled?: boolean;
   headerFocusVisualPlacement?: Enums.PivotHeaderFocusVisualPlacement;
-  onPivotItemLoaded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPivotItemLoading?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPivotItemUnloaded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPivotItemUnloading?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPivotItemLoaded?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPivotItemLoading?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPivotItemUnloaded?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPivotItemUnloading?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativePivotItemProps extends NativeContentControlProps {
@@ -2736,7 +2746,7 @@ export interface NativeColorSpectrumProps extends NativeControlProps {
   maxSaturation?: number;
   maxHue?: number;
   components?: Enums.ColorSpectrumComponents;
-  onColorChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeCommandBarFlyoutCommandBarProps extends NativeCommandBarProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar';
@@ -2889,18 +2899,18 @@ export interface NativeRatingControlProps extends NativeControlProps {
   isClearEnabled?: boolean;
   initialSetValue?: number;
   caption?: string;
-  onValueChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onValueChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeRefreshContainerProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.RefreshContainer';
   pullDirection?: Enums.RefreshPullDirection;
-  onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onRefreshRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeRefreshVisualizerProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.RefreshVisualizer';
   orientation?: Enums.RefreshVisualizerOrientation;
-  onRefreshRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onRefreshStateChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onRefreshRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onRefreshStateChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeRelativePanelProps extends NativePanelProps {
   type: 'Windows.UI.Xaml.Controls.RelativePanel';
@@ -2939,16 +2949,16 @@ export interface NativeRichEditBoxProps extends NativeControlProps {
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onTextChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onPaste?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCandidateWindowBoundsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextChanging?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextCompositionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextCompositionEnded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextCompositionStarted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCopyingToClipboard?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCuttingToClipboard?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContentLinkChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContentLinkInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectionChanging?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCandidateWindowBoundsChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextCompositionChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextCompositionEnded?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextCompositionStarted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCopyingToClipboard?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCuttingToClipboard?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onContentLinkChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onContentLinkInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSelectionChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.RichTextBlock';
@@ -3021,13 +3031,13 @@ export interface NativeRichTextBlockProps extends NativeFrameworkElementProps {
   typographyVariants?: Enums.FontVariants; // attached property
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeRichTextBlockOverflowProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.RichTextBlockOverflow';
   padding?: Thickness;
   maxLines?: number;
-  onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeScrollContentPresenterProps extends NativeContentPresenterProps {
   type: 'Windows.UI.Xaml.Controls.ScrollContentPresenter';
@@ -3065,7 +3075,7 @@ export interface NativeScrollViewerProps extends NativeContentControlProps {
   onViewChanging?: (event: NativeSyntheticEvent<undefined>) => void;
   onDirectManipulationCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onDirectManipulationStarted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAnchorRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAnchorRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeSearchBoxProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.SearchBox';
@@ -3075,11 +3085,11 @@ export interface NativeSearchBoxProps extends NativeControlProps {
   placeholderText?: string;
   focusOnKeyboardInput?: boolean;
   chooseSuggestionOnEnter?: boolean;
-  onPrepareForFocusOnKeyboardInput?: (event: NativeSyntheticEvent<undefined>) => void;
-  onQueryChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onQuerySubmitted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onResultSuggestionChosen?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSuggestionsRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPrepareForFocusOnKeyboardInput?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onQueryChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onQuerySubmitted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onResultSuggestionChosen?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSuggestionsRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeSemanticZoomProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.SemanticZoom';
@@ -3100,7 +3110,7 @@ export interface NativeSettingsFlyoutProps extends NativeContentControlProps {
 export interface NativeSplitButtonProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.SplitButton' | 'Windows.UI.Xaml.Controls.ToggleSplitButton';
   commandParameter?: object;
-  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeSplitViewProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.SplitView';
@@ -3111,10 +3121,10 @@ export interface NativeSplitViewProps extends NativeControlProps {
   displayMode?: Enums.SplitViewDisplayMode;
   compactPaneLength?: number;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
-  onPaneClosed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneClosing?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneOpened?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPaneOpening?: (event: NativeSyntheticEvent<undefined>) => void;
+  onPaneClosed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneClosing?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneOpened?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPaneOpening?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeStackPanelProps extends NativePanelProps {
   type: 'Windows.UI.Xaml.Controls.StackPanel';
@@ -3134,7 +3144,7 @@ export interface NativeSwapChainBackgroundPanelProps extends NativeGridProps {
 }
 export interface NativeSwapChainPanelProps extends NativeGridProps {
   type: 'Windows.UI.Xaml.Controls.SwapChainPanel';
-  onCompositionScaleChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCompositionScaleChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeSwipeControlProps extends NativeContentControlProps {
   type: 'Windows.UI.Xaml.Controls.SwipeControl';
@@ -3214,7 +3224,7 @@ export interface NativeTextBlockProps extends NativeFrameworkElementProps {
   typographyVariants?: Enums.FontVariants; // attached property
   onContextMenuOpening?: (event: NativeSyntheticEvent<undefined>) => void;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onIsTextTrimmedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeTextBoxProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.TextBox';
@@ -3243,15 +3253,15 @@ export interface NativeTextBoxProps extends NativeControlProps {
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onTextChanged?: (event: NativeSyntheticEvent<undefined>) => void;
   onPaste?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCandidateWindowBoundsChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextChanging?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextCompositionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextCompositionEnded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onTextCompositionStarted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onBeforeTextChanging?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCopyingToClipboard?: (event: NativeSyntheticEvent<undefined>) => void;
-  onCuttingToClipboard?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectionChanging?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCandidateWindowBoundsChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextCompositionChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextCompositionEnded?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onTextCompositionStarted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onBeforeTextChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCopyingToClipboard?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onCuttingToClipboard?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSelectionChanging?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeTextCommandBarFlyoutProps extends NativeCommandBarFlyoutProps {
   type: 'Windows.UI.Xaml.Controls.TextCommandBarFlyout';
@@ -3263,13 +3273,13 @@ export interface NativeTimePickerProps extends NativeControlProps {
   clockIdentifier?: string;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   onTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSelectedTimeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onSelectedTimeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeTimePickerFlyoutProps extends NativePickerFlyoutBaseProps {
   type: 'Windows.UI.Xaml.Controls.TimePickerFlyout';
   minuteIncrement?: number;
   clockIdentifier?: string;
-  onTimePicked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onTimePicked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeTimePickerFlyoutPresenterProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.TimePickerFlyoutPresenter';
@@ -3281,7 +3291,7 @@ export interface NativeToggleMenuFlyoutItemProps extends NativeMenuFlyoutItemPro
 }
 export interface NativeToggleSplitButtonProps extends NativeSplitButtonProps {
   type: 'Windows.UI.Xaml.Controls.ToggleSplitButton';
-  onIsCheckedChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onIsCheckedChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeToggleSwitchProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.ToggleSwitch';
@@ -3307,11 +3317,11 @@ export interface NativeTreeViewProps extends NativeControlProps {
   itemContainerStyle?: string;
   canReorderItems?: boolean;
   canDragItems?: boolean;
-  onCollapsed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onExpanding?: (event: NativeSyntheticEvent<undefined>) => void;
-  onItemInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDragItemsCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDragItemsStarting?: (event: NativeSyntheticEvent<undefined>) => void;
+  onCollapsed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onExpanding?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onItemInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDragItemsCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDragItemsStarting?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeTreeViewItemProps extends NativeListViewItemProps {
   type: 'Windows.UI.Xaml.Controls.TreeViewItem';
@@ -3334,7 +3344,7 @@ export interface NativeTwoPaneViewProps extends NativeControlProps {
   panePriority?: Enums.TwoPaneViewPriority;
   minWideModeWidth?: number;
   minTallModeHeight?: number;
-  onModeChanged?: (event: NativeSyntheticEvent<undefined>) => void;
+  onModeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeVariableSizedWrapGridProps extends NativePanelProps {
   type: 'Windows.UI.Xaml.Controls.VariableSizedWrapGrid';
@@ -3362,23 +3372,23 @@ export interface NativeWebViewProps extends NativeFrameworkElementProps {
   onLoadCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onNavigationFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onScriptNotify?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContentLoading?: (event: NativeSyntheticEvent<undefined>) => void;
-  onDOMContentLoaded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onFrameContentLoading?: (event: NativeSyntheticEvent<undefined>) => void;
-  onFrameDOMContentLoaded?: (event: NativeSyntheticEvent<undefined>) => void;
-  onFrameNavigationCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onFrameNavigationStarting?: (event: NativeSyntheticEvent<undefined>) => void;
-  onLongRunningScriptDetected?: (event: NativeSyntheticEvent<undefined>) => void;
-  onNavigationCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
-  onNavigationStarting?: (event: NativeSyntheticEvent<undefined>) => void;
-  onUnsafeContentWarningDisplaying?: (event: NativeSyntheticEvent<undefined>) => void;
-  onUnviewableContentIdentified?: (event: NativeSyntheticEvent<undefined>) => void;
-  onContainsFullScreenElementChanged?: (event: NativeSyntheticEvent<undefined>) => void;
-  onNewWindowRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onPermissionRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onUnsupportedUriSchemeIdentified?: (event: NativeSyntheticEvent<undefined>) => void;
-  onSeparateProcessLost?: (event: NativeSyntheticEvent<undefined>) => void;
-  onWebResourceRequested?: (event: NativeSyntheticEvent<undefined>) => void;
+  onContentLoading?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onDOMContentLoaded?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onFrameContentLoading?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onFrameDOMContentLoaded?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onFrameNavigationCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onFrameNavigationStarting?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onLongRunningScriptDetected?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onNavigationCompleted?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onNavigationStarting?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onUnsafeContentWarningDisplaying?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onUnviewableContentIdentified?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onContainsFullScreenElementChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onNewWindowRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onPermissionRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onUnsupportedUriSchemeIdentified?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onSeparateProcessLost?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onWebResourceRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeWrapGridProps extends NativeOrientedVirtualizingPanelProps {
   type: 'Windows.UI.Xaml.Controls.WrapGrid';
@@ -3420,9 +3430,9 @@ export interface NativeTextElementProps extends NativeDependencyObjectProps {
   keyTipPlacementMode?: Enums.KeyTipPlacementMode;
   keyTipHorizontalOffset?: number;
   isAccessKeyScope?: boolean;
-  onAccessKeyDisplayDismissed?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAccessKeyDisplayRequested?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAccessKeyInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onAccessKeyDisplayDismissed?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onAccessKeyDisplayRequested?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
+  onAccessKeyInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeBlockProps extends NativeTextElementProps {
   type: 'Windows.UI.Xaml.Documents.Block' | 'Windows.UI.Xaml.Documents.Paragraph';
@@ -3466,7 +3476,7 @@ export interface NativeContentLinkProps extends NativeInlineProps {
   cursor?: Enums.CoreCursorType;
   background?: ColorValue;
   onGotFocus?: (event: NativeSyntheticEvent<undefined>) => void;
-  onInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onLostFocus?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeGlyphsProps extends NativeFrameworkElementProps {
@@ -3493,7 +3503,7 @@ export interface NativeHyperlinkProps extends NativeSpanProps {
   xyFocusDownNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   tabIndex?: number;
   isTabStop?: boolean;
-  onClick?: (event: NativeSyntheticEvent<undefined>) => void;
+  onClick?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onGotFocus?: (event: NativeSyntheticEvent<undefined>) => void;
   onLostFocus?: (event: NativeSyntheticEvent<undefined>) => void;
 }
@@ -3523,7 +3533,7 @@ export interface NativeKeyboardAcceleratorProps extends NativeDependencyObjectPr
   modifiers?: Enums.VirtualKeyModifiers;
   virtualKey?: Enums.VirtualKey;
   isEnabled?: boolean;
-  onInvoked?: (event: NativeSyntheticEvent<undefined>) => void;
+  onInvoked?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 export interface NativeShapeProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Shapes.Shape' |

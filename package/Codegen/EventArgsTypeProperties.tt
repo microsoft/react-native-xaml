@@ -35,3 +35,27 @@ if (prop.Property != null) { #>
 <#} #>
 <# } #>
 };
+
+struct EventArgsMethod {
+  const char* const name;
+
+  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
+  const isType_t isType;
+
+  using getter_t = facebook::jsi::Value(*) (facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook::jsi::Value* args, size_t count);
+  const getter_t getter;
+};
+
+<# foreach (var t in Util.eventArgsMethods) {
+    foreach (var m in t.Value) {
+#>
+facebook::jsi::Value <#= t.Key.GetFullName().Replace(".", "_") #>_<#= m #>(facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook::jsi::Value* args, size_t count);
+<# } } #>
+
+const EventArgsMethod eventArgsMethods[] = {
+<# foreach (var t in Util.eventArgsMethods) {
+    foreach (var m in t.Value) {
+#>
+    { "<#= m #>", IsType<<#= Util.GetCppWinRTType(t.Key) #>>, <#= t.Key.GetFullName().Replace(".", "_") #>_<#= m #> },
+<# } } #>
+};

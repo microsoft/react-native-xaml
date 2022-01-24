@@ -161,7 +161,94 @@ if (prop.Property != null) {
             
             #line default
             #line hidden
-            this.Write("};");
+            this.Write(@"};
+
+struct EventArgsMethod {
+  const char* const name;
+
+  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
+  const isType_t isType;
+
+  using getter_t = facebook::jsi::Value(*) (facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook::jsi::Value* args, size_t count);
+  const getter_t getter;
+};
+
+");
+            
+            #line 49 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+ foreach (var t in Util.eventArgsMethods) {
+    foreach (var m in t.Value) {
+
+            
+            #line default
+            #line hidden
+            this.Write("facebook::jsi::Value ");
+            
+            #line 52 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.GetFullName().Replace(".", "_")));
+            
+            #line default
+            #line hidden
+            this.Write("_");
+            
+            #line 52 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m));
+            
+            #line default
+            #line hidden
+            this.Write("(facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook:" +
+                    ":jsi::Value* args, size_t count);\r\n");
+            
+            #line 53 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+ } } 
+            
+            #line default
+            #line hidden
+            this.Write("\r\nconst EventArgsMethod eventArgsMethods[] = {\r\n");
+            
+            #line 56 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+ foreach (var t in Util.eventArgsMethods) {
+    foreach (var m in t.Value) {
+
+            
+            #line default
+            #line hidden
+            this.Write("    { \"");
+            
+            #line 59 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m));
+            
+            #line default
+            #line hidden
+            this.Write("\", IsType<");
+            
+            #line 59 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t.Key)));
+            
+            #line default
+            #line hidden
+            this.Write(">, ");
+            
+            #line 59 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.GetFullName().Replace(".", "_")));
+            
+            #line default
+            #line hidden
+            this.Write("_");
+            
+            #line 59 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(m));
+            
+            #line default
+            #line hidden
+            this.Write(" },\r\n");
+            
+            #line 60 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
+ } } 
+            
+            #line default
+            #line hidden
+            this.Write("};\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

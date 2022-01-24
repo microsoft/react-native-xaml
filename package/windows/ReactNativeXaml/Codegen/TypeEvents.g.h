@@ -4373,3 +4373,4 @@ void XamlMetadata::PopulateNativeEvents(winrt::Windows::Foundation::Collections:
         nativeProps.Insert(jsEvtName, ViewManagerPropertyType::Boolean);
     }
 }
+

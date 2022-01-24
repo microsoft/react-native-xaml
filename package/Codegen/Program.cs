@@ -245,7 +245,10 @@ namespace Codegen
             PrintVerbose("Sorting types");
             creatableTypes.Sort((a, b) => a.GetFullName().CompareTo(b.GetFullName()));
 
-
+            foreach (var entry in Config.RootElement.GetProperty("eventArgsMethods").EnumerateObject())
+            {
+                Util.eventArgsMethods.Add(context.GetType(GetTypeNameFromJsonProperty(entry)), entry.Value.EnumerateArray().Select(x => x.GetString()));
+            }
 
             var events = new List<MrEvent>();
 

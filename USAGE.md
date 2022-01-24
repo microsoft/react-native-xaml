@@ -455,9 +455,26 @@ In order to enable Direct debugging for your app, make sure that your App.cpp/Ap
   InstanceSettings.UseWebDebugger = false;
 ```
 
+# Calling methods on XAML Event Args
+By default, only XAML properties of event arg objects are exposed back. Some event args support calling methods on them.
+See `eventArgMethods` in Windows.UI.Xaml.json.
+
+Example:
+```jsx
+/// assume there is a MenuFlyout _menuRef defined.
+<TextBlock
+  text="Hello"
+  onContextRequested={e => {
+    const tag = findNodeHandle(_tbRef.current);
+    const { point, returnValue } = e.nativeEvent.args.TryGetPosition(tag);
+    MenuFlyout.ShowAt(_menuRef, {point: point});
+  }}
+/>
+```
+
 # Calling methods on XAML objects ("commands")
 Some types support custom commands to expose some functionality of the underlying platform. 
-For example, this allows calling the `MediaPlayerElement.Play()` method in response to some other action, or programatically showing a flyout menu:
+For example, this allows calling the programatically showing a flyout menu:
 
 ```jsx
   const _tbRef = React.useRef<TextBlock>(null);

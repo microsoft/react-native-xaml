@@ -387,3 +387,19 @@ const EventArgsProperty eventArgsProperties[] = {
     { "webErrorStatus", IsType<winrt::Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Controls::WebViewNavigationCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.WebErrorStatus())); } },
     { "webErrorStatus", IsType<winrt::Windows::UI::Xaml::Controls::WebViewNavigationFailedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Controls::WebViewNavigationFailedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.WebErrorStatus())); } },
 };
+
+struct EventArgsMethod {
+  const char* const name;
+
+  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
+  const isType_t isType;
+
+  using getter_t = facebook::jsi::Value(*) (facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook::jsi::Value* args, size_t count);
+  const getter_t getter;
+};
+
+facebook::jsi::Value Windows_UI_Xaml_Input_ContextRequestedEventArgs_TryGetPosition(facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook::jsi::Value* args, size_t count);
+
+const EventArgsMethod eventArgsMethods[] = {
+    { "TryGetPosition", IsType<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>, Windows_UI_Xaml_Input_ContextRequestedEventArgs_TryGetPosition },
+};
