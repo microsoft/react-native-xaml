@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Codegen event arg methods",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
