@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Mon, 24 Jan 2022 21:16:18 GMT",
+      "tag": "react-native-xaml_v0.0.57",
+      "version": "0.0.57",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Codegen event arg methods",
+            "commit": "3db633ca67dedfb118647da17fca03d8eb5795c0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 21 Jan 2022 17:41:16 GMT",
       "tag": "react-native-xaml_v0.0.56",
       "version": "0.0.56",
