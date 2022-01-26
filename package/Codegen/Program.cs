@@ -358,10 +358,9 @@ namespace Codegen
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
             var enumsGen = new TypeEnums().TransformText();
 
-            var list = new List<MrType>();
-            foreach (var entry in Util.enumsToGenerateConvertersFor) {
-                list.Add(entry);
-            }
+            // order enum list by namespace
+            MrType[] list = new MrType[Util.enumsToGenerateConvertersFor.Count];
+            Util.enumsToGenerateConvertersFor.CopyTo(list);
             var orderedList = list.OrderBy(item => Util.GetTSNamespace(item));
             Util.enumsToGenerateConvertersFor.Clear();
             foreach (var orderedItem in orderedList) {
