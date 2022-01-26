@@ -156,7 +156,8 @@ namespace Codegen
 
             PrintVerbose($"Parsing configuration from {ConfigFileName}");
 
-            foreach (var entry in Config.RootElement.GetProperty("attachedProps").EnumerateObject()) {
+            foreach (var entry in Config.RootElement.GetProperty("attachedProps").EnumerateObject())
+            {
                 var propName = GetTypeNameFromJsonProperty(entry);
                 var attachedDPs = Util.AttachedProperties.Where(p => Util.MinusPropertySuffix(Util.GetPropFullName(p)).StartsWith(propName));
 
@@ -223,7 +224,7 @@ namespace Codegen
                 var val = GetTypeNameFromJsonProperty(entry);
                 var typeName = val.Substring(0, val.LastIndexOf('.'));
                 var eventName = val.Substring(val.LastIndexOf('.') + 1);
- 
+
                 syntheticEvents.Add(new SyntheticProperty()
                 {
                     Name = eventName,
@@ -303,7 +304,7 @@ namespace Codegen
                 events.AddRange(eventsToAdd);
             }
 
-            
+
 
             foreach (var type in Util.eventArgsTypes)
             {
@@ -457,7 +458,8 @@ namespace Codegen
             if (entry.ValueKind == JsonValueKind.Object)
             {
                 return entry.GetProperty("name").GetString().Replace("$xaml", XamlNames.XamlNamespace);
-            } else
+            }
+            else
             {
                 return entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
             }
