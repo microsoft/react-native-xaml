@@ -1,0 +1,4 @@
+# These TT files for should use LF since they generate TS(X) code.
+TSEnums.tt  text eol=lf
+TSProps.tt  text eol=lf
+TSTypes.tt  text eol=lf
