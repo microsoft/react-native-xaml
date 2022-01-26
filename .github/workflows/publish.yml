@@ -9,8 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
-
+  run-codegen:
     runs-on: windows-latest
 
     steps:
@@ -18,15 +17,6 @@ jobs:
     - uses: nuget/setup-nuget@v1
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 16
-        registry-url: https://registry.npmjs.org/
-
-
-    - name: yarn install
-      run: yarn install
 
     - name: NuGet restore
       run: nuget restore example\windows\example.sln
@@ -41,29 +31,29 @@ jobs:
         $changed = git status --porcelain=v1
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
+  publish-npm:
+    runs-on: ubuntu-latest
+    needs: run-codegen
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16
+        registry-url: https://registry.npmjs.org/
+
+    - name: yarn install
+      run: yarn install
 
     - name: build TS
       run: yarn build
 
-#     - name: login
-#       run: npm login --verbose
-#       env:
-#         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-#     - name: whoami
-#       run: npm whoami --verbose
-#       env:
-#         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        
-    - name: config
-      run: npm config list --all
+    - name: publish to npm
+      run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-    - uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        check-version: true
+      working-directory: package
         
     - name: upload node logs
       uses: actions/upload-artifact@v2.3.1
@@ -72,4 +62,3 @@ jobs:
         path: C:\npm\cache\_logs
       continue-on-error: true
       if: always()
-
