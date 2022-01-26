@@ -55,10 +55,10 @@ jobs:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       working-directory: package
         
-    - name: upload node logs
+    - name: upload npm logs
       uses: actions/upload-artifact@v2.3.1
       with:
-        name: node-logs
-        path: C:\npm\cache\_logs
+        name: npm-logs
+        path: /home/runner/.npm/_logs
       continue-on-error: true
       if: always()
