@@ -1185,6 +1185,208 @@ export enum FillRule {
   EvenOdd = 0,
   Nonzero = 1,
 }
+export namespace WinUIEnums {
+export enum InfoBarCloseReason {
+  CloseButton = 0,
+  Programmatic = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewDisplayMode {
+  Minimal = 0,
+  Compact = 1,
+  Expanded = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum RefreshVisualizerState {
+  Idle = 0,
+  Peeking = 1,
+  Interacting = 2,
+  Pending = 3,
+  Refreshing = 4,
+}
+}
+
+export enum DataPackageOperation {
+  None = 0,
+  Copy = 1,
+  Move = 2,
+  Link = 4,
+}
+export enum CollectionChange {
+  Reset = 0,
+  ItemInserted = 1,
+  ItemRemoved = 2,
+  ItemChanged = 3,
+}
+export enum DragDropModifiers {
+  None = 0,
+  Shift = 1,
+  Control = 2,
+  Alt = 4,
+  LeftButton = 8,
+  MiddleButton = 16,
+  RightButton = 32,
+}
+export namespace WinUIEnums {
+export enum TeachingTipCloseReason {
+  CloseButton = 0,
+  LightDismiss = 1,
+  Programmatic = 2,
+}
+}
+
+export enum PointerDeviceType {
+  Touch = 0,
+  Pen = 1,
+  Mouse = 2,
+}
+export enum HoldingState {
+  Started = 0,
+  Completed = 1,
+  Canceled = 2,
+}
+export enum FocusNavigationDirection {
+  Next = 0,
+  Previous = 1,
+  Up = 2,
+  Down = 3,
+  Left = 4,
+  Right = 5,
+  None = 6,
+}
+export enum FocusState {
+  Unfocused = 0,
+  Pointer = 1,
+  Keyboard = 2,
+  Programmatic = 3,
+}
+export enum FocusInputDeviceKind {
+  None = 0,
+  Mouse = 1,
+  Touch = 2,
+  Pen = 3,
+  Keyboard = 4,
+  GameController = 5,
+}
+export enum AutoSuggestionBoxTextChangeReason {
+  UserInput = 0,
+  ProgrammaticChange = 1,
+  SuggestionChosen = 2,
+}
+export enum CommandBarDynamicOverflowAction {
+  AddingToOverflow = 0,
+  RemovingFromOverflow = 1,
+}
+export enum ContentDialogResult {
+  None = 0,
+  Primary = 1,
+  Secondary = 2,
+}
+export enum NavigationMode {
+  New = 0,
+  Back = 1,
+  Forward = 2,
+  Refresh = 3,
+}
+export enum MapCameraChangeReason {
+  System = 0,
+  UserInteraction = 1,
+  Programmatic = 2,
+}
+export enum FailedMediaStreamKind {
+  Unknown = 0,
+  Audio = 1,
+  Video = 2,
+}
+export enum NavigationViewDisplayMode {
+  Minimal = 0,
+  Compact = 1,
+  Expanded = 2,
+}
+export enum ScrollEventType {
+  SmallDecrement = 0,
+  SmallIncrement = 1,
+  LargeDecrement = 2,
+  LargeIncrement = 3,
+  ThumbPosition = 4,
+  ThumbTrack = 5,
+  First = 6,
+  Last = 7,
+  EndScroll = 8,
+}
+export enum RefreshVisualizerState {
+  Idle = 0,
+  Peeking = 1,
+  Interacting = 2,
+  Pending = 3,
+  Refreshing = 4,
+}
+export enum ContentLinkChangeKind {
+  Inserted = 0,
+  Removed = 1,
+  Edited = 2,
+}
+export enum WebErrorStatus {
+  Unknown = 0,
+  CertificateCommonNameIsIncorrect = 1,
+  CertificateExpired = 2,
+  CertificateContainsErrors = 3,
+  CertificateRevoked = 4,
+  CertificateIsInvalid = 5,
+  ServerUnreachable = 6,
+  Timeout = 7,
+  ErrorHttpInvalidServerResponse = 8,
+  ConnectionAborted = 9,
+  ConnectionReset = 10,
+  Disconnected = 11,
+  HttpToHttpsOnRedirection = 12,
+  HttpsToHttpOnRedirection = 13,
+  CannotConnect = 14,
+  HostNameNotResolved = 15,
+  OperationCanceled = 16,
+  RedirectFailed = 17,
+  UnexpectedStatusCode = 18,
+  UnexpectedRedirection = 19,
+  UnexpectedClientError = 20,
+  UnexpectedServerError = 21,
+  InsufficientRangeSupport = 22,
+  MissingContentLengthSupport = 23,
+  MultipleChoices = 300,
+  MovedPermanently = 301,
+  Found = 302,
+  SeeOther = 303,
+  NotModified = 304,
+  UseProxy = 305,
+  TemporaryRedirect = 307,
+  BadRequest = 400,
+  Unauthorized = 401,
+  PaymentRequired = 402,
+  Forbidden = 403,
+  NotFound = 404,
+  MethodNotAllowed = 405,
+  NotAcceptable = 406,
+  ProxyAuthenticationRequired = 407,
+  RequestTimeout = 408,
+  Conflict = 409,
+  Gone = 410,
+  LengthRequired = 411,
+  PreconditionFailed = 412,
+  RequestEntityTooLarge = 413,
+  RequestUriTooLong = 414,
+  UnsupportedMediaType = 415,
+  RequestedRangeNotSatisfiable = 416,
+  ExpectationFailed = 417,
+  InternalServerError = 500,
+  NotImplemented = 501,
+  BadGateway = 502,
+  ServiceUnavailable = 503,
+  GatewayTimeout = 504,
+  HttpVersionNotSupported = 505,
+}
 export enum FontCapitals {
   Normal = 0,
   AllSmallCaps = 1,
@@ -1269,12 +1471,6 @@ export enum ContentDialogState {
   Popup = 0,
   InPlace = 1,
   Hidden = 3,
-}
-
-export enum ContentDialogResult {
-  None = 0,
-  Primary = 1,
-  Secondary = 2,
 }
 
 export enum FontWeights {

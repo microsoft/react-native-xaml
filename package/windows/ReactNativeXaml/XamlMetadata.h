@@ -8,6 +8,8 @@
 
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.UI.Xaml.Controls.Maps.h>
+#include <winrt/Windows.Media.Playback.h>
+#include <winrt/Windows.Media.Core.h>
 #include <UI.Xaml.Media.Imaging.h>
 #include <UI.Xaml.Media.h>
 #include "Crc32Str.h"
@@ -34,6 +36,12 @@ namespace winrt::Microsoft::ReactNative {
   inline void ReadValue(JSValue const& jsValue, xaml::Media::FontFamily& value) noexcept {
     auto str = winrt::to_hstring(jsValue.AsString());
     value = xaml::Media::FontFamily(str);
+  }
+
+  inline void ReadValue(JSValue const& jsValue, Windows::Media::Playback::IMediaPlaybackSource& value) noexcept {
+    const auto uri = Uri{ winrt::to_hstring(jsValue.AsString()) };
+    auto source = Windows::Media::Core::MediaSource::CreateFromUri(uri);
+    value = source;
   }
 
   winrt::fire_and_forget SetImageSourceForInlineData(std::string str, xaml::DependencyObject o, xaml::DependencyProperty dp);
@@ -213,6 +221,7 @@ struct XamlObject;
 
 struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   XamlMetadata() = default;
+
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context);
   void SetupEventDispatcher(const winrt::Microsoft::ReactNative::IReactContext& context);
   const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const;

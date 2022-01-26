@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Reflection;
 
 namespace Codegen
 {
@@ -124,6 +125,10 @@ namespace Codegen
             return v.Substring(0, v.LastIndexOf("Property"));
         }
 
+        public static string GetCppWinRTType(string typename)
+        {
+            return GetCppWinRTType(LoadContext.GetType(typename));
+        }
 
         public static string GetCppWinRTType(MrType t)
         {
@@ -301,6 +306,13 @@ namespace Codegen
                 return "any[]";
             }
 
+            if (propType.IsReference)
+            {
+                // Convert a type like Windows.Foundation.Point& to Windows.Foundation.Point;
+                // i.e. throw away the reference &.
+                var name = propType.GetFullName();
+                return GetTypeScriptType(LoadContext.GetType(name.Remove(name.Length - 1)));
+            }
             switch (propType.GetFullName())
             {
                 case "System.String":
@@ -309,7 +321,9 @@ namespace Codegen
                 case "System.Boolean":
                     return "boolean";
                 case "System.Int32":
+                case "System.UInt32":
                 case "System.Int64":
+                case "System.UInt64":
                 case "System.Double":
                 case "System.Single":
                     return "number";
@@ -317,6 +331,10 @@ namespace Codegen
                     return "object";
                 case "Windows.UI.Text.FontWeight":
                     return "number";
+                case "Windows.Foundation.Point":
+                    return "Point";
+                case "Windows.UI.Color":
+                    return "Color";
             }
 
             if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping))
@@ -365,11 +383,17 @@ namespace Codegen
             return false;
         }
 
+        public static bool IsInstanceProperty(MrProperty p)
+        {
+            return p.Getter != null &&
+                                !p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static);
+        }
+
         public static bool ShouldEmitPropertyMetadata(MrProperty p)
         {
             if (IsReservedName(p)) return false;
             if (p.Setter == null) return false;
-            bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
+            bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static);
             if (!isStatic)
             {
                 var staticDPName = p.GetName() + "Property";
@@ -432,6 +456,28 @@ namespace Codegen
                 return string.Join(" |\n        ", listDerived);
             }
         }
+        private static string GetEventArgsTSType(MrType t)
+        {
+            if (t.GetFullName().EndsWith("EventArgs")) // proxy for "this is an event args type
+            {
+                var tsNS = Util.GetTSNamespace(t);
+                return tsNS != "" ? $"{tsNS}.{t.GetName()}" : t.GetName();
+            }
+            return "any";
+        }
+
+        public static string GetEventArgsTSName(MrEvent evt)
+        {
+            var evtType= evt.GetEventType();
+            if (evtType.GetPrettyFullName().StartsWith("Windows.Foundation.TypedEventHandler<"))
+            {
+                var evtArgs = evtType.GetGenericArguments()[1];
+                evtArgs = LoadContext.GetType(evtArgs.GetFullName());
+                return $"TypedEvent<{GetEventArgsTSType(evtArgs)}>";
+            }
+            return "undefined";
+        }
+
         private static Dictionary<MrType, int> typeInheritanceDepth = new Dictionary<MrType, int>();
 
         public static int GetTypeInheritanceDepth(MrType t)
@@ -540,6 +586,63 @@ namespace Codegen
             }
             return new Command[] { };
         }
-    }    
+
+        public static HashSet<MrType> eventArgsTypes = new (new NameEqualityComparer());
+        public static void FoundEventArgsType(MrType type)
+        {
+            if (type.GetFullName() == "System.Object")
+            {
+                return;
+            }
+            eventArgsTypes.Add(type);
+        }
+
+        public static Dictionary<string, IEnumerable<string>> eventArgsMethods { get; private set; } = new ();
+        public static IEnumerable<string> GetEventArgsMethods(string typeName)
+        {
+            if (Util.eventArgsMethods.TryGetValue(typeName, out var ms))
+            {
+                return ms;
+            }
+            return new string[] { };
+        }
+
+        private static string GetEventArgMethodParamType(string name, MrType paramType)
+        {
+            if (Util.DerivesFrom(paramType, $"{XamlNames.XamlNamespace}.DependencyObject")) {
+                return "tag: number";
+            }
+            return $"{name}: {GetTypeScriptType(paramType)}";
+        }
+
+        public static string GetEventArgsMethodArgs(MrType argType, string methodName)
+        {
+            argType.GetMethodsAndConstructors(out var methods, out var ctors);
+            var method = methods.Where(m => m.GetName() == methodName).First();
+            var inputParams = method.GetParameters().Where(p => p.Attributes.HasFlag(System.Reflection.ParameterAttributes.In));
+            string paramTypes = string.Join(", ", inputParams.Select(p => 
+                GetEventArgMethodParamType(p.GetParameterName(), p.GetParameterType())));
+            return paramTypes;
+        }
+
+        public static string GetEventArgsMethodReturnType(MrType argType, string methodName)
+        {
+            argType.GetMethodsAndConstructors(out var methods, out var ctors);
+            var method = methods.Where(m => m.GetName() == methodName).First();
+
+            var outParams = method.GetParameters().Where(p => p.Attributes.HasFlag(System.Reflection.ParameterAttributes.Out));
+            if (outParams.Any())
+            {
+                string retType = GetEventArgMethodParamType("returnValue", method.ReturnType);
+                var outParamTypes = outParams.Select(p => GetEventArgMethodParamType(p.GetParameterName(), p.GetParameterType()));
+                var allTypes = string.Join(", ", outParamTypes.Append(retType));
+                return $"{{ {allTypes} }}";
+
+            } else
+            {
+                return GetTypeScriptType(method.ReturnType);
+            }
+        }
+    }
 }
 
