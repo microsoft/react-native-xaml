@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Reflection;
 
 namespace Codegen
 {
@@ -124,6 +125,10 @@ namespace Codegen
             return v.Substring(0, v.LastIndexOf("Property"));
         }
 
+        public static string GetCppWinRTType(string typename)
+        {
+            return GetCppWinRTType(LoadContext.GetType(typename));
+        }
 
         public static string GetCppWinRTType(MrType t)
         {
@@ -316,7 +321,9 @@ namespace Codegen
                 case "System.Boolean":
                     return "boolean";
                 case "System.Int32":
+                case "System.UInt32":
                 case "System.Int64":
+                case "System.UInt64":
                 case "System.Double":
                 case "System.Single":
                     return "number";
@@ -326,6 +333,8 @@ namespace Codegen
                     return "number";
                 case "Windows.Foundation.Point":
                     return "Point";
+                case "Windows.UI.Color":
+                    return "Color";
             }
 
             if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping))
@@ -374,11 +383,17 @@ namespace Codegen
             return false;
         }
 
+        public static bool IsInstanceProperty(MrProperty p)
+        {
+            return p.Getter != null &&
+                                !p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static);
+        }
+
         public static bool ShouldEmitPropertyMetadata(MrProperty p)
         {
             if (IsReservedName(p)) return false;
             if (p.Setter == null) return false;
-            bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(System.Reflection.MethodAttributes.Static);
+            bool isStatic = p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static);
             if (!isStatic)
             {
                 var staticDPName = p.GetName() + "Property";
@@ -443,9 +458,10 @@ namespace Codegen
         }
         private static string GetEventArgsTSType(MrType t)
         {
-            if (eventArgsMethods.ContainsKey(t))
+            if (t.GetFullName().EndsWith("EventArgs")) // proxy for "this is an event args type
             {
-                return t.GetName();
+                var tsNS = Util.GetTSNamespace(t);
+                return tsNS != "" ? $"{tsNS}.{t.GetName()}" : t.GetName();
             }
             return "any";
         }
@@ -571,7 +587,25 @@ namespace Codegen
             return new Command[] { };
         }
 
-        public static Dictionary<MrType, IEnumerable<string>> eventArgsMethods { get; private set; } = new Dictionary<MrType, IEnumerable<string>>();
+        public static HashSet<MrType> eventArgsTypes = new (new NameEqualityComparer());
+        public static void FoundEventArgsType(MrType type)
+        {
+            if (type.GetFullName() == "System.Object")
+            {
+                return;
+            }
+            eventArgsTypes.Add(type);
+        }
+
+        public static Dictionary<string, IEnumerable<string>> eventArgsMethods { get; private set; } = new ();
+        public static IEnumerable<string> GetEventArgsMethods(string typeName)
+        {
+            if (Util.eventArgsMethods.TryGetValue(typeName, out var ms))
+            {
+                return ms;
+            }
+            return new string[] { };
+        }
 
         private static string GetEventArgMethodParamType(string name, MrType paramType)
         {

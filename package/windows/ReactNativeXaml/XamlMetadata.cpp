@@ -215,17 +215,6 @@ void SetShowState_ContentDialog(const xaml::DependencyObject& dobj, const xaml::
     case 3: // Hidden
       return cd.Hide();
     }
-
-    op.Completed([cd, context](const IAsyncOperation<ContentDialogResult>& operation, const AsyncStatus& asyncStatus) {
-      if (asyncStatus == AsyncStatus::Completed) {
-        auto result = static_cast<int32_t>(operation.GetResults());
-
-        XamlUIService::FromContext(context).DispatchEvent(cd, L"topContentDialogClosed",
-          [result](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {
-            evtDataWriter.WriteInt64(result);
-          });
-      }
-      });
   }
 }
 

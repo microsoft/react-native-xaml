@@ -19,17 +19,35 @@ export type CornerRadius = number | { topLeft?: number, topRight?: number, botto
 
 export type Point = { x: number, y: number };
 
+export type Color = { a: number, r: number, g: number, b: number };
+
 export type TypedEvent<TArgs> = {
   sender: any;
   args: TArgs;
 }
 
-<# foreach (var t in Util.eventArgsMethods) { #>
-export type <#= Util.ToJsName(t.Key) #> = {
-<#	foreach (var m in t.Value) { #>
-  <#= m #>(<#= Util.GetEventArgsMethodArgs(t.Key, m) #>): <#= Util.GetEventArgsMethodReturnType(t.Key, m) #>
-<#  } #>
+<# foreach (var t in Util.eventArgsTypes) { 
+	var ns = Util.GetTSNamespace(t);
+	if (ns != "") { #>
+export namespace <#= ns #> {
+<# } #>
+export type <#= Util.ToJsName(t) #> = {
+<#	foreach (var m in Util.GetEventArgsMethods(t.GetFullName())) { #>
+  <#= m #>(<#= Util.GetEventArgsMethodArgs(t, m) #>): <#= Util.GetEventArgsMethodReturnType(t, m) #>
+<#  }
+	foreach (var prop in t.GetProperties().Where(p => Util.IsInstanceProperty(p))) { 
+		var tsType = Util.GetTypeScriptType(prop);
+		if (tsType != "any") {
+	#>
+  readonly <#= Util.ToJsName(prop) #>: <#= tsType #>;
+<#
+        } 
+    }
+#>
 }
+<# if (ns != "") { #>
+}
+<# } #>
 <# } #>
 
 <# var derived = Util.GetDerivedTypes(Types);

@@ -185,7 +185,7 @@ struct EventArgsMethod {
             this.Write("facebook::jsi::Value ");
             
             #line 52 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.GetFullName().Replace(".", "_")));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.Replace(".", "_")));
             
             #line default
             #line hidden
@@ -230,7 +230,7 @@ struct EventArgsMethod {
             this.Write(">, ");
             
             #line 59 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.GetFullName().Replace(".", "_")));
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.Replace(".", "_")));
             
             #line default
             #line hidden

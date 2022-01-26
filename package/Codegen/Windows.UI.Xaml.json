@@ -85,9 +85,6 @@
       }
     },
     {
-      "name": "$xaml.Controls.ContentDialogResult"
-    },
-    {
       // Windows.UI.Text.FontWeights is a class and we can't statically discover the values of its "enum-like" properties
       "name": "FontWeights",
       "values": {
@@ -106,7 +103,6 @@
     }
   ],
   "syntheticEvents": {
-    "$xaml.Controls.ContentDialog.ContentDialogClosed": "ContentDialogResult"
   },
   "propNameMapping": {
     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",

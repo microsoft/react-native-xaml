@@ -221,6 +221,7 @@ struct XamlObject;
 
 struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   XamlMetadata() = default;
+
   winrt::Windows::Foundation::IInspectable Create(const std::string& typeName, const winrt::Microsoft::ReactNative::IReactContext& context);
   void SetupEventDispatcher(const winrt::Microsoft::ReactNative::IReactContext& context);
   const PropInfo* GetProp(const std::string& propertyName, const winrt::Windows::Foundation::IInspectable& obj) const;
