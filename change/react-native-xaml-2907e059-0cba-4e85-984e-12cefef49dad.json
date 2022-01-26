@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "format",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
