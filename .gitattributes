@@ -4,6 +4,7 @@
 *       text=auto
 
 # C# files should use CRLF.
+*.tt  text eol=crlf
 *.cs  text eol=crlf
 
 # C++ files should use CRLF.

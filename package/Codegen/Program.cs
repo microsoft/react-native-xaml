@@ -535,7 +535,6 @@ namespace Codegen
 
         private static bool UpdateFile(string path, string newContent)
         {
-            newContent = newContent.Replace("\r", "");
             var existing = File.Exists(path) ? File.ReadAllText(path) : "";
             if (existing != newContent)
             {
