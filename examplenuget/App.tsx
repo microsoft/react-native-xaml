@@ -7,7 +7,7 @@
  */
 
 import React, {useRef} from 'react';
-import type {Node} from 'react';
+
 import {
   findNodeHandle,
   SafeAreaView,
@@ -24,6 +24,13 @@ import {
   MenuFlyout,
   MenuFlyoutItem,
   TextBlock,
+  WinUI,
+  MediaPlayerElement,
+  Button,
+  ContentDialogState,
+  ContentDialog,
+  ContentDialogButton,
+  ContentDialogResult,
 } from 'react-native-xaml';
 import {
   Colors,
@@ -33,7 +40,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -59,7 +66,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -68,8 +75,11 @@ const App: () => Node = () => {
 
   const menu = useRef<MenuFlyout>(null);
   const _tbRef = React.useRef<TextBlock>(null);
+  const _mpRef = React.useRef<MediaPlayerElement>(null);
+  const [x, setX] = React.useState("100");
 
-  const [x, setX] = React.useState(100);
+  const [showState, setShowState] = React.useState(ContentDialogState.Hidden);
+
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -83,21 +93,50 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <TextBox
-            text={x}
+            text={`x`}
             onBeforeTextChanging={e => {
-              setX(e.nativeEvent.args.newText);
+              if (e.nativeEvent.args) {
+                setX(e.nativeEvent.args.newText);
+              }
             }}
           />
+
+          <Button
+            onTapped={a => {setShowState(ContentDialogState.Popup);}}
+            content="click to open a ContentDialog" />
+
+          <ContentDialog
+            showState={showState}
+            defaultButton={ContentDialogButton.Close}
+            title="the title"
+            content="this is the content"
+            closeButtonText="close"
+            primaryButtonText="primary"
+            secondaryButtonText="secondary"
+            onPrimaryButtonClick={e => {
+              alert('primary');
+            }}
+            onSecondaryButtonClick={e => {
+              alert('secondary');
+            }}
+            onClosed={e => {
+              setShowState(ContentDialogState.Hidden)
+              alert(JSON.stringify(e.nativeEvent.args));
+            }}
+             />
+
+
           <TextBlock
             text="Hello"
             onTapped={e => {
-              MenuFlyout.ShowAt(menu, {point: {x: x, y: 42}});
+              MenuFlyout.ShowAt(menu, {point: {x: parseInt(x), y: 42}});
             }}
             ref={t => {
               _tbRef.current = t;
             }}
             onContextRequested={e => {
               const tag = findNodeHandle(_tbRef.current);
+
               const { point, returnValue } = e.nativeEvent.args.TryGetPosition(tag);
               MenuFlyout.ShowAt(menu, { point: point });
             }}
@@ -110,6 +149,9 @@ const App: () => Node = () => {
               <MenuFlyoutItem text="menu option" />
             </MenuFlyout>
           </TextBlock>
+          <WinUI.ColorPicker onColorChanged={e => {
+            alert(JSON.stringify(e.nativeEvent.args.newColor));
+          }} />
         </View>
       </ScrollView>
     </SafeAreaView>

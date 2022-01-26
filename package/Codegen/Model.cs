@@ -107,6 +107,9 @@ namespace Codegen
                 }
 
                 return n1 == n2;
+            } else if (that is MrType t1 && other is MrType t2)
+            {
+                return t1.GetFullName() == t2.GetFullName();
             }
             return that.GetName() == other.GetName();
         }

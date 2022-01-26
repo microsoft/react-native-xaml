@@ -88,7 +88,7 @@ void XamlObject::RunOnUIThread(const TLambda& code) const {
   cv.wait(lock);
 }
 
-jsi::Value CREA_TryGetPosition(jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count) {
+jsi::Value Windows_UI_Xaml_Input_ContextRequestedEventArgs_TryGetPosition(jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count) {
   std::optional<bool> retVal;
   int64_t tag{ 0 };
   if (args && count == 1 && args[0].isNumber()) {
@@ -112,20 +112,6 @@ jsi::Value CREA_TryGetPosition(jsi::Runtime& rt, std::shared_ptr<XamlObject> thi
   ret.setProperty(rt, "returnValue", retVal.value());
   return ret;
 }
-
-struct EventArgsMethod {
-  const char* const name;
-
-  using isType_t = bool (*) (const winrt::Windows::Foundation::IInspectable& ea);
-  const isType_t isType;
-
-  using getter_t = jsi::Value(*) (jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const jsi::Value* args, size_t count);
-  const getter_t getter;
-};
-
-const EventArgsMethod eventArgsMethods[] = {
-    { "TryGetPosition", IsType<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>, CREA_TryGetPosition, },
-};
 
 const EventArgsMethod* GetEventArgsMethod(const std::string& name, const winrt::Windows::Foundation::IInspectable& obj) {
   auto it = std::find_if(eventArgsMethods, eventArgsMethods + ARRAYSIZE(eventArgsMethods), [name](const EventArgsMethod& e) { return e.name == name; });

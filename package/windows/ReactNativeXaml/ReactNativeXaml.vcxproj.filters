@@ -61,9 +61,11 @@
       <Filter>TS</Filter>
     </None>
     <None Include="..\..\..\README.md" />
-    <None Include="..\..\src\Enums.ts" />
     <None Include="packages.config" />
     <None Include="..\..\..\USAGE.md" />
+    <None Include="..\..\src\Enums.ts">
+      <Filter>TS</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codegen">

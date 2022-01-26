@@ -223,6 +223,7 @@ namespace Codegen
                 var val = GetTypeNameFromJsonProperty(entry);
                 var typeName = val.Substring(0, val.LastIndexOf('.'));
                 var eventName = val.Substring(val.LastIndexOf('.') + 1);
+ 
                 syntheticEvents.Add(new SyntheticProperty()
                 {
                     Name = eventName,
@@ -245,11 +246,13 @@ namespace Codegen
             PrintVerbose("Sorting types");
             creatableTypes.Sort((a, b) => a.GetFullName().CompareTo(b.GetFullName()));
 
-
+            foreach (var entry in Config.RootElement.GetProperty("eventArgsMethods").EnumerateObject())
+            {
+                Util.eventArgsMethods.Add(GetTypeNameFromJsonProperty(entry), entry.Value.EnumerateArray().Select(x => x.GetString()));
+            }
 
             var events = new List<MrEvent>();
 
-            var eventArgTypes = new HashSet<MrType>(new NameEqualityComparer());
             var eventArgProps = new List<SyntheticProperty>();
             PrintVerbose("Enumerating properties and events");
             foreach (var type in xamlTypes)
@@ -276,11 +279,11 @@ namespace Codegen
                         var parameters = invoke.GetParameters();
                         if (parameters.Length == 2 && (parameters[1].GetParameterName().EndsWith("args") || parameters[1].GetParameterType().GetName().EndsWith("Args")))
                         {
-                            eventArgTypes.Add(parameters[1].GetParameterType());
+                            Util.FoundEventArgsType(parameters[1].GetParameterType());
                         }
                         else if (parameters.Length == 1 && parameters[0].GetParameterType().GetName().EndsWith("Args"))
                         {
-                            eventArgTypes.Add(parameters[0].GetParameterType());
+                            Util.FoundEventArgsType(parameters[0].GetParameterType());
                         }
                         else
                         {
@@ -294,17 +297,19 @@ namespace Codegen
                         {
                             throw new ArgumentException($"Couldn't infer EventHandler generic type for event {e.GetName()}");
                         }
-                        eventArgTypes.Add(paramType[0]);
+                        Util.FoundEventArgsType(paramType[0]);
                     }
                 }
                 events.AddRange(eventsToAdd);
             }
 
-            foreach (var type in eventArgTypes)
+            
+
+            foreach (var type in Util.eventArgsTypes)
             {
                 var props = type.GetProperties();
                 var propsToAdd = props
-                    .Where(p => IsInstanceProperty(p))
+                    .Where(p => Util.IsInstanceProperty(p))
                     .Select(p => new SyntheticProperty()
                     {
                         Name = p.GetName(),
@@ -312,6 +317,10 @@ namespace Codegen
                         Property = p,
                     });
                 eventArgProps.AddRange(propsToAdd);
+                foreach (var p in propsToAdd.Where(p => p.Property.GetPropertyType().IsEnum).Select(p => p.Property.GetPropertyType()))
+                {
+                    Util.enumsToGenerateConvertersFor.Add(p);
+                }
             }
 
             properties.Sort(CompareProps);
@@ -461,12 +470,6 @@ namespace Codegen
             {
                 return entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
             }
-        }
-
-        private static bool IsInstanceProperty(MrProperty p)
-        {
-            return p.Getter != null &&
-                                !p.Getter.MethodDefinition.Attributes.HasFlag(MethodAttributes.Static);
         }
 
         private Dictionary<string, int> ToDictionary(JsonElement.ObjectEnumerator objectEnumerator)
