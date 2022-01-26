@@ -358,6 +358,16 @@ namespace Codegen
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
             var enumsGen = new TypeEnums().TransformText();
 
+            var list = new List<MrType>();
+            foreach (var entry in Util.enumsToGenerateConvertersFor) {
+                list.Add(entry);
+            }
+            var orderedList = list.OrderBy(item => Util.GetTSNamespace(item));
+            Util.enumsToGenerateConvertersFor.Clear();
+            foreach (var orderedItem in orderedList) {
+                Util.enumsToGenerateConvertersFor.Add(orderedItem);
+            }
+
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();
             var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
