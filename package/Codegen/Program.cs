@@ -387,9 +387,9 @@ namespace Codegen
 
             changes |= UpdateFile(Path.Join(generatedDirPath, "Version.g.h"), versionGen);
 
-            changes |= UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
-            changes |= UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
-            changes |= UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen.Replace("\r\n", "\n"));
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen.Replace("\r\n", "\n"));
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen.Replace("\r\n", "\n"));
 
             if (!changes)
             {
