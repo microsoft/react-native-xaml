@@ -159,7 +159,15 @@ namespace Codegen
 
 
         public static HashSet<FakeEnum> fakeEnums = new HashSet<FakeEnum>();
-        public static HashSet<MrType> enumsToGenerateConvertersFor = new HashSet<MrType>();
+        private static HashSet<MrType> enumsToGenerateConvertersFor = new ();
+        public static IReadOnlyList<MrType> GetEnums() {
+            return enumsToGenerateConvertersFor.OrderBy(e => Util.GetTSNamespace(e)).ToImmutableList();
+        }
+
+        public static void VisitEnum(MrType t) {
+            enumsToGenerateConvertersFor.Add(t);
+        }
+
 
         public static MrLoadContext LoadContext { get; internal set; }
 
@@ -196,7 +204,7 @@ namespace Codegen
         {
             if (propType.IsEnum)
             {
-                enumsToGenerateConvertersFor.Add(propType);
+                VisitEnum(propType);
                 return ViewManagerPropertyType.Number;
             }
             else if (propType.IsArray)

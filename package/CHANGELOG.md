@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Wed, 26 Jan 2022 23:21:29 GMT and should not be manually modified.
+This log was last generated on Thu, 27 Jan 2022 14:11:26 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.59
+
+Thu, 27 Jan 2022 14:11:26 GMT
+
+### Patches
+
+- Reorder TS enums to work around babel bug (asklar@microsoft.com)
 
 ## 0.0.58
 

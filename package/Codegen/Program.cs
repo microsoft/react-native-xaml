@@ -320,7 +320,7 @@ namespace Codegen
                 eventArgProps.AddRange(propsToAdd);
                 foreach (var p in propsToAdd.Where(p => p.Property.GetPropertyType().IsEnum).Select(p => p.Property.GetPropertyType()))
                 {
-                    Util.enumsToGenerateConvertersFor.Add(p);
+                    Util.VisitEnum(p);
                 }
             }
 
