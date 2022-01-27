@@ -319,7 +319,7 @@ namespace Codegen
                 eventArgProps.AddRange(propsToAdd);
                 foreach (var p in propsToAdd.Where(p => p.Property.GetPropertyType().IsEnum).Select(p => p.Property.GetPropertyType()))
                 {
-                    Util.enumsToGenerateConvertersFor.Add(p);
+                    Util.VisitEnum(p);
                 }
             }
 
@@ -366,15 +366,6 @@ namespace Codegen
             var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
             var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
             var enumsGen = new TypeEnums().TransformText();
-
-            // order enum list by namespace
-            MrType[] list = new MrType[Util.enumsToGenerateConvertersFor.Count];
-            Util.enumsToGenerateConvertersFor.CopyTo(list);
-            var orderedList = list.OrderBy(item => Util.GetTSNamespace(item));
-            Util.enumsToGenerateConvertersFor.Clear();
-            foreach (var orderedItem in orderedList) {
-                Util.enumsToGenerateConvertersFor.Add(orderedItem);
-            }
 
             var tsEnumsGen = new TSEnums().TransformText();
             var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();

@@ -972,31 +972,6 @@ export enum FillRule {
   EvenOdd = 0,
   Nonzero = 1,
 }
-export namespace WinUIEnums {
-export enum InfoBarCloseReason {
-  CloseButton = 0,
-  Programmatic = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewDisplayMode {
-  Minimal = 0,
-  Compact = 1,
-  Expanded = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum RefreshVisualizerState {
-  Idle = 0,
-  Peeking = 1,
-  Interacting = 2,
-  Pending = 3,
-  Refreshing = 4,
-}
-}
-
 export enum DataPackageOperation {
   None = 0,
   Copy = 1,
@@ -1018,14 +993,6 @@ export enum DragDropModifiers {
   MiddleButton = 16,
   RightButton = 32,
 }
-export namespace WinUIEnums {
-export enum TeachingTipCloseReason {
-  CloseButton = 0,
-  LightDismiss = 1,
-  Programmatic = 2,
-}
-}
-
 export enum PointerDeviceType {
   Touch = 0,
   Pen = 1,
@@ -1436,6 +1403,39 @@ export namespace WinUIEnums {
 export enum TwoPaneViewPriority {
   Pane1 = 0,
   Pane2 = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum InfoBarCloseReason {
+  CloseButton = 0,
+  Programmatic = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewDisplayMode {
+  Minimal = 0,
+  Compact = 1,
+  Expanded = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum RefreshVisualizerState {
+  Idle = 0,
+  Peeking = 1,
+  Interacting = 2,
+  Pending = 3,
+  Refreshing = 4,
+}
+}
+
+export namespace WinUIEnums {
+export enum TeachingTipCloseReason {
+  CloseButton = 0,
+  LightDismiss = 1,
+  Programmatic = 2,
 }
 }
 
