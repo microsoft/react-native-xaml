@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Thu, 27 Jan 2022 14:11:26 GMT",
+      "tag": "react-native-xaml_v0.0.59",
+      "version": "0.0.59",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Reorder TS enums to work around babel bug",
+            "commit": "5a820424140912701aeb8fdafb0efd0410d3e5b3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 26 Jan 2022 23:21:29 GMT",
       "tag": "react-native-xaml_v0.0.58",
       "version": "0.0.58",

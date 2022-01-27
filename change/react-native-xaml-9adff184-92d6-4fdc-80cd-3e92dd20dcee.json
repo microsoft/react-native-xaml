@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Reorder TS enums to work around babel bug",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}
