@@ -156,7 +156,8 @@ namespace Codegen
 
             PrintVerbose($"Parsing configuration from {ConfigFileName}");
 
-            foreach (var entry in Config.RootElement.GetProperty("attachedProps").EnumerateObject()) {
+            foreach (var entry in Config.RootElement.GetProperty("attachedProps").EnumerateObject())
+            {
                 var propName = GetTypeNameFromJsonProperty(entry);
                 var attachedDPs = Util.AttachedProperties.Where(p => Util.MinusPropertySuffix(Util.GetPropFullName(p)).StartsWith(propName));
 
@@ -223,7 +224,7 @@ namespace Codegen
                 var val = GetTypeNameFromJsonProperty(entry);
                 var typeName = val.Substring(0, val.LastIndexOf('.'));
                 var eventName = val.Substring(val.LastIndexOf('.') + 1);
- 
+
                 syntheticEvents.Add(new SyntheticProperty()
                 {
                     Name = eventName,
@@ -303,7 +304,7 @@ namespace Codegen
                 events.AddRange(eventsToAdd);
             }
 
-            
+
 
             foreach (var type in Util.eventArgsTypes)
             {
@@ -319,7 +320,7 @@ namespace Codegen
                 eventArgProps.AddRange(propsToAdd);
                 foreach (var p in propsToAdd.Where(p => p.Property.GetPropertyType().IsEnum).Select(p => p.Property.GetPropertyType()))
                 {
-                    Util.VisitEnum(p);
+                    Util.enumsToGenerateConvertersFor.Add(p);
                 }
             }
 
@@ -387,9 +388,9 @@ namespace Codegen
 
             changes |= UpdateFile(Path.Join(generatedDirPath, "Version.g.h"), versionGen);
 
-            changes |= UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen);
-            changes |= UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen);
-            changes |= UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen);
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Enums.ts"), tsEnumsGen.Replace("\r\n", "\n"));
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Props.ts"), propsGen.Replace("\r\n", "\n"));
+            changes |= UpdateFile(Path.Join(packageSrcPath, "Types.tsx"), typesGen.Replace("\r\n", "\n"));
 
             if (!changes)
             {
@@ -457,7 +458,8 @@ namespace Codegen
             if (entry.ValueKind == JsonValueKind.Object)
             {
                 return entry.GetProperty("name").GetString().Replace("$xaml", XamlNames.XamlNamespace);
-            } else
+            }
+            else
             {
                 return entry.GetString().Replace("$xaml", XamlNames.XamlNamespace);
             }
@@ -535,7 +537,6 @@ namespace Codegen
 
         private static bool UpdateFile(string path, string newContent)
         {
-            newContent = newContent.Replace("\r", "");
             var existing = File.Exists(path) ? File.ReadAllText(path) : "";
             if (existing != newContent)
             {

@@ -8,9 +8,7 @@
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
-<# 
-var enumsToGenerateConvertersFor = Util.GetEnums();
-foreach (var enumType in enumsToGenerateConvertersFor) { 
+<# foreach (var enumType in Util.enumsToGenerateConvertersFor) { 
 var ns = Util.GetTSNamespace(enumType);
 if (ns != "") { #>
 export namespace <#= ns #>Enums {

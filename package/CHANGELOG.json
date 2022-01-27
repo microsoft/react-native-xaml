@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Wed, 26 Jan 2022 23:21:29 GMT",
+      "tag": "react-native-xaml_v0.0.58",
+      "version": "0.0.58",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "format",
+            "commit": "51d4c0b4afcae7c209904e9835741dda7d0ddb51"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 24 Jan 2022 21:16:18 GMT",
       "tag": "react-native-xaml_v0.0.57",
       "version": "0.0.57",
