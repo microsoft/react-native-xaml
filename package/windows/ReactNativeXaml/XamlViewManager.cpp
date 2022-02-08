@@ -307,6 +307,26 @@ namespace winrt::ReactNativeXaml {
         return infoBar.ActionButton(buttonBase);
       }
     }
+    if (auto menuBar = e.try_as<MenuBar>()) {
+        if (auto mbi = child.try_as<MenuBarItem>()) {
+            return menuBar.Items().InsertAt(index, mbi);
+        }
+    }
+    if (auto muxMenuBar = e.try_as<mux::Controls::MenuBar>()) {
+        if (auto mbi = child.try_as<mux::Controls::MenuBarItem>()) {
+            return muxMenuBar.Items().InsertAt(index, mbi);
+        }
+    }
+    if (auto menuBarItem = e.try_as<MenuBarItem>()) {
+        if (auto mfi = child.try_as<MenuFlyoutItem>()) {
+            return menuBarItem.Items().InsertAt(index,mfi);
+        }
+    }
+    if (auto muxMenuBarItem = e.try_as<mux::Controls::MenuBarItem>()) {
+        if (auto mfi = child.try_as<MenuFlyoutItem>()) {
+            return muxMenuBarItem.Items().InsertAt(index, mfi);
+        }
+    }
     //else 
     {
       auto cn = winrt::get_class_name(e);
