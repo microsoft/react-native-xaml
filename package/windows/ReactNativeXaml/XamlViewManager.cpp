@@ -318,12 +318,12 @@ namespace winrt::ReactNativeXaml {
         }
     }
     if (auto menuBarItem = e.try_as<MenuBarItem>()) {
-        if (auto mfi = child.try_as<MenuFlyoutItem>()) {
+        if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
             return menuBarItem.Items().InsertAt(index,mfi);
         }
     }
     if (auto muxMenuBarItem = e.try_as<mux::Controls::MenuBarItem>()) {
-        if (auto mfi = child.try_as<MenuFlyoutItem>()) {
+        if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
             return muxMenuBarItem.Items().InsertAt(index, mfi);
         }
     }
