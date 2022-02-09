@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Thu, 27 Jan 2022 14:11:26 GMT and should not be manually modified.
+This log was last generated on Wed, 09 Feb 2022 18:54:39 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.60
+
+Wed, 09 Feb 2022 18:54:39 GMT
+
+### Patches
+
+- Fix Bug in MenuBar (34109996+chiaramooney@users.noreply.github.com)
 
 ## 0.0.59
 
