@@ -20,7 +20,6 @@ using namespace Windows::ApplicationModel;
 /// </summary>
 App::App() noexcept
 {
-    InstanceSettings().UseJsi(true);
 #if BUNDLE
     JavaScriptBundleFile(L"index.windows");
     InstanceSettings().UseWebDebugger(false);
