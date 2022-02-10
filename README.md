@@ -14,8 +14,11 @@ To see examples of the syntax and available controls, check out the [Usage guide
 react-native-xaml works by leveraging metadata for XAML properties, types and events. This metadata is automatically generated ([code-gen](https://github.com/asklar/react-native-xaml/tree/main/package/Codegen)) from the Windows SDK.
 This means we can have a full projection of all of XAML – or any WinRT components written by app devs, that export a [UserControl](https://docs.microsoft.com/uwp/api/Windows.UI.Xaml.Controls.UserControl) – without manual intervention.
 
-## Technical details:
+## Technical details
 See [Technical Guide](TechnicalGuide.md).
+
+## Contributing
+Pull Requests are welcome. See [Contribution Guide](CONTRIBUTING.md) for details.
 
 ## Demo
 
