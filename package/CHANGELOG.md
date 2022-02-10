@@ -4,22 +4,6 @@ This log was last generated on Wed, 09 Feb 2022 19:02:24 GMT and should not be m
 
 <!-- Start content -->
 
-## 0.0.61
-
-Wed, 09 Feb 2022 19:02:24 GMT
-
-### Patches
-
-- Fix Bug in MenuBar (34109996+chiaramooney@users.noreply.github.com)
-
-## 0.0.60
-
-Wed, 09 Feb 2022 18:54:39 GMT
-
-### Patches
-
-- Fix Bug in MenuBar (34109996+chiaramooney@users.noreply.github.com)
-
 ## 0.0.59
 
 Thu, 27 Jan 2022 14:11:26 GMT

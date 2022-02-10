@@ -2,36 +2,6 @@
   "name": "react-native-xaml",
   "entries": [
     {
-      "date": "Wed, 09 Feb 2022 19:02:24 GMT",
-      "tag": "react-native-xaml_v0.0.61",
-      "version": "0.0.61",
-      "comments": {
-        "patch": [
-          {
-            "author": "34109996+chiaramooney@users.noreply.github.com",
-            "package": "react-native-xaml",
-            "comment": "Fix Bug in MenuBar",
-            "commit": "1b287e21e90b4b12dc2632a4b76edd7c2be01cb4"
-          }
-        ]
-      }
-    },
-    {
-      "date": "Wed, 09 Feb 2022 18:54:39 GMT",
-      "tag": "react-native-xaml_v0.0.60",
-      "version": "0.0.60",
-      "comments": {
-        "patch": [
-          {
-            "author": "34109996+chiaramooney@users.noreply.github.com",
-            "package": "react-native-xaml",
-            "comment": "Fix Bug in MenuBar",
-            "commit": "d1e8457dac9646b31400fb5f07e0e7f9be6494a8"
-          }
-        ]
-      }
-    },
-    {
       "date": "Thu, 27 Jan 2022 14:11:26 GMT",
       "tag": "react-native-xaml_v0.0.59",
       "version": "0.0.59",

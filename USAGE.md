@@ -76,11 +76,11 @@ If you have questions about a scenario you don't see below, please [file an issu
 ## MenuBar
 ```jsx
 <MenuBar>
-          <MenuBarItem title="File">
-              <MenuFlyoutItem text="Help"/>
-              <MenuFlyoutItem text="Settings"/>
-          </MenuBarItem>
-          <MenuBarItem title="View"/>
+  <MenuBarItem title="File">
+    <MenuFlyoutItem text="Help"/>
+    <MenuFlyoutItem text="Settings"/>
+  </MenuBarItem>
+  <MenuBarItem title="View"/>
 </MenuBar>
 ```
 
