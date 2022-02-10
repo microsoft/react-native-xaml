@@ -73,6 +73,17 @@ If you have questions about a scenario you don't see below, please [file an issu
   setIsOpen(true); }} />
 ```
 
+## MenuBar
+```jsx
+<MenuBar>
+  <MenuBarItem title="File">
+    <MenuFlyoutItem text="Help"/>
+    <MenuFlyoutItem text="Settings"/>
+  </MenuBarItem>
+  <MenuBarItem title="View"/>
+</MenuBar>
+```
+
 ## Image
 
 - For Image, note that you should specify its size so that RN reserves space for it, otherwise the image won't show.

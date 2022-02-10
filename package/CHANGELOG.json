@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Thu, 10 Feb 2022 17:17:17 GMT",
+      "tag": "react-native-xaml_v0.0.60",
+      "version": "0.0.60",
+      "comments": {
+        "patch": [
+          {
+            "author": "34109996+chiaramooney@users.noreply.github.com",
+            "package": "react-native-xaml",
+            "comment": "Fix Bug in MenuBar",
+            "commit": "cf1ef86e2bd57787ea5de17a49a2d2f84e0470ff"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 27 Jan 2022 14:11:26 GMT",
       "tag": "react-native-xaml_v0.0.59",
       "version": "0.0.59",
