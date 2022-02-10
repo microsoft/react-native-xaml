@@ -4,7 +4,7 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](https://microsoft.github.io/codeofconduct/), please follow it in all your interactions with the project.
 
 ## Pull Request Process
-1. Fork repository and create your feature branch out of master.
+1. Fork repository and create your feature branch out of main.
 2. Open [Codegen project](./package/Codegen/Codegen.csproj) in Visual Studio.
 3. Right click on project in solution explorer -> select "Manage Nuget Packages". This should open the NuGet Manager which will prompt you to restore NuGet packages. Click on "Restore". Once you restore the packages, the project is ready to build / run.
 4. If you make changes in a .tt file, all you need to do is save the file and that will generate corresponding files that reflect your change.
