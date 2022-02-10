@@ -9,228 +9,15 @@ export enum Stretch {
   Uniform = 2,
   UniformToFill = 3,
 }
-export namespace WinUIEnums {
-export enum ColorSpectrumShape {
-  Box = 0,
-  Ring = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum ColorSpectrumComponents {
-  HueValue = 0,
-  ValueHue = 1,
-  HueSaturation = 2,
-  SaturationHue = 3,
-  SaturationValue = 4,
-  ValueSaturation = 5,
-}
-}
-
-export namespace WinUIEnums {
-export enum ExpandDirection {
-  Down = 0,
-  Up = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum InfoBarSeverity {
-  Informational = 0,
-  Success = 1,
-  Warning = 2,
-  Error = 3,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewShoulderNavigationEnabled {
-  WhenSelectionFollowsFocus = 0,
-  Always = 1,
-  Never = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewSelectionFollowsFocus {
-  Disabled = 0,
-  Enabled = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewPaneDisplayMode {
-  Auto = 0,
-  Left = 1,
-  Top = 2,
-  LeftCompact = 3,
-  LeftMinimal = 4,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewOverflowLabelMode {
-  MoreLabel = 0,
-  NoLabel = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewBackButtonVisible {
-  Collapsed = 0,
-  Visible = 1,
-  Auto = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum NumberBoxValidationMode {
-  InvalidInputOverwritten = 0,
-  Disabled = 1,
-}
-}
-
 export enum TextReadingOrder {
   Default = 0,
   UseFlowDirection = 0,
   DetectFromContent = 1,
 }
-export namespace WinUIEnums {
-export enum NumberBoxSpinButtonPlacementMode {
-  Hidden = 0,
-  Compact = 1,
-  Inline = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum ParallaxSourceOffsetKind {
-  Absolute = 0,
-  Relative = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum PipsPagerButtonVisibility {
-  Visible = 0,
-  VisibleOnPointerOver = 1,
-  Collapsed = 2,
-}
-}
-
 export enum Orientation {
   Vertical = 0,
   Horizontal = 1,
 }
-export namespace WinUIEnums {
-export enum ColorPickerHsvChannel {
-  Hue = 0,
-  Saturation = 1,
-  Value = 2,
-  Alpha = 3,
-}
-}
-
-export namespace WinUIEnums {
-export enum RefreshPullDirection {
-  LeftToRight = 0,
-  TopToBottom = 1,
-  RightToLeft = 2,
-  BottomToTop = 3,
-}
-}
-
-export namespace WinUIEnums {
-export enum RefreshVisualizerOrientation {
-  Auto = 0,
-  Normal = 1,
-  Rotate90DegreesCounterclockwise = 2,
-  Rotate270DegreesCounterclockwise = 3,
-}
-}
-
-export namespace WinUIEnums {
-export enum TabViewWidthMode {
-  Equal = 0,
-  SizeToContent = 1,
-  Compact = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TabViewCloseButtonOverlayMode {
-  Auto = 0,
-  OnPointerOver = 1,
-  Always = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TeachingTipTailVisibility {
-  Auto = 0,
-  Visible = 1,
-  Collapsed = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TeachingTipPlacementMode {
-  Auto = 0,
-  Top = 1,
-  Bottom = 2,
-  Left = 3,
-  Right = 4,
-  TopRight = 5,
-  TopLeft = 6,
-  BottomRight = 7,
-  BottomLeft = 8,
-  LeftTop = 9,
-  LeftBottom = 10,
-  RightTop = 11,
-  RightBottom = 12,
-  Center = 13,
-}
-}
-
-export namespace WinUIEnums {
-export enum TeachingTipHeroContentPlacementMode {
-  Auto = 0,
-  Top = 1,
-  Bottom = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TreeViewSelectionMode {
-  None = 0,
-  Single = 1,
-  Multiple = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TwoPaneViewWideModeConfiguration {
-  SinglePane = 0,
-  LeftRight = 1,
-  RightLeft = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TwoPaneViewTallModeConfiguration {
-  SinglePane = 0,
-  TopBottom = 1,
-  BottomTop = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum TwoPaneViewPriority {
-  Pane1 = 0,
-  Pane2 = 1,
-}
-}
-
 export enum ManipulationModes {
   None = 0,
   TranslateX = 1,
@@ -1185,31 +972,6 @@ export enum FillRule {
   EvenOdd = 0,
   Nonzero = 1,
 }
-export namespace WinUIEnums {
-export enum InfoBarCloseReason {
-  CloseButton = 0,
-  Programmatic = 1,
-}
-}
-
-export namespace WinUIEnums {
-export enum NavigationViewDisplayMode {
-  Minimal = 0,
-  Compact = 1,
-  Expanded = 2,
-}
-}
-
-export namespace WinUIEnums {
-export enum RefreshVisualizerState {
-  Idle = 0,
-  Peeking = 1,
-  Interacting = 2,
-  Pending = 3,
-  Refreshing = 4,
-}
-}
-
 export enum DataPackageOperation {
   None = 0,
   Copy = 1,
@@ -1231,14 +993,6 @@ export enum DragDropModifiers {
   MiddleButton = 16,
   RightButton = 32,
 }
-export namespace WinUIEnums {
-export enum TeachingTipCloseReason {
-  CloseButton = 0,
-  LightDismiss = 1,
-  Programmatic = 2,
-}
-}
-
 export enum PointerDeviceType {
   Touch = 0,
   Pen = 1,
@@ -1439,6 +1193,252 @@ export enum FontVariants {
   Inferior = 4,
   Ruby = 5,
 }
+export namespace WinUIEnums {
+export enum ColorSpectrumShape {
+  Box = 0,
+  Ring = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum ColorSpectrumComponents {
+  HueValue = 0,
+  ValueHue = 1,
+  HueSaturation = 2,
+  SaturationHue = 3,
+  SaturationValue = 4,
+  ValueSaturation = 5,
+}
+}
+
+export namespace WinUIEnums {
+export enum ExpandDirection {
+  Down = 0,
+  Up = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum InfoBarSeverity {
+  Informational = 0,
+  Success = 1,
+  Warning = 2,
+  Error = 3,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewShoulderNavigationEnabled {
+  WhenSelectionFollowsFocus = 0,
+  Always = 1,
+  Never = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewSelectionFollowsFocus {
+  Disabled = 0,
+  Enabled = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewPaneDisplayMode {
+  Auto = 0,
+  Left = 1,
+  Top = 2,
+  LeftCompact = 3,
+  LeftMinimal = 4,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewOverflowLabelMode {
+  MoreLabel = 0,
+  NoLabel = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewBackButtonVisible {
+  Collapsed = 0,
+  Visible = 1,
+  Auto = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum NumberBoxValidationMode {
+  InvalidInputOverwritten = 0,
+  Disabled = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum NumberBoxSpinButtonPlacementMode {
+  Hidden = 0,
+  Compact = 1,
+  Inline = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum ParallaxSourceOffsetKind {
+  Absolute = 0,
+  Relative = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum PipsPagerButtonVisibility {
+  Visible = 0,
+  VisibleOnPointerOver = 1,
+  Collapsed = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum ColorPickerHsvChannel {
+  Hue = 0,
+  Saturation = 1,
+  Value = 2,
+  Alpha = 3,
+}
+}
+
+export namespace WinUIEnums {
+export enum RefreshPullDirection {
+  LeftToRight = 0,
+  TopToBottom = 1,
+  RightToLeft = 2,
+  BottomToTop = 3,
+}
+}
+
+export namespace WinUIEnums {
+export enum RefreshVisualizerOrientation {
+  Auto = 0,
+  Normal = 1,
+  Rotate90DegreesCounterclockwise = 2,
+  Rotate270DegreesCounterclockwise = 3,
+}
+}
+
+export namespace WinUIEnums {
+export enum TabViewWidthMode {
+  Equal = 0,
+  SizeToContent = 1,
+  Compact = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TabViewCloseButtonOverlayMode {
+  Auto = 0,
+  OnPointerOver = 1,
+  Always = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TeachingTipTailVisibility {
+  Auto = 0,
+  Visible = 1,
+  Collapsed = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TeachingTipPlacementMode {
+  Auto = 0,
+  Top = 1,
+  Bottom = 2,
+  Left = 3,
+  Right = 4,
+  TopRight = 5,
+  TopLeft = 6,
+  BottomRight = 7,
+  BottomLeft = 8,
+  LeftTop = 9,
+  LeftBottom = 10,
+  RightTop = 11,
+  RightBottom = 12,
+  Center = 13,
+}
+}
+
+export namespace WinUIEnums {
+export enum TeachingTipHeroContentPlacementMode {
+  Auto = 0,
+  Top = 1,
+  Bottom = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TreeViewSelectionMode {
+  None = 0,
+  Single = 1,
+  Multiple = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TwoPaneViewWideModeConfiguration {
+  SinglePane = 0,
+  LeftRight = 1,
+  RightLeft = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TwoPaneViewTallModeConfiguration {
+  SinglePane = 0,
+  TopBottom = 1,
+  BottomTop = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum TwoPaneViewPriority {
+  Pane1 = 0,
+  Pane2 = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum InfoBarCloseReason {
+  CloseButton = 0,
+  Programmatic = 1,
+}
+}
+
+export namespace WinUIEnums {
+export enum NavigationViewDisplayMode {
+  Minimal = 0,
+  Compact = 1,
+  Expanded = 2,
+}
+}
+
+export namespace WinUIEnums {
+export enum RefreshVisualizerState {
+  Idle = 0,
+  Peeking = 1,
+  Interacting = 2,
+  Pending = 3,
+  Refreshing = 4,
+}
+}
+
+export namespace WinUIEnums {
+export enum TeachingTipCloseReason {
+  CloseButton = 0,
+  LightDismiss = 1,
+  Programmatic = 2,
+}
+}
+
 
 
 export enum NavigationViewPriority {
