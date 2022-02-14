@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Mon, 14 Feb 2022 08:09:35 GMT",
+      "tag": "react-native-xaml_v0.0.61",
+      "version": "0.0.61",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Fix some prop types not being codegen'd because they are treated as nullable, like Color",
+            "commit": "1e6cfdc6ca137ba4c674c977d373c5b11f6d67ee"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Feb 2022 17:17:17 GMT",
       "tag": "react-native-xaml_v0.0.60",
       "version": "0.0.60",

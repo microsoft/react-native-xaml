@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix some prop types not being codegen'd because they are treated as nullable, like Color",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}
