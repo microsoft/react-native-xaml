@@ -29,8 +29,8 @@ export type BreadcrumbBarItemClickedEventArgs = {
 }
 export namespace WinUI {
 export type ColorChangedEventArgs = {
-  readonly newColor: Color;
-  readonly oldColor: Color;
+  readonly newColor: Color | number;
+  readonly oldColor: Color | number;
 }
 }
 export namespace WinUI {
@@ -351,8 +351,8 @@ export type CalendarDatePickerDateChangedEventArgs = {
 export type CalendarViewSelectedDatesChangedEventArgs = {
 }
 export type ColorChangedEventArgs = {
-  readonly newColor: Color;
-  readonly oldColor: Color;
+  readonly newColor: Color | number;
+  readonly oldColor: Color | number;
 }
 export type ComboBoxTextSubmittedEventArgs = {
   readonly handled: boolean;
@@ -727,6 +727,7 @@ export interface NativeBreadcrumbBarItemProps extends NativeContentControlProps 
 export namespace NativeWinUI {
 export interface NativeColorPickerProps extends NativeControlProps {
   type: 'Microsoft.UI.Xaml.Controls.ColorPicker';
+  previousColor?: any;
   minValue?: number;
   minSaturation?: number;
   minHue?: number;
@@ -744,6 +745,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
   isAlphaEnabled?: boolean;
   colorSpectrumShape?: Enums.WinUIEnums.ColorSpectrumShape;
   colorSpectrumComponents?: Enums.WinUIEnums.ColorSpectrumComponents;
+  color?: Color | number;
   onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<WinUI.ColorChangedEventArgs>>) => void;
 }
 }
@@ -974,6 +976,7 @@ export interface NativeColorSpectrumProps extends NativeControlProps {
   maxSaturation?: number;
   maxHue?: number;
   components?: Enums.WinUIEnums.ColorSpectrumComponents;
+  color?: Color | number;
   onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<WinUI.ColorChangedEventArgs>>) => void;
 }
 }
@@ -992,6 +995,7 @@ export interface NativeInfoBarPanelProps extends NativePanelProps {
 export namespace NativeWinUI {
 export interface NativeMonochromaticOverlayPresenterProps extends NativeGridProps {
   type: 'Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter';
+  replacementColor?: Color | number;
 }
 }
 export namespace NativeWinUI {
@@ -2371,6 +2375,7 @@ export interface NativeToggleButtonProps extends NativeButtonBaseProps {
         'Windows.UI.Xaml.Controls.InkToolbarRulerButton' |
         'Windows.UI.Xaml.Controls.InkToolbarStencilButton';
   isThreeState?: boolean;
+  isChecked?: any;
   onChecked?: (event: NativeSyntheticEvent<undefined>) => void;
   onIndeterminate?: (event: NativeSyntheticEvent<undefined>) => void;
   onUnchecked?: (event: NativeSyntheticEvent<undefined>) => void;
@@ -2559,6 +2564,7 @@ export interface NativeCheckBoxProps extends NativeToggleButtonProps {
 }
 export interface NativeColorPickerProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.ColorPicker';
+  previousColor?: any;
   minValue?: number;
   minSaturation?: number;
   minHue?: number;
@@ -2576,6 +2582,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
   isAlphaEnabled?: boolean;
   colorSpectrumShape?: Enums.ColorSpectrumShape;
   colorSpectrumComponents?: Enums.ColorSpectrumComponents;
+  color?: Color | number;
   onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<ColorChangedEventArgs>>) => void;
 }
 export interface NativeSelectorProps extends NativeItemsControlProps {
@@ -2594,6 +2601,7 @@ export interface NativeSelectorProps extends NativeItemsControlProps {
   selectedValue?: object;
   selectedItem?: object;
   selectedIndex?: number;
+  isSynchronizedWithCurrentItem?: any;
   onSelectionChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeComboBoxProps extends NativeSelectorProps {
@@ -3123,6 +3131,7 @@ export interface NativeMediaElementProps extends NativeFrameworkElementProps {
   posterSource?: string;
   playbackRate?: number;
   autoPlay?: boolean;
+  audioStreamIndex?: any;
   isMuted?: boolean;
   audioDeviceType?: Enums.AudioDeviceType;
   audioCategory?: Enums.AudioCategory;
@@ -3419,6 +3428,7 @@ export interface NativeColorSpectrumProps extends NativeControlProps {
   maxSaturation?: number;
   maxHue?: number;
   components?: Enums.ColorSpectrumComponents;
+  color?: Color | number;
   onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<ColorChangedEventArgs>>) => void;
 }
 export interface NativeCommandBarFlyoutCommandBarProps extends NativeCommandBarProps {
@@ -4042,6 +4052,7 @@ export interface NativeVirtualizingStackPanelProps extends NativeOrientedVirtual
 export interface NativeWebViewProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.WebView';
   source?: string;
+  defaultBackgroundColor?: Color | number;
   onLoadCompleted?: (event: NativeSyntheticEvent<undefined>) => void;
   onNavigationFailed?: (event: NativeSyntheticEvent<undefined>) => void;
   onScriptNotify?: (event: NativeSyntheticEvent<undefined>) => void;

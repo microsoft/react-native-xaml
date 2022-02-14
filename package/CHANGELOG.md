@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Thu, 10 Feb 2022 17:17:17 GMT and should not be manually modified.
+This log was last generated on Mon, 14 Feb 2022 08:09:35 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.61
+
+Mon, 14 Feb 2022 08:09:35 GMT
+
+### Patches
+
+- Fix some prop types not being codegen'd because they are treated as nullable, like Color (asklar@microsoft.com)
 
 ## 0.0.60
 
