@@ -148,12 +148,18 @@ namespace Codegen
             {
                 // MapStyle has a bug where it doesn't support coercion from int
             }
-            else if (t.IsEnum) return "int32_t";
-
+            else if (t.IsEnum) { return "int32_t"; }
+            else if (t.GetFullName() == "System.Nullable`1")
+            {
+                return GetCppWinRTType(t.GetGenericTypeParameters().First());
+            }
             if (primitiveTypes.ContainsKey(t.GetFullName()))
             {
                 return primitiveTypes[t.GetFullName()];
             }
+
+
+
             return $"winrt::{t.GetFullName().Replace(".", "::")}";
         }
 
@@ -228,6 +234,10 @@ namespace Codegen
                 case "Windows.UI.Text.FontWeight":
                     return ViewManagerPropertyType.Number;
                 case "System.Object":
+                    return ViewManagerPropertyType.Map;
+                case "System.Nullable`1":
+                    return GetVMPropertyType(propType.GetGenericTypeParameters().First());
+                case "Windows.UI.Color":
                     return ViewManagerPropertyType.Map;
             }
 
@@ -342,7 +352,7 @@ namespace Codegen
                 case "Windows.Foundation.Point":
                     return "Point";
                 case "Windows.UI.Color":
-                    return "Color";
+                    return "Color | number";
             }
 
             if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping))
