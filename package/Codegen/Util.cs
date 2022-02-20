@@ -474,24 +474,24 @@ namespace Codegen
                 return string.Join(" |\n        ", listDerived);
             }
         }
-        private static string GetEventArgsTSType(MrType t)
+        public static string GetEventArgsTSType(MrType t, string prefix)
         {
             if (t.GetFullName().EndsWith("EventArgs")) // proxy for "this is an event args type
             {
                 var tsNS = Util.GetTSNamespace(t);
-                return tsNS != "" ? $"{tsNS}.{t.GetName()}" : t.GetName();
+                return tsNS != "" ? $"{prefix}{tsNS}.{prefix}{t.GetName()}" : $"{prefix}{t.GetName()}";
             }
             return "any";
         }
 
-        public static string GetEventArgsTSName(MrEvent evt)
+        public static string GetEventArgsTSName(MrEvent evt, string prefix = "")
         {
             var evtType= evt.GetEventType();
             if (evtType.GetPrettyFullName().StartsWith("Windows.Foundation.TypedEventHandler<"))
             {
                 var evtArgs = evtType.GetGenericArguments()[1];
                 evtArgs = LoadContext.GetType(evtArgs.GetFullName());
-                return $"TypedEvent<{GetEventArgsTSType(evtArgs)}>";
+                return $"TypedEvent<{GetEventArgsTSType(evtArgs, prefix)}>";
             }
             return "undefined";
         }

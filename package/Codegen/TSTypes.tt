@@ -9,8 +9,14 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
 import type {
+    // Controls
 <# foreach (var type in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) == "")) { #>
     <#= Util.GetNativePropsName(type) #>,
+<# } #>
+
+    // EventArgs
+<# foreach (var type in Util.eventArgsTypes.Where(t => Util.GetTSNamespace(t) == "")) { #>
+    Native<#= type.GetName() #>,
 <# } #>
 } from './Props';
 
@@ -45,6 +51,19 @@ export class <#= Util.ToJsName(type) #> extends React.Component<<#= Util.ToJsNam
   }
 <# } #>
 };
+<# if (ns != "") { #>
+}
+<# } #>
+<# } #>
+
+<# foreach (var ea in Util.eventArgsTypes) {
+var ns = Util.GetTSNamespace(ea);
+if (ns != "") { #>
+export namespace <#= ns #> {
+<#
+}
+#>
+export type <#= ea.GetName() #> = <#= Util.GetEventArgsTSType(ea, "Native") #>;    // <#= ea.GetFullName() #> 
 <# if (ns != "") { #>
 }
 <# } #>
