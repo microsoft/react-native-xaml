@@ -159,11 +159,15 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
         });
       return IInspectableToValue(rt, res);
     }
+
   }
-  catch (const winrt::hresult& hr) {
-    OutputDebugStringA(std::to_string(hr.value).c_str());
+  catch (const std::exception& exc) {
+    OutputDebugStringA(__FUNCTION__);
+    OutputDebugStringA(": ");
+    OutputDebugStringA(exc.what());
     OutputDebugStringA("\n");
   }
+
   return jsi::HostObject::get(rt, nameId);
 }
 
