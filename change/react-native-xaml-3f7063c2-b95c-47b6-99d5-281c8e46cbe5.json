@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Export event args types from Types.tsx as well so they can be mentioned in apps",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
