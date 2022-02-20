@@ -101,57 +101,10 @@ const App = () => {
             }}
           />
 
-          <Button
-            onTapped={a => {setShowState(ContentDialogState.Popup);}}
-            content="click to open a ContentDialog" />
+        <WinUI.ColorPicker onColorChanged={(e) => {
+          console.log(e.nativeEvent);
+        }} />
 
-          <ContentDialog
-            showState={showState}
-            defaultButton={ContentDialogButton.Close}
-            title="the title"
-            content="this is the content"
-            closeButtonText="close"
-            primaryButtonText="primary"
-            secondaryButtonText="secondary"
-            onPrimaryButtonClick={e => {
-              alert('primary');
-            }}
-            onSecondaryButtonClick={e => {
-              alert('secondary');
-            }}
-            onClosed={e => {
-              setShowState(ContentDialogState.Hidden)
-              alert(JSON.stringify(e.nativeEvent.args));
-            }}
-             />
-
-
-          <TextBlock
-            text="Hello"
-            onTapped={e => {
-              MenuFlyout.ShowAt(menu, {point: {x: parseInt(x), y: 42}});
-            }}
-            ref={t => {
-              _tbRef.current = t;
-            }}
-            onContextRequested={e => {
-              const tag = findNodeHandle(_tbRef.current);
-
-              const { point, returnValue } = e.nativeEvent.args.TryGetPosition(tag);
-              MenuFlyout.ShowAt(menu, { point: point });
-            }}
-            >
-            <MenuFlyout
-              ref={m => {
-                menu.current = m;
-              }}
-              >
-              <MenuFlyoutItem text="menu option" />
-            </MenuFlyout>
-          </TextBlock>
-          <WinUI.ColorPicker onColorChanged={e => {
-            alert(JSON.stringify(e.nativeEvent.args.newColor));
-          }} />
         </View>
       </ScrollView>
     </SafeAreaView>

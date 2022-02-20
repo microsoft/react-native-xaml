@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Mon, 14 Feb 2022 08:09:35 GMT and should not be manually modified.
+This log was last generated on Sun, 20 Feb 2022 03:58:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.62
+
+Sun, 20 Feb 2022 03:58:46 GMT
+
+### Patches
+
+- Export event args types from Types.tsx as well so they can be mentioned in apps (asklar@microsoft.com)
 
 ## 0.0.61
 
