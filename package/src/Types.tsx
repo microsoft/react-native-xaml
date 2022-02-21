@@ -333,7 +333,9 @@ import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 import { findNodeHandle, UIManager } from 'react-native';
 
-import type { Point } from './Props';
+import type { Point, Color } from './Props';
+
+export type { Point, Color };
 
 const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
 
