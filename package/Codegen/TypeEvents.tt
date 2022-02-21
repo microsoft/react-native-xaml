@@ -33,20 +33,20 @@ __declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IInsp
 template<typename T>
 __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
   auto senderAsFE = sender.try_as<FrameworkElement>();
-  auto wEN = winrt::to_hstring(eai.jsEventName);
   if (eai.xamlMetadata.m_callFunctionReturnFlushedQueue.has_value()) {
     const auto tag = winrt::unbox_value<int64_t>(eai.obj.as<FrameworkElement>().Tag());
-    ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
+    ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, &eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
       auto objSender = std::make_shared<XamlObject>(senderAsFE, metadata);
       auto objArgs = std::make_shared<XamlObject>(args, metadata);
       auto obj = std::make_shared<facebook::jsi::Object>(rt);
       obj->setProperty(rt, "sender", rt.global().createFromHostObject(rt, objSender));
       obj->setProperty(rt, "args", rt.global().createFromHostObject(rt, objArgs));
 
-      metadata->JsiDispatchEvent(rt, tag, std::string(eventName), obj);
+      metadata->JsiDispatchEvent(rt, tag, eventName, obj);
       });
   }
   else {
+    auto wEN = winrt::to_hstring(eai.jsEventName);
     XamlUIService::FromContext(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(),
       [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {
         SerializeEventArgs(evtDataWriter, senderAsFE, args);

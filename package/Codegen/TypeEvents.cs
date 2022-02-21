@@ -75,22 +75,22 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
                     "as<T>();\r\n  return o;\r\n}\r\n\r\ntemplate<typename T>\r\n__declspec(noinline) void Disp" +
                     "atchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInsp" +
                     "ectable& sender, const T& args) {\r\n  auto senderAsFE = sender.try_as<FrameworkEl" +
-                    "ement>();\r\n  auto wEN = winrt::to_hstring(eai.jsEventName);\r\n  if (eai.xamlMetad" +
-                    "ata.m_callFunctionReturnFlushedQueue.has_value()) {\r\n    const auto tag = winrt:" +
-                    ":unbox_value<int64_t>(eai.obj.as<FrameworkElement>().Tag());\r\n    ExecuteJsi(eai" +
-                    ".context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args" +
-                    ", eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {\r\n      auto objSend" +
-                    "er = std::make_shared<XamlObject>(senderAsFE, metadata);\r\n      auto objArgs = s" +
-                    "td::make_shared<XamlObject>(args, metadata);\r\n      auto obj = std::make_shared<" +
-                    "facebook::jsi::Object>(rt);\r\n      obj->setProperty(rt, \"sender\", rt.global().cr" +
-                    "eateFromHostObject(rt, objSender));\r\n      obj->setProperty(rt, \"args\", rt.globa" +
-                    "l().createFromHostObject(rt, objArgs));\r\n\r\n      metadata->JsiDispatchEvent(rt, " +
-                    "tag, std::string(eventName), obj);\r\n      });\r\n  }\r\n  else {\r\n    XamlUIService:" +
-                    ":FromContext(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>()" +
-                    ", wEN.c_str(),\r\n      [senderAsFE, args](const winrt::Microsoft::ReactNative::IJ" +
-                    "SValueWriter& evtDataWriter) {\r\n        SerializeEventArgs(evtDataWriter, sender" +
-                    "AsFE, args);\r\n      });\r\n  }\r\n};\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEv" +
-                    "entMap[] = {\r\n");
+                    "ement>();\r\n  if (eai.xamlMetadata.m_callFunctionReturnFlushedQueue.has_value()) " +
+                    "{\r\n    const auto tag = winrt::unbox_value<int64_t>(eai.obj.as<FrameworkElement>" +
+                    "().Tag());\r\n    ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from" +
+                    "_this(), tag, senderAsFE, args, &eventName = eai.jsEventName](facebook::jsi::Run" +
+                    "time& rt) {\r\n      auto objSender = std::make_shared<XamlObject>(senderAsFE, met" +
+                    "adata);\r\n      auto objArgs = std::make_shared<XamlObject>(args, metadata);\r\n   " +
+                    "   auto obj = std::make_shared<facebook::jsi::Object>(rt);\r\n      obj->setProper" +
+                    "ty(rt, \"sender\", rt.global().createFromHostObject(rt, objSender));\r\n      obj->s" +
+                    "etProperty(rt, \"args\", rt.global().createFromHostObject(rt, objArgs));\r\n\r\n      " +
+                    "metadata->JsiDispatchEvent(rt, tag, eventName, obj);\r\n      });\r\n  }\r\n  else {\r\n" +
+                    "    auto wEN = winrt::to_hstring(eai.jsEventName);\r\n    XamlUIService::FromConte" +
+                    "xt(eai.context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_st" +
+                    "r(),\r\n      [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWrit" +
+                    "er& evtDataWriter) {\r\n        SerializeEventArgs(evtDataWriter, senderAsFE, args" +
+                    ");\r\n      });\r\n  }\r\n};\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEventMap[] =" +
+                    " {\r\n");
             
             #line 58 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeEvents.tt"
  foreach (var evt in Events) { 

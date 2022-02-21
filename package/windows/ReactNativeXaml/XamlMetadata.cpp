@@ -300,7 +300,7 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
 
 }
 
-void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept {
+void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, const std::string& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept {
   auto params = jsi::Array(rt, 3);
   params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
   params.setValueAtIndex(rt, 1, eventName);
