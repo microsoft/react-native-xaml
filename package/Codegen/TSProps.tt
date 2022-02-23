@@ -29,9 +29,9 @@ export type TypedEvent<TArgs> = {
 <# foreach (var t in Util.eventArgsTypes) { 
 	var ns = Util.GetTSNamespace(t);
 	if (ns != "") { #>
-export namespace <#= ns #> {
+export namespace Native<#= ns #> {
 <# } #>
-export type <#= Util.ToJsName(t) #> = {
+export type Native<#= Util.ToJsName(t) #> = {
 <#	foreach (var m in Util.GetEventArgsMethods(t.GetFullName())) { #>
   <#= m #>(<#= Util.GetEventArgsMethodArgs(t, m) #>): <#= Util.GetEventArgsMethodReturnType(t, m) #>
 <#  }
@@ -77,7 +77,7 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) { #>
   <#= Util.ToJsName(attachedDP) #>?: <#= Util.GetTypeScriptType(attachedDP) #>; // attached property
 <# }
   foreach (var evt in type.GetEvents()) { #>
-  on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<<#= Util.GetEventArgsTSName(evt) #>>) => void;
+  on<#= evt.GetName() #>?: (event: NativeSyntheticEvent<<#= Util.GetEventArgsTSName(evt, "Native") #>>) => void;
 <# } 
   foreach (var evt in SyntheticEvents.Where(e => type == e.DeclaringType)) { #>
   on<#= evt.Name #>?: (event: NativeSyntheticEvent<<#= Util.GetTypeScriptType(evt) #>>) => void;

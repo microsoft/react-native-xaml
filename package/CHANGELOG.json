@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Sun, 20 Feb 2022 03:58:46 GMT",
+      "tag": "react-native-xaml_v0.0.62",
+      "version": "0.0.62",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Export event args types from Types.tsx as well so they can be mentioned in apps",
+            "commit": "7f9c7f907cf4ca407f0f8a5d41f83722d736f5f4"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 14 Feb 2022 08:09:35 GMT",
       "tag": "react-native-xaml_v0.0.61",
       "version": "0.0.61",

@@ -159,11 +159,15 @@ jsi::Value XamlObject::get(jsi::Runtime& rt, const jsi::PropNameID& nameId) noex
         });
       return IInspectableToValue(rt, res);
     }
+
   }
-  catch (const winrt::hresult& hr) {
-    OutputDebugStringA(std::to_string(hr.value).c_str());
+  catch (const std::exception& exc) {
+    OutputDebugStringA(__FUNCTION__);
+    OutputDebugStringA(": ");
+    OutputDebugStringA(exc.what());
     OutputDebugStringA("\n");
   }
+
   return jsi::HostObject::get(rt, nameId);
 }
 
@@ -188,6 +192,14 @@ facebook::jsi::Value XamlObject::IInspectableToValue(jsi::Runtime& rt, const win
     auto v = refInt64.GetInt64();
     assert((v < std::numeric_limits<int32_t>::max()) && (v > std::numeric_limits<int32_t>::min()));
     return jsi::Value(refInt64.GetInt32());
+  }
+  else if (auto refUInt64 = o.try_as<winrt::Windows::Foundation::IReference<uint64_t>>()) {
+    auto v = refUInt64.GetUInt64();
+    assert((v < std::numeric_limits<int32_t>::max()) && (v > std::numeric_limits<int32_t>::min()));
+    return jsi::Value(refInt64.GetInt32());
+  }
+  else if (auto refFloat= o.try_as<winrt::Windows::Foundation::IReference<float>>()) {
+    return jsi::Value(static_cast<double>(refFloat.GetSingle()));
   }
   else if (auto refDouble = o.try_as<winrt::Windows::Foundation::IReference<double>>()) {
     return jsi::Value(refDouble.GetDouble());

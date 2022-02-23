@@ -4,6 +4,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 **************************************************************/
 
 import type {
+    // Controls
     NativeContentControlProps,
     NativeAppBarProps,
     NativeButtonProps,
@@ -174,6 +175,156 @@ import type {
     NativePolygonProps,
     NativePolylineProps,
     NativeRectangleProps,
+
+    // EventArgs
+    NativeSelectionChangedEventArgs,
+    NativeIVectorChangedEventArgs,
+    NativeDragEventArgs,
+    NativeDoubleTappedRoutedEventArgs,
+    NativeRoutedEventArgs,
+    NativeHoldingRoutedEventArgs,
+    NativeManipulationCompletedRoutedEventArgs,
+    NativeManipulationDeltaRoutedEventArgs,
+    NativeManipulationInertiaStartingRoutedEventArgs,
+    NativeManipulationStartedRoutedEventArgs,
+    NativeManipulationStartingRoutedEventArgs,
+    NativePointerRoutedEventArgs,
+    NativeRightTappedRoutedEventArgs,
+    NativeTappedRoutedEventArgs,
+    NativeDragStartingEventArgs,
+    NativeDropCompletedEventArgs,
+    NativeAccessKeyDisplayDismissedEventArgs,
+    NativeAccessKeyDisplayRequestedEventArgs,
+    NativeAccessKeyInvokedEventArgs,
+    NativeContextRequestedEventArgs,
+    NativeGettingFocusEventArgs,
+    NativeLosingFocusEventArgs,
+    NativeNoFocusCandidateFoundEventArgs,
+    NativeCharacterReceivedRoutedEventArgs,
+    NativeKeyRoutedEventArgs,
+    NativeProcessKeyboardAcceleratorEventArgs,
+    NativeBringIntoViewRequestedEventArgs,
+    NativeSizeChangedEventArgs,
+    NativeDataContextChangedEventArgs,
+    NativeEffectiveViewportChangedEventArgs,
+    NativeDependencyPropertyChangedEventArgs,
+    NativeFocusDisengagedEventArgs,
+    NativeFocusEngagedEventArgs,
+    NativeAutoSuggestBoxSuggestionChosenEventArgs,
+    NativeAutoSuggestBoxTextChangedEventArgs,
+    NativeAutoSuggestBoxQuerySubmittedEventArgs,
+    NativeCalendarViewDayItemChangingEventArgs,
+    NativeCalendarDatePickerDateChangedEventArgs,
+    NativeCalendarViewSelectedDatesChangedEventArgs,
+    NativeColorChangedEventArgs,
+    NativeComboBoxTextSubmittedEventArgs,
+    NativeDynamicOverflowItemsChangingEventArgs,
+    NativeFlyoutBaseClosingEventArgs,
+    NativeContentDialogClosedEventArgs,
+    NativeContentDialogClosingEventArgs,
+    NativeContentDialogOpenedEventArgs,
+    NativeContentDialogButtonClickEventArgs,
+    NativeDatePickerValueChangedEventArgs,
+    NativeDatePickerSelectedValueChangedEventArgs,
+    NativeDatePickedEventArgs,
+    NativeNavigationEventArgs,
+    NativeNavigatingCancelEventArgs,
+    NativeNavigationFailedEventArgs,
+    NativeDragItemsStartingEventArgs,
+    NativeItemClickEventArgs,
+    NativeContainerContentChangingEventArgs,
+    NativeChoosingGroupHeaderContainerEventArgs,
+    NativeChoosingItemContainerEventArgs,
+    NativeDragItemsCompletedEventArgs,
+    NativeHandwritingPanelClosedEventArgs,
+    NativeHandwritingPanelOpenedEventArgs,
+    NativeHubSectionHeaderClickEventArgs,
+    NativeSectionsInViewChangedEventArgs,
+    NativeExceptionRoutedEventArgs,
+    NativeInkToolbarIsStencilButtonCheckedChangedEventArgs,
+    NativeItemsPickedEventArgs,
+    NativeMapInputEventArgs,
+    NativeMapActualCameraChangedEventArgs,
+    NativeMapActualCameraChangingEventArgs,
+    NativeMapCustomExperienceChangedEventArgs,
+    NativeMapElementClickEventArgs,
+    NativeMapElementPointerEnteredEventArgs,
+    NativeMapElementPointerExitedEventArgs,
+    NativeMapTargetCameraChangedEventArgs,
+    NativeMapRightTappedEventArgs,
+    NativeMapContextRequestedEventArgs,
+    NativeTimelineMarkerRoutedEventArgs,
+    NativeRateChangedRoutedEventArgs,
+    NativePartialMediaFailureDetectedEventArgs,
+    NativeMediaTransportControlsThumbnailRequestedEventArgs,
+    NativeNavigationViewDisplayModeChangedEventArgs,
+    NativeNavigationViewItemInvokedEventArgs,
+    NativeNavigationViewSelectionChangedEventArgs,
+    NativeNavigationViewBackRequestedEventArgs,
+    NativeNavigationViewPaneClosingEventArgs,
+    NativeContextMenuEventArgs,
+    NativeTextControlPasteEventArgs,
+    NativePasswordBoxPasswordChangingEventArgs,
+    NativePickerConfirmedEventArgs,
+    NativePivotItemEventArgs,
+    NativeRangeBaseValueChangedEventArgs,
+    NativeScrollEventArgs,
+    NativeDragCompletedEventArgs,
+    NativeDragDeltaEventArgs,
+    NativeDragStartedEventArgs,
+    NativeRefreshRequestedEventArgs,
+    NativeRefreshStateChangedEventArgs,
+    NativeCandidateWindowBoundsChangedEventArgs,
+    NativeRichEditBoxTextChangingEventArgs,
+    NativeTextCompositionChangedEventArgs,
+    NativeTextCompositionEndedEventArgs,
+    NativeTextCompositionStartedEventArgs,
+    NativeTextControlCopyingToClipboardEventArgs,
+    NativeTextControlCuttingToClipboardEventArgs,
+    NativeContentLinkChangedEventArgs,
+    NativeContentLinkInvokedEventArgs,
+    NativeRichEditBoxSelectionChangingEventArgs,
+    NativeIsTextTrimmedChangedEventArgs,
+    NativeScrollViewerViewChangedEventArgs,
+    NativeScrollViewerViewChangingEventArgs,
+    NativeAnchorRequestedEventArgs,
+    NativeSearchBoxQueryChangedEventArgs,
+    NativeSearchBoxQuerySubmittedEventArgs,
+    NativeSearchBoxResultSuggestionChosenEventArgs,
+    NativeSearchBoxSuggestionsRequestedEventArgs,
+    NativeSemanticZoomViewChangedEventArgs,
+    NativeBackClickEventArgs,
+    NativeSplitButtonClickEventArgs,
+    NativeSplitViewPaneClosingEventArgs,
+    NativeTextChangedEventArgs,
+    NativeTextBoxTextChangingEventArgs,
+    NativeTextBoxBeforeTextChangingEventArgs,
+    NativeTextBoxSelectionChangingEventArgs,
+    NativeTimePickerValueChangedEventArgs,
+    NativeTimePickerSelectedValueChangedEventArgs,
+    NativeTimePickedEventArgs,
+    NativeToggleSplitButtonIsCheckedChangedEventArgs,
+    NativeTreeViewCollapsedEventArgs,
+    NativeTreeViewExpandingEventArgs,
+    NativeTreeViewItemInvokedEventArgs,
+    NativeTreeViewDragItemsCompletedEventArgs,
+    NativeTreeViewDragItemsStartingEventArgs,
+    NativeCleanUpVirtualizedItemEventArgs,
+    NativeWebViewNavigationFailedEventArgs,
+    NativeNotifyEventArgs,
+    NativeWebViewContentLoadingEventArgs,
+    NativeWebViewDOMContentLoadedEventArgs,
+    NativeWebViewNavigationCompletedEventArgs,
+    NativeWebViewNavigationStartingEventArgs,
+    NativeWebViewLongRunningScriptDetectedEventArgs,
+    NativeWebViewUnviewableContentIdentifiedEventArgs,
+    NativeWebViewNewWindowRequestedEventArgs,
+    NativeWebViewPermissionRequestedEventArgs,
+    NativeWebViewUnsupportedUriSchemeIdentifiedEventArgs,
+    NativeWebViewSeparateProcessLostEventArgs,
+    NativeWebViewWebResourceRequestedEventArgs,
+    NativeHyperlinkClickEventArgs,
+    NativeKeyboardAcceleratorInvokedEventArgs,
 } from './Props';
 
 import type { NativeWinUI } from './Props';
@@ -182,7 +333,9 @@ import React from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
 import { findNodeHandle, UIManager } from 'react-native';
 
-import type { Point } from './Props';
+import type { Point, Color } from './Props';
+
+export type { Point, Color };
 
 const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
 
@@ -1821,3 +1974,251 @@ export class Rectangle extends React.Component<RectangleProps> {
     return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Rectangle' />;
   }
 };
+
+export namespace WinUI {
+export type BreadcrumbBarItemClickedEventArgs = NativeWinUI.NativeBreadcrumbBarItemClickedEventArgs;    // Microsoft.UI.Xaml.Controls.BreadcrumbBarItemClickedEventArgs 
+}
+export namespace WinUI {
+export type ColorChangedEventArgs = NativeWinUI.NativeColorChangedEventArgs;    // Microsoft.UI.Xaml.Controls.ColorChangedEventArgs 
+}
+export namespace WinUI {
+export type ExpanderCollapsedEventArgs = NativeWinUI.NativeExpanderCollapsedEventArgs;    // Microsoft.UI.Xaml.Controls.ExpanderCollapsedEventArgs 
+}
+export namespace WinUI {
+export type ExpanderExpandingEventArgs = NativeWinUI.NativeExpanderExpandingEventArgs;    // Microsoft.UI.Xaml.Controls.ExpanderExpandingEventArgs 
+}
+export namespace WinUI {
+export type InfoBarClosedEventArgs = NativeWinUI.NativeInfoBarClosedEventArgs;    // Microsoft.UI.Xaml.Controls.InfoBarClosedEventArgs 
+}
+export namespace WinUI {
+export type InfoBarClosingEventArgs = NativeWinUI.NativeInfoBarClosingEventArgs;    // Microsoft.UI.Xaml.Controls.InfoBarClosingEventArgs 
+}
+export namespace WinUI {
+export type ItemsRepeaterElementClearingEventArgs = NativeWinUI.NativeItemsRepeaterElementClearingEventArgs;    // Microsoft.UI.Xaml.Controls.ItemsRepeaterElementClearingEventArgs 
+}
+export namespace WinUI {
+export type ItemsRepeaterElementIndexChangedEventArgs = NativeWinUI.NativeItemsRepeaterElementIndexChangedEventArgs;    // Microsoft.UI.Xaml.Controls.ItemsRepeaterElementIndexChangedEventArgs 
+}
+export namespace WinUI {
+export type ItemsRepeaterElementPreparedEventArgs = NativeWinUI.NativeItemsRepeaterElementPreparedEventArgs;    // Microsoft.UI.Xaml.Controls.ItemsRepeaterElementPreparedEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewDisplayModeChangedEventArgs = NativeWinUI.NativeNavigationViewDisplayModeChangedEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewItemInvokedEventArgs = NativeWinUI.NativeNavigationViewItemInvokedEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewSelectionChangedEventArgs = NativeWinUI.NativeNavigationViewSelectionChangedEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewBackRequestedEventArgs = NativeWinUI.NativeNavigationViewBackRequestedEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewItemCollapsedEventArgs = NativeWinUI.NativeNavigationViewItemCollapsedEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewItemCollapsedEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewItemExpandingEventArgs = NativeWinUI.NativeNavigationViewItemExpandingEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewItemExpandingEventArgs 
+}
+export namespace WinUI {
+export type NavigationViewPaneClosingEventArgs = NativeWinUI.NativeNavigationViewPaneClosingEventArgs;    // Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs 
+}
+export namespace WinUI {
+export type NumberBoxValueChangedEventArgs = NativeWinUI.NativeNumberBoxValueChangedEventArgs;    // Microsoft.UI.Xaml.Controls.NumberBoxValueChangedEventArgs 
+}
+export namespace WinUI {
+export type PipsPagerSelectedIndexChangedEventArgs = NativeWinUI.NativePipsPagerSelectedIndexChangedEventArgs;    // Microsoft.UI.Xaml.Controls.PipsPagerSelectedIndexChangedEventArgs 
+}
+export type SelectionChangedEventArgs = NativeSelectionChangedEventArgs;    // Windows.UI.Xaml.Controls.SelectionChangedEventArgs 
+export namespace WinUI {
+export type RefreshRequestedEventArgs = NativeWinUI.NativeRefreshRequestedEventArgs;    // Microsoft.UI.Xaml.Controls.RefreshRequestedEventArgs 
+}
+export namespace WinUI {
+export type RefreshStateChangedEventArgs = NativeWinUI.NativeRefreshStateChangedEventArgs;    // Microsoft.UI.Xaml.Controls.RefreshStateChangedEventArgs 
+}
+export namespace WinUI {
+export type SplitButtonClickEventArgs = NativeWinUI.NativeSplitButtonClickEventArgs;    // Microsoft.UI.Xaml.Controls.SplitButtonClickEventArgs 
+}
+export namespace WinUI {
+export type TabViewTabCloseRequestedEventArgs = NativeWinUI.NativeTabViewTabCloseRequestedEventArgs;    // Microsoft.UI.Xaml.Controls.TabViewTabCloseRequestedEventArgs 
+}
+export namespace WinUI {
+export type TabViewTabDragCompletedEventArgs = NativeWinUI.NativeTabViewTabDragCompletedEventArgs;    // Microsoft.UI.Xaml.Controls.TabViewTabDragCompletedEventArgs 
+}
+export namespace WinUI {
+export type TabViewTabDragStartingEventArgs = NativeWinUI.NativeTabViewTabDragStartingEventArgs;    // Microsoft.UI.Xaml.Controls.TabViewTabDragStartingEventArgs 
+}
+export namespace WinUI {
+export type TabViewTabDroppedOutsideEventArgs = NativeWinUI.NativeTabViewTabDroppedOutsideEventArgs;    // Microsoft.UI.Xaml.Controls.TabViewTabDroppedOutsideEventArgs 
+}
+export type IVectorChangedEventArgs = NativeIVectorChangedEventArgs;    // Windows.Foundation.Collections.IVectorChangedEventArgs 
+export type DragEventArgs = NativeDragEventArgs;    // Windows.UI.Xaml.DragEventArgs 
+export namespace WinUI {
+export type TeachingTipClosedEventArgs = NativeWinUI.NativeTeachingTipClosedEventArgs;    // Microsoft.UI.Xaml.Controls.TeachingTipClosedEventArgs 
+}
+export namespace WinUI {
+export type TeachingTipClosingEventArgs = NativeWinUI.NativeTeachingTipClosingEventArgs;    // Microsoft.UI.Xaml.Controls.TeachingTipClosingEventArgs 
+}
+export namespace WinUI {
+export type ToggleSplitButtonIsCheckedChangedEventArgs = NativeWinUI.NativeToggleSplitButtonIsCheckedChangedEventArgs;    // Microsoft.UI.Xaml.Controls.ToggleSplitButtonIsCheckedChangedEventArgs 
+}
+export namespace WinUI {
+export type TreeViewCollapsedEventArgs = NativeWinUI.NativeTreeViewCollapsedEventArgs;    // Microsoft.UI.Xaml.Controls.TreeViewCollapsedEventArgs 
+}
+export namespace WinUI {
+export type TreeViewExpandingEventArgs = NativeWinUI.NativeTreeViewExpandingEventArgs;    // Microsoft.UI.Xaml.Controls.TreeViewExpandingEventArgs 
+}
+export namespace WinUI {
+export type TreeViewItemInvokedEventArgs = NativeWinUI.NativeTreeViewItemInvokedEventArgs;    // Microsoft.UI.Xaml.Controls.TreeViewItemInvokedEventArgs 
+}
+export namespace WinUI {
+export type TreeViewDragItemsCompletedEventArgs = NativeWinUI.NativeTreeViewDragItemsCompletedEventArgs;    // Microsoft.UI.Xaml.Controls.TreeViewDragItemsCompletedEventArgs 
+}
+export namespace WinUI {
+export type TreeViewDragItemsStartingEventArgs = NativeWinUI.NativeTreeViewDragItemsStartingEventArgs;    // Microsoft.UI.Xaml.Controls.TreeViewDragItemsStartingEventArgs 
+}
+export type DoubleTappedRoutedEventArgs = NativeDoubleTappedRoutedEventArgs;    // Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs 
+export type RoutedEventArgs = NativeRoutedEventArgs;    // Windows.UI.Xaml.RoutedEventArgs 
+export type HoldingRoutedEventArgs = NativeHoldingRoutedEventArgs;    // Windows.UI.Xaml.Input.HoldingRoutedEventArgs 
+export type ManipulationCompletedRoutedEventArgs = NativeManipulationCompletedRoutedEventArgs;    // Windows.UI.Xaml.Input.ManipulationCompletedRoutedEventArgs 
+export type ManipulationDeltaRoutedEventArgs = NativeManipulationDeltaRoutedEventArgs;    // Windows.UI.Xaml.Input.ManipulationDeltaRoutedEventArgs 
+export type ManipulationInertiaStartingRoutedEventArgs = NativeManipulationInertiaStartingRoutedEventArgs;    // Windows.UI.Xaml.Input.ManipulationInertiaStartingRoutedEventArgs 
+export type ManipulationStartedRoutedEventArgs = NativeManipulationStartedRoutedEventArgs;    // Windows.UI.Xaml.Input.ManipulationStartedRoutedEventArgs 
+export type ManipulationStartingRoutedEventArgs = NativeManipulationStartingRoutedEventArgs;    // Windows.UI.Xaml.Input.ManipulationStartingRoutedEventArgs 
+export type PointerRoutedEventArgs = NativePointerRoutedEventArgs;    // Windows.UI.Xaml.Input.PointerRoutedEventArgs 
+export type RightTappedRoutedEventArgs = NativeRightTappedRoutedEventArgs;    // Windows.UI.Xaml.Input.RightTappedRoutedEventArgs 
+export type TappedRoutedEventArgs = NativeTappedRoutedEventArgs;    // Windows.UI.Xaml.Input.TappedRoutedEventArgs 
+export type DragStartingEventArgs = NativeDragStartingEventArgs;    // Windows.UI.Xaml.DragStartingEventArgs 
+export type DropCompletedEventArgs = NativeDropCompletedEventArgs;    // Windows.UI.Xaml.DropCompletedEventArgs 
+export type AccessKeyDisplayDismissedEventArgs = NativeAccessKeyDisplayDismissedEventArgs;    // Windows.UI.Xaml.Input.AccessKeyDisplayDismissedEventArgs 
+export type AccessKeyDisplayRequestedEventArgs = NativeAccessKeyDisplayRequestedEventArgs;    // Windows.UI.Xaml.Input.AccessKeyDisplayRequestedEventArgs 
+export type AccessKeyInvokedEventArgs = NativeAccessKeyInvokedEventArgs;    // Windows.UI.Xaml.Input.AccessKeyInvokedEventArgs 
+export type ContextRequestedEventArgs = NativeContextRequestedEventArgs;    // Windows.UI.Xaml.Input.ContextRequestedEventArgs 
+export type GettingFocusEventArgs = NativeGettingFocusEventArgs;    // Windows.UI.Xaml.Input.GettingFocusEventArgs 
+export type LosingFocusEventArgs = NativeLosingFocusEventArgs;    // Windows.UI.Xaml.Input.LosingFocusEventArgs 
+export type NoFocusCandidateFoundEventArgs = NativeNoFocusCandidateFoundEventArgs;    // Windows.UI.Xaml.Input.NoFocusCandidateFoundEventArgs 
+export type CharacterReceivedRoutedEventArgs = NativeCharacterReceivedRoutedEventArgs;    // Windows.UI.Xaml.Input.CharacterReceivedRoutedEventArgs 
+export type KeyRoutedEventArgs = NativeKeyRoutedEventArgs;    // Windows.UI.Xaml.Input.KeyRoutedEventArgs 
+export type ProcessKeyboardAcceleratorEventArgs = NativeProcessKeyboardAcceleratorEventArgs;    // Windows.UI.Xaml.Input.ProcessKeyboardAcceleratorEventArgs 
+export type BringIntoViewRequestedEventArgs = NativeBringIntoViewRequestedEventArgs;    // Windows.UI.Xaml.BringIntoViewRequestedEventArgs 
+export type SizeChangedEventArgs = NativeSizeChangedEventArgs;    // Windows.UI.Xaml.SizeChangedEventArgs 
+export type DataContextChangedEventArgs = NativeDataContextChangedEventArgs;    // Windows.UI.Xaml.DataContextChangedEventArgs 
+export type EffectiveViewportChangedEventArgs = NativeEffectiveViewportChangedEventArgs;    // Windows.UI.Xaml.EffectiveViewportChangedEventArgs 
+export type DependencyPropertyChangedEventArgs = NativeDependencyPropertyChangedEventArgs;    // Windows.UI.Xaml.DependencyPropertyChangedEventArgs 
+export type FocusDisengagedEventArgs = NativeFocusDisengagedEventArgs;    // Windows.UI.Xaml.Controls.FocusDisengagedEventArgs 
+export type FocusEngagedEventArgs = NativeFocusEngagedEventArgs;    // Windows.UI.Xaml.Controls.FocusEngagedEventArgs 
+export type AutoSuggestBoxSuggestionChosenEventArgs = NativeAutoSuggestBoxSuggestionChosenEventArgs;    // Windows.UI.Xaml.Controls.AutoSuggestBoxSuggestionChosenEventArgs 
+export type AutoSuggestBoxTextChangedEventArgs = NativeAutoSuggestBoxTextChangedEventArgs;    // Windows.UI.Xaml.Controls.AutoSuggestBoxTextChangedEventArgs 
+export type AutoSuggestBoxQuerySubmittedEventArgs = NativeAutoSuggestBoxQuerySubmittedEventArgs;    // Windows.UI.Xaml.Controls.AutoSuggestBoxQuerySubmittedEventArgs 
+export type CalendarViewDayItemChangingEventArgs = NativeCalendarViewDayItemChangingEventArgs;    // Windows.UI.Xaml.Controls.CalendarViewDayItemChangingEventArgs 
+export type CalendarDatePickerDateChangedEventArgs = NativeCalendarDatePickerDateChangedEventArgs;    // Windows.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs 
+export type CalendarViewSelectedDatesChangedEventArgs = NativeCalendarViewSelectedDatesChangedEventArgs;    // Windows.UI.Xaml.Controls.CalendarViewSelectedDatesChangedEventArgs 
+export type ColorChangedEventArgs = NativeColorChangedEventArgs;    // Windows.UI.Xaml.Controls.ColorChangedEventArgs 
+export type ComboBoxTextSubmittedEventArgs = NativeComboBoxTextSubmittedEventArgs;    // Windows.UI.Xaml.Controls.ComboBoxTextSubmittedEventArgs 
+export type DynamicOverflowItemsChangingEventArgs = NativeDynamicOverflowItemsChangingEventArgs;    // Windows.UI.Xaml.Controls.DynamicOverflowItemsChangingEventArgs 
+export type FlyoutBaseClosingEventArgs = NativeFlyoutBaseClosingEventArgs;    // Windows.UI.Xaml.Controls.Primitives.FlyoutBaseClosingEventArgs 
+export type ContentDialogClosedEventArgs = NativeContentDialogClosedEventArgs;    // Windows.UI.Xaml.Controls.ContentDialogClosedEventArgs 
+export type ContentDialogClosingEventArgs = NativeContentDialogClosingEventArgs;    // Windows.UI.Xaml.Controls.ContentDialogClosingEventArgs 
+export type ContentDialogOpenedEventArgs = NativeContentDialogOpenedEventArgs;    // Windows.UI.Xaml.Controls.ContentDialogOpenedEventArgs 
+export type ContentDialogButtonClickEventArgs = NativeContentDialogButtonClickEventArgs;    // Windows.UI.Xaml.Controls.ContentDialogButtonClickEventArgs 
+export type DatePickerValueChangedEventArgs = NativeDatePickerValueChangedEventArgs;    // Windows.UI.Xaml.Controls.DatePickerValueChangedEventArgs 
+export type DatePickerSelectedValueChangedEventArgs = NativeDatePickerSelectedValueChangedEventArgs;    // Windows.UI.Xaml.Controls.DatePickerSelectedValueChangedEventArgs 
+export type DatePickedEventArgs = NativeDatePickedEventArgs;    // Windows.UI.Xaml.Controls.DatePickedEventArgs 
+export type NavigationEventArgs = NativeNavigationEventArgs;    // Windows.UI.Xaml.Navigation.NavigationEventArgs 
+export type NavigatingCancelEventArgs = NativeNavigatingCancelEventArgs;    // Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs 
+export type NavigationFailedEventArgs = NativeNavigationFailedEventArgs;    // Windows.UI.Xaml.Navigation.NavigationFailedEventArgs 
+export type DragItemsStartingEventArgs = NativeDragItemsStartingEventArgs;    // Windows.UI.Xaml.Controls.DragItemsStartingEventArgs 
+export type ItemClickEventArgs = NativeItemClickEventArgs;    // Windows.UI.Xaml.Controls.ItemClickEventArgs 
+export type ContainerContentChangingEventArgs = NativeContainerContentChangingEventArgs;    // Windows.UI.Xaml.Controls.ContainerContentChangingEventArgs 
+export type ChoosingGroupHeaderContainerEventArgs = NativeChoosingGroupHeaderContainerEventArgs;    // Windows.UI.Xaml.Controls.ChoosingGroupHeaderContainerEventArgs 
+export type ChoosingItemContainerEventArgs = NativeChoosingItemContainerEventArgs;    // Windows.UI.Xaml.Controls.ChoosingItemContainerEventArgs 
+export type DragItemsCompletedEventArgs = NativeDragItemsCompletedEventArgs;    // Windows.UI.Xaml.Controls.DragItemsCompletedEventArgs 
+export type HandwritingPanelClosedEventArgs = NativeHandwritingPanelClosedEventArgs;    // Windows.UI.Xaml.Controls.HandwritingPanelClosedEventArgs 
+export type HandwritingPanelOpenedEventArgs = NativeHandwritingPanelOpenedEventArgs;    // Windows.UI.Xaml.Controls.HandwritingPanelOpenedEventArgs 
+export type HubSectionHeaderClickEventArgs = NativeHubSectionHeaderClickEventArgs;    // Windows.UI.Xaml.Controls.HubSectionHeaderClickEventArgs 
+export type SectionsInViewChangedEventArgs = NativeSectionsInViewChangedEventArgs;    // Windows.UI.Xaml.Controls.SectionsInViewChangedEventArgs 
+export type ExceptionRoutedEventArgs = NativeExceptionRoutedEventArgs;    // Windows.UI.Xaml.ExceptionRoutedEventArgs 
+export type InkToolbarIsStencilButtonCheckedChangedEventArgs = NativeInkToolbarIsStencilButtonCheckedChangedEventArgs;    // Windows.UI.Xaml.Controls.InkToolbarIsStencilButtonCheckedChangedEventArgs 
+export type ItemsPickedEventArgs = NativeItemsPickedEventArgs;    // Windows.UI.Xaml.Controls.ItemsPickedEventArgs 
+export type MapInputEventArgs = NativeMapInputEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapInputEventArgs 
+export type MapActualCameraChangedEventArgs = NativeMapActualCameraChangedEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapActualCameraChangedEventArgs 
+export type MapActualCameraChangingEventArgs = NativeMapActualCameraChangingEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapActualCameraChangingEventArgs 
+export type MapCustomExperienceChangedEventArgs = NativeMapCustomExperienceChangedEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapCustomExperienceChangedEventArgs 
+export type MapElementClickEventArgs = NativeMapElementClickEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapElementClickEventArgs 
+export type MapElementPointerEnteredEventArgs = NativeMapElementPointerEnteredEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapElementPointerEnteredEventArgs 
+export type MapElementPointerExitedEventArgs = NativeMapElementPointerExitedEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapElementPointerExitedEventArgs 
+export type MapTargetCameraChangedEventArgs = NativeMapTargetCameraChangedEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapTargetCameraChangedEventArgs 
+export type MapRightTappedEventArgs = NativeMapRightTappedEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapRightTappedEventArgs 
+export type MapContextRequestedEventArgs = NativeMapContextRequestedEventArgs;    // Windows.UI.Xaml.Controls.Maps.MapContextRequestedEventArgs 
+export type TimelineMarkerRoutedEventArgs = NativeTimelineMarkerRoutedEventArgs;    // Windows.UI.Xaml.Media.TimelineMarkerRoutedEventArgs 
+export type RateChangedRoutedEventArgs = NativeRateChangedRoutedEventArgs;    // Windows.UI.Xaml.Media.RateChangedRoutedEventArgs 
+export type PartialMediaFailureDetectedEventArgs = NativePartialMediaFailureDetectedEventArgs;    // Windows.UI.Xaml.Media.PartialMediaFailureDetectedEventArgs 
+export type MediaTransportControlsThumbnailRequestedEventArgs = NativeMediaTransportControlsThumbnailRequestedEventArgs;    // Windows.UI.Xaml.Media.MediaTransportControlsThumbnailRequestedEventArgs 
+export type NavigationViewDisplayModeChangedEventArgs = NativeNavigationViewDisplayModeChangedEventArgs;    // Windows.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs 
+export type NavigationViewItemInvokedEventArgs = NativeNavigationViewItemInvokedEventArgs;    // Windows.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs 
+export type NavigationViewSelectionChangedEventArgs = NativeNavigationViewSelectionChangedEventArgs;    // Windows.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs 
+export type NavigationViewBackRequestedEventArgs = NativeNavigationViewBackRequestedEventArgs;    // Windows.UI.Xaml.Controls.NavigationViewBackRequestedEventArgs 
+export type NavigationViewPaneClosingEventArgs = NativeNavigationViewPaneClosingEventArgs;    // Windows.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs 
+export type ContextMenuEventArgs = NativeContextMenuEventArgs;    // Windows.UI.Xaml.Controls.ContextMenuEventArgs 
+export type TextControlPasteEventArgs = NativeTextControlPasteEventArgs;    // Windows.UI.Xaml.Controls.TextControlPasteEventArgs 
+export type PasswordBoxPasswordChangingEventArgs = NativePasswordBoxPasswordChangingEventArgs;    // Windows.UI.Xaml.Controls.PasswordBoxPasswordChangingEventArgs 
+export type PickerConfirmedEventArgs = NativePickerConfirmedEventArgs;    // Windows.UI.Xaml.Controls.PickerConfirmedEventArgs 
+export type PivotItemEventArgs = NativePivotItemEventArgs;    // Windows.UI.Xaml.Controls.PivotItemEventArgs 
+export type RangeBaseValueChangedEventArgs = NativeRangeBaseValueChangedEventArgs;    // Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs 
+export type ScrollEventArgs = NativeScrollEventArgs;    // Windows.UI.Xaml.Controls.Primitives.ScrollEventArgs 
+export type DragCompletedEventArgs = NativeDragCompletedEventArgs;    // Windows.UI.Xaml.Controls.Primitives.DragCompletedEventArgs 
+export type DragDeltaEventArgs = NativeDragDeltaEventArgs;    // Windows.UI.Xaml.Controls.Primitives.DragDeltaEventArgs 
+export type DragStartedEventArgs = NativeDragStartedEventArgs;    // Windows.UI.Xaml.Controls.Primitives.DragStartedEventArgs 
+export type RefreshRequestedEventArgs = NativeRefreshRequestedEventArgs;    // Windows.UI.Xaml.Controls.RefreshRequestedEventArgs 
+export type RefreshStateChangedEventArgs = NativeRefreshStateChangedEventArgs;    // Windows.UI.Xaml.Controls.RefreshStateChangedEventArgs 
+export type CandidateWindowBoundsChangedEventArgs = NativeCandidateWindowBoundsChangedEventArgs;    // Windows.UI.Xaml.Controls.CandidateWindowBoundsChangedEventArgs 
+export type RichEditBoxTextChangingEventArgs = NativeRichEditBoxTextChangingEventArgs;    // Windows.UI.Xaml.Controls.RichEditBoxTextChangingEventArgs 
+export type TextCompositionChangedEventArgs = NativeTextCompositionChangedEventArgs;    // Windows.UI.Xaml.Controls.TextCompositionChangedEventArgs 
+export type TextCompositionEndedEventArgs = NativeTextCompositionEndedEventArgs;    // Windows.UI.Xaml.Controls.TextCompositionEndedEventArgs 
+export type TextCompositionStartedEventArgs = NativeTextCompositionStartedEventArgs;    // Windows.UI.Xaml.Controls.TextCompositionStartedEventArgs 
+export type TextControlCopyingToClipboardEventArgs = NativeTextControlCopyingToClipboardEventArgs;    // Windows.UI.Xaml.Controls.TextControlCopyingToClipboardEventArgs 
+export type TextControlCuttingToClipboardEventArgs = NativeTextControlCuttingToClipboardEventArgs;    // Windows.UI.Xaml.Controls.TextControlCuttingToClipboardEventArgs 
+export type ContentLinkChangedEventArgs = NativeContentLinkChangedEventArgs;    // Windows.UI.Xaml.Controls.ContentLinkChangedEventArgs 
+export type ContentLinkInvokedEventArgs = NativeContentLinkInvokedEventArgs;    // Windows.UI.Xaml.Documents.ContentLinkInvokedEventArgs 
+export type RichEditBoxSelectionChangingEventArgs = NativeRichEditBoxSelectionChangingEventArgs;    // Windows.UI.Xaml.Controls.RichEditBoxSelectionChangingEventArgs 
+export type IsTextTrimmedChangedEventArgs = NativeIsTextTrimmedChangedEventArgs;    // Windows.UI.Xaml.Controls.IsTextTrimmedChangedEventArgs 
+export type ScrollViewerViewChangedEventArgs = NativeScrollViewerViewChangedEventArgs;    // Windows.UI.Xaml.Controls.ScrollViewerViewChangedEventArgs 
+export type ScrollViewerViewChangingEventArgs = NativeScrollViewerViewChangingEventArgs;    // Windows.UI.Xaml.Controls.ScrollViewerViewChangingEventArgs 
+export type AnchorRequestedEventArgs = NativeAnchorRequestedEventArgs;    // Windows.UI.Xaml.Controls.AnchorRequestedEventArgs 
+export type SearchBoxQueryChangedEventArgs = NativeSearchBoxQueryChangedEventArgs;    // Windows.UI.Xaml.Controls.SearchBoxQueryChangedEventArgs 
+export type SearchBoxQuerySubmittedEventArgs = NativeSearchBoxQuerySubmittedEventArgs;    // Windows.UI.Xaml.Controls.SearchBoxQuerySubmittedEventArgs 
+export type SearchBoxResultSuggestionChosenEventArgs = NativeSearchBoxResultSuggestionChosenEventArgs;    // Windows.UI.Xaml.Controls.SearchBoxResultSuggestionChosenEventArgs 
+export type SearchBoxSuggestionsRequestedEventArgs = NativeSearchBoxSuggestionsRequestedEventArgs;    // Windows.UI.Xaml.Controls.SearchBoxSuggestionsRequestedEventArgs 
+export type SemanticZoomViewChangedEventArgs = NativeSemanticZoomViewChangedEventArgs;    // Windows.UI.Xaml.Controls.SemanticZoomViewChangedEventArgs 
+export type BackClickEventArgs = NativeBackClickEventArgs;    // Windows.UI.Xaml.Controls.BackClickEventArgs 
+export type SplitButtonClickEventArgs = NativeSplitButtonClickEventArgs;    // Windows.UI.Xaml.Controls.SplitButtonClickEventArgs 
+export type SplitViewPaneClosingEventArgs = NativeSplitViewPaneClosingEventArgs;    // Windows.UI.Xaml.Controls.SplitViewPaneClosingEventArgs 
+export type TextChangedEventArgs = NativeTextChangedEventArgs;    // Windows.UI.Xaml.Controls.TextChangedEventArgs 
+export type TextBoxTextChangingEventArgs = NativeTextBoxTextChangingEventArgs;    // Windows.UI.Xaml.Controls.TextBoxTextChangingEventArgs 
+export type TextBoxBeforeTextChangingEventArgs = NativeTextBoxBeforeTextChangingEventArgs;    // Windows.UI.Xaml.Controls.TextBoxBeforeTextChangingEventArgs 
+export type TextBoxSelectionChangingEventArgs = NativeTextBoxSelectionChangingEventArgs;    // Windows.UI.Xaml.Controls.TextBoxSelectionChangingEventArgs 
+export type TimePickerValueChangedEventArgs = NativeTimePickerValueChangedEventArgs;    // Windows.UI.Xaml.Controls.TimePickerValueChangedEventArgs 
+export type TimePickerSelectedValueChangedEventArgs = NativeTimePickerSelectedValueChangedEventArgs;    // Windows.UI.Xaml.Controls.TimePickerSelectedValueChangedEventArgs 
+export type TimePickedEventArgs = NativeTimePickedEventArgs;    // Windows.UI.Xaml.Controls.TimePickedEventArgs 
+export type ToggleSplitButtonIsCheckedChangedEventArgs = NativeToggleSplitButtonIsCheckedChangedEventArgs;    // Windows.UI.Xaml.Controls.ToggleSplitButtonIsCheckedChangedEventArgs 
+export type TreeViewCollapsedEventArgs = NativeTreeViewCollapsedEventArgs;    // Windows.UI.Xaml.Controls.TreeViewCollapsedEventArgs 
+export type TreeViewExpandingEventArgs = NativeTreeViewExpandingEventArgs;    // Windows.UI.Xaml.Controls.TreeViewExpandingEventArgs 
+export type TreeViewItemInvokedEventArgs = NativeTreeViewItemInvokedEventArgs;    // Windows.UI.Xaml.Controls.TreeViewItemInvokedEventArgs 
+export type TreeViewDragItemsCompletedEventArgs = NativeTreeViewDragItemsCompletedEventArgs;    // Windows.UI.Xaml.Controls.TreeViewDragItemsCompletedEventArgs 
+export type TreeViewDragItemsStartingEventArgs = NativeTreeViewDragItemsStartingEventArgs;    // Windows.UI.Xaml.Controls.TreeViewDragItemsStartingEventArgs 
+export type CleanUpVirtualizedItemEventArgs = NativeCleanUpVirtualizedItemEventArgs;    // Windows.UI.Xaml.Controls.CleanUpVirtualizedItemEventArgs 
+export type WebViewNavigationFailedEventArgs = NativeWebViewNavigationFailedEventArgs;    // Windows.UI.Xaml.Controls.WebViewNavigationFailedEventArgs 
+export type NotifyEventArgs = NativeNotifyEventArgs;    // Windows.UI.Xaml.Controls.NotifyEventArgs 
+export type WebViewContentLoadingEventArgs = NativeWebViewContentLoadingEventArgs;    // Windows.UI.Xaml.Controls.WebViewContentLoadingEventArgs 
+export type WebViewDOMContentLoadedEventArgs = NativeWebViewDOMContentLoadedEventArgs;    // Windows.UI.Xaml.Controls.WebViewDOMContentLoadedEventArgs 
+export type WebViewNavigationCompletedEventArgs = NativeWebViewNavigationCompletedEventArgs;    // Windows.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs 
+export type WebViewNavigationStartingEventArgs = NativeWebViewNavigationStartingEventArgs;    // Windows.UI.Xaml.Controls.WebViewNavigationStartingEventArgs 
+export type WebViewLongRunningScriptDetectedEventArgs = NativeWebViewLongRunningScriptDetectedEventArgs;    // Windows.UI.Xaml.Controls.WebViewLongRunningScriptDetectedEventArgs 
+export type WebViewUnviewableContentIdentifiedEventArgs = NativeWebViewUnviewableContentIdentifiedEventArgs;    // Windows.UI.Xaml.Controls.WebViewUnviewableContentIdentifiedEventArgs 
+export type WebViewNewWindowRequestedEventArgs = NativeWebViewNewWindowRequestedEventArgs;    // Windows.UI.Xaml.Controls.WebViewNewWindowRequestedEventArgs 
+export type WebViewPermissionRequestedEventArgs = NativeWebViewPermissionRequestedEventArgs;    // Windows.UI.Xaml.Controls.WebViewPermissionRequestedEventArgs 
+export type WebViewUnsupportedUriSchemeIdentifiedEventArgs = NativeWebViewUnsupportedUriSchemeIdentifiedEventArgs;    // Windows.UI.Xaml.Controls.WebViewUnsupportedUriSchemeIdentifiedEventArgs 
+export type WebViewSeparateProcessLostEventArgs = NativeWebViewSeparateProcessLostEventArgs;    // Windows.UI.Xaml.Controls.WebViewSeparateProcessLostEventArgs 
+export type WebViewWebResourceRequestedEventArgs = NativeWebViewWebResourceRequestedEventArgs;    // Windows.UI.Xaml.Controls.WebViewWebResourceRequestedEventArgs 
+export type HyperlinkClickEventArgs = NativeHyperlinkClickEventArgs;    // Windows.UI.Xaml.Documents.HyperlinkClickEventArgs 
+export type KeyboardAcceleratorInvokedEventArgs = NativeKeyboardAcceleratorInvokedEventArgs;    // Windows.UI.Xaml.Input.KeyboardAcceleratorInvokedEventArgs 

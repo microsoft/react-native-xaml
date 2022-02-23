@@ -60,7 +60,7 @@ export type TypedEvent<TArgs> = {
             
             #line default
             #line hidden
-            this.Write("export namespace ");
+            this.Write("export namespace Native");
             
             #line 32 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
@@ -74,7 +74,7 @@ export type TypedEvent<TArgs> = {
             
             #line default
             #line hidden
-            this.Write("export type ");
+            this.Write("export type Native");
             
             #line 34 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(t)));
@@ -335,7 +335,7 @@ foreach (var prop in SyntheticProps.Where(p => type == p.DeclaringType)) {
             this.Write("?: (event: NativeSyntheticEvent<");
             
             #line 80 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TSProps.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetEventArgsTSName(evt)));
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetEventArgsTSName(evt, "Native")));
             
             #line default
             #line hidden
