@@ -38,7 +38,7 @@ App::App() noexcept
     RegisterAutolinkedNativeModulePackages(PackageProviders()); // Includes any autolinked modules
 
     PackageProviders().Append(make<ReactPackageProvider>()); // Includes all modules in this project
-
+    PackageProviders().Append(winrt::WinRTTurboModule::ReactPackageProvider());
     InitializeComponent();
 }
 

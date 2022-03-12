@@ -22,8 +22,13 @@
     <UseExperimentalNuget>true</UseExperimentalNuget>
     <ReactNativeWindowsVersion>0.65.7</ReactNativeWindowsVersion>
     <WinUI2xVersion>2.6.0</WinUI2xVersion>
-
-
   </PropertyGroup>
+
+    <PropertyGroup Label="React Native WinRT properties"> 
+        <RnWinRTParameters> 
+            -include Windows.UI.Notifications  
+            -include Windows.Data.Xml.Dom 
+        </RnWinRTParameters> 
+    </PropertyGroup> 
 
 </Project>

@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReactNativeXaml", "..\..\pa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codegen", "..\..\package\Codegen\Codegen.csproj", "{A9EBFB79-DB42-4839-B369-EFA601A98706}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinRTTurboModule", "WinRTTurboModule\WinRTTurboModule.vcxproj", "{E13C9C82-0013-422C-945E-848A258AC4DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,28 @@ Global
 		{A9EBFB79-DB42-4839-B369-EFA601A98706}.Release|x64.Build.0 = Release|Any CPU
 		{A9EBFB79-DB42-4839-B369-EFA601A98706}.Release|x86.ActiveCfg = Release|Any CPU
 		{A9EBFB79-DB42-4839-B369-EFA601A98706}.Release|x86.Build.0 = Release|Any CPU
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|Any CPU.Build.0 = Debug|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|ARM.ActiveCfg = Debug|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|ARM.Build.0 = Debug|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|x64.ActiveCfg = Debug|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|x64.Build.0 = Debug|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|x86.ActiveCfg = Debug|Win32
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|x86.Build.0 = Debug|Win32
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Debug|x86.Deploy.0 = Debug|Win32
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|Any CPU.ActiveCfg = Release|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|Any CPU.Build.0 = Release|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|ARM.ActiveCfg = Release|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|ARM.Build.0 = Release|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|ARM64.Build.0 = Release|ARM64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|x64.ActiveCfg = Release|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|x64.Build.0 = Release|x64
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|x86.ActiveCfg = Release|Win32
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|x86.Build.0 = Release|Win32
+		{E13C9C82-0013-422C-945E-848A258AC4DB}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

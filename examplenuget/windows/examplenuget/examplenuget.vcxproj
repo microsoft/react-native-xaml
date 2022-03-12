@@ -179,6 +179,9 @@
     <ProjectReference Include="..\..\..\package\windows\ReactNativeXaml\ReactNativeXaml.vcxproj">
       <Project>{0ff7027a-222c-4ffb-8f17-91d18bbaf7a8}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\WinRTTurboModule\WinRTTurboModule.vcxproj">
+      <Project>{e13c9c82-0013-422c-945e-848a258ac4db}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ReactNativeWindowsTargets">
