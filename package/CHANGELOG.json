@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Wed, 13 Apr 2022 21:16:52 GMT",
+      "tag": "react-native-xaml_v0.0.63",
+      "version": "0.0.63",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Remove implicit dependency on ColorHelper",
+            "commit": "265e4a0f46b1e00d5aaddb428384e9b4f8168b43"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 20 Feb 2022 03:58:46 GMT",
       "tag": "react-native-xaml_v0.0.62",
       "version": "0.0.62",
