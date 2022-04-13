@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Sun, 20 Feb 2022 03:58:46 GMT and should not be manually modified.
+This log was last generated on Wed, 13 Apr 2022 21:16:52 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.63
+
+Wed, 13 Apr 2022 21:16:52 GMT
+
+### Patches
+
+- Remove implicit dependency on ColorHelper (asklar@microsoft.com)
 
 ## 0.0.62
 

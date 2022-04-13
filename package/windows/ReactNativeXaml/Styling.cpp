@@ -4,6 +4,11 @@
 /// from RNW ValueUtils.cpp
 #pragma region Copied from RNW ValueUtils.cpp
 namespace ColorUtils {
+
+  inline winrt::Windows::UI::Color FromArgb(uint8_t a, uint8_t r, uint8_t g, uint8_t b) {
+      return winrt::Windows::UI::Color{ a, r, g, b };
+  }
+
   struct ColorComp {
     bool operator()(const winrt::Windows::UI::Color& lhs, const winrt::Windows::UI::Color& rhs) const {
       return (
@@ -42,7 +47,7 @@ namespace ColorUtils {
 
 
   winrt::Windows::UI::Color ColorFromNumber(DWORD argb) {
-    return winrt::ColorHelper::FromArgb(GetAFromArgb(argb), GetRFromArgb(argb), GetGFromArgb(argb), GetBFromArgb(argb));
+    return FromArgb(GetAFromArgb(argb), GetRFromArgb(argb), GetGFromArgb(argb), GetBFromArgb(argb));
   }
 
   winrt::Windows::UI::Color ColorFrom(const winrt::Microsoft::ReactNative::JSValue& v) {
