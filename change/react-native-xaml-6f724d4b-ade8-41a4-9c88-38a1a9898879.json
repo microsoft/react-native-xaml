@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Remove implicit dependency on ColorHelper",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
