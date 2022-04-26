@@ -71,8 +71,8 @@ namespace Codegen
                     "turn unk.as<winrt::IInspectable>();\r\n    } else {\r\n      // type probably has a " +
                     "custom activation factory, use C++/WinRT to create it\r\n      WindowsDeleteString" +
                     "(clsid);\r\n      clsid = nullptr;\r\n      const auto key = COMPILE_TIME_CRC32_STR(" +
-                    "typeName.data());\r\n      const std::pair<uint32_t, winrt::Windows::Foundation::I" +
-                    "Inspectable(*)()> map[] = {\r\n");
+                    "typeName.data());\r\n      static constexpr const std::pair<uint32_t, winrt::Windo" +
+                    "ws::Foundation::IInspectable(*)()> map[] = {\r\n");
             
             #line 52 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null).OrderBy(t => Util.GetCRC32(t.GetFullName()))) { 

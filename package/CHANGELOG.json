@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 26 Apr 2022 08:42:12 GMT",
+      "tag": "react-native-xaml_v0.0.64",
+      "version": "0.0.64",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Use hashed string values for type creator lookup",
+            "commit": "17c62007fd6d87739793cfe1a4c79f995d189903"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 13 Apr 2022 21:16:52 GMT",
       "tag": "react-native-xaml_v0.0.63",
       "version": "0.0.63",

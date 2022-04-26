@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Use hashed string values for type creator lookup",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -48,7 +48,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
       WindowsDeleteString(clsid);
       clsid = nullptr;
       const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
-      const std::pair<uint32_t, winrt::Windows::Foundation::IInspectable(*)()> map[] = {
+      static constexpr const std::pair<uint32_t, winrt::Windows::Foundation::IInspectable(*)()> map[] = {
 <# foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null).OrderBy(t => Util.GetCRC32(t.GetFullName()))) { #>
         { COMPILE_TIME_CRC32_STR("<#= t.GetFullName() #>"), []() -> winrt::Windows::Foundation::IInspectable { return <#= Util.GetCppWinRTType(t) #>(); } }, // 0x<#= Util.GetCRC32(t.GetFullName()).ToString("X8") #>
 <# } #>
