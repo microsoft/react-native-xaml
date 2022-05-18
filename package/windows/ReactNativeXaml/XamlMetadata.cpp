@@ -29,23 +29,22 @@ using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
-  m_reactContext = reactContext;
-  std::once_flag inited;
-  std::call_once(inited, [ctx = reactContext, this]() {
-    ExecuteJsi(ctx, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
+void XamlMetadata::SetupEventDispatcher(const IReactContext &reactContext) {
+  if (!m_reactContext) {
+    m_reactContext = reactContext;
+  }
 
-      auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
-      rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
+  if (!m_callFunctionReturnFlushedQueue.has_value() && m_reactContext.JSRuntime()) {
+    ExecuteJsi(m_reactContext, [shared = shared_from_this()](facebook::jsi::Runtime &rt) {
       auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
       if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
         if (auto vm = shared.get()) {
-          vm->m_callFunctionReturnFlushedQueue = batchedBridge.asObject(rt).getPropertyAsFunction(
-            rt, "callFunctionReturnFlushedQueue");
+          vm->m_callFunctionReturnFlushedQueue =
+              batchedBridge.asObject(rt).getPropertyAsFunction(rt, "callFunctionReturnFlushedQueue");
         }
       }
     });
-    });
+  }
 }
 
 FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
