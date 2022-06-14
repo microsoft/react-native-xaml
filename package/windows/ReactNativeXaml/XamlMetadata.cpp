@@ -34,11 +34,11 @@ void XamlMetadata::SetupEventDispatcher(const IReactContext &reactContext) {
     m_reactContext = reactContext;
   }
 
-  if (!m_callFunctionReturnFlushedQueue.has_value() && m_reactContext.JSRuntime()) {
+  if (!m_callFunctionReturnFlushedQueue.has_value()) {
     ExecuteJsi(m_reactContext, [shared = shared_from_this()](facebook::jsi::Runtime &rt) {
-      auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
-      if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
-        if (auto vm = shared.get()) {
+      if (auto vm = shared.get(); vm && !vm->m_callFunctionReturnFlushedQueue.has_value()) {
+        auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
+        if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
           vm->m_callFunctionReturnFlushedQueue =
               batchedBridge.asObject(rt).getPropertyAsFunction(rt, "callFunctionReturnFlushedQueue");
         }
