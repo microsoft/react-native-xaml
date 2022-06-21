@@ -58,7 +58,7 @@ namespace winrt::ReactNativeXaml {
 
     const JSValueObject& propertyMap = JSValue::ReadObjectFrom(propertyMapReader);
 
-    auto e = view;  
+    auto e = view;
     auto cn = get_class_name(e);
     if (auto control = e.try_as<DependencyObject>()) {
       for (auto const& pair : propertyMap) {
@@ -72,12 +72,9 @@ namespace winrt::ReactNativeXaml {
           prop->SetValue(realObject, propertyValue, m_reactContext);
           handled = true;
           continue;
-        }
-        else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
+        } else if (auto eventAttacher = m_xamlMetadata->AttachEvent(m_reactContext, propertyName, control, propertyValue.AsBoolean())) {
           continue;
-        }
-        else if (propertyName == "type") { continue; }
-        else {
+        } else if (propertyName == "type") { continue; } else {
           //cdebug << "[react-native-xaml] Unhandled call to UpdateProperties " << propertyName << " on view: " << cn << "\n";
           //auto className = winrt::get_class_name(e);
           //if (IsDebuggerPresent()) {
@@ -127,7 +124,7 @@ namespace winrt::ReactNativeXaml {
   void XamlViewManager::ReactContext(IReactContext reactContext) noexcept {
     m_reactContext = reactContext;
     m_xamlMetadata = std::make_shared<XamlMetadata>();
-    
+
     React::ReactContext ctx(reactContext);
     auto vm = this->get_strong().as<IViewManager>();
     ctx.Properties().Set(XamlViewManagerProperty(), vm);
@@ -152,45 +149,38 @@ namespace winrt::ReactNativeXaml {
         }
 
         if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
-          
+
           wrapper.DataContext(e);
           const auto& childUI = childFE.as<UIElement>();
           auto priority = GetPriority<MenuFlyoutPriority>(childUI);
           if (priority == MenuFlyoutPriority::Context) {
             if (auto button = e.try_as<Button>()) {
               return button.Flyout(childFlyout);
-            }
-            else {
+            } else {
               if (auto uiParent = e.try_as<UIElement>()) {
                 return uiParent.ContextFlyout(childFlyout);
               }
             }
-          }
-          else {
+          } else {
             return Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
           }
-        }
-        else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
+        } else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
           if (auto childBlock = childContent.try_as<Documents::Block>()) {
             return RTBparent.Blocks().InsertAt(index, childBlock);
           }
-        }
-        else if (auto TBparent = parent.try_as<TextBlock>()) {
+        } else if (auto TBparent = parent.try_as<TextBlock>()) {
           if (auto childInline = childContent.try_as<Documents::Inline>()) {
             return TBparent.Inlines().InsertAt(index, childInline);
           }
-        }
-        else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
+        } else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
           if (auto childInline = childContent.try_as<Documents::Inline>()) {
             return paragraphParent.Inlines().InsertAt(index, childInline);
           }
-        }
-        else if (auto spanParent = Unwrap<Documents::Span>(parent)) {
+        } else if (auto spanParent = Unwrap<Documents::Span>(parent)) {
           if (auto childInline = childContent.try_as<Documents::Inline>()) {
             return spanParent.Inlines().InsertAt(index, childInline);
           }
-        }
-        else if (auto childKeyboardAccelerator = childContent.try_as<xaml::Input::KeyboardAccelerator>()) {
+        } else if (auto childKeyboardAccelerator = childContent.try_as<xaml::Input::KeyboardAccelerator>()) {
           if (auto uiParent = parent.try_as<UIElement>()) {
             return uiParent.KeyboardAccelerators().Append(childKeyboardAccelerator);
           }
@@ -208,14 +198,12 @@ namespace winrt::ReactNativeXaml {
       if (priority == NavigationViewPriority::MenuItem) {
         return navView.MenuItems().Append(child);
       }
-    }
-    else if (auto navViewMUX = e.try_as<mux::Controls::NavigationView>()) {
+    } else if (auto navViewMUX = e.try_as<mux::Controls::NavigationView>()) {
       auto childCN = winrt::get_class_name(child);
       auto priority = GetPriority<NavigationViewPriority>(child);
       if (priority == NavigationViewPriority::MenuItem) {
         return navViewMUX.MenuItems().Append(child);
-      }
-      else if (priority == NavigationViewPriority::FooterMenuItem) {
+      } else if (priority == NavigationViewPriority::FooterMenuItem) {
         return navViewMUX.FooterMenuItems().Append(child);
       }
     }
@@ -224,8 +212,7 @@ namespace winrt::ReactNativeXaml {
       if (auto childIconElement = child.try_as<IconElement>()) {
         return navViewItem.Icon(childIconElement);
       }
-    }
-    else if (auto muxNavViewItem = e.try_as<mux::Controls::NavigationViewItem>()) {
+    } else if (auto muxNavViewItem = e.try_as<mux::Controls::NavigationViewItem>()) {
       if (auto childIconElement = child.try_as<IconElement>()) {
         return muxNavViewItem.Icon(childIconElement);
       }
@@ -235,8 +222,7 @@ namespace winrt::ReactNativeXaml {
       const auto priority = GetPriority<SplitViewPriority>(child);
       if (priority == SplitViewPriority::Content && splitview.Content() == nullptr) {
         return splitview.Content(child);
-      }
-      else if (priority == SplitViewPriority::Pane && splitview.Pane() == nullptr) {
+      } else if (priority == SplitViewPriority::Pane && splitview.Pane() == nullptr) {
         return splitview.Pane(child);
       }
     }
@@ -274,8 +260,7 @@ namespace winrt::ReactNativeXaml {
     if (auto contentCtrl = e.try_as<ContentControl>()) {
       if (index == 0 || contentCtrl.Content() == nullptr) {
         return contentCtrl.Content(child);
-      }
-      else {
+      } else {
         assert(false && "Parent is a ContentControl, but it already has a child");
       }
     }
@@ -302,30 +287,35 @@ namespace winrt::ReactNativeXaml {
         return menuFlyoutItem.Icon(childIcon);
       }
     }
+    if (auto menuFlyoutSubItem = e.try_as<MenuFlyoutSubItem>()) {
+      if (auto childMenuItem = child.try_as<MenuFlyoutItemBase>()) {
+        return menuFlyoutSubItem.Items().Append(childMenuItem);
+      }
+    }
     if (auto infoBar = e.try_as<mux::Controls::InfoBar>()) {
       if (auto buttonBase = child.try_as<Controls::Primitives::ButtonBase>()) {
         return infoBar.ActionButton(buttonBase);
       }
     }
     if (auto menuBar = e.try_as<MenuBar>()) {
-        if (auto mbi = child.try_as<MenuBarItem>()) {
-            return menuBar.Items().InsertAt(index, mbi);
-        }
+      if (auto mbi = child.try_as<MenuBarItem>()) {
+        return menuBar.Items().InsertAt(index, mbi);
+      }
     }
     if (auto muxMenuBar = e.try_as<mux::Controls::MenuBar>()) {
-        if (auto mbi = child.try_as<mux::Controls::MenuBarItem>()) {
-            return muxMenuBar.Items().InsertAt(index, mbi);
-        }
+      if (auto mbi = child.try_as<mux::Controls::MenuBarItem>()) {
+        return muxMenuBar.Items().InsertAt(index, mbi);
+      }
     }
     if (auto menuBarItem = e.try_as<MenuBarItem>()) {
-        if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
-            return menuBarItem.Items().InsertAt(index,mfi);
-        }
+      if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
+        return menuBarItem.Items().InsertAt(index, mfi);
+      }
     }
     if (auto muxMenuBarItem = e.try_as<mux::Controls::MenuBarItem>()) {
-        if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
-            return muxMenuBarItem.Items().InsertAt(index, mfi);
-        }
+      if (auto mfi = child.try_as<MenuFlyoutItemBase>()) {
+        return muxMenuBarItem.Items().InsertAt(index, mfi);
+      }
     }
     //else 
     {
@@ -338,42 +328,36 @@ namespace winrt::ReactNativeXaml {
     auto e = parent;
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().Clear();
-    }
-    else if (auto contentCtrl = e.try_as<ContentControl>()) {
+    } else if (auto contentCtrl = e.try_as<ContentControl>()) {
       return contentCtrl.Content(nullptr);
-    }
-    else if (auto border = e.try_as<Border>()) {
+    } else if (auto border = e.try_as<Border>()) {
       return border.Child(nullptr);
-    }
-    else if (auto itemsControl = e.try_as<ItemsControl>()) {
+    } else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().Clear();
     }
 
     auto parentType = get_class_name(e);
     cdebug << "[react-native-xaml] Unhandled call to RemoveAllChildren with parent: " << parentType
-           << "\n";
+      << "\n";
   }
 
   void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
     auto e = parent;
     if (auto panel = e.try_as<Panel>()) {
       return panel.Children().RemoveAt(static_cast<uint32_t>(index));
-    }
-    else if (auto itemsControl = e.try_as<ItemsControl>()) {
+    } else if (auto itemsControl = e.try_as<ItemsControl>()) {
       return itemsControl.Items().RemoveAt(static_cast<uint32_t>(index));
-    }
-    else if (index == 0) {
+    } else if (index == 0) {
       if (auto contentCtrl = e.try_as<ContentControl>()) {
         return contentCtrl.Content(nullptr);
-      }
-      else if (auto border = e.try_as<Border>()) {
+      } else if (auto border = e.try_as<Border>()) {
         return border.Child(nullptr);
       }
     }
 
     auto parentType = get_class_name(e);
     cdebug << "[react-native-xaml] Unhandled call to RemoveChildAt with parent: " << parentType
-           << ", index: " << index << "\n";
+      << ", index: " << index << "\n";
   }
 
   void XamlViewManager::ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {
