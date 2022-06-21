@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 21 Jun 2022 18:27:36 GMT",
+      "tag": "react-native-xaml_v0.0.64",
+      "version": "0.0.64",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Add support for MenuFlyoutSubitem",
+            "commit": "851778b1147310116a9f803126e5261469bc6857"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 13 Apr 2022 21:16:52 GMT",
       "tag": "react-native-xaml_v0.0.63",
       "version": "0.0.63",

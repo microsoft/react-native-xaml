@@ -11,7 +11,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 5. For all other changes: run `yarn build` in src folder so that related files are generated
 6. Run from Visual Studio to see output.
 7. Once changes are ready, run `yarn change` at the root of the repository to create a patch (it will ask for a description of the change). The version scheme we use is [SemVer](https://semver.org/)
-8. Open a pull request and address review feedback.
+8. Update the package version by running `yarn bump`
+9. Open a pull request and address review feedback.
+10. After the PR is merged, manually trigger a publish from GitHub to publish to npm.
 
 ## Technical details:
 You can find more details to setting up in the [Technical Guide](TechnicalGuide.md).

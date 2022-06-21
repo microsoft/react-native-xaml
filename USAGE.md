@@ -73,6 +73,22 @@ If you have questions about a scenario you don't see below, please [file an issu
   setIsOpen(true); }} />
 ```
 
+Menus can contain cascading items:
+```jsx
+<MenuFlyout ...>
+  <MenuFlyoutSubItem text='subitem 1'>
+    <MenuFlyoutItem text='item 1'/>
+    <MenuFlyoutItem text='item 2'/>
+    <MenuFlyoutItem text='item 3'/>
+  </MenuFlyoutSubItem>
+  <MenuFlyoutSubItem text='subitem 2'>
+    <MenuFlyoutItem text='item 4'/>
+    <MenuFlyoutItem text='item 5'/>
+    <MenuFlyoutItem text='item 6'/>
+  </MenuFlyoutSubItem>
+</MenuFlyout>
+```
+
 ## MenuBar
 ```jsx
 <MenuBar>

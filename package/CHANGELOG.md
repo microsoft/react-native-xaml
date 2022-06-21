@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Wed, 13 Apr 2022 21:16:52 GMT and should not be manually modified.
+This log was last generated on Tue, 21 Jun 2022 18:27:36 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.64
+
+Tue, 21 Jun 2022 18:27:36 GMT
+
+### Patches
+
+- Add support for MenuFlyoutSubitem (asklar@microsoft.com)
 
 ## 0.0.63
 
