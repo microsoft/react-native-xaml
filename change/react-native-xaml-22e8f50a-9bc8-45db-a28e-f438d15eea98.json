@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add support for MenuFlyoutSubitem",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}
