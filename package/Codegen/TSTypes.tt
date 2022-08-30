@@ -32,8 +32,6 @@ import type { Point, Color } from './Props';
 
 export type { Point, Color };
 
-const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
-
 <# 
 foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
 var ns = Util.GetTSNamespace(type);
@@ -49,7 +47,7 @@ export class <#= Util.ToJsName(type) #> extends React.Component<<#= Util.ToJsNam
 <# foreach (var command in Util.GetCommands(type.GetFullName())) { #>
   static <#= command.Name #>(ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) {
     const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, xamlCommands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
+    UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
   }
 <# } #>
 };
