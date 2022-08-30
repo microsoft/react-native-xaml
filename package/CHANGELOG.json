@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 30 Aug 2022 19:18:51 GMT",
+      "tag": "react-native-xaml_v0.0.66",
+      "version": "0.0.66",
+      "comments": {
+        "patch": [
+          {
+            "author": "34109996+chiaramooney@users.noreply.github.com",
+            "package": "react-native-xaml",
+            "comment": "Adjust TSTypes",
+            "commit": "feb5b7f8eb692c5122f88affd7be7cb508a5d255"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Aug 2022 00:15:16 GMT",
       "tag": "react-native-xaml_v0.0.65",
       "version": "0.0.65",
