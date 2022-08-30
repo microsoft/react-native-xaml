@@ -18,7 +18,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
   wchar_t buf[128]{};
-  for (auto i = 0u; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
+  for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
     buf[i] = static_cast<wchar_t>(typeName[i]);
   }
 
