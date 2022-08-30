@@ -337,8 +337,6 @@ import type { Point, Color } from './Props';
 
 export type { Point, Color };
 
-const xamlCommands = UIManager.getViewManagerConfig('XamlControl').Commands;
-
 export namespace WinUI {
 export type AnimatedIconProps = Omit<NativeWinUI.NativeAnimatedIconProps, 'type'>;
 
@@ -1320,7 +1318,7 @@ export class MenuFlyout extends React.Component<MenuFlyoutProps> {
   }
   static ShowAt(ref: React.MutableRefObject<MenuFlyout>, args: { point: Point,  }) {
     const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, xamlCommands.ShowAt, [args]);
+    UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.ShowAt, [args]);
   }
 };
 export type MenuBarItemFlyoutProps = Omit<NativeMenuBarItemFlyoutProps, 'type'>;
