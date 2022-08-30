@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "codeql_fix",
+  "packageName": "react-native-xaml",
+  "email": "agnel@microsoft.com",
+  "dependentChangeType": "patch"
+}
