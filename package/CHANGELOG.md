@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Tue, 30 Aug 2022 00:15:16 GMT and should not be manually modified.
+This log was last generated on Tue, 30 Aug 2022 19:18:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.66
+
+Tue, 30 Aug 2022 19:18:51 GMT
+
+### Patches
+
+- Adjust TSTypes (34109996+chiaramooney@users.noreply.github.com)
 
 ## 0.0.65
 
