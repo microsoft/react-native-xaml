@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update to consume new ReactTag APIs",
+  "packageName": "react-native-xaml",
+  "email": "jthysell@microsoft.com",
+  "dependentChangeType": "patch"
+}
