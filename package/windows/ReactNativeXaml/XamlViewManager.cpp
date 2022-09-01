@@ -140,19 +140,18 @@ namespace winrt::ReactNativeXaml {
     if (auto wrapper = child.try_as<Wrapper>()) {
       if (auto childContent = wrapper.WrappedObject()) {
         childType = winrt::get_class_name(childContent);
-        auto childFE = child.as<FrameworkElement>();
-        auto tag = childFE.Tag();
+        auto childDO = child.as<DependencyObject>();
+        auto tag = XamlMetadata::TagFromElement(childDO);
         if (auto depObj = childContent.try_as<DependencyObject>()) {
           // transfer the Tag from the wrapper
           // This is used for dispatching events and TouchEventHandler
-          depObj.SetValue(FrameworkElement::TagProperty(), tag);
+          XamlMetadata::ElementSetTag(depObj, tag);
         }
 
         if (auto childFlyout = childContent.try_as<Controls::Primitives::FlyoutBase>()) {
 
           wrapper.DataContext(e);
-          const auto& childUI = childFE.as<UIElement>();
-          auto priority = GetPriority<MenuFlyoutPriority>(childUI);
+          auto priority = GetPriority<MenuFlyoutPriority>(child);
           if (priority == MenuFlyoutPriority::Context) {
             if (auto button = e.try_as<Button>()) {
               return button.Flyout(childFlyout);

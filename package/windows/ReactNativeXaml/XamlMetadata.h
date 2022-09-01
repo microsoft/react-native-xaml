@@ -216,6 +216,7 @@ struct EventInfo {
   static const EventInfo xamlEventMap[];
 };
 
+constexpr int64_t InvalidTag = -1;
 
 struct XamlObject;
 
@@ -237,6 +238,8 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;
   winrt::Microsoft::ReactNative::IReactDispatcher UIDispatcher() const { return m_reactContext.UIDispatcher(); }
   xaml::DependencyObject ElementFromTag(int64_t tag) const { return winrt::Microsoft::ReactNative::XamlUIService::FromContext(m_reactContext).ElementFromReactTag(tag); }
+  static int64_t TagFromElement(xaml::DependencyObject const& element);
+  static void ElementSetTag(xaml::DependencyObject const& element, int64_t tag);
   FrameworkElement GetFlyoutTarget(winrt::Windows::Foundation::IInspectable wrapper) const;
 
 private:

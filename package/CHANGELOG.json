@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Thu, 01 Sep 2022 19:01:22 GMT",
+      "tag": "react-native-xaml_v0.0.67",
+      "version": "0.0.67",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Update to consume new ReactTag APIs",
+            "commit": "1738ae4783d7764b1235ba25732543fde2716149"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 30 Aug 2022 19:18:51 GMT",
       "tag": "react-native-xaml_v0.0.66",
       "version": "0.0.66",
