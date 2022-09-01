@@ -35,7 +35,7 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
   auto senderAsFE = sender.try_as<FrameworkElement>();
   auto wEN = winrt::to_hstring(eai.jsEventName);
   if (eai.xamlMetadata.m_callFunctionReturnFlushedQueue.has_value()) {
-    const auto tag = winrt::unbox_value<int64_t>(eai.obj.as<FrameworkElement>().Tag());
+    const auto tag = XamlMetadata::TagFromElement(eai.obj.as<xaml::DependencyObject>());
     ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
       auto objSender = std::make_shared<XamlObject>(senderAsFE, metadata);
       auto objArgs = std::make_shared<XamlObject>(args, metadata);

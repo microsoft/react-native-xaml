@@ -76,6 +76,27 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   return e;
 }
 
+/*static*/ int64_t XamlMetadata::TagFromElement(xaml::DependencyObject const& element) {
+#ifdef RNW_REACTTAG_API 
+  return XamlHelper::GetTag(element);
+#else
+  if (auto fe = element.try_as<FrameworkElement>()) {
+    if (auto tagII = fe.Tag()) {
+      return winrt::unbox_value<int64_t>(tagII);
+    }
+  }
+  return InvalidTag;
+#endif
+}
+
+/*static*/ void XamlMetadata::ElementSetTag(xaml::DependencyObject const& element, int64_t tag) {
+#ifdef RNW_REACTTAG_API
+  XamlHelper::SetTag(element, tag);
+#else
+  element.SetValue(FrameworkElement::TagProperty(), winrt::box_value(tag));
+#endif
+}
+
 FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInspectable flyout) const {
   auto it = std::find_if(wrapperToWrapped.begin(), wrapperToWrapped.end(), [flyout](auto& entry) {
     WrapperInfo wrapperInfo = entry.second;
