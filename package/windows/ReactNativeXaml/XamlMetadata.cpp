@@ -78,7 +78,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 
 /*static*/ int64_t XamlMetadata::TagFromElement(xaml::DependencyObject const& element) {
 #ifdef RNW_REACTTAG_API 
-  return XamlHelper::GetTag(element);
+  return XamlHelper::GetReactTag(element);
 #else
   if (auto fe = element.try_as<FrameworkElement>()) {
     if (auto tagII = fe.Tag()) {
@@ -91,7 +91,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
 
 /*static*/ void XamlMetadata::ElementSetTag(xaml::DependencyObject const& element, int64_t tag) {
 #ifdef RNW_REACTTAG_API
-  XamlHelper::SetTag(element, tag);
+  XamlHelper::SetReactTag(element, tag);
 #else
   element.SetValue(FrameworkElement::TagProperty(), winrt::box_value(tag));
 #endif

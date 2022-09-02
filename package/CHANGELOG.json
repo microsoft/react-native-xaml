@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Fri, 02 Sep 2022 20:18:20 GMT",
+      "tag": "react-native-xaml_v0.0.68",
+      "version": "0.0.68",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Fix build break when RNW_REACTTAG_API is defined",
+            "commit": "67bf9b60f4b148ff2d673e17f6690e0de1aa590b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 01 Sep 2022 19:01:22 GMT",
       "tag": "react-native-xaml_v0.0.67",
       "version": "0.0.67",
