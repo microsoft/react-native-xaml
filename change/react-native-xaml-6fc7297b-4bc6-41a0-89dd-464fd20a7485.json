@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix build break when RNW_REACTTAG_API is defined",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}

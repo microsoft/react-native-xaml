@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Thu, 01 Sep 2022 19:01:22 GMT and should not be manually modified.
+This log was last generated on Fri, 02 Sep 2022 20:18:20 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.68
+
+Fri, 02 Sep 2022 20:18:20 GMT
+
+### Patches
+
+- Fix build break when RNW_REACTTAG_API is defined (jthysell@microsoft.com)
 
 ## 0.0.67
 
