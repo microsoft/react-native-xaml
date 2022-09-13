@@ -24,9 +24,9 @@ import type {
 import type { Native<#= ns #> } from './Props';
 <# } #>
 
-import React from 'react';
+import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
-import { findNodeHandle, UIManager } from 'react-native';
+import { findNodeHandle, NativeMethods, UIManager } from 'react-native';
 
 import type { Point, Color } from './Props';
 
@@ -35,15 +35,33 @@ export type { Point, Color };
 <# 
 foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
     var ns = Util.GetTSNamespace(type);
+    var PropsTypeName = $"{Util.ToJsName(type)}Props";
+    var RefTypeName = $"{Util.ToJsName(type)}Ref";
+    var NativePropsName = Util.GetNativePropsName(type);
     if (ns != "") { #>
 export namespace <#= ns #> {
 <#  } #>
-export type <#= Util.ToJsName(type) #>Props = Omit<<#= Util.GetNativePropsName(type) #>, 'type'>;
+export type <#= PropsTypeName #> = Omit<<#= NativePropsName #>, 'type'>;
+export type <#= RefTypeName #> = React.Component<<#= NativePropsName #>> & Readonly<NativeMethods>;
 
-export const <#= Util.ToJsName(type) #> = React.forwardRef((props: <#= Util.ToJsName(type) #>Props, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='<#= type.GetFullName() #>' ref={ref} />);
+<# 
+  var commands = Util.GetCommands(type.GetFullName());
+  string NativeMethodsFor = commands.Count() == 0 ? string.Empty : $" & NativeMethodsFor_{Util.ToJsName(type)}";
+
+  if (NativeMethodsFor != string.Empty) {
+#>
+export interface NativeMethodsFor_<#= Util.ToJsName(type) #> {
+<#    foreach (var command in commands) { #>
+  <#= command.Name #>?: (ref: React.MutableRefObject<typeof NativeXamlControl>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => void;
+<#    } #>
+}
+<# } #>
+
+
+export const <#= Util.ToJsName(type) #> : (ForwardRefExoticComponent<<#= PropsTypeName #> & RefAttributes<<#= RefTypeName #>>> <#= NativeMethodsFor #>) = React.forwardRef((props: <#= PropsTypeName #>, ref: React.ForwardedRef<<#= RefTypeName #>>) => <NativeXamlControl {...props} type='<#= type.GetFullName() #>' ref={ref} />);
 <#
-    foreach (var command in Util.GetCommands(type.GetFullName())) { #>
-<#= Util.ToJsName(type) #>.<#= command.Name #> = (ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => {
+    foreach (var command in commands) { #>
+<#= Util.ToJsName(type) #>.<#= command.Name #> = (ref: React.MutableRefObject<typeof NativeXamlControl>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => {
   const tag = findNodeHandle(ref.current);
   UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
 };
