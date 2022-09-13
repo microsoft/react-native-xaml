@@ -488,13 +488,17 @@ See `eventArgMethods` in Windows.UI.Xaml.json.
 
 Example:
 ```jsx
-/// assume there is a MenuFlyout _menuRef defined.
+/// assume there is a MenuFlyout _menuRef defined like this:
+
+const menu = useRef<MenuFlyoutRef>(null);
+
+/// then:
 <TextBlock
   text="Hello"
   onContextRequested={e => {
     const tag = findNodeHandle(_tbRef.current);
     const { point, returnValue } = e.nativeEvent.args.TryGetPosition(tag);
-    MenuFlyout.ShowAt(_menuRef, {point: point});
+    MenuFlyout.ShowAt!(_menuRef, {point: point});
   }}
 />
 ```
@@ -504,8 +508,8 @@ Some types support custom commands to expose some functionality of the underlyin
 For example, this allows calling the programatically showing a flyout menu:
 
 ```jsx
-  const _tbRef = React.useRef<TextBlock>(null);
-  const _menuRef = useRef<MenuFlyout>(null);
+  const _tbRef = React.useRef<TextBlockRef>(null);
+  const _menuRef = useRef<MenuFlyoutRef>(null);
 
   const [x, setX] = React.useState(100);
   // ...

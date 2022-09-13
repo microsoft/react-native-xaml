@@ -190,7 +190,14 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
             
             #line default
             #line hidden
-            this.Write("?: (ref: React.MutableRefObject<typeof NativeXamlControl>, args: ");
+            this.Write("?: (ref: React.RefObject<");
+            
+            #line 55 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
+            
+            #line default
+            #line hidden
+            this.Write(">, args: ");
             
             #line 55 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.TSArgTypes != null ? command.TSArgTypes : "any[]"));
@@ -218,14 +225,14 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
             
             #line default
             #line hidden
-            this.Write(" : (ForwardRefExoticComponent<");
+            this.Write(" : (ForwardRefExoticComponent<React.PropsWithChildren<");
             
             #line 61 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropsTypeName));
             
             #line default
             #line hidden
-            this.Write(" & RefAttributes<");
+            this.Write("> & RefAttributes<");
             
             #line 61 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
@@ -239,14 +246,14 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
             
             #line default
             #line hidden
-            this.Write(") = React.forwardRef((props: ");
+            this.Write(") = React.forwardRef((props: React.PropsWithChildren<");
             
             #line 61 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropsTypeName));
             
             #line default
             #line hidden
-            this.Write(", ref: React.ForwardedRef<");
+            this.Write(">, ref: React.ForwardedRef<");
             
             #line 61 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
@@ -281,7 +288,14 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
             
             #line default
             #line hidden
-            this.Write(" = (ref: React.MutableRefObject<typeof NativeXamlControl>, args: ");
+            this.Write(" = (ref: React.RefObject<");
+            
+            #line 64 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
+            
+            #line default
+            #line hidden
+            this.Write(">, args: ");
             
             #line 64 "F:\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.TSArgTypes != null ? command.TSArgTypes : "any[]"));
