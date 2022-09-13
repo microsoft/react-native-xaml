@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 13 Sep 2022 21:38:24 GMT",
+      "tag": "react-native-xaml_v0.0.69",
+      "version": "0.0.69",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Redo typings and how we handle references so that we can call focus (and blur)",
+            "commit": "f11fb309ae975b0165f0eb89618c13783bc7b588"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 02 Sep 2022 20:18:20 GMT",
       "tag": "react-native-xaml_v0.0.68",
       "version": "0.0.68",

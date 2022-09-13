@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Fri, 02 Sep 2022 20:18:20 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Sep 2022 21:38:24 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.69
+
+Tue, 13 Sep 2022 21:38:24 GMT
+
+### Patches
+
+- Redo typings and how we handle references so that we can call focus (and blur) (asklar@microsoft.com)
 
 ## 0.0.68
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Redo typings and how we handle references so that we can call focus (and blur)",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}
