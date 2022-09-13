@@ -34,37 +34,37 @@ export type { Point, Color };
 
 <# 
 foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
-var ns = Util.GetTSNamespace(type);
-if (ns != "") { #>
+    var ns = Util.GetTSNamespace(type);
+    if (ns != "") { #>
 export namespace <#= ns #> {
-<# } #>
+<#  } #>
 export type <#= Util.ToJsName(type) #>Props = Omit<<#= Util.GetNativePropsName(type) #>, 'type'>;
 
-export class <#= Util.ToJsName(type) #> extends React.Component<<#= Util.ToJsName(type) #>Props> {
-  render() {
-    return <NativeXamlControl {...this.props} type='<#= type.GetFullName() #>' />;
-  }
-<# foreach (var command in Util.GetCommands(type.GetFullName())) { #>
-  static <#= command.Name #>(ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) {
-    const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
-  }
-<# } #>
+export const <#= Util.ToJsName(type) #> = React.forwardRef((props: <#= Util.ToJsName(type) #>Props, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='<#= type.GetFullName() #>' ref={ref} />);
+<#
+    foreach (var command in Util.GetCommands(type.GetFullName())) { #>
+<#= Util.ToJsName(type) #>.<#= command.Name #> = (ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => {
+  const tag = findNodeHandle(ref.current);
+  UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
 };
-<# if (ns != "") { #>
+<#  } #>
+<#  if (ns != "") { #>
 }
-<# } #>
-<# } #>
+<#  } #>
+<#
+} #>
 
-<# foreach (var ea in Util.eventArgsTypes) {
-var ns = Util.GetTSNamespace(ea);
-if (ns != "") { #>
+<#
+foreach (var ea in Util.eventArgsTypes) {
+    var ns = Util.GetTSNamespace(ea);
+    if (ns != "") { #>
 export namespace <#= ns #> {
 <#
-}
+    }
 #>
 export type <#= ea.GetName() #> = <#= Util.GetEventArgsTSType(ea, "Native") #>;    // <#= ea.GetFullName() #> 
-<# if (ns != "") { #>
+<#  if (ns != "") { #>
 }
-<# } #>
-<# } #>
+<#  } #>
+<#
+} #>

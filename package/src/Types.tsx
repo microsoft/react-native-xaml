@@ -340,1638 +340,762 @@ export type { Point, Color };
 export namespace WinUI {
 export type AnimatedIconProps = Omit<NativeWinUI.NativeAnimatedIconProps, 'type'>;
 
-export class AnimatedIcon extends React.Component<AnimatedIconProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.AnimatedIcon' />;
-  }
-};
+export const AnimatedIcon = React.forwardRef((props: AnimatedIconProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.AnimatedIcon' ref={ref} />);
 }
 export namespace WinUI {
 export type AnimatedVisualPlayerProps = Omit<NativeWinUI.NativeAnimatedVisualPlayerProps, 'type'>;
 
-export class AnimatedVisualPlayer extends React.Component<AnimatedVisualPlayerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer' />;
-  }
-};
+export const AnimatedVisualPlayer = React.forwardRef((props: AnimatedVisualPlayerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.AnimatedVisualPlayer' ref={ref} />);
 }
 export namespace WinUI {
 export type BreadcrumbBarProps = Omit<NativeWinUI.NativeBreadcrumbBarProps, 'type'>;
 
-export class BreadcrumbBar extends React.Component<BreadcrumbBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.BreadcrumbBar' />;
-  }
-};
+export const BreadcrumbBar = React.forwardRef((props: BreadcrumbBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.BreadcrumbBar' ref={ref} />);
 }
 export namespace WinUI {
 export type BreadcrumbBarItemProps = Omit<NativeWinUI.NativeBreadcrumbBarItemProps, 'type'>;
 
-export class BreadcrumbBarItem extends React.Component<BreadcrumbBarItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' />;
-  }
-};
+export const BreadcrumbBarItem = React.forwardRef((props: BreadcrumbBarItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.BreadcrumbBarItem' ref={ref} />);
 }
 export namespace WinUI {
 export type ColorPickerProps = Omit<NativeWinUI.NativeColorPickerProps, 'type'>;
 
-export class ColorPicker extends React.Component<ColorPickerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ColorPicker' />;
-  }
-};
+export const ColorPicker = React.forwardRef((props: ColorPickerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ColorPicker' ref={ref} />);
 }
 export namespace WinUI {
 export type CommandBarFlyoutProps = Omit<NativeWinUI.NativeCommandBarFlyoutProps, 'type'>;
 
-export class CommandBarFlyout extends React.Component<CommandBarFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.CommandBarFlyout' />;
-  }
-};
+export const CommandBarFlyout = React.forwardRef((props: CommandBarFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.CommandBarFlyout' ref={ref} />);
 }
 export namespace WinUI {
 export type DropDownButtonProps = Omit<NativeWinUI.NativeDropDownButtonProps, 'type'>;
 
-export class DropDownButton extends React.Component<DropDownButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.DropDownButton' />;
-  }
-};
+export const DropDownButton = React.forwardRef((props: DropDownButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.DropDownButton' ref={ref} />);
 }
 export namespace WinUI {
 export type ExpanderProps = Omit<NativeWinUI.NativeExpanderProps, 'type'>;
 
-export class Expander extends React.Component<ExpanderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Expander' />;
-  }
-};
+export const Expander = React.forwardRef((props: ExpanderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Expander' ref={ref} />);
 }
 export namespace WinUI {
 export type ImageIconProps = Omit<NativeWinUI.NativeImageIconProps, 'type'>;
 
-export class ImageIcon extends React.Component<ImageIconProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ImageIcon' />;
-  }
-};
+export const ImageIcon = React.forwardRef((props: ImageIconProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ImageIcon' ref={ref} />);
 }
 export namespace WinUI {
 export type InfoBarProps = Omit<NativeWinUI.NativeInfoBarProps, 'type'>;
 
-export class InfoBar extends React.Component<InfoBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.InfoBar' />;
-  }
-};
+export const InfoBar = React.forwardRef((props: InfoBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.InfoBar' ref={ref} />);
 }
 export namespace WinUI {
 export type ItemsRepeaterProps = Omit<NativeWinUI.NativeItemsRepeaterProps, 'type'>;
 
-export class ItemsRepeater extends React.Component<ItemsRepeaterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ItemsRepeater' />;
-  }
-};
+export const ItemsRepeater = React.forwardRef((props: ItemsRepeaterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ItemsRepeater' ref={ref} />);
 }
 export namespace WinUI {
 export type ItemsRepeaterScrollHostProps = Omit<NativeWinUI.NativeItemsRepeaterScrollHostProps, 'type'>;
 
-export class ItemsRepeaterScrollHost extends React.Component<ItemsRepeaterScrollHostProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' />;
-  }
-};
+export const ItemsRepeaterScrollHost = React.forwardRef((props: ItemsRepeaterScrollHostProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' ref={ref} />);
 }
 export namespace WinUI {
 export type MenuBarProps = Omit<NativeWinUI.NativeMenuBarProps, 'type'>;
 
-export class MenuBar extends React.Component<MenuBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.MenuBar' />;
-  }
-};
+export const MenuBar = React.forwardRef((props: MenuBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.MenuBar' ref={ref} />);
 }
 export namespace WinUI {
 export type MenuBarItemProps = Omit<NativeWinUI.NativeMenuBarItemProps, 'type'>;
 
-export class MenuBarItem extends React.Component<MenuBarItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.MenuBarItem' />;
-  }
-};
+export const MenuBarItem = React.forwardRef((props: MenuBarItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.MenuBarItem' ref={ref} />);
 }
 export namespace WinUI {
 export type MenuBarItemFlyoutProps = Omit<NativeWinUI.NativeMenuBarItemFlyoutProps, 'type'>;
 
-export class MenuBarItemFlyout extends React.Component<MenuBarItemFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.MenuBarItemFlyout' />;
-  }
-};
+export const MenuBarItemFlyout = React.forwardRef((props: MenuBarItemFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.MenuBarItemFlyout' ref={ref} />);
 }
 export namespace WinUI {
 export type NavigationViewProps = Omit<NativeWinUI.NativeNavigationViewProps, 'type'>;
 
-export class NavigationView extends React.Component<NavigationViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.NavigationView' />;
-  }
-};
+export const NavigationView = React.forwardRef((props: NavigationViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.NavigationView' ref={ref} />);
 }
 export namespace WinUI {
 export type NavigationViewItemProps = Omit<NativeWinUI.NativeNavigationViewItemProps, 'type'>;
 
-export class NavigationViewItem extends React.Component<NavigationViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.NavigationViewItem' />;
-  }
-};
+export const NavigationViewItem = React.forwardRef((props: NavigationViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.NavigationViewItem' ref={ref} />);
 }
 export namespace WinUI {
 export type NavigationViewItemHeaderProps = Omit<NativeWinUI.NativeNavigationViewItemHeaderProps, 'type'>;
 
-export class NavigationViewItemHeader extends React.Component<NavigationViewItemHeaderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.NavigationViewItemHeader' />;
-  }
-};
+export const NavigationViewItemHeader = React.forwardRef((props: NavigationViewItemHeaderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.NavigationViewItemHeader' ref={ref} />);
 }
 export namespace WinUI {
 export type NavigationViewItemSeparatorProps = Omit<NativeWinUI.NativeNavigationViewItemSeparatorProps, 'type'>;
 
-export class NavigationViewItemSeparator extends React.Component<NavigationViewItemSeparatorProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator' />;
-  }
-};
+export const NavigationViewItemSeparator = React.forwardRef((props: NavigationViewItemSeparatorProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator' ref={ref} />);
 }
 export namespace WinUI {
 export type NumberBoxProps = Omit<NativeWinUI.NativeNumberBoxProps, 'type'>;
 
-export class NumberBox extends React.Component<NumberBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.NumberBox' />;
-  }
-};
+export const NumberBox = React.forwardRef((props: NumberBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.NumberBox' ref={ref} />);
 }
 export namespace WinUI {
 export type ParallaxViewProps = Omit<NativeWinUI.NativeParallaxViewProps, 'type'>;
 
-export class ParallaxView extends React.Component<ParallaxViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ParallaxView' />;
-  }
-};
+export const ParallaxView = React.forwardRef((props: ParallaxViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ParallaxView' ref={ref} />);
 }
 export namespace WinUI {
 export type PersonPictureProps = Omit<NativeWinUI.NativePersonPictureProps, 'type'>;
 
-export class PersonPicture extends React.Component<PersonPictureProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.PersonPicture' />;
-  }
-};
+export const PersonPicture = React.forwardRef((props: PersonPictureProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.PersonPicture' ref={ref} />);
 }
 export namespace WinUI {
 export type PipsPagerProps = Omit<NativeWinUI.NativePipsPagerProps, 'type'>;
 
-export class PipsPager extends React.Component<PipsPagerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.PipsPager' />;
-  }
-};
+export const PipsPager = React.forwardRef((props: PipsPagerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.PipsPager' ref={ref} />);
 }
 export namespace WinUI {
 export type ColorPickerSliderProps = Omit<NativeWinUI.NativeColorPickerSliderProps, 'type'>;
 
-export class ColorPickerSlider extends React.Component<ColorPickerSliderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider' />;
-  }
-};
+export const ColorPickerSlider = React.forwardRef((props: ColorPickerSliderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider' ref={ref} />);
 }
 export namespace WinUI {
 export type ColorSpectrumProps = Omit<NativeWinUI.NativeColorSpectrumProps, 'type'>;
 
-export class ColorSpectrum extends React.Component<ColorSpectrumProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.ColorSpectrum' />;
-  }
-};
+export const ColorSpectrum = React.forwardRef((props: ColorSpectrumProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.ColorSpectrum' ref={ref} />);
 }
 export namespace WinUI {
 export type CommandBarFlyoutCommandBarProps = Omit<NativeWinUI.NativeCommandBarFlyoutCommandBarProps, 'type'>;
 
-export class CommandBarFlyoutCommandBar extends React.Component<CommandBarFlyoutCommandBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' />;
-  }
-};
+export const CommandBarFlyoutCommandBar = React.forwardRef((props: CommandBarFlyoutCommandBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' ref={ref} />);
 }
 export namespace WinUI {
 export type InfoBarPanelProps = Omit<NativeWinUI.NativeInfoBarPanelProps, 'type'>;
 
-export class InfoBarPanel extends React.Component<InfoBarPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.InfoBarPanel' />;
-  }
-};
+export const InfoBarPanel = React.forwardRef((props: InfoBarPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.InfoBarPanel' ref={ref} />);
 }
 export namespace WinUI {
 export type MonochromaticOverlayPresenterProps = Omit<NativeWinUI.NativeMonochromaticOverlayPresenterProps, 'type'>;
 
-export class MonochromaticOverlayPresenter extends React.Component<MonochromaticOverlayPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter' />;
-  }
-};
+export const MonochromaticOverlayPresenter = React.forwardRef((props: MonochromaticOverlayPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter' ref={ref} />);
 }
 export namespace WinUI {
 export type NavigationViewItemPresenterProps = Omit<NativeWinUI.NativeNavigationViewItemPresenterProps, 'type'>;
 
-export class NavigationViewItemPresenter extends React.Component<NavigationViewItemPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter' />;
-  }
-};
+export const NavigationViewItemPresenter = React.forwardRef((props: NavigationViewItemPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter' ref={ref} />);
 }
 export namespace WinUI {
 export type TabViewListViewProps = Omit<NativeWinUI.NativeTabViewListViewProps, 'type'>;
 
-export class TabViewListView extends React.Component<TabViewListViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' />;
-  }
-};
+export const TabViewListView = React.forwardRef((props: TabViewListViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.Primitives.TabViewListView' ref={ref} />);
 }
 export namespace WinUI {
 export type ProgressBarProps = Omit<NativeWinUI.NativeProgressBarProps, 'type'>;
 
-export class ProgressBar extends React.Component<ProgressBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ProgressBar' />;
-  }
-};
+export const ProgressBar = React.forwardRef((props: ProgressBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ProgressBar' ref={ref} />);
 }
 export namespace WinUI {
 export type ProgressRingProps = Omit<NativeWinUI.NativeProgressRingProps, 'type'>;
 
-export class ProgressRing extends React.Component<ProgressRingProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ProgressRing' />;
-  }
-};
+export const ProgressRing = React.forwardRef((props: ProgressRingProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ProgressRing' ref={ref} />);
 }
 export namespace WinUI {
 export type RadioButtonsProps = Omit<NativeWinUI.NativeRadioButtonsProps, 'type'>;
 
-export class RadioButtons extends React.Component<RadioButtonsProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.RadioButtons' />;
-  }
-};
+export const RadioButtons = React.forwardRef((props: RadioButtonsProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.RadioButtons' ref={ref} />);
 }
 export namespace WinUI {
 export type RadioMenuFlyoutItemProps = Omit<NativeWinUI.NativeRadioMenuFlyoutItemProps, 'type'>;
 
-export class RadioMenuFlyoutItem extends React.Component<RadioMenuFlyoutItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem' />;
-  }
-};
+export const RadioMenuFlyoutItem = React.forwardRef((props: RadioMenuFlyoutItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem' ref={ref} />);
 }
 export namespace WinUI {
 export type RatingControlProps = Omit<NativeWinUI.NativeRatingControlProps, 'type'>;
 
-export class RatingControl extends React.Component<RatingControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.RatingControl' />;
-  }
-};
+export const RatingControl = React.forwardRef((props: RatingControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.RatingControl' ref={ref} />);
 }
 export namespace WinUI {
 export type RefreshContainerProps = Omit<NativeWinUI.NativeRefreshContainerProps, 'type'>;
 
-export class RefreshContainer extends React.Component<RefreshContainerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.RefreshContainer' />;
-  }
-};
+export const RefreshContainer = React.forwardRef((props: RefreshContainerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.RefreshContainer' ref={ref} />);
 }
 export namespace WinUI {
 export type RefreshVisualizerProps = Omit<NativeWinUI.NativeRefreshVisualizerProps, 'type'>;
 
-export class RefreshVisualizer extends React.Component<RefreshVisualizerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.RefreshVisualizer' />;
-  }
-};
+export const RefreshVisualizer = React.forwardRef((props: RefreshVisualizerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.RefreshVisualizer' ref={ref} />);
 }
 export namespace WinUI {
 export type RevealListViewItemPresenterProps = Omit<NativeWinUI.NativeRevealListViewItemPresenterProps, 'type'>;
 
-export class RevealListViewItemPresenter extends React.Component<RevealListViewItemPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter' />;
-  }
-};
+export const RevealListViewItemPresenter = React.forwardRef((props: RevealListViewItemPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.RevealListViewItemPresenter' ref={ref} />);
 }
 export namespace WinUI {
 export type SplitButtonProps = Omit<NativeWinUI.NativeSplitButtonProps, 'type'>;
 
-export class SplitButton extends React.Component<SplitButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.SplitButton' />;
-  }
-};
+export const SplitButton = React.forwardRef((props: SplitButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.SplitButton' ref={ref} />);
 }
 export namespace WinUI {
 export type SwipeControlProps = Omit<NativeWinUI.NativeSwipeControlProps, 'type'>;
 
-export class SwipeControl extends React.Component<SwipeControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.SwipeControl' />;
-  }
-};
+export const SwipeControl = React.forwardRef((props: SwipeControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.SwipeControl' ref={ref} />);
 }
 export namespace WinUI {
 export type TabViewProps = Omit<NativeWinUI.NativeTabViewProps, 'type'>;
 
-export class TabView extends React.Component<TabViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TabView' />;
-  }
-};
+export const TabView = React.forwardRef((props: TabViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TabView' ref={ref} />);
 }
 export namespace WinUI {
 export type TabViewItemProps = Omit<NativeWinUI.NativeTabViewItemProps, 'type'>;
 
-export class TabViewItem extends React.Component<TabViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TabViewItem' />;
-  }
-};
+export const TabViewItem = React.forwardRef((props: TabViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TabViewItem' ref={ref} />);
 }
 export namespace WinUI {
 export type TeachingTipProps = Omit<NativeWinUI.NativeTeachingTipProps, 'type'>;
 
-export class TeachingTip extends React.Component<TeachingTipProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TeachingTip' />;
-  }
-};
+export const TeachingTip = React.forwardRef((props: TeachingTipProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TeachingTip' ref={ref} />);
 }
 export namespace WinUI {
 export type TextCommandBarFlyoutProps = Omit<NativeWinUI.NativeTextCommandBarFlyoutProps, 'type'>;
 
-export class TextCommandBarFlyout extends React.Component<TextCommandBarFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TextCommandBarFlyout' />;
-  }
-};
+export const TextCommandBarFlyout = React.forwardRef((props: TextCommandBarFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TextCommandBarFlyout' ref={ref} />);
 }
 export namespace WinUI {
 export type ToggleSplitButtonProps = Omit<NativeWinUI.NativeToggleSplitButtonProps, 'type'>;
 
-export class ToggleSplitButton extends React.Component<ToggleSplitButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.ToggleSplitButton' />;
-  }
-};
+export const ToggleSplitButton = React.forwardRef((props: ToggleSplitButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.ToggleSplitButton' ref={ref} />);
 }
 export namespace WinUI {
 export type TreeViewProps = Omit<NativeWinUI.NativeTreeViewProps, 'type'>;
 
-export class TreeView extends React.Component<TreeViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TreeView' />;
-  }
-};
+export const TreeView = React.forwardRef((props: TreeViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TreeView' ref={ref} />);
 }
 export namespace WinUI {
 export type TreeViewItemProps = Omit<NativeWinUI.NativeTreeViewItemProps, 'type'>;
 
-export class TreeViewItem extends React.Component<TreeViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TreeViewItem' />;
-  }
-};
+export const TreeViewItem = React.forwardRef((props: TreeViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TreeViewItem' ref={ref} />);
 }
 export namespace WinUI {
 export type TreeViewListProps = Omit<NativeWinUI.NativeTreeViewListProps, 'type'>;
 
-export class TreeViewList extends React.Component<TreeViewListProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TreeViewList' />;
-  }
-};
+export const TreeViewList = React.forwardRef((props: TreeViewListProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TreeViewList' ref={ref} />);
 }
 export namespace WinUI {
 export type TwoPaneViewProps = Omit<NativeWinUI.NativeTwoPaneViewProps, 'type'>;
 
-export class TwoPaneView extends React.Component<TwoPaneViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Microsoft.UI.Xaml.Controls.TwoPaneView' />;
-  }
-};
+export const TwoPaneView = React.forwardRef((props: TwoPaneViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TwoPaneView' ref={ref} />);
 }
 export type ContentControlProps = Omit<NativeContentControlProps, 'type'>;
 
-export class ContentControl extends React.Component<ContentControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ContentControl' />;
-  }
-};
+export const ContentControl = React.forwardRef((props: ContentControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ContentControl' ref={ref} />);
 export type AppBarProps = Omit<NativeAppBarProps, 'type'>;
 
-export class AppBar extends React.Component<AppBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.AppBar' />;
-  }
-};
+export const AppBar = React.forwardRef((props: AppBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.AppBar' ref={ref} />);
 export type ButtonProps = Omit<NativeButtonProps, 'type'>;
 
-export class Button extends React.Component<ButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Button' />;
-  }
-};
+export const Button = React.forwardRef((props: ButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Button' ref={ref} />);
 export type AppBarButtonProps = Omit<NativeAppBarButtonProps, 'type'>;
 
-export class AppBarButton extends React.Component<AppBarButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.AppBarButton' />;
-  }
-};
+export const AppBarButton = React.forwardRef((props: AppBarButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.AppBarButton' ref={ref} />);
 export type AppBarElementContainerProps = Omit<NativeAppBarElementContainerProps, 'type'>;
 
-export class AppBarElementContainer extends React.Component<AppBarElementContainerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.AppBarElementContainer' />;
-  }
-};
+export const AppBarElementContainer = React.forwardRef((props: AppBarElementContainerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.AppBarElementContainer' ref={ref} />);
 export type AppBarSeparatorProps = Omit<NativeAppBarSeparatorProps, 'type'>;
 
-export class AppBarSeparator extends React.Component<AppBarSeparatorProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.AppBarSeparator' />;
-  }
-};
+export const AppBarSeparator = React.forwardRef((props: AppBarSeparatorProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.AppBarSeparator' ref={ref} />);
 export type ToggleButtonProps = Omit<NativeToggleButtonProps, 'type'>;
 
-export class ToggleButton extends React.Component<ToggleButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.ToggleButton' />;
-  }
-};
+export const ToggleButton = React.forwardRef((props: ToggleButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.ToggleButton' ref={ref} />);
 export type AppBarToggleButtonProps = Omit<NativeAppBarToggleButtonProps, 'type'>;
 
-export class AppBarToggleButton extends React.Component<AppBarToggleButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.AppBarToggleButton' />;
-  }
-};
+export const AppBarToggleButton = React.forwardRef((props: AppBarToggleButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.AppBarToggleButton' ref={ref} />);
 export type ItemsControlProps = Omit<NativeItemsControlProps, 'type'>;
 
-export class ItemsControl extends React.Component<ItemsControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ItemsControl' />;
-  }
-};
+export const ItemsControl = React.forwardRef((props: ItemsControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ItemsControl' ref={ref} />);
 export type AutoSuggestBoxProps = Omit<NativeAutoSuggestBoxProps, 'type'>;
 
-export class AutoSuggestBox extends React.Component<AutoSuggestBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.AutoSuggestBox' />;
-  }
-};
+export const AutoSuggestBox = React.forwardRef((props: AutoSuggestBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.AutoSuggestBox' ref={ref} />);
 export type BitmapIconProps = Omit<NativeBitmapIconProps, 'type'>;
 
-export class BitmapIcon extends React.Component<BitmapIconProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.BitmapIcon' />;
-  }
-};
+export const BitmapIcon = React.forwardRef((props: BitmapIconProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.BitmapIcon' ref={ref} />);
 export type BorderProps = Omit<NativeBorderProps, 'type'>;
 
-export class Border extends React.Component<BorderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Border' />;
-  }
-};
+export const Border = React.forwardRef((props: BorderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Border' ref={ref} />);
 export type CalendarDatePickerProps = Omit<NativeCalendarDatePickerProps, 'type'>;
 
-export class CalendarDatePicker extends React.Component<CalendarDatePickerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CalendarDatePicker' />;
-  }
-};
+export const CalendarDatePicker = React.forwardRef((props: CalendarDatePickerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CalendarDatePicker' ref={ref} />);
 export type CalendarViewProps = Omit<NativeCalendarViewProps, 'type'>;
 
-export class CalendarView extends React.Component<CalendarViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CalendarView' />;
-  }
-};
+export const CalendarView = React.forwardRef((props: CalendarViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CalendarView' ref={ref} />);
 export type CalendarViewDayItemProps = Omit<NativeCalendarViewDayItemProps, 'type'>;
 
-export class CalendarViewDayItem extends React.Component<CalendarViewDayItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CalendarViewDayItem' />;
-  }
-};
+export const CalendarViewDayItem = React.forwardRef((props: CalendarViewDayItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CalendarViewDayItem' ref={ref} />);
 export type CanvasProps = Omit<NativeCanvasProps, 'type'>;
 
-export class Canvas extends React.Component<CanvasProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Canvas' />;
-  }
-};
+export const Canvas = React.forwardRef((props: CanvasProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Canvas' ref={ref} />);
 export type CaptureElementProps = Omit<NativeCaptureElementProps, 'type'>;
 
-export class CaptureElement extends React.Component<CaptureElementProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CaptureElement' />;
-  }
-};
+export const CaptureElement = React.forwardRef((props: CaptureElementProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CaptureElement' ref={ref} />);
 export type CheckBoxProps = Omit<NativeCheckBoxProps, 'type'>;
 
-export class CheckBox extends React.Component<CheckBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CheckBox' />;
-  }
-};
+export const CheckBox = React.forwardRef((props: CheckBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CheckBox' ref={ref} />);
 export type ColorPickerProps = Omit<NativeColorPickerProps, 'type'>;
 
-export class ColorPicker extends React.Component<ColorPickerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ColorPicker' />;
-  }
-};
+export const ColorPicker = React.forwardRef((props: ColorPickerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ColorPicker' ref={ref} />);
 export type ComboBoxProps = Omit<NativeComboBoxProps, 'type'>;
 
-export class ComboBox extends React.Component<ComboBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ComboBox' />;
-  }
-};
+export const ComboBox = React.forwardRef((props: ComboBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ComboBox' ref={ref} />);
 export type ComboBoxItemProps = Omit<NativeComboBoxItemProps, 'type'>;
 
-export class ComboBoxItem extends React.Component<ComboBoxItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ComboBoxItem' />;
-  }
-};
+export const ComboBoxItem = React.forwardRef((props: ComboBoxItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ComboBoxItem' ref={ref} />);
 export type CommandBarProps = Omit<NativeCommandBarProps, 'type'>;
 
-export class CommandBar extends React.Component<CommandBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CommandBar' />;
-  }
-};
+export const CommandBar = React.forwardRef((props: CommandBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CommandBar' ref={ref} />);
 export type CommandBarFlyoutProps = Omit<NativeCommandBarFlyoutProps, 'type'>;
 
-export class CommandBarFlyout extends React.Component<CommandBarFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CommandBarFlyout' />;
-  }
-};
+export const CommandBarFlyout = React.forwardRef((props: CommandBarFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CommandBarFlyout' ref={ref} />);
 export type CommandBarOverflowPresenterProps = Omit<NativeCommandBarOverflowPresenterProps, 'type'>;
 
-export class CommandBarOverflowPresenter extends React.Component<CommandBarOverflowPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.CommandBarOverflowPresenter' />;
-  }
-};
+export const CommandBarOverflowPresenter = React.forwardRef((props: CommandBarOverflowPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.CommandBarOverflowPresenter' ref={ref} />);
 export type ContentDialogProps = Omit<NativeContentDialogProps, 'type'>;
 
-export class ContentDialog extends React.Component<ContentDialogProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ContentDialog' />;
-  }
-};
+export const ContentDialog = React.forwardRef((props: ContentDialogProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ContentDialog' ref={ref} />);
 export type ContentPresenterProps = Omit<NativeContentPresenterProps, 'type'>;
 
-export class ContentPresenter extends React.Component<ContentPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ContentPresenter' />;
-  }
-};
+export const ContentPresenter = React.forwardRef((props: ContentPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ContentPresenter' ref={ref} />);
 export type DatePickerProps = Omit<NativeDatePickerProps, 'type'>;
 
-export class DatePicker extends React.Component<DatePickerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.DatePicker' />;
-  }
-};
+export const DatePicker = React.forwardRef((props: DatePickerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.DatePicker' ref={ref} />);
 export type DatePickerFlyoutProps = Omit<NativeDatePickerFlyoutProps, 'type'>;
 
-export class DatePickerFlyout extends React.Component<DatePickerFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.DatePickerFlyout' />;
-  }
-};
+export const DatePickerFlyout = React.forwardRef((props: DatePickerFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.DatePickerFlyout' ref={ref} />);
 export type DropDownButtonProps = Omit<NativeDropDownButtonProps, 'type'>;
 
-export class DropDownButton extends React.Component<DropDownButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.DropDownButton' />;
-  }
-};
+export const DropDownButton = React.forwardRef((props: DropDownButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.DropDownButton' ref={ref} />);
 export type FlipViewProps = Omit<NativeFlipViewProps, 'type'>;
 
-export class FlipView extends React.Component<FlipViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.FlipView' />;
-  }
-};
+export const FlipView = React.forwardRef((props: FlipViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.FlipView' ref={ref} />);
 export type FlipViewItemProps = Omit<NativeFlipViewItemProps, 'type'>;
 
-export class FlipViewItem extends React.Component<FlipViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.FlipViewItem' />;
-  }
-};
+export const FlipViewItem = React.forwardRef((props: FlipViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.FlipViewItem' ref={ref} />);
 export type FlyoutProps = Omit<NativeFlyoutProps, 'type'>;
 
-export class Flyout extends React.Component<FlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Flyout' />;
-  }
-};
+export const Flyout = React.forwardRef((props: FlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Flyout' ref={ref} />);
 export type FlyoutPresenterProps = Omit<NativeFlyoutPresenterProps, 'type'>;
 
-export class FlyoutPresenter extends React.Component<FlyoutPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.FlyoutPresenter' />;
-  }
-};
+export const FlyoutPresenter = React.forwardRef((props: FlyoutPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.FlyoutPresenter' ref={ref} />);
 export type FontIconProps = Omit<NativeFontIconProps, 'type'>;
 
-export class FontIcon extends React.Component<FontIconProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.FontIcon' />;
-  }
-};
+export const FontIcon = React.forwardRef((props: FontIconProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.FontIcon' ref={ref} />);
 export type FrameProps = Omit<NativeFrameProps, 'type'>;
 
-export class Frame extends React.Component<FrameProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Frame' />;
-  }
-};
+export const Frame = React.forwardRef((props: FrameProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Frame' ref={ref} />);
 export type GridProps = Omit<NativeGridProps, 'type'>;
 
-export class Grid extends React.Component<GridProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Grid' />;
-  }
-};
+export const Grid = React.forwardRef((props: GridProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Grid' ref={ref} />);
 export type GridViewProps = Omit<NativeGridViewProps, 'type'>;
 
-export class GridView extends React.Component<GridViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.GridView' />;
-  }
-};
+export const GridView = React.forwardRef((props: GridViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.GridView' ref={ref} />);
 export type GridViewHeaderItemProps = Omit<NativeGridViewHeaderItemProps, 'type'>;
 
-export class GridViewHeaderItem extends React.Component<GridViewHeaderItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.GridViewHeaderItem' />;
-  }
-};
+export const GridViewHeaderItem = React.forwardRef((props: GridViewHeaderItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.GridViewHeaderItem' ref={ref} />);
 export type GridViewItemProps = Omit<NativeGridViewItemProps, 'type'>;
 
-export class GridViewItem extends React.Component<GridViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.GridViewItem' />;
-  }
-};
+export const GridViewItem = React.forwardRef((props: GridViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.GridViewItem' ref={ref} />);
 export type GroupItemProps = Omit<NativeGroupItemProps, 'type'>;
 
-export class GroupItem extends React.Component<GroupItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.GroupItem' />;
-  }
-};
+export const GroupItem = React.forwardRef((props: GroupItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.GroupItem' ref={ref} />);
 export type HandwritingViewProps = Omit<NativeHandwritingViewProps, 'type'>;
 
-export class HandwritingView extends React.Component<HandwritingViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.HandwritingView' />;
-  }
-};
+export const HandwritingView = React.forwardRef((props: HandwritingViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.HandwritingView' ref={ref} />);
 export type HubProps = Omit<NativeHubProps, 'type'>;
 
-export class Hub extends React.Component<HubProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Hub' />;
-  }
-};
+export const Hub = React.forwardRef((props: HubProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Hub' ref={ref} />);
 export type HubSectionProps = Omit<NativeHubSectionProps, 'type'>;
 
-export class HubSection extends React.Component<HubSectionProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.HubSection' />;
-  }
-};
+export const HubSection = React.forwardRef((props: HubSectionProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.HubSection' ref={ref} />);
 export type HyperlinkButtonProps = Omit<NativeHyperlinkButtonProps, 'type'>;
 
-export class HyperlinkButton extends React.Component<HyperlinkButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.HyperlinkButton' />;
-  }
-};
+export const HyperlinkButton = React.forwardRef((props: HyperlinkButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.HyperlinkButton' ref={ref} />);
 export type IconSourceElementProps = Omit<NativeIconSourceElementProps, 'type'>;
 
-export class IconSourceElement extends React.Component<IconSourceElementProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.IconSourceElement' />;
-  }
-};
+export const IconSourceElement = React.forwardRef((props: IconSourceElementProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.IconSourceElement' ref={ref} />);
 export type ImageProps = Omit<NativeImageProps, 'type'>;
 
-export class Image extends React.Component<ImageProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Image' />;
-  }
-};
+export const Image = React.forwardRef((props: ImageProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Image' ref={ref} />);
 export type InkCanvasProps = Omit<NativeInkCanvasProps, 'type'>;
 
-export class InkCanvas extends React.Component<InkCanvasProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkCanvas' />;
-  }
-};
+export const InkCanvas = React.forwardRef((props: InkCanvasProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkCanvas' ref={ref} />);
 export type InkToolbarProps = Omit<NativeInkToolbarProps, 'type'>;
 
-export class InkToolbar extends React.Component<InkToolbarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbar' />;
-  }
-};
+export const InkToolbar = React.forwardRef((props: InkToolbarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbar' ref={ref} />);
 export type RadioButtonProps = Omit<NativeRadioButtonProps, 'type'>;
 
-export class RadioButton extends React.Component<RadioButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RadioButton' />;
-  }
-};
+export const RadioButton = React.forwardRef((props: RadioButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RadioButton' ref={ref} />);
 export type InkToolbarBallpointPenButtonProps = Omit<NativeInkToolbarBallpointPenButtonProps, 'type'>;
 
-export class InkToolbarBallpointPenButton extends React.Component<InkToolbarBallpointPenButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton' />;
-  }
-};
+export const InkToolbarBallpointPenButton = React.forwardRef((props: InkToolbarBallpointPenButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarBallpointPenButton' ref={ref} />);
 export type InkToolbarCustomPenButtonProps = Omit<NativeInkToolbarCustomPenButtonProps, 'type'>;
 
-export class InkToolbarCustomPenButton extends React.Component<InkToolbarCustomPenButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarCustomPenButton' />;
-  }
-};
+export const InkToolbarCustomPenButton = React.forwardRef((props: InkToolbarCustomPenButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarCustomPenButton' ref={ref} />);
 export type InkToolbarCustomToggleButtonProps = Omit<NativeInkToolbarCustomToggleButtonProps, 'type'>;
 
-export class InkToolbarCustomToggleButton extends React.Component<InkToolbarCustomToggleButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton' />;
-  }
-};
+export const InkToolbarCustomToggleButton = React.forwardRef((props: InkToolbarCustomToggleButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarCustomToggleButton' ref={ref} />);
 export type InkToolbarCustomToolButtonProps = Omit<NativeInkToolbarCustomToolButtonProps, 'type'>;
 
-export class InkToolbarCustomToolButton extends React.Component<InkToolbarCustomToolButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarCustomToolButton' />;
-  }
-};
+export const InkToolbarCustomToolButton = React.forwardRef((props: InkToolbarCustomToolButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarCustomToolButton' ref={ref} />);
 export type InkToolbarEraserButtonProps = Omit<NativeInkToolbarEraserButtonProps, 'type'>;
 
-export class InkToolbarEraserButton extends React.Component<InkToolbarEraserButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarEraserButton' />;
-  }
-};
+export const InkToolbarEraserButton = React.forwardRef((props: InkToolbarEraserButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarEraserButton' ref={ref} />);
 export type InkToolbarFlyoutItemProps = Omit<NativeInkToolbarFlyoutItemProps, 'type'>;
 
-export class InkToolbarFlyoutItem extends React.Component<InkToolbarFlyoutItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarFlyoutItem' />;
-  }
-};
+export const InkToolbarFlyoutItem = React.forwardRef((props: InkToolbarFlyoutItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarFlyoutItem' ref={ref} />);
 export type InkToolbarHighlighterButtonProps = Omit<NativeInkToolbarHighlighterButtonProps, 'type'>;
 
-export class InkToolbarHighlighterButton extends React.Component<InkToolbarHighlighterButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarHighlighterButton' />;
-  }
-};
+export const InkToolbarHighlighterButton = React.forwardRef((props: InkToolbarHighlighterButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarHighlighterButton' ref={ref} />);
 export type InkToolbarPenConfigurationControlProps = Omit<NativeInkToolbarPenConfigurationControlProps, 'type'>;
 
-export class InkToolbarPenConfigurationControl extends React.Component<InkToolbarPenConfigurationControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl' />;
-  }
-};
+export const InkToolbarPenConfigurationControl = React.forwardRef((props: InkToolbarPenConfigurationControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarPenConfigurationControl' ref={ref} />);
 export type InkToolbarPencilButtonProps = Omit<NativeInkToolbarPencilButtonProps, 'type'>;
 
-export class InkToolbarPencilButton extends React.Component<InkToolbarPencilButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarPencilButton' />;
-  }
-};
+export const InkToolbarPencilButton = React.forwardRef((props: InkToolbarPencilButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarPencilButton' ref={ref} />);
 export type InkToolbarRulerButtonProps = Omit<NativeInkToolbarRulerButtonProps, 'type'>;
 
-export class InkToolbarRulerButton extends React.Component<InkToolbarRulerButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarRulerButton' />;
-  }
-};
+export const InkToolbarRulerButton = React.forwardRef((props: InkToolbarRulerButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarRulerButton' ref={ref} />);
 export type InkToolbarStencilButtonProps = Omit<NativeInkToolbarStencilButtonProps, 'type'>;
 
-export class InkToolbarStencilButton extends React.Component<InkToolbarStencilButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.InkToolbarStencilButton' />;
-  }
-};
+export const InkToolbarStencilButton = React.forwardRef((props: InkToolbarStencilButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.InkToolbarStencilButton' ref={ref} />);
 export type ItemsPresenterProps = Omit<NativeItemsPresenterProps, 'type'>;
 
-export class ItemsPresenter extends React.Component<ItemsPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ItemsPresenter' />;
-  }
-};
+export const ItemsPresenter = React.forwardRef((props: ItemsPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ItemsPresenter' ref={ref} />);
 export type ItemsStackPanelProps = Omit<NativeItemsStackPanelProps, 'type'>;
 
-export class ItemsStackPanel extends React.Component<ItemsStackPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ItemsStackPanel' />;
-  }
-};
+export const ItemsStackPanel = React.forwardRef((props: ItemsStackPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ItemsStackPanel' ref={ref} />);
 export type ItemsWrapGridProps = Omit<NativeItemsWrapGridProps, 'type'>;
 
-export class ItemsWrapGrid extends React.Component<ItemsWrapGridProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ItemsWrapGrid' />;
-  }
-};
+export const ItemsWrapGrid = React.forwardRef((props: ItemsWrapGridProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ItemsWrapGrid' ref={ref} />);
 export type ListBoxProps = Omit<NativeListBoxProps, 'type'>;
 
-export class ListBox extends React.Component<ListBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ListBox' />;
-  }
-};
+export const ListBox = React.forwardRef((props: ListBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ListBox' ref={ref} />);
 export type ListBoxItemProps = Omit<NativeListBoxItemProps, 'type'>;
 
-export class ListBoxItem extends React.Component<ListBoxItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ListBoxItem' />;
-  }
-};
+export const ListBoxItem = React.forwardRef((props: ListBoxItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ListBoxItem' ref={ref} />);
 export type ListPickerFlyoutProps = Omit<NativeListPickerFlyoutProps, 'type'>;
 
-export class ListPickerFlyout extends React.Component<ListPickerFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ListPickerFlyout' />;
-  }
-};
+export const ListPickerFlyout = React.forwardRef((props: ListPickerFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ListPickerFlyout' ref={ref} />);
 export type ListViewProps = Omit<NativeListViewProps, 'type'>;
 
-export class ListView extends React.Component<ListViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ListView' />;
-  }
-};
+export const ListView = React.forwardRef((props: ListViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ListView' ref={ref} />);
 export type ListViewHeaderItemProps = Omit<NativeListViewHeaderItemProps, 'type'>;
 
-export class ListViewHeaderItem extends React.Component<ListViewHeaderItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ListViewHeaderItem' />;
-  }
-};
+export const ListViewHeaderItem = React.forwardRef((props: ListViewHeaderItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ListViewHeaderItem' ref={ref} />);
 export type ListViewItemProps = Omit<NativeListViewItemProps, 'type'>;
 
-export class ListViewItem extends React.Component<ListViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ListViewItem' />;
-  }
-};
+export const ListViewItem = React.forwardRef((props: ListViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ListViewItem' ref={ref} />);
 export type MapControlProps = Omit<NativeMapControlProps, 'type'>;
 
-export class MapControl extends React.Component<MapControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Maps.MapControl' />;
-  }
-};
+export const MapControl = React.forwardRef((props: MapControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Maps.MapControl' ref={ref} />);
 export type MediaElementProps = Omit<NativeMediaElementProps, 'type'>;
 
-export class MediaElement extends React.Component<MediaElementProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MediaElement' />;
-  }
-};
+export const MediaElement = React.forwardRef((props: MediaElementProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MediaElement' ref={ref} />);
 export type MediaPlayerElementProps = Omit<NativeMediaPlayerElementProps, 'type'>;
 
-export class MediaPlayerElement extends React.Component<MediaPlayerElementProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MediaPlayerElement' />;
-  }
-};
+export const MediaPlayerElement = React.forwardRef((props: MediaPlayerElementProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MediaPlayerElement' ref={ref} />);
 export type MediaPlayerPresenterProps = Omit<NativeMediaPlayerPresenterProps, 'type'>;
 
-export class MediaPlayerPresenter extends React.Component<MediaPlayerPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MediaPlayerPresenter' />;
-  }
-};
+export const MediaPlayerPresenter = React.forwardRef((props: MediaPlayerPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MediaPlayerPresenter' ref={ref} />);
 export type MediaTransportControlsProps = Omit<NativeMediaTransportControlsProps, 'type'>;
 
-export class MediaTransportControls extends React.Component<MediaTransportControlsProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MediaTransportControls' />;
-  }
-};
+export const MediaTransportControls = React.forwardRef((props: MediaTransportControlsProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MediaTransportControls' ref={ref} />);
 export type MenuBarProps = Omit<NativeMenuBarProps, 'type'>;
 
-export class MenuBar extends React.Component<MenuBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuBar' />;
-  }
-};
+export const MenuBar = React.forwardRef((props: MenuBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuBar' ref={ref} />);
 export type MenuBarItemProps = Omit<NativeMenuBarItemProps, 'type'>;
 
-export class MenuBarItem extends React.Component<MenuBarItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuBarItem' />;
-  }
-};
+export const MenuBarItem = React.forwardRef((props: MenuBarItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuBarItem' ref={ref} />);
 export type MenuFlyoutProps = Omit<NativeMenuFlyoutProps, 'type'>;
 
-export class MenuFlyout extends React.Component<MenuFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuFlyout' />;
-  }
-  static ShowAt(ref: React.MutableRefObject<MenuFlyout>, args: { point: Point,  }) {
-    const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.ShowAt, [args]);
-  }
+export const MenuFlyout = React.forwardRef((props: MenuFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuFlyout' ref={ref} />);
+MenuFlyout.ShowAt = (ref: React.MutableRefObject<MenuFlyout>, args: { point: Point,  }) => {
+  const tag = findNodeHandle(ref.current);
+  UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.ShowAt, [args]);
 };
 export type MenuBarItemFlyoutProps = Omit<NativeMenuBarItemFlyoutProps, 'type'>;
 
-export class MenuBarItemFlyout extends React.Component<MenuBarItemFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuBarItemFlyout' />;
-  }
-};
+export const MenuBarItemFlyout = React.forwardRef((props: MenuBarItemFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuBarItemFlyout' ref={ref} />);
 export type MenuFlyoutItemProps = Omit<NativeMenuFlyoutItemProps, 'type'>;
 
-export class MenuFlyoutItem extends React.Component<MenuFlyoutItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuFlyoutItem' />;
-  }
-};
+export const MenuFlyoutItem = React.forwardRef((props: MenuFlyoutItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuFlyoutItem' ref={ref} />);
 export type MenuFlyoutPresenterProps = Omit<NativeMenuFlyoutPresenterProps, 'type'>;
 
-export class MenuFlyoutPresenter extends React.Component<MenuFlyoutPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuFlyoutPresenter' />;
-  }
-};
+export const MenuFlyoutPresenter = React.forwardRef((props: MenuFlyoutPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuFlyoutPresenter' ref={ref} />);
 export type MenuFlyoutSeparatorProps = Omit<NativeMenuFlyoutSeparatorProps, 'type'>;
 
-export class MenuFlyoutSeparator extends React.Component<MenuFlyoutSeparatorProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuFlyoutSeparator' />;
-  }
-};
+export const MenuFlyoutSeparator = React.forwardRef((props: MenuFlyoutSeparatorProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuFlyoutSeparator' ref={ref} />);
 export type MenuFlyoutSubItemProps = Omit<NativeMenuFlyoutSubItemProps, 'type'>;
 
-export class MenuFlyoutSubItem extends React.Component<MenuFlyoutSubItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.MenuFlyoutSubItem' />;
-  }
-};
+export const MenuFlyoutSubItem = React.forwardRef((props: MenuFlyoutSubItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.MenuFlyoutSubItem' ref={ref} />);
 export type NavigationViewProps = Omit<NativeNavigationViewProps, 'type'>;
 
-export class NavigationView extends React.Component<NavigationViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.NavigationView' />;
-  }
-};
+export const NavigationView = React.forwardRef((props: NavigationViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.NavigationView' ref={ref} />);
 export type NavigationViewItemProps = Omit<NativeNavigationViewItemProps, 'type'>;
 
-export class NavigationViewItem extends React.Component<NavigationViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.NavigationViewItem' />;
-  }
-};
+export const NavigationViewItem = React.forwardRef((props: NavigationViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.NavigationViewItem' ref={ref} />);
 export type NavigationViewItemHeaderProps = Omit<NativeNavigationViewItemHeaderProps, 'type'>;
 
-export class NavigationViewItemHeader extends React.Component<NavigationViewItemHeaderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.NavigationViewItemHeader' />;
-  }
-};
+export const NavigationViewItemHeader = React.forwardRef((props: NavigationViewItemHeaderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.NavigationViewItemHeader' ref={ref} />);
 export type NavigationViewItemSeparatorProps = Omit<NativeNavigationViewItemSeparatorProps, 'type'>;
 
-export class NavigationViewItemSeparator extends React.Component<NavigationViewItemSeparatorProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.NavigationViewItemSeparator' />;
-  }
-};
+export const NavigationViewItemSeparator = React.forwardRef((props: NavigationViewItemSeparatorProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.NavigationViewItemSeparator' ref={ref} />);
 export type NavigationViewListProps = Omit<NativeNavigationViewListProps, 'type'>;
 
-export class NavigationViewList extends React.Component<NavigationViewListProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.NavigationViewList' />;
-  }
-};
+export const NavigationViewList = React.forwardRef((props: NavigationViewListProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.NavigationViewList' ref={ref} />);
 export type UserControlProps = Omit<NativeUserControlProps, 'type'>;
 
-export class UserControl extends React.Component<UserControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.UserControl' />;
-  }
-};
+export const UserControl = React.forwardRef((props: UserControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.UserControl' ref={ref} />);
 export type PageProps = Omit<NativePageProps, 'type'>;
 
-export class Page extends React.Component<PageProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Page' />;
-  }
-};
+export const Page = React.forwardRef((props: PageProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Page' ref={ref} />);
 export type ParallaxViewProps = Omit<NativeParallaxViewProps, 'type'>;
 
-export class ParallaxView extends React.Component<ParallaxViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ParallaxView' />;
-  }
-};
+export const ParallaxView = React.forwardRef((props: ParallaxViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ParallaxView' ref={ref} />);
 export type PasswordBoxProps = Omit<NativePasswordBoxProps, 'type'>;
 
-export class PasswordBox extends React.Component<PasswordBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.PasswordBox' />;
-  }
-};
+export const PasswordBox = React.forwardRef((props: PasswordBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.PasswordBox' ref={ref} />);
 export type PathIconProps = Omit<NativePathIconProps, 'type'>;
 
-export class PathIcon extends React.Component<PathIconProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.PathIcon' />;
-  }
-};
+export const PathIcon = React.forwardRef((props: PathIconProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.PathIcon' ref={ref} />);
 export type PersonPictureProps = Omit<NativePersonPictureProps, 'type'>;
 
-export class PersonPicture extends React.Component<PersonPictureProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.PersonPicture' />;
-  }
-};
+export const PersonPicture = React.forwardRef((props: PersonPictureProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.PersonPicture' ref={ref} />);
 export type PickerFlyoutProps = Omit<NativePickerFlyoutProps, 'type'>;
 
-export class PickerFlyout extends React.Component<PickerFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.PickerFlyout' />;
-  }
-};
+export const PickerFlyout = React.forwardRef((props: PickerFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.PickerFlyout' ref={ref} />);
 export type PivotProps = Omit<NativePivotProps, 'type'>;
 
-export class Pivot extends React.Component<PivotProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Pivot' />;
-  }
-};
+export const Pivot = React.forwardRef((props: PivotProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Pivot' ref={ref} />);
 export type PivotItemProps = Omit<NativePivotItemProps, 'type'>;
 
-export class PivotItem extends React.Component<PivotItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.PivotItem' />;
-  }
-};
+export const PivotItem = React.forwardRef((props: PivotItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.PivotItem' ref={ref} />);
 export type CalendarPanelProps = Omit<NativeCalendarPanelProps, 'type'>;
 
-export class CalendarPanel extends React.Component<CalendarPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.CalendarPanel' />;
-  }
-};
+export const CalendarPanel = React.forwardRef((props: CalendarPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.CalendarPanel' ref={ref} />);
 export type CarouselPanelProps = Omit<NativeCarouselPanelProps, 'type'>;
 
-export class CarouselPanel extends React.Component<CarouselPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.CarouselPanel' />;
-  }
-};
+export const CarouselPanel = React.forwardRef((props: CarouselPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.CarouselPanel' ref={ref} />);
 export type SliderProps = Omit<NativeSliderProps, 'type'>;
 
-export class Slider extends React.Component<SliderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Slider' />;
-  }
-};
+export const Slider = React.forwardRef((props: SliderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Slider' ref={ref} />);
 export type ColorPickerSliderProps = Omit<NativeColorPickerSliderProps, 'type'>;
 
-export class ColorPickerSlider extends React.Component<ColorPickerSliderProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider' />;
-  }
-};
+export const ColorPickerSlider = React.forwardRef((props: ColorPickerSliderProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider' ref={ref} />);
 export type ColorSpectrumProps = Omit<NativeColorSpectrumProps, 'type'>;
 
-export class ColorSpectrum extends React.Component<ColorSpectrumProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.ColorSpectrum' />;
-  }
-};
+export const ColorSpectrum = React.forwardRef((props: ColorSpectrumProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.ColorSpectrum' ref={ref} />);
 export type CommandBarFlyoutCommandBarProps = Omit<NativeCommandBarFlyoutCommandBarProps, 'type'>;
 
-export class CommandBarFlyoutCommandBar extends React.Component<CommandBarFlyoutCommandBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' />;
-  }
-};
+export const CommandBarFlyoutCommandBar = React.forwardRef((props: CommandBarFlyoutCommandBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar' ref={ref} />);
 export type GridViewItemPresenterProps = Omit<NativeGridViewItemPresenterProps, 'type'>;
 
-export class GridViewItemPresenter extends React.Component<GridViewItemPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter' />;
-  }
-};
+export const GridViewItemPresenter = React.forwardRef((props: GridViewItemPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter' ref={ref} />);
 export type ListViewItemPresenterProps = Omit<NativeListViewItemPresenterProps, 'type'>;
 
-export class ListViewItemPresenter extends React.Component<ListViewItemPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter' />;
-  }
-};
+export const ListViewItemPresenter = React.forwardRef((props: ListViewItemPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter' ref={ref} />);
 export type NavigationViewItemPresenterProps = Omit<NativeNavigationViewItemPresenterProps, 'type'>;
 
-export class NavigationViewItemPresenter extends React.Component<NavigationViewItemPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter' />;
-  }
-};
+export const NavigationViewItemPresenter = React.forwardRef((props: NavigationViewItemPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter' ref={ref} />);
 export type PivotHeaderItemProps = Omit<NativePivotHeaderItemProps, 'type'>;
 
-export class PivotHeaderItem extends React.Component<PivotHeaderItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem' />;
-  }
-};
+export const PivotHeaderItem = React.forwardRef((props: PivotHeaderItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem' ref={ref} />);
 export type PivotHeaderPanelProps = Omit<NativePivotHeaderPanelProps, 'type'>;
 
-export class PivotHeaderPanel extends React.Component<PivotHeaderPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel' />;
-  }
-};
+export const PivotHeaderPanel = React.forwardRef((props: PivotHeaderPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel' ref={ref} />);
 export type PivotPanelProps = Omit<NativePivotPanelProps, 'type'>;
 
-export class PivotPanel extends React.Component<PivotPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.PivotPanel' />;
-  }
-};
+export const PivotPanel = React.forwardRef((props: PivotPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.PivotPanel' ref={ref} />);
 export type PopupProps = Omit<NativePopupProps, 'type'>;
 
-export class Popup extends React.Component<PopupProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.Popup' />;
-  }
-};
+export const Popup = React.forwardRef((props: PopupProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.Popup' ref={ref} />);
 export type RepeatButtonProps = Omit<NativeRepeatButtonProps, 'type'>;
 
-export class RepeatButton extends React.Component<RepeatButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.RepeatButton' />;
-  }
-};
+export const RepeatButton = React.forwardRef((props: RepeatButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.RepeatButton' ref={ref} />);
 export type ScrollBarProps = Omit<NativeScrollBarProps, 'type'>;
 
-export class ScrollBar extends React.Component<ScrollBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.ScrollBar' />;
-  }
-};
+export const ScrollBar = React.forwardRef((props: ScrollBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.ScrollBar' ref={ref} />);
 export type ThumbProps = Omit<NativeThumbProps, 'type'>;
 
-export class Thumb extends React.Component<ThumbProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.Thumb' />;
-  }
-};
+export const Thumb = React.forwardRef((props: ThumbProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.Thumb' ref={ref} />);
 export type TickBarProps = Omit<NativeTickBarProps, 'type'>;
 
-export class TickBar extends React.Component<TickBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Primitives.TickBar' />;
-  }
-};
+export const TickBar = React.forwardRef((props: TickBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Primitives.TickBar' ref={ref} />);
 export type ProgressBarProps = Omit<NativeProgressBarProps, 'type'>;
 
-export class ProgressBar extends React.Component<ProgressBarProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ProgressBar' />;
-  }
-};
+export const ProgressBar = React.forwardRef((props: ProgressBarProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ProgressBar' ref={ref} />);
 export type ProgressRingProps = Omit<NativeProgressRingProps, 'type'>;
 
-export class ProgressRing extends React.Component<ProgressRingProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ProgressRing' />;
-  }
-};
+export const ProgressRing = React.forwardRef((props: ProgressRingProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ProgressRing' ref={ref} />);
 export type RatingControlProps = Omit<NativeRatingControlProps, 'type'>;
 
-export class RatingControl extends React.Component<RatingControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RatingControl' />;
-  }
-};
+export const RatingControl = React.forwardRef((props: RatingControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RatingControl' ref={ref} />);
 export type RefreshContainerProps = Omit<NativeRefreshContainerProps, 'type'>;
 
-export class RefreshContainer extends React.Component<RefreshContainerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RefreshContainer' />;
-  }
-};
+export const RefreshContainer = React.forwardRef((props: RefreshContainerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RefreshContainer' ref={ref} />);
 export type RefreshVisualizerProps = Omit<NativeRefreshVisualizerProps, 'type'>;
 
-export class RefreshVisualizer extends React.Component<RefreshVisualizerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RefreshVisualizer' />;
-  }
-};
+export const RefreshVisualizer = React.forwardRef((props: RefreshVisualizerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RefreshVisualizer' ref={ref} />);
 export type RelativePanelProps = Omit<NativeRelativePanelProps, 'type'>;
 
-export class RelativePanel extends React.Component<RelativePanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RelativePanel' />;
-  }
-};
+export const RelativePanel = React.forwardRef((props: RelativePanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RelativePanel' ref={ref} />);
 export type RichEditBoxProps = Omit<NativeRichEditBoxProps, 'type'>;
 
-export class RichEditBox extends React.Component<RichEditBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RichEditBox' />;
-  }
-};
+export const RichEditBox = React.forwardRef((props: RichEditBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RichEditBox' ref={ref} />);
 export type RichTextBlockProps = Omit<NativeRichTextBlockProps, 'type'>;
 
-export class RichTextBlock extends React.Component<RichTextBlockProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RichTextBlock' />;
-  }
-};
+export const RichTextBlock = React.forwardRef((props: RichTextBlockProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RichTextBlock' ref={ref} />);
 export type RichTextBlockOverflowProps = Omit<NativeRichTextBlockOverflowProps, 'type'>;
 
-export class RichTextBlockOverflow extends React.Component<RichTextBlockOverflowProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.RichTextBlockOverflow' />;
-  }
-};
+export const RichTextBlockOverflow = React.forwardRef((props: RichTextBlockOverflowProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.RichTextBlockOverflow' ref={ref} />);
 export type ScrollContentPresenterProps = Omit<NativeScrollContentPresenterProps, 'type'>;
 
-export class ScrollContentPresenter extends React.Component<ScrollContentPresenterProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ScrollContentPresenter' />;
-  }
-};
+export const ScrollContentPresenter = React.forwardRef((props: ScrollContentPresenterProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ScrollContentPresenter' ref={ref} />);
 export type ScrollViewerProps = Omit<NativeScrollViewerProps, 'type'>;
 
-export class ScrollViewer extends React.Component<ScrollViewerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ScrollViewer' />;
-  }
-};
+export const ScrollViewer = React.forwardRef((props: ScrollViewerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ScrollViewer' ref={ref} />);
 export type SearchBoxProps = Omit<NativeSearchBoxProps, 'type'>;
 
-export class SearchBox extends React.Component<SearchBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SearchBox' />;
-  }
-};
+export const SearchBox = React.forwardRef((props: SearchBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SearchBox' ref={ref} />);
 export type SemanticZoomProps = Omit<NativeSemanticZoomProps, 'type'>;
 
-export class SemanticZoom extends React.Component<SemanticZoomProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SemanticZoom' />;
-  }
-};
+export const SemanticZoom = React.forwardRef((props: SemanticZoomProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SemanticZoom' ref={ref} />);
 export type SettingsFlyoutProps = Omit<NativeSettingsFlyoutProps, 'type'>;
 
-export class SettingsFlyout extends React.Component<SettingsFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SettingsFlyout' />;
-  }
-};
+export const SettingsFlyout = React.forwardRef((props: SettingsFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SettingsFlyout' ref={ref} />);
 export type SplitButtonProps = Omit<NativeSplitButtonProps, 'type'>;
 
-export class SplitButton extends React.Component<SplitButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SplitButton' />;
-  }
-};
+export const SplitButton = React.forwardRef((props: SplitButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SplitButton' ref={ref} />);
 export type SplitViewProps = Omit<NativeSplitViewProps, 'type'>;
 
-export class SplitView extends React.Component<SplitViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SplitView' />;
-  }
-};
+export const SplitView = React.forwardRef((props: SplitViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SplitView' ref={ref} />);
 export type StackPanelProps = Omit<NativeStackPanelProps, 'type'>;
 
-export class StackPanel extends React.Component<StackPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.StackPanel' />;
-  }
-};
+export const StackPanel = React.forwardRef((props: StackPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.StackPanel' ref={ref} />);
 export type SwapChainBackgroundPanelProps = Omit<NativeSwapChainBackgroundPanelProps, 'type'>;
 
-export class SwapChainBackgroundPanel extends React.Component<SwapChainBackgroundPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SwapChainBackgroundPanel' />;
-  }
-};
+export const SwapChainBackgroundPanel = React.forwardRef((props: SwapChainBackgroundPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SwapChainBackgroundPanel' ref={ref} />);
 export type SwapChainPanelProps = Omit<NativeSwapChainPanelProps, 'type'>;
 
-export class SwapChainPanel extends React.Component<SwapChainPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SwapChainPanel' />;
-  }
-};
+export const SwapChainPanel = React.forwardRef((props: SwapChainPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SwapChainPanel' ref={ref} />);
 export type SwipeControlProps = Omit<NativeSwipeControlProps, 'type'>;
 
-export class SwipeControl extends React.Component<SwipeControlProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SwipeControl' />;
-  }
-};
+export const SwipeControl = React.forwardRef((props: SwipeControlProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SwipeControl' ref={ref} />);
 export type SymbolIconProps = Omit<NativeSymbolIconProps, 'type'>;
 
-export class SymbolIcon extends React.Component<SymbolIconProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.SymbolIcon' />;
-  }
-};
+export const SymbolIcon = React.forwardRef((props: SymbolIconProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.SymbolIcon' ref={ref} />);
 export type TextBlockProps = Omit<NativeTextBlockProps, 'type'>;
 
-export class TextBlock extends React.Component<TextBlockProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TextBlock' />;
-  }
-};
+export const TextBlock = React.forwardRef((props: TextBlockProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TextBlock' ref={ref} />);
 export type TextBoxProps = Omit<NativeTextBoxProps, 'type'>;
 
-export class TextBox extends React.Component<TextBoxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TextBox' />;
-  }
-};
+export const TextBox = React.forwardRef((props: TextBoxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TextBox' ref={ref} />);
 export type TextCommandBarFlyoutProps = Omit<NativeTextCommandBarFlyoutProps, 'type'>;
 
-export class TextCommandBarFlyout extends React.Component<TextCommandBarFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TextCommandBarFlyout' />;
-  }
-};
+export const TextCommandBarFlyout = React.forwardRef((props: TextCommandBarFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TextCommandBarFlyout' ref={ref} />);
 export type TimePickerProps = Omit<NativeTimePickerProps, 'type'>;
 
-export class TimePicker extends React.Component<TimePickerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TimePicker' />;
-  }
-};
+export const TimePicker = React.forwardRef((props: TimePickerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TimePicker' ref={ref} />);
 export type TimePickerFlyoutProps = Omit<NativeTimePickerFlyoutProps, 'type'>;
 
-export class TimePickerFlyout extends React.Component<TimePickerFlyoutProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TimePickerFlyout' />;
-  }
-};
+export const TimePickerFlyout = React.forwardRef((props: TimePickerFlyoutProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TimePickerFlyout' ref={ref} />);
 export type ToggleMenuFlyoutItemProps = Omit<NativeToggleMenuFlyoutItemProps, 'type'>;
 
-export class ToggleMenuFlyoutItem extends React.Component<ToggleMenuFlyoutItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem' />;
-  }
-};
+export const ToggleMenuFlyoutItem = React.forwardRef((props: ToggleMenuFlyoutItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ToggleMenuFlyoutItem' ref={ref} />);
 export type ToggleSplitButtonProps = Omit<NativeToggleSplitButtonProps, 'type'>;
 
-export class ToggleSplitButton extends React.Component<ToggleSplitButtonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ToggleSplitButton' />;
-  }
-};
+export const ToggleSplitButton = React.forwardRef((props: ToggleSplitButtonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ToggleSplitButton' ref={ref} />);
 export type ToggleSwitchProps = Omit<NativeToggleSwitchProps, 'type'>;
 
-export class ToggleSwitch extends React.Component<ToggleSwitchProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ToggleSwitch' />;
-  }
-};
+export const ToggleSwitch = React.forwardRef((props: ToggleSwitchProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ToggleSwitch' ref={ref} />);
 export type ToolTipProps = Omit<NativeToolTipProps, 'type'>;
 
-export class ToolTip extends React.Component<ToolTipProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.ToolTip' />;
-  }
-};
+export const ToolTip = React.forwardRef((props: ToolTipProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.ToolTip' ref={ref} />);
 export type TreeViewProps = Omit<NativeTreeViewProps, 'type'>;
 
-export class TreeView extends React.Component<TreeViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TreeView' />;
-  }
-};
+export const TreeView = React.forwardRef((props: TreeViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TreeView' ref={ref} />);
 export type TreeViewItemProps = Omit<NativeTreeViewItemProps, 'type'>;
 
-export class TreeViewItem extends React.Component<TreeViewItemProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TreeViewItem' />;
-  }
-};
+export const TreeViewItem = React.forwardRef((props: TreeViewItemProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TreeViewItem' ref={ref} />);
 export type TreeViewListProps = Omit<NativeTreeViewListProps, 'type'>;
 
-export class TreeViewList extends React.Component<TreeViewListProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TreeViewList' />;
-  }
-};
+export const TreeViewList = React.forwardRef((props: TreeViewListProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TreeViewList' ref={ref} />);
 export type TwoPaneViewProps = Omit<NativeTwoPaneViewProps, 'type'>;
 
-export class TwoPaneView extends React.Component<TwoPaneViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.TwoPaneView' />;
-  }
-};
+export const TwoPaneView = React.forwardRef((props: TwoPaneViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.TwoPaneView' ref={ref} />);
 export type VariableSizedWrapGridProps = Omit<NativeVariableSizedWrapGridProps, 'type'>;
 
-export class VariableSizedWrapGrid extends React.Component<VariableSizedWrapGridProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.VariableSizedWrapGrid' />;
-  }
-};
+export const VariableSizedWrapGrid = React.forwardRef((props: VariableSizedWrapGridProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.VariableSizedWrapGrid' ref={ref} />);
 export type ViewboxProps = Omit<NativeViewboxProps, 'type'>;
 
-export class Viewbox extends React.Component<ViewboxProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.Viewbox' />;
-  }
-};
+export const Viewbox = React.forwardRef((props: ViewboxProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.Viewbox' ref={ref} />);
 export type VirtualizingStackPanelProps = Omit<NativeVirtualizingStackPanelProps, 'type'>;
 
-export class VirtualizingStackPanel extends React.Component<VirtualizingStackPanelProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.VirtualizingStackPanel' />;
-  }
-};
+export const VirtualizingStackPanel = React.forwardRef((props: VirtualizingStackPanelProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.VirtualizingStackPanel' ref={ref} />);
 export type WebViewProps = Omit<NativeWebViewProps, 'type'>;
 
-export class WebView extends React.Component<WebViewProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.WebView' />;
-  }
-};
+export const WebView = React.forwardRef((props: WebViewProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.WebView' ref={ref} />);
 export type WrapGridProps = Omit<NativeWrapGridProps, 'type'>;
 
-export class WrapGrid extends React.Component<WrapGridProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Controls.WrapGrid' />;
-  }
-};
+export const WrapGrid = React.forwardRef((props: WrapGridProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Controls.WrapGrid' ref={ref} />);
 export type SpanProps = Omit<NativeSpanProps, 'type'>;
 
-export class Span extends React.Component<SpanProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Span' />;
-  }
-};
+export const Span = React.forwardRef((props: SpanProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Span' ref={ref} />);
 export type BoldProps = Omit<NativeBoldProps, 'type'>;
 
-export class Bold extends React.Component<BoldProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Bold' />;
-  }
-};
+export const Bold = React.forwardRef((props: BoldProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Bold' ref={ref} />);
 export type ContentLinkProps = Omit<NativeContentLinkProps, 'type'>;
 
-export class ContentLink extends React.Component<ContentLinkProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.ContentLink' />;
-  }
-};
+export const ContentLink = React.forwardRef((props: ContentLinkProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.ContentLink' ref={ref} />);
 export type GlyphsProps = Omit<NativeGlyphsProps, 'type'>;
 
-export class Glyphs extends React.Component<GlyphsProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Glyphs' />;
-  }
-};
+export const Glyphs = React.forwardRef((props: GlyphsProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Glyphs' ref={ref} />);
 export type HyperlinkProps = Omit<NativeHyperlinkProps, 'type'>;
 
-export class Hyperlink extends React.Component<HyperlinkProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Hyperlink' />;
-  }
-};
+export const Hyperlink = React.forwardRef((props: HyperlinkProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Hyperlink' ref={ref} />);
 export type InlineUIContainerProps = Omit<NativeInlineUIContainerProps, 'type'>;
 
-export class InlineUIContainer extends React.Component<InlineUIContainerProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.InlineUIContainer' />;
-  }
-};
+export const InlineUIContainer = React.forwardRef((props: InlineUIContainerProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.InlineUIContainer' ref={ref} />);
 export type ItalicProps = Omit<NativeItalicProps, 'type'>;
 
-export class Italic extends React.Component<ItalicProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Italic' />;
-  }
-};
+export const Italic = React.forwardRef((props: ItalicProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Italic' ref={ref} />);
 export type LineBreakProps = Omit<NativeLineBreakProps, 'type'>;
 
-export class LineBreak extends React.Component<LineBreakProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.LineBreak' />;
-  }
-};
+export const LineBreak = React.forwardRef((props: LineBreakProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.LineBreak' ref={ref} />);
 export type ParagraphProps = Omit<NativeParagraphProps, 'type'>;
 
-export class Paragraph extends React.Component<ParagraphProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Paragraph' />;
-  }
-};
+export const Paragraph = React.forwardRef((props: ParagraphProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Paragraph' ref={ref} />);
 export type RunProps = Omit<NativeRunProps, 'type'>;
 
-export class Run extends React.Component<RunProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Run' />;
-  }
-};
+export const Run = React.forwardRef((props: RunProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Run' ref={ref} />);
 export type UnderlineProps = Omit<NativeUnderlineProps, 'type'>;
 
-export class Underline extends React.Component<UnderlineProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Documents.Underline' />;
-  }
-};
+export const Underline = React.forwardRef((props: UnderlineProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Documents.Underline' ref={ref} />);
 export type KeyboardAcceleratorProps = Omit<NativeKeyboardAcceleratorProps, 'type'>;
 
-export class KeyboardAccelerator extends React.Component<KeyboardAcceleratorProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Input.KeyboardAccelerator' />;
-  }
-};
+export const KeyboardAccelerator = React.forwardRef((props: KeyboardAcceleratorProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Input.KeyboardAccelerator' ref={ref} />);
 export type EllipseProps = Omit<NativeEllipseProps, 'type'>;
 
-export class Ellipse extends React.Component<EllipseProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Ellipse' />;
-  }
-};
+export const Ellipse = React.forwardRef((props: EllipseProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Shapes.Ellipse' ref={ref} />);
 export type LineProps = Omit<NativeLineProps, 'type'>;
 
-export class Line extends React.Component<LineProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Line' />;
-  }
-};
+export const Line = React.forwardRef((props: LineProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Shapes.Line' ref={ref} />);
 export type PathProps = Omit<NativePathProps, 'type'>;
 
-export class Path extends React.Component<PathProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Path' />;
-  }
-};
+export const Path = React.forwardRef((props: PathProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Shapes.Path' ref={ref} />);
 export type PolygonProps = Omit<NativePolygonProps, 'type'>;
 
-export class Polygon extends React.Component<PolygonProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Polygon' />;
-  }
-};
+export const Polygon = React.forwardRef((props: PolygonProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Shapes.Polygon' ref={ref} />);
 export type PolylineProps = Omit<NativePolylineProps, 'type'>;
 
-export class Polyline extends React.Component<PolylineProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Polyline' />;
-  }
-};
+export const Polyline = React.forwardRef((props: PolylineProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Shapes.Polyline' ref={ref} />);
 export type RectangleProps = Omit<NativeRectangleProps, 'type'>;
 
-export class Rectangle extends React.Component<RectangleProps> {
-  render() {
-    return <NativeXamlControl {...this.props} type='Windows.UI.Xaml.Shapes.Rectangle' />;
-  }
-};
+export const Rectangle = React.forwardRef((props: RectangleProps, ref: React.ForwardedRef<typeof NativeXamlControl>) => <NativeXamlControl {...props} type='Windows.UI.Xaml.Shapes.Rectangle' ref={ref} />);
 
 export namespace WinUI {
 export type BreadcrumbBarItemClickedEventArgs = NativeWinUI.NativeBreadcrumbBarItemClickedEventArgs;    // Microsoft.UI.Xaml.Controls.BreadcrumbBarItemClickedEventArgs 
