@@ -37,6 +37,7 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
     var ns = Util.GetTSNamespace(type);
     var PropsTypeName = $"{Util.ToJsName(type)}Props";
     var RefTypeName = $"{Util.ToJsName(type)}Ref";
+    var BaseTypeName = $"{Util.ToJsName(type)}Base";
     var NativePropsName = Util.GetNativePropsName(type);
     if (ns != "") { #>
 export namespace <#= ns #> {
@@ -47,25 +48,26 @@ export type <#= RefTypeName #> = React.Component<<#= NativePropsName #>> & Reado
 <# 
   var commands = Util.GetCommands(type.GetFullName());
   string NativeMethodsFor = commands.Count() == 0 ? string.Empty : $" & NativeMethodsFor_{Util.ToJsName(type)}";
+  string PartialNativeMethodsFor = commands.Count() == 0 ? string.Empty : $" & Partial<NativeMethodsFor_{Util.ToJsName(type)}>";
 
   if (NativeMethodsFor != string.Empty) {
 #>
 export interface NativeMethodsFor_<#= Util.ToJsName(type) #> {
 <#    foreach (var command in commands) { #>
-  <#= command.Name #>?: (ref: React.RefObject<<#= RefTypeName #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => void;
+  <#= command.Name #>: (ref: React.RefObject<<#= RefTypeName #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => void;
 <#    } #>
 }
 <# } #>
 
-
-export const <#= Util.ToJsName(type) #> : (ForwardRefExoticComponent<React.PropsWithChildren<<#= PropsTypeName #>> & RefAttributes<<#= RefTypeName #>>> <#= NativeMethodsFor #>) = React.forwardRef((props: React.PropsWithChildren<<#= PropsTypeName #>>, ref: React.ForwardedRef<<#= RefTypeName #>>) => <NativeXamlControl {...props} type='<#= type.GetFullName() #>' ref={ref} />);
+const <#= BaseTypeName #> : (ForwardRefExoticComponent<React.PropsWithChildren<<#= PropsTypeName #>> & RefAttributes<<#= RefTypeName #>>> <#= PartialNativeMethodsFor #>) = React.forwardRef((props: React.PropsWithChildren<<#= PropsTypeName #>>, ref: React.ForwardedRef<<#= RefTypeName #>>) => <NativeXamlControl {...props} type='<#= type.GetFullName() #>' ref={ref} />);
 <#
     foreach (var command in commands) { #>
-<#= Util.ToJsName(type) #>.<#= command.Name #> = (ref: React.RefObject<<#= RefTypeName #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => {
+<#= BaseTypeName #>.<#= command.Name #> = (ref: React.RefObject<<#= RefTypeName #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => {
   const tag = findNodeHandle(ref.current);
   UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
 };
 <#  } #>
+export const <#= Util.ToJsName(type) #> = (<#= BaseTypeName #> as (ForwardRefExoticComponent<React.PropsWithChildren<<#= PropsTypeName #>> & RefAttributes<<#= RefTypeName #>>> <#= NativeMethodsFor #>));
 <#  if (ns != "") { #>
 }
 <#  } #>
