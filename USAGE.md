@@ -498,7 +498,7 @@ const menu = useRef<MenuFlyoutRef>(null);
   onContextRequested={e => {
     const tag = findNodeHandle(_tbRef.current);
     const { point, returnValue } = e.nativeEvent.args.TryGetPosition(tag);
-    MenuFlyout.ShowAt!(_menuRef, {point: point});
+    MenuFlyout.ShowAt(_menuRef, {point: point});
   }}
 />
 ```
