@@ -398,6 +398,11 @@ void XamlMetadata::DispatchCommand(FrameworkElement const& view, winrt::hstring 
   const std::string name = winrt::to_string(commandId);
   auto it = std::find_if(xamlCommands, xamlCommands + std::size(xamlCommands), [name](const XamlCommand& entry) { return Equals(entry.name, name.c_str()); });
   if (it != xamlCommands + std::size(xamlCommands)) {
-    it->pfn(view, args, *this);
+    return it->pfn(view, args, *this);
+  }
+  else if (commandId == L"focus") {
+    xaml::Input::FocusManager::TryFocusAsync(view, xaml::FocusState::Programmatic);
+  } else if (commandId == L"blur") {
+    // XAML doesn't have a concept of focus blur.
   }
 }

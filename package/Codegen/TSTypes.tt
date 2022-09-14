@@ -24,9 +24,9 @@ import type {
 import type { Native<#= ns #> } from './Props';
 <# } #>
 
-import React from 'react';
+import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
-import { findNodeHandle, UIManager } from 'react-native';
+import { findNodeHandle, NativeMethods, UIManager } from 'react-native';
 
 import type { Point, Color } from './Props';
 
@@ -34,37 +34,56 @@ export type { Point, Color };
 
 <# 
 foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
-var ns = Util.GetTSNamespace(type);
-if (ns != "") { #>
+    var ns = Util.GetTSNamespace(type);
+    var PropsTypeName = $"{Util.ToJsName(type)}Props";
+    var RefTypeName = $"{Util.ToJsName(type)}Ref";
+    var PartialTypeName = $"_{Util.ToJsName(type)}";
+    var NativePropsName = Util.GetNativePropsName(type);
+    if (ns != "") { #>
 export namespace <#= ns #> {
-<# } #>
-export type <#= Util.ToJsName(type) #>Props = Omit<<#= Util.GetNativePropsName(type) #>, 'type'>;
+<#  } #>
+export type <#= PropsTypeName #> = Omit<<#= NativePropsName #>, 'type'>;
+export type <#= RefTypeName #> = React.Component<<#= NativePropsName #>> & Readonly<NativeMethods>;
+<# 
+  var commands = Util.GetCommands(type.GetFullName());
+  string NativeMethodsFor = commands.Count() == 0 ? string.Empty : $" & NativeMethodsFor_{Util.ToJsName(type)}";
+  string PartialNativeMethodsFor = commands.Count() == 0 ? string.Empty : $" & Partial<NativeMethodsFor_{Util.ToJsName(type)}>";
 
-export class <#= Util.ToJsName(type) #> extends React.Component<<#= Util.ToJsName(type) #>Props> {
-  render() {
-    return <NativeXamlControl {...this.props} type='<#= type.GetFullName() #>' />;
-  }
-<# foreach (var command in Util.GetCommands(type.GetFullName())) { #>
-  static <#= command.Name #>(ref: React.MutableRefObject<<#= Util.ToJsName(type) #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) {
-    const tag = findNodeHandle(ref.current);
-    UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
-  }
-<# } #>
-};
-<# if (ns != "") { #>
+  if (NativeMethodsFor != string.Empty) {
+#>
+export interface NativeMethodsFor_<#= Util.ToJsName(type) #> {
+<#    foreach (var command in commands) { #>
+  <#= command.Name #>: (ref: React.RefObject<<#= RefTypeName #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => void;
+<#    } #>
 }
 <# } #>
-<# } #>
+const <#= PartialTypeName #> : (ForwardRefExoticComponent<React.PropsWithChildren<<#= PropsTypeName #>> & RefAttributes<<#= RefTypeName #>>><#= PartialNativeMethodsFor #>) = React.forwardRef((props: React.PropsWithChildren<<#= PropsTypeName #>>, ref: React.ForwardedRef<<#= RefTypeName #>>) => <NativeXamlControl {...props} type='<#= type.GetFullName() #>' ref={ref} />);
+<#
+    foreach (var command in commands) { #>
+<#= PartialTypeName #>.<#= command.Name #> = (ref: React.RefObject<<#= RefTypeName #>>, args: <#= command.TSArgTypes != null ? command.TSArgTypes : "any[]" #>) => {
+  const tag = findNodeHandle(ref.current);
+  UIManager.dispatchViewManagerCommand(tag, UIManager.getViewManagerConfig('XamlControl').Commands.<#= command.Name #>, <#= command.TSArgTypes != null ? "[args]" : "args" #>);
+};
+<#  } #>
+export const <#= Util.ToJsName(type) #> = (<#= PartialTypeName #> as (ForwardRefExoticComponent<React.PropsWithChildren<<#= PropsTypeName #>> & RefAttributes<<#= RefTypeName #>>><#= NativeMethodsFor #>));
 
-<# foreach (var ea in Util.eventArgsTypes) {
-var ns = Util.GetTSNamespace(ea);
-if (ns != "") { #>
+<#  if (ns != "") { #>
+}
+<#  } #>
+<#
+} #>
+
+<#
+foreach (var ea in Util.eventArgsTypes) {
+    var ns = Util.GetTSNamespace(ea);
+    if (ns != "") { #>
 export namespace <#= ns #> {
 <#
-}
+    }
 #>
 export type <#= ea.GetName() #> = <#= Util.GetEventArgsTSType(ea, "Native") #>;    // <#= ea.GetFullName() #> 
-<# if (ns != "") { #>
+<#  if (ns != "") { #>
 }
-<# } #>
-<# } #>
+<#  } #>
+<#
+} #>
