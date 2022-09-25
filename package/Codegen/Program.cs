@@ -233,7 +233,6 @@ namespace Codegen
                         DeclaringType = context.GetType(typeName),
                         PropertyType = ptype,
                     });
-
                 }
                 else
                 {
