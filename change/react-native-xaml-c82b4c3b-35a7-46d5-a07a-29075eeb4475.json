@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "restore OnContentDialogClosed since we need the return value from the show operation",
+  "packageName": "react-native-xaml",
+  "email": "asklar@microsoft.com",
+  "dependentChangeType": "patch"
+}
