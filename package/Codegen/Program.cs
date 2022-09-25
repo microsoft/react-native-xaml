@@ -225,12 +225,25 @@ namespace Codegen
                 var typeName = val.Substring(0, val.LastIndexOf('.'));
                 var eventName = val.Substring(val.LastIndexOf('.') + 1);
 
-                syntheticEvents.Add(new SyntheticProperty()
+                if (context.TryFindMrType(GetTypeNameFromJson(entry.Value), out var ptype))
                 {
-                    Name = eventName,
-                    DeclaringType = context.GetType(typeName),
-                    FakePropertyType = entry.Value.GetString(),
-                });
+                    syntheticEvents.Add(new SyntheticProperty()
+                    {
+                        Name = eventName,
+                        DeclaringType = context.GetType(typeName),
+                        PropertyType = ptype,
+                    });
+
+                }
+                else
+                {
+                    syntheticEvents.Add(new SyntheticProperty()
+                    {
+                        Name = eventName,
+                        DeclaringType = context.GetType(typeName),
+                        FakePropertyType = entry.Value.ToString()
+                    });
+                }
             }
 
 

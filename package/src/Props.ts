@@ -2710,6 +2710,7 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   onPrimaryButtonClick?: (event: NativeSyntheticEvent<TypedEvent<NativeContentDialogButtonClickEventArgs>>) => void;
   onSecondaryButtonClick?: (event: NativeSyntheticEvent<TypedEvent<NativeContentDialogButtonClickEventArgs>>) => void;
   onCloseButtonClick?: (event: NativeSyntheticEvent<TypedEvent<NativeContentDialogButtonClickEventArgs>>) => void;
+  onContentDialogClosed?: (event: NativeSyntheticEvent<Enums.ContentDialogResult>) => void;
 }
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.ContentPresenter' |
