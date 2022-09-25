@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Tue, 13 Sep 2022 21:38:24 GMT and should not be manually modified.
+This log was last generated on Sun, 25 Sep 2022 05:36:46 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.70
+
+Sun, 25 Sep 2022 05:36:46 GMT
+
+### Patches
+
+- restore OnContentDialogClosed since we need the return value from the show operation (asklar@microsoft.com)
 
 ## 0.0.69
 

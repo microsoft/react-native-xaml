@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Sun, 25 Sep 2022 05:36:46 GMT",
+      "tag": "react-native-xaml_v0.0.70",
+      "version": "0.0.70",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "restore OnContentDialogClosed since we need the return value from the show operation",
+            "commit": "f1462114e7a7edc5202503d29e52064331890b6e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Sep 2022 21:38:24 GMT",
       "tag": "react-native-xaml_v0.0.69",
       "version": "0.0.69",
