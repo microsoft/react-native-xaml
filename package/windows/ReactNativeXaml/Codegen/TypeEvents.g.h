@@ -4345,9 +4345,10 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
     }
     return winrt::event_token{0};
   } },
+  {"ContentDialogClosed", nullptr /* synthetic event */},
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 330);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 331);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);
