@@ -65,7 +65,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        useNuGet: [false, true] # test building with both RNW source and RNW NuGet
+        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
         rnwVersion: ['^0.64', '^0.69'] # test key versions
     steps:
     - uses: actions/checkout@v2
@@ -82,8 +82,8 @@ jobs:
     - name: create ${{ matrix.rnwVersion }} app
       run: npx react-native init testrnx --template react-native@${{ matrix.rnwVersion }}
 
-    - name: add Windows
-      run: npx react-native-windows-init --overwrite --experimentalNuGetDependency ${{ matrix.useNuGet }}
+    - name: add Windows (RNW via ${{ matrix.rnwSource }})
+      run: npx react-native-windows-init --overwrite ${{ matrix.rnwSource == 'Source' && '--experimentalNuGetDependency true' || '' }}
       working-directory: testrnx
 
     - name: link react-native-xaml
@@ -99,7 +99,7 @@ jobs:
       working-directory: testrnx
 
     - name: update WinUI package version
-      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ matrix.useNuGet && '-UseNuGet' || '' }}
+      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ matrix.rnwSource == 'NuGet' && '-UseNuGet' || '' }}
       working-directory: testrnx
 
     - name: build app
