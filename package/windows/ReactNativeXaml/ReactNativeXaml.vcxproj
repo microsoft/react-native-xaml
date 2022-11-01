@@ -8,7 +8,7 @@
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\external\Microsoft.ReactNative.Uwp.CppLib.props" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.props')" />
   </ImportGroup>
   <PropertyGroup>
-    <RnwUsesPackageReference Condition="$(RnwUsesPackageReference)=='' And $([MSBuild]::VersionGreaterThanOrEquals('$(ReactNativeWindowsVersion)', '0.68.0'))">true</RnwUsesPackageReference>
+    <RnwUsesPackageReference Condition="$(RnwUsesPackageReference)=='' And $(ReactNativeWindowsVersion)!='' And $([MSBuild]::VersionGreaterThanOrEquals('$(ReactNativeWindowsVersion)', '0.68.0'))">true</RnwUsesPackageReference>
   </PropertyGroup>
   <PropertyGroup>
     <CppWinRTVersion Condition="'$(CppWinRTVersion)'=='' Or $([MSBuild]::VersionLessThan('$(CppWinRTVersion)', '2.0.210309.3'))">2.0.210309.3</CppWinRTVersion>
