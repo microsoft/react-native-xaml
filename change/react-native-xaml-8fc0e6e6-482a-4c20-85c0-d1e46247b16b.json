@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Enable PackageReference support if available",
+  "packageName": "react-native-xaml",
+  "email": "jthysell@microsoft.com",
+  "dependentChangeType": "patch"
+}

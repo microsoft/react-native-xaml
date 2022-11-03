@@ -62,6 +62,11 @@ jobs:
 
   testcli:
     runs-on: windows-2019
+    strategy:
+      fail-fast: false
+      matrix:
+        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
+        rnwVersion: ['^0.64', '^0.67', '^0.69'] # test key versions (min, partners)
     steps:
     - uses: actions/checkout@v2
     - name: yarn install
@@ -74,11 +79,11 @@ jobs:
       run: yarn link
       working-directory: package
 
-    - name: create 0.64 app
-      run: npx react-native init testrnx --template react-native@^0.64
+    - name: create ${{ matrix.rnwVersion }} app
+      run: npx react-native init testrnx --template react-native@${{ matrix.rnwVersion }}
 
-    - name: add Windows
-      run: npx react-native-windows-init --overwrite
+    - name: add Windows (RNW via ${{ matrix.rnwSource }})
+      run: npx react-native-windows-init --overwrite ${{ matrix.rnwSource == 'NuGet' && '--experimentalNuGetDependency true' || '' }}
       working-directory: testrnx
 
     - name: link react-native-xaml
@@ -94,49 +99,7 @@ jobs:
       working-directory: testrnx
 
     - name: update WinUI package version
-      run: ..\.github\workflows\SetUpAppForNuget.ps1
-      working-directory: testrnx
-
-    - name: build app
-      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: testrnx
-
-
-  testcliNuGet:
-    runs-on: windows-2019
-    steps:
-    - uses: actions/checkout@v2
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: yarn link
-      run: yarn link
-      working-directory: package
-
-    - name: create 0.64 app
-      run: npx react-native init testrnx --template react-native@^0.64
-
-    - name: add Windows
-      run: npx react-native-windows-init --overwrite --experimentalNuGetDependency true
-      working-directory: testrnx
-
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
-      working-directory: testrnx
-
-    - name: add react-native-xaml
-      run: yarn add react-native-xaml
-      working-directory: testrnx
-
-    - name: autolink
-      run: npx react-native autolink-windows --logging
-      working-directory: testrnx
-
-    - name: update WinUI package version and mark for NuGet package consumption
-      run: ..\.github\workflows\SetUpAppForNuget.ps1 -UseNuGet
+      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ matrix.rnwSource == 'NuGet' && '-UseNuGet' || '' }}
       working-directory: testrnx
 
     - name: build app

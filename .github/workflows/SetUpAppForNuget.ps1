@@ -10,9 +10,11 @@ $AppName = Split-Path $PWD -Leaf
 Write-Host  App name = $AppName
 $ns = "http://schemas.microsoft.com/developer/msbuild/2003"
 
-[xml]$packagesConfig = Get-Content .\windows\$AppName\packages.config
-($packagesConfig.packages.package | Where-Object id -EQ 'Microsoft.UI.Xaml').version = $WinUIVersion.ToString()
-$packagesConfig.Save("$PWD\windows\$AppName\packages.config")
+if (Test-Path .\windows\$AppName\packages.config) {
+  [xml]$packagesConfig = Get-Content .\windows\$AppName\packages.config
+  ($packagesConfig.packages.package | Where-Object id -EQ 'Microsoft.UI.Xaml').version = $WinUIVersion.ToString()
+  $packagesConfig.Save("$PWD\windows\$AppName\packages.config")
+}
 
 [xml]$EF = Get-Content .\windows\ExperimentalFeatures.props
 $node = $EF.Project.PropertyGroup.WinUI2xVersion
