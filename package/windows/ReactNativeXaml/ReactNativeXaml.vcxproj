@@ -260,7 +260,18 @@
     <ReactNativeXamlCodeGenCommand Condition="$(ReactNativeXamlCodeGenCommand)==''">dotnet run --project Codegen -verbose -winmd $(ReactNativeXamlTargetWinMD)</ReactNativeXamlCodeGenCommand>
     <ReactNativeXamlYarnBuildCommand Condition="$(ReactNativeXamlYarnBuildCommand)==''">yarn build</ReactNativeXamlYarnBuildCommand>
   </PropertyGroup>
-  <Target Name="RunReactNativeXamlCodeGen" BeforeTargets="PrepareForBuild" Condition="$(RunReactNativeXamlCodeGenBeforeBuild)=='true'">
+  <ItemGroup>
+    <RnxCodeGenOutput Include="Codegen\EventArgsTypeProperties.g.h" />
+    <RnxCodeGenOutput Include="Codegen\TypeCreator.g.cpp" />
+    <RnxCodeGenOutput Include="Codegen\TypeEnums.g.h" />
+    <RnxCodeGenOutput Include="Codegen\TypeEvents.g.h" />
+    <RnxCodeGenOutput Include="Codegen\TypeProperties.g.h" />
+    <RnxCodeGenOutput Include="Codegen\Version.g.h" />
+    <RnxCodeGenOutput Include="..\..\src\Enums.ts" />
+    <RnxCodeGenOutput Include="..\..\src\Props.ts" />
+    <RnxCodeGenOutput Include="..\..\src\Types.tsx" />
+  </ItemGroup>
+  <Target Name="RunReactNativeXamlCodeGen" BeforeTargets="PrepareForBuild" Condition="$(RunReactNativeXamlCodeGenBeforeBuild)=='true'" Inputs="$(ReactNativeXamlTargetWinMD)" Outputs="@(RnxCodeGenOutput)">
     <Exec Command="$(ReactNativeXamlCodeGenCommand)" WorkingDirectory="$(ReactNativeXamlRootDir)" CustomWarningRegularExpression="Warning: " CustomErrorRegularExpression="Error: " />
     <Exec Command="$(ReactNativeXamlYarnBuildCommand)" WorkingDirectory="$(ReactNativeXamlRootDir)" CustomWarningRegularExpression="Warning: " CustomErrorRegularExpression="Error: " />
   </Target>
