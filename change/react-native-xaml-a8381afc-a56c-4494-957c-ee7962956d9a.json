@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Add target to optionally run CodeGen before ReactNativeXaml build",
+  "packageName": "react-native-xaml",
+  "email": "jthysell@microsoft.com",
+  "dependentChangeType": "patch"
+}

@@ -252,6 +252,29 @@
     <Error Condition="!Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.props')" Text="$([System.String]::Format('$(ErrorText)', '$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.props'))" />
     <Error Condition="!Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.targets'))" />
   </Target>
+  <PropertyGroup Label="ReactNativeXamlCodeGenProps">
+    <RunReactNativeXamlCodeGenBeforeBuild Condition="$(RunReactNativeXamlCodeGenBeforeBuild)==''">false</RunReactNativeXamlCodeGenBeforeBuild>
+    <ReactNativeXamlTargetWinMD Condition="$(ReactNativeXamlTargetWinMD)=='' And $(RnwUsesPackageReference)=='true' And Exists('$(NuGetPackageRoot)\$(WinUIPackageName)\$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd')">$(NuGetPackageRoot)\$(WinUIPackageName)\$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd</ReactNativeXamlTargetWinMD>
+    <ReactNativeXamlTargetWinMD Condition="$(ReactNativeXamlTargetWinMD)=='' And $(RnwUsesPackageReference)!='true' And Exists('$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd')">$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd</ReactNativeXamlTargetWinMD>
+    <ReactNativeXamlRootDir Condition="$(ReactNativeXamlRootDir)==''">$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)..\..\'))</ReactNativeXamlRootDir>
+    <ReactNativeXamlCodeGenCommand Condition="$(ReactNativeXamlCodeGenCommand)==''">dotnet run --project Codegen -verbose -winmd $(ReactNativeXamlTargetWinMD)</ReactNativeXamlCodeGenCommand>
+    <ReactNativeXamlYarnBuildCommand Condition="$(ReactNativeXamlYarnBuildCommand)==''">yarn build</ReactNativeXamlYarnBuildCommand>
+  </PropertyGroup>
+  <ItemGroup>
+    <RnxCodeGenOutput Include="Codegen\EventArgsTypeProperties.g.h" />
+    <RnxCodeGenOutput Include="Codegen\TypeCreator.g.cpp" />
+    <RnxCodeGenOutput Include="Codegen\TypeEnums.g.h" />
+    <RnxCodeGenOutput Include="Codegen\TypeEvents.g.h" />
+    <RnxCodeGenOutput Include="Codegen\TypeProperties.g.h" />
+    <RnxCodeGenOutput Include="Codegen\Version.g.h" />
+    <RnxCodeGenOutput Include="..\..\src\Enums.ts" />
+    <RnxCodeGenOutput Include="..\..\src\Props.ts" />
+    <RnxCodeGenOutput Include="..\..\src\Types.tsx" />
+  </ItemGroup>
+  <Target Name="RunReactNativeXamlCodeGen" BeforeTargets="PrepareForBuild" Condition="$(RunReactNativeXamlCodeGenBeforeBuild)=='true'" Inputs="$(ReactNativeXamlTargetWinMD)" Outputs="@(RnxCodeGenOutput)">
+    <Exec Command="$(ReactNativeXamlCodeGenCommand)" WorkingDirectory="$(ReactNativeXamlRootDir)" CustomWarningRegularExpression="Warning: " CustomErrorRegularExpression="Error: " />
+    <Exec Command="$(ReactNativeXamlYarnBuildCommand)" WorkingDirectory="$(ReactNativeXamlRootDir)" CustomWarningRegularExpression="Warning: " CustomErrorRegularExpression="Error: " />
+  </Target>
   <ImportGroup Label="ExtensionTargets" Condition="$(RnwUsesPackageReference)!='true'">
     <Import Project="$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.targets')" />
     <Import Project="$(SolutionDir)\packages\CDebug.0.0.3\build\CDebug.targets" Condition="Exists('$(SolutionDir)\packages\CDebug.0.0.3\build\CDebug.targets')" />

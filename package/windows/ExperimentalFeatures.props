@@ -8,4 +8,9 @@
     <WinUI2xVersion>2.6.0</WinUI2xVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- Setting this to true here so we're sure to run the codegen when working within the RNX repo itself. -->
+    <RunReactNativeXamlCodeGenBeforeBuild>true</RunReactNativeXamlCodeGenBeforeBuild>
+  </PropertyGroup>
+
 </Project>
