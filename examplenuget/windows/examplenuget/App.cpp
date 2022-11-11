@@ -6,9 +6,10 @@
 #include "ReactPackageProvider.h"
 
 using namespace winrt;
-using namespace Windows::UI::Xaml;
-using namespace Windows::UI::Xaml::Controls;
-using namespace Windows::UI::Xaml::Navigation;
+using namespace xaml;
+using namespace xaml::Controls;
+using namespace xaml::Navigation;
+
 using namespace Windows::ApplicationModel;
 namespace winrt::examplenuget::implementation
 {
@@ -25,7 +26,7 @@ App::App() noexcept
     InstanceSettings().UseFastRefresh(false);
 #else
     JavaScriptBundleFile(L"index");
-    InstanceSettings().UseWebDebugger(false);
+    InstanceSettings().UseWebDebugger(true);
     InstanceSettings().UseFastRefresh(true);
 #endif
 
