@@ -2,6 +2,27 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Mon, 07 Nov 2022 22:45:17 GMT",
+      "tag": "react-native-xaml_v0.0.71",
+      "version": "0.0.71",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Add target to optionally run CodeGen before ReactNativeXaml build",
+            "commit": "2bde6df163950dd8c764b1216b7d2d7cad83fe23"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Enable PackageReference support if available",
+            "commit": "2bde6df163950dd8c764b1216b7d2d7cad83fe23"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 25 Sep 2022 05:36:46 GMT",
       "tag": "react-native-xaml_v0.0.70",
       "version": "0.0.70",
