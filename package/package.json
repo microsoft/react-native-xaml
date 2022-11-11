@@ -47,9 +47,9 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "beachball": "^2.16.0",
-    "react": "17.0.2",
-    "react-native": "0.68.1",
-    "react-native-windows": "0.68.0",
+    "react": "18.1.0",
+    "react-native": "0.70.1",
+    "react-native-windows": "0.70.2",
     "react-native-typescript-transformer": "*"
   },
   "files": [
