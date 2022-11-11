@@ -47,10 +47,10 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "beachball": "^2.16.0",
-    "react": "17.0.1",
-    "react-native": "0.65.2",
-    "react-native-typescript-transformer": "*",
-    "react-native-windows": "0.65.7"
+    "react": "^17.0.2",
+    "react-native": "0.66.0",
+    "react-native-windows": "0.66.0",
+    "react-native-typescript-transformer": "*"
   },
   "files": [
     "!*.tgz",
