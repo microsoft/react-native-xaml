@@ -56,7 +56,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ExampleNuget appx
-        path: exampleNuget\windows\AppPackages\exampleNuget\exampleNuget_1.0.0.0_Win32_Debug_Test
+        path: examplenuget\windows\AppPackages\examplenuget\examplenuget_1.0.0.0_x64_Debug_Test
         if-no-files-found: error
 
 
