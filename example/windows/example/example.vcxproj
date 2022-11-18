@@ -6,7 +6,7 @@
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
-    <ProjectGuid>{70161ff4-bb30-467e-ad71-18690339df5d}</ProjectGuid>
+    <ProjectGuid>{e6a0b072-ab97-4ff3-85fd-e4b877eeb573}</ProjectGuid>
     <ProjectName>example</ProjectName>
     <RootNamespace>example</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
@@ -170,7 +170,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.210312.4" />
+    <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.211028.7" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ReactNativeWindowsTargets">
