@@ -33,6 +33,8 @@
       See https://microsoft.github.io/react-native-windows/docs/nuget
     -->
     <UseExperimentalNuget>false</UseExperimentalNuget>
+
+    <ReactExperimentalFeaturesSet>true</ReactExperimentalFeaturesSet>
   
   </PropertyGroup>
 
