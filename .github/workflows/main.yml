@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   codegen:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
     - name: setup git
       run: |
@@ -21,6 +21,9 @@ jobs:
         git config --global core.filemode false
 
     - uses: actions/checkout@v2
+
+    - name: yarn install
+      run: yarn install
 
     - uses: nuget/setup-nuget@v1
 
@@ -30,6 +33,9 @@ jobs:
     - name: run CodeGen
       run: dotnet run -verbose -winmd ..\..\example\windows\packages\Microsoft.UI.Xaml.2.6.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
       working-directory: package\Codegen
+
+    - name: build TS
+      run: yarn build
 
     - name: verify no changes from CodeGen
       shell: powershell
@@ -42,6 +48,7 @@ jobs:
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v2
+
     - name: yarn install
       run: yarn install
 
@@ -60,15 +67,63 @@ jobs:
         if-no-files-found: error
 
 
-  testcli:
+  testcli-old:
     runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
         rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
-        rnwVersion: ['^0.64', '^0.67', '^0.69'] # test key versions (min, partners)
+        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
     steps:
     - uses: actions/checkout@v2
+
+    - name: yarn install
+      run: yarn install
+
+    - name: build TS
+      run: yarn build
+
+    - name: yarn link
+      run: yarn link
+      working-directory: package
+
+    - name: create ${{ matrix.rnwVersion }} app
+      run: npx react-native init testrnx --template react-native@${{ matrix.rnwVersion }}
+
+    - name: add Windows (RNW via ${{ matrix.rnwSource }})
+      run: npx react-native-windows-init --overwrite ${{ matrix.rnwSource == 'NuGet' && '--experimentalNuGetDependency true' || '' }}
+      working-directory: testrnx
+
+    - name: link react-native-xaml
+      run: yarn link react-native-xaml
+      working-directory: testrnx
+
+    - name: add react-native-xaml
+      run: yarn add react-native-xaml
+      working-directory: testrnx
+
+    - name: autolink
+      run: npx react-native autolink-windows --logging
+      working-directory: testrnx
+
+    - name: update WinUI package version
+      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ matrix.rnwSource == 'NuGet' && '-UseNuGet' || '' }}
+      working-directory: testrnx
+
+    - name: build app
+      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
+      working-directory: testrnx
+
+  testcli:
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
+        rnwVersion: ['^0.71'] # test key versions (latest)
+    steps:
+    - uses: actions/checkout@v2
+
     - name: yarn install
       run: yarn install
 
@@ -107,7 +162,7 @@ jobs:
       working-directory: testrnx
 
   package:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v2
 
