@@ -224,7 +224,7 @@ const [showState, setShowState] = useState(ContentDialogState.Hidden);
 ## SplitView
 
 ```jsx
-  const [isOpen, setIsOpen] = useState(false);
+const [isOpen, setIsOpen] = useState(false);
 // ...
 <SplitView
   isPaneOpen={isOpen}
