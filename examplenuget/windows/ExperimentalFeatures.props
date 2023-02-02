@@ -35,7 +35,7 @@
 
     <ReactExperimentalFeaturesSet>true</ReactExperimentalFeaturesSet>
     <ReactNativeWindowsVersion>0.71.0</ReactNativeWindowsVersion>
-    <WinUI2xVersion>2.6.0</WinUI2xVersion>
+    <WinUI2xVersion>2.7.0</WinUI2xVersion>
   
   </PropertyGroup>
 

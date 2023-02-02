@@ -23,7 +23,7 @@
       See https://microsoft.github.io/react-native-windows/docs/winui3
     -->
     <UseWinUI3>false</UseWinUI3>
-    <WinUI2xVersion>2.6.0</WinUI2xVersion>
+    <WinUI2xVersion>2.7.0</WinUI2xVersion>
 
     <!--
       Changes compilation to assume use of Microsoft.ReactNative NuGet packages
