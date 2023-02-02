@@ -401,6 +401,13 @@ export const ImageIcon = (_ImageIcon as (ForwardRefExoticComponent<React.PropsWi
 
 }
 export namespace WinUI {
+export type InfoBadgeProps = Omit<NativeWinUI.NativeInfoBadgeProps, 'type'>;
+export type InfoBadgeRef = React.Component<NativeWinUI.NativeInfoBadgeProps> & Readonly<NativeMethods>;
+const _InfoBadge : (ForwardRefExoticComponent<React.PropsWithChildren<InfoBadgeProps> & RefAttributes<InfoBadgeRef>>) = React.forwardRef((props: React.PropsWithChildren<InfoBadgeProps>, ref: React.ForwardedRef<InfoBadgeRef>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.InfoBadge' ref={ref} />);
+export const InfoBadge = (_InfoBadge as (ForwardRefExoticComponent<React.PropsWithChildren<InfoBadgeProps> & RefAttributes<InfoBadgeRef>>));
+
+}
+export namespace WinUI {
 export type InfoBarProps = Omit<NativeWinUI.NativeInfoBarProps, 'type'>;
 export type InfoBarRef = React.Component<NativeWinUI.NativeInfoBarProps> & Readonly<NativeMethods>;
 const _InfoBar : (ForwardRefExoticComponent<React.PropsWithChildren<InfoBarProps> & RefAttributes<InfoBarRef>>) = React.forwardRef((props: React.PropsWithChildren<InfoBarProps>, ref: React.ForwardedRef<InfoBarRef>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.InfoBar' ref={ref} />);
