@@ -31,7 +31,7 @@ jobs:
       run: nuget restore example\windows\example.sln
 
     - name: run CodeGen
-      run: dotnet run -verbose -winmd $env:USERPROFILE\.nuget\packages\microsoft.ui.xaml\2.6.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
+      run: dotnet run -verbose -winmd $env:USERPROFILE\.nuget\packages\microsoft.ui.xaml\2.7.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
       working-directory: package\Codegen
 
     - name: build TS
