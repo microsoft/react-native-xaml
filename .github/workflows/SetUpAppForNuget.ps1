@@ -3,7 +3,7 @@ param (
     [switch]
     $UseNuGet,
     [Version]
-    $WinUIVersion = "2.6.0"
+    $WinUIVersion = "2.7.0"
 )
 
 $AppName = Split-Path $PWD -Leaf

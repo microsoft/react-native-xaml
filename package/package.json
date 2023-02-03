@@ -7,7 +7,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -b",
-    "codegen": "dotnet run --project codegen -verbose -winmd %USERPROFILE%\\.nuget\\packages\\microsoft.ui.xaml\\2.6.0\\lib\\uap10.0\\Microsoft.UI.Xaml.winmd && yarn build"
+    "codegen": "dotnet run --project codegen -verbose -winmd %USERPROFILE%\\.nuget\\packages\\microsoft.ui.xaml\\2.7.0\\lib\\uap10.0\\Microsoft.UI.Xaml.winmd && yarn build"
   },
   "repository": {
     "type": "git",
