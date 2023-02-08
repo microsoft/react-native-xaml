@@ -7,6 +7,7 @@
  */
 
 import React, {useRef} from 'react';
+import type {PropsWithChildren} from 'react';
 
 import {
   findNodeHandle,
@@ -40,7 +41,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}) => {
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
+
+function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -66,7 +71,7 @@ const Section = ({children, title}) => {
   );
 };
 
-const App = () => {
+function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
