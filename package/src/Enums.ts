@@ -9,14 +9,14 @@ export enum Stretch {
   Uniform = 2,
   UniformToFill = 3,
 }
+export enum Orientation {
+  Vertical = 0,
+  Horizontal = 1,
+}
 export enum TextReadingOrder {
   Default = 0,
   UseFlowDirection = 0,
   DetectFromContent = 1,
-}
-export enum Orientation {
-  Vertical = 0,
-  Horizontal = 1,
 }
 export enum ManipulationModes {
   None = 0,

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import type {PropsWithChildren} from 'react';
 import {useState} from 'react';
 
 import {
@@ -61,7 +61,11 @@ import {
   Grid,
 } from 'react-native-xaml';
 
-const Section = ({children, title}): Node => {
+type SectionProps = PropsWithChildren<{
+  title: string;
+}>;
+
+function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -85,9 +89,9 @@ const Section = ({children, title}): Node => {
       </Text>
     </View>
   );
-};
+}
 
-const App: () => Node = () => {
+function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -240,7 +244,7 @@ const App: () => Node = () => {
       </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {

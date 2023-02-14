@@ -746,6 +746,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
   colorSpectrumShape?: Enums.WinUIEnums.ColorSpectrumShape;
   colorSpectrumComponents?: Enums.WinUIEnums.ColorSpectrumComponents;
   color?: Color | number;
+  orientation?: Enums.Orientation;
   onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<NativeWinUI.NativeColorChangedEventArgs>>) => void;
 }
 }
@@ -773,6 +774,12 @@ export namespace NativeWinUI {
 export interface NativeImageIconProps extends NativeIconElementProps {
   type: 'Microsoft.UI.Xaml.Controls.ImageIcon';
   source?: string;
+}
+}
+export namespace NativeWinUI {
+export interface NativeInfoBadgeProps extends NativeControlProps {
+  type: 'Microsoft.UI.Xaml.Controls.InfoBadge';
+  value?: number;
 }
 }
 export namespace NativeWinUI {
@@ -1216,6 +1223,7 @@ export interface NativeDependencyObjectProps extends ViewProps {
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeater' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' |
@@ -1474,6 +1482,7 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeater' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' |
@@ -1775,6 +1784,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeater' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' |
@@ -2028,6 +2038,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
         'Microsoft.UI.Xaml.Controls.ColorPicker' |
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.MenuBar' |
         'Microsoft.UI.Xaml.Controls.MenuBarItem' |
@@ -4276,6 +4287,7 @@ export type XamlControlProps = NativeWinUI.NativeAnimatedIconProps
 	 |  NativeWinUI.NativeDropDownButtonProps
 	 |  NativeWinUI.NativeExpanderProps
 	 |  NativeWinUI.NativeImageIconProps
+	 |  NativeWinUI.NativeInfoBadgeProps
 	 |  NativeWinUI.NativeInfoBarProps
 	 |  NativeWinUI.NativeItemsRepeaterProps
 	 |  NativeWinUI.NativeItemsRepeaterScrollHostProps
