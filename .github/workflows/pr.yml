@@ -85,26 +85,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
         rnwVersion: ['^0.71'] # test key versions (latest)
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: './.github/workflows/template-testcli.yml'
     with:
       vmImage: windows-2022
-      rnwSource: ${{ matrix.rnwSource }}
       rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
     
   call-testcli-old:
     needs: setupcheck
     strategy:
       fail-fast: false
       matrix:
-        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
         rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: './.github/workflows/template-testcli.yml'
     with:
       vmImage: windows-2019
-      rnwSource: ${{ matrix.rnwSource }}
       rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
 
   package:
     runs-on: windows-2022
