@@ -1,19 +1,29 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: PR
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  schedule:
-    - cron: '0 15 * * 2' # Tuesday 3PM UTC (8AM PST)
-  push:
+  pull_request:
     branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  setupcheck:
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: yarn install
+      run: yarn install
+
+    - name: beachball check
+      run: npx beachball check --verbose --changehint "::error::Run `yarn change` from root of repo to generate a change file."
+
   codegen:
     runs-on: windows-2022
+    needs: setupcheck
     steps:
     - name: setup git
       run: |
@@ -46,6 +56,7 @@ jobs:
 
   examplenuget:
     runs-on: windows-2022
+    needs: setupcheck
     steps:
     - uses: actions/checkout@v2
 
@@ -69,6 +80,7 @@ jobs:
 
   testcli-old:
     runs-on: windows-2019
+    needs: setupcheck
     strategy:
       fail-fast: false
       matrix:
@@ -116,6 +128,7 @@ jobs:
 
   testcli:
     runs-on: windows-2022
+    needs: setupcheck
     strategy:
       fail-fast: false
       matrix:
@@ -163,6 +176,7 @@ jobs:
 
   package:
     runs-on: windows-2022
+    needs: setupcheck
     steps:
     - uses: actions/checkout@v2
 
