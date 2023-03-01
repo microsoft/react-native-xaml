@@ -91,7 +91,7 @@ jobs:
         if-no-files-found: error
 
   testcli-old:
-    name: [VS 2019] New RNW App
+    name: VS 2019 New RNW App
     runs-on: windows-2019
     strategy:
       fail-fast: false
@@ -139,7 +139,7 @@ jobs:
       working-directory: testrnx
 
   testcli:
-    name: [VS 2022] New RNW App
+    name: VS 2022 New RNW App
     runs-on: windows-2022
     strategy:
       fail-fast: false
