@@ -99,7 +99,7 @@ jobs:
       fail-fast: false
       matrix:
         rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
-        rnwVersion: ['^0.67, '^0.69'] # test key versions (min, partners)
+        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
     uses: './github/workflows/templates/testcli.yml'
     with:
       vmImage: windows-2019
