@@ -18,7 +18,7 @@ on:
 
 jobs:
   testcli:
-    name: New ${{ inputs.rnwVersion }} RNW App from ${{ inputs.rnwSource }}
+    name: New RNW@${{ inputs.rnwVersion }} App from ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }}
     runs-on: ${{ inputs.vmImage }}
     steps:
     - uses: actions/checkout@v2
@@ -33,10 +33,10 @@ jobs:
       run: yarn link
       working-directory: package
 
-    - name: create ${{ inputs.rnwVersion }} app
+    - name: create react-native@${{ inputs.rnwVersion }} app
       run: npx react-native init testrnx --template react-native@${{ inputs.rnwVersion }}
 
-    - name: add Windows (RNW via ${{ inputs.rnwSource }})
+    - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
       run: npx react-native-windows-init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
       working-directory: testrnx
 

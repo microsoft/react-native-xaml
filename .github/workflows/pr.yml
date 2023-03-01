@@ -81,6 +81,7 @@ jobs:
         if-no-files-found: error
 
   call-testcli:
+    name: Test CLI
     needs: setupcheck
     strategy:
       fail-fast: false
@@ -94,6 +95,7 @@ jobs:
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
     
   call-testcli-old:
+    name: Test CLI
     needs: setupcheck
     strategy:
       fail-fast: false
