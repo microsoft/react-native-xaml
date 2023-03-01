@@ -20,7 +20,7 @@ jobs:
   call-runcodegen:
     name: Run CodeGen
     needs: setupcheck
-    uses: './.github/workflows/template-buildexample.yml'
+    uses: './.github/workflows/template-runcodegen.yml'
     with:
       vmImage: windows-2022
   

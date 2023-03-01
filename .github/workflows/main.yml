@@ -1,226 +1,70 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   schedule:
     - cron: '0 15 * * 2' # Tuesday 3PM UTC (8AM PST)
   push:
     branches: [ main ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  codegen:
-    runs-on: windows-2022
-    steps:
-    - name: setup git
-      run: |
-        git config --global core.autocrlf false
-        git config --global core.filemode false
-
-    - uses: actions/checkout@v2
-
-    - name: yarn install
-      run: yarn install
-
-    - uses: nuget/setup-nuget@v1
-
-    - name: NuGet restore
-      run: nuget restore example\windows\example.sln
-
-    - name: run CodeGen
-      run: dotnet run -verbose -winmd $env:USERPROFILE\.nuget\packages\microsoft.ui.xaml\2.7.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
-      working-directory: package\Codegen
-
-    - name: build TS
-      run: yarn build
-
-    - name: verify no changes from CodeGen
-      shell: powershell
-      run: |
-        $changed = git status --porcelain=v1
-        $changed
-        if ($changed -ne $null) { throw "CodeGen detected changes" }
-
-  example:
+  call-runcodegen:
+    name: Run CodeGen
+    uses: './.github/workflows/template-runcodegen.yml'
+    with:
+      vmImage: windows-2022
+  
+  call-buildexample:
     name: Build Example
-    runs-on: windows-2022
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: build Example
-      run: yarn windows --no-launch --no-deploy --no-packager --logging
-      working-directory: example
-
-    - name: Upload appx
-      uses: actions/upload-artifact@v2
-      with:
-        name: Example appx
-        path: example\windows\AppPackages\example\example_1.0.0.0_x64_Debug_Test
-        if-no-files-found: error
-
-  examplenuget:
-    name: Build ExampleNuGet
-    runs-on: windows-2022
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: build ExampleNuget
-      run: yarn windows --no-launch --no-deploy --no-packager --logging
-      working-directory: examplenuget
-
-    - name: Upload appx
-      uses: actions/upload-artifact@v2
-      with:
-        name: ExampleNuget appx
-        path: examplenuget\windows\AppPackages\examplenuget\examplenuget_1.0.0.0_x64_Debug_Test
-        if-no-files-found: error
-
-  testcli-old:
-    name: VS 2019 New RNW App
-    runs-on: windows-2019
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
-        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
-    steps:
-    - uses: actions/checkout@v2
+        exampleName: ['example', 'examplenuget'] # build both examples
+    uses: './.github/workflows/template-buildexample.yml'
+    with:
+      vmImage: windows-2022
+      exampleName: ${{ matrix.exampleName }}
 
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: yarn link
-      run: yarn link
-      working-directory: package
-
-    - name: create ${{ matrix.rnwVersion }} app
-      run: npx react-native init testrnx --template react-native@${{ matrix.rnwVersion }}
-
-    - name: add Windows (RNW via ${{ matrix.rnwSource }})
-      run: npx react-native-windows-init --overwrite ${{ matrix.rnwSource == 'NuGet' && '--experimentalNuGetDependency true' || '' }}
-      working-directory: testrnx
-
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
-      working-directory: testrnx
-
-    - name: add react-native-xaml
-      run: yarn add react-native-xaml
-      working-directory: testrnx
-
-    - name: autolink
-      run: npx react-native autolink-windows --logging
-      working-directory: testrnx
-
-    - name: update WinUI package version
-      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ matrix.rnwSource == 'NuGet' && '-UseNuGet' || '' }}
-      working-directory: testrnx
-
-    - name: build app
-      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: testrnx
-
-  testcli:
-    name: VS 2022 New RNW App
-    runs-on: windows-2022
+  call-testcli:
+    name: Test CLI
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
         rnwVersion: ['^0.71'] # test key versions (latest)
-    steps:
-    - uses: actions/checkout@v2
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+    uses: './.github/workflows/template-testcli.yml'
+    with:
+      vmImage: windows-2022
+      rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
+    
+  call-testcli-old:
+    name: Test CLI
+    strategy:
+      fail-fast: true
+      matrix:
+        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+    uses: './.github/workflows/template-testcli.yml'
+    with:
+      vmImage: windows-2019
+      rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
 
-    - name: yarn install
-      run: yarn install
+  call-buildnpmpackage:
+    name: Build NPM Package
+    uses: './.github/workflows/template-buildnpmpackage.yml'
+    with:
+      vmImage: windows-2022
 
-    - name: build TS
-      run: yarn build
-
-    - name: yarn link
-      run: yarn link
-      working-directory: package
-
-    - name: create ${{ matrix.rnwVersion }} app
-      run: npx react-native init testrnx --template react-native@${{ matrix.rnwVersion }}
-
-    - name: add Windows (RNW via ${{ matrix.rnwSource }})
-      run: npx react-native-windows-init --overwrite ${{ matrix.rnwSource == 'NuGet' && '--experimentalNuGetDependency true' || '' }}
-      working-directory: testrnx
-
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
-      working-directory: testrnx
-
-    - name: add react-native-xaml
-      run: yarn add react-native-xaml
-      working-directory: testrnx
-
-    - name: autolink
-      run: npx react-native autolink-windows --logging
-      working-directory: testrnx
-
-    - name: update WinUI package version
-      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ matrix.rnwSource == 'NuGet' && '-UseNuGet' || '' }}
-      working-directory: testrnx
-
-    - name: build app
-      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: testrnx
-
-  package:
-    name: Build Package
-    runs-on: windows-2022
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1
-
-    - name: yarn install
-      run: yarn install 
-
-    - name: build TS
-      run: yarn build
-
-    - name: npm pack
-      run: npm pack
-      working-directory: package
-
-    - name: Upload npm package
-      uses: actions/upload-artifact@v2
-      with:
-        name: npm package
-        path: package\*.tgz
-        if-no-files-found: error
-
-    - name: build Release x64
-      run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
-
-    - name: Validate size
-      shell: powershell
-      run: |
-        $size = (gci package\windows\x64\Release\ReactNativeXaml\ReactNativeXaml.dll).Length
-        $size
-        if ($size -gt 1.5MB) {
-          throw "DLL is bigger than 1.5MB"
-        }
-
+  call-buildrnx:
+    name: Build RNX
+    strategy:
+      fail-fast: true
+      matrix:
+        configuration: ['Debug', 'Release']
+        platform: ['x64']
+    uses: './.github/workflows/template-buildrnx.yml'
+    with:
+      vmImage: windows-2022
+      configuration: ${{ matrix.configuration }}
+      platform: ${{ matrix.platform }}
