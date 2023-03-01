@@ -44,7 +44,7 @@ jobs:
       matrix:
         rnwVersion: ['^0.71'] # test key versions
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
-        vmImage: windows-2022
+        vmImage: 'windows-2022'
         include:
           rnwVersion: ['^0.67', '^0.69']
           vmImage: windows-2019
