@@ -1,0 +1,37 @@
+name: Build Example
+
+on:
+  workflow_call:
+    inputs:
+      vmImage:
+        required: false
+        default: 'windows-latest'
+        type: string
+      exampleName:
+        required: false
+        default: 'example'
+        type: string
+
+jobs:
+  build-example:
+    name: Build ${{ inputs.exampleName }}
+    runs-on: ${{ inputs.vmImage }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: yarn install
+      run: yarn install
+
+    - name: build TS
+      run: yarn build
+
+    - name: yarn windows
+      run: yarn windows --no-launch --no-deploy --no-packager --logging
+      working-directory: ${{ inputs.exampleName }}
+
+    - name: Upload appx
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.exampleName }} appx
+        path: ${{ inputs.exampleName }}\windows\AppPackages\${{ inputs.exampleName }}\${{ inputs.exampleName }}_1.0.0.0_x64_Debug_Test
+        if-no-files-found: error

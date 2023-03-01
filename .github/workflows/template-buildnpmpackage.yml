@@ -1,0 +1,33 @@
+name: Build NPM Package
+
+on:
+  workflow_call:
+    inputs:
+      vmImage:
+        required: false
+        default: 'windows-latest'
+        type: string
+
+jobs:
+  package:
+  name: Build NPM Package
+    runs-on: ${{ inputs.vmImage }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: yarn install
+      run: yarn install 
+
+    - name: build TS
+      run: yarn build
+
+    - name: npm pack
+      run: npm pack
+      working-directory: package
+
+    - name: Upload npm package
+      uses: actions/upload-artifact@v2
+      with:
+        name: npm package
+        path: package\*.tgz
+        if-no-files-found: error
