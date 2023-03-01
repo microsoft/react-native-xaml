@@ -46,8 +46,10 @@ jobs:
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         vmImage: ['windows-2022']
         include:
-          rnwVersion: ['^0.67', '^0.69']
-          vmImage: 'windows-2019'
+          - rnwVersion: '^0.67'
+            vmImage: 'windows-2019'
+          - rnwVersion: '^0.69'
+            vmImage: 'windows-2019'
     uses: './.github/workflows/template-testcli.yml'
     with:
       vmImage: ${{ matrix.vmImage }}
