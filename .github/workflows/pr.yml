@@ -87,7 +87,7 @@ jobs:
       matrix:
         rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
         rnwVersion: ['^0.71'] # test key versions (latest)
-    uses: './.github/workflows/templates/testcli.yml'
+    uses: './.github/workflows/template-testcli.yml'
     with:
       vmImage: windows-2022
       rnwSource: ${{ matrix.rnwSource }}
@@ -100,7 +100,7 @@ jobs:
       matrix:
         rnwSource: ['Source', 'NuGet'] # test building with both RNW source and RNW NuGet
         rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
-    uses: './.github/workflows/templates/testcli.yml'
+    uses: './.github/workflows/template-testcli.yml'
     with:
       vmImage: windows-2019
       rnwSource: ${{ matrix.rnwSource }}
