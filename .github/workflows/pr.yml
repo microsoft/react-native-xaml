@@ -42,27 +42,31 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['^0.71'] # test key versions (latest)
+        rnwVersion: ['^0.71'] # test key versions
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+        vmImage: windows-2022
+        include:
+          rnwVersion: ['^0.67', '^0.69']
+          vmImage: windows-2019
     uses: './.github/workflows/template-testcli.yml'
     with:
-      vmImage: windows-2022
+      vmImage: ${{ matrix.vmImage }}
       rnwVersion: ${{ matrix.rnwVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
     
-  call-testcli-old:
-    name: Test CLI
-    needs: setupcheck
-    strategy:
-      fail-fast: true
-      matrix:
-        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
-        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
-    uses: './.github/workflows/template-testcli.yml'
-    with:
-      vmImage: windows-2019
-      rnwVersion: ${{ matrix.rnwVersion }}
-      useRnwNuGet: ${{ matrix.useRnwNuGet }}
+  # call-testcli-old:
+  #   name: Test CLI
+  #   needs: setupcheck
+  #   strategy:
+  #     fail-fast: true
+  #     matrix:
+  #       rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
+  #       useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+  #   uses: './.github/workflows/template-testcli.yml'
+  #   with:
+  #     vmImage: windows-2019
+  #     rnwVersion: ${{ matrix.rnwVersion }}
+  #     useRnwNuGet: ${{ matrix.useRnwNuGet }}
 
   call-buildnpmpackage:
     name: Build NPM Package

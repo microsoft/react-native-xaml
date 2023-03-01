@@ -16,7 +16,7 @@ jobs:
   call-buildexample:
     name: Build Example
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         exampleName: ['example', 'examplenuget'] # build both examples
     uses: './.github/workflows/template-buildexample.yml'
@@ -27,9 +27,9 @@ jobs:
   call-testcli:
     name: Test CLI
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        rnwVersion: ['^0.71'] # test key versions (latest)
+        rnwVersion: ['^0.71'] # test supported versions
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: './.github/workflows/template-testcli.yml'
     with:
@@ -40,9 +40,9 @@ jobs:
   call-testcli-old:
     name: Test CLI
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
+        rnwVersion: ['^0.67', '^0.68', '^0.69', '^0.70'] # test supported versions
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: './.github/workflows/template-testcli.yml'
     with:
@@ -59,7 +59,7 @@ jobs:
   call-buildrnx:
     name: Build RNX
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         configuration: ['Debug', 'Release']
         platform: ['x64']
