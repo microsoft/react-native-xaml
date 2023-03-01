@@ -9,7 +9,7 @@ jobs:
     name: Setup Check
     runs-on: windows-2022
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: yarn install
       run: yarn install
@@ -20,7 +20,7 @@ jobs:
   call-runcodegen:
     name: Run CodeGen
     needs: setupcheck
-    uses: './.github/workflows/template-runcodegen.yml'
+    uses: ./.github/workflows/template-runcodegen.yml
     with:
       vmImage: windows-2022
   
@@ -31,7 +31,7 @@ jobs:
       fail-fast: true
       matrix:
         exampleName: ['example', 'examplenuget'] # build both examples
-    uses: './.github/workflows/template-buildexample.yml'
+    uses: ./.github/workflows/template-buildexample.yml
     with:
       vmImage: windows-2022
       exampleName: ${{ matrix.exampleName }}
@@ -44,36 +44,30 @@ jobs:
       matrix:
         rnwVersion: ['^0.71'] # test key versions
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
-        vmImage: ['windows-2022']
-        include:
-          - rnwVersion: '^0.67'
-            vmImage: 'windows-2019'
-          - rnwVersion: '^0.69'
-            vmImage: 'windows-2019'
-    uses: './.github/workflows/template-testcli.yml'
+    uses: ./.github/workflows/template-testcli.yml
     with:
-      vmImage: ${{ matrix.vmImage }}
+      vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
     
-  # call-testcli-old:
-  #   name: Test CLI
-  #   needs: setupcheck
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
-  #       useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
-  #   uses: './.github/workflows/template-testcli.yml'
-  #   with:
-  #     vmImage: windows-2019
-  #     rnwVersion: ${{ matrix.rnwVersion }}
-  #     useRnwNuGet: ${{ matrix.useRnwNuGet }}
+  call-testcli-old:
+    name: Test CLI (Old)
+    needs: setupcheck
+    strategy:
+      fail-fast: true
+      matrix:
+        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+    uses: ./.github/workflows/template-testcli.yml
+    with:
+      vmImage: windows-2019
+      rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
 
   call-buildnpmpackage:
     name: Build NPM Package
     needs: setupcheck
-    uses: './.github/workflows/template-buildnpmpackage.yml'
+    uses: ./.github/workflows/template-buildnpmpackage.yml
     with:
       vmImage: windows-2022
 
@@ -85,7 +79,7 @@ jobs:
       matrix:
         configuration: ['Release']
         platform: ['x64']
-    uses: './.github/workflows/template-buildrnx.yml'
+    uses: ./.github/workflows/template-buildrnx.yml
     with:
       vmImage: windows-2022
       configuration: ${{ matrix.configuration }}

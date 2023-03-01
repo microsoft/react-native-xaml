@@ -21,7 +21,7 @@ jobs:
     name: Build RNX ${{ inputs.configuration }} ${{ inputs.platform }}
     runs-on: ${{ inputs.vmImage }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
@@ -36,7 +36,7 @@ jobs:
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=${{ inputs.configuration }} /p:platform=${{ inputs.platform }}
 
     - name: Upload build output
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: RNX ${{ inputs.configuration }} ${{ inputs.platform }} Build Output
         path: package\windows\${{ inputs.platform }}\${{ inputs.configuration }}\ReactNativeXaml\*.*
