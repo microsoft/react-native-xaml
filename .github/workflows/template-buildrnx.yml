@@ -35,11 +35,11 @@ jobs:
     - name: build ReactNativeXaml.sln
       run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=${{ inputs.configuration }} /p:platform=${{ inputs.platform }}
 
-    - name: Upload npm package
+    - name: Upload build output
       uses: actions/upload-artifact@v2
       with:
-        name: npm package
-        path: package\*.tgz
+        name: RNX ${{ inputs.configuration }} ${{ inputs.platform }} Build Output
+        path: package\windows\${{ inputs.platform }}\${{ inputs.configuration }}\ReactNativeXaml\*.*
         if-no-files-found: error
 
     - if: ${{ inputs.configuration == 'Release' && inputs.platform == 'x64' }}

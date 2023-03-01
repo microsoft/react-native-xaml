@@ -10,7 +10,7 @@ on:
 
 jobs:
   package:
-  name: Build NPM Package
+    name: Build NPM Package
     runs-on: ${{ inputs.vmImage }}
     steps:
     - uses: actions/checkout@v2
@@ -28,6 +28,6 @@ jobs:
     - name: Upload npm package
       uses: actions/upload-artifact@v2
       with:
-        name: npm package
+        name: RNX npm package
         path: package\*.tgz
         if-no-files-found: error
