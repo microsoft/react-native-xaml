@@ -44,7 +44,31 @@ jobs:
         $changed
         if ($changed -ne $null) { throw "CodeGen detected changes" }
 
+  example:
+    name: Build Example
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: yarn install
+      run: yarn install
+
+    - name: build TS
+      run: yarn build
+
+    - name: build Example
+      run: yarn windows --no-launch --no-deploy --no-packager --logging
+      working-directory: example
+
+    - name: Upload appx
+      uses: actions/upload-artifact@v2
+      with:
+        name: Example appx
+        path: example\windows\AppPackages\example\example_1.0.0.0_x64_Debug_Test
+        if-no-files-found: error
+
   examplenuget:
+    name: Build ExampleNuGet
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v2
@@ -66,8 +90,8 @@ jobs:
         path: examplenuget\windows\AppPackages\examplenuget\examplenuget_1.0.0.0_x64_Debug_Test
         if-no-files-found: error
 
-
   testcli-old:
+    name: [VS 2019] New RNW App
     runs-on: windows-2019
     strategy:
       fail-fast: false
@@ -115,6 +139,7 @@ jobs:
       working-directory: testrnx
 
   testcli:
+    name: [VS 2022] New RNW App
     runs-on: windows-2022
     strategy:
       fail-fast: false
@@ -162,6 +187,7 @@ jobs:
       working-directory: testrnx
 
   package:
+    name: Build Package
     runs-on: windows-2022
     steps:
     - uses: actions/checkout@v2
