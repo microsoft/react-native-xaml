@@ -14,7 +14,7 @@ jobs:
 
   publish-npm:
     runs-on: ubuntu-latest
-    needs: run-codegen
+    needs: call-runcodegen
 
     steps:
     - uses: actions/checkout@v3
