@@ -2,6 +2,27 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Thu, 02 Mar 2023 01:29:44 GMT",
+      "tag": "react-native-xaml_v0.0.72",
+      "version": "0.0.72",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "ad33eb392c7c3f2f75244b1cb1bb53d434fb3b7d",
+            "comment": "Upgrade to WinUI 2.7"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "7321dab24e53520de4230ea9f4c2becd57d1e1df",
+            "comment": "Upgrade minimum RNW dependency to 0.67.11"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 07 Nov 2022 22:45:17 GMT",
       "tag": "react-native-xaml_v0.0.71",
       "version": "0.0.71",

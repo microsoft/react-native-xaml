@@ -1,8 +1,17 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Mon, 07 Nov 2022 22:45:17 GMT and should not be manually modified.
+This log was last generated on Thu, 02 Mar 2023 01:29:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.72
+
+Thu, 02 Mar 2023 01:29:44 GMT
+
+### Patches
+
+- Upgrade to WinUI 2.7 (jthysell@microsoft.com)
+- Upgrade minimum RNW dependency to 0.67.11 (jthysell@microsoft.com)
 
 ## 0.0.71
 

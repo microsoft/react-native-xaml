@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Upgrade to WinUI 2.7",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}

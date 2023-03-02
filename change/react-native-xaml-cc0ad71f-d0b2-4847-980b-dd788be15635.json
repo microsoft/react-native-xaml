@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Upgrade minimum RNW dependency to 0.67.11",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}
