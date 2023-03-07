@@ -76,7 +76,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
                     "atchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInsp" +
                     "ectable& sender, const T& args) {\r\n  auto senderAsFE = sender.try_as<FrameworkEl" +
                     "ement>();\r\n  auto wEN = winrt::to_hstring(eai.jsEventName);\r\n  if (eai.xamlMetad" +
-                    "ata.m_callFunctionReturnFlushedQueue.has_value()) {\r\n    const auto tag = XamlMe" +
+                    "ata.m_receiveEvent.has_value()) {\r\n    const auto tag = XamlMe" +
                     "tadata::TagFromElement(eai.obj.as<xaml::DependencyObject>());\r\n    ExecuteJsi(ea" +
                     "i.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, arg" +
                     "s, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {\r\n      auto objSen" +

@@ -40,8 +40,9 @@ void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
       auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
       if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
         if (auto vm = shared.get()) {
-          vm->m_callFunctionReturnFlushedQueue = batchedBridge.asObject(rt).getPropertyAsFunction(
-            rt, "callFunctionReturnFlushedQueue");
+           auto getCallableModule = batchedBridge.asObject(rt).getPropertyAsFunction(rt, "getCallableModule");
+           vm->m_eventEmitter = getCallableModule.callWithThis(rt, batchedBridge.asObject(rt), "RCTEventEmitter").asObject(rt);
+           vm->m_receiveEvent = vm->m_eventEmitter->getPropertyAsFunction(rt, "receiveEvent");
         }
       }
     });
@@ -332,12 +333,7 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
 }
 
 void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept {
-  auto params = jsi::Array(rt, 3);
-  params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
-  params.setValueAtIndex(rt, 1, eventName);
-  params.setValueAtIndex(rt, 2, *eventData.get());
-
-  m_callFunctionReturnFlushedQueue->call(rt, "RCTEventEmitter", "receiveEvent", params);
+  m_receiveEvent->callWithThis(rt, *m_eventEmitter,  static_cast<int>(viewTag), std::move(eventName), *eventData.get());
 }
 
 

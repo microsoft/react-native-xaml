@@ -235,7 +235,8 @@ struct XamlMetadata : std::enable_shared_from_this<XamlMetadata> {
   void PopulateCommands(const winrt::Windows::Foundation::Collections::IVector<winrt::hstring>& commands) const;
 
   void JsiDispatchEvent(facebook::jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept;
-  std::optional<facebook::jsi::Function> m_callFunctionReturnFlushedQueue;
+  std::optional<facebook::jsi::Function> m_receiveEvent;
+  std::optional<facebook::jsi::Object> m_eventEmitter;
   winrt::Microsoft::ReactNative::IReactDispatcher UIDispatcher() const { return m_reactContext.UIDispatcher(); }
   xaml::DependencyObject ElementFromTag(int64_t tag) const { return winrt::Microsoft::ReactNative::XamlUIService::FromContext(m_reactContext).ElementFromReactTag(tag); }
   static int64_t TagFromElement(xaml::DependencyObject const& element);
