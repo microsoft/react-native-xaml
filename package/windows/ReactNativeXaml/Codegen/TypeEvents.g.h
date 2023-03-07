@@ -34,7 +34,7 @@ template<typename T>
 __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
   auto senderAsFE = sender.try_as<FrameworkElement>();
   auto wEN = winrt::to_hstring(eai.jsEventName);
-  if (eai.xamlMetadata.m_callFunctionReturnFlushedQueue.has_value()) {
+  if (eai.xamlMetadata.m_receiveEvent.has_value()) {
     const auto tag = XamlMetadata::TagFromElement(eai.obj.as<xaml::DependencyObject>());
     ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
       auto objSender = std::make_shared<XamlObject>(senderAsFE, metadata);
