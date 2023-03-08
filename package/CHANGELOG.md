@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Thu, 02 Mar 2023 01:29:44 GMT and should not be manually modified.
+This log was last generated on Wed, 08 Mar 2023 18:09:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.73
+
+Wed, 08 Mar 2023 18:09:16 GMT
+
+### Patches
+
+- Avoid throwing away native module calls. (30809111+acoates-ms@users.noreply.github.com)
 
 ## 0.0.72
 

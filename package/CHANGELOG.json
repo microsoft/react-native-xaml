@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Wed, 08 Mar 2023 18:09:16 GMT",
+      "tag": "react-native-xaml_v0.0.73",
+      "version": "0.0.73",
+      "comments": {
+        "patch": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "react-native-xaml",
+            "commit": "531347d8d9f7195139135179b5cf21d0c1019a59",
+            "comment": "Avoid throwing away native module calls."
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Mar 2023 01:29:44 GMT",
       "tag": "react-native-xaml_v0.0.72",
       "version": "0.0.72",
