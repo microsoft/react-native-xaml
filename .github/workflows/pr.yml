@@ -84,3 +84,10 @@ jobs:
       vmImage: windows-2022
       configuration: ${{ matrix.configuration }}
       platform: ${{ matrix.platform }}
+
+  prcheck:
+    name: Successful PR Check
+    runs-on: ubuntu-latest
+    needs: [setupcheck, call-runcodegen, call-testcli, call-testcli-old, call-buildnpmpackage, call-buildrnx]
+    steps:
+     - uses: actions/checkout@v3
