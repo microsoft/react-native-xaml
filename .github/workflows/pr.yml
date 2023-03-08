@@ -90,4 +90,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: [setupcheck, call-runcodegen, call-testcli, call-testcli-old, call-buildnpmpackage, call-buildrnx]
     steps:
-     - uses: alex-sandri/nothing-action@v1.1
+     - uses: actions/checkout@v3
