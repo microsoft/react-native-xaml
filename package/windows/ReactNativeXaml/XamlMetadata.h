@@ -57,44 +57,6 @@ namespace winrt::Microsoft::ReactNative {
 
   template <typename T> bool IsType(const winrt::Windows::Foundation::IInspectable& i) { return i.try_as<T>() != nullptr; }
 
-  template<typename T, std::enable_if_t<std::is_enum<T>::value, int> = 0>
-  void SetPropValue(const xaml::DependencyObject o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-    auto valueEnum = MakeEnum<T>(v.AsInt32());
-    o.SetValue(prop, valueEnum);
-  }
-
-  template<typename T, std::enable_if_t<
-    !std::is_enum<T>::value &&
-    !std::is_same<winrt::hstring, T>::value &&
-    !std::is_same<winrt::Windows::Foundation::IInspectable, T>::value &&
-    !std::is_same<winrt::Windows::Foundation::Uri, T>::value &&
-    !std::is_same<xaml::Media::ImageSource, T>::value
-    , int> = 0>
-    void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-    auto b = v.To<T>();
-    o.SetValue(prop, winrt::box_value(b));
-  }
-
-  template<typename T, std::enable_if_t<
-    std::is_same<xaml::Media::ImageSource, T>::value, int> = 0>
-    void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-
-    const auto str = v.AsString();
-    const auto uri = Uri{ winrt::to_hstring(str) };
-
-    xaml::Media::ImageSource value{ nullptr };
-    if (uri.SchemeName() == L"data") {
-      SetImageSourceForInlineData(str, o, prop);
-    }
-    else if (str.ends_with(".svg") || str.ends_with(".svgz")) {
-      value = xaml::Media::Imaging::SvgImageSource{ uri };
-      o.SetValue(prop, value);
-    }
-    else {
-      value = xaml::Media::Imaging::BitmapImage{ uri };
-      o.SetValue(prop, value);
-    }
-  }
 
   inline void ReadValue(JSValue const& jsValue, xaml::Media::Geometry& value) noexcept {
     const auto v = winrt::to_hstring(jsValue.AsJSString());
@@ -107,43 +69,56 @@ namespace winrt::Microsoft::ReactNative {
 }
 
 
-// MapStyle has a bug where it expects the property to be set as an IReference<MapStyle> always, and does not support IReference<uint32_t>
-template<typename T, std::enable_if_t<
-  std::is_same<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle, T>::value, int> = 0>
-  void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  auto boxed = v.To<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle>();
-  o.SetValue(prop, winrt::box_value(boxed));
-}
-
-template<typename T, std::enable_if_t<std::is_same<T, winrt::hstring>::value, int> = 0>
-void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  auto b = v.AsString();
-  o.SetValue(prop, winrt::box_value(winrt::to_hstring(b)));
-}
-
-template<typename T, std::enable_if_t<std::is_same<T, winrt::Windows::Foundation::Uri>::value, int> = 0>
-void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext&) {
-  auto cn = winrt::get_class_name(o);
-  auto uri = Uri{ winrt::to_hstring(v.AsString()) };
-  o.SetValue(prop, uri);
-}
-
-template<typename T, std::enable_if_t<std::is_same<T, winrt::Windows::Foundation::IInspectable>::value, int> = 0>
-void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& context) {
-  switch (v.Type()) {
-  case JSValueType::String: return SetPropValue<winrt::hstring>(o, prop, v, context);
-  case JSValueType::Boolean: return SetPropValue<bool>(o, prop, v, context);
-  case JSValueType::Double: return SetPropValue<double>(o, prop, v, context);
-  case JSValueType::Int64: return SetPropValue<int64_t>(o, prop, v, context);
-  case JSValueType::Object: {
-    const auto& obj = v.AsObject();
-    if (obj.find("string") != obj.cend()) {
-      const auto& value = obj["string"];
-      return SetPropValue<winrt::Windows::Foundation::IInspectable>(o, prop, value, context);
+template<typename T>
+void SetPropValue(const xaml::DependencyObject& o, const xaml::DependencyProperty& prop, 
+  const winrt::Microsoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactContext& context) {
+  if constexpr (std::is_same_v<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle, T>) {
+    auto boxed = v.To<winrt::Windows::UI::Xaml::Controls::Maps::MapStyle>();
+    o.SetValue(prop, winrt::box_value(boxed));
+  } else if constexpr (std::is_same_v<T, winrt::hstring>) {
+    auto b = v.AsString();
+    o.SetValue(prop, winrt::box_value(winrt::to_hstring(b)));
+  } else if constexpr (std::is_same_v<T, winrt::Windows::Foundation::Uri>) {
+    auto cn = winrt::get_class_name(o);
+    auto uri = Uri{ winrt::to_hstring(v.AsString()) };
+    o.SetValue(prop, uri);
+  } else if constexpr (std::is_same_v<T, winrt::Windows::Foundation::IInspectable>) {
+    switch (v.Type()) {
+    case JSValueType::String: return SetPropValue<winrt::hstring>(o, prop, v, context);
+    case JSValueType::Boolean: return SetPropValue<bool>(o, prop, v, context);
+    case JSValueType::Double: return SetPropValue<double>(o, prop, v, context);
+    case JSValueType::Int64: return SetPropValue<int64_t>(o, prop, v, context);
+    case JSValueType::Object: {
+      const auto& obj = v.AsObject();
+      if (obj.find("string") != obj.cend()) {
+        const auto& value = obj["string"];
+        return SetPropValue<winrt::Windows::Foundation::IInspectable>(o, prop, value, context);
+      }
     }
-  }
+    }
+  } else if constexpr (std::is_enum_v<T>) {
+    auto valueEnum = MakeEnum<T>(v.AsInt32());
+    o.SetValue(prop, valueEnum);
+  } else if constexpr (std::is_same_v<xaml::Media::ImageSource, T>) {
+    const auto str = v.AsString();
+    const auto uri = Uri{ winrt::to_hstring(str) };
+
+    xaml::Media::ImageSource value{ nullptr };
+    if (uri.SchemeName() == L"data") {
+      SetImageSourceForInlineData(str, o, prop);
+    } else if (str.ends_with(".svg") || str.ends_with(".svgz")) {
+      value = xaml::Media::Imaging::SvgImageSource{ uri };
+      o.SetValue(prop, value);
+    } else {
+      value = xaml::Media::Imaging::BitmapImage{ uri };
+      o.SetValue(prop, value);
+    }
+  } else {
+    auto b = v.To<T>();
+    o.SetValue(prop, winrt::box_value(b));
   }
 }
+
 
 struct PropInfo {
   stringKey propName;
