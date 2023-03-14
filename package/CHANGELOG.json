@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 14 Mar 2023 21:30:43 GMT",
+      "tag": "react-native-xaml_v0.0.74",
+      "version": "0.0.74",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "006afafc0a2bd9319c194438bf2b9756431b8409",
+            "comment": "simplify overload resolution for SetPropValue"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 08 Mar 2023 18:09:16 GMT",
       "tag": "react-native-xaml_v0.0.73",
       "version": "0.0.73",

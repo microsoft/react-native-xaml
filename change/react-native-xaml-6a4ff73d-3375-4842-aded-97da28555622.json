@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "simplify overload resolution for SetPropValue",
-  "packageName": "react-native-xaml",
-  "email": "asklar@microsoft.com",
-  "dependentChangeType": "patch"
-}

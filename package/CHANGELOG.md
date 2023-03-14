@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Wed, 08 Mar 2023 18:09:16 GMT and should not be manually modified.
+This log was last generated on Tue, 14 Mar 2023 21:30:43 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.74
+
+Tue, 14 Mar 2023 21:30:43 GMT
+
+### Patches
+
+- simplify overload resolution for SetPropValue (asklar@microsoft.com)
 
 ## 0.0.73
 
