@@ -45,6 +45,7 @@ void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
         }
       }
     });
+  }
 }
 
 FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
