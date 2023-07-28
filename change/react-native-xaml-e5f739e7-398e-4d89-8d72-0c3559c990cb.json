@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Fix event setup codepath",
+  "packageName": "react-native-xaml",
+  "email": "jthysell@microsoft.com",
+  "dependentChangeType": "patch"
+}
