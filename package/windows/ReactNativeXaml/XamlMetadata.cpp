@@ -36,9 +36,6 @@ void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
 
   if (!m_callFunctionReturnFlushedQueue.has_value()) {
     ExecuteJsi(m_reactContext, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
-
-      auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
-      rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
       auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
       if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
         if (auto vm = shared.get()) {
