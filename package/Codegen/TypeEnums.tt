@@ -7,6 +7,14 @@
 #pragma once
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+<#
+foreach (var winmd in WinMDs) {
+#>
+  - <#= winmd #>
+<#
+}
+#>
 **************************************************************/
 
 <# foreach (var p in Util.fakeEnums.Where(p => p.Name.EndsWith("Priority"))) { #>

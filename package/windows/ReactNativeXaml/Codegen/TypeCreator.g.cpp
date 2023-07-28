@@ -14,6 +14,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
@@ -85,6 +87,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.TreeViewItem"): { return winrt::Microsoft::UI::Xaml::Controls::TreeViewItem(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.TreeViewList"): { return winrt::Microsoft::UI::Xaml::Controls::TreeViewList(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.TwoPaneView"): { return winrt::Microsoft::UI::Xaml::Controls::TwoPaneView(); }
+        case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.WebView2"): { return winrt::Microsoft::UI::Xaml::Controls::WebView2(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.AppBar"): { return winrt::Windows::UI::Xaml::Controls::AppBar(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.AppBarButton"): { return winrt::Windows::UI::Xaml::Controls::AppBarButton(); }
         case COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.AppBarElementContainer"): { return winrt::Windows::UI::Xaml::Controls::AppBarElementContainer(); }

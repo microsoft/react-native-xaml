@@ -12,7 +12,7 @@ namespace Codegen
 
     class Program
     {
-        const string Windows_winmd = @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
+        const string Windows_winmd = @"%ProgramFiles(x86)%\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
 
         JsonDocument Config;
         public string ConfigFileName
@@ -40,8 +40,8 @@ namespace Codegen
                 }
             };
 
-            var windows_winmd = context.LoadAssemblyFromPath(Windows_winmd);
-            var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(winmdPath)).ToList();
+            var windows_winmd = context.LoadAssemblyFromPath(Environment.ExpandEnvironmentVariables(Windows_winmd));
+            var winmds = winmdPaths.Select(winmdPath => context.LoadAssemblyFromPath(Environment.ExpandEnvironmentVariables(winmdPath))).ToList();
             // ToList realizes the list which is needs to happen before FinishLoading is called
 
             context.FinishLoading();
@@ -142,10 +142,10 @@ namespace Codegen
             }
 
             Console.WriteLine("Generating projections for the following WinMD files:");
-            Console.WriteLine($"- {Windows_winmd}");
+            Console.WriteLine($"- {Environment.ExpandEnvironmentVariables(Windows_winmd)}");
             foreach (var path in winmdPaths)
             {
-                Console.WriteLine($"- {Path.GetFullPath(path)}");
+                Console.WriteLine($"- {Path.GetFullPath(Environment.ExpandEnvironmentVariables(path))}");
             }
             Console.WriteLine();
 
@@ -374,16 +374,16 @@ namespace Codegen
                 Util.fakeEnums.Add(fe);
             }
 
-            var propsGen = new TSProps(xamlTypes, properties, fakeProps, syntheticProps, syntheticEvents).TransformText();
-            var typesGen = new TSTypes(xamlTypes).TransformText();
-            var typeCreatorGen = new TypeCreator(creatableTypes).TransformText();
-            var propertiesGen = new TypeProperties(properties, fakeProps, syntheticProps).TransformText();
-            var enumsGen = new TypeEnums().TransformText();
+            var propsGen = new TSProps(winmdPaths, xamlTypes, properties, fakeProps, syntheticProps, syntheticEvents).TransformText();
+            var typesGen = new TSTypes(winmdPaths, xamlTypes).TransformText();
+            var typeCreatorGen = new TypeCreator(winmdPaths, creatableTypes).TransformText();
+            var propertiesGen = new TypeProperties(winmdPaths, properties, fakeProps, syntheticProps).TransformText();
+            var enumsGen = new TypeEnums(winmdPaths).TransformText();
 
-            var tsEnumsGen = new TSEnums().TransformText();
-            var eventsGen = new TypeEvents(events, syntheticEvents).TransformText();
-            var eventPropsGen = new EventArgsTypeProperties(eventArgProps).TransformText();
-            var versionGen = new VersionHeader() { Version = version }.TransformText();
+            var tsEnumsGen = new TSEnums(winmdPaths).TransformText();
+            var eventsGen = new TypeEvents(winmdPaths, events, syntheticEvents).TransformText();
+            var eventPropsGen = new EventArgsTypeProperties(winmdPaths, eventArgProps).TransformText();
+            var versionGen = new VersionHeader(winmdPaths) { Version = version }.TransformText();
 
             PrintVerbose("Updating files");
             if (!Directory.Exists(generatedDirPath))

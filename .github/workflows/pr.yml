@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['^0.71'] # test key versions
+        rnwVersion: ['0.71-stable', 'latest'] # test key versions (using VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support)
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: ./.github/workflows/template-testcli.yml
     with:
@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
+        rnwVersion: ['0.67-stable', '0.69-stable'] # test key versions (using VS 2019. aka any RNW version < 0.71 that are used by supported partners)
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: ./.github/workflows/template-testcli.yml
     with:

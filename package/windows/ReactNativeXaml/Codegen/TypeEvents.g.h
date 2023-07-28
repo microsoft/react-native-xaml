@@ -7,6 +7,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
@@ -700,6 +702,71 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
         });
       } else {
         c.ModeChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CoreProcessFailed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CoreProcessFailed([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2ProcessFailedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CoreProcessFailed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CoreWebView2Initialized", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CoreWebView2Initialized([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CoreWebView2Initialized(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"NavigationCompleted", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.NavigationCompleted([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2NavigationCompletedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.NavigationCompleted(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"NavigationStarting", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.NavigationStarting([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.NavigationStarting(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"WebMessageReceived", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.WebMessageReceived([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2WebMessageReceivedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.WebMessageReceived(token);
         return winrt::event_token{ -1 };
       }
     }
@@ -4348,7 +4415,7 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
   {"ContentDialogClosed", nullptr /* synthetic event */},
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 331);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 336);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

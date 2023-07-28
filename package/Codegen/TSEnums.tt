@@ -6,6 +6,14 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+<#
+foreach (var winmd in WinMDs) {
+#>
+  - <#= winmd #>
+<#
+}
+#>
 **************************************************************/
 
 <# 
