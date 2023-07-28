@@ -9,7 +9,7 @@ namespace winrt::example::implementation
 
 void ReactPackageProvider::CreatePackage(IReactPackageBuilder const &packageBuilder) noexcept
 {
-    AddAttributedModules(packageBuilder);
+    AddAttributedModules(packageBuilder, false);
 }
 
 } // namespace winrt::example::implementation

@@ -29,22 +29,25 @@ using namespace winrt::Microsoft::ReactNative;
 
 #define MAKE_GET_DP(type, prop) IsType<type>, []() { return type::prop(); }
 
-void XamlMetadata::SetupEventDispatcher(const IReactContext &reactContext) {
+void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
   if (!m_reactContext) {
     m_reactContext = reactContext;
   }
 
   if (!m_callFunctionReturnFlushedQueue.has_value()) {
-    ExecuteJsi(m_reactContext, [shared = shared_from_this()](facebook::jsi::Runtime &rt) {
-      if (auto vm = shared.get(); vm && !vm->m_callFunctionReturnFlushedQueue.has_value()) {
-        auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
-        if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
-          vm->m_callFunctionReturnFlushedQueue =
-              batchedBridge.asObject(rt).getPropertyAsFunction(rt, "callFunctionReturnFlushedQueue");
+    ExecuteJsi(m_reactContext, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
+
+      auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
+      rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
+      auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
+      if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
+        if (auto vm = shared.get()) {
+           auto getCallableModule = batchedBridge.asObject(rt).getPropertyAsFunction(rt, "getCallableModule");
+           vm->m_eventEmitter = getCallableModule.callWithThis(rt, batchedBridge.asObject(rt), "RCTEventEmitter").asObject(rt);
+           vm->m_receiveEvent = vm->m_eventEmitter->getPropertyAsFunction(rt, "receiveEvent");
         }
       }
     });
-  }
 }
 
 FrameworkElement Wrap(const winrt::Windows::Foundation::IInspectable& d) {
@@ -73,6 +76,27 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string&
   }
 
   return e;
+}
+
+/*static*/ int64_t XamlMetadata::TagFromElement(xaml::DependencyObject const& element) {
+#ifdef RNW_REACTTAG_API 
+  return XamlHelper::GetReactTag(element);
+#else
+  if (auto fe = element.try_as<FrameworkElement>()) {
+    if (auto tagII = fe.Tag()) {
+      return winrt::unbox_value<int64_t>(tagII);
+    }
+  }
+  return InvalidTag;
+#endif
+}
+
+/*static*/ void XamlMetadata::ElementSetTag(xaml::DependencyObject const& element, int64_t tag) {
+#ifdef RNW_REACTTAG_API
+  XamlHelper::SetReactTag(element, tag);
+#else
+  element.SetValue(FrameworkElement::TagProperty(), winrt::box_value(tag));
+#endif
 }
 
 FrameworkElement XamlMetadata::GetFlyoutTarget(winrt::Windows::Foundation::IInspectable flyout) const {
@@ -214,6 +238,16 @@ void SetShowState_ContentDialog(const xaml::DependencyObject& dobj, const xaml::
     case 3: // Hidden
       return cd.Hide();
     }
+    op.Completed([cd, context](const IAsyncOperation<ContentDialogResult>& operation, const AsyncStatus& asyncStatus) {
+      if (asyncStatus == AsyncStatus::Completed) {
+        auto result = static_cast<int32_t>(operation.GetResults());
+
+        XamlUIService::FromContext(context).DispatchEvent(cd, L"topContentDialogClosed",
+          [result](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {
+            evtDataWriter.WriteInt64(result);
+          });
+      }
+      });
   }
 }
 
@@ -300,12 +334,7 @@ const EventInfo* XamlMetadata::AttachEvent(const winrt::Microsoft::ReactNative::
 }
 
 void XamlMetadata::JsiDispatchEvent(jsi::Runtime& rt, int64_t viewTag, std::string&& eventName, std::shared_ptr<facebook::jsi::Object>& eventData) const noexcept {
-  auto params = jsi::Array(rt, 3);
-  params.setValueAtIndex(rt, 0, static_cast<int>(viewTag));
-  params.setValueAtIndex(rt, 1, eventName);
-  params.setValueAtIndex(rt, 2, *eventData.get());
-
-  m_callFunctionReturnFlushedQueue->call(rt, "RCTEventEmitter", "receiveEvent", params);
+  m_receiveEvent->callWithThis(rt, *m_eventEmitter,  static_cast<int>(viewTag), std::move(eventName), *eventData.get());
 }
 
 
@@ -376,6 +405,11 @@ void XamlMetadata::DispatchCommand(FrameworkElement const& view, winrt::hstring 
   const std::string name = winrt::to_string(commandId);
   auto it = std::find_if(xamlCommands, xamlCommands + std::size(xamlCommands), [name](const XamlCommand& entry) { return Equals(entry.name, name.c_str()); });
   if (it != xamlCommands + std::size(xamlCommands)) {
-    it->pfn(view, args, *this);
+    return it->pfn(view, args, *this);
+  }
+  else if (commandId == L"focus") {
+    xaml::Input::FocusManager::TryFocusAsync(view, xaml::FocusState::Programmatic);
+  } else if (commandId == L"blur") {
+    // XAML doesn't have a concept of focus blur.
   }
 }

@@ -11,7 +11,7 @@
     Publisher="CN=Alexander Sklar"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b8e4a7e8-1936-4213-a3b7-afd09481400c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="213fd27c-0a78-4f1e-a44b-317eb3d4f89d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>example</DisplayName>

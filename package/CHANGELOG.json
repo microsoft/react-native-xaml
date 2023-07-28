@@ -2,7 +2,169 @@
   "name": "react-native-xaml",
   "entries": [
     {
-      "date": "Wed, 18 May 2022 06:19:44 GMT",
+      "date": "Tue, 14 Mar 2023 21:30:43 GMT",
+      "tag": "react-native-xaml_v0.0.74",
+      "version": "0.0.74",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "006afafc0a2bd9319c194438bf2b9756431b8409",
+            "comment": "simplify overload resolution for SetPropValue"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 08 Mar 2023 18:09:16 GMT",
+      "tag": "react-native-xaml_v0.0.73",
+      "version": "0.0.73",
+      "comments": {
+        "patch": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "react-native-xaml",
+            "commit": "531347d8d9f7195139135179b5cf21d0c1019a59",
+            "comment": "Avoid throwing away native module calls."
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 02 Mar 2023 01:29:44 GMT",
+      "tag": "react-native-xaml_v0.0.72",
+      "version": "0.0.72",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "ad33eb392c7c3f2f75244b1cb1bb53d434fb3b7d",
+            "comment": "Upgrade to WinUI 2.7"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "7321dab24e53520de4230ea9f4c2becd57d1e1df",
+            "comment": "Upgrade minimum RNW dependency to 0.67.11"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 07 Nov 2022 22:45:17 GMT",
+      "tag": "react-native-xaml_v0.0.71",
+      "version": "0.0.71",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Add target to optionally run CodeGen before ReactNativeXaml build",
+            "commit": "2bde6df163950dd8c764b1216b7d2d7cad83fe23"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Enable PackageReference support if available",
+            "commit": "2bde6df163950dd8c764b1216b7d2d7cad83fe23"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 25 Sep 2022 05:36:46 GMT",
+      "tag": "react-native-xaml_v0.0.70",
+      "version": "0.0.70",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "restore OnContentDialogClosed since we need the return value from the show operation",
+            "commit": "f1462114e7a7edc5202503d29e52064331890b6e"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Sep 2022 21:38:24 GMT",
+      "tag": "react-native-xaml_v0.0.69",
+      "version": "0.0.69",
+      "comments": {
+        "patch": [
+          {
+            "author": "asklar@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Redo typings and how we handle references so that we can call focus (and blur)",
+            "commit": "f11fb309ae975b0165f0eb89618c13783bc7b588"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 02 Sep 2022 20:18:20 GMT",
+      "tag": "react-native-xaml_v0.0.68",
+      "version": "0.0.68",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Fix build break when RNW_REACTTAG_API is defined",
+            "commit": "67bf9b60f4b148ff2d673e17f6690e0de1aa590b"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 01 Sep 2022 19:01:22 GMT",
+      "tag": "react-native-xaml_v0.0.67",
+      "version": "0.0.67",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "Update to consume new ReactTag APIs",
+            "commit": "1738ae4783d7764b1235ba25732543fde2716149"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 30 Aug 2022 19:18:51 GMT",
+      "tag": "react-native-xaml_v0.0.66",
+      "version": "0.0.66",
+      "comments": {
+        "patch": [
+          {
+            "author": "34109996+chiaramooney@users.noreply.github.com",
+            "package": "react-native-xaml",
+            "comment": "Adjust TSTypes",
+            "commit": "feb5b7f8eb692c5122f88affd7be7cb508a5d255"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 30 Aug 2022 00:15:16 GMT",
+      "tag": "react-native-xaml_v0.0.65",
+      "version": "0.0.65",
+      "comments": {
+        "patch": [
+          {
+            "author": "agnel@microsoft.com",
+            "package": "react-native-xaml",
+            "comment": "codeql_fix",
+            "commit": "be434b0a965f3ee881f159fe2c5fbdec6fc53108"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 21 Jun 2022 18:27:36 GMT",
       "tag": "react-native-xaml_v0.0.64",
       "version": "0.0.64",
       "comments": {
@@ -10,8 +172,8 @@
           {
             "author": "asklar@microsoft.com",
             "package": "react-native-xaml",
-            "comment": "Fix event setup codepath",
-            "commit": "632fccbf9546037de5945de90080efaf5097e0b7"
+            "comment": "Add support for MenuFlyoutSubitem",
+            "commit": "851778b1147310116a9f803126e5261469bc6857"
           }
         ]
       }

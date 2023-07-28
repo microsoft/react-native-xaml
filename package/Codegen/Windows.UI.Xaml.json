@@ -103,6 +103,7 @@
     }
   ],
   "syntheticEvents": {
+      "$xaml.Controls.ContentDialog.ContentDialogClosed": "$xaml.Controls.ContentDialogResult"
   },
   "propNameMapping": {
     "$xaml.Input.KeyboardAccelerator.Key": "virtualKey",

@@ -73,6 +73,22 @@ If you have questions about a scenario you don't see below, please [file an issu
   setIsOpen(true); }} />
 ```
 
+Menus can contain cascading items:
+```jsx
+<MenuFlyout ...>
+  <MenuFlyoutSubItem text='subitem 1'>
+    <MenuFlyoutItem text='item 1'/>
+    <MenuFlyoutItem text='item 2'/>
+    <MenuFlyoutItem text='item 3'/>
+  </MenuFlyoutSubItem>
+  <MenuFlyoutSubItem text='subitem 2'>
+    <MenuFlyoutItem text='item 4'/>
+    <MenuFlyoutItem text='item 5'/>
+    <MenuFlyoutItem text='item 6'/>
+  </MenuFlyoutSubItem>
+</MenuFlyout>
+```
+
 ## MenuBar
 ```jsx
 <MenuBar>
@@ -136,7 +152,7 @@ Note that only react-native-xaml components will respect the `gridRow`/`gridColu
 ## NavigationView
 
 ```jsx
-  const [text, setText] = React.useState('initial text');
+const [text, setText] = React.useState('initial text');
 
 <WinUI.NavigationView width={700} height={700}>
   <WinUI.NavigationViewItem content='Item 1' onTapped={() => setText('text #1')} priority={NavigationViewPriority.MenuItem}>
@@ -208,7 +224,7 @@ const [showState, setShowState] = useState(ContentDialogState.Hidden);
 ## SplitView
 
 ```jsx
-  const [isOpen, setIsOpen] = useState(false);
+const [isOpen, setIsOpen] = useState(false);
 // ...
 <SplitView
   isPaneOpen={isOpen}
@@ -233,13 +249,13 @@ const [showState, setShowState] = useState(ContentDialogState.Hidden);
 </SplitView>
 
 
-  <Button
-    foreground="#992222"
-    onTapped={a => {
-      setIsOpen(!isOpen);
-    }}
-    content="button"
-  />
+<Button
+  foreground="#992222"
+  onTapped={a => {
+    setIsOpen(!isOpen);
+  }}
+  content="button"
+/>
 ```
 
 ## Path & vector graphics
@@ -257,12 +273,25 @@ const [showState, setShowState] = useState(ContentDialogState.Hidden);
 
 ## Lightweight styling
 
+Using `resources` to style specific aspects of a control
 ```jsx
-<Button content="Hello with style!" resources={{ 
+<Button 
+  content="Hello with style!" 
+  resources={{ 
     ButtonForeground: "#00fff1",
     ButtonForegroundPressed: "#2090ff",
-    }} />
+  }} 
+/>
 ```
+
+Alternatively, use `styleKey` to leverage system theme styles. 
+```jsx
+<Button 
+  content="Hello with accent style!" 
+  styleKey="AccentButtonStyle"
+/>
+```
+> Note: `"AccentButtonStyle"` used in this example [is defined here](https://github.com/microsoft/microsoft-ui-xaml/blob/9052972906c8a0a1b6cb5d5c61b27d6d27cd7f11/dev/CommonStyles/Button_themeresources.xaml#L239). Controls will have their supported `styleKey`s defined in associated *_themeresources.xaml files like the one linked.
 
 ## Event args
 
@@ -472,7 +501,11 @@ See `eventArgMethods` in Windows.UI.Xaml.json.
 
 Example:
 ```jsx
-/// assume there is a MenuFlyout _menuRef defined.
+/// assume there is a MenuFlyout _menuRef defined like this:
+
+const menu = useRef<MenuFlyoutRef>(null);
+
+/// then:
 <TextBlock
   text="Hello"
   onContextRequested={e => {
@@ -488,8 +521,8 @@ Some types support custom commands to expose some functionality of the underlyin
 For example, this allows calling the programatically showing a flyout menu:
 
 ```jsx
-  const _tbRef = React.useRef<TextBlock>(null);
-  const _menuRef = useRef<MenuFlyout>(null);
+  const _tbRef = React.useRef<TextBlockRef>(null);
+  const _menuRef = useRef<MenuFlyoutRef>(null);
 
   const [x, setX] = React.useState(100);
   // ...

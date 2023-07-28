@@ -1,23 +1,34 @@
-name: CI
+name: PR
 
 on:
-  schedule:
-    - cron: '0 15 * * 2' # Tuesday 3PM UTC (8AM PST)
-  push:
+  pull_request:
     branches: [ main ]
-  workflow_dispatch:
 
 jobs:
+  setupcheck:
+    name: Setup Check
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: yarn install
+      run: yarn install
+
+    - name: beachball check
+      run: npx beachball check --verbose --changehint "::error::Run `yarn change` from root of repo to generate a change file."
+
   call-runcodegen:
     name: Run CodeGen
+    needs: setupcheck
     uses: ./.github/workflows/template-runcodegen.yml
     with:
       vmImage: windows-2022
   
   call-buildexample:
     name: Build Example
+    needs: setupcheck
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         exampleName: ['example', 'examplenuget'] # build both examples
     uses: ./.github/workflows/template-buildexample.yml
@@ -27,10 +38,11 @@ jobs:
 
   call-testcli:
     name: Test CLI
+    needs: setupcheck
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        rnwVersion: ['^0.71'] # test supported versions
+        rnwVersion: ['^0.71'] # test key versions
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: ./.github/workflows/template-testcli.yml
     with:
@@ -40,10 +52,11 @@ jobs:
     
   call-testcli-old:
     name: Test CLI (Old)
+    needs: setupcheck
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        rnwVersion: ['^0.67', '^0.68', '^0.69', '^0.70'] # test supported versions
+        rnwVersion: ['^0.67', '^0.69'] # test key versions (min, partners)
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: ./.github/workflows/template-testcli.yml
     with:
@@ -53,19 +66,28 @@ jobs:
 
   call-buildnpmpackage:
     name: Build NPM Package
+    needs: setupcheck
     uses: ./.github/workflows/template-buildnpmpackage.yml
     with:
       vmImage: windows-2022
 
   call-buildrnx:
     name: Build RNX
+    needs: setupcheck
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        configuration: ['Debug', 'Release']
+        configuration: ['Release']
         platform: ['x64']
     uses: ./.github/workflows/template-buildrnx.yml
     with:
       vmImage: windows-2022
       configuration: ${{ matrix.configuration }}
       platform: ${{ matrix.platform }}
+
+  prcheck:
+    name: Successful PR Check
+    runs-on: ubuntu-latest
+    needs: [setupcheck, call-runcodegen, call-testcli, call-testcli-old, call-buildnpmpackage, call-buildrnx]
+    steps:
+     - uses: actions/checkout@v3

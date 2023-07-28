@@ -2,6 +2,8 @@
 
 #include "App.xaml.g.h"
 
+#include <CppWinRTIncludes.h>
+
 namespace activation = winrt::Windows::ApplicationModel::Activation;
 
 namespace winrt::examplenuget::implementation
@@ -12,7 +14,7 @@ namespace winrt::examplenuget::implementation
         void OnLaunched(activation::LaunchActivatedEventArgs const&);
         void OnActivated(Windows::ApplicationModel::Activation::IActivatedEventArgs const &e);
         void OnSuspending(IInspectable const&, Windows::ApplicationModel::SuspendingEventArgs const&);
-        void OnNavigationFailed(IInspectable const&, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs const&);
+        void OnNavigationFailed(IInspectable const&, xaml::Navigation::NavigationFailedEventArgs const&);
       private:
         using super = AppT<App>;
     };

@@ -18,7 +18,7 @@ THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
   wchar_t buf[128]{};
-  for (auto i = 0u; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
+  for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
     buf[i] = static_cast<wchar_t>(typeName[i]);
   }
 
@@ -45,6 +45,7 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.DropDownButton"): { return winrt::Microsoft::UI::Xaml::Controls::DropDownButton(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.Expander"): { return winrt::Microsoft::UI::Xaml::Controls::Expander(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.ImageIcon"): { return winrt::Microsoft::UI::Xaml::Controls::ImageIcon(); }
+        case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.InfoBadge"): { return winrt::Microsoft::UI::Xaml::Controls::InfoBadge(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.InfoBar"): { return winrt::Microsoft::UI::Xaml::Controls::InfoBar(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.ItemsRepeater"): { return winrt::Microsoft::UI::Xaml::Controls::ItemsRepeater(); }
         case COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.MenuBar"): { return winrt::Microsoft::UI::Xaml::Controls::MenuBar(); }

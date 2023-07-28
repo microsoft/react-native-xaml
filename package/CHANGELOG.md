@@ -1,16 +1,98 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Wed, 18 May 2022 06:19:44 GMT and should not be manually modified.
+This log was last generated on Tue, 14 Mar 2023 21:30:43 GMT and should not be manually modified.
 
 <!-- Start content -->
 
-## 0.0.64
+## 0.0.74
 
-Wed, 18 May 2022 06:19:44 GMT
+Tue, 14 Mar 2023 21:30:43 GMT
 
 ### Patches
 
-- Fix event setup codepath (asklar@microsoft.com)
+- simplify overload resolution for SetPropValue (asklar@microsoft.com)
+
+## 0.0.73
+
+Wed, 08 Mar 2023 18:09:16 GMT
+
+### Patches
+
+- Avoid throwing away native module calls. (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.72
+
+Thu, 02 Mar 2023 01:29:44 GMT
+
+### Patches
+
+- Upgrade to WinUI 2.7 (jthysell@microsoft.com)
+- Upgrade minimum RNW dependency to 0.67.11 (jthysell@microsoft.com)
+
+## 0.0.71
+
+Mon, 07 Nov 2022 22:45:17 GMT
+
+### Patches
+
+- Add target to optionally run CodeGen before ReactNativeXaml build (jthysell@microsoft.com)
+- Enable PackageReference support if available (jthysell@microsoft.com)
+
+## 0.0.70
+
+Sun, 25 Sep 2022 05:36:46 GMT
+
+### Patches
+
+- restore OnContentDialogClosed since we need the return value from the show operation (asklar@microsoft.com)
+
+## 0.0.69
+
+Tue, 13 Sep 2022 21:38:24 GMT
+
+### Patches
+
+- Redo typings and how we handle references so that we can call focus (and blur) (asklar@microsoft.com)
+
+## 0.0.68
+
+Fri, 02 Sep 2022 20:18:20 GMT
+
+### Patches
+
+- Fix build break when RNW_REACTTAG_API is defined (jthysell@microsoft.com)
+
+## 0.0.67
+
+Thu, 01 Sep 2022 19:01:22 GMT
+
+### Patches
+
+- Update to consume new ReactTag APIs (jthysell@microsoft.com)
+
+## 0.0.66
+
+Tue, 30 Aug 2022 19:18:51 GMT
+
+### Patches
+
+- Adjust TSTypes (34109996+chiaramooney@users.noreply.github.com)
+
+## 0.0.65
+
+Tue, 30 Aug 2022 00:15:16 GMT
+
+### Patches
+
+- codeql_fix (agnel@microsoft.com)
+
+## 0.0.64
+
+Tue, 21 Jun 2022 18:27:36 GMT
+
+### Patches
+
+- Add support for MenuFlyoutSubitem (asklar@microsoft.com)
 
 ## 0.0.63
 
