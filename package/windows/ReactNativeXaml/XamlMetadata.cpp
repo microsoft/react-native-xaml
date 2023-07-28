@@ -34,7 +34,7 @@ void XamlMetadata::SetupEventDispatcher(const IReactContext& reactContext) {
     m_reactContext = reactContext;
   }
 
-  if (!m_callFunctionReturnFlushedQueue.has_value()) {
+  if (!m_receiveEvent.has_value()) {
     ExecuteJsi(m_reactContext, [shared = shared_from_this()](facebook::jsi::Runtime& rt) {
       auto batchedBridge = rt.global().getProperty(rt, "__fbBatchedBridge");
       if (!batchedBridge.isUndefined() && batchedBridge.isObject()) {
