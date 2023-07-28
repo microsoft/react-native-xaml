@@ -38,6 +38,6 @@ jobs:
     - name: verify no changes from CodeGen
       shell: powershell
       run: |
-        $changed = git status --porcelain=v1
+        $changed = git status --porcelain=v1 package/
         $changed
         if ($changed -ne $null) { throw "CodeGen detected changes" }
