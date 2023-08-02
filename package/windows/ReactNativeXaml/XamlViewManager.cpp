@@ -336,8 +336,10 @@ namespace winrt::ReactNativeXaml {
     }
 
     auto parentType = get_class_name(e);
+#ifdef DEBUG
     cdebug << "[react-native-xaml] Unhandled call to RemoveAllChildren with parent: " << parentType
       << "\n";
+#endif
   }
 
   void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index) {
@@ -355,8 +357,10 @@ namespace winrt::ReactNativeXaml {
     }
 
     auto parentType = get_class_name(e);
+#ifdef DEBUG
     cdebug << "[react-native-xaml] Unhandled call to RemoveChildAt with parent: " << parentType
       << ", index: " << index << "\n";
+#endif
   }
 
   void XamlViewManager::ReplaceChild(xaml::FrameworkElement parent, xaml::UIElement oldChild, xaml::UIElement newChild) {

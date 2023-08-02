@@ -43,38 +43,39 @@ foreach (var winmd in WinMDs) {
 
 }
 
-            this.Write(@"**************************************************************/
-
-winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
-  wchar_t buf[128]{};
-  for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
-    buf[i] = static_cast<wchar_t>(typeName[i]);
-  }
-
-  HSTRING clsid = nullptr;
-  if (SUCCEEDED(WindowsCreateString(buf, static_cast<UINT32>(wcslen(buf)), &clsid))) {
-    winrt::com_ptr<::IInspectable> insp{ nullptr };
-    if (SUCCEEDED(RoActivateInstance(clsid, insp.put()))) {
-      winrt::IUnknown unk{ nullptr };
-      winrt::copy_from_abi(unk, insp.get());
-      WindowsDeleteString(clsid);
-      return unk.as<winrt::IInspectable>();
-    } else {
-    // type probably has a custom activation factory, use C++/WinRT to create it
-    WindowsDeleteString(clsid);
-    clsid = nullptr;
-    const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
-    switch (key) {
-");
- foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null)) { 
-            this.Write("        case COMPILE_TIME_CRC32_STR(\"");
+            this.Write("**************************************************************/\r\n\r\ntemplate<typen" +
+                    "ame T, typename K, size_t N>\r\nconst T* binary_search_map(const std::pair<K, T> (" +
+                    "& map)[N], size_t low, size_t high, const K& key) {\r\n    while (low != high) {\r\n" +
+                    "        size_t midpoint = (low + high) / 2;\r\n        if (map[midpoint].first == " +
+                    "key) return &(map[midpoint].second);\r\n        else if (((high - low) % 2 == 1) &" +
+                    "& map[midpoint + 1].first == key) return &(map[midpoint + 1].second);\r\n        e" +
+                    "lse if (key < map[midpoint].first) high = midpoint;\r\n        else /*if (key > ma" +
+                    "p[midpoint].first)*/ low = midpoint + 1;\r\n    }\r\n    if (map[low].first == key) " +
+                    "return &(map[low].second);\r\n    return nullptr;\r\n}\r\n\r\nwinrt::Windows::Foundation" +
+                    "::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {\r\n " +
+                    " wchar_t buf[128]{};\r\n  for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(" +
+                    "buf) - 1; i++) {\r\n    buf[i] = static_cast<wchar_t>(typeName[i]);\r\n  }\r\n\r\n  HSTR" +
+                    "ING clsid = nullptr;\r\n  if (SUCCEEDED(WindowsCreateString(buf, static_cast<UINT3" +
+                    "2>(wcslen(buf)), &clsid))) {\r\n    winrt::com_ptr<::IInspectable> insp{ nullptr }" +
+                    ";\r\n    if (SUCCEEDED(RoActivateInstance(clsid, insp.put()))) {\r\n      winrt::IUn" +
+                    "known unk{ nullptr };\r\n      winrt::copy_from_abi(unk, insp.get());\r\n      Windo" +
+                    "wsDeleteString(clsid);\r\n      return unk.as<winrt::IInspectable>();\r\n    } else " +
+                    "{\r\n      // type probably has a custom activation factory, use C++/WinRT to crea" +
+                    "te it\r\n      WindowsDeleteString(clsid);\r\n      clsid = nullptr;\r\n      const au" +
+                    "to key = COMPILE_TIME_CRC32_STR(typeName.data());\r\n      static constexpr const " +
+                    "std::pair<uint32_t, winrt::Windows::Foundation::IInspectable(*)()> map[] = {\r\n");
+ foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null).OrderBy(t => Util.GetCRC32(t.GetFullName()))) { 
+            this.Write("        { COMPILE_TIME_CRC32_STR(\"");
             this.Write(this.ToStringHelper.ToStringWithCulture(t.GetFullName()));
-            this.Write("\"): { return ");
+            this.Write("\"), []() -> winrt::Windows::Foundation::IInspectable { return ");
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
-            this.Write("(); }\r\n");
+            this.Write("(); } }, // 0x");
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCRC32(t.GetFullName()).ToString("X8")));
+            this.Write("\r\n");
  } 
-            this.Write("    }\r\n    }\r\n  }\r\n  assert(false && \"xaml type not found\");\r\n  return nullptr;\r\n" +
-                    "}\r\n\r\n\r\n");
+            this.Write("      };\r\n\r\n      if (const auto it = binary_search_map(map, 0, std::size(map), k" +
+                    "ey)) {\r\n        return (* it)();\r\n      }\r\n    }\r\n  }\r\n  assert(false && \"xaml t" +
+                    "ype not found\");\r\n  return nullptr;\r\n}\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

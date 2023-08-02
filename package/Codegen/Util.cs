@@ -647,6 +647,16 @@ namespace Codegen
             return paramTypes;
         }
 
+        public static UInt32 GetCRC32(string input)
+        {
+            var crc32 = 5381u;
+            for (int i = input.Length - 1; i >=0; i--)
+            {
+                crc32 = 33 * crc32 + input[i];
+            }
+            return crc32;
+        }
+
         public static string GetEventArgsMethodReturnType(MrType argType, string methodName)
         {
             argType.GetMethodsAndConstructors(out var methods, out var ctors);

@@ -24,6 +24,19 @@ foreach (var winmd in WinMDs) {
 #>
 **************************************************************/
 
+template<typename T, typename K, size_t N>
+const T* binary_search_map(const std::pair<K, T> (& map)[N], size_t low, size_t high, const K& key) {
+    while (low != high) {
+        size_t midpoint = (low + high) / 2;
+        if (map[midpoint].first == key) return &(map[midpoint].second);
+        else if (((high - low) % 2 == 1) && map[midpoint + 1].first == key) return &(map[midpoint + 1].second);
+        else if (key < map[midpoint].first) high = midpoint;
+        else /*if (key > map[midpoint].first)*/ low = midpoint + 1;
+    }
+    if (map[low].first == key) return &(map[low].second);
+    return nullptr;
+}
+
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
   wchar_t buf[128]{};
   for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
@@ -39,15 +52,19 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
       WindowsDeleteString(clsid);
       return unk.as<winrt::IInspectable>();
     } else {
-    // type probably has a custom activation factory, use C++/WinRT to create it
-    WindowsDeleteString(clsid);
-    clsid = nullptr;
-    const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
-    switch (key) {
-<# foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null)) { #>
-        case COMPILE_TIME_CRC32_STR("<#= t.GetFullName() #>"): { return <#= Util.GetCppWinRTType(t) #>(); }
+      // type probably has a custom activation factory, use C++/WinRT to create it
+      WindowsDeleteString(clsid);
+      clsid = nullptr;
+      const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
+      static constexpr const std::pair<uint32_t, winrt::Windows::Foundation::IInspectable(*)()> map[] = {
+<# foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null).OrderBy(t => Util.GetCRC32(t.GetFullName()))) { #>
+        { COMPILE_TIME_CRC32_STR("<#= t.GetFullName() #>"), []() -> winrt::Windows::Foundation::IInspectable { return <#= Util.GetCppWinRTType(t) #>(); } }, // 0x<#= Util.GetCRC32(t.GetFullName()).ToString("X8") #>
 <# } #>
-    }
+      };
+
+      if (const auto it = binary_search_map(map, 0, std::size(map), key)) {
+        return (* it)();
+      }
     }
   }
   assert(false && "xaml type not found");

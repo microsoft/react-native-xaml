@@ -126,7 +126,9 @@ void SetIsOpen_FlyoutBase(const xaml::DependencyObject& o, const xaml::Dependenc
         flyout.ShowAt(target);
       }
       else {
-        cdebug << "Couldn't determine flyout target\n";
+#ifdef DEBUG
+          cdebug << "Couldn't determine flyout target\n";
+#endif
       }
     }
     else {
