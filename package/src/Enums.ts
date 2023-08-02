@@ -1,6 +1,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 export enum Stretch {
@@ -9,14 +11,14 @@ export enum Stretch {
   Uniform = 2,
   UniformToFill = 3,
 }
+export enum Orientation {
+  Vertical = 0,
+  Horizontal = 1,
+}
 export enum TextReadingOrder {
   Default = 0,
   UseFlowDirection = 0,
   DetectFromContent = 1,
-}
-export enum Orientation {
-  Vertical = 0,
-  Horizontal = 1,
 }
 export enum ManipulationModes {
   None = 0,
@@ -1193,6 +1195,13 @@ export enum FontVariants {
   Inferior = 4,
   Ruby = 5,
 }
+export namespace WinUIEnums {
+export enum PlayerAnimationOptimization {
+  Latency = 0,
+  Resources = 1,
+}
+}
+
 export namespace WinUIEnums {
 export enum ColorSpectrumShape {
   Box = 0,

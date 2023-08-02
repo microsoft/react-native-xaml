@@ -14,6 +14,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 template<typename T, typename K, size_t N>
@@ -31,7 +33,7 @@ const T* binary_search_map(const std::pair<K, T> (& map)[N], size_t low, size_t 
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
   wchar_t buf[128]{};
-  for (auto i = 0u; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
+  for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {
     buf[i] = static_cast<wchar_t>(typeName[i]);
   }
 
@@ -121,9 +123,11 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
         { COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.MenuFlyoutItem"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Windows::UI::Xaml::Controls::MenuFlyoutItem(); } }, // 0x5AC99C33
         { COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.ListViewHeaderItem"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Windows::UI::Xaml::Controls::ListViewHeaderItem(); } }, // 0x5E5331BB
         { COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.ParallaxView"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Windows::UI::Xaml::Controls::ParallaxView(); } }, // 0x608E6B3C
+        { COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.InfoBadge"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Microsoft::UI::Xaml::Controls::InfoBadge(); } }, // 0x6115F836
         { COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.MenuBarItem"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Microsoft::UI::Xaml::Controls::MenuBarItem(); } }, // 0x64181650
         { COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.PersonPicture"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Microsoft::UI::Xaml::Controls::PersonPicture(); } }, // 0x657ADBEA
         { COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.MenuBar"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Microsoft::UI::Xaml::Controls::MenuBar(); } }, // 0x672DB5E1
+        { COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.WebView2"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Microsoft::UI::Xaml::Controls::WebView2(); } }, // 0x69BFF902
         { COMPILE_TIME_CRC32_STR("Microsoft.UI.Xaml.Controls.ToggleSplitButton"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Microsoft::UI::Xaml::Controls::ToggleSplitButton(); } }, // 0x6AE03DE1
         { COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.Frame"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Windows::UI::Xaml::Controls::Frame(); } }, // 0x6AF31BF7
         { COMPILE_TIME_CRC32_STR("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter"), []() -> winrt::Windows::Foundation::IInspectable { return winrt::Windows::UI::Xaml::Controls::Primitives::ListViewItemPresenter(); } }, // 0x6C046CC4

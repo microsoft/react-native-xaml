@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TypeCreator : TypeCreatorBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -30,92 +27,58 @@ namespace Codegen
         {
             this.Write("#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n#include \"Crc32Str.h\"\r\n#include <win" +
                     "string.h>\r\n\r\n");
-            
-            #line 11 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var ns in Types.Select(x => x.GetNamespace()).Distinct()) { 
-            
-            #line default
-            #line hidden
             this.Write("#include \"winrt/");
-            
-            #line 12 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(".h\"\r\n");
-            
-            #line 13 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n/*************************************************************\r\nTHIS FILE WAS A" +
-                    "UTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\n********************************" +
-                    "******************************/\r\n\r\ntemplate<typename T, typename K, size_t N>\r\nc" +
-                    "onst T* binary_search_map(const std::pair<K, T> (& map)[N], size_t low, size_t h" +
-                    "igh, const K& key) {\r\n    while (low != high) {\r\n        size_t midpoint = (low " +
-                    "+ high) / 2;\r\n        if (map[midpoint].first == key) return &(map[midpoint].sec" +
-                    "ond);\r\n        else if (((high - low) % 2 == 1) && map[midpoint + 1].first == ke" +
-                    "y) return &(map[midpoint + 1].second);\r\n        else if (key < map[midpoint].fir" +
-                    "st) high = midpoint;\r\n        else /*if (key > map[midpoint].first)*/ low = midp" +
-                    "oint + 1;\r\n    }\r\n    if (map[low].first == key) return &(map[low].second);\r\n   " +
-                    " return nullptr;\r\n}\r\n\r\nwinrt::Windows::Foundation::IInspectable XamlMetadata::Cr" +
-                    "eate(const std::string_view& typeName) const {\r\n  wchar_t buf[128]{};\r\n  for (au" +
-                    "to i = 0u; i < typeName.size() && i < ARRAYSIZE(buf) - 1; i++) {\r\n    buf[i] = s" +
-                    "tatic_cast<wchar_t>(typeName[i]);\r\n  }\r\n\r\n  HSTRING clsid = nullptr;\r\n  if (SUCC" +
-                    "EEDED(WindowsCreateString(buf, static_cast<UINT32>(wcslen(buf)), &clsid))) {\r\n  " +
-                    "  winrt::com_ptr<::IInspectable> insp{ nullptr };\r\n    if (SUCCEEDED(RoActivateI" +
-                    "nstance(clsid, insp.put()))) {\r\n      winrt::IUnknown unk{ nullptr };\r\n      win" +
-                    "rt::copy_from_abi(unk, insp.get());\r\n      WindowsDeleteString(clsid);\r\n      re" +
-                    "turn unk.as<winrt::IInspectable>();\r\n    } else {\r\n      // type probably has a " +
-                    "custom activation factory, use C++/WinRT to create it\r\n      WindowsDeleteString" +
-                    "(clsid);\r\n      clsid = nullptr;\r\n      const auto key = COMPILE_TIME_CRC32_STR(" +
-                    "typeName.data());\r\n      static constexpr const std::pair<uint32_t, winrt::Windo" +
-                    "ws::Foundation::IInspectable(*)()> map[] = {\r\n");
-            
-            #line 52 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
- foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null).OrderBy(t => Util.GetCRC32(t.GetFullName()))) { 
-            
-            #line default
-            #line hidden
-            this.Write("        { COMPILE_TIME_CRC32_STR(\"");
-            
-            #line 53 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.GetFullName()));
-            
-            #line default
-            #line hidden
-            this.Write("\"), []() -> winrt::Windows::Foundation::IInspectable { return ");
-            
-            #line 53 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
-            
-            #line default
-            #line hidden
-            this.Write("(); } }, // 0x");
-            
-            #line 53 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCRC32(t.GetFullName()).ToString("X8")));
-            
-            #line default
-            #line hidden
+                    "UTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\nSOURCE WINMDS USED:\r\n");
+
+foreach (var winmd in WinMDs) {
+
+            this.Write("  - ");
+            this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
             this.Write("\r\n");
-            
-            #line 54 "C:\Users\asklar\source\repos\react-native-xaml\package\Codegen\TypeCreator.tt"
+
+}
+
+            this.Write("**************************************************************/\r\n\r\ntemplate<typen" +
+                    "ame T, typename K, size_t N>\r\nconst T* binary_search_map(const std::pair<K, T> (" +
+                    "& map)[N], size_t low, size_t high, const K& key) {\r\n    while (low != high) {\r\n" +
+                    "        size_t midpoint = (low + high) / 2;\r\n        if (map[midpoint].first == " +
+                    "key) return &(map[midpoint].second);\r\n        else if (((high - low) % 2 == 1) &" +
+                    "& map[midpoint + 1].first == key) return &(map[midpoint + 1].second);\r\n        e" +
+                    "lse if (key < map[midpoint].first) high = midpoint;\r\n        else /*if (key > ma" +
+                    "p[midpoint].first)*/ low = midpoint + 1;\r\n    }\r\n    if (map[low].first == key) " +
+                    "return &(map[low].second);\r\n    return nullptr;\r\n}\r\n\r\nwinrt::Windows::Foundation" +
+                    "::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {\r\n " +
+                    " wchar_t buf[128]{};\r\n  for (size_t i = 0; i < typeName.size() && i < ARRAYSIZE(" +
+                    "buf) - 1; i++) {\r\n    buf[i] = static_cast<wchar_t>(typeName[i]);\r\n  }\r\n\r\n  HSTR" +
+                    "ING clsid = nullptr;\r\n  if (SUCCEEDED(WindowsCreateString(buf, static_cast<UINT3" +
+                    "2>(wcslen(buf)), &clsid))) {\r\n    winrt::com_ptr<::IInspectable> insp{ nullptr }" +
+                    ";\r\n    if (SUCCEEDED(RoActivateInstance(clsid, insp.put()))) {\r\n      winrt::IUn" +
+                    "known unk{ nullptr };\r\n      winrt::copy_from_abi(unk, insp.get());\r\n      Windo" +
+                    "wsDeleteString(clsid);\r\n      return unk.as<winrt::IInspectable>();\r\n    } else " +
+                    "{\r\n      // type probably has a custom activation factory, use C++/WinRT to crea" +
+                    "te it\r\n      WindowsDeleteString(clsid);\r\n      clsid = nullptr;\r\n      const au" +
+                    "to key = COMPILE_TIME_CRC32_STR(typeName.data());\r\n      static constexpr const " +
+                    "std::pair<uint32_t, winrt::Windows::Foundation::IInspectable(*)()> map[] = {\r\n");
+ foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null).OrderBy(t => Util.GetCRC32(t.GetFullName()))) { 
+            this.Write("        { COMPILE_TIME_CRC32_STR(\"");
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.GetFullName()));
+            this.Write("\"), []() -> winrt::Windows::Foundation::IInspectable { return ");
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
+            this.Write("(); } }, // 0x");
+            this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCRC32(t.GetFullName()).ToString("X8")));
+            this.Write("\r\n");
  } 
-            
-            #line default
-            #line hidden
             this.Write("      };\r\n\r\n      if (const auto it = binary_search_map(map, 0, std::size(map), k" +
                     "ey)) {\r\n        return (* it)();\r\n      }\r\n    }\r\n  }\r\n  assert(false && \"xaml t" +
                     "ype not found\");\r\n  return nullptr;\r\n}\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation
@@ -135,7 +98,7 @@ namespace Codegen
         /// <summary>
         /// The string builder that generation-time code is using to assemble generated output
         /// </summary>
-        protected System.Text.StringBuilder GenerationEnvironment
+        public System.Text.StringBuilder GenerationEnvironment
         {
             get
             {

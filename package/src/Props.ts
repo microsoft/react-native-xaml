@@ -1,6 +1,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 import type { ViewProps, NativeSyntheticEvent, ColorValue } from 'react-native';
@@ -201,6 +203,26 @@ export type NativeTreeViewDragItemsCompletedEventArgs = {
 export namespace NativeWinUI {
 export type NativeTreeViewDragItemsStartingEventArgs = {
   readonly cancel: boolean;
+}
+}
+export namespace NativeWebView2 {
+export type NativeCoreWebView2ProcessFailedEventArgs = {
+}
+}
+export namespace NativeWinUI {
+export type NativeCoreWebView2InitializedEventArgs = {
+}
+}
+export namespace NativeWebView2 {
+export type NativeCoreWebView2NavigationCompletedEventArgs = {
+}
+}
+export namespace NativeWebView2 {
+export type NativeCoreWebView2NavigationStartingEventArgs = {
+}
+}
+export namespace NativeWebView2 {
+export type NativeCoreWebView2WebMessageReceivedEventArgs = {
 }
 }
 export type NativeDoubleTappedRoutedEventArgs = {
@@ -709,6 +731,7 @@ export interface NativeAnimatedVisualPlayerProps extends NativeFrameworkElementP
   stretch?: Enums.Stretch;
   playbackRate?: number;
   autoPlay?: boolean;
+  animationOptimization?: Enums.WinUIEnums.PlayerAnimationOptimization;
 }
 }
 export namespace NativeWinUI {
@@ -746,6 +769,7 @@ export interface NativeColorPickerProps extends NativeControlProps {
   colorSpectrumShape?: Enums.WinUIEnums.ColorSpectrumShape;
   colorSpectrumComponents?: Enums.WinUIEnums.ColorSpectrumComponents;
   color?: Color | number;
+  orientation?: Enums.Orientation;
   onColorChanged?: (event: NativeSyntheticEvent<TypedEvent<NativeWinUI.NativeColorChangedEventArgs>>) => void;
 }
 }
@@ -773,6 +797,12 @@ export namespace NativeWinUI {
 export interface NativeImageIconProps extends NativeIconElementProps {
   type: 'Microsoft.UI.Xaml.Controls.ImageIcon';
   source?: string;
+}
+}
+export namespace NativeWinUI {
+export interface NativeInfoBadgeProps extends NativeControlProps {
+  type: 'Microsoft.UI.Xaml.Controls.InfoBadge';
+  value?: number;
 }
 }
 export namespace NativeWinUI {
@@ -1205,6 +1235,19 @@ export interface NativeTwoPaneViewProps extends NativeControlProps {
   onModeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
 }
 }
+export namespace NativeWinUI {
+export interface NativeWebView2Props extends NativeControlProps {
+  type: 'Microsoft.UI.Xaml.Controls.WebView2';
+  source?: string;
+  canGoForward?: boolean;
+  canGoBack?: boolean;
+  onCoreProcessFailed?: (event: NativeSyntheticEvent<TypedEvent<NativeWebView2.NativeCoreWebView2ProcessFailedEventArgs>>) => void;
+  onCoreWebView2Initialized?: (event: NativeSyntheticEvent<TypedEvent<NativeWinUI.NativeCoreWebView2InitializedEventArgs>>) => void;
+  onNavigationCompleted?: (event: NativeSyntheticEvent<TypedEvent<NativeWebView2.NativeCoreWebView2NavigationCompletedEventArgs>>) => void;
+  onNavigationStarting?: (event: NativeSyntheticEvent<TypedEvent<NativeWebView2.NativeCoreWebView2NavigationStartingEventArgs>>) => void;
+  onWebMessageReceived?: (event: NativeSyntheticEvent<TypedEvent<NativeWebView2.NativeCoreWebView2WebMessageReceivedEventArgs>>) => void;
+}
+}
 export interface NativeDependencyObjectProps extends ViewProps {
   type: 'Windows.UI.Xaml.DependencyObject' |
         'Microsoft.UI.Xaml.Controls.AnimatedIcon' |
@@ -1216,6 +1259,7 @@ export interface NativeDependencyObjectProps extends ViewProps {
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeater' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' |
@@ -1257,6 +1301,7 @@ export interface NativeDependencyObjectProps extends ViewProps {
         'Microsoft.UI.Xaml.Controls.TreeViewItem' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Microsoft.UI.Xaml.Controls.TwoPaneView' |
+        'Microsoft.UI.Xaml.Controls.WebView2' |
         'Windows.UI.Xaml.UIElement' |
         'Windows.UI.Xaml.FrameworkElement' |
         'Windows.UI.Xaml.Controls.Control' |
@@ -1474,6 +1519,7 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeater' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' |
@@ -1513,6 +1559,7 @@ export interface NativeUIElementProps extends NativeDependencyObjectProps {
         'Microsoft.UI.Xaml.Controls.TreeViewItem' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Microsoft.UI.Xaml.Controls.TwoPaneView' |
+        'Microsoft.UI.Xaml.Controls.WebView2' |
         'Windows.UI.Xaml.FrameworkElement' |
         'Windows.UI.Xaml.Controls.Control' |
         'Windows.UI.Xaml.Controls.ContentControl' |
@@ -1775,6 +1822,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
         'Microsoft.UI.Xaml.Controls.ImageIcon' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeater' |
         'Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHost' |
@@ -1814,6 +1862,7 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
         'Microsoft.UI.Xaml.Controls.TreeViewItem' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Microsoft.UI.Xaml.Controls.TwoPaneView' |
+        'Microsoft.UI.Xaml.Controls.WebView2' |
         'Windows.UI.Xaml.Controls.Control' |
         'Windows.UI.Xaml.Controls.ContentControl' |
         'Windows.UI.Xaml.Controls.AppBar' |
@@ -2028,6 +2077,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
         'Microsoft.UI.Xaml.Controls.ColorPicker' |
         'Microsoft.UI.Xaml.Controls.DropDownButton' |
         'Microsoft.UI.Xaml.Controls.Expander' |
+        'Microsoft.UI.Xaml.Controls.InfoBadge' |
         'Microsoft.UI.Xaml.Controls.InfoBar' |
         'Microsoft.UI.Xaml.Controls.MenuBar' |
         'Microsoft.UI.Xaml.Controls.MenuBarItem' |
@@ -2061,6 +2111,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
         'Microsoft.UI.Xaml.Controls.TreeViewItem' |
         'Microsoft.UI.Xaml.Controls.TreeViewList' |
         'Microsoft.UI.Xaml.Controls.TwoPaneView' |
+        'Microsoft.UI.Xaml.Controls.WebView2' |
         'Windows.UI.Xaml.Controls.ContentControl' |
         'Windows.UI.Xaml.Controls.AppBar' |
         'Windows.UI.Xaml.Controls.Primitives.ButtonBase' |
@@ -2710,6 +2761,7 @@ export interface NativeContentDialogProps extends NativeContentControlProps {
   onPrimaryButtonClick?: (event: NativeSyntheticEvent<TypedEvent<NativeContentDialogButtonClickEventArgs>>) => void;
   onSecondaryButtonClick?: (event: NativeSyntheticEvent<TypedEvent<NativeContentDialogButtonClickEventArgs>>) => void;
   onCloseButtonClick?: (event: NativeSyntheticEvent<TypedEvent<NativeContentDialogButtonClickEventArgs>>) => void;
+  onContentDialogClosed?: (event: NativeSyntheticEvent<Enums.ContentDialogResult>) => void;
 }
 export interface NativeContentPresenterProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.ContentPresenter' |
@@ -4275,6 +4327,7 @@ export type XamlControlProps = NativeWinUI.NativeAnimatedIconProps
 	 |  NativeWinUI.NativeDropDownButtonProps
 	 |  NativeWinUI.NativeExpanderProps
 	 |  NativeWinUI.NativeImageIconProps
+	 |  NativeWinUI.NativeInfoBadgeProps
 	 |  NativeWinUI.NativeInfoBarProps
 	 |  NativeWinUI.NativeItemsRepeaterProps
 	 |  NativeWinUI.NativeItemsRepeaterScrollHostProps
@@ -4316,6 +4369,7 @@ export type XamlControlProps = NativeWinUI.NativeAnimatedIconProps
 	 |  NativeWinUI.NativeTreeViewItemProps
 	 |  NativeWinUI.NativeTreeViewListProps
 	 |  NativeWinUI.NativeTwoPaneViewProps
+	 |  NativeWinUI.NativeWebView2Props
 	 |  NativeDependencyObjectProps
 	 |  NativeUIElementProps
 	 |  NativeFrameworkElementProps

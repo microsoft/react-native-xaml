@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Codegen": {
-      "commandName": "Project",
-      "commandLineArgs": "-verbose -winmd ..\\..\\..\\..\\..\\example\\windows\\packages\\Microsoft.UI.Xaml.2.6.0\\lib\\uap10.0\\Microsoft.UI.Xaml.winmd"
-    }
-  }
-}

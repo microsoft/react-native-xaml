@@ -1,182 +1,71 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
+  schedule:
+    - cron: '0 15 * * 2' # Tuesday 3PM UTC (8AM PST)
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  codegen:
-    runs-on: windows-2019
-    steps:
-    - name: setup git
-      run: |
-        git config --global core.autocrlf false
-        git config --global core.filemode false
+  call-runcodegen:
+    name: Run CodeGen
+    uses: ./.github/workflows/template-runcodegen.yml
+    with:
+      vmImage: windows-2022
+  
+  call-buildexample:
+    name: Build Example
+    strategy:
+      fail-fast: false
+      matrix:
+        exampleName: ['example', 'examplenuget'] # build both examples
+    uses: ./.github/workflows/template-buildexample.yml
+    with:
+      vmImage: windows-2022
+      exampleName: ${{ matrix.exampleName }}
 
-    - uses: actions/checkout@v2
+  call-testcli:
+    name: Test CLI (VS 2022)
+    strategy:
+      fail-fast: false
+      matrix:
+        rnwVersion: [ '0.71-stable', 'latest'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.71
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+    uses: ./.github/workflows/template-testcli.yml
+    with:
+      vmImage: windows-2022
+      rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
+    
+  call-testcli-old:
+    name: Test CLI (VS 2019)
+    strategy:
+      fail-fast: false
+      matrix:
+        rnwVersion: ['0.67-stable', '0.68-stable', '0.69-stable', '0.70-stable'] # test *all* versions that use VS 2019. aka any RNW version >= min in package.json and < 0.71
+        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+    uses: ./.github/workflows/template-testcli.yml
+    with:
+      vmImage: windows-2019
+      rnwVersion: ${{ matrix.rnwVersion }}
+      useRnwNuGet: ${{ matrix.useRnwNuGet }}
 
-    - uses: nuget/setup-nuget@v1
+  call-buildnpmpackage:
+    name: Build NPM Package
+    uses: ./.github/workflows/template-buildnpmpackage.yml
+    with:
+      vmImage: windows-2022
 
-    - name: NuGet restore
-      run: nuget restore example\windows\example.sln
-
-    - name: run CodeGen
-      run: dotnet run -verbose -winmd ..\..\example\windows\packages\Microsoft.UI.Xaml.2.6.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
-      working-directory: package\Codegen
-
-    - name: verify no changes from CodeGen
-      shell: powershell
-      run: |
-        $changed = git status --porcelain=v1
-        $changed
-        if ($changed -ne $null) { throw "CodeGen detected changes" }
-
-  examplenuget:
-    runs-on: windows-2019
-    steps:
-    - uses: actions/checkout@v2
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: build ExampleNuget
-      run: yarn windows --no-launch --no-deploy --no-packager --logging
-      working-directory: examplenuget
-
-    - name: Upload appx
-      uses: actions/upload-artifact@v2
-      with:
-        name: ExampleNuget appx
-        path: exampleNuget\windows\AppPackages\exampleNuget\exampleNuget_1.0.0.0_Win32_Debug_Test
-        if-no-files-found: error
-
-
-  testcli:
-    runs-on: windows-2019
-    steps:
-    - uses: actions/checkout@v2
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: yarn link
-      run: yarn link
-      working-directory: package
-
-    - name: create 0.64 app
-      run: npx react-native init testrnx --template react-native@^0.64
-
-    - name: add Windows
-      run: npx react-native-windows-init --overwrite
-      working-directory: testrnx
-
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
-      working-directory: testrnx
-
-    - name: add react-native-xaml
-      run: yarn add react-native-xaml
-      working-directory: testrnx
-
-    - name: autolink
-      run: npx react-native autolink-windows --logging
-      working-directory: testrnx
-
-    - name: update WinUI package version
-      run: ..\.github\workflows\SetUpAppForNuget.ps1
-      working-directory: testrnx
-
-    - name: build app
-      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: testrnx
-
-
-  testcliNuGet:
-    runs-on: windows-2019
-    steps:
-    - uses: actions/checkout@v2
-    - name: yarn install
-      run: yarn install
-
-    - name: build TS
-      run: yarn build
-
-    - name: yarn link
-      run: yarn link
-      working-directory: package
-
-    - name: create 0.64 app
-      run: npx react-native init testrnx --template react-native@^0.64
-
-    - name: add Windows
-      run: npx react-native-windows-init --overwrite --experimentalNuGetDependency true
-      working-directory: testrnx
-
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
-      working-directory: testrnx
-
-    - name: add react-native-xaml
-      run: yarn add react-native-xaml
-      working-directory: testrnx
-
-    - name: autolink
-      run: npx react-native autolink-windows --logging
-      working-directory: testrnx
-
-    - name: update WinUI package version and mark for NuGet package consumption
-      run: ..\.github\workflows\SetUpAppForNuget.ps1 -UseNuGet
-      working-directory: testrnx
-
-    - name: build app
-      run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: testrnx
-
-  package:
-    runs-on: windows-2019
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1
-
-    - name: yarn install
-      run: yarn install 
-
-    - name: build TS
-      run: yarn build
-
-    - name: npm pack
-      run: npm pack
-      working-directory: package
-
-    - name: Upload npm package
-      uses: actions/upload-artifact@v2
-      with:
-        name: npm package
-        path: package\*.tgz
-        if-no-files-found: error
-
-    - name: build Release x64
-      run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=Release /p:platform=x64
-
-    - name: Validate size
-      shell: powershell
-      run: |
-        $size = (gci package\windows\x64\Release\ReactNativeXaml\ReactNativeXaml.dll).Length
-        $size
-        if ($size -gt 1.5MB) {
-          throw "DLL is bigger than 1.5MB"
-        }
-
+  call-buildrnx:
+    name: Build RNX
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: ['Debug', 'Release']
+        platform: ['x64']
+    uses: ./.github/workflows/template-buildrnx.yml
+    with:
+      vmImage: windows-2022
+      configuration: ${{ matrix.configuration }}
+      platform: ${{ matrix.platform }}

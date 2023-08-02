@@ -1,0 +1,53 @@
+name: Build RNX
+
+on:
+  workflow_call:
+    inputs:
+      vmImage:
+        required: false
+        default: 'windows-latest'
+        type: string
+      configuration:
+        required: false
+        default: 'Debug'
+        type: string
+      platform:
+        required: false
+        default: 'x64'
+        type: string
+
+jobs:
+  package:
+    name: Build RNX ${{ inputs.configuration }} ${{ inputs.platform }}
+    runs-on: ${{ inputs.vmImage }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: yarn install
+      run: yarn install 
+
+    - name: build TS
+      run: yarn build
+
+    - name: build ReactNativeXaml.sln
+      run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=${{ inputs.configuration }} /p:platform=${{ inputs.platform }}
+
+    - name: Upload build output
+      uses: actions/upload-artifact@v3
+      with:
+        name: RNX ${{ inputs.configuration }} ${{ inputs.platform }} Build Output
+        path: package\windows\${{ inputs.platform }}\${{ inputs.configuration }}\ReactNativeXaml\*.*
+        if-no-files-found: error
+
+    - if: ${{ inputs.configuration == 'Release' && inputs.platform == 'x64' }}
+      name: Validate size (Release x64 only)
+      shell: powershell
+      run: |
+        $size = (gci package\windows\x64\Release\ReactNativeXaml\ReactNativeXaml.dll).Length
+        $size
+        if ($size -gt 1.5MB) {
+          throw "DLL is bigger than 1.5MB"
+        }

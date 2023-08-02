@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Serialize.h"
+#include "XamlMetadata.h"
 
 std::vector<uint32_t> VectorToIndices(const winrt::IVector<winrt::IInspectable>& vector, const xaml::Controls::ItemCollection& coll)
 {
@@ -82,8 +83,8 @@ namespace winrt::Microsoft::ReactNative {
     writer.WriteObjectBegin();
     WriteProperty(writer, L"type", cn);
     if (auto fe = item.try_as<xaml::FrameworkElement>()) {
-      if (auto tagII = fe.Tag()) {
-        auto tag = winrt::unbox_value<int64_t>(tagII);
+      auto const tag = XamlMetadata::TagFromElement(item.as<xaml::DependencyObject>());
+      if (tag != InvalidTag) {
         WriteProperty(writer, L"tag", tag);
       }
       auto name = fe.Name();

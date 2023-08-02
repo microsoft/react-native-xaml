@@ -8,6 +8,10 @@ const fs = require('fs');
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 
+const rnwPath = fs.realpathSync(
+  path.resolve(require.resolve('react-native-windows/package.json'), '..'),
+);
+
 module.exports = {
   watchFolders: [
     // Include hoisted modules
@@ -21,7 +25,9 @@ module.exports = {
       new RegExp(
         `${path.resolve(__dirname, 'windows').replace(/[/\\]/g, '/')}.*`,
       ),
-      // This prevents "react-native run-windows" from hitting: EBUSY: resource busy or locked, open msbuild.ProjectImports.zip
+      // This prevents "react-native run-windows" from hitting: EBUSY: resource busy or locked, open msbuild.ProjectImports.zip or other files produced by msbuild
+      new RegExp(`${rnwPath}/build/.*`),
+      new RegExp(`${rnwPath}/target/.*`),
       /.*\.ProjectImports\.zip/,
     ]),
     extraNodeModules: {
@@ -37,5 +43,7 @@ module.exports = {
         inlineRequires: true,
       },
     }),
+    // This fixes the 'missing-asset-registry-path` error (see https://github.com/microsoft/react-native-windows/issues/11437)
+    assetRegistryPath: 'react-native/Libraries/Image/AssetRegistry',
   },
 };

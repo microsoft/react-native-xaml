@@ -580,6 +580,10 @@ namespace Codegen
             {
                 return "WinUI";
             }
+            else if (IsInNamespace(type, XamlNames.WebView2Namespace))
+            {
+                return "WebView2";
+            }
             else
             {
                 // return the top level namespace

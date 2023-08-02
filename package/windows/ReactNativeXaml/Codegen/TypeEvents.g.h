@@ -7,6 +7,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
@@ -34,8 +36,8 @@ template<typename T>
 __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInspectable& sender, const T& args) {
   auto senderAsFE = sender.try_as<FrameworkElement>();
   auto wEN = winrt::to_hstring(eai.jsEventName);
-  if (eai.xamlMetadata.m_callFunctionReturnFlushedQueue.has_value()) {
-    const auto tag = winrt::unbox_value<int64_t>(eai.obj.as<FrameworkElement>().Tag());
+  if (eai.xamlMetadata.m_receiveEvent.has_value()) {
+    const auto tag = XamlMetadata::TagFromElement(eai.obj.as<xaml::DependencyObject>());
     ExecuteJsi(eai.context, [metadata = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai.jsEventName](facebook::jsi::Runtime& rt) {
       auto objSender = std::make_shared<XamlObject>(senderAsFE, metadata);
       auto objArgs = std::make_shared<XamlObject>(args, metadata);
@@ -700,6 +702,71 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
         });
       } else {
         c.ModeChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CoreProcessFailed", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CoreProcessFailed([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2ProcessFailedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CoreProcessFailed(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"CoreWebView2Initialized", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CoreWebView2Initialized([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CoreWebView2Initialized(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"NavigationCompleted", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.NavigationCompleted([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2NavigationCompletedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.NavigationCompleted(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"NavigationStarting", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.NavigationStarting([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.NavigationStarting(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"WebMessageReceived", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Microsoft::UI::Xaml::Controls::WebView2>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.WebMessageReceived([eai] (const winrt::Microsoft::UI::Xaml::Controls::WebView2& sender, const winrt::Microsoft::Web::WebView2::Core::CoreWebView2WebMessageReceivedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.WebMessageReceived(token);
         return winrt::event_token{ -1 };
       }
     }
@@ -4345,9 +4412,10 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo& eai, const win
     }
     return winrt::event_token{0};
   } },
+  {"ContentDialogClosed", nullptr /* synthetic event */},
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 330);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 336);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);
