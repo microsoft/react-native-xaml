@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Clean up formatting and licenses",
+  "packageName": "react-native-xaml",
+  "email": "jthysell@microsoft.com",
+  "dependentChangeType": "patch"
+}
