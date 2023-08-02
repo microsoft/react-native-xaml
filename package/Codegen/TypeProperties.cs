@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TypeProperties : TypePropertiesBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -31,51 +28,21 @@ namespace Codegen
             this.Write("#pragma once\r\n#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n#include \"Crc32Str.h\"\r" +
                     "\n\r\n/*************************************************************\r\nTHIS FILE WAS" +
                     " AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\nSOURCE WINMDS USED:\r\n");
-            
-            #line 14 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
 
 foreach (var winmd in WinMDs) {
 
-            
-            #line default
-            #line hidden
             this.Write("  - ");
-            
-            #line 17 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 18 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
 
 }
 
-            
-            #line default
-            #line hidden
             this.Write("**************************************************************/\r\n\r\n");
-            
-            #line 23 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var ns in Properties.Select(p => p.DeclaringType.GetNamespace()).Distinct()) { 
-            
-            #line default
-            #line hidden
             this.Write("#include <winrt/");
-            
-            #line 24 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(".h>\r\n");
-            
-            #line 25 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write(@"
 template<typename T> 
 winrt::Windows::Foundation::IInspectable AsType(const winrt::Windows::Foundation::IInspectable& o) {
@@ -89,255 +56,80 @@ winrt::Windows::Foundation::IInspectable AsUnwrappedType(const winrt::Windows::F
 
 /*static*/ const PropInfo xamlPropertyMap[] = {
   ");
-            
-            #line 38 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var p in Properties) { 
-            
-            #line default
-            #line hidden
             this.Write("      { MAKE_KEY(\"");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p)));
-            
-            #line default
-            #line hidden
             this.Write("\"), ");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture((Util.DerivesFrom(p.DeclaringType, $"{XamlNames.XamlNamespace}.FrameworkElement") || p.DeclaringType.GetName() == "UIElement")  ? "AsType" : "AsUnwrappedType"));
-            
-            #line default
-            #line hidden
             this.Write("<");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">,  []() { return ");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.Property != null ? p.Property.DeclaringType : p.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write("::");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.SimpleName));
-            
-            #line default
-            #line hidden
             this.Write("Property(); }, SetPropValue<");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.PropertyType != null ? Util.GetCppWinRTType(p.PropertyType) : Util.GetCppWinRTType(p.Property.GetPropertyType())));
-            
-            #line default
-            #line hidden
             this.Write(">, ViewManagerPropertyType::");
-            
-            #line 39 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
-            
-            #line default
-            #line hidden
             this.Write(" },\r\n  ");
-            
-            #line 40 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("};\r\n\r\n");
-            
-            #line 43 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var p in FakeProps) { 
-            
-            #line default
-            #line hidden
             this.Write("void Set");
-            
-            #line 44 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 44 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.DeclaringType.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::M" +
                     "icrosoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactCo" +
                     "ntext& reactContext);\r\n");
-            
-            #line 45 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 47 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var p in SyntheticProps) { 
-            
-            #line default
-            #line hidden
             this.Write("void Set");
-            
-            #line 48 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.Name));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 48 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.DeclaringType.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("(const xaml::DependencyObject& o, const xaml::DependencyProperty&, const winrt::M" +
                     "icrosoft::ReactNative::JSValue& v, const winrt::Microsoft::ReactNative::IReactCo" +
                     "ntext& reactContext);\r\n");
-            
-            #line 49 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n/*static*/ const PropInfo fakeProps[] = {\r\n");
-            
-            #line 52 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var p in FakeProps) { 
-            
-            #line default
-            #line hidden
             this.Write("    { MAKE_KEY(\"");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p)));
-            
-            #line default
-            #line hidden
             this.Write("\"), AsUnwrappedType<");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">, nullptr, Set");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.DeclaringType.GetName()));
-            
-            #line default
-            #line hidden
             this.Write(", ViewManagerPropertyType::");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
-            
-            #line default
-            #line hidden
             this.Write(" },\r\n");
-            
-            #line 54 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
-            
-            #line 55 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var p in SyntheticProps) { 
-            
-            #line default
-            #line hidden
             this.Write("    { MAKE_KEY(\"");
-            
-            #line 56 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p.Name)));
-            
-            #line default
-            #line hidden
             this.Write("\"), AsType<");
-            
-            #line 56 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(p.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">, nullptr, Set");
-            
-            #line 56 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.Name));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 56 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.DeclaringType.GetName()));
-            
-            #line default
-            #line hidden
             this.Write(", ViewManagerPropertyType::");
-            
-            #line 56 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
-            
-            #line default
-            #line hidden
             this.Write(" },\r\n");
-            
-            #line 57 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n};\r\n\r\n#ifdef USE_CRC32\r\nvoid XamlMetadata::PopulateNativeProps(winrt::Windows::" +
                     "Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativePr" +
                     "ops) const {\r\n");
-            
-            #line 63 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var p in Properties.Distinct(new NameEqualityComparer())) { 
-            
-            #line default
-            #line hidden
             this.Write("    nativeProps.Insert(winrt::to_hstring(\"");
-            
-            #line 64 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(p)));
-            
-            #line default
-            #line hidden
             this.Write("\"), ViewManagerPropertyType::");
-            
-            #line 64 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetVMPropertyType(p)));
-            
-            #line default
-            #line hidden
             this.Write(");\r\n");
-            
-            #line 65 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write(@"}
 #else
 void XamlMetadata::PopulateNativeProps(winrt::Windows::Foundation::Collections::IMap<winrt::hstring, ViewManagerPropertyType>& nativeProps) const {
@@ -357,82 +149,29 @@ struct XamlCommand {
 };
 
 ");
-            
-            #line 84 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var kv in Util.commands) { 
-            
-            #line default
-            #line hidden
-            
-            #line 85 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
    foreach (var command in kv.Value) { 
-            
-            #line default
-            #line hidden
             this.Write("void ");
-            
-            #line 86 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
-            
-            #line default
-            #line hidden
             this.Write("Command(FrameworkElement fe, const winrt::Microsoft::ReactNative::JSValueArray& /" +
                     "* args */, const XamlMetadata& xaml) noexcept;\r\n");
-            
-            #line 87 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } } 
-            
-            #line default
-            #line hidden
             this.Write("\r\nconst XamlCommand xamlCommands[] = {\r\n");
-            
-            #line 90 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  foreach (var kv in Util.commands) { 
-            
-            #line default
-            #line hidden
-            
-            #line 91 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
    foreach (var command in kv.Value) { 
-            
-            #line default
-            #line hidden
             this.Write("  { \"");
-            
-            #line 92 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
-            
-            #line default
-            #line hidden
             this.Write("\", ");
-            
-            #line 92 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
-            
-            #line default
-            #line hidden
             this.Write("Command},\r\n");
-            
-            #line 93 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
    } 
-            
-            #line default
-            #line hidden
-            
-            #line 94 "C:\code\react-native-xaml\package\Codegen\TypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("};\r\n\r\nvoid XamlMetadata::PopulateCommands(const winrt::Windows::Foundation::Colle" +
                     "ctions::IVector<winrt::hstring>& commands) const {\r\n  for (auto const& entry : x" +
                     "amlCommands) {\r\n    commands.Append(winrt::to_hstring(entry.name));\r\n  }\r\n}\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation

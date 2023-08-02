@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class EventArgsTypeProperties : EventArgsTypePropertiesBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -31,51 +28,21 @@ namespace Codegen
             this.Write("#pragma once\r\n#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n#include \"Crc32Str.h\"\r" +
                     "\n\r\n/*************************************************************\r\nTHIS FILE WAS" +
                     " AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\nSOURCE WINMDS USED:\r\n");
-            
-            #line 14 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
 
 foreach (var winmd in WinMDs) {
 
-            
-            #line default
-            #line hidden
             this.Write("  - ");
-            
-            #line 17 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 18 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
 
 }
 
-            
-            #line default
-            #line hidden
             this.Write("**************************************************************/\r\n\r\n");
-            
-            #line 23 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  foreach (var ns in Properties.Select(p => p.DeclaringType.GetNamespace()).Distinct()) { 
-            
-            #line default
-            #line hidden
             this.Write("#include <winrt/");
-            
-            #line 24 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(".h>\r\n");
-            
-            #line 25 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write(@"
 struct EventArgsProperty {
     const char* const name;
@@ -89,96 +56,31 @@ struct EventArgsProperty {
 
 const EventArgsProperty eventArgsProperties[] = {
 ");
-            
-            #line 38 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  foreach (var prop in Properties) { 
 if (prop.Property != null) { 
-            
-            #line default
-            #line hidden
             this.Write("    { \"");
-            
-            #line 40 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop.Name)));
-            
-            #line default
-            #line hidden
             this.Write("\", IsType<");
-            
-            #line 40 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(prop.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<");
-            
-            #line 40 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(prop.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">(); return ");
-            
-            #line 40 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.MaybeBox("ea", prop.Property)));
-            
-            #line default
-            #line hidden
             this.Write("; } },\r\n");
-            
-            #line 41 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  } else { 
-            
-            #line default
-            #line hidden
             this.Write("    { \"");
-            
-            #line 42 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(prop.Name)));
-            
-            #line default
-            #line hidden
             this.Write("\", IsType<");
-            
-            #line 42 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(prop.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<");
-            
-            #line 42 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(prop.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">(); return Get");
-            
-            #line 42 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 42 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop.DeclaringType.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("(); },\r\n");
-            
-            #line 43 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
 } 
-            
-            #line default
-            #line hidden
-            
-            #line 44 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write(@"};
 
 struct EventArgsMethod {
@@ -192,87 +94,34 @@ struct EventArgsMethod {
 };
 
 ");
-            
-            #line 57 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  foreach (var t in Util.eventArgsMethods) {
     foreach (var m in t.Value) {
 
-            
-            #line default
-            #line hidden
             this.Write("facebook::jsi::Value ");
-            
-            #line 60 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.Replace(".", "_")));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 60 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m));
-            
-            #line default
-            #line hidden
             this.Write("(facebook::jsi::Runtime& rt, std::shared_ptr<XamlObject> thisVal, const facebook:" +
                     ":jsi::Value* args, size_t count);\r\n");
-            
-            #line 61 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  } } 
-            
-            #line default
-            #line hidden
             this.Write("\r\nconst EventArgsMethod eventArgsMethods[] = {\r\n");
-            
-            #line 64 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  foreach (var t in Util.eventArgsMethods) {
     foreach (var m in t.Value) {
 
-            
-            #line default
-            #line hidden
             this.Write("    { \"");
-            
-            #line 67 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m));
-            
-            #line default
-            #line hidden
             this.Write("\", IsType<");
-            
-            #line 67 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t.Key)));
-            
-            #line default
-            #line hidden
             this.Write(">, ");
-            
-            #line 67 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.Replace(".", "_")));
-            
-            #line default
-            #line hidden
             this.Write("_");
-            
-            #line 67 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(m));
-            
-            #line default
-            #line hidden
             this.Write(" },\r\n");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\EventArgsTypeProperties.tt"
  } } 
-            
-            #line default
-            #line hidden
             this.Write("};\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation

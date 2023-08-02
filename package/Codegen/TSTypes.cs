@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TSTypes : TSTypesBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -30,94 +27,34 @@ namespace Codegen
         {
             this.Write("\r\n/*************************************************************\r\nTHIS FILE WAS A" +
                     "UTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\nSOURCE WINMDS USED:\r\n");
-            
-            #line 10 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
 foreach (var winmd in WinMDs) {
 
-            
-            #line default
-            #line hidden
             this.Write("  - ");
-            
-            #line 13 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 14 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
 }
 
-            
-            #line default
-            #line hidden
             this.Write("**************************************************************/\r\n\r\nimport type {\r" +
                     "\n    // Controls\r\n");
-            
-            #line 21 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  foreach (var type in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) == "")) { 
-            
-            #line default
-            #line hidden
             this.Write("    ");
-            
-            #line 22 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetNativePropsName(type)));
-            
-            #line default
-            #line hidden
             this.Write(",\r\n");
-            
-            #line 23 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n    // EventArgs\r\n");
-            
-            #line 26 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  foreach (var type in Util.eventArgsTypes.Where(t => Util.GetTSNamespace(t) == "")) { 
-            
-            #line default
-            #line hidden
             this.Write("    Native");
-            
-            #line 27 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type.GetName()));
-            
-            #line default
-            #line hidden
             this.Write(",\r\n");
-            
-            #line 28 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("} from \'./Props\';\r\n\r\n");
-            
-            #line 31 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  foreach (var ns in Types.Where(t => Util.HasCtor(t) && Util.GetTSNamespace(t) != "").Union(Util.eventArgsTypes.Where(t => Util.GetTSNamespace(t) != "")).Select(t => Util.GetTSNamespace(t)).Distinct()) { 
-            
-            #line default
-            #line hidden
             this.Write("import type { Native");
-            
-            #line 32 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(" } from \'./Props\';\r\n");
-            
-            #line 33 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write(@"
 import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
@@ -128,8 +65,6 @@ import type { Point, Color } from './Props';
 export type { Point, Color };
 
 ");
-            
-            #line 43 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  
 foreach (var type in Types.Where(t => Util.HasCtor(t))) { 
     var ns = Util.GetTSNamespace(type);
@@ -138,54 +73,19 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
     var PartialTypeName = $"_{Util.ToJsName(type)}";
     var NativePropsName = Util.GetNativePropsName(type);
     if (ns != "") { 
-            
-            #line default
-            #line hidden
             this.Write("export namespace ");
-            
-            #line 51 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(" {\r\n");
-            
-            #line 52 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
   } 
-            
-            #line default
-            #line hidden
             this.Write("export type ");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropsTypeName));
-            
-            #line default
-            #line hidden
             this.Write(" = Omit<");
-            
-            #line 53 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(NativePropsName));
-            
-            #line default
-            #line hidden
             this.Write(", \'type\'>;\r\nexport type ");
-            
-            #line 54 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
-            
-            #line default
-            #line hidden
             this.Write(" = React.Component<");
-            
-            #line 54 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(NativePropsName));
-            
-            #line default
-            #line hidden
             this.Write("> & Readonly<NativeMethods>;\r\n");
-            
-            #line 55 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  
   var commands = Util.GetCommands(type.GetFullName());
   string NativeMethodsFor = commands.Count() == 0 ? string.Empty : $" & NativeMethodsFor_{Util.ToJsName(type)}";
@@ -193,294 +93,93 @@ foreach (var type in Types.Where(t => Util.HasCtor(t))) {
 
   if (NativeMethodsFor != string.Empty) {
 
-            
-            #line default
-            #line hidden
             this.Write("export interface NativeMethodsFor_");
-            
-            #line 62 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type)));
-            
-            #line default
-            #line hidden
             this.Write(" {\r\n");
-            
-            #line 63 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
     foreach (var command in commands) { 
-            
-            #line default
-            #line hidden
             this.Write("  ");
-            
-            #line 64 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
-            
-            #line default
-            #line hidden
             this.Write(": (ref: React.RefObject<");
-            
-            #line 64 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
-            
-            #line default
-            #line hidden
             this.Write(">, args: ");
-            
-            #line 64 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.TSArgTypes != null ? command.TSArgTypes : "any[]"));
-            
-            #line default
-            #line hidden
             this.Write(") => void;\r\n");
-            
-            #line 65 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
     } 
-            
-            #line default
-            #line hidden
             this.Write("}\r\n");
-            
-            #line 67 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("const ");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartialTypeName));
-            
-            #line default
-            #line hidden
             this.Write(" : (ForwardRefExoticComponent<React.PropsWithChildren<");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropsTypeName));
-            
-            #line default
-            #line hidden
             this.Write("> & RefAttributes<");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
-            
-            #line default
-            #line hidden
             this.Write(">>");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartialNativeMethodsFor));
-            
-            #line default
-            #line hidden
             this.Write(") = React.forwardRef((props: React.PropsWithChildren<");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropsTypeName));
-            
-            #line default
-            #line hidden
             this.Write(">, ref: React.ForwardedRef<");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
-            
-            #line default
-            #line hidden
             this.Write(">) => <NativeXamlControl {...props} type=\'");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(type.GetFullName()));
-            
-            #line default
-            #line hidden
             this.Write("\' ref={ref} />);\r\n");
-            
-            #line 69 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
     foreach (var command in commands) { 
-            
-            #line default
-            #line hidden
-            
-            #line 71 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartialTypeName));
-            
-            #line default
-            #line hidden
             this.Write(".");
-            
-            #line 71 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
-            
-            #line default
-            #line hidden
             this.Write(" = (ref: React.RefObject<");
-            
-            #line 71 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
-            
-            #line default
-            #line hidden
             this.Write(">, args: ");
-            
-            #line 71 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.TSArgTypes != null ? command.TSArgTypes : "any[]"));
-            
-            #line default
-            #line hidden
             this.Write(") => {\r\n  const tag = findNodeHandle(ref.current);\r\n  UIManager.dispatchViewManag" +
                     "erCommand(tag, UIManager.getViewManagerConfig(\'XamlControl\').Commands.");
-            
-            #line 73 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.Name));
-            
-            #line default
-            #line hidden
             this.Write(", ");
-            
-            #line 73 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(command.TSArgTypes != null ? "[args]" : "args"));
-            
-            #line default
-            #line hidden
             this.Write(");\r\n};\r\n");
-            
-            #line 75 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
   } 
-            
-            #line default
-            #line hidden
             this.Write("export const ");
-            
-            #line 76 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.ToJsName(type)));
-            
-            #line default
-            #line hidden
             this.Write(" = (");
-            
-            #line 76 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PartialTypeName));
-            
-            #line default
-            #line hidden
             this.Write(" as (ForwardRefExoticComponent<React.PropsWithChildren<");
-            
-            #line 76 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropsTypeName));
-            
-            #line default
-            #line hidden
             this.Write("> & RefAttributes<");
-            
-            #line 76 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(RefTypeName));
-            
-            #line default
-            #line hidden
             this.Write(">>");
-            
-            #line 76 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(NativeMethodsFor));
-            
-            #line default
-            #line hidden
             this.Write("));\r\n\r\n");
-            
-            #line 78 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
   if (ns != "") { 
-            
-            #line default
-            #line hidden
             this.Write("}\r\n");
-            
-            #line 80 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
   } 
-            
-            #line default
-            #line hidden
-            
-            #line 81 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
 } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 84 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
 foreach (var ea in Util.eventArgsTypes) {
     var ns = Util.GetTSNamespace(ea);
     if (ns != "") { 
-            
-            #line default
-            #line hidden
             this.Write("export namespace ");
-            
-            #line 88 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(" {\r\n");
-            
-            #line 89 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
     }
 
-            
-            #line default
-            #line hidden
             this.Write("export type ");
-            
-            #line 92 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ea.GetName()));
-            
-            #line default
-            #line hidden
             this.Write(" = ");
-            
-            #line 92 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetEventArgsTSType(ea, "Native")));
-            
-            #line default
-            #line hidden
             this.Write(";    // ");
-            
-            #line 92 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ea.GetFullName()));
-            
-            #line default
-            #line hidden
             this.Write(" \r\n");
-            
-            #line 93 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
   if (ns != "") { 
-            
-            #line default
-            #line hidden
             this.Write("}\r\n");
-            
-            #line 95 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
   } 
-            
-            #line default
-            #line hidden
-            
-            #line 96 "C:\code\react-native-xaml\package\Codegen\TSTypes.tt"
 
 } 
-            
-            #line default
-            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation

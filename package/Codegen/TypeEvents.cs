@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TypeEvents : TypeEventsBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -39,58 +36,23 @@ namespace Codegen
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 SOURCE WINMDS USED:
 ");
-            
-            #line 16 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
 
 foreach (var winmd in WinMDs) {
 
-            
-            #line default
-            #line hidden
             this.Write("  - ");
-            
-            #line 19 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 20 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
 
 }
 
-            
-            #line default
-            #line hidden
             this.Write("**************************************************************/\r\n\r\n");
-            
-            #line 25 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
  foreach (var ns in Events.Select(p => p.DeclaringType.GetNamespace()).Distinct()) { 
-            
-            #line default
-            #line hidden
             this.Write("#include <winrt/");
-            
-            #line 26 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(".h>\r\n");
-            
-            #line 27 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("#include <winrt/");
-            
-            #line 28 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(XamlNames.XamlNamespace));
-            
-            #line default
-            #line hidden
             this.Write(".Input.h>\r\n\r\n/////// Events\r\ntemplate<typename TArgs>\r\nvoid SerializeEventArgs(wi" +
                     "nrt::Microsoft::ReactNative::IJSValueWriter const& writer, const winrt::Windows:" +
                     ":Foundation::IInspectable& sender, const TArgs& args);\r\n\r\n\r\ntemplate<typename T>" +
@@ -114,84 +76,29 @@ foreach (var winmd in WinMDs) {
                     "     [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evt" +
                     "DataWriter) {\r\n        SerializeEventArgs(evtDataWriter, senderAsFE, args);\r\n   " +
                     "   });\r\n  }\r\n};\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEventMap[] = {\r\n");
-            
-            #line 66 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
  foreach (var evt in Events) { 
-            
-            #line default
-            #line hidden
             this.Write("  {\"");
-            
-            #line 67 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("\", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexc" +
                     "ept {\r\n    if (const auto& c = DoTheTypeChecking<");
-            
-            #line 68 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(evt.DeclaringType)));
-            
-            #line default
-            #line hidden
             this.Write(">(eai.obj, isWrapped)) {\r\n      if (!token) {\r\n        return c.");
-            
-            #line 70 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("([eai] (");
-            
-            #line 70 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTEventSignature(evt)));
-            
-            #line default
-            #line hidden
             this.Write(") noexcept {\r\n            DispatchTheEvent(eai, sender, args);\r\n        });\r\n    " +
                     "  } else {\r\n        c.");
-            
-            #line 74 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));
-            
-            #line default
-            #line hidden
             this.Write("(token);\r\n        return winrt::event_token{ -1 };\r\n      }\r\n    }\r\n    return wi" +
                     "nrt::event_token{0};\r\n  } },\r\n");
-            
-            #line 80 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
  } 
-            
-            #line default
-            #line hidden
-            
-            #line 81 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
  foreach (var evt in SyntheticEvents) { 
-            
-            #line default
-            #line hidden
             this.Write("  {\"");
-            
-            #line 82 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.Name));
-            
-            #line default
-            #line hidden
             this.Write("\", nullptr /* synthetic event */},\r\n");
-            
-            #line 83 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("};\r\n\r\nstatic_assert(ARRAYSIZE(EventInfo::xamlEventMap) == ");
-            
-            #line 86 "C:\code\react-native-xaml\package\Codegen\TypeEvents.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Events.Count() + SyntheticEvents.Count()));
-            
-            #line default
-            #line hidden
             this.Write(@");
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
@@ -222,9 +129,6 @@ void XamlMetadata::PopulateNativeEvents(winrt::Windows::Foundation::Collections:
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation

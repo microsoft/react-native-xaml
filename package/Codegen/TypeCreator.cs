@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TypeCreator : TypeCreatorBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -30,52 +27,22 @@ namespace Codegen
         {
             this.Write("#include \"pch.h\"\r\n#include \"XamlMetadata.h\"\r\n#include \"Crc32Str.h\"\r\n#include <win" +
                     "string.h>\r\n\r\n");
-            
-            #line 11 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var ns in Types.Select(x => x.GetNamespace()).Distinct()) { 
-            
-            #line default
-            #line hidden
             this.Write("#include \"winrt/");
-            
-            #line 12 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(ns));
-            
-            #line default
-            #line hidden
             this.Write(".h\"\r\n");
-            
-            #line 13 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("\r\n/*************************************************************\r\nTHIS FILE WAS A" +
                     "UTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\nSOURCE WINMDS USED:\r\n");
-            
-            #line 18 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
 
 foreach (var winmd in WinMDs) {
 
-            
-            #line default
-            #line hidden
             this.Write("  - ");
-            
-            #line 21 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 22 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
 
 }
 
-            
-            #line default
-            #line hidden
             this.Write(@"**************************************************************/
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {
@@ -99,41 +66,18 @@ winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_
     const auto key = COMPILE_TIME_CRC32_STR(typeName.data());
     switch (key) {
 ");
-            
-            #line 47 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
  foreach (var t in Types.Where(t => Util.GetComposableFactoryType(t) != null)) { 
-            
-            #line default
-            #line hidden
             this.Write("        case COMPILE_TIME_CRC32_STR(\"");
-            
-            #line 48 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.GetFullName()));
-            
-            #line default
-            #line hidden
             this.Write("\"): { return ");
-            
-            #line 48 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(t)));
-            
-            #line default
-            #line hidden
             this.Write("(); }\r\n");
-            
-            #line 49 "C:\code\react-native-xaml\package\Codegen\TypeCreator.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("    }\r\n    }\r\n  }\r\n  assert(false && \"xaml type not found\");\r\n  return nullptr;\r\n" +
                     "}\r\n\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation

@@ -17,12 +17,9 @@ namespace Codegen
     /// <summary>
     /// Class to produce the template output
     /// </summary>
-    
-    #line 1 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class TypeEnums : TypeEnumsBase
     {
-#line hidden
         /// <summary>
         /// Create the template output
         /// </summary>
@@ -31,85 +28,32 @@ namespace Codegen
             this.Write("#pragma once\r\n/*************************************************************\r\nTHI" +
                     "S FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY\r\nSOURCE WINMDS USED:\r" +
                     "\n");
-            
-            #line 11 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
 
 foreach (var winmd in WinMDs) {
 
-            
-            #line default
-            #line hidden
             this.Write("  - ");
-            
-            #line 14 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(winmd));
-            
-            #line default
-            #line hidden
             this.Write("\r\n");
-            
-            #line 15 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
 
 }
 
-            
-            #line default
-            #line hidden
             this.Write("**************************************************************/\r\n\r\n");
-            
-            #line 20 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
  foreach (var p in Util.fakeEnums.Where(p => p.Name.EndsWith("Priority"))) { 
-            
-            #line default
-            #line hidden
             this.Write("enum class ");
-            
-            #line 21 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(p.Name));
-            
-            #line default
-            #line hidden
             this.Write(" {\r\n");
-            
-            #line 22 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
  foreach (var value in p.Values) { 
-            
-            #line default
-            #line hidden
             this.Write("    ");
-            
-            #line 23 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(value.Key));
-            
-            #line default
-            #line hidden
             this.Write(" = ");
-            
-            #line 23 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(value.Value));
-            
-            #line default
-            #line hidden
             this.Write(",\r\n");
-            
-            #line 24 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
  } 
-            
-            #line default
-            #line hidden
             this.Write("};\r\n\r\n");
-            
-            #line 27 "C:\code\react-native-xaml\package\Codegen\TypeEnums.tt"
  } 
-            
-            #line default
-            #line hidden
             return this.GenerationEnvironment.ToString();
         }
     }
-    
-    #line default
-    #line hidden
     #region Base class
     /// <summary>
     /// Base class for this transformation
