@@ -37,12 +37,12 @@ jobs:
       exampleName: ${{ matrix.exampleName }}
 
   call-testcli:
-    name: Test CLI
+    name: Test CLI (VS 2022)
     needs: setupcheck
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['0.71-stable', 'latest'] # test key versions (using VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support)
+        rnwVersion: ['0.71-stable', 'latest'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: ./.github/workflows/template-testcli.yml
     with:
@@ -51,12 +51,12 @@ jobs:
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
     
   call-testcli-old:
-    name: Test CLI (Old)
+    name: Test CLI (VS 2019)
     needs: setupcheck
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['0.67-stable', '0.69-stable'] # test key versions (using VS 2019. aka any RNW version < 0.71 that are used by supported partners)
+        rnwVersion: ['0.67-stable', '0.69-stable'] # test *key* versions that use VS 2019. aka any RNW version < 0.71 that are used by supported partners
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
     uses: ./.github/workflows/template-testcli.yml
     with:
