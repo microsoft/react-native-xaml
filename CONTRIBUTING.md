@@ -13,7 +13,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ### Build and run Codegen
 1. In the Solution Explorer, right-click on the `Codegen` project and select `Set as Startup Project`.
-2. Build the Codegen project (`Build > Build Godegen`). Once completed, you are ready to run the project, see output, and make your desired changes.
+2. Build the Codegen project (`Build > Build Codegen`). Once completed, you are ready to run the project, see output, and make your desired changes.
 3. Run the Codegen project (`Debug > Start Debugging`).
 
 ### Make and verify your Codegen changes
@@ -28,7 +28,7 @@ If you make changes to the Codegen project, be sure to build and re-run the Code
 
 If you make changes to the ReactNativeXaml project, or to the Codegen output files (above), make sure that the ReactNativeXaml project still builds.
 
-1. Make sure the example.sln is loaded in Visual Studio, see [Intial setup](#initial-setup)
+1. Make sure the example.sln is loaded in Visual Studio, see [Initial setup](#initial-setup)
 2. Set the Solution Configuration to `Debug` or `Release`.
 3. Set the Solution Platforms to `x86` or `x64` (not `AnyCPU`).
 4. Run `Build > Build Solution`.

@@ -1,6 +1,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 export enum Stretch {
@@ -1193,6 +1195,13 @@ export enum FontVariants {
   Inferior = 4,
   Ruby = 5,
 }
+export namespace WinUIEnums {
+export enum PlayerAnimationOptimization {
+  Latency = 0,
+  Resources = 1,
+}
+}
+
 export namespace WinUIEnums {
 export enum ColorSpectrumShape {
   Box = 0,
