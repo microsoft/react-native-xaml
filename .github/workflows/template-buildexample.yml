@@ -29,6 +29,10 @@ jobs:
       run: yarn windows --no-launch --no-deploy --no-packager --logging
       working-directory: ${{ inputs.exampleName }}
 
+    - name: test app
+      run: yarn test
+      working-directory: ${{ inputs.exampleName }}
+
     - name: Upload appx
       uses: actions/upload-artifact@v3
       with:

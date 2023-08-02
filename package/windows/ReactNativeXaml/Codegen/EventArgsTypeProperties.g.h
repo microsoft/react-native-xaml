@@ -5,6 +5,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 #include <winrt/Windows.UI.Xaml.h>
@@ -115,8 +117,8 @@ const EventArgsProperty eventArgsProperties[] = {
     { "dragUIOverride", IsType<winrt::Windows::UI::Xaml::DragEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::DragEventArgs>(); return winrt::box_value(ea.DragUIOverride()); } },
     { "dropResult", IsType<winrt::Windows::UI::Xaml::Controls::DragItemsCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Controls::DragItemsCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.DropResult())); } },
     { "dropResult", IsType<winrt::Microsoft::UI::Xaml::Controls::TabViewTabDragCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Microsoft::UI::Xaml::Controls::TabViewTabDragCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.DropResult())); } },
-    { "dropResult", IsType<winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.DropResult())); } },
     { "dropResult", IsType<winrt::Microsoft::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Microsoft::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.DropResult())); } },
+    { "dropResult", IsType<winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Controls::TreeViewDragItemsCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.DropResult())); } },
     { "dropResult", IsType<winrt::Windows::UI::Xaml::DropCompletedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::DropCompletedEventArgs>(); return winrt::box_value(static_cast<uint32_t>(ea.DropResult())); } },
     { "effectiveViewport", IsType<winrt::Windows::UI::Xaml::EffectiveViewportChangedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::EffectiveViewportChangedEventArgs>(); return winrt::box_value(ea.EffectiveViewport()); } },
     { "element", IsType<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementClearingEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementClearingEventArgs>(); return winrt::box_value(ea.Element()); } },
@@ -124,6 +126,7 @@ const EventArgsProperty eventArgsProperties[] = {
     { "element", IsType<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementPreparedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Microsoft::UI::Xaml::Controls::ItemsRepeaterElementPreparedEventArgs>(); return winrt::box_value(ea.Element()); } },
     { "element", IsType<winrt::Windows::UI::Xaml::Input::KeyboardAcceleratorInvokedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Input::KeyboardAcceleratorInvokedEventArgs>(); return winrt::box_value(ea.Element()); } },
     { "errorMessage", IsType<winrt::Windows::UI::Xaml::ExceptionRoutedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::ExceptionRoutedEventArgs>(); return winrt::box_value(ea.ErrorMessage()); } },
+    { "exception", IsType<winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Microsoft::UI::Xaml::Controls::CoreWebView2InitializedEventArgs>(); return winrt::box_value(ea.Exception()); } },
     { "exception", IsType<winrt::Windows::UI::Xaml::Navigation::NavigationFailedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Navigation::NavigationFailedEventArgs>(); return winrt::box_value(ea.Exception()); } },
     { "executionTime", IsType<winrt::Windows::UI::Xaml::Controls::WebViewLongRunningScriptDetectedEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Windows::UI::Xaml::Controls::WebViewLongRunningScriptDetectedEventArgs>(); return winrt::box_value(ea.ExecutionTime()); } },
     { "expandingItem", IsType<winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemExpandingEventArgs>, [](const winrt::Windows::Foundation::IInspectable& obj) { auto ea = obj.as<winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemExpandingEventArgs>(); return winrt::box_value(ea.ExpandingItem()); } },

@@ -24,31 +24,38 @@ namespace Codegen
 
     public partial class TypeCreator
     {
-        public TypeCreator(IEnumerable<MrType> types)
+        public TypeCreator(IEnumerable<string> winmds, IEnumerable<MrType> types)
         {
+            WinMDs = winmds;
             Types = types;
         }
 
+        public IEnumerable<string> WinMDs { get; set; }
         public IEnumerable<MrType> Types { get; set; }
     }
 
     public partial class EventArgsTypeProperties
     {
-        public EventArgsTypeProperties(IEnumerable<SyntheticProperty> properties)
+        public EventArgsTypeProperties(IEnumerable<string> winmds, IEnumerable<SyntheticProperty> properties)
         {
+            WinMDs = winmds;
             Properties = properties;
         }
+        public IEnumerable<string> WinMDs { get; set; }
         IEnumerable<SyntheticProperty> Properties { get; set; }
     }
 
     public partial class TypeProperties
     {
-        public TypeProperties(IEnumerable<SyntheticProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps)
+        public TypeProperties(IEnumerable<string> winmds, IEnumerable<SyntheticProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps)
         {
+            WinMDs = winmds;
             Properties = properties;
             FakeProps = fakeProps;
             SyntheticProps = syntheticProps;
         }
+
+        public IEnumerable<string> WinMDs { get; set; }
         IEnumerable<SyntheticProperty> Properties { get; set; }
         IEnumerable<MrProperty> FakeProps { get; set; }
         IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
@@ -56,25 +63,41 @@ namespace Codegen
 
     public partial class TypeEvents
     {
-        public TypeEvents(IEnumerable<MrEvent> events, IEnumerable<SyntheticProperty> fakeEvents)
+        public TypeEvents(IEnumerable<string> winmds, IEnumerable<MrEvent> events, IEnumerable<SyntheticProperty> fakeEvents)
         {
+            WinMDs = winmds;
             Events = events;
             SyntheticEvents = fakeEvents;
         }
+
+        public IEnumerable<string> WinMDs { get; set; }
         IEnumerable<MrEvent> Events { get; set; }
         IEnumerable<SyntheticProperty> SyntheticEvents { get; set; }
     }
 
+    public partial class TypeEnums
+    {
+        public TypeEnums(IEnumerable<string> winmds)
+        {
+            WinMDs = winmds;
+        }
+
+        public IEnumerable<string> WinMDs { get; set; }
+    }
+
     public partial class TSProps
     {
-        public TSProps(IEnumerable<MrType> types, IEnumerable<SyntheticProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps, IEnumerable<SyntheticProperty> syntheticEvents)
+        public TSProps(IEnumerable<string> winmds, IEnumerable<MrType> types, IEnumerable<SyntheticProperty> properties, IEnumerable<MrProperty> fakeProps, IEnumerable<SyntheticProperty> syntheticProps, IEnumerable<SyntheticProperty> syntheticEvents)
         {
+            WinMDs = winmds;
             Types = types;
             FakeProps = fakeProps;
             SyntheticProps = syntheticProps;
             SyntheticEvents = syntheticEvents;
             Properties = properties;
         }
+
+        public IEnumerable<string> WinMDs { get; set; }
         IEnumerable<SyntheticProperty> Properties { get; set; }
         IEnumerable<MrProperty> FakeProps { get; set; }
         IEnumerable<SyntheticProperty> SyntheticProps { get; set; }
@@ -84,8 +107,24 @@ namespace Codegen
 
     public partial class TSTypes
     {
-        public TSTypes(IEnumerable<MrType> types) { Types = types; }
+        public TSTypes(IEnumerable<string> winmds, IEnumerable<MrType> types)
+        {
+            WinMDs = winmds;
+            Types = types;
+        }
+
+        public IEnumerable<string> WinMDs { get; set; }
         IEnumerable<MrType> Types { get; set; }
+    }
+
+    public partial class TSEnums
+    {
+        public TSEnums(IEnumerable<string> winmds)
+        {
+            WinMDs = winmds;
+        }
+
+        public IEnumerable<string> WinMDs { get; set; }
     }
 
     public class NameEqualityComparer : IEqualityComparer<MrTypeAndMemberBase>, IEqualityComparer<SyntheticProperty>
@@ -144,6 +183,12 @@ namespace Codegen
 
     public partial class VersionHeader
     {
+        public VersionHeader(IEnumerable<string> winmds)
+        {
+            WinMDs = winmds;
+        }
+
+        public IEnumerable<string> WinMDs { get; set; }
         public Version Version { get; set; }
     }
 }

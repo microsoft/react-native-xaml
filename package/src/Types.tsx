@@ -1,6 +1,8 @@
 
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
+SOURCE WINMDS USED:
+  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 import type {
@@ -328,6 +330,7 @@ import type {
 } from './Props';
 
 import type { NativeWinUI } from './Props';
+import type { NativeWebView2 } from './Props';
 
 import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { NativeXamlControl } from './NativeXamlControl';
@@ -685,6 +688,13 @@ export type TwoPaneViewProps = Omit<NativeWinUI.NativeTwoPaneViewProps, 'type'>;
 export type TwoPaneViewRef = React.Component<NativeWinUI.NativeTwoPaneViewProps> & Readonly<NativeMethods>;
 const _TwoPaneView : (ForwardRefExoticComponent<React.PropsWithChildren<TwoPaneViewProps> & RefAttributes<TwoPaneViewRef>>) = React.forwardRef((props: React.PropsWithChildren<TwoPaneViewProps>, ref: React.ForwardedRef<TwoPaneViewRef>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.TwoPaneView' ref={ref} />);
 export const TwoPaneView = (_TwoPaneView as (ForwardRefExoticComponent<React.PropsWithChildren<TwoPaneViewProps> & RefAttributes<TwoPaneViewRef>>));
+
+}
+export namespace WinUI {
+export type WebView2Props = Omit<NativeWinUI.NativeWebView2Props, 'type'>;
+export type WebView2Ref = React.Component<NativeWinUI.NativeWebView2Props> & Readonly<NativeMethods>;
+const _WebView2 : (ForwardRefExoticComponent<React.PropsWithChildren<WebView2Props> & RefAttributes<WebView2Ref>>) = React.forwardRef((props: React.PropsWithChildren<WebView2Props>, ref: React.ForwardedRef<WebView2Ref>) => <NativeXamlControl {...props} type='Microsoft.UI.Xaml.Controls.WebView2' ref={ref} />);
+export const WebView2 = (_WebView2 as (ForwardRefExoticComponent<React.PropsWithChildren<WebView2Props> & RefAttributes<WebView2Ref>>));
 
 }
 export type ContentControlProps = Omit<NativeContentControlProps, 'type'>;
@@ -1646,6 +1656,21 @@ export type TreeViewDragItemsCompletedEventArgs = NativeWinUI.NativeTreeViewDrag
 }
 export namespace WinUI {
 export type TreeViewDragItemsStartingEventArgs = NativeWinUI.NativeTreeViewDragItemsStartingEventArgs;    // Microsoft.UI.Xaml.Controls.TreeViewDragItemsStartingEventArgs 
+}
+export namespace WebView2 {
+export type CoreWebView2ProcessFailedEventArgs = NativeWebView2.NativeCoreWebView2ProcessFailedEventArgs;    // Microsoft.Web.WebView2.Core.CoreWebView2ProcessFailedEventArgs 
+}
+export namespace WinUI {
+export type CoreWebView2InitializedEventArgs = NativeWinUI.NativeCoreWebView2InitializedEventArgs;    // Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs 
+}
+export namespace WebView2 {
+export type CoreWebView2NavigationCompletedEventArgs = NativeWebView2.NativeCoreWebView2NavigationCompletedEventArgs;    // Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs 
+}
+export namespace WebView2 {
+export type CoreWebView2NavigationStartingEventArgs = NativeWebView2.NativeCoreWebView2NavigationStartingEventArgs;    // Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs 
+}
+export namespace WebView2 {
+export type CoreWebView2WebMessageReceivedEventArgs = NativeWebView2.NativeCoreWebView2WebMessageReceivedEventArgs;    // Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs 
 }
 export type DoubleTappedRoutedEventArgs = NativeDoubleTappedRoutedEventArgs;    // Windows.UI.Xaml.Input.DoubleTappedRoutedEventArgs 
 export type RoutedEventArgs = NativeRoutedEventArgs;    // Windows.UI.Xaml.RoutedEventArgs 

@@ -35,27 +35,28 @@ jobs:
 
     - name: create react-native@${{ inputs.rnwVersion }} app
       run: npx react-native init testrnx --template react-native@${{ inputs.rnwVersion }}
+      working-directory: ../
 
     - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
       run: npx react-native-windows-init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
-      working-directory: testrnx
+      working-directory: ../testrnx
 
     - name: link react-native-xaml
       run: yarn link react-native-xaml
-      working-directory: testrnx
+      working-directory: ../testrnx
 
     - name: add react-native-xaml
       run: yarn add react-native-xaml
-      working-directory: testrnx
+      working-directory: ../testrnx
 
     - name: autolink
       run: npx react-native autolink-windows --logging
-      working-directory: testrnx
-
-    - name: update WinUI package version
-      run: ..\.github\workflows\SetUpAppForNuget.ps1 ${{ inputs.useRnwNuGet && '-UseNuGet' || '' }}
-      working-directory: testrnx
+      working-directory: ../testrnx
 
     - name: build app
       run: npx react-native run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: testrnx
+      working-directory: ../testrnx
+
+    - name: test app
+      run: yarn test
+      working-directory: ../testrnx

@@ -9,7 +9,7 @@ To include react-native-xaml in your app, just add it to your package.json:
 
 Then autolinking will take care of the rest!
 
-The stock react-native-xaml package includes projections for all XAML types (i.e. "system XAML") as well as WinUI 2.6.
+The stock react-native-xaml package includes projections for all XAML types (i.e. "system XAML") as well as WinUI 2.x.
 
 ## :exclamation: **Important**
 You must update your app to use WinUI 2.6 or later. See the instructions at https://microsoft.github.io/react-native-windows/docs/customizing-sdk-versions.
