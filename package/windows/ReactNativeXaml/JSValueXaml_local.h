@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 
 #pragma once
+
 #ifndef MICROSOFT_REACTNATIVE_JSVALUEXAML
 #define MICROSOFT_REACTNATIVE_JSVALUEXAML
+
 #include "CppWinRTIncludes.h"
 #include "JSValue.h"
 
@@ -17,14 +19,13 @@ inline void ReadValue(JSValue const &jsValue, xaml::Media::Brush &value) noexcep
 inline void ReadValue(JSValue const &jsValue, Windows::UI::Color &value) noexcept {
   if (jsValue.Type() == JSValueType::Object) {
     // try read as a Windows.UI.Color (a,r,g,b)
-    const auto& obj = jsValue.AsObject();
+    const auto &obj = jsValue.AsObject();
     value.A = obj["a"].AsInt8();
     value.R = obj["r"].AsInt8();
     value.G = obj["g"].AsInt8();
     value.B = obj["b"].AsInt8();
-  }
-  else {
-    value = XamlHelper::ColorFrom([&jsValue](IJSValueWriter const& writer) noexcept { jsValue.WriteTo(writer); });
+  } else {
+    value = XamlHelper::ColorFrom([&jsValue](IJSValueWriter const &writer) noexcept { jsValue.WriteTo(writer); });
   }
 }
 #endif

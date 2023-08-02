@@ -1,7 +1,10 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 #pragma once
 
 //
-//static constexpr unsigned int crc_table[256] = {
+// static constexpr unsigned int crc_table[256] = {
 //    0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419, 0x706af48f,
 //    0xe963a535, 0x9e6495a3,    0x0edb8832, 0x79dcb8a4, 0xe0d5e91e, 0x97d2d988,
 //    0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0x90bf1d91, 0x1db71064, 0x6ab020f2,
@@ -48,8 +51,8 @@
 //};
 //
 //
-//template<int size, int idx = 0, class dummy = void>
-//struct MM {
+// template<int size, int idx = 0, class dummy = void>
+// struct MM {
 //  static constexpr unsigned int crc32(const char* str, unsigned int prev_crc = 0xFFFFFFFF)
 //  {
 //    return MM<size, idx + 1>::crc32(str, (prev_crc >> 8) ^ crc_table[(prev_crc ^ str[idx]) & 0xFF]);
@@ -57,21 +60,19 @@
 //};
 //
 //// This is the stop-recursion function
-//template<int size, class dummy>
-//struct MM<size, size, dummy> {
-//  static constexpr unsigned int crc32(const char* /*str*/, unsigned int prev_crc = 0xFFFFFFFF)
-//  {
-//    return prev_crc ^ 0xFFFFFFFF;
-//  }
-//};
+// template<int size, class dummy>
+// struct MM<size, size, dummy> {
+//   static constexpr unsigned int crc32(const char* /*str*/, unsigned int prev_crc = 0xFFFFFFFF)
+//   {
+//     return prev_crc ^ 0xFFFFFFFF;
+//   }
+// };
 //
 //// This don't take into account the nul char
-//#define COMPILE_TIME_CRC32_STR(x) (MM<sizeof(x)-1>::crc32(x))
+// #define COMPILE_TIME_CRC32_STR(x) (MM<sizeof(x)-1>::crc32(x))
 
-uint32_t constexpr const_hash(char const* input) {
-  return *input ?
-    static_cast<uint32_t>(*input) + 33 * const_hash(input + 1) :
-    5381;
+uint32_t constexpr const_hash(char const *input) {
+  return *input ? static_cast<uint32_t>(*input) + 33 * const_hash(input + 1) : 5381;
 }
 
 #define COMPILE_TIME_CRC32_STR(x) const_hash(x)
@@ -79,15 +80,14 @@ uint32_t constexpr const_hash(char const* input) {
 #ifdef USE_CRC32
 #define MAKE_KEY(str) COMPILE_TIME_CRC32_STR(str)
 using stringKey = uint32_t;
-inline bool Equals(const stringKey& a, const stringKey& b) {
+inline bool Equals(const stringKey &a, const stringKey &b) {
   return a == b;
 }
 #else
 #define MAKE_KEY(str) str
-using stringKey = const char* const;
-inline bool Equals(const stringKey& a, const stringKey& b) {
+using stringKey = const char *const;
+inline bool Equals(const stringKey &a, const stringKey &b) {
   return strcmp(a, b) == 0;
 }
-
 
 #endif

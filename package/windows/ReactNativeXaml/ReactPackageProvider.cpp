@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 #include "pch.h"
 #include "ReactPackageProvider.h"
 #if __has_include("ReactPackageProvider.g.cpp")
@@ -9,18 +12,14 @@
 
 using namespace winrt::Microsoft::ReactNative;
 
-namespace winrt::ReactNativeXaml::implementation
-{
+namespace winrt::ReactNativeXaml::implementation {
 
-  void ReactPackageProvider::CreatePackage(IReactPackageBuilder const& packageBuilder) noexcept
-  {
-    AddAttributedModules(packageBuilder);
-    packageBuilder.AddViewManager(
-      L"XamlControl", []() {
-        auto vm = winrt::make<XamlViewManager>();
-        return vm;
-      }
-    );
-  }
+void ReactPackageProvider::CreatePackage(IReactPackageBuilder const &packageBuilder) noexcept {
+  AddAttributedModules(packageBuilder);
+  packageBuilder.AddViewManager(L"XamlControl", []() {
+    auto vm = winrt::make<XamlViewManager>();
+    return vm;
+  });
+}
 
 } // namespace winrt::ReactNativeXaml::implementation

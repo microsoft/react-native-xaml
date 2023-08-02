@@ -1,12 +1,15 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 #pragma once
 
 #define NOMINMAX
 
 #include <hstring.h>
 #include <restrictederrorinfo.h>
+#include <roapi.h>
 #include <unknwn.h>
 #include <windows.h>
-#include <roapi.h>
 
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Windows.Foundation.h>
