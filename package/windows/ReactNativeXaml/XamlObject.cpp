@@ -110,9 +110,9 @@ jsi::Value Windows_UI_Xaml_Input_ContextRequestedEventArgs_TryGetPosition(
       auto depObj = thisVal->m_metadata->ElementFromTag(tag);
       el = depObj.try_as<xaml::UIElement>();
     }
-    auto crea = thisVal->try_as<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>();
+    auto crEventArgs = thisVal->try_as<winrt::Windows::UI::Xaml::Input::ContextRequestedEventArgs>();
     winrt::Windows::Foundation::Point pt;
-    retVal = crea.TryGetPosition(el, pt);
+    retVal = crEventArgs.TryGetPosition(el, pt);
     return pt;
   });
 
@@ -160,8 +160,8 @@ jsi::Value XamlObject::get(jsi::Runtime &rt, const jsi::PropNameID &nameId) noex
         if (auto prop = m_metadata->GetProp(name, m_obj)) {
           if (prop->xamlPropertyGetter) {
             auto dp = prop->xamlPropertyGetter();
-            if (auto dobj = m_obj.try_as<DependencyObject>()) {
-              auto val = dobj.GetValue(dp);
+            if (auto depObj = m_obj.try_as<DependencyObject>()) {
+              auto val = depObj.GetValue(dp);
               return val;
             }
           }
@@ -304,11 +304,11 @@ std::vector<jsi::PropNameID> XamlObject::getPropertyNames(jsi::Runtime &rt) noex
     return names;
   });
 
-  std::vector<facebook::jsi::PropNameID> pnames;
+  std::vector<facebook::jsi::PropNameID> pNames;
   for (const auto &e : names) {
-    pnames.push_back(facebook::jsi::PropNameID::forUtf8(rt, e));
+    pNames.push_back(facebook::jsi::PropNameID::forUtf8(rt, e));
   }
-  return pnames;
+  return pNames;
 }
 
 auto ReadPoint(const JSValueObject &o) {

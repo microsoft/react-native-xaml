@@ -34,8 +34,8 @@ using namespace winrt::Microsoft::ReactNative;
 
 void XamlMetadata::SetupEventDispatcher(const IReactContext &reactContext) {
   m_reactContext = reactContext;
-  std::once_flag inited;
-  std::call_once(inited, [ctx = reactContext, this]() {
+  std::once_flag initialized;
+  std::call_once(initialized, [ctx = reactContext, this]() {
     ExecuteJsi(ctx, [shared = shared_from_this()](facebook::jsi::Runtime &rt) {
       auto obj = rt.global().createFromHostObject(rt, std::make_shared<XamlObject>());
       rt.global().setProperty(rt, jsi::PropNameID::forAscii(rt, "xaml"), obj);
@@ -210,14 +210,14 @@ void SetGridLayout_Grid(
 }
 
 void SetResources_UIElement(
-    const xaml::DependencyObject &dobj,
+    const xaml::DependencyObject &depObj,
     const xaml::DependencyProperty &,
     const JSValue &jsValue,
     const winrt::Microsoft::ReactNative::IReactContext &) {
   ResourceDictionary rd;
   const auto &dict = jsValue.AsObject();
 
-  const auto fe = dobj.as<FrameworkElement>();
+  const auto fe = depObj.as<FrameworkElement>();
 
   for (auto const &entry : dict) {
     const auto &name = entry.first;
@@ -242,11 +242,11 @@ void SetResources_UIElement(
 }
 
 void SetShowState_ContentDialog(
-    const xaml::DependencyObject &dobj,
+    const xaml::DependencyObject &depObj,
     const xaml::DependencyProperty &,
     const JSValue &jsValue,
     const winrt::Microsoft::ReactNative::IReactContext &context) {
-  if (auto cd = dobj.try_as<ContentDialog>()) {
+  if (auto cd = depObj.try_as<ContentDialog>()) {
     auto val = jsValue.AsInt32();
     IAsyncOperation<ContentDialogResult> op{nullptr};
     switch (val) {
@@ -380,7 +380,7 @@ void XamlMetadata::JsiDispatchEvent(
 void XamlMetadata::PopulateNativeProps(
     std::vector<std::string> &names,
     const winrt::Windows::Foundation::IInspectable &obj) const {
-  if (auto dobj = obj.try_as<DependencyObject>()) {
+  if (auto depObj = obj.try_as<DependencyObject>()) {
     for (auto const &map : propertyMaps) {
       for (auto e = map.map; e != map.map + map.size; e++) {
         if (auto cast = e->asType(obj)) {
@@ -390,7 +390,7 @@ void XamlMetadata::PopulateNativeProps(
     }
   } else if (auto rea = obj.try_as<xaml::RoutedEventArgs>()) {
     auto cn = winrt::get_class_name(rea);
-    auto trea = rea.try_as<xaml::Input::TappedRoutedEventArgs>();
+    auto trEventArgs = rea.try_as<xaml::Input::TappedRoutedEventArgs>();
   }
 }
 

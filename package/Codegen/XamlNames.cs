@@ -1,4 +1,7 @@
-﻿namespace Codegen
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+namespace Codegen
 {
     public static class XamlNames
     {
@@ -8,4 +11,3 @@
         public const string WebView2Namespace = "Microsoft.Web.WebView2";
     }
 }
-

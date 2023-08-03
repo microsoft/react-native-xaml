@@ -164,13 +164,13 @@ void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement chi
         } else {
           return Primitives::FlyoutBase::SetAttachedFlyout(e, childFlyout);
         }
-      } else if (auto RTBparent = parent.try_as<RichTextBlock>()) {
+      } else if (auto rtbParent = parent.try_as<RichTextBlock>()) {
         if (auto childBlock = childContent.try_as<Documents::Block>()) {
-          return RTBparent.Blocks().InsertAt(index, childBlock);
+          return rtbParent.Blocks().InsertAt(index, childBlock);
         }
-      } else if (auto TBparent = parent.try_as<TextBlock>()) {
+      } else if (auto tbParent = parent.try_as<TextBlock>()) {
         if (auto childInline = childContent.try_as<Documents::Inline>()) {
-          return TBparent.Inlines().InsertAt(index, childInline);
+          return tbParent.Inlines().InsertAt(index, childInline);
         }
       } else if (auto paragraphParent = Unwrap<Documents::Paragraph>(parent)) {
         if (auto childInline = childContent.try_as<Documents::Inline>()) {
@@ -218,12 +218,12 @@ void XamlViewManager::AddView(xaml::FrameworkElement parent, xaml::UIElement chi
     }
   }
 
-  if (auto splitview = e.try_as<SplitView>()) {
+  if (auto splitView = e.try_as<SplitView>()) {
     const auto priority = GetPriority<SplitViewPriority>(child);
-    if (priority == SplitViewPriority::Content && splitview.Content() == nullptr) {
-      return splitview.Content(child);
-    } else if (priority == SplitViewPriority::Pane && splitview.Pane() == nullptr) {
-      return splitview.Pane(child);
+    if (priority == SplitViewPriority::Content && splitView.Content() == nullptr) {
+      return splitView.Content(child);
+    } else if (priority == SplitViewPriority::Pane && splitView.Pane() == nullptr) {
+      return splitView.Pane(child);
     }
   }
 

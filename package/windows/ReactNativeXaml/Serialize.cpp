@@ -51,12 +51,12 @@ void WriteIInspectable(winrt::Microsoft::ReactNative::IJSValueWriter const &writ
     writer.WriteObjectBegin();
     WriteProperty(writer, L"text", mfi.Text());
     writer.WriteObjectEnd();
-  } else if (auto trea = item.try_as<xaml::Input::TappedRoutedEventArgs>()) {
+  } else if (auto trEventArgs = item.try_as<xaml::Input::TappedRoutedEventArgs>()) {
     writer.WriteObjectBegin();
     if (auto ui = item.try_as<xaml::UIElement>()) {
-      WriteProperty(writer, L"position", trea.GetPosition(ui));
+      WriteProperty(writer, L"position", trEventArgs.GetPosition(ui));
     }
-    WriteProperty(writer, L"pointerDeviceType", (int)trea.PointerDeviceType());
+    WriteProperty(writer, L"pointerDeviceType", (int)trEventArgs.PointerDeviceType());
     writer.WriteObjectEnd();
   } else {
     if (item) {

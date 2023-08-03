@@ -31,10 +31,10 @@ If you have questions about a scenario you don't see below, please [file an issu
   }} />
   
   <Border verticalAlignment="center" background="paleturquoise" >
-    <TextBlock text="this is a textblock" foreground='red' textAlignment="center" />
+    <TextBlock text="this is a text block" foreground='red' textAlignment="center" />
   </Border>
   
-  <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />
+  <TextBlock text="this is another text block" foreground='green' textAlignment="center" />
   <Button content="this is a button" onClick={() => { alert("you clicked the button!"); }} />
 </StackPanel>
 ```
@@ -120,7 +120,7 @@ Menus can contain cascading items:
 ## ComboBox
 
 ```jsx
-<ComboBox text="this is a combobox" description="best bois" 
+<ComboBox text="this is a combobox" description="best pets" 
     onSelectionChanged={(args) => 
     { alert(`sel changed! Native event args: ${JSON.stringify(args.nativeEvent)}`); }
   } >

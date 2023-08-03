@@ -192,14 +192,14 @@ function App(): JSX.Element {
           {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
           {/*    }} />*/}
           {/*    <Border verticalAlignment="center" background="paleturquoise" >*/}
-          {/*        <TextBlock text="this is a textblock" foreground='red' textAlignment="center" />*/}
+          {/*        <TextBlock text="this is a text block" foreground='red' textAlignment="center" />*/}
           {/*    </Border>*/}
-          {/*    <TextBlock text="this is another textblock" foreground='green' textAlignment="center" />*/}
+          {/*    <TextBlock text="this is another text block" foreground='green' textAlignment="center" />*/}
           {/*    <Button content="this is a button" onClick={() => { alert("you clicked the button!"); }} />*/}
           {/*</StackPanel>*/}
           <ComboBox
             text="this is a combobox"
-            description={{string: 'best bois'}}
+            description={{string: 'best cats'}}
             onSelectionChanged={args => {
               alert(
                 `sel changed! Native event args: ${JSON.stringify(
