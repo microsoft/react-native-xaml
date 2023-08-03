@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "xaver.clang-format",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+  ]
+}
