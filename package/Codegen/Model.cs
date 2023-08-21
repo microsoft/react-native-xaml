@@ -1,7 +1,11 @@
-﻿using MiddleweightReflection;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+
+using MiddleweightReflection;
 
 namespace Codegen
 {
@@ -138,15 +142,18 @@ namespace Codegen
                 var p2 = other as MrProperty;
                 string n1;
                 string n2;
-                if (!Util.propNameMap.TryGetValue($"{p1.DeclaringType.GetFullName()}.{p1.GetName()}", out n1)) {
+                if (!Util.propNameMap.TryGetValue($"{p1.DeclaringType.GetFullName()}.{p1.GetName()}", out n1))
+                {
                     n1 = p1.GetName();
                 }
-                if (!Util.propNameMap.TryGetValue($"{p2.DeclaringType.GetFullName()}.{p2.GetName()}", out n2)) {
+                if (!Util.propNameMap.TryGetValue($"{p2.DeclaringType.GetFullName()}.{p2.GetName()}", out n2))
+                {
                     n2 = p2.GetName();
                 }
 
                 return n1 == n2;
-            } else if (that is MrType t1 && other is MrType t2)
+            }
+            else if (that is MrType t1 && other is MrType t2)
             {
                 return t1.GetFullName() == t2.GetFullName();
             }

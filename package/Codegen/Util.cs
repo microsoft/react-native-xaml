@@ -1,9 +1,13 @@
-﻿using MiddleweightReflection;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
+
+using MiddleweightReflection;
 
 namespace Codegen
 {
@@ -15,7 +19,7 @@ namespace Codegen
         {
             return $"{p.DeclaringType.GetFullName()}.{p.GetName()}";
         }
-        
+
         public static string ToJsName(MrProperty prop)
         {
             if (IsDependencyProperty(prop))
@@ -33,7 +37,7 @@ namespace Codegen
             {
                 return false; // special case Windows.UI.Xaml.DependencyPropertyChangedEventArgs.Property
             }
-            return prop.GetName().EndsWith("Property") && 
+            return prop.GetName().EndsWith("Property") &&
                 prop.GetPropertyType().GetName() == "DependencyProperty";
         }
 
@@ -165,12 +169,14 @@ namespace Codegen
 
 
         public static HashSet<FakeEnum> fakeEnums = new HashSet<FakeEnum>();
-        private static HashSet<MrType> enumsToGenerateConvertersFor = new ();
-        public static IReadOnlyList<MrType> GetEnums() {
+        private static HashSet<MrType> enumsToGenerateConvertersFor = new();
+        public static IReadOnlyList<MrType> GetEnums()
+        {
             return enumsToGenerateConvertersFor.OrderBy(e => Util.GetTSNamespace(e)).ToImmutableList();
         }
 
-        public static void VisitEnum(MrType t) {
+        public static void VisitEnum(MrType t)
+        {
             enumsToGenerateConvertersFor.Add(t);
         }
 
@@ -241,7 +247,8 @@ namespace Codegen
                     return ViewManagerPropertyType.Map;
             }
 
-            if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping)) {
+            if (TypeMapping.TryGetValue(propType.GetFullName(), out var mapping))
+            {
                 return mapping.VM;
             }
 
@@ -469,7 +476,8 @@ namespace Codegen
             if (listDerived.Count() < 5)
             {
                 return string.Join(" | ", listDerived);
-            } else
+            }
+            else
             {
                 return string.Join(" |\n        ", listDerived);
             }
@@ -486,7 +494,7 @@ namespace Codegen
 
         public static string GetEventArgsTSName(MrEvent evt, string prefix = "")
         {
-            var evtType= evt.GetEventType();
+            var evtType = evt.GetEventType();
             if (evtType.GetPrettyFullName().StartsWith("Windows.Foundation.TypedEventHandler<"))
             {
                 var evtArgs = evtType.GetGenericArguments()[1];
@@ -609,7 +617,7 @@ namespace Codegen
             return new Command[] { };
         }
 
-        public static HashSet<MrType> eventArgsTypes = new (new NameEqualityComparer());
+        public static HashSet<MrType> eventArgsTypes = new(new NameEqualityComparer());
         public static void FoundEventArgsType(MrType type)
         {
             if (type.GetFullName() == "System.Object")
@@ -619,7 +627,7 @@ namespace Codegen
             eventArgsTypes.Add(type);
         }
 
-        public static Dictionary<string, IEnumerable<string>> eventArgsMethods { get; private set; } = new ();
+        public static Dictionary<string, IEnumerable<string>> eventArgsMethods { get; private set; } = new();
         public static IEnumerable<string> GetEventArgsMethods(string typeName)
         {
             if (Util.eventArgsMethods.TryGetValue(typeName, out var ms))
@@ -631,7 +639,8 @@ namespace Codegen
 
         private static string GetEventArgMethodParamType(string name, MrType paramType)
         {
-            if (Util.DerivesFrom(paramType, $"{XamlNames.XamlNamespace}.DependencyObject")) {
+            if (Util.DerivesFrom(paramType, $"{XamlNames.XamlNamespace}.DependencyObject"))
+            {
                 return "tag: number";
             }
             return $"{name}: {GetTypeScriptType(paramType)}";
@@ -642,7 +651,7 @@ namespace Codegen
             argType.GetMethodsAndConstructors(out var methods, out var ctors);
             var method = methods.Where(m => m.GetName() == methodName).First();
             var inputParams = method.GetParameters().Where(p => p.Attributes.HasFlag(System.Reflection.ParameterAttributes.In));
-            string paramTypes = string.Join(", ", inputParams.Select(p => 
+            string paramTypes = string.Join(", ", inputParams.Select(p =>
                 GetEventArgMethodParamType(p.GetParameterName(), p.GetParameterType())));
             return paramTypes;
         }
@@ -660,7 +669,8 @@ namespace Codegen
                 var allTypes = string.Join(", ", outParamTypes.Append(retType));
                 return $"{{ {allTypes} }}";
 
-            } else
+            }
+            else
             {
                 return GetTypeScriptType(method.ReturnType);
             }

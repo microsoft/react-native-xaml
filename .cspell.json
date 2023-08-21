@@ -1,0 +1,32 @@
+// cSpell Settings
+{
+    "version": "0.2",
+    "language": "en",
+    "dictionaryDefinitions": [
+        {
+            "name": "project-words",
+            "path": "./.spelling",
+            "addWords": true
+        }
+    ],
+    "dictionaries": ["project-words"],
+    "files": ["**/*.{cpp,h,idl,cs,js,jsx,ts,tsx,tt}"],
+    "ignorePaths": [
+        "**/*.g.*",
+        "package/Codegen/EventArgsTypeProperties.cs",
+        "package/Codegen/TSEnums.cs",
+        "package/Codegen/TSProps.cs",
+        "package/Codegen/TSTypes.cs",
+        "package/Codegen/TypeCreator.cs",
+        "package/Codegen/TypeEnums.cs",
+        "package/Codegen/TypeEvents.cs",
+        "package/Codegen/TypeProperties.cs",
+        "package/Codegen/VersionHeader.cs"
+    ],
+    "useGitignore": true,
+    "ignoreRegExpList": [
+        "require\\('.+'\\)", // Node require
+        " from '.+';", // Node import from
+        "[@#][a-z\\-\\.]+", // Ignore @name or #name tags
+    ]
+}

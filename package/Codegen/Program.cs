@@ -1,4 +1,6 @@
-﻿using MiddleweightReflection;
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Text.Json;
+
+using MiddleweightReflection;
 
 namespace Codegen
 {
@@ -225,13 +229,13 @@ namespace Codegen
                 var typeName = val.Substring(0, val.LastIndexOf('.'));
                 var eventName = val.Substring(val.LastIndexOf('.') + 1);
 
-                if (context.TryFindMrType(GetTypeNameFromJson(entry.Value), out var ptype))
+                if (context.TryFindMrType(GetTypeNameFromJson(entry.Value), out var pType))
                 {
                     syntheticEvents.Add(new SyntheticProperty()
                     {
                         Name = eventName,
                         DeclaringType = context.GetType(typeName),
-                        PropertyType = ptype,
+                        PropertyType = pType,
                     });
                 }
                 else
@@ -561,20 +565,20 @@ namespace Codegen
 
         private static uint HashName(string input)
         {
-            var accum = 5381u;
+            var result = 5381u;
             for (var i = input.Length - 1; i >= 0; i--)
             {
                 var c = (uint)input[i];
                 if (i == input.Length - 1)
                 {
-                    accum += c;
+                    result += c;
                 }
                 else
                 {
-                    accum = c + 33 * accum;
+                    result = c + 33 * result;
                 }
             }
-            return accum;
+            return result;
         }
 
         private static uint GetPropertySortKey(MrProperty p1)
