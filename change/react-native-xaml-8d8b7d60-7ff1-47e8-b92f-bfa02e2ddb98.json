@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "bump windowsTargetMin",
-  "packageName": "react-native-xaml",
-  "email": "tatianakapos@microsoft.com",
-  "dependentChangeType": "patch"
-}

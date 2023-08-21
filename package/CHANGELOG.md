@@ -1,8 +1,18 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Tue, 14 Mar 2023 21:30:43 GMT and should not be manually modified.
+This log was last generated on Mon, 21 Aug 2023 21:51:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.75
+
+Mon, 21 Aug 2023 21:51:27 GMT
+
+### Patches
+
+- Clean up formatting and licenses (jthysell@microsoft.com)
+- Upgrade RNX to target RN and RNW 0.72 (jthysell@microsoft.com)
+- bump windowsTargetMin (tatianakapos@microsoft.com)
 
 ## 0.0.74
 

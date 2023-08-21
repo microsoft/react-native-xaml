@@ -2,6 +2,33 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Mon, 21 Aug 2023 21:51:27 GMT",
+      "tag": "react-native-xaml_v0.0.75",
+      "version": "0.0.75",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "57d78c10f232a2537efdb1ba2d9e9cbf0c3d84fd",
+            "comment": "Clean up formatting and licenses"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "6d4198fd316618c65d559c6d854a6d38508d7f00",
+            "comment": "Upgrade RNX to target RN and RNW 0.72"
+          },
+          {
+            "author": "tatianakapos@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "838a4d1013c25c418499edb14e3dcdf4b5340ee6",
+            "comment": "bump windowsTargetMin"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 14 Mar 2023 21:30:43 GMT",
       "tag": "react-native-xaml_v0.0.74",
       "version": "0.0.74",
