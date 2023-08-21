@@ -8,15 +8,15 @@
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\external\Microsoft.ReactNative.Uwp.CppLib.props" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppLib.props')" />
   </ImportGroup>
   <PropertyGroup>
-    <RnwUsesPackageReference Condition="$(RnwUsesPackageReference)=='' And $(ReactNativeWindowsVersion)!='' And $([MSBuild]::VersionGreaterThanOrEquals('$(ReactNativeWindowsVersion)', '0.68.0'))">true</RnwUsesPackageReference>
+    <RnwUsesPackageReference Condition="'$(RnwUsesPackageReference)'=='' And '$(ReactNativeWindowsVersion)'!='' And $([MSBuild]::VersionGreaterThanOrEquals('$(ReactNativeWindowsVersion)', '0.68.0'))">true</RnwUsesPackageReference>
     <!-- CODESYNC: Keep this version in sync with the WinUI2xVersion version used by the RNW version targeted by RNX's devDependency. -->
     <DefaultWinUIVersion>2.8.0</DefaultWinUIVersion>
   </PropertyGroup>
   <PropertyGroup>
     <CppWinRTVersion Condition="'$(CppWinRTVersion)'=='' Or $([MSBuild]::VersionLessThan('$(CppWinRTVersion)', '2.0.210312.4'))">2.0.210312.4</CppWinRTVersion>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\packages\$(WinUIPackageProps)" Condition="$(RnwUsesPackageReference)!='true' And '$(OverrideWinUIPackage)'!='true' And '$(WinUIPackageProps)'!='' And Exists('$(SolutionDir)\packages\$(WinUIPackageProps)')" />
-  <Import Project="$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.props" Condition="$(RnwUsesPackageReference)!='true' And Exists('$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <Import Project="$(SolutionDir)\packages\$(WinUIPackageProps)" Condition="'$(RnwUsesPackageReference)'!='true' And '$(OverrideWinUIPackage)'!='true' And '$(WinUIPackageProps)'!='' And Exists('$(SolutionDir)\packages\$(WinUIPackageProps)')" />
+  <Import Project="$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.props" Condition="'$(RnwUsesPackageReference)'!='true' And Exists('$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.props')" />
   <PropertyGroup Label="Globals">
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
@@ -251,7 +251,7 @@
   </ItemGroup>
   <Import Project="$(SolutionDir)\ReactNativeXaml.Imports.props" Condition="Exists('$(SolutionDir)\ReactNativeXaml.Imports.props')" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ItemGroup Condition="$(RnwUsesPackageReference)=='true'">
+  <ItemGroup Condition="'$(RnwUsesPackageReference)'=='true'">
     <PackageReference Include="CDebug" Version="0.0.3" />
     <PackageReference Include="Microsoft.Windows.CppWinRT" Version="$(CppWinRTVersion)" PrivateAssets="all" />
   </ItemGroup>
@@ -267,28 +267,28 @@
   </Target>
   <PropertyGroup Label="ReactNativeXamlCodeGenProps">
     <!-- RunReactNativeXamlCodeGenBeforeBuild defaults to false to speed up build times, unless the version of WinUI targeted doesn't match the version checked-in to the code-gen. -->
-    <RunReactNativeXamlCodeGenBeforeBuild Condition="$(RunReactNativeXamlCodeGenBeforeBuild)=='' And '$(WinUIPackageVersion)'!='$(DefaultWinUIVersion)'">true</RunReactNativeXamlCodeGenBeforeBuild>
-    <RunReactNativeXamlCodeGenBeforeBuild Condition="$(RunReactNativeXamlCodeGenBeforeBuild)==''">false</RunReactNativeXamlCodeGenBeforeBuild>
-    <ReactNativeXamlTargetWinMD Condition="$(ReactNativeXamlTargetWinMD)=='' And $(RnwUsesPackageReference)=='true' And Exists('$(NuGetPackageRoot)\$(WinUIPackageName)\$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd')">$(NuGetPackageRoot)\$(WinUIPackageName)\$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd</ReactNativeXamlTargetWinMD>
-    <ReactNativeXamlTargetWinMD Condition="$(ReactNativeXamlTargetWinMD)=='' And $(RnwUsesPackageReference)!='true' And Exists('$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd')">$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd</ReactNativeXamlTargetWinMD>
-    <ReactNativeXamlRootDir Condition="$(ReactNativeXamlRootDir)==''">$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)..\..\'))</ReactNativeXamlRootDir>
+    <RunReactNativeXamlCodeGenBeforeBuild Condition="'$(RunReactNativeXamlCodeGenBeforeBuild)'=='' And '$(WinUIPackageVersion)'!='$(DefaultWinUIVersion)'">true</RunReactNativeXamlCodeGenBeforeBuild>
+    <RunReactNativeXamlCodeGenBeforeBuild Condition="'$(RunReactNativeXamlCodeGenBeforeBuild)'==''">false</RunReactNativeXamlCodeGenBeforeBuild>
+    <ReactNativeXamlTargetWinMD Condition="'$(ReactNativeXamlTargetWinMD)'=='' And '$(RnwUsesPackageReference)'=='true' And Exists('$(NuGetPackageRoot)\$(WinUIPackageName)\$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd')">$(NuGetPackageRoot)\$(WinUIPackageName)\$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd</ReactNativeXamlTargetWinMD>
+    <ReactNativeXamlTargetWinMD Condition="'$(ReactNativeXamlTargetWinMD)'=='' And '$(RnwUsesPackageReference)'!='true' And Exists('$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd')">$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\lib\uap10.0\Microsoft.UI.Xaml.winmd</ReactNativeXamlTargetWinMD>
+    <ReactNativeXamlRootDir Condition="'$(ReactNativeXamlRootDir)'==''">$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)..\..\'))</ReactNativeXamlRootDir>
     <ReactNativeXamlCodeGenCommandDir Condition="'$(ReactNativeXamlCodeGenCommandDir)'==''">$(ReactNativeXamlRootDir)</ReactNativeXamlCodeGenCommandDir>
-    <ReactNativeXamlCodeGenCommand Condition="$(ReactNativeXamlCodeGenCommand)==''">dotnet run --project Codegen -verbose -winmd $(ReactNativeXamlTargetWinMD)</ReactNativeXamlCodeGenCommand>
+    <ReactNativeXamlCodeGenCommand Condition="'$(ReactNativeXamlCodeGenCommand)'==''">dotnet run --project Codegen -verbose -winmd $(ReactNativeXamlTargetWinMD)</ReactNativeXamlCodeGenCommand>
     <ReactNativeXamlYarnBuildCommandDir Condition="'$(ReactNativeXamlYarnBuildCommandDir)'==''">$(SolutionDir)</ReactNativeXamlYarnBuildCommandDir>
-    <ReactNativeXamlYarnBuildCommand Condition="$(ReactNativeXamlYarnBuildCommand)==''">yarn run tsc --project $(ReactNativeXamlRootDir)</ReactNativeXamlYarnBuildCommand>
+    <ReactNativeXamlYarnBuildCommand Condition="'$(ReactNativeXamlYarnBuildCommand)'==''">yarn run tsc --project $(ReactNativeXamlRootDir)</ReactNativeXamlYarnBuildCommand>
   </PropertyGroup>
-  <Target Name="RunReactNativeXamlCodeGen" BeforeTargets="PrepareForBuild" Condition="$(RunReactNativeXamlCodeGenBeforeBuild)=='true'">
+  <Target Name="RunReactNativeXamlCodeGen" BeforeTargets="PrepareForBuild" Condition="'$(RunReactNativeXamlCodeGenBeforeBuild)'=='true'">
     <Exec Command="$(ReactNativeXamlCodeGenCommand)" WorkingDirectory="$(ReactNativeXamlCodeGenCommandDir)" CustomWarningRegularExpression="Warning: " CustomErrorRegularExpression="Error: " />
     <Exec Command="$(ReactNativeXamlYarnBuildCommand)" WorkingDirectory="$(ReactNativeXamlYarnBuildCommandDir)" CustomWarningRegularExpression="Warning: " CustomErrorRegularExpression="Error: " />
   </Target>
-  <ImportGroup Label="ExtensionTargets" Condition="$(RnwUsesPackageReference)!='true'">
+  <ImportGroup Label="ExtensionTargets" Condition="'$(RnwUsesPackageReference)'!='true'">
     <Import Project="$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('$(SolutionDir)\packages\Microsoft.Windows.CppWinRT.$(CppWinRTVersion)\build\native\Microsoft.Windows.CppWinRT.targets')" />
     <Import Project="$(SolutionDir)\packages\CDebug.0.0.3\build\CDebug.targets" Condition="Exists('$(SolutionDir)\packages\CDebug.0.0.3\build\CDebug.targets')" />
     <Import Project="$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\build\native\$(WinUIPackageName).targets" Condition="'$(OverrideWinUIPackage)'!='true' And Exists('$(SolutionDir)\packages\$(WinUIPackageName).$(WinUIPackageVersion)\build\native\$(WinUIPackageName).targets')" />
     <Import Project="$(SolutionDir)\packages\Microsoft.ReactNative.$(ReactNativeWindowsVersion)\build\native\Microsoft.ReactNative.targets" Condition="'$(UseExperimentalNuget)'=='true' And Exists('$(SolutionDir)\packages\Microsoft.ReactNative.Cxx.$(ReactNativeWindowsVersion)\build\native\Microsoft.ReactNative.Cxx.targets')" />
     <Import Project="$(SolutionDir)\packages\Microsoft.ReactNative.Cxx.$(ReactNativeWindowsVersion)\build\native\Microsoft.ReactNative.Cxx.targets" Condition="'$(UseExperimentalNuget)'=='true' And Exists('$(SolutionDir)\packages\Microsoft.ReactNative.Cxx.$(ReactNativeWindowsVersion)\build\native\Microsoft.ReactNative.Cxx.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild" Condition="$(RnwUsesPackageReference)!='true'">
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild" Condition="'$(RnwUsesPackageReference)'!='true'">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
