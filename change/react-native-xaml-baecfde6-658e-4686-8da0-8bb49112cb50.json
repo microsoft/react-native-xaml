@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix unquoted properties in vcxproj conditions",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}

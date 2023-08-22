@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 22 Aug 2023 17:45:12 GMT",
+      "tag": "react-native-xaml_v0.0.76",
+      "version": "0.0.76",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "9094d6e733d7fadff5e5ad0eed2fce6f960c9676",
+            "comment": "Fix unquoted properties in vcxproj conditions"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 21 Aug 2023 21:51:27 GMT",
       "tag": "react-native-xaml_v0.0.75",
       "version": "0.0.75",

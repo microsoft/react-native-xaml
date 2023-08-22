@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Mon, 21 Aug 2023 21:51:27 GMT and should not be manually modified.
+This log was last generated on Tue, 22 Aug 2023 17:45:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.76
+
+Tue, 22 Aug 2023 17:45:12 GMT
+
+### Patches
+
+- Fix unquoted properties in vcxproj conditions (jthysell@microsoft.com)
 
 ## 0.0.75
 
