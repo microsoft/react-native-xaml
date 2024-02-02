@@ -8,14 +8,14 @@
 
   <Identity
     Name="ReactNativeXaml-Example"
-    Publisher="CN=Alexander Sklar"
+    Publisher="CN=RNX Test Cert"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="213fd27c-0a78-4f1e-a44b-317eb3d4f89d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>example</DisplayName>
-    <PublisherDisplayName>asklar</PublisherDisplayName>
+    <PublisherDisplayName>RNX Test Cert</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
