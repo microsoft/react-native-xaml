@@ -15,6 +15,10 @@ on:
         required: false
         default: false
         type: boolean
+      rnTemplate:
+        required: false
+        default: 'react-native@latest'
+        type: string
 
 jobs:
   testcli:
@@ -34,7 +38,7 @@ jobs:
       working-directory: package
 
     - name: create react-native@${{ inputs.rnwVersion }} app
-      run: npx react-native init testrnx --template react-native@${{ inputs.rnwVersion }}
+      run: npx react-native init testrnx --template ${{ inputs.rnTemplate }}
       working-directory: ../
 
     - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})

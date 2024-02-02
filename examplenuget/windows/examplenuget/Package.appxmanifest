@@ -8,14 +8,14 @@
 
   <Identity
     Name="a3316e87-7937-4682-b772-8d94601eb134"
-    Publisher="CN=asklar"
+    Publisher="CN=RNX Test Cert"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="a3316e87-7937-4682-b772-8d94601eb134" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>examplenuget</DisplayName>
-    <PublisherDisplayName>asklar</PublisherDisplayName>
+    <PublisherDisplayName>RNX Test Cert</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
