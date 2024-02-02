@@ -350,7 +350,7 @@ const EventInfo *XamlMetadata::AttachEvent(
   if (!attaching) {
     wrapper->second.events.erase(attachedEvt);
   }
-  EventAttachInfo eai{context, e, "top" + evtName, *this};
+  EventAttachInfo eai{context, e, "top" + evtName, shared_from_this()};
   for (const auto &entry : EventInfo::xamlEventMap) {
     if (Equals(MAKE_KEY(entry.name), key)) {
       if (!entry.attachHandler) {

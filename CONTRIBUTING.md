@@ -41,9 +41,7 @@ If you make changes to the [package TypeScript files](./package/src/), be sure t
 
 ### Prepare and submit a PR
 1. Once changes are ready, run `yarn change` at the root of the repository to create a patch (it will ask for a description of the change). The version scheme we use is [SemVer](https://semver.org/)
-2. Update the package version by running `yarn bump`
 3. Open a pull request and address review feedback.
-4. After the PR is merged, manually trigger a publish from GitHub to publish to npm.
 
 ## Technical details
 You can find more details to setting up in the [Technical Guide](TechnicalGuide.md).

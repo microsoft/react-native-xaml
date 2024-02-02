@@ -59,28 +59,28 @@ foreach (var winmd in WinMDs) {
                     "\r\n__declspec(noinline) T DoTheTypeChecking(const winrt::Windows::Foundation::IIn" +
                     "spectable& ii, bool isWrapped) {\r\n  auto o = isWrapped ? Unwrap<T>(ii) : ii.try_" +
                     "as<T>();\r\n  return o;\r\n}\r\n\r\ntemplate<typename T>\r\n__declspec(noinline) void Disp" +
-                    "atchTheEvent(const EventAttachInfo& eai, const winrt::Windows::Foundation::IInsp" +
-                    "ectable& sender, const T& args) {\r\n  auto senderAsFE = sender.try_as<FrameworkEl" +
-                    "ement>();\r\n  auto wEN = winrt::to_hstring(eai.jsEventName);\r\n  if (eai.xamlMetad" +
-                    "ata.m_receiveEvent.has_value()) {\r\n    const auto tag = XamlMetadata::TagFromEle" +
+                    "atchTheEvent(const EventAttachInfo eai, const winrt::Windows::Foundation::IInspe" +
+                    "ctable& sender, const T& args) {\r\n  auto senderAsFE = sender.try_as<FrameworkEle" +
+                    "ment>();\r\n  auto wEN = winrt::to_hstring(eai.jsEventName);\r\n  if (eai.xamlMetada" +
+                    "ta->m_receiveEvent.has_value()) {\r\n    const auto tag = XamlMetadata::TagFromEle" +
                     "ment(eai.obj.as<xaml::DependencyObject>());\r\n    ExecuteJsi(eai.context, [metada" +
-                    "ta = eai.xamlMetadata.shared_from_this(), tag, senderAsFE, args, eventName = eai" +
-                    ".jsEventName](facebook::jsi::Runtime& rt) {\r\n      auto objSender = std::make_sh" +
-                    "ared<XamlObject>(senderAsFE, metadata);\r\n      auto objArgs = std::make_shared<X" +
-                    "amlObject>(args, metadata);\r\n      auto obj = std::make_shared<facebook::jsi::Ob" +
-                    "ject>(rt);\r\n      obj->setProperty(rt, \"sender\", rt.global().createFromHostObjec" +
-                    "t(rt, objSender));\r\n      obj->setProperty(rt, \"args\", rt.global().createFromHos" +
-                    "tObject(rt, objArgs));\r\n\r\n      metadata->JsiDispatchEvent(rt, tag, std::string(" +
-                    "eventName), obj);\r\n      });\r\n  }\r\n  else {\r\n    XamlUIService::FromContext(eai." +
-                    "context).DispatchEvent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(),\r\n " +
-                    "     [senderAsFE, args](const winrt::Microsoft::ReactNative::IJSValueWriter& evt" +
-                    "DataWriter) {\r\n        SerializeEventArgs(evtDataWriter, senderAsFE, args);\r\n   " +
-                    "   });\r\n  }\r\n};\r\n\r\n/*static*/ const EventInfo EventInfo::xamlEventMap[] = {\r\n");
+                    "ta = eai.xamlMetadata, tag, senderAsFE, args, eventName = eai.jsEventName](faceb" +
+                    "ook::jsi::Runtime& rt) {\r\n      auto objSender = std::make_shared<XamlObject>(se" +
+                    "nderAsFE, metadata);\r\n      auto objArgs = std::make_shared<XamlObject>(args, me" +
+                    "tadata);\r\n      auto obj = std::make_shared<facebook::jsi::Object>(rt);\r\n      o" +
+                    "bj->setProperty(rt, \"sender\", rt.global().createFromHostObject(rt, objSender));\r" +
+                    "\n      obj->setProperty(rt, \"args\", rt.global().createFromHostObject(rt, objArgs" +
+                    "));\r\n\r\n      metadata->JsiDispatchEvent(rt, tag, std::string(eventName), obj);\r\n" +
+                    "      });\r\n  }\r\n  else {\r\n    XamlUIService::FromContext(eai.context).DispatchEv" +
+                    "ent(eai.obj.try_as<xaml::FrameworkElement>(), wEN.c_str(),\r\n      [senderAsFE, a" +
+                    "rgs](const winrt::Microsoft::ReactNative::IJSValueWriter& evtDataWriter) {\r\n    " +
+                    "    SerializeEventArgs(evtDataWriter, senderAsFE, args);\r\n      });\r\n  }\r\n};\r\n\r\n" +
+                    "/*static*/ const EventInfo EventInfo::xamlEventMap[] = {\r\n");
  foreach (var evt in Events) { 
             this.Write("  {\"");
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));
-            this.Write("\", [](const EventAttachInfo& eai, bool isWrapped, winrt::event_token token) noexc" +
-                    "ept {\r\n    if (const auto& c = DoTheTypeChecking<");
+            this.Write("\", [](const EventAttachInfo eai, bool isWrapped, winrt::event_token token) noexce" +
+                    "pt {\r\n    if (const auto& c = DoTheTypeChecking<");
             this.Write(this.ToStringHelper.ToStringWithCulture(Util.GetCppWinRTType(evt.DeclaringType)));
             this.Write(">(eai.obj, isWrapped)) {\r\n      if (!token) {\r\n        return c.");
             this.Write(this.ToStringHelper.ToStringWithCulture(evt.GetName()));

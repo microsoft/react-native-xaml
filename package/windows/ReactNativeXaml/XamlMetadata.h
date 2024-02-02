@@ -198,13 +198,13 @@ struct EventAttachInfo {
   winrt::Microsoft::ReactNative::IReactContext context{nullptr};
   winrt::Windows::Foundation::IInspectable obj{nullptr};
   std::string jsEventName;
-  const XamlMetadata &xamlMetadata;
+  const std::shared_ptr<XamlMetadata> xamlMetadata;
 };
 
 struct EventInfo {
   const char *const name;
 
-  using attachHandlers_t = winrt::event_token (*)(const EventAttachInfo &, bool isWrapped, winrt::event_token);
+  using attachHandlers_t = winrt::event_token (*)(const EventAttachInfo, bool isWrapped, winrt::event_token);
   attachHandlers_t attachHandler;
 
   static const EventInfo xamlEventMap[];
