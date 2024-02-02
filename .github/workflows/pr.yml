@@ -54,6 +54,7 @@ jobs:
       vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
+      rnTemplate: ${{ matrix.rnTemplate }}
     
   call-testcli-old:
     name: Test CLI (VS 2019)
@@ -73,6 +74,7 @@ jobs:
       vmImage: windows-2019
       rnwVersion: ${{ matrix.rnwVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
+      rnTemplate: ${{ matrix.rnTemplate }}
 
   call-buildnpmpackage:
     name: Build NPM Package
