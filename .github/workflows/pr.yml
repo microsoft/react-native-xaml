@@ -42,8 +42,13 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['0.71-stable', 'latest'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
+        rnwVersion: ['0.72-stable', '0.71-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+        include:
+          - rnwVersion: '0.72-stable'
+            rnTemplate: 'react-native@0.72-stable'
+          - rnwVersion: '0.71-stable'
+            rnTemplate: 'react-native@0.71-stable'
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
@@ -56,8 +61,13 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['0.67-stable', '0.69-stable'] # test *key* versions that use VS 2019. aka any RNW version < 0.71 that are used by supported partners
+        rnwVersion: ['0.69-stable', '0.67-stable'] # test *key* versions that use VS 2019. aka any RNW version < 0.71 that are used by supported partners
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
+        include:
+          - rnwVersion: '0.69-stable'
+            rnTemplate: 'react-native-template-typescript@6.11.9'
+          - rnwVersion: '0.67-stable'
+            rnTemplate: 'react-native-template-typescript@6.9.6'
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2019
