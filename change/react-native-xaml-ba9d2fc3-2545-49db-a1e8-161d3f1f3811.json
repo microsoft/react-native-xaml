@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Fix EventAttachInfo struct so it holds onto a ref-counted instance of XamlMetadata, as well as removes dangerous pass-by-reference instances when dealing with async code.",
+  "packageName": "react-native-xaml",
+  "email": "maxben@microsoft.com",
+  "dependentChangeType": "patch"
+}
