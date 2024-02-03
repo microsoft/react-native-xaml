@@ -4,7 +4,7 @@
   <!-- Flags can be added here to effect the compilation of Microsoft.ReactNative -->
   <PropertyGroup Label="Microsoft.ReactNative Build Flags">
     <UseWinUI3>false</UseWinUI3>
-    <UseHermes>false</UseHermes>
+    <UseHermes>true</UseHermes>
     <!-- CODESYNC: Keep this version in sync with the WinUI2xVersion version used by the RNW version targeted by RNX's devDependency. -->
     <WinUI2xVersion>2.8.0</WinUI2xVersion>
   </PropertyGroup>

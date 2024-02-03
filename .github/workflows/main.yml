@@ -30,9 +30,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rnwVersion: [ '0.72-stable', '0.71-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.71
+        rnwVersion: [ 'latest', '0.72-stable', '0.71-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.71
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
+          - rnwVersion: 'latest'
+            rnTemplate: 'react-native@latest'
           - rnwVersion: '0.72-stable'
             rnTemplate: 'react-native@0.72-stable'
           - rnwVersion: '0.71-stable'
