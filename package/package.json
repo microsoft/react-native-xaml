@@ -33,8 +33,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "@types/react": "*",
-    "@types/react-native": "*",
-    "typescript": "^4.4.3"
+    "@types/react-native": "*"
   },
   "peerDependencies": {
     "react": ">= 17.0.2",
@@ -44,13 +43,13 @@
   },
   "devDependencies": {
     "@types/jest": "*",
-    "@typescript-eslint/eslint-plugin": "^2.27.0",
-    "@typescript-eslint/parser": "^2.27.0",
     "beachball": "^2.16.0",
+    "eslint": "^8.19.0",
     "react": "18.2.0",
-    "react-native": "0.72.3",
-    "react-native-windows": "0.72.2",
-    "react-native-typescript-transformer": "*"
+    "react-native": "0.73.0",
+    "react-native-windows": "0.73.4",
+    "react-native-typescript-transformer": "*",
+    "typescript": "5.0.4"
   },
   "files": [
     "!*.tgz",
