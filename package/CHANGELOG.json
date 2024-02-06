@@ -2,6 +2,27 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Tue, 06 Feb 2024 18:55:04 GMT",
+      "tag": "react-native-xaml_v0.0.77",
+      "version": "0.0.77",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "50e37f002760f49e599484d1f425c2097a8f0f0f",
+            "comment": "Upgrade to RNW 0.73"
+          },
+          {
+            "author": "maxben@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "ce9030316e73348f44d786b90a2d9874d002e9a2",
+            "comment": "Fix EventAttachInfo struct so it holds onto a ref-counted instance of XamlMetadata, as well as removes dangerous pass-by-reference instances when dealing with async code."
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 22 Aug 2023 17:45:12 GMT",
       "tag": "react-native-xaml_v0.0.76",
       "version": "0.0.76",

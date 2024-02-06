@@ -1,8 +1,17 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Tue, 22 Aug 2023 17:45:12 GMT and should not be manually modified.
+This log was last generated on Tue, 06 Feb 2024 18:55:04 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.77
+
+Tue, 06 Feb 2024 18:55:04 GMT
+
+### Patches
+
+- Upgrade to RNW 0.73 (jthysell@microsoft.com)
+- Fix EventAttachInfo struct so it holds onto a ref-counted instance of XamlMetadata, as well as removes dangerous pass-by-reference instances when dealing with async code. (maxben@microsoft.com)
 
 ## 0.0.76
 
