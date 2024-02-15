@@ -14,8 +14,6 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-    <PackageCertificateKeyFile>example_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>75F170D34994859553AF5C50C18A9AECDD312B27</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Label="ReactNativeWindowsProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(SolutionDir), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
@@ -152,7 +150,6 @@
   <ItemGroup>
     <None Include="..\..\App.tsx" />
     <None Include="..\..\index.js" />
-    <None Include="example_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
     <Text Include="readme.txt">

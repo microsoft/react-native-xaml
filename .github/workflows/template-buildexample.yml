@@ -11,6 +11,10 @@ on:
         required: false
         default: 'example'
         type: string
+      useBuildCertificate:
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build-example:
@@ -25,8 +29,25 @@ jobs:
     - name: build TS
       run: yarn build
 
+    - name: Decode the pfx
+      if: ${{ inputs.useBuildCertificate }}
+      run: |
+        $PfxBytes = [System.Convert]::FromBase64String("${{ secrets.EXAMPES_BASE64_ENCODED_PFX }}")
+        $PfxPath = [System.IO.Path]::GetFullPath("${{github.workspace}}\GitHubActionsWorkflow.pfx")
+        Write-Host $PfxPath
+        [System.IO.File]::WriteAllBytes("$PfxPath", $PfxBytes)
+      working-directory: ${{ inputs.exampleName }}
+
     - name: yarn windows
-      run: yarn windows --no-launch --no-deploy --no-packager --logging
+      run: yarn windows --no-launch --no-deploy --no-packager --logging ${{ inputs.useBuildCertificate && '--msbuildprops PackageCertificateKeyFile=${{github.workspace}}\GitHubActionsWorkflow.pfx' || '' }}
+      working-directory: ${{ inputs.exampleName }}
+
+    - name: Remove the pfx
+      if: ${{ inputs.useBuildCertificate }}
+      run: |
+        $certificatePath = [System.IO.Path]::GetFullPath("${{github.workspace}}\GitHubActionsWorkflow.pfx")
+        Write-Host $certificatePath
+        Remove-Item -path $certificatePath
       working-directory: ${{ inputs.exampleName }}
 
     - name: test app
