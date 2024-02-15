@@ -15,8 +15,6 @@
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ReactNativeWindowsAllowNugetNpmMismatch>true</ReactNativeWindowsAllowNugetNpmMismatch>
-    <PackageCertificateKeyFile>examplenuget_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>CA08428B1920E77BE093E559694FE56031D6E5E9</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Label="ReactNativeWindowsProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(SolutionDir), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
@@ -152,7 +150,6 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="examplenuget_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
     <Text Include="readme.txt">
