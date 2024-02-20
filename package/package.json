@@ -36,9 +36,9 @@
     "@types/react-native": "*"
   },
   "peerDependencies": {
-    "react": ">= 17.0.2",
-    "react-native": ">= 0.67.0",
-    "react-native-windows": ">= 0.67.11",
+    "react": ">= 18.0.0",
+    "react-native": ">= 0.69.0",
+    "react-native-windows": ">= 0.69.0",
     "typescript": "^4.1.2"
   },
   "devDependencies": {

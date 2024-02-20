@@ -51,17 +51,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rnwVersion: ['0.70-stable', '0.69-stable', '0.68-stable', '0.67-stable'] # test *all* versions that use VS 2019. aka any RNW version >= min in package.json and < 0.71
+        rnwVersion: ['0.70-stable', '0.69-stable'] # test *all* versions that use VS 2019. aka any RNW version >= min in package.json and < 0.71
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
           - rnwVersion: '0.70-stable'
             rnTemplate: 'react-native-template-typescript@6.12.11'
           - rnwVersion: '0.69-stable'
             rnTemplate: 'react-native-template-typescript@6.11.9'
-          - rnwVersion: '0.68-stable'
-            rnTemplate: 'react-native-template-typescript@6.10.4'
-          - rnwVersion: '0.67-stable'
-            rnTemplate: 'react-native-template-typescript@6.9.6'
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2019
