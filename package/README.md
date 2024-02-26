@@ -4,7 +4,7 @@
 
 `$ npm install react-native-xaml --save`
 
-Ensure you're using React Native Windows >= 0.67.11.
+Ensure you're using React Native Windows >= 0.69.0.
 
 Ensure your app is using WinUI 2.7+. For details about customizing WinUI versions in your React Native for Windows app, see [Customizing SDK versions](https://microsoft.github.io/react-native-windows/docs/customizing-sdk-versions).
 
