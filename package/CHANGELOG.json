@@ -2,6 +2,27 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Mon, 26 Feb 2024 19:13:51 GMT",
+      "tag": "react-native-xaml_v0.0.78",
+      "version": "0.0.78",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "f8ca52b87f0f358317b525d36162c56ad8b20389",
+            "comment": "Require RNW >= 0.69.0"
+          },
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "react-native-xaml",
+            "commit": "d9e933a30b836511609fd5a09acdafd3b9c20007",
+            "comment": "Remove dependency on @types/react-native"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 06 Feb 2024 18:55:04 GMT",
       "tag": "react-native-xaml_v0.0.77",
       "version": "0.0.77",

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Remove dependency on @types/react-native",
-  "packageName": "react-native-xaml",
-  "email": "30809111+acoates-ms@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}

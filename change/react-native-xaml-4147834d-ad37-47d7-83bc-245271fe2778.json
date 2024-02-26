@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Require RNW >= 0.69.0",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,17 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Tue, 06 Feb 2024 18:55:04 GMT and should not be manually modified.
+This log was last generated on Mon, 26 Feb 2024 19:13:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.78
+
+Mon, 26 Feb 2024 19:13:51 GMT
+
+### Patches
+
+- Require RNW >= 0.69.0 (jthysell@microsoft.com)
+- Remove dependency on @types/react-native (30809111+acoates-ms@users.noreply.github.com)
 
 ## 0.0.77
 
