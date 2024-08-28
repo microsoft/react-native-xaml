@@ -20,18 +20,18 @@ This metadata will then be consumed by the ReactNativeXaml project which is the 
 - Maps JS type names to constructors of XAML objects. These are used by the RN props to specify how to create a given XAML type from JS.
 - Maps JS property names to a list of XAML types that have those properties, as well as what JS type the property is, and information about how to set those properties.
 - Maps JS event names to attachment handlers. When a new XAML object is created from react-native-xaml, the library will figure out which events to create event handlers from based on this metadata. 
-- Maps enum value names to functions that can parse the strings and give back the enum value themselves. This might go away with https://github.com/asklar/react-native-xaml/issues/19.
+- Maps enum value names to functions that can parse the strings and give back the enum value themselves. This might go away with https://github.com/microsoft/react-native-xaml/issues/19.
 
 CodeGen will generate metadata for XAML properties if all these conditions are true:
 - They are instance properties (non-static), public, and have a setter
 - They are a simple type (int, bool, double, string, Color/Brush/SolidColorBrush, Thickness, or an enum), or of type IInspectable (Object).
 - They are backed by a DependencyProperty on the type
-- Their name does not conflict with an existing ViewProps JS property (e.g. Style, Width, Height, Padding): https://github.com/asklar/react-native-xaml/issues/6
-- Support for attached properties is not yet implemented: https://github.com/asklar/react-native-xaml/issues/31
+- Their name does not conflict with an existing ViewProps JS property (e.g. Style, Width, Height, Padding): https://github.com/microsoft/react-native-xaml/issues/6
+- Support for attached properties is not yet implemented: https://github.com/microsoft/react-native-xaml/issues/31
 
 Properties like Content that are of type IInspectable are mapped to JS object. You can specify a boxed string by passing an object with a string field: `{string: "my string value"}`.
 
-Events are created as long as their names don't conflict with existing registrations (e.g. onKeyUp/onKeyDown is already taken by the RNW framework so those events are not registered by react-native-xaml): https://github.com/asklar/react-native-xaml/issues/32
+Events are created as long as their names don't conflict with existing registrations (e.g. onKeyUp/onKeyDown is already taken by the RNW framework so those events are not registered by react-native-xaml): https://github.com/microsoft/react-native-xaml/issues/32
 
 By default, CodeGen will only look for the Windows 10 SDK (10.0.19041.0, version 2004). You can install it from Visual Studio's installer or [here](https://developer.microsoft.com/windows/downloads/windows-10-sdk/).
 It is also possible to pass any number of custom WinMD files representing Windows Runtime components. Any UserControls that are defined in those projects will be added to the metadata tables as well as the 19041 SDK XAML types.
@@ -105,4 +105,4 @@ cd node_modules\react-native-xaml
 yarn build
 ```
 
-See the diff to enable the sample UserControl example here: https://github.com/asklar/react-native-xaml/pull/35
+See the diff to enable the sample UserControl example here: https://github.com/microsoft/react-native-xaml/pull/35
