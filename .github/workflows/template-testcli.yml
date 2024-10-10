@@ -42,7 +42,7 @@ jobs:
       working-directory: ../
 
     - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
-      run: npx react-native-windows-init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
+      run: npx @react-native-community/cli init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
       working-directory: ../testrnx
 
     - name: link react-native-xaml
