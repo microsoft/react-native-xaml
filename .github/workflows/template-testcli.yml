@@ -38,11 +38,11 @@ jobs:
       working-directory: package
 
     - name: create react-native@${{ inputs.rnwVersion }} app
-      run: npx react-native init testrnx --template ${{ inputs.rnTemplate }}
+      run: npx --yes @react-native-community/cli init testrnx --template ${{ inputs.rnTemplate }}
       working-directory: ../
 
     - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
-      run: npx @react-native-community/cli init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
+      run: npx @react-native-community/cli init-windows --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
       working-directory: ../testrnx
 
     - name: link react-native-xaml
