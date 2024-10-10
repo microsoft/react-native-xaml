@@ -30,15 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rnwVersion: [ 'latest', '0.72-stable', '0.71-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.71
+        rnwVersion: [ 'latest', '0.75-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.75
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
           - rnwVersion: 'latest'
             rnTemplate: 'react-native@latest'
-          - rnwVersion: '0.72-stable'
-            rnTemplate: 'react-native@0.72-stable'
-          - rnwVersion: '0.71-stable'
-            rnTemplate: 'react-native@0.71-stable'
+          - rnwVersion: '0.75-stable'
+            rnTemplate: 'react-native@0.75-stable'
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
@@ -47,20 +45,18 @@ jobs:
       rnTemplate: ${{ matrix.rnTemplate }}
     
   call-testcli-old:
-    name: Test CLI (VS 2019)
+    name: Test CLI (VS 2022, RNW 0.72)
     strategy:
       fail-fast: false
       matrix:
-        rnwVersion: ['0.70-stable', '0.69-stable'] # test *all* versions that use VS 2019. aka any RNW version >= min in package.json and < 0.71
+        rnwVersion: ['0.72-stable'] # Test minimum supported RNW version (currently 0.72)
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
-          - rnwVersion: '0.70-stable'
-            rnTemplate: 'react-native-template-typescript@6.12.11'
-          - rnwVersion: '0.69-stable'
-            rnTemplate: 'react-native-template-typescript@6.11.9'
+          - rnwVersion: '0.72-stable'
+            rnTemplate: 'react-native@0.72-stable'
     uses: ./.github/workflows/template-testcli.yml
     with:
-      vmImage: windows-2019
+      vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
       rnTemplate: ${{ matrix.rnTemplate }}
