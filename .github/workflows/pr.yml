@@ -46,7 +46,7 @@ jobs:
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
           - rnwVersion: 'latest'
-            rnwVersion: 'latest'
+            rnVersion: 'latest'
             rnTemplate: 'react-native@latest'
           - rnwVersion: 'v0.74-stable'
             rnVersion: '0.74-stable'
@@ -58,7 +58,7 @@ jobs:
     with:
       vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
-      rnwVersion: ${{ matrix.rnVersion }}
+      rnVersion: ${{ matrix.rnVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
       rnTemplate: ${{ matrix.rnTemplate }}
 
