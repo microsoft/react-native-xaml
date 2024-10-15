@@ -30,13 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rnwVersion: [ 'latest', '0.75-stable', '0.72-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.75
+        rnwVersion: [ 'latest', '0.74-stable', '0.72-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.75
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
           - rnwVersion: 'latest'
             rnTemplate: 'react-native@latest'
-          - rnwVersion: '0.75-stable'
-            rnTemplate: 'react-native@0.75-stable'
+          - rnwVersion: '0.74-stable'
+            rnTemplate: 'react-native@0.74-stable'
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
