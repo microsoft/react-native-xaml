@@ -47,26 +47,26 @@
       "folly": {
         "type": "Project",
         "dependencies": {
-          "boost": "1.76.0",
-          "fmt": "1.0.0"
+          "Fmt": "[1.0.0, )",
+          "boost": "[1.76.0, )"
         }
       },
       "microsoft.reactnative": {
         "type": "Project",
         "dependencies": {
-          "Common": "1.0.0",
-          "Folly": "1.0.0",
-          "Microsoft.JavaScript.Hermes": "0.1.18",
-          "Microsoft.UI.Xaml": "2.8.0",
-          "ReactCommon": "1.0.0",
-          "boost": "1.76.0"
+          "Common": "[1.0.0, )",
+          "Folly": "[1.0.0, )",
+          "Microsoft.JavaScript.Hermes": "[0.1.18, )",
+          "Microsoft.UI.Xaml": "[2.8.0, )",
+          "ReactCommon": "[1.0.0, )",
+          "boost": "[1.76.0, )"
         }
       },
       "reactcommon": {
         "type": "Project",
         "dependencies": {
-          "Folly": "1.0.0",
-          "boost": "1.76.0"
+          "Folly": "[1.0.0, )",
+          "boost": "[1.76.0, )"
         }
       }
     },
