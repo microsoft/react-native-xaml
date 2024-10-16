@@ -28,7 +28,7 @@ jobs:
     name: Build Example
     needs: setupcheck
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         exampleName: ['example', 'examplenuget'] # build both examples
     uses: ./.github/workflows/template-buildexample.yml
@@ -40,7 +40,7 @@ jobs:
     name: Test CLI (VS 2022)
     needs: setupcheck
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         rnwVersion: ['latest', '0.74-stable', '0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.72 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
@@ -73,7 +73,7 @@ jobs:
     name: Build RNX
     needs: setupcheck
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         configuration: ['Release']
         platform: ['x64']
