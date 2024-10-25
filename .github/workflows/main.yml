@@ -30,7 +30,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        rnwVersion: [ 'latest', '0.74-stable', '0.72-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.75
+        rnwVersion: [ 'latest', 'v0.74-stable', 'v0.72-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.75
+        rnVersion: [ 'latest', '0.74-stable', '0.72-stable'] # test *all* versions that use VS 2022. aka any RNW version >= min in package.json and >= 0.75
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
           - rnwVersion: 'latest'
