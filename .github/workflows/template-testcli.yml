@@ -41,12 +41,12 @@ jobs:
       run: yarn link
       working-directory: package
 
-    - name: create react-native@${{ inputs.rnVersion }} app
-      run: npx --yes @react-native-community/cli@latest init testrnx --version ${{ inputs.rnVersion }} --skip-install --install-pods false --verbose --skip-git-init true
+    - name: create react-native@${{ inputs.rnwVersion }} app
+      run: npx --yes @react-native-community/cli@latest init testrnx --version ${{ inputs.rnwVersion }} --skip-install --install-pods false --verbose --skip-git-init true
       working-directory: ../
 
     - name: yarn add react-native-windows
-      run: yarn add react-native-windows@${{ inputs.rnwVersion }}
+      run: yarn add react-native-windows@v${{ inputs.rnwVersion }}
       working-directory: ../testrnx
 
     - name: yarn 
