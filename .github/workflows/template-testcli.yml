@@ -46,7 +46,7 @@ jobs:
       working-directory: ../
 
     - name: yarn add react-native-windows
-      run: yarn add react-native-windows@${{ inputs.rnwVersion == 'latest' && inputs.rnwVersion || 'v' + inputs.rnwVersion }}
+      run: yarn add react-native-windows@${{ inputs.rnwVersion == 'latest' && '' || 'v'}}${{ inputs.rnwVersion }}
       working-directory: ../testrnx
 
     - name: yarn 
