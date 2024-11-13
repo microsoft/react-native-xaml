@@ -2244,7 +2244,7 @@ export interface NativeControlProps extends NativeFrameworkElementProps {
   fontStretch?: Enums.FontStretch;
   fontSize?: number;
   fontFamily?: string;
-  tabIndex?: number;
+  tabIndex?: 0 | -1 | undefined;
   characterSpacing?: number;
   borderThickness?: Thickness;
   borderBrush?: ColorValue;
@@ -4206,7 +4206,7 @@ export interface NativeContentLinkProps extends NativeInlineProps {
   xyFocusRightNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   xyFocusDownNavigationStrategy?: Enums.XYFocusNavigationStrategy;
-  tabIndex?: number;
+  tabIndex?: 0 | -1 | undefined;
   isTabStop?: boolean;
   elementSoundMode?: Enums.ElementSoundMode;
   cursor?: Enums.CoreCursorType;
@@ -4237,7 +4237,7 @@ export interface NativeHyperlinkProps extends NativeSpanProps {
   xyFocusRightNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   xyFocusLeftNavigationStrategy?: Enums.XYFocusNavigationStrategy;
   xyFocusDownNavigationStrategy?: Enums.XYFocusNavigationStrategy;
-  tabIndex?: number;
+  tabIndex?: 0 | -1 | undefined;
   isTabStop?: boolean;
   onClick?: (event: NativeSyntheticEvent<TypedEvent<NativeHyperlinkClickEventArgs>>) => void;
   onGotFocus?: (event: NativeSyntheticEvent<undefined>) => void;
