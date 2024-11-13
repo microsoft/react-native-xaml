@@ -54,7 +54,7 @@ jobs:
       working-directory: ../testrnx 
 
     - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
-      run: npx --yes react-native-windows-init --overwrite
+      run: npx --yes react-native init-windows --overwrite
       working-directory: ../testrnx
 
     - name: link react-native-xaml
