@@ -1,0 +1,8 @@
+{
+    "type": "patch",
+    "comment": "fix RNX MenuFlyout so that it can update when number of child MenuFlyoutItem changes.",
+    "packageName": "react-native-xaml",
+    "email": "vichaudh@microsoft.com",
+    "dependentChangeType": "patch"
+  }
+  
