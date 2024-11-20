@@ -15,9 +15,9 @@ on:
         required: false
         default: false
         type: boolean
-      rnTemplate:
+      rnVersion:
         required: false
-        default: 'react-native@latest'
+        default: 'latest'
         type: string
 
 jobs:
@@ -37,9 +37,13 @@ jobs:
       run: yarn link
       working-directory: package
 
-    - name: create react-native@${{ inputs.rnwVersion }} app
-      run: npx react-native init testrnx --template ${{ inputs.rnTemplate }}
+    - name: create react-native@${{ inputs.rnVersion }} app
+      run: npx @react-native-community/cli init testrnx --version ${{ inputs.rnVersion }} --skip-install --install-pods false --verbose --skip-git-init true
       working-directory: ../
+
+    - name: yarn install
+      run: yarn install
+      working-directory: ../testrnx
 
     - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
       run: npx react-native-windows-init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
