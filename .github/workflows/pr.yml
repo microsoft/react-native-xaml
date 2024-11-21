@@ -42,37 +42,19 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['latest', '0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
+        rnwVersion: ['v0.73-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
-          - rnwVersion: 'latest'
-            rnTemplate: 'react-native@latest'
-          - rnwVersion: '0.72-stable'
-            rnTemplate: 'react-native@0.72-stable'
+          - rnwVersion: 'v0.73-stable'
+            rnVersion: '0.73-stable'
+          - rnwVersion: 'v0.72-stable'
+            rnVersion: '0.72-stable'
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
       useRnwNuGet: ${{ matrix.useRnwNuGet }}
-      rnTemplate: ${{ matrix.rnTemplate }}
-    
-  call-testcli-old:
-    name: Test CLI (VS 2019)
-    needs: setupcheck
-    strategy:
-      fail-fast: true
-      matrix:
-        rnwVersion: ['0.69-stable'] # test *key* versions that use VS 2019. aka any RNW version < 0.71 that are used by supported partners
-        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
-        include:
-          - rnwVersion: '0.69-stable'
-            rnTemplate: 'react-native-template-typescript@6.11.9'
-    uses: ./.github/workflows/template-testcli.yml
-    with:
-      vmImage: windows-2019
-      rnwVersion: ${{ matrix.rnwVersion }}
-      useRnwNuGet: ${{ matrix.useRnwNuGet }}
-      rnTemplate: ${{ matrix.rnTemplate }}
+      rnVersion: ${{ matrix.rnVersion }}
 
   call-buildnpmpackage:
     name: Build NPM Package
@@ -98,6 +80,6 @@ jobs:
   prcheck:
     name: Successful PR Check
     runs-on: ubuntu-latest
-    needs: [setupcheck, call-runcodegen, call-testcli, call-testcli-old, call-buildnpmpackage, call-buildrnx]
+    needs: [setupcheck, call-runcodegen, call-testcli, call-buildnpmpackage, call-buildrnx]
     steps:
      - uses: actions/checkout@v3

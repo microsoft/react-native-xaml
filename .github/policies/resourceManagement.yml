@@ -240,9 +240,9 @@ configuration:
             This issue lacks the environment info requested in the bug template. Please edit your issue report to add this information.
 
 
-            1. `npx react-native --version`:
+            1. `npx @react-native-community/cli --version`:
 
-            2. `npx react-native run-windows --info`:
+            2. `npx @react-native-community/cli run-windows --info`:
       - addLabel:
           label: 'Needs: Author Feedback'
       - removeLabel:

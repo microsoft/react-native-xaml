@@ -36,8 +36,8 @@
   },
   "peerDependencies": {
     "react": ">= 18.0.0",
-    "react-native": ">= 0.69.0",
-    "react-native-windows": ">= 0.69.0",
+    "react-native": ">= 0.71.0",
+    "react-native-windows": ">= 0.71.0",
     "typescript": "^4.1.2"
   },
   "devDependencies": {
@@ -45,8 +45,8 @@
     "beachball": "^2.16.0",
     "eslint": "^8.19.0",
     "react": "18.2.0",
-    "react-native": "0.73.0",
-    "react-native-windows": "0.73.4",
+    "react-native": "0.73.11",
+    "react-native-windows": "0.73.21",
     "react-native-typescript-transformer": "*",
     "typescript": "5.0.4"
   },
