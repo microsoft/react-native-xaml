@@ -32,6 +32,6 @@ body:
     attributes:
       label: Environment
       description: |
-        Run the command `npx react-native info` in your terminal and copy the results here
-      value: "npx react-native info"
+        Run the command `npx @react-native-community/cli info` in your terminal and copy the results here
+      value: "npx @react-native-community/cli info"
       render: markdown
