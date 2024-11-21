@@ -39,7 +39,7 @@ jobs:
       working-directory: ${{ inputs.exampleName }}
 
     - name: yarn windows
-      run: yarn windows --no-launch --no-deploy --no-packager --logging ${{ inputs.useBuildCertificate && '--msbuildprops PackageCertificateKeyFile=${{github.workspace}}\GitHubActionsWorkflow.pfx' || '' }}
+      run: npx @react-native-community/cli run-windows --no-launch --no-deploy --no-packager --logging ${{ inputs.useBuildCertificate && '--msbuildprops PackageCertificateKeyFile=${{github.workspace}}\GitHubActionsWorkflow.pfx' || '' }}
       working-directory: ${{ inputs.exampleName }}
 
     - name: Remove the pfx
