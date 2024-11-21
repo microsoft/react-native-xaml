@@ -1,9 +1,0 @@
-{
-  "type": "patch",
-  "comment": {
-    "title": "MenuFlyout fix"
-  },
-  "packageName": "react-native-xaml",
-  "email": "virendra.chaudhary@gmail.com",
-  "dependentChangeType": "patch"
-}

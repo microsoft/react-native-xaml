@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Bump to RNW 0.73.21",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}
