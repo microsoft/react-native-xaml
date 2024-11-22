@@ -346,6 +346,12 @@ void XamlViewManager::RemoveChildAt(xaml::FrameworkElement parent, int64_t index
     return panel.Children().RemoveAt(static_cast<uint32_t>(index));
   } else if (auto itemsControl = e.try_as<ItemsControl>()) {
     return itemsControl.Items().RemoveAt(static_cast<uint32_t>(index));
+  } else if (auto wrapper = e.try_as<Wrapper>()) {
+    if (auto parentContent = wrapper.WrappedObject()) {
+      if (auto menuFlyout = parentContent.try_as<MenuFlyout>()) {
+        return menuFlyout.Items().RemoveAt(static_cast<uint32_t>(index));
+      }
+    }
   } else if (index == 0) {
     if (auto contentCtrl = e.try_as<ContentControl>()) {
       return contentCtrl.Content(nullptr);

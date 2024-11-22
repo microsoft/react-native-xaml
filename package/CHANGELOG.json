@@ -2,6 +2,29 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Thu, 21 Nov 2024 23:01:02 GMT",
+      "tag": "react-native-xaml_v0.0.79",
+      "version": "0.0.79",
+      "comments": {
+        "patch": [
+          {
+            "author": "virendra.chaudhary@gmail.com",
+            "package": "react-native-xaml",
+            "commit": "d4aecc7be511272240c3a4c46af9aafa81298a9c",
+            "comment": {
+              "title": "MenuFlyout fix"
+            }
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "853a1fa9bbec469165a03eb8397118eef00c60cf",
+            "comment": "Bump to RNW 0.73.21"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 26 Feb 2024 19:13:51 GMT",
       "tag": "react-native-xaml_v0.0.78",
       "version": "0.0.78",
