@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['v0.73-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
+        rnwVersion: ['v0.73-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.72 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
         useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
         include:
           - rnwVersion: 'v0.73-stable'
