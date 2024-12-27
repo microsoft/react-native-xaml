@@ -2070,6 +2070,8 @@ export interface NativeFrameworkElementProps extends NativeUIElementProps {
   onActualThemeChanged?: (event: NativeSyntheticEvent<TypedEvent<any>>) => void;
   onEffectiveViewportChanged?: (event: NativeSyntheticEvent<TypedEvent<NativeEffectiveViewportChangedEventArgs>>) => void;
 }
+
+// @ts-ignore
 export interface NativeControlProps extends NativeFrameworkElementProps {
   type: 'Windows.UI.Xaml.Controls.Control' |
         'Microsoft.UI.Xaml.Controls.BreadcrumbBar' |
@@ -4200,6 +4202,8 @@ export interface NativeSpanProps extends NativeInlineProps {
 export interface NativeBoldProps extends NativeSpanProps {
   type: 'Windows.UI.Xaml.Documents.Bold';
 }
+
+// @ts-ignore
 export interface NativeContentLinkProps extends NativeInlineProps {
   type: 'Windows.UI.Xaml.Documents.ContentLink';
   xyFocusUpNavigationStrategy?: Enums.XYFocusNavigationStrategy;
@@ -4228,6 +4232,8 @@ export interface NativeGlyphsProps extends NativeFrameworkElementProps {
   isColorFontEnabled?: boolean;
   colorFontPaletteIndex?: number;
 }
+
+// @ts-ignore
 export interface NativeHyperlinkProps extends NativeSpanProps {
   type: 'Windows.UI.Xaml.Documents.Hyperlink';
   navigateUri?: string;
