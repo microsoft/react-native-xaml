@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Upgrade RNX to target RNW 0.77",
+  "packageName": "react-native-xaml",
+  "email": "jthysell@microsoft.com",
+  "dependentChangeType": "patch"
+}
