@@ -6,7 +6,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "windows": "react-native run-windows"
+    "windows": "npx @react-native-community/cli run-windows"
   },
   "dependencies": {
     "react": "18.3.1",
