@@ -65,14 +65,14 @@ jobs:
         yarn add react-native-windows@$Env:RNW_VERSION
         yarn install
         npx @react-native-community/cli@latest init-windows --overwrite --logging
-      working-directory: ../testrnx
-
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
+        yarn install
       working-directory: ../testrnx
 
     - name: add react-native-xaml
-      run: yarn add react-native-xaml
+      run: |
+        yarn add react-native-xaml
+        yarn link react-native-xaml
+        yarn install
       working-directory: ../testrnx
 
     - name: autolink
