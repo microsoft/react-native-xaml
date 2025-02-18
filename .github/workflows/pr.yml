@@ -43,14 +43,11 @@ jobs:
       fail-fast: true
       matrix:
         rnwVersion: ['latest', 'v0.76-stable', 'v0.75-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.72 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
-        include:
-          - rnwVersion: v0.72-stable
-          - useRnwWindowsInit: true
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
-      useRnwWindowsInit: ${{ matrix.useRnwWindowsInit == true }}
+      useRnwWindowsInit: ${{ matrix.rnwVersion == 'v0.72-stable' }}
 
   call-buildnpmpackage:
     name: Build NPM Package
