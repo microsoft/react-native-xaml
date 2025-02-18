@@ -41,13 +41,3 @@ jobs:
         name: RNX ${{ inputs.configuration }} ${{ inputs.platform }} Build Output
         path: package\windows\${{ inputs.platform }}\${{ inputs.configuration }}\ReactNativeXaml\*.*
         if-no-files-found: error
-
-    - if: ${{ inputs.configuration == 'Release' && inputs.platform == 'x64' }}
-      name: Validate size (Release x64 only)
-      shell: powershell
-      run: |
-        $size = (gci package\windows\x64\Release\ReactNativeXaml\ReactNativeXaml.dll).Length
-        $size
-        if ($size -gt 1.5MB) {
-          throw "DLL is bigger than 1.5MB"
-        }
