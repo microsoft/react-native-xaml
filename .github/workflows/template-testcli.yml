@@ -71,12 +71,12 @@ jobs:
       run: yarn link react-native-xaml
       working-directory: ../testrnx
 
-    - name: add react-native-xaml
-      run: yarn add react-native-xaml
-      working-directory: ../testrnx
-
     - name: autolink
       run: npx @react-native-community/cli autolink-windows --logging
+      working-directory: ../testrnx
+
+    - name: cat
+      run: cat windows/testrnx.sln
       working-directory: ../testrnx
 
     - name: build app
