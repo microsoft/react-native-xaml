@@ -50,7 +50,7 @@ jobs:
     with:
       vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
-      useRnwWindowsInit: ${{ matrix.useRnwWindowsInit }}
+      useRnwWindowsInit: ${{ matrix.useRnwWindowsInit == true }}
 
   call-buildnpmpackage:
     name: Build NPM Package

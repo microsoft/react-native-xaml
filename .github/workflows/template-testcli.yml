@@ -59,7 +59,7 @@ jobs:
       working-directory: ../testrnx
 
     - name: react-native init-windows
-      if: ${{ ! inputs.useRnwWindowsInit }}
+      if: ${{ !inputs.useRnwWindowsInit }}
       run: |
         Write-Host "Using react-native-windows@$Env:RNW_VERSION"
         yarn add react-native-windows@$Env:RNW_VERSION
