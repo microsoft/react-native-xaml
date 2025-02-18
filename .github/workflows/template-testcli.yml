@@ -56,6 +56,7 @@ jobs:
       run: |
         Write-Host "Using react-native-windows@$Env:RNW_VERSION"
         npx --yes react-native-windows-init --overwrite --verbose --version $Env:RNW_VERSION
+        yarn install
       working-directory: ../testrnx
 
     - name: react-native init-windows
@@ -77,10 +78,6 @@ jobs:
 
     - name: autolink
       run: npx @react-native-community/cli autolink-windows --logging
-      working-directory: ../testrnx
-
-    - name: cat
-      run: cat windows/testrnx.sln
       working-directory: ../testrnx
 
     - name: build app
