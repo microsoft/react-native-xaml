@@ -39,23 +39,29 @@ jobs:
         echo "RNW_VERSION=$rnwVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
         $rnVersion = & npm show react-native-windows@$rnwVersion peerDependencies.react-native
         echo "RN_VERSION=$rnVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+        Write-Host "Using react-native-windows@$rnwVersion with react-native@$rnVersion"
 
-    - name: create react-native@$Env:RN_VERSION app
-      run: npx @react-native-community/cli init testrnx --version $Env:RN_VERSION --skip-install --install-pods false --verbose --skip-git-init true
+    - name: create react-native app
+      run: |
+        Write-Host "Using react-native@$Env:RN_VERSION"
+        npx @react-native-community/cli init testrnx --version $Env:RN_VERSION --skip-install --install-pods false --verbose --skip-git-init true
       working-directory: ../
 
     - name: yarn install
       run: yarn install
       working-directory: ../testrnx
 
-    - name: react-native-windows-init RNW@$Env:RNW_VERSION
+    - name: react-native-windows-init
       if: ${{ inputs.useRnwWindowsInit }}
-      run: npx --yes react-native-windows-init --overwrite --logging --version $Env:RNW_VERSION
+      run: |
+        Write-Host "Using react-native-windows@$Env:RNW_VERSION"
+        npx --yes react-native-windows-init --overwrite --verbose --version $Env:RNW_VERSION
       working-directory: ../testrnx
 
-    - name: react-native init-windows RNW@$Env:RNW_VERSION
+    - name: react-native init-windows
       if: ${{ ! inputs.useRnwWindowsInit }}
       run: |
+        Write-Host "Using react-native-windows@$Env:RNW_VERSION"
         yarn add react-native-windows@$Env:RNW_VERSION
         yarn install
         npx @react-native-community/cli@latest init-windows --overwrite --logging
