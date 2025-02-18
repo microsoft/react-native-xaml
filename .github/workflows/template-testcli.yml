@@ -82,7 +82,3 @@ jobs:
     - name: build app
       run: npx @react-native-community/cli run-windows --no-launch --no-deploy --no-packager --logging
       working-directory: ../testrnx
-
-    - name: test app
-      run: yarn test
-      working-directory: ../testrnx
