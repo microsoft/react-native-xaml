@@ -6,11 +6,11 @@
  * @flow strict-local
  */
 
-import React, {useRef} from 'react';
+import React from 'react';
 import type {PropsWithChildren} from 'react';
+import {useState} from 'react';
 
 import {
-  findNodeHandle,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -21,25 +21,45 @@ import {
 } from 'react-native';
 
 import {
-  TextBox,
-  MenuFlyout,
-  MenuFlyoutItem,
-  TextBlock,
-  WinUI,
-  MediaPlayerElement,
-  Button,
-  ContentDialogState,
-  ContentDialog,
-  ContentDialogButton,
-  ContentDialogResult,
-} from 'react-native-xaml';
-import {
   Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import {
+  HyperlinkButton,
+  Border,
+  TextBlock,
+  StackPanel,
+  Button,
+  ComboBox,
+  ComboBoxItem,
+  NativeXamlControl,
+  MenuFlyoutItem,
+  TextBox,
+  // BlankUserControl,
+  ClickMode,
+  MenuFlyout,
+  RichTextBlock,
+  Run,
+  Italic,
+  LineBreak,
+  Hyperlink,
+  NavigationView,
+  NavigationViewItem,
+  NavigationViewItemHeader,
+  FontIcon,
+  WinUI,
+  HorizontalAlignment,
+  Visibility,
+  WinUIEnums,
+  SplitView,
+  SplitViewPriority,
+  SplitViewPanePlacement,
+  Grid,
+} from 'react-native-xaml';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -69,7 +89,7 @@ function Section({children, title}: SectionProps): JSX.Element {
       </Text>
     </View>
   );
-};
+}
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -78,43 +98,153 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const menu = useRef<MenuFlyout>(null);
-  const _tbRef = React.useRef<TextBlock>(null);
-  const _mpRef = React.useRef<MediaPlayerElement>(null);
-  const [x, setX] = React.useState("100");
-
-  const [showState, setShowState] = React.useState(ContentDialogState.Hidden);
-
-
+  const [count, setCount] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const [option, setOption] = useState('');
+  const [visible, setVisible] = useState(Visibility.Visible);
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
+        <WinUI.ProgressRing isActive={true} width={40} />
+        <WinUI.InfoBar
+          message="the message"
+          title="the title"
+          isOpen={true}
+          visibility={visible}
+          onClosed={() => {
+            setVisible(Visibility.Collapsed);
+          }}
+          severity={WinUIEnums.InfoBarSeverity.Success}
+          horizontalAlignment={HorizontalAlignment.Center}
+        />
+        <View>
+          <Text style={{fontSize: 36, textAlign: 'center', padding: 42}}>
+            Welcome to React Native XAML
+          </Text>
+        </View>
+        <SplitView
+          isPaneOpen={isOpen}
+          onPaneClosed={() => {
+            setIsOpen(false);
+          }}
+          width={800}
+          height={300}
+          paneBackground="red"
+          panePlacement={SplitViewPanePlacement.Left}>
+          <TextBlock
+            text="this is in the pane"
+            priority={SplitViewPriority.Pane}
+            foreground="white"
+          />
+          <Grid
+            background="green"
+            priority={SplitViewPriority.Content}
+            gridLayout={{rows: [200], columns: [200]}}>
+            <TextBlock text="this is in the content" foreground="white" />
+          </Grid>
+        </SplitView>
+
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <TextBox
-            text={`x`}
-            onBeforeTextChanging={e => {
-              if (e.nativeEvent.args) {
-                setX(e.nativeEvent.args.newText);
-              }
+          <Button
+            foreground="#992222"
+            onTapped={a => {
+              setIsOpen(!isOpen);
             }}
+            content='button'
           />
+          {/* <BlankUserControl  onHappened={(arg) => alert(JSON.stringify(arg.nativeEvent)) } /> */}
+          {/* <Button content={`Last selected option = ${option} ${count}`}
+                      onClick={(a) => { 
+                        alert(JSON.stringify(a.nativeEvent)); 
+                        setCount(count + 1); 
+                        setIsOpen(true); }}
+                      clickMode={ClickMode.Release}
+                      resources={{ 
+                        ButtonForeground: "#00fff1",
+                        ButtonForegroundPressed: "#2090ff",
+                     }}
+                  /> */}
+          <TextBlock foreground="black" padding={20} margin={20}>
+            <Run text="hello world!" />
+            <LineBreak />
+            <Italic>
+              <Run text="hi there" />
+            </Italic>
+            <Hyperlink navigateUri="http://bing.com">
+              <Run text="Go to bing" />
+            </Hyperlink>
+          </TextBlock>
+          <NavigationView
+            style={{height: 200, width: 120, margin: 20, padding: 40}}>
+            <NavigationViewItem content='item 1'>
+              <FontIcon glyph="&#xE790;" />
+            </NavigationViewItem>
+            <NavigationViewItem content='item 2' />
+          </NavigationView>
+          {/*<StackPanel orientation="horizontal">*/}
+          {/*    <HyperlinkButton content="Click me!" onClick={(args) => {*/}
+          {/*        alert(`clicked! Native event args: ${JSON.stringify(args.nativeEvent)}`);*/}
+          {/*    }} />*/}
+          {/*    <Border verticalAlignment="center" background="paleturquoise" >*/}
+          {/*        <TextBlock text="this is a text block" foreground='red' textAlignment="center" />*/}
+          {/*    </Border>*/}
+          {/*    <TextBlock text="this is another text block" foreground='green' textAlignment="center" />*/}
+          {/*    <Button content="this is a button" onClick={() => { alert("you clicked the button!"); }} />*/}
+          {/*</StackPanel>*/}
+          <ComboBox
+            text="this is a combobox"
+            description={{string: 'best cats'}}
+            onSelectionChanged={args => {
+              alert(
+                `sel changed! Native event args: ${JSON.stringify(
+                  args.nativeEvent,
+                )}`,
+              );
+            }}>
+            <ComboBoxItem content='garfield' foreground="black" />
+            <ComboBoxItem content='snoopy' foreground="black" />
+          </ComboBox>
+          {/* <TextBox text="this is a textbox with a menuFlyout" foreground="red">
+                      <MenuFlyout isOpen={isOpen} onClosed={() => {
+                          setIsOpen(false);
+                      }} >
+                          <MenuFlyoutItem text="option 1" onClick={(x) => { alert(JSON.stringify(x.nativeEvent)); setOption("option 1"); }} />
+                          <MenuFlyoutItem text="option 2" onClick={() => { alert("clicked 2"); setOption("option 2"); }}/>
+                    </MenuFlyout>
+                  </TextBox> */}
 
-        <WinUI.ColorPicker onColorChanged={(e) => {
-          console.log(e.nativeEvent);
-        }} />
+          {/*<TextBox text="this is a textbox with a flyout" */}
+          {/*  foreground="red" >*/}
+          {/*  <NativeXamlControl type="flyout" >*/}
+          {/*    <Button content="click me" />*/}
+          {/*  </NativeXamlControl>*/}
+          {/*</TextBox>*/}
 
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   sectionContainer: {

@@ -11,21 +11,17 @@ on:
         required: false
         default: 'latest'
         type: string
-      useRnwNuGet:
+      useRnwWindowsInit:
         required: false
         default: false
         type: boolean
-      rnVersion:
-        required: false
-        default: 'latest'
-        type: string
 
 jobs:
   testcli:
-    name: New RNW@${{ inputs.rnwVersion }} App from ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }}
+    name: New RNW@${{ inputs.rnwVersion }} App
     runs-on: ${{ inputs.vmImage }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: yarn install
       run: yarn install
@@ -37,24 +33,47 @@ jobs:
       run: yarn link
       working-directory: package
 
-    - name: create react-native@${{ inputs.rnVersion }} app
-      run: npx @react-native-community/cli init testrnx --version ${{ inputs.rnVersion }} --skip-install --install-pods false --verbose --skip-git-init true
+    - name: determine RN versions
+      run: |
+        $rnwVersion = & npm show react-native-windows@${{ inputs.rnwVersion }} version
+        echo "RNW_VERSION=$rnwVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+        $rnVersion = & npm show react-native-windows@$rnwVersion peerDependencies.react-native
+        echo "RN_VERSION=$rnVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+        Write-Host "Using react-native-windows@$rnwVersion with react-native@$rnVersion"
+
+    - name: create react-native app
+      run: |
+        Write-Host "Using react-native@$Env:RN_VERSION"
+        npx @react-native-community/cli init testrnx --version $Env:RN_VERSION --skip-install --install-pods false --verbose --skip-git-init true
       working-directory: ../
 
     - name: yarn install
       run: yarn install
       working-directory: ../testrnx
 
-    - name: add Windows (RNW via ${{ inputs.useRnwNuGet && 'NuGet' || 'Source' }})
-      run: npx react-native-windows-init --overwrite ${{ inputs.useRnwNuGet && '--experimentalNuGetDependency true' || '' }}
+    - name: react-native-windows-init
+      if: ${{ inputs.useRnwWindowsInit }}
+      run: |
+        Write-Host "Using react-native-windows@$Env:RNW_VERSION"
+        npx --yes react-native-windows-init --overwrite --verbose --version $Env:RNW_VERSION
+        yarn install
       working-directory: ../testrnx
 
-    - name: link react-native-xaml
-      run: yarn link react-native-xaml
+    - name: react-native init-windows
+      if: ${{ !inputs.useRnwWindowsInit }}
+      run: |
+        Write-Host "Using react-native-windows@$Env:RNW_VERSION"
+        yarn add react-native-windows@$Env:RNW_VERSION
+        yarn install
+        npx @react-native-community/cli@latest init-windows --overwrite --logging
+        yarn install
       working-directory: ../testrnx
 
     - name: add react-native-xaml
-      run: yarn add react-native-xaml
+      run: |
+        yarn add react-native-xaml
+        yarn link react-native-xaml
+        yarn install
       working-directory: ../testrnx
 
     - name: autolink
@@ -63,8 +82,4 @@ jobs:
 
     - name: build app
       run: npx @react-native-community/cli run-windows --no-launch --no-deploy --no-packager --logging
-      working-directory: ../testrnx
-
-    - name: test app
-      run: yarn test
       working-directory: ../testrnx

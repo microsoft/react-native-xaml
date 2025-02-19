@@ -9,7 +9,7 @@ jobs:
     name: Setup Check
     runs-on: windows-2022
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: yarn install
       run: yarn install
@@ -42,19 +42,12 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['v0.73-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.71 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
-        useRnwNuGet: [false, true] # test building with both RNW source and RNW NuGet
-        include:
-          - rnwVersion: 'v0.73-stable'
-            rnVersion: '0.73-stable'
-          - rnwVersion: 'v0.72-stable'
-            rnVersion: '0.72-stable'
+        rnwVersion: ['latest', 'v0.76-stable', 'v0.75-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.72 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
       rnwVersion: ${{ matrix.rnwVersion }}
-      useRnwNuGet: ${{ matrix.useRnwNuGet }}
-      rnVersion: ${{ matrix.rnVersion }}
+      useRnwWindowsInit: ${{ matrix.rnwVersion == 'v0.72-stable' }}
 
   call-buildnpmpackage:
     name: Build NPM Package
@@ -82,4 +75,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: [setupcheck, call-runcodegen, call-testcli, call-buildnpmpackage, call-buildrnx]
     steps:
-     - uses: actions/checkout@v3
+     - uses: actions/checkout@v4

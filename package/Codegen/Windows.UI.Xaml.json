@@ -110,7 +110,10 @@
     "$xaml.Controls.Maps.MapControl.Style": "mapStyle",
     "$xaml.FrameworkElement.Style": "styleKey",
     "$xaml.FrameworkElement.Margin": "xamlMargin",
-    "$xaml.Controls.Control.Padding":  "xamlPadding"
+    "$xaml.Controls.Control.Padding": "xamlPadding",
+    "$xaml.Controls.Control.TabIndex": "xamlTabIndex",
+    "$xaml.Documents.ContentLink.TabIndex": "xamlTabIndex",
+    "$xaml.Documents.Hyperlink.TabIndex": "xamlTabIndex"
   },
   "typeMapping": [
     {

@@ -42,12 +42,12 @@
   },
   "devDependencies": {
     "@types/jest": "*",
+    "@types/react": "^18.2.6",
     "beachball": "^2.16.0",
     "eslint": "^8.19.0",
-    "react": "18.2.0",
-    "react-native": "0.73.11",
-    "react-native-windows": "0.73.21",
-    "react-native-typescript-transformer": "*",
+    "react": "18.3.1",
+    "react-native": "0.77.0",
+    "react-native-windows": "0.77.2",
     "typescript": "5.0.4"
   },
   "files": [

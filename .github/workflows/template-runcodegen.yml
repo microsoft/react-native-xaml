@@ -18,7 +18,7 @@ jobs:
         git config --global core.autocrlf false
         git config --global core.filemode false
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: yarn install
       run: yarn install
@@ -26,7 +26,7 @@ jobs:
     - uses: nuget/setup-nuget@v1
 
     - name: NuGet restore
-      run: nuget restore package\windows\ReactNativeXaml.sln
+      run: nuget restore -LockedMode package\windows\ReactNativeXaml.sln
 
     - name: run CodeGen
       run: yarn codegen
