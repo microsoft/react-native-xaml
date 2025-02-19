@@ -33,9 +33,6 @@
     -->
     <UseExperimentalNuget>false</UseExperimentalNuget>
 
-    <!-- Necessary as sometimes RNW 0.73 doesn't run with the old `npx react-natve codegen-windows` -->
-    <CodegenCommand>npx @react-native-community/cli codegen-windows</CodegenCommand>
-
     <ReactExperimentalFeaturesSet>true</ReactExperimentalFeaturesSet>
   
   </PropertyGroup>
