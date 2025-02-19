@@ -33,7 +33,7 @@ jobs:
       run: yarn build
 
     - name: build ReactNativeXaml.sln
-      run: msbuild /restore /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=${{ inputs.configuration }} /p:platform=${{ inputs.platform }}
+      run: msbuild /restore /p:RestoreLockedMode=true /p:RestorePackagesConfig=true package\windows\ReactNativeXaml.sln /p:configuration=${{ inputs.configuration }} /p:platform=${{ inputs.platform }}
 
     - name: Upload build output
       uses: actions/upload-artifact@v4
