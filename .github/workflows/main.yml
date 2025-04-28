@@ -27,7 +27,6 @@ jobs:
 
   call-testcli:
     name: Test CLI (VS 2022)
-    needs: setupcheck
     strategy:
       fail-fast: false
       matrix:
