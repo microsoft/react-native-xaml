@@ -447,11 +447,6 @@ export type NativeHandwritingPanelClosedEventArgs = {
 }
 export type NativeHandwritingPanelOpenedEventArgs = {
 }
-export type NativeHandwritingViewCandidatesChangedEventArgs = {
-  readonly candidatesSessionId: number;
-}
-export type NativeHandwritingViewTextSubmittedEventArgs = {
-}
 export type NativeHubSectionHeaderClickEventArgs = {
 }
 export type NativeSectionsInViewChangedEventArgs = {
@@ -2530,77 +2525,53 @@ export interface NativeCalendarDatePickerProps extends NativeControlProps {
 }
 export interface NativeCalendarViewProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.CalendarView';
-  firstOfMonthLabelFontWeight?: number;
-  firstOfMonthLabelFontStyle?: Enums.FontStyle;
-  firstOfMonthLabelFontSize?: number;
-  firstOfMonthLabelFontFamily?: string;
-  firstDayOfWeek?: Enums.DayOfWeek;
-  displayMode?: Enums.CalendarViewDisplayMode;
-  dayOfWeekFormat?: string;
-  dayItemFontWeight?: number;
-  isTodayHighlighted?: boolean;
-  dayItemFontSize?: number;
-  dayItemFontFamily?: string;
-  calendarViewDayItemStyle?: string;
-  calendarItemForeground?: ColorValue;
-  calendarItemBorderThickness?: Thickness;
-  calendarItemBorderBrush?: ColorValue;
-  calendarItemBackground?: ColorValue;
-  calendarIdentifier?: string;
-  outOfScopeBackground?: ColorValue;
-  blackoutForeground?: ColorValue;
-  firstOfYearDecadeLabelFontFamily?: string;
-  numberOfWeeksInView?: number;
-  monthYearItemFontWeight?: number;
-  monthYearItemFontStyle?: Enums.FontStyle;
-  monthYearItemFontSize?: number;
-  monthYearItemFontFamily?: string;
-  outOfScopeForeground?: ColorValue;
-  isOutOfScopeEnabled?: boolean;
-  isGroupLabelVisible?: boolean;
-  hoverBorderBrush?: ColorValue;
   horizontalFirstOfMonthLabelAlignment?: Enums.HorizontalAlignment;
   horizontalDayItemAlignment?: Enums.HorizontalAlignment;
   focusBorderBrush?: ColorValue;
   firstOfYearDecadeLabelFontWeight?: number;
   firstOfYearDecadeLabelFontStyle?: Enums.FontStyle;
-  firstOfYearDecadeLabelFontSize?: number;
+  monthYearItemFontFamily?: string;
+  firstOfYearDecadeLabelFontFamily?: string;
+  firstOfMonthLabelFontWeight?: number;
+  firstOfMonthLabelFontStyle?: Enums.FontStyle;
+  firstOfMonthLabelFontSize?: number;
+  firstOfMonthLabelFontFamily?: string;
+  firstDayOfWeek?: Enums.DayOfWeek;
+  blackoutForeground?: ColorValue;
+  dayOfWeekFormat?: string;
+  dayItemFontWeight?: number;
   dayItemFontStyle?: Enums.FontStyle;
-  verticalFirstOfMonthLabelAlignment?: Enums.VerticalAlignment;
+  dayItemFontSize?: number;
+  dayItemFontFamily?: string;
+  selectedPressedBorderBrush?: ColorValue;
+  calendarItemForeground?: ColorValue;
+  calendarItemBorderThickness?: Thickness;
+  calendarItemBorderBrush?: ColorValue;
+  calendarItemBackground?: ColorValue;
+  calendarIdentifier?: string;
+  displayMode?: Enums.CalendarViewDisplayMode;
+  hoverBorderBrush?: ColorValue;
+  pressedBorderBrush?: ColorValue;
   verticalDayItemAlignment?: Enums.VerticalAlignment;
   todayForeground?: ColorValue;
   todayFontWeight?: number;
   selectionMode?: Enums.CalendarViewSelectionMode;
-  selectedPressedBorderBrush?: ColorValue;
+  calendarViewDayItemStyle?: string;
   selectedHoverBorderBrush?: ColorValue;
   selectedForeground?: ColorValue;
   selectedBorderBrush?: ColorValue;
   pressedForeground?: ColorValue;
-  pressedBorderBrush?: ColorValue;
-  calendarItemHoverBackground?: ColorValue;
-  calendarItemDisabledBackground?: ColorValue;
-  calendarItemCornerRadius?: CornerRadius;
-  blackoutStrikethroughBrush?: ColorValue;
-  blackoutBackground?: ColorValue;
-  calendarItemPressedBackground?: ColorValue;
-  todaySelectedInnerBorderBrush?: ColorValue;
-  todayPressedBackground?: ColorValue;
-  todayHoverBackground?: ColorValue;
-  todayDisabledBackground?: ColorValue;
-  todayBlackoutForeground?: ColorValue;
-  todayBlackoutBackground?: ColorValue;
-  todayBackground?: ColorValue;
-  selectedPressedForeground?: ColorValue;
-  selectedHoverForeground?: ColorValue;
-  selectedDisabledForeground?: ColorValue;
-  selectedDisabledBorderBrush?: ColorValue;
-  outOfScopePressedForeground?: ColorValue;
-  outOfScopeHoverForeground?: ColorValue;
-  monthYearItemMargin?: Thickness;
-  firstOfYearDecadeLabelMargin?: Thickness;
-  firstOfMonthLabelMargin?: Thickness;
-  disabledForeground?: ColorValue;
-  dayItemMargin?: Thickness;
+  verticalFirstOfMonthLabelAlignment?: Enums.VerticalAlignment;
+  outOfScopeForeground?: ColorValue;
+  outOfScopeBackground?: ColorValue;
+  numberOfWeeksInView?: number;
+  monthYearItemFontWeight?: number;
+  monthYearItemFontStyle?: Enums.FontStyle;
+  monthYearItemFontSize?: number;
+  firstOfYearDecadeLabelFontSize?: number;
+  isTodayHighlighted?: boolean;
+  isOutOfScopeEnabled?: boolean;
+  isGroupLabelVisible?: boolean;
   onCalendarViewDayItemChanging?: (event: NativeSyntheticEvent<TypedEvent<NativeCalendarViewDayItemChangingEventArgs>>) => void;
   onSelectedDatesChanged?: (event: NativeSyntheticEvent<TypedEvent<NativeCalendarViewSelectedDatesChangedEventArgs>>) => void;
 }
@@ -2960,12 +2931,8 @@ export interface NativeHandwritingViewProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.HandwritingView';
   placementAlignment?: Enums.HandwritingPanelPlacementAlignment;
   areCandidatesEnabled?: boolean;
-  isSwitchToKeyboardEnabled?: boolean;
-  isCommandBarOpen?: boolean;
   onClosed?: (event: NativeSyntheticEvent<TypedEvent<NativeHandwritingPanelClosedEventArgs>>) => void;
   onOpened?: (event: NativeSyntheticEvent<TypedEvent<NativeHandwritingPanelOpenedEventArgs>>) => void;
-  onCandidatesChanged?: (event: NativeSyntheticEvent<TypedEvent<NativeHandwritingViewCandidatesChangedEventArgs>>) => void;
-  onTextSubmitted?: (event: NativeSyntheticEvent<TypedEvent<NativeHandwritingViewTextSubmittedEventArgs>>) => void;
 }
 export interface NativeHubProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.Hub';
@@ -3553,7 +3520,7 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
   selectedBorderThickness?: Thickness;
   selectedBackground?: ColorValue;
   reorderHintOffset?: number;
-  checkBrush?: ColorValue;
+  pointerOverBackgroundMargin?: Thickness;
   pointerOverBackground?: ColorValue;
   placeholderBackground?: ColorValue;
   listViewItemPresenterVerticalContentAlignment?: Enums.VerticalAlignment;
@@ -3567,44 +3534,17 @@ export interface NativeListViewItemPresenterProps extends NativeContentPresenter
   contentMargin?: Thickness;
   checkSelectingBrush?: ColorValue;
   checkHintBrush?: ColorValue;
-  pointerOverBackgroundMargin?: Thickness;
+  checkBrush?: ColorValue;
   selectedPressedBackground?: ColorValue;
   pressedBackground?: ColorValue;
   pointerOverForeground?: ColorValue;
   focusSecondaryBorderBrush?: ColorValue;
   checkMode?: Enums.ListViewItemPresenterCheckMode;
   checkBoxBrush?: ColorValue;
-  revealBackground?: ColorValue;
-  revealBackgroundShowsAboveContent?: boolean;
   revealBorderThickness?: Thickness;
   revealBorderBrush?: ColorValue;
-  checkDisabledBrush?: ColorValue;
-  selectionIndicatorPressedBrush?: ColorValue;
-  selectionIndicatorPointerOverBrush?: ColorValue;
-  selectionIndicatorMode?: Enums.ListViewItemPresenterSelectionIndicatorMode;
-  selectionIndicatorDisabledBrush?: ColorValue;
-  selectionIndicatorCornerRadius?: CornerRadius;
-  selectionIndicatorBrush?: ColorValue;
-  selectedPressedBorderBrush?: ColorValue;
-  selectedInnerBorderBrush?: ColorValue;
-  selectedDisabledBorderBrush?: ColorValue;
-  selectedDisabledBackground?: ColorValue;
-  selectedBorderBrush?: ColorValue;
-  pointerOverBorderBrush?: ColorValue;
-  checkPressedBrush?: ColorValue;
-  selectionIndicatorVisualEnabled?: boolean;
-  checkBoxSelectedPressedBrush?: ColorValue;
-  checkBoxSelectedPointerOverBrush?: ColorValue;
-  checkBoxSelectedDisabledBrush?: ColorValue;
-  checkBoxSelectedBrush?: ColorValue;
-  checkBoxPressedBrush?: ColorValue;
-  checkBoxPressedBorderBrush?: ColorValue;
-  checkBoxPointerOverBrush?: ColorValue;
-  checkBoxPointerOverBorderBrush?: ColorValue;
-  checkBoxDisabledBrush?: ColorValue;
-  checkBoxDisabledBorderBrush?: ColorValue;
-  checkBoxCornerRadius?: CornerRadius;
-  checkBoxBorderBrush?: ColorValue;
+  revealBackgroundShowsAboveContent?: boolean;
+  revealBackground?: ColorValue;
 }
 export interface NativeLoopingSelectorProps extends NativeControlProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.LoopingSelector';
@@ -3650,10 +3590,8 @@ export interface NativePopupProps extends NativeFrameworkElementProps {
   horizontalOffset?: number;
   lightDismissOverlayMode?: Enums.LightDismissOverlayMode;
   shouldConstrainToRootBounds?: boolean;
-  desiredPlacement?: Enums.PopupPlacementMode;
   onClosed?: (event: NativeSyntheticEvent<undefined>) => void;
   onOpened?: (event: NativeSyntheticEvent<undefined>) => void;
-  onActualPlacementChanged?: (event: NativeSyntheticEvent<undefined>) => void;
 }
 export interface NativeRepeatButtonProps extends NativeButtonBaseProps {
   type: 'Windows.UI.Xaml.Controls.Primitives.RepeatButton';
