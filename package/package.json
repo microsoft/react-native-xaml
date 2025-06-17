@@ -59,6 +59,7 @@
     "windows/",
     "lib/",
     "src/",
-    "!*.ruleset"
+    "!*.ruleset",
+    "!*.lock.json"
   ]
 }
