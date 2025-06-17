@@ -15,7 +15,7 @@
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 SOURCE WINMDS USED:
-  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
+  - C:\Users\jthysell\.nuget\packages\\Microsoft.UI.Xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 winrt::Windows::Foundation::IInspectable XamlMetadata::Create(const std::string_view& typeName) const {

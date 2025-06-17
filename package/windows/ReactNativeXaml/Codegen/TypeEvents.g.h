@@ -8,7 +8,7 @@
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 SOURCE WINMDS USED:
-  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
+  - C:\Users\jthysell\.nuget\packages\\Microsoft.UI.Xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
@@ -2033,6 +2033,32 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo eai, const winr
     }
     return winrt::event_token{0};
   } },
+  {"CandidatesChanged", [](const EventAttachInfo eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::HandwritingView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.CandidatesChanged([eai] (const winrt::Windows::UI::Xaml::Controls::HandwritingView& sender, const winrt::Windows::UI::Xaml::Controls::HandwritingViewCandidatesChangedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.CandidatesChanged(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"TextSubmitted", [](const EventAttachInfo eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::HandwritingView>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.TextSubmitted([eai] (const winrt::Windows::UI::Xaml::Controls::HandwritingView& sender, const winrt::Windows::UI::Xaml::Controls::HandwritingViewTextSubmittedEventArgs& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.TextSubmitted(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
   {"SectionHeaderClick", [](const EventAttachInfo eai, bool isWrapped, winrt::event_token token) noexcept {
     if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Hub>(eai.obj, isWrapped)) {
       if (!token) {
@@ -3016,6 +3042,19 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo eai, const winr
         });
       } else {
         c.Opened(token);
+        return winrt::event_token{ -1 };
+      }
+    }
+    return winrt::event_token{0};
+  } },
+  {"ActualPlacementChanged", [](const EventAttachInfo eai, bool isWrapped, winrt::event_token token) noexcept {
+    if (const auto& c = DoTheTypeChecking<winrt::Windows::UI::Xaml::Controls::Primitives::Popup>(eai.obj, isWrapped)) {
+      if (!token) {
+        return c.ActualPlacementChanged([eai] (const winrt::Windows::Foundation::IInspectable& sender, const winrt::Windows::Foundation::IInspectable& args) noexcept {
+            DispatchTheEvent(eai, sender, args);
+        });
+      } else {
+        c.ActualPlacementChanged(token);
         return winrt::event_token{ -1 };
       }
     }
@@ -4415,7 +4454,7 @@ __declspec(noinline) void DispatchTheEvent(const EventAttachInfo eai, const winr
   {"ContentDialogClosed", nullptr /* synthetic event */},
 };
 
-static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 336);
+static_assert(ARRAYSIZE(EventInfo::xamlEventMap) == 339);
 
 void JsEvent(winrt::Microsoft::ReactNative::IJSValueWriter const& constantWriter, std::wstring topName, std::wstring onName) {
     constantWriter.WritePropertyName(topName);

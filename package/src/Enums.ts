@@ -2,7 +2,7 @@
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 SOURCE WINMDS USED:
-  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
+  - C:\Users\jthysell\.nuget\packages\\Microsoft.UI.Xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 export enum Stretch {
@@ -425,6 +425,25 @@ export enum ColorPickerHsvChannel {
 export enum ListViewItemPresenterCheckMode {
   Inline = 0,
   Overlay = 1,
+}
+export enum ListViewItemPresenterSelectionIndicatorMode {
+  Inline = 0,
+  Overlay = 1,
+}
+export enum PopupPlacementMode {
+  Auto = 0,
+  Top = 1,
+  Bottom = 2,
+  Left = 3,
+  Right = 4,
+  TopEdgeAlignedLeft = 5,
+  TopEdgeAlignedRight = 6,
+  BottomEdgeAlignedLeft = 7,
+  BottomEdgeAlignedRight = 8,
+  LeftEdgeAlignedTop = 9,
+  LeftEdgeAlignedBottom = 10,
+  RightEdgeAlignedTop = 11,
+  RightEdgeAlignedBottom = 12,
 }
 export enum ScrollingIndicatorMode {
   None = 0,

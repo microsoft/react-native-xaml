@@ -2,7 +2,7 @@
 /*************************************************************
 THIS FILE WAS AUTOMATICALLY GENERATED, DO NOT MODIFY MANUALLY
 SOURCE WINMDS USED:
-  - %USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
+  - C:\Users\jthysell\.nuget\packages\\Microsoft.UI.Xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd
 **************************************************************/
 
 import type {
@@ -240,6 +240,8 @@ import type {
     NativeDragItemsCompletedEventArgs,
     NativeHandwritingPanelClosedEventArgs,
     NativeHandwritingPanelOpenedEventArgs,
+    NativeHandwritingViewCandidatesChangedEventArgs,
+    NativeHandwritingViewTextSubmittedEventArgs,
     NativeHubSectionHeaderClickEventArgs,
     NativeSectionsInViewChangedEventArgs,
     NativeExceptionRoutedEventArgs,
@@ -1730,6 +1732,8 @@ export type ChoosingItemContainerEventArgs = NativeChoosingItemContainerEventArg
 export type DragItemsCompletedEventArgs = NativeDragItemsCompletedEventArgs;    // Windows.UI.Xaml.Controls.DragItemsCompletedEventArgs 
 export type HandwritingPanelClosedEventArgs = NativeHandwritingPanelClosedEventArgs;    // Windows.UI.Xaml.Controls.HandwritingPanelClosedEventArgs 
 export type HandwritingPanelOpenedEventArgs = NativeHandwritingPanelOpenedEventArgs;    // Windows.UI.Xaml.Controls.HandwritingPanelOpenedEventArgs 
+export type HandwritingViewCandidatesChangedEventArgs = NativeHandwritingViewCandidatesChangedEventArgs;    // Windows.UI.Xaml.Controls.HandwritingViewCandidatesChangedEventArgs 
+export type HandwritingViewTextSubmittedEventArgs = NativeHandwritingViewTextSubmittedEventArgs;    // Windows.UI.Xaml.Controls.HandwritingViewTextSubmittedEventArgs 
 export type HubSectionHeaderClickEventArgs = NativeHubSectionHeaderClickEventArgs;    // Windows.UI.Xaml.Controls.HubSectionHeaderClickEventArgs 
 export type SectionsInViewChangedEventArgs = NativeSectionsInViewChangedEventArgs;    // Windows.UI.Xaml.Controls.SectionsInViewChangedEventArgs 
 export type ExceptionRoutedEventArgs = NativeExceptionRoutedEventArgs;    // Windows.UI.Xaml.ExceptionRoutedEventArgs 

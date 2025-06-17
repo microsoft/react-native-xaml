@@ -16,7 +16,7 @@ namespace Codegen
 
     class Program
     {
-        const string Windows_winmd = @"%ProgramFiles(x86)%\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd";
+        const string Windows_winmd = @"%ProgramFiles(x86)%\Windows Kits\10\UnionMetadata\10.0.22621.0\Windows.winmd";
 
         JsonDocument Config;
         public string ConfigFileName
