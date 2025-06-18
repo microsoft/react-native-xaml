@@ -2,6 +2,33 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Wed, 18 Jun 2025 23:12:05 GMT",
+      "tag": "react-native-xaml_v0.0.80",
+      "version": "0.0.80",
+      "comments": {
+        "patch": [
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "4483cbdddfd72c2c430995dbe373daa7d7b3ae9f",
+            "comment": "Update devDependency to RNW 0.79"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "e0290358b1bddf36ed1149bd9c7ada95d79abd9d",
+            "comment": "Fix NuGet errors when consumed by apps"
+          },
+          {
+            "author": "jthysell@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "0c820ec1d833f045af73f788d7701e4957660f03",
+            "comment": "Upgrade RNX to target RNW 0.77"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 21 Nov 2024 23:01:02 GMT",
       "tag": "react-native-xaml_v0.0.79",
       "version": "0.0.79",

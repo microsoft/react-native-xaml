@@ -1,8 +1,18 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Thu, 21 Nov 2024 23:01:02 GMT and should not be manually modified.
+This log was last generated on Wed, 18 Jun 2025 23:12:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.80
+
+Wed, 18 Jun 2025 23:12:05 GMT
+
+### Patches
+
+- Update devDependency to RNW 0.79 (jthysell@microsoft.com)
+- Fix NuGet errors when consumed by apps (jthysell@microsoft.com)
+- Upgrade RNX to target RNW 0.77 (jthysell@microsoft.com)
 
 ## 0.0.79
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix NuGet errors when consumed by apps",
-  "packageName": "react-native-xaml",
-  "email": "jthysell@microsoft.com",
-  "dependentChangeType": "patch"
-}
