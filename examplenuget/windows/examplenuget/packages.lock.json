@@ -4,23 +4,23 @@
     "native,Version=v0.0": {
       "Microsoft.JavaScript.Hermes": {
         "type": "Direct",
-        "requested": "[0.1.23, )",
-        "resolved": "0.1.23",
-        "contentHash": "cA9t1GjY4Yo0JD1AfA//e1lOwk48hLANfuX6GXrikmEBNZVr2TIX5ONJt5tqCnpZyLz6xGiPDgTfFNKbSfb21g=="
+        "requested": "[0.0.0-2505.2001-0e4bc3b9, )",
+        "resolved": "0.0.0-2505.2001-0e4bc3b9",
+        "contentHash": "VNSUBgaGzJ/KkK3Br0b9FORkCgKqke54hi48vG42xRACIlxN+uLFMz0hRo+KHogz+Fsn+ltXicGwQsDVpmaCMg=="
       },
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.ReactNative.Cxx": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "G5H8buPZyrPZGzr/0KPr1IcWL3XPGOc9iC4P5vxOHlsW82TAA9lTt1mZhtF/LXe6c+axUdVAhW3Lwy2gETsPGg==",
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "SgqS70L8JKB9UId7JMLCp1EEs8LztAXVGYIIrFRzEZtKqN37weP2ndDW6+v0I+gJqNWdV/UThq9cJXHwVM0cZw==",
         "dependencies": {
-          "Microsoft.ReactNative": "0.77.2"
+          "Microsoft.ReactNative": "0.79.0"
         }
       },
       "Microsoft.UI.Xaml": {
@@ -52,8 +52,8 @@
         "type": "Project",
         "dependencies": {
           "CDebug": "[0.0.3, )",
-          "Microsoft.ReactNative": "[0.77.2, )",
-          "Microsoft.ReactNative.Cxx": "[0.77.2, )",
+          "Microsoft.ReactNative": "[0.79.0, )",
+          "Microsoft.ReactNative.Cxx": "[0.79.0, )",
           "Microsoft.UI.Xaml": "[2.8.0, )"
         }
       }
@@ -61,9 +61,9 @@
     "native,Version=v0.0/win10-arm": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -74,9 +74,9 @@
     "native,Version=v0.0/win10-arm-aot": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -87,9 +87,9 @@
     "native,Version=v0.0/win10-arm64-aot": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -100,9 +100,9 @@
     "native,Version=v0.0/win10-x64": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -113,9 +113,9 @@
     "native,Version=v0.0/win10-x64-aot": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -126,9 +126,9 @@
     "native,Version=v0.0/win10-x86": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -139,9 +139,9 @@
     "native,Version=v0.0/win10-x86-aot": {
       "Microsoft.ReactNative": {
         "type": "Direct",
-        "requested": "[0.77.2, )",
-        "resolved": "0.77.2",
-        "contentHash": "JcD3Wu/c5JM+aacUkGQLTHPzdnRZZx+lbYLUQcuUzOpiNqLlVYTOAZ6Zu5HGm8pbY6RltPZDo1qH56nIxb3X/g=="
+        "requested": "[0.79.0, )",
+        "resolved": "0.79.0",
+        "contentHash": "6+8MUOyEhqvfbW/8HfhBV7bJopCFO6d7+DSuR6PMrB6HTf2/ewMUC5Mx14nfHW5iUJr989EwzXBe5tTzroyMvw=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",

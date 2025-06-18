@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        rnwVersion: ['latest', 'v0.76-stable', 'v0.75-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.72 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
+        rnwVersion: ['latest', 'v0.78-stable', 'v0.72-stable'] # test *key* versions that use VS 2022. aka any RNW version >= 0.72 used by supported partners and/or Active/Maintenance from https://microsoft.github.io/react-native-windows/support
     uses: ./.github/workflows/template-testcli.yml
     with:
       vmImage: windows-2022
