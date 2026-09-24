@@ -18,12 +18,12 @@ jobs:
         git config --global core.autocrlf false
         git config --global core.filemode false
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
     - name: yarn install
       run: yarn install
 
-    - uses: nuget/setup-nuget@v1
+    - uses: nuget/setup-nuget@296fd3ccf8528660c91106efefe2364482f86d6f # v1.2.0
 
     - name: NuGet restore
       run: nuget restore -LockedMode package\windows\ReactNativeXaml.sln
