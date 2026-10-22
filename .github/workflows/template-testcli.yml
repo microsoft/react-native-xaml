@@ -21,7 +21,7 @@ jobs:
     name: New RNW@${{ inputs.rnwVersion }} App
     runs-on: ${{ inputs.vmImage }}
     steps:
-    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: yarn install
       run: yarn install
@@ -36,15 +36,21 @@ jobs:
     - name: determine RN versions
       run: |
         $rnwVersion = & npm show react-native-windows@${{ inputs.rnwVersion }} version
+        if ($LASTEXITCODE -ne 0) { throw "Failed to resolve React Native Windows version" }
+        $rnRange = & npm show react-native-windows@$rnwVersion peerDependencies.react-native
+        if ($LASTEXITCODE -ne 0) { throw "Failed to resolve React Native version range" }
+        $rnVersions = & npm show "react-native@$rnRange" version --json | ConvertFrom-Json
+        if ($LASTEXITCODE -ne 0) { throw "Failed to resolve React Native version" }
+        $rnVersion = @($rnVersions)[-1]
+        if ($rnVersion -notmatch '^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') { throw "Expected a concrete React Native version, got '$rnVersion'" }
         echo "RNW_VERSION=$rnwVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
-        $rnVersion = & npm show react-native-windows@$rnwVersion peerDependencies.react-native
         echo "RN_VERSION=$rnVersion" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
         Write-Host "Using react-native-windows@$rnwVersion with react-native@$rnVersion"
 
     - name: create react-native app
       run: |
         Write-Host "Using react-native@$Env:RN_VERSION"
-        npx @react-native-community/cli init testrnx --version $Env:RN_VERSION --skip-install --install-pods false --verbose --skip-git-init true
+        npx @react-native-community/cli init testrnx --version $Env:RN_VERSION --skip-install --install-pods false --verbose --skip-git-init
       working-directory: ../
 
     - name: yarn install
