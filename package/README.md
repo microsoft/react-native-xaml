@@ -1,5 +1,20 @@
 # react-native-xaml
 
+> [!IMPORTANT]
+> **Deprecated - no longer maintained**
+>
+> As of 2026-10-24, react-native-xaml is no longer maintained.
+> No further maintenance, bug fixes, or security updates are planned.
+> Source code, history, and existing releases remain available for reference.
+>
+> This project does not provide a direct replacement. This deprecation applies
+> only to react-native-xaml, not to React Native for Windows.
+>
+> For security vulnerability reporting, follow the
+> [security reporting instructions](https://github.com/microsoft/react-native-xaml/blob/main/SECURITY.md).
+
+The installation and usage instructions below are retained for historical reference.
+
 ## Getting started
 
 `$ npm install react-native-xaml --save`

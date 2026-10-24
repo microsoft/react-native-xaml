@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Document the deprecation of react-native-xaml.",
+  "packageName": "react-native-xaml",
+  "email": "vmorozov@microsoft.com",
+  "dependentChangeType": "none"
+}

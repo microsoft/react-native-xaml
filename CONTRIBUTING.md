@@ -1,9 +1,15 @@
 # Contributing
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+
+> **Deprecated - no longer maintained.** See the [project notice](README.md).
+
+The instructions below are retained for historical reference and do not imply
+an ongoing contribution-review or release commitment. No further maintenance,
+bug fixes, or security updates are planned. For security vulnerability reporting,
+follow [SECURITY.md](SECURITY.md).
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-## Pull Request Process
+## Historical Pull Request Process
 
 ### Initial setup
 1. Fork repository and create your feature branch out of main.

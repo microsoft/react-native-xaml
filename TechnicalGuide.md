@@ -1,3 +1,6 @@
+> **Deprecated - no longer maintained.** See the [project notice](README.md).
+> The technical documentation below is retained for historical reference.
+
 ## Design
 For background on React Native for Windows View Managers, see the [documentation](https://microsoft.github.io/react-native-windows/docs/view-managers).
 
