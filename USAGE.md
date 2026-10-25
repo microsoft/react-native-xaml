@@ -1,8 +1,9 @@
 # Using react-native-xaml
 
-## Requirements
+> **Deprecated - no longer maintained.** See the [project notice](README.md).
+> The requirements and examples below are retained for historical reference.
 
-react-native-xaml works best on the latest supported react-native-windows version.
+## Requirements
 
 To include react-native-xaml in your app, just add it to your package.json:
 `yarn add react-native-xaml --save`
@@ -20,7 +21,6 @@ For more information on generating a custom projection, please see the [Technica
 # Sample usage - UWP XAML
 
 Below are  usage examples of some controls and features of react-native-xaml.
-If you have questions about a scenario you don't see below, please [file an issue](https://github.com/asklar/react-native-xaml/issues/new)!
 
 ## Basic example (children, events, properties)
 
