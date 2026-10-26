@@ -1,4 +1,19 @@
 version: 2
+registries:
+  packagefeedproxy:
+    type: npm-registry
+    url: https://packagefeedproxy.microsoft.io/npm/
+    replaces-base: true
+  # Allow the anonymous archive hosts advertised by PackageFeedProxy.
+  npm-public-2:
+    type: npm-registry
+    url: https://ms-feed-2.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/
+  npm-public-12:
+    type: npm-registry
+    url: https://ms-feed-12.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/
+  npm-public-25:
+    type: npm-registry
+    url: https://ms-feed-25.pkgs.visualstudio.com/1es-public/_packaging/npm-public/npm/registry/
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -9,3 +24,14 @@ updates:
       interval: "weekly"
     cooldown:
       default-days: 7
+  - package-ecosystem: "npm"
+    directory: "/"
+    registries: ["*"]
+    schedule:
+      interval: "weekly"
+    # Security updates bypass cooldown; the proxy enforces upstream quarantine.
+    cooldown:
+      default-days: 8
+    # Preserve the existing security-only npm update behavior during retirement.
+    open-pull-requests-limit: 0
+    versioning-strategy: "lockfile-only"
