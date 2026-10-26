@@ -1,6 +1,6 @@
 {
   "type": "none",
-  "comment": "Document the deprecation of react-native-xaml.",
+  "comment": "Prepare the already-versioned final 0.0.81 deprecation notice release; no additional version bump.",
   "packageName": "react-native-xaml",
   "email": "vmorozov@microsoft.com",
   "dependentChangeType": "none"

@@ -2,6 +2,21 @@
   "name": "react-native-xaml",
   "entries": [
     {
+      "date": "Mon, 26 Oct 2026 18:15:36 GMT",
+      "tag": "react-native-xaml_v0.0.81",
+      "version": "0.0.81",
+      "comments": {
+        "patch": [
+          {
+            "author": "vmorozov@microsoft.com",
+            "package": "react-native-xaml",
+            "commit": "a401ee083f5d3b24fa12327f7f7953aa13624ede",
+            "comment": "Final notice release: react-native-xaml is deprecated. No further maintenance, bug fixes, or security updates are planned."
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 18 Jun 2025 23:12:05 GMT",
       "tag": "react-native-xaml_v0.0.80",
       "version": "0.0.80",
