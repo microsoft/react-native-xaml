@@ -1,8 +1,16 @@
 # Change Log - react-native-xaml
 
-This log was last generated on Wed, 18 Jun 2025 23:12:05 GMT and should not be manually modified.
+This log was last generated on Mon, 26 Oct 2026 18:15:36 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.0.81
+
+Mon, 26 Oct 2026 18:15:36 GMT
+
+### Patches
+
+- Final notice release: react-native-xaml is deprecated. No further maintenance, bug fixes, or security updates are planned. (vmorozov@microsoft.com)
 
 ## 0.0.80
 
