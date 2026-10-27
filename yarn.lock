@@ -3946,9 +3946,9 @@ bl@^4.1.0:
     readable-stream "^3.4.0"
 
 body-parser@^1.20.3:
-  version "1.20.8"
-  resolved "https://packagefeedproxy.microsoft.io/npm/body-parser/-/body-parser-1.20.8.tgz#328d51ce46cb19c983f3d9661016df2765283a37"
-  integrity sha1-Mo1RzkbLGcmD89lmEBbfJ2UoOjc=
+  version "1.20.9"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.9.tgz#b64358a113b4d200d7484752cd154b66933e2009"
+  integrity sha512-FISIQxV5u91Y9gvuFq3q/tA/qTqLJn3AhRcEvyozyhJTh5OBFFtv827AdHU7Rbyct4r+Ba1/99oFa1Y3yuFsdw==
   dependencies:
     bytes "~3.1.2"
     content-type "~1.0.5"
