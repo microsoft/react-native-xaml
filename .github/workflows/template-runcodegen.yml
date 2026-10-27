@@ -21,15 +21,19 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: yarn install
-      run: yarn install
+      run: yarn install --frozen-lockfile --registry https://packagefeedproxy.microsoft.io/npm/
 
     - uses: nuget/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123 # v4.0
 
     - name: NuGet restore
-      run: nuget restore -LockedMode package\windows\ReactNativeXaml.sln
+      run: nuget restore -LockedMode package\windows\ReactNativeXaml.sln -Source https://packagefeedproxy.microsoft.io/nuget/v3/index.json
+
+    - name: restore CodeGen
+      run: dotnet restore Codegen --source https://packagefeedproxy.microsoft.io/nuget/v3/index.json
+      working-directory: package
 
     - name: run CodeGen
-      run: dotnet run --project Codegen --no-launch-profile -- -verbose -winmd '%USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd'
+      run: dotnet run --project Codegen --no-restore --no-launch-profile -- -verbose -winmd '%USERPROFILE%\.nuget\packages\microsoft.ui.xaml\2.8.0\lib\uap10.0\Microsoft.UI.Xaml.winmd'
       working-directory: package
 
     - name: build TS

@@ -5,6 +5,9 @@ on:
     types: [published]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   call-runcodegen:
     name: Run CodeGen
@@ -15,6 +18,9 @@ jobs:
   publish-npm:
     runs-on: ubuntu-latest
     needs: call-runcodegen
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -22,19 +28,30 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
       with:
-        node-version: 18
+        node-version: 24
         registry-url: https://registry.npmjs.org/
+        package-manager-cache: false
+
+    - name: verify npm supports trusted publishing
+      run: |
+        node -e '
+          const version = process.argv[1];
+          if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error(`Unexpected npm version: ${version}`);
+          const [major, minor, patch] = version.split(".").map(Number);
+          if (major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) {
+            throw new Error("Trusted publishing requires npm 11.5.1 or later");
+          }
+          console.log(`Trusted publishing toolchain: npm ${version}`);
+        ' "$(npm --version)"
 
     - name: yarn install
-      run: yarn install
+      run: yarn install --frozen-lockfile --registry https://packagefeedproxy.microsoft.io/npm/
 
     - name: build TS
       run: yarn build
 
     - name: publish to npm
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm publish --registry https://registry.npmjs.org/
       working-directory: package
         
     - name: upload npm logs
